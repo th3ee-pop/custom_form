@@ -1,0 +1,18 @@
+<div nz-row>
+    <div nz-col>
+        <nz-card>
+            <ng-template #title>{{question.id}} {{question.tittle}}</ng-template>
+            <ng-template #body>
+                <form nz-form [nzLayout]="'inline'">
+                    <div nz-form-item>
+                        <div nz-form-control>
+                            <nz-input [nzPlaceHolder]="'username'" type="password">
+                                <ng-template #prefix><i class="anticon anticon-user"></i></ng-template>
+                            </nz-input>
+                        </div>
+                    </div>
+                </form>
+            </ng-template>
+        </nz-card>
+    </div>
+</div>

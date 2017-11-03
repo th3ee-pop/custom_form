@@ -1,3 +1,17 @@
-<p>
+<!-- <p>
   survey-management works!ljlasfjsldfj
-</p>
+</p> -->
+<!-- <app-radio [radios]='radios[1]' [question]="questions[0].question" [Id]="questions[0].Id"> </app-radio>
+<app-radio [radios]='radios[0]' [question]="questions[1].question" [Id]="questions[1].Id"> </app-radio> -->
+<div class="content__title">
+  <h1>
+      健康体检调查表
+      <small>Native support</small>
+  </h1>
+</div>
+
+
+<app-inputcmp [question]="questions['1.1.1']" (answer)="answers['1.1.1']"></app-inputcmp>
+<app-inputcmp [question]="questions['1.2.1']" (answer)="answers['1.2.1']"></app-inputcmp>
+<app-inputcmp [question]="questions['1.1.1']" (answer)="answers['1.1.1']"></app-inputcmp>
+<app-inputcmp [question]="questions['1.1.1']" (answer)="answers['1.1.1']"></app-inputcmp>
