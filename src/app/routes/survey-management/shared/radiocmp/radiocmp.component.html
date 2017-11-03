@@ -1,0 +1,7 @@
+<div class="example-selected-value" >{{Id}}、{{question}}</div>
+<mat-radio-group class="example-radio-group" [(ngModel)]="selected" >
+    <mat-radio-button class="example-radio-button" *ngFor="let radio of radios" [value]="radio.value">
+        {{radio.name}}
+    </mat-radio-button>
+</mat-radio-group>
+<div class="example-selected-value">Your favorite season is: {{selected}}</div>

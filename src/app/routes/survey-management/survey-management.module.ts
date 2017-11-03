@@ -4,7 +4,11 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { SharedModule } from '@shared/shared.module';
 import { SurveyManagementComponent } from './survey-management/survey-management.component';
+/*在下面添加新的组件类型*/
 
+import { RadiocmpComponent} from './shared/radiocmp/radiocmp.component';
+/**/
+import { MatRadioModule } from '@angular/material';
 const routes: Routes = [
     { path: 'detail', component: SurveyManagementComponent }
 ];
@@ -14,12 +18,14 @@ const routes: Routes = [
         CommonModule,
         SharedModule,
         RouterModule.forChild(routes),
+        MatRadioModule
     ],
     exports: [
         RouterModule
     ],
     declarations: [
-        SurveyManagementComponent
+        SurveyManagementComponent,
+        RadiocmpComponent
     ]
 })
 export class SurveyManagementModule { }
