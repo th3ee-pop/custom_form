@@ -9,9 +9,13 @@ import { AnswerInterface } from '../answerInterface';
   styleUrls: ['./inputcmp.component.css']
 })
 export class InputcmpComponent extends Question implements AnswerInterface {
-
+  localAnswer: any;
   constructor() {
     super();
+  }
+
+  answerChange() {
+    console.log(this.localAnswer);
   }
 
 }
