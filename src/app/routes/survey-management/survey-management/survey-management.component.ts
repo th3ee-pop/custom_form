@@ -1,6 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-
-import { InputcmpComponent } from '../shared/inputcmp/inputcmp.component';
+import { NzMessageService } from 'ng-zorro-antd';
+import { Directive, ElementRef, Input, HostListener } from '@angular/core';
+import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
+import * as moment from 'moment';
+import { saveAs } from 'file-saver';
+import { _HttpClient } from '@core/services/http.client';
+import { HttpService } from '@core/services/http.service';
+import {routes} from "../../routes";
+// import { environment } from '../../../environments/environment';
+// import { InputcmpComponent } from '../shared/inputcmp/inputcmp.component';
 
 @Component({
     selector: 'app-survey-management',
@@ -26,10 +34,16 @@ export class SurveyManagementComponent implements OnInit {
 
     answers = Array();
 
-    constructor() { }
+    api = '/healthexamination/recordop/';
+    params = {"PID":"003","RecordID":"ID1"};
 
+    constructor(
+        private httpService: HttpService
+    ) { }
 
     ngOnInit() {
+        this.httpService.getRecord(this.api,this.params).subscribe((res) => {
+            console.log(res);
+        })
     }
-
 }
