@@ -35,7 +35,7 @@ export class SurveyManagementComponent implements OnInit {
     answers = Array();
 
     api = '/healthexamination/recordop/';
-    params = {"PID":"003","RecordID":"ID1"};
+    params = {"PID":"003","RecordID":"ID1" };
 
     constructor(
         private httpService: HttpService
@@ -45,5 +45,7 @@ export class SurveyManagementComponent implements OnInit {
         this.httpService.getRecord(this.api,this.params).subscribe((res) => {
             console.log(res);
         })
+        console.log(this.questions);
     }
+
 }

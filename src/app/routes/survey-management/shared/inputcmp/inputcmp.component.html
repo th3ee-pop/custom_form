@@ -4,11 +4,15 @@
             <ng-template #title>{{question.id}} {{question.tittle}}</ng-template>
             <ng-template #body>
                 <form nz-form [nzLayout]="'inline'">
-                    <div nz-form-item>
+                    <div nz-form-item *ngFor="let item of question.content;index as i">
+                        <div nz-form-control *ngIf="item.dataType == 'number'" [(ngModel)]="localAnswer" (ngModelChange)="answerChange()">
+                            <nz-input-number></nz-input-number>
+                        </div> 
+                        <div nz-form-control *ngIf="item.dataType == 'text'">
+                            <nz-input ></nz-input>
+                        </div>
                         <div nz-form-control>
-                            <nz-input [nzPlaceHolder]="'username'" type="password">
-                                <ng-template #prefix><i class="anticon anticon-user"></i></ng-template>
-                            </nz-input>
+                            <label>{{item.inform}}</label>
                         </div>
                     </div>
                 </form>

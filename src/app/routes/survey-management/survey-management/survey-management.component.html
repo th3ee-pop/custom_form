@@ -1,8 +1,3 @@
-<!-- <p>
-  survey-management works!ljlasfjsldfj
-</p> -->
-<!-- <app-radio [radios]='radios[1]' [question]="questions[0].question" [Id]="questions[0].Id"> </app-radio>
-<app-radio [radios]='radios[0]' [question]="questions[1].question" [Id]="questions[1].Id"> </app-radio> -->
 <div class="content__title">
   <h1>
       健康体检调查表
@@ -11,7 +6,12 @@
 </div>
 
 
-<app-inputcmp [question]="questions['1.1.1']" (answer)="answers['1.1.1']"></app-inputcmp>
-<app-inputcmp [question]="questions['1.2.1']" (answer)="answers['1.2.1']"></app-inputcmp>
-<app-inputcmp [question]="questions['1.1.1']" (answer)="answers['1.1.1']"></app-inputcmp>
-<app-inputcmp [question]="questions['1.1.1']" (answer)="answers['1.1.1']"></app-inputcmp>
+<!-- 遍历questions列表，根据元素的type属性，选择相应模板渲染 -->
+<div *ngFor="let question of questions" >
+  <div [ngSwitch]="question.type">
+    <app-inputcmp     *ngSwitchCase="'input'"     [question]="question"   (answer)="answer[quesion.id]"></app-inputcmp>
+    <app-radiocmp     *ngSwitchCase="'radio'"     [question]="question"   (answer)="answer[quesion.id]"></app-radiocmp>
+    <app-checkboxcmp  *ngSwitchCase="'checkbox'"  [question]="question"   (answer)="answer[quesion.id]"></app-checkboxcmp>
+    <app-tablecmp     *ngSwitchCase="'table'"     [question]="question"   (answer)="answer[quesion.id]"></app-tablecmp>
+  </div>
+</div>
