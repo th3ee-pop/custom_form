@@ -14,4 +14,6 @@
     <app-checkboxcmp  *ngSwitchCase="'checkbox'"  [question]="question"   (answer)="answer[quesion.id]"></app-checkboxcmp>
     <app-tablecmp     *ngSwitchCase="'table'"     [question]="question"   (answer)="answer[quesion.id]"></app-tablecmp>
   </div>
+
+    <button nz-button [nzType]=" 'primary'" (click)="submit()"><span>提交</span></button>
 </div>
