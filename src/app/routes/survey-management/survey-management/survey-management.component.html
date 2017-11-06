@@ -1,17 +1,19 @@
-<div class="content__title">
-  <h1>
-      健康体检调查表
-      <small>Native support</small>
-  </h1>
-</div>
-
-
-<!-- 遍历questions列表，根据元素的type属性，选择相应模板渲染 -->
-<div *ngFor="let question of questions" >
-  <div [ngSwitch]="question.type">
-    <app-inputcmp     *ngSwitchCase="'input'"     [question]="question"   (answer)="answer[quesion.id]"></app-inputcmp>
-    <app-radiocmp     *ngSwitchCase="'radio'"     [question]="question"   (answer)="answer[quesion.id]"></app-radiocmp>
-    <app-checkboxcmp  *ngSwitchCase="'checkbox'"  [question]="question"   (answer)="answer[quesion.id]"></app-checkboxcmp>
-    <app-tablecmp     *ngSwitchCase="'table'"     [question]="question"   (answer)="answer[quesion.id]"></app-tablecmp>
-  </div>
+<br>
+<div nz-row>
+    <div nz-col>
+        <nz-card>
+            <ng-template #title>健康体检调查表</ng-template>
+            <ng-template #body>
+            <!-- 遍历questions列表，根据元素的type属性，选择相应模板渲染 -->
+                <div *ngFor="let question of questions" >
+                    <div [ngSwitch]="question.type">
+                        <app-inputcmp     *ngSwitchCase="'input'"     [question]="question"></app-inputcmp>
+                        <app-radiocmp     *ngSwitchCase="'radio'"     [question]="question"></app-radiocmp>
+                        <app-checkboxcmp  *ngSwitchCase="'checkbox'"  [question]="question"></app-checkboxcmp>
+                        <app-tablecmp     *ngSwitchCase="'table'"     [question]="question"></app-tablecmp>
+                    </div>
+                </div>
+            </ng-template>
+        </nz-card>
+    </div>
 </div>

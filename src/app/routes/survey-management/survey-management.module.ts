@@ -10,13 +10,15 @@ import { InputcmpComponent } from './shared/inputcmp/inputcmp.component';
 import { RadiocmpComponent } from './shared/radiocmp/radiocmp.component';
 import { CheckboxcmpComponent } from './shared/checkboxcmp/checkboxcmp.component';
 import { TablecmpComponent } from './shared/tablecmp/tablecmp.component';
+import { SurveyOverviewComponent } from './survey-overview/survey-overview.component';
+import { SurveyDetailComponent } from './survey-detail/survey-detail.component';
 
 /**/
 
 // import { MdRadioModule, MdInputModule} from '@angular/material';
 
 const routes: Routes = [
-    { path: 'detail', component: SurveyManagementComponent }
+    { path: 'detail', component: SurveyOverviewComponent }
 ];
 
 @NgModule({
@@ -34,6 +36,8 @@ const routes: Routes = [
         RadiocmpComponent,
         CheckboxcmpComponent,
         TablecmpComponent,
+        SurveyOverviewComponent,
+        SurveyDetailComponent,
     ]
 })
 export class SurveyManagementModule { }

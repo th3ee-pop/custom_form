@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AnswerInterface } from '../answerInterface';
 import { Question } from '../question';
 
 
@@ -9,8 +8,8 @@ import { Question } from '../question';
   templateUrl: './tablecmp.component.html',
   styleUrls: ['./tablecmp.component.less']
 })
-export class TablecmpComponent extends Question implements AnswerInterface {
-
+export class TablecmpComponent extends Question {
+  
   constructor() { 
     super();
   }
