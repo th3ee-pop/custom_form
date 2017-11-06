@@ -9,13 +9,10 @@ import { ModuleWithProviders } from '@angular/core';
 export const routes: Routes = [
   {
     path: 'ssurvey',
-    component: SpecialistComponent,
-    canActivate: [ DeskAuthGuard ],
     data: {'user': 'specialist',
       'name': '专家'},
     children: [
       { path: '', redirectTo: 'pacs', pathMatch: 'full'},
-      { path: 'pacs', component: PacsComponent },
     ]
   }
 ];
