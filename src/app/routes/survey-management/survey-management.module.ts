@@ -18,7 +18,7 @@ import { SurveyDetailComponent } from './survey-detail/survey-detail.component';
 // import { MdRadioModule, MdInputModule} from '@angular/material';
 
 const routes: Routes = [
-    { path: 'detail', component: SurveyOverviewComponent }
+    { path: 'detail', component: SurveyManagementComponent }
 ];
 
 @NgModule({
