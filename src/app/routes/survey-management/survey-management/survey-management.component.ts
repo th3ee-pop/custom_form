@@ -22,6 +22,49 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 
 export class SurveyManagementComponent implements OnInit {
+    schedule_list = [
+        {
+            status: 'In Progress',
+            descript: '一般信息'
+        },
+        {
+            status: 'Waiting',
+            descript: '饮茶及咖啡情况'
+        },
+        {
+            status: 'Waiting',
+            descript: '饮酒情况'
+        },
+        {
+            status: 'Waiting',
+            descript: '吸烟情况'
+        },
+        {
+            status: 'Waiting',
+            descript: '膳食情况'
+        },
+        {
+            status: 'Waiting',
+            descript: '被动吸烟和室内空气污染'
+        },
+        {
+            status: 'Waiting',
+            descript: '个人及家庭健康状况'
+        },
+        {
+            status: 'Waiting',
+            descript: '体力活动情况'
+        },
+        {
+            status: 'Waiting',
+            descript: '女性生育史情况'
+        },
+        {
+            status: 'Waiting',
+            descript: '精神、睡眠、情绪状况及生活质量'
+        }
+
+    ]
 
     questions = [
         {
@@ -265,7 +308,7 @@ export class SurveyManagementComponent implements OnInit {
                 '五年内曾自费外出旅游度假'
             ]
         },
-        
+
     ];
 
     answers = {};
@@ -279,7 +322,7 @@ export class SurveyManagementComponent implements OnInit {
      */
     params = {
         'PID' : '003',
-        'RecordID' : 'ID2' 
+        'RecordID' : 'ID2'
     };
 
     /**
@@ -290,22 +333,38 @@ export class SurveyManagementComponent implements OnInit {
         'PID' : '006',
         'Records' : [
             {
-                 'ID1_1': '1000000001', 'Updated_time': '' 
+                 'ID1_1': '1000000001', 'Updated_time': ''
             },
-            { 
-                'ID1_4_2': 'true', 'Updated_time': '' 
+            {
+                'ID1_4_2': 'true', 'Updated_time': ''
             }
         ]
     };
-
+    current = 0;
     constructor(
         private httpService: HttpService,
         private router: Router
     ) { }
 
     ngOnInit() {
-        
+
     }
+
+
+    pre() {
+        this.current -= 1;
+        this.schedule_list[this.current].status = 'In progress';
+        this.schedule_list[this.current + 1].status = 'Waiting';
+    }
+
+    next() {
+        if (true) { // 检查当前步骤是否合法，如果不合法禁止转向下一步
+            this.current += 1;
+            this.schedule_list[this.current].status = 'In progress';
+            this.schedule_list[this.current - 1].status = 'Finished';
+        }
+    }
+
 
     log() {
         this.Items.forEach(item => {
