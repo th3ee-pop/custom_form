@@ -30,8 +30,8 @@ export class TokenInterceptor implements HttpInterceptor {
             // 可以进一步处理，比如：重新刷新或重新登录
             const authData = this.injector.get(TokenService).data;
             if (!authData.access_token) {
-                this.goLogin();
-                return Observable.create(observer => observer.error({ status: 401 }));
+                // this.goLogin();
+                // return Observable.create(observer => observer.error({ status: 401 }));
             }
             // 正常token值放在请求header当中，具体格式以后端为准
             header = req.headers.set('Authorization', `Bearer ${authData.access_token}`);
@@ -41,6 +41,7 @@ export class TokenInterceptor implements HttpInterceptor {
         let url = req.url;
         if (!url.startsWith('https://') && !url.startsWith('http://')) {
             url = environment.SERVER_URL + url;
+            // url = "http://" + url;
         }
 
         const newReq = req.clone({

@@ -1,6 +1,20 @@
+<<<<<<< HEAD
 import { Component, OnInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
 // import { Http } from '@angular/http';
 import { InputcmpComponent } from '../shared/inputcmp/inputcmp.component';
+=======
+import { Component, OnInit } from '@angular/core';
+import { NzMessageService } from 'ng-zorro-antd';
+import { Directive, ElementRef, Input, HostListener } from '@angular/core';
+import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
+import * as moment from 'moment';
+import { saveAs } from 'file-saver';
+import { _HttpClient } from '@core/services/http.client';
+import { HttpService } from '@core/services/http.service';
+import {routes} from "../../routes";
+// import { environment } from '../../../environments/environment';
+// import { InputcmpComponent } from '../shared/inputcmp/inputcmp.component';
+>>>>>>> 307c2732127cd309427072efb7ad1d2b7f996e16
 
 @Component({
     selector: 'app-survey-management',
@@ -261,10 +275,15 @@ export class SurveyManagementComponent implements OnInit {
     editDisable = {};
 
     @ViewChildren('item') Items: QueryList<ElementRef>;
-    constructor() { 
-        
-    }
+    api = '/healthexamination/recordop/';
+    params = {
+        'PID' : '003',
+        'RecordID' : 'ID1'
+    };
 
+    constructor(
+        private httpService: HttpService
+    ) { }
 
     ngOnInit() {
         
@@ -274,6 +293,8 @@ export class SurveyManagementComponent implements OnInit {
         this.Items.forEach(item => {
             console.log(item['answer']);
         });
+        this.httpService.getRecord(this.api , this.params).subscribe((res) => {
+            console.log(res);
+        });
     }
-
 }
