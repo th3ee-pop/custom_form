@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Question } from '../question';
+import { AnswerInterface } from '../answerInterface';
 
 
 @Component({
@@ -8,7 +9,7 @@ import { Question } from '../question';
   templateUrl: './checkboxcmp.component.html',
   styleUrls: ['./checkboxcmp.component.less']
 })
-export class CheckboxcmpComponent extends Question {// 继承自Question类，
+export class CheckboxcmpComponent extends Question implements AnswerInterface {// 继承自Question类，
   localAnswer = new Array(20);
 
   constructor() { 
@@ -17,6 +18,11 @@ export class CheckboxcmpComponent extends Question {// 继承自Question类，
 
   answerChange() {
     console.log(this.localAnswer);
+    this.answer = this.localAnswer ;
+  }
+
+  getAnswer() {
+    return this.answer;
   }
 
 }

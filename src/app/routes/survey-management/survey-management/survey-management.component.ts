@@ -8,6 +8,7 @@ import * as moment from 'moment';
 import { saveAs } from 'file-saver';
 import { _HttpClient } from '@core/services/http.client';
 import { HttpService } from '@core/services/http.service';
+import { ActivatedRoute, Router } from '@angular/router';
 // import {routes} from "../../routes";
 // import { environment } from '../../../environments/environment';
 // import { InputcmpComponent } from '../shared/inputcmp/inputcmp.component';
@@ -270,7 +271,7 @@ export class SurveyManagementComponent implements OnInit {
     answers = {};
     editDisable = {};
 
-    @ViewChildren('item') Items: QueryList<ElementRef>;
+    @ViewChildren(InputcmpComponent) Items: QueryList<InputcmpComponent>;
     api = '/healthexamination/recordop/';
     /**
      * 查询操作，PID 病人编号，RecordID 记录编号
@@ -278,7 +279,7 @@ export class SurveyManagementComponent implements OnInit {
      */
     params = {
         'PID' : '003',
-        'RecordID' : 'ID1' 
+        'RecordID' : 'ID2' 
     };
 
     /**
@@ -298,7 +299,8 @@ export class SurveyManagementComponent implements OnInit {
     };
 
     constructor(
-        private httpService: HttpService
+        private httpService: HttpService,
+        private router: Router
     ) { }
 
     ngOnInit() {
@@ -309,10 +311,13 @@ export class SurveyManagementComponent implements OnInit {
         this.Items.forEach(item => {
             console.log(item['answer']);
         });
-        this.httpService.getRecord(this.api, this.params).subscribe((res) => {
-            console.log(res);
-        });
-        console.log(this.questions);
+
+        console.log(this.Items);
+        // this.httpService.getRecord(this.api, this.params).subscribe((res) => {
+        //     console.log(res);
+        // });
+        // console.log(this.questions);
+        this.router.navigate(['/survey/detail']);
     }
 
     submit() {

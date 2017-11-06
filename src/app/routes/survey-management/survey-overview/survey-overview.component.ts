@@ -9,10 +9,20 @@ export class SurveyOverviewComponent implements OnInit {
 
   data = [
     {
-      name : 'haha',
-      age : '12',
-      address : '兴庆宫k'
-    }
+      PID : '001',
+      name : '张三'
+
+    },
+    {
+      PID : '002',
+      name : '李四'
+
+    },
+    {
+      PID : '003',
+      name : '王二'
+
+    },
   ];
   constructor() { }
 
