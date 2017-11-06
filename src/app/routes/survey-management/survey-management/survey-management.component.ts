@@ -1,6 +1,16 @@
 import { Component, OnInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
 // import { Http } from '@angular/http';
 import { InputcmpComponent } from '../shared/inputcmp/inputcmp.component';
+import { NzMessageService } from 'ng-zorro-antd';
+import { Directive,  Input, HostListener } from '@angular/core';
+import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
+import * as moment from 'moment';
+import { saveAs } from 'file-saver';
+import { _HttpClient } from '@core/services/http.client';
+import { HttpService } from '@core/services/http.service';
+// import {routes} from "../../routes";
+// import { environment } from '../../../environments/environment';
+// import { InputcmpComponent } from '../shared/inputcmp/inputcmp.component';
 
 @Component({
     selector: 'app-survey-management',
@@ -261,10 +271,35 @@ export class SurveyManagementComponent implements OnInit {
     editDisable = {};
 
     @ViewChildren('item') Items: QueryList<ElementRef>;
-    constructor() { 
-        
-    }
+    api = '/healthexamination/recordop/';
+    /**
+     * 查询操作，PID 病人编号，RecordID 记录编号
+     * @type {{PID: string; RecordID: string}}
+     */
+    params = {
+        'PID' : '003',
+        'RecordID' : 'ID1' 
+    };
 
+    /**
+     * 添加记录操作，ID1_1：题1的第一个选择，ID1_4_2: 题4的第二个选项
+     * @type {{PID: string; Records: [{ID1_1: string; Updated_time: string},{ID1_4_2: string; Updated_time: string}]}}
+     */
+    putRecord = {
+        'PID' : '006',
+        'Records' : [
+            {
+                 'ID1_1': '1000000001', 'Updated_time': '' 
+            },
+            { 
+                'ID1_4_2': 'true', 'Updated_time': '' 
+            }
+        ]
+    };
+
+    constructor(
+        private httpService: HttpService
+    ) { }
 
     ngOnInit() {
         
@@ -273,6 +308,16 @@ export class SurveyManagementComponent implements OnInit {
     log() {
         this.Items.forEach(item => {
             console.log(item['answer']);
+        });
+        this.httpService.getRecord(this.api, this.params).subscribe((res) => {
+            console.log(res);
+        });
+        console.log(this.questions);
+    }
+
+    submit() {
+        this.httpService.putRecord(this.api, this.putRecord).subscribe((res) => {
+            console.log(res);
         });
     }
 
