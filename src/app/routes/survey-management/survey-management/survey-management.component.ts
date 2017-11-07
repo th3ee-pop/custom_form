@@ -314,24 +314,18 @@ export class SurveyManagementComponent implements OnInit {
     answers = {};
     editDisable = {};
 
-<<<<<<< HEAD
-    @ViewChildren('item') Items: QueryList<ElementRef>;
     api = '/healthexamination/recordop/';
     params = {
         'PID' : '003',
         'RecordID' : 'ID1'
-=======
+    };
+
     @ViewChildren(InputcmpComponent) Items: QueryList<InputcmpComponent>;
-    api = '/healthexamination/recordop/';
+    
     /**
      * 查询操作，PID 病人编号，RecordID 记录编号
      * @type {{PID: string; RecordID: string}}
      */
-    params = {
-        'PID' : '003',
-        'RecordID' : 'ID2'
->>>>>>> liaodong
-    };
 
     /**
      * 添加记录操作，ID1_1：题1的第一个选择，ID1_4_2: 题4的第二个选项
@@ -355,11 +349,6 @@ export class SurveyManagementComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-<<<<<<< HEAD
-        
-=======
-
->>>>>>> liaodong
     }
 
 
@@ -382,9 +371,6 @@ export class SurveyManagementComponent implements OnInit {
         this.Items.forEach(item => {
             console.log(item['answer']);
         });
-<<<<<<< HEAD
-        this.httpService.getRecord(this.api , this.params).subscribe((res) => {
-=======
 
         console.log(this.Items);
         // this.httpService.getRecord(this.api, this.params).subscribe((res) => {
@@ -396,7 +382,6 @@ export class SurveyManagementComponent implements OnInit {
 
     submit() {
         this.httpService.putRecord(this.api, this.putRecord).subscribe((res) => {
->>>>>>> liaodong
             console.log(res);
         });
     }
