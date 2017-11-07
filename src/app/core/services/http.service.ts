@@ -9,6 +9,7 @@ import * as moment from 'moment';
 export class HttpService {
 
     baseUrl = 'http://59.110.52.133:9500';
+    api = '/healthexamination/recordop/';
     private headers = new HttpHeaders({'Content-Type': 'application/json'});
 
     constructor(
@@ -16,16 +17,26 @@ export class HttpService {
         private msgSrv: NzMessageService
     ){}
 
-   private getParams(params: any):any{
+    getParams(params: any):any{
        return 'q='+JSON.stringify(params);
+    }
+
+    getRecordId(params: any):any{
+        let recordId = [];
+            params.Records.forEach(function (v) {
+                for( let key in v ){
+                    if (key != "Updated_time") {
+                        recordId.push(key);
+                    }
+                }
+            });
+            return recordId;
     }
 
     getRecord(api: string, params?: any): Observable<any> {
             return this.http
             .get(this.baseUrl + api, { params: this.getParams(params) })
-            .do(() => {
-                // this.msgSrv.error(`测试do`, {nzDuration: 1000 * 3});
-            })
+            .do(() => {})
             .catch((res) => {
             // console.log(res);
                 return res;
@@ -33,10 +44,17 @@ export class HttpService {
     }
 
     putRecord(api: string, params?: any): Observable<any> {
+            console.log(params);
+            let recordID = this.getRecordId(params);
+            console.log(recordID);
+        this.getRecordId(params).forEach(function () {
+
+        });
+        // this.getRecord(this.baseUrl + this.api, params).subscribe((res) => {
+        //     console.log(res);
+        // });
         return this.http.put(this.baseUrl + api, params)
-            .do(() => {
-                console.log("putDO!")
-            })
+            .do(() => {})
             .catch((res) => {
                 console.log(res);
                 return res;

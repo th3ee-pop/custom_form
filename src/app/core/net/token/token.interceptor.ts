@@ -41,7 +41,6 @@ export class TokenInterceptor implements HttpInterceptor {
         let url = req.url;
         if (!url.startsWith('https://') && !url.startsWith('http://')) {
             url = environment.SERVER_URL + url;
-            // url = "http://" + url;
         }
 
         const newReq = req.clone({

@@ -92,7 +92,8 @@ export class SurveyManagementComponent implements OnInit {
         console.log(this.questions);
     }
 
-    submit(){
+    submit(answer){
+        console.log(answer);
         this.httpService.putRecord(this.api, this.putRecord).subscribe((res) => {
             console.log(res);
         });
