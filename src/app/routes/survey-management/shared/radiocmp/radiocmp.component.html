@@ -5,10 +5,12 @@
             <ng-template #body>
                 <form nz-form [nzLayout]="'inline'">
                     <div nz-form-control nz-col [nzSm]="20">
-                        <nz-radio-group >
-                            <label nz-radio [nzValue]="i" *ngFor="let item of question.content,index as i">
-                                <span>{{item}}</span>
-                            </label>
+                        <nz-radio-group [(ngModel)]="localAnswer" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}">
+                            <ng-container *ngFor="let item of question.content,index as i">
+                                <label  nz-radio [nzValue]="i">
+                                    <span>{{item}}</span>
+                                </label>
+                            </ng-container>
                         </nz-radio-group>
                     </div>
                 </form>

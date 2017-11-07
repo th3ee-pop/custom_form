@@ -1,19 +1,49 @@
-<div class="content__title">
-  <h1>
-      健康体检调查表
-      <small>Native support</small>
-  </h1>
-</div>
+<div>
+    <br>
+    <div nz-row >
+        <div nz-col>
+            <nz-card>
+                <ng-template #title>健康体检调查表</ng-template>
+                <ng-template #body>
+                    <nz-steps [(nzCurrent)]="current" [nzSize]="'small'" >
+                        <nz-step *ngFor="let step of schedule_list" [nzTitle]="step.status" [nzDescription]="step.descript"></nz-step>
+                    </nz-steps>
 
-
-<!-- 遍历questions列表，根据元素的type属性，选择相应模板渲染 -->
-<div *ngFor="let question of questions" >
-  <div [ngSwitch]="question.type">
-    <app-inputcmp     *ngSwitchCase="'input'"     [question]="question"   (answer)="answer[quesion.id]"></app-inputcmp>
-    <app-radiocmp     *ngSwitchCase="'radio'"     [question]="question"   (answer)="answer[quesion.id]"></app-radiocmp>
-    <app-checkboxcmp  *ngSwitchCase="'checkbox'"  [question]="question"   (answer)="answer[quesion.id]"></app-checkboxcmp>
-    <app-tablecmp     *ngSwitchCase="'table'"     [question]="question"   (answer)="answer[quesion.id]"></app-tablecmp>
-  </div>
-
+                    <!-- 遍历questions列表，根据元素的type属性，选择相应模板渲染 -->
+                    <div *ngIf="current === 0">
+                        <div *ngFor="let question of questions"  >
+                            <div [ngSwitch]="question.type">
+                                <app-inputcmp     *ngSwitchCase="'input'"     [question]="question"></app-inputcmp>
+                                <app-radiocmp     *ngSwitchCase="'radio'"     [question]="question"></app-radiocmp>
+                                <app-checkboxcmp  *ngSwitchCase="'checkbox'"  [question]="question"></app-checkboxcmp>
+                                <app-tablecmp     *ngSwitchCase="'table'"     [question]="question"></app-tablecmp>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="current === 1">
+                        <div *ngFor="let question of questions"  >
+                            <div [ngSwitch]="question.type">
+                                <app-inputcmp     *ngSwitchCase="'input'"     [question]="question"></app-inputcmp>
+                                <app-radiocmp     *ngSwitchCase="'radio'"     [question]="question"></app-radiocmp>
+                                <app-checkboxcmp  *ngSwitchCase="'checkbox'"  [question]="question"></app-checkboxcmp>
+                                <app-tablecmp     *ngSwitchCase="'table'"     [question]="question"></app-tablecmp>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="steps-action">
+                        <button nz-button [nzType]="'default'" (click)="pre()" *ngIf="current > 0">
+                            <span>返回上一步</span>
+                        </button>
+                        <button nz-button [nzType]="'default'" (click)="next()" *ngIf="current < 9">
+                            <span>下一步</span>
+                        </button>
+                        <button nz-button [nzType]="'primary'" (click)="log()" *ngIf="current === 9">
+                            <span>提交</span>
+                        </button>
+                    </div>
+                </ng-template>
+            </nz-card>
+        </div>
+    </div>
     <button nz-button [nzType]=" 'primary'" (click)="submit(answer)"><span>提交</span></button>
 </div>

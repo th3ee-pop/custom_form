@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AnswerInterface } from '../answerInterface';
 import { Question } from '../question';
 
+import { AnswerInterface } from '../answerInterface';
 
 @Component({
   selector: 'app-tablecmp',
@@ -10,9 +10,13 @@ import { Question } from '../question';
   styleUrls: ['./tablecmp.component.less']
 })
 export class TablecmpComponent extends Question implements AnswerInterface {
-
+  localAnswer = {};
   constructor() { 
     super();
+  }
+
+  getAnswer() {
+    // return this.localAnswer;
   }
 
 }

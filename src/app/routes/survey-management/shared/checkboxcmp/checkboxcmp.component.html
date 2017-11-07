@@ -5,9 +5,11 @@
             <ng-template #body>
                 <form nz-form [nzLayout]="'inline'">
                     <div nz-form-control nz-col [nzSm]="20">
-                            <label nz-checkbox *ngFor="let item of question.content,index as i">
+                        <ng-container *ngFor="let item of question.content,index as i">
+                            <label nz-checkbox [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}">
                                 <span>{{item}}</span>
                             </label>
+                        </ng-container>
                     </div>
                 </form>
             </ng-template>
