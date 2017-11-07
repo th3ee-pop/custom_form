@@ -9,7 +9,7 @@ import * as moment from 'moment';
 export class HttpService {
 
     baseUrl = 'http://59.110.52.133:9500';
-    private headers = new Headers({'Content-Type': 'application/json'});
+    private headers = new HttpHeaders({'Content-Type': 'application/json'});
 
     constructor(
         private http: HttpClient,
@@ -21,7 +21,7 @@ export class HttpService {
     }
 
     getRecord(api: string, params?: any): Observable<any> {
-        return this.http
+            return this.http
             .get(this.baseUrl + api, { params: this.getParams(params) })
             .do(() => {
                 // this.msgSrv.error(`测试do`, {nzDuration: 1000 * 3});
@@ -31,4 +31,30 @@ export class HttpService {
                 return res;
             });
     }
+
+    putRecord(api: string, params?: any): Observable<any> {
+        return this.http.put(this.baseUrl + api, params)
+            .do(() => {
+                console.log("putDO!")
+            })
+            .catch((res) => {
+                console.log(res);
+                return res;
+            })
+    }
+
+    login(params){
+           const api = "/account/login";
+           const localUrl = '202.117.54.88:8000';
+           return this.http.post(localUrl + api, { params: 'data='+ JSON.stringify(params)})
+               .do(() => {
+                   console.log("login!")
+               })
+               .catch((res) => {
+                   console.log(res);
+                   return res;
+               })
+    }
+
+
 }
