@@ -10,18 +10,37 @@ import { AnswerInterface } from '../answerInterface';
 })
 export class InputcmpComponent extends Question  implements AnswerInterface {
   localAnswer= new Array(10); // 存储数据
+  changed = false;
 
   constructor() {
     super();
   }
   
 
-  answerChange(event) {
-    console.log(this.localAnswer);
+  answerChange() {
+    const question = this.question;
+    
+
+    const res = new Array();
+    for (const index in this.localAnswer) {
+     if (this.localAnswer[index] !== '') {
+        const questionID = 'ID' + question.id;
+        const item = {};
+        // item[questionID] = this.localAnswer
+        res.push(item);
+        this.changed = true;
+      }
+    }
+    this.answer = res;
   }
 
   getAnswer() {
-    return this.localAnswer;
+    const answer = {
+      available : this.changed ? 'true' : 'false',
+      data : this.answer
+    };
+
+    return answer;
   }
 
 }
