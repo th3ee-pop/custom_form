@@ -6,6 +6,9 @@ import { PagesModule } from './pages/pages.module';
 import { routes } from './routes';
 import { DashboardV1Component } from './dashboard/v1/v1.component';
 
+import { LoginAuthService } from './pages/login/login.auth.service';
+import { LoginAuthGuard } from './pages/login/login.guard.service';
+
 @NgModule({
     imports: [
         SharedModule,
@@ -17,6 +20,10 @@ import { DashboardV1Component } from './dashboard/v1/v1.component';
     ],
     exports: [
         RouterModule
+    ],
+    providers: [
+        LoginAuthGuard,
+        LoginAuthService
     ]
 })
 
