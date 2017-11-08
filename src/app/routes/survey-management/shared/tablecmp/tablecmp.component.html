@@ -1,0 +1,59 @@
+<div nz-row>
+    <div nz-col>
+        <nz-card>
+            <ng-template #title>
+                <label nz-form-item-required >{{question.id}} {{question.tittle}}</label>
+            </ng-template>
+            <ng-template #body>
+                <form nz-form [nzLayout]="'inline'">
+                    <div nz-form-control nz-col [nzSm]="20">
+                        <nz-table>
+                            <thead nz-thead>
+                                <tr>
+                                    <!-- 表头第一项 -->
+                                    <th nz-th><span>{{question.content.head.tittle}}</span></th>
+                                    <!-- 表头后面的项，根据类型选择，动态生成 -->
+                                    <th nz-th *ngFor="let item of question.content.body">
+                                        <span>{{item.tittle}}</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody nz-tbody>
+                                <tr nz-tbody-tr *ngFor="let name of question.content.head.content">
+                                    <td nz-td>{{name}}</td>
+
+                                     <td nz-td *ngFor="let body of question.content.body">
+                                        <ng-container [ngSwitch]="body.type">
+                                            <!-- 如果是radio，则生成一组radio -->
+                                            <ng-container *ngSwitchCase="'radio'">
+                                                <nz-radio-group >
+                                                    <label nz-radio [nzValue]="i" *ngFor="let item of body.content,index as i">
+                                                        <span>{{item}}</span>
+                                                    </label>
+                                                </nz-radio-group>
+                                            </ng-container>
+                                            <!-- 如果是checkbox，则生成一个checkbox -->
+                                            <ng-container *ngSwitchCase="'checkbox'">
+                                                <span>
+                                                    <label nz-checkbox >
+                                                    </label>
+                                                </span>
+                                            </ng-container>
+                                            <!-- 如果是input，则生成输入框和提示 -->
+                                            <ng-container *ngSwitchCase="'input'">
+                                                <span>
+                                                    <nz-input ></nz-input>
+                                                    <label>{{body.inform}}</label>
+                                                </span>
+                                            </ng-container>
+                                        </ng-container>
+                                     </td>
+                                </tr>
+                            </tbody>
+                        </nz-table>
+                    </div>
+                </form>
+            </ng-template>
+        </nz-card>
+    </div>
+</div>
