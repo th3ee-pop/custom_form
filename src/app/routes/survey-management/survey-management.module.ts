@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { SharedModule } from '@shared/shared.module';
 import { SurveyManagementComponent } from './survey-management/survey-management.component';
+/*在下面添加新的组件类型*/
 
 /*自定义组件类型*/
 import { InputcmpComponent } from './shared/inputcmp/inputcmp.component';
