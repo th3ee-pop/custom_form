@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
-// import { Http } from '@angular/http';
 import { InputcmpComponent } from '../shared/inputcmp/inputcmp.component';
+import { RadiocmpComponent } from '../shared/radiocmp/radiocmp.component';
 import { NzMessageService } from 'ng-zorro-antd';
 import { Directive,  Input, HostListener } from '@angular/core';
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
@@ -9,9 +9,6 @@ import { saveAs } from 'file-saver';
 import { _HttpClient } from '@core/services/http.client';
 import { HttpService } from '@core/services/http.service';
 import { ActivatedRoute, Router } from '@angular/router';
-// import {routes} from "../../routes";
-// import { environment } from '../../../environments/environment';
-// import { InputcmpComponent } from '../shared/inputcmp/inputcmp.component';
 
 @Component({
     selector: 'app-survey-management',
@@ -64,7 +61,7 @@ export class SurveyManagementComponent implements OnInit {
             descript: '精神、睡眠、情绪状况及生活质量'
         }
 
-    ]
+    ];
 
     questions = [
         {
@@ -314,16 +311,20 @@ export class SurveyManagementComponent implements OnInit {
     answers = {};
     editDisable = {};
 
-    @ViewChildren(InputcmpComponent) Items: QueryList<InputcmpComponent>;
     api = '/healthexamination/recordop/';
+    params = {
+        'PID' : '003',
+        'RecordID' : 'ID1'
+    };
+
+    @ViewChildren(InputcmpComponent) InputItems: QueryList<InputcmpComponent>;
+    @ViewChildren(RadiocmpComponent) RadioItems: QueryList<InputcmpComponent>;
+    
+    
     /**
      * 查询操作，PID 病人编号，RecordID 记录编号
      * @type {{PID: string; RecordID: string}}
      */
-    params = {
-        'PID' : '003',
-        'RecordID' : 'ID2'
-    };
 
     /**
      * 添加记录操作，ID1_1：题1的第一个选择，ID1_4_2: 题4的第二个选项
@@ -347,7 +348,6 @@ export class SurveyManagementComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-
     }
 
 
@@ -367,16 +367,15 @@ export class SurveyManagementComponent implements OnInit {
 
 
     log() {
-        this.Items.forEach(item => {
-            console.log(item['answer']);
+        this.RadioItems.forEach(item => {
+            console.log(item.getAnswer());
         });
 
-        console.log(this.Items);
         // this.httpService.getRecord(this.api, this.params).subscribe((res) => {
         //     console.log(res);
         // });
         // console.log(this.questions);
-        this.router.navigate(['/survey/detail']);
+        // this.router.navigate(['/survey/detail']);
     }
 
     submit() {
