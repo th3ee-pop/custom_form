@@ -11,6 +11,7 @@ import { ACLService } from './acl/acl.service';
 import { TokenService } from './net/token/token.service';
 import { _HttpClient } from './services/http.client';
 import { TitleService } from '@core/services/title.service';
+import { HttpService } from './services/http.service';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { TitleService } from '@core/services/title.service';
     ACLService,
     TokenService,
     _HttpClient,
-    TitleService
+    TitleService,
+      HttpService
   ],
   declarations: [
   ],

@@ -25,7 +25,12 @@ export const routes = [
             { path: 'maps', loadChildren: './maps/maps.module#MapsModule' },
             { path: 'logics', loadChildren: './logics/logics.module#LogicsModule' },
             { path: 'extras', loadChildren: './extras/extras.module#ExtrasModule' },
-            { path: 'survey', loadChildren: './survey-management/survey-management.module#SurveyManagementModule' }
+            { path: 'survey', loadChildren: './survey-management/survey-management.module#SurveyManagementModule' },
+            { path: 'user', loadChildren: './user-management/user-management.module#UserManagementModule' },
+            { path: 'trace', loadChildren: './trace-management/trace-management.module#TraceManagementModule' },
+            { path: 'sample', loadChildren: './sample-management/sample-management.module#SampleManagementModule' },
+            { path: 'property', loadChildren: './property-management/property-management.module#PropertyManagementModule' },
+            { path: 'file', loadChildren: './file-management/file-management.module#FileManagementModule' }
         ]
     },
     // 全屏布局

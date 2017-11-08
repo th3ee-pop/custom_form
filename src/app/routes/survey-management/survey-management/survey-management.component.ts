@@ -9,7 +9,6 @@ import { saveAs } from 'file-saver';
 import { _HttpClient } from '@core/services/http.client';
 import { HttpService } from '@core/services/http.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NzModalService } from 'ng-zorro-antd';
 // import {routes} from "../../routes";
 // import { environment } from '../../../environments/environment';
 // import { InputcmpComponent } from '../shared/inputcmp/inputcmp.component';
@@ -25,43 +24,43 @@ import { NzModalService } from 'ng-zorro-antd';
 export class SurveyManagementComponent implements OnInit {
     schedule_list = [
         {
-            status: '正在填写',
+            status: 'In Progress',
             descript: '一般信息'
         },
         {
-            status: '等待填写',
+            status: 'Waiting',
             descript: '饮茶及咖啡情况'
         },
         {
-            status: '等待填写',
+            status: 'Waiting',
             descript: '饮酒情况'
         },
         {
-            status: '等待填写',
+            status: 'Waiting',
             descript: '吸烟情况'
         },
         {
-            status: '等待填写',
+            status: 'Waiting',
             descript: '膳食情况'
         },
         {
-            status: '等待填写',
+            status: 'Waiting',
             descript: '被动吸烟和室内空气污染'
         },
         {
-            status: '等待填写',
+            status: 'Waiting',
             descript: '个人及家庭健康状况'
         },
         {
-            status: '等待填写',
+            status: 'Waiting',
             descript: '体力活动情况'
         },
         {
-            status: '等待填写',
+            status: 'Waiting',
             descript: '女性生育史情况'
         },
         {
-            status: '等待填写',
+            status: 'Waiting',
             descript: '精神、睡眠、情绪状况及生活质量'
         }
 
@@ -334,7 +333,7 @@ export class SurveyManagementComponent implements OnInit {
         'PID' : '006',
         'Records' : [
             {
-                'ID1_1': '1000000001', 'Updated_time': ''
+                 'ID1_1': '1000000001', 'Updated_time': ''
             },
             {
                 'ID1_4_2': 'true', 'Updated_time': ''
@@ -344,8 +343,7 @@ export class SurveyManagementComponent implements OnInit {
     current = 0;
     constructor(
         private httpService: HttpService,
-        private router: Router,
-        private confirmServ: NzModalService
+        private router: Router
     ) { }
 
     ngOnInit() {
@@ -355,19 +353,15 @@ export class SurveyManagementComponent implements OnInit {
 
     pre() {
         this.current -= 1;
-        this.schedule_list[this.current].status = '正在填写';
-        this.schedule_list[this.current + 1].status = '等待填写';
+        this.schedule_list[this.current].status = 'In progress';
+        this.schedule_list[this.current + 1].status = 'Waiting';
     }
 
     next() {
-        this.confirmServ.error({
-            title: '有必填项未完成',
-            content: ''
-        });
         if (true) { // 检查当前步骤是否合法，如果不合法禁止转向下一步
             this.current += 1;
-            this.schedule_list[this.current].status = '正在填写';
-            this.schedule_list[this.current - 1].status = '已完成';
+            this.schedule_list[this.current].status = 'In progress';
+            this.schedule_list[this.current - 1].status = 'Finished';
         }
     }
 
