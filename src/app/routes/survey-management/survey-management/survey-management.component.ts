@@ -130,23 +130,46 @@ export class SurveyManagementComponent implements OnInit {
         this.current -= 1;
     }
     confirm() {
-        const current_list = this.qlist[this.current];
-        console.log(current_list);
+        let confirms = true;
+        this.InputItems.forEach(item => {
+           if (item.changed === false) {
+               confirms = false;
+           }
+        });
+        this.RadioItems.forEach(item => {
+            if (item.answerChanged === false) {
+                confirms = false;
+            }
+        });
+        this.Checkbox.forEach(item => {
+            if (item.Changed === false) {
+                confirms = false;
+            }
+        });
+        return confirms;
+
+        //     if (current_list[index].type === 'table') {
+        //         this.Table.forEach(item => {
+        //            // console.log(item.getAnswer().available);
+        //         });
+
     }
     next() {
-        // this.confirmServ.error({
-        //     title: '有必填项未完成',
-        //     content: ''
-        // });
-        if (true) { // 检查当前步骤是否合法，如果不合法禁止转向下一步
+
+        if (this.confirm()) { // 检查当前步骤是否合法，如果不合法禁止转向下一步
             this.current += 1;
+        }else {
+            this.confirmServ.error({
+                title: '有必填项未完成',
+                content: ''
+            });
         }
     }
 
 
     log() {
         this.RadioItems.forEach(item => {
-            console.log(item['answer']);
+            console.log(item.question.id + item.answerChanged);
         });
 
         console.log(this.RadioItems);
