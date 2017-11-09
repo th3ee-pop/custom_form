@@ -13,7 +13,6 @@ import { CheckboxcmpComponent } from './shared/checkboxcmp/checkboxcmp.component
 import { TablecmpComponent } from './shared/tablecmp/tablecmp.component';
 import { SurveyOverviewComponent } from './survey-overview/survey-overview.component';
 import { SurveyDetailComponent } from './survey-detail/survey-detail.component';
-
 /**/
 
 // import { MdRadioModule, MdInputModule} from '@angular/material';
@@ -21,8 +20,8 @@ import { SurveyDetailComponent } from './survey-detail/survey-detail.component';
 const routes: Routes = [
     // { path: 'detail', component: SurveyOverviewComponent }
 
-    
-   
+
+
     { path: 'management', component: SurveyManagementComponent },
     {
         path: 'detail',
@@ -35,7 +34,7 @@ const routes: Routes = [
     imports: [
         CommonModule,
         SharedModule,
-        RouterModule.forChild(routes),
+        RouterModule.forChild(routes)
     ],
     exports: [
         RouterModule

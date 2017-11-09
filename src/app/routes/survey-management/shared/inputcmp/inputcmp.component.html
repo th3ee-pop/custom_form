@@ -13,8 +13,8 @@
                         <div nz-form-control [nzValidateStatus]="getFormControl(item.validType)" *ngIf="item.dataType == 'text'">
                             <div [ngSwitch]="item.validType">
                                 <nz-input  *ngSwitchCase="'number'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()"  formControlName="number" ></nz-input>
-                                <nz-input  *ngSwitchCase="'idc'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()"  formControlName="idc" ></nz-input>
-                                <nz-input  *ngSwitchCase="'phone'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()"  formControlName="phone" ></nz-input>
+                                <nz-input  *ngSwitchCase="'idc'"   [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()"  (nzBlur)="onidcBlur($event.target.value)" (nzFocus)="onidcFocus()" formControlName="idc" ></nz-input>
+                                <nz-input  *ngSwitchCase="'phone'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()"  (nzBlur)="onphoneBlur($event.target.value)" (nzFocus)="onphoneFocus()"formControlName="phone" ></nz-input>
                                 <nz-input  *ngSwitchCase="'twonum'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()"  formControlName="twonum" ></nz-input>
                                 <nz-input  *ngSwitchCase="'onenum'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()"  formControlName="onenum" ></nz-input>
                                 <nz-input  *ngSwitchCase="'threenum'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()"  formControlName="threenum" ></nz-input>
@@ -47,21 +47,6 @@
                                 <span id="explan">必填项</span>
                             </div>
                         </div>
-                        <!--<div nz-form-control [nzValidateStatus]="getFormControl(item.validType)" *ngIf="item.dataType == 'text'">-->
-                        <!--<nz-input *ngIf="item.validType&&item.validType == 'icd'" formControlName="icd" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" ></nz-input>-->
-                        <!--</div>-->
-                        <!--<div nz-form-explain *ngIf="item.validType == 'icd'&&getFormControl(item.validType).dirty&&getFormControl(item.validType).hasError(item.validType)">身份证格式不合法</div>-->
-                        <!--<div nz-form-control [nzValidateStatus]="getFormControl(item.validType)" *ngIf="item.dataType == 'text'">-->
-                        <!--<nz-input *ngIf="item.validType&&item.validType == 'phone'" formControlName="phone" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" ></nz-input>-->
-                        <!--</div>-->
-                        <!--<div nz-form-explain *ngIf="item.validType == 'phone'&&getFormControl(item.validType).dirty&&getFormControl(item.validType).hasError(item.validType)">手机格式不合法</div>-->
-                        <!--<div nz-form-control [nzValidateStatus]="getFormControl(item.validType)" *ngIf="item.dataType == 'text'">-->
-                        <!--<nz-input *ngIf="item.validType&&item.validType == 'twonum'" formControlName="twonum" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" ></nz-input>-->
-                        <!--</div>-->
-                        <!--<div nz-form-explain *ngIf="item.validType == 'twonum'&&getFormControl(item.validType).dirty&&getFormControl(item.validType).hasError(item.validType)">不能大于99</div>-->
-                        <!--<div nz-form-control [nzValidateStatus]="getFormControl(item.validType)" *ngIf="item.dataType == 'text'">-->
-                        <!--<nz-input *ngIf="!item.validType" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input>-->
-                        <!--</div>-->
                         <div nz-form-control>
                             <label >{{item.inform}}</label>
                         </div>
