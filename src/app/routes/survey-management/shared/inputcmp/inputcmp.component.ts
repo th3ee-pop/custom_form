@@ -168,7 +168,7 @@ export class InputcmpComponent extends Question  implements AnswerInterface {
     getAnswer() {
         const answer = {
             available : this.changed ? 'true' : 'false',
-            data : this.answer
+            answer : this.answer
         };
 
         return answer;
