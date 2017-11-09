@@ -36,69 +36,100 @@ export class InputcmpComponent extends Question  implements AnswerInterface {
     onphoneFocus = function () {
         if (this.phonetem !== '')
             this.localAnswer[0] = this.phonetem;
-    }
+    };
 
     numberVaildator = (control: FormControl): { [s: string]: boolean } => {
-        const NUM_REGEXP = /[0-9]*/;
+        const NUM_REGEXP = /^[0-9]*$/;
         if (!control.value) {
+            this.changed = false;
             return {required: true};
         }else if (control.value.length !== 11 || !NUM_REGEXP.test(control.value)) {
+            this.changed = false;
             return { error: true, number: true};
+        }else {
+            this.changed = true;
         }
     }
     IDCVaildator = (control: FormControl): { [s: string]: boolean } => {
         const IDC_REGEXP = /((^\d{18}$)|(^\d{17}(\d|X|x)$))||((^\d{6}[\*]{8}(\d{3}|\d{4})))/;
         if (!control.value) {
+            this.changed = false;
             return {required: true};
         } else if (control.value.length !== 18 || !IDC_REGEXP.test(control.value)) {
+            this.changed = false;
             return {error: true, idc: true};
+        }else {
+            this.changed = true;
         }
     }
     phoneVaildator = (control: FormControl): { [s: string]: boolean } => {
-        const NUM_REGEXP = /([0-9]*)|(^\d{3}[\*]{4}\d{4}})/;
+        const NUM_REGEXP = /^([0-9]*)|(^\d{3}[\*]{4}\d{4}})$/;
         if (!control.value) {
+            this.changed = false;
             return {required: true};
         }else if (control.value.length !== 11 || !NUM_REGEXP.test(control.value)) {
+            this.changed = false;
             return { error: true, phone: true};
+        }else {
+            this.changed = true;
         }
     }
 
 
     twonumValidator = ( control: FormControl): { [s: string]: boolean } => {
-        const NUM_REGEXP = /[0-9]*/;
+        const NUM_REGEXP = /^[0-9]*$/;
         if (!control.value) {
+            this.changed = false;
             return {required: true};
         }else if (control.value.length > 2 || !NUM_REGEXP.test(control.value)) {
+            this.changed = false;
             return { error: true, twonum: true};
+        }else {
+            this.changed = true;
         }
     }
     onenumValidator = ( control: FormControl): { [s: string]: boolean } => {
-        const NUM_REGEXP = /[0-9]*/;
+        const NUM_REGEXP = /^[0-9]*$/;
         if (!control.value) {
+            this.changed = false;
             return {required: true};
         }else if (control.value.length > 1 || !NUM_REGEXP.test(control.value)) {
+            this.changed = false;
             return { error: true, onenum: true};
+        }else {
+            this.changed = true;
         }
     }
     threenumValidator = ( control: FormControl): { [s: string]: boolean } => {
-        const NUM_REGEXP = /[0-9]*/;
+        const NUM_REGEXP = /^[0-9]*$/;
         if (!control.value) {
+            this.changed = false;
             return {required: true};
         }else if (control.value.length > 3 || !NUM_REGEXP.test(control.value)) {
+            this.changed = false;
             return { error: true, threenum: true};
+        }else {
+            this.changed = true;
         }
     }
     fivenumValidator = ( control: FormControl): { [s: string]: boolean } => {
-        const NUM_REGEXP = /[0-9]*/;
+        const NUM_REGEXP = /^[0-9]*$/;
         if (!control.value) {
+            this.changed = false;
             return {required: true};
         }else if (control.value.length > 5 || !NUM_REGEXP.test(control.value)) {
+            this.changed = false;
             return { error: true, fivenum: true};
+        }else {
+            this.changed = true;
         }
     }
     otherValidator = ( control: FormControl): { [s: string]: boolean } => {
         if (!control.value) {
+            this.changed = false;
             return {required: true};
+        }else {
+            this.changed = true;
         }
     }
     getFormControl(name) {
@@ -129,7 +160,6 @@ export class InputcmpComponent extends Question  implements AnswerInterface {
                 const item = {};
                 // item[questionID] = this.localAnswer
                 res.push(item);
-                this.changed = true;
             }
         }
         this.answer = res;

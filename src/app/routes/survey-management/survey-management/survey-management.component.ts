@@ -14,6 +14,8 @@ import { _HttpClient } from '@core/services/http.client';
 import { HttpService } from '@core/services/http.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd';
+import {CheckboxcmpComponent} from '../shared/checkboxcmp/checkboxcmp.component';
+import {TablecmpComponent} from '../shared/tablecmp/tablecmp.component';
 
 // import {routes} from "../../routes";
 // import { environment } from '../../../environments/environment';
@@ -30,43 +32,43 @@ import { NzModalService } from 'ng-zorro-antd';
 export class SurveyManagementComponent implements OnInit {
     schedule_list = [
         {
-            status: '正在填写',
+            status: '一般信息',
             descript: '一般信息'
         },
         {
-            status: '等待填写',
+            status: '饮茶及咖啡情况',
             descript: '饮茶及咖啡情况'
         },
         {
-            status: '等待填写',
+            status: '饮酒情况',
             descript: '饮酒情况'
         },
         {
-            status: '等待填写',
+            status: '吸烟情况',
             descript: '吸烟情况'
         },
         {
-            status: '等待填写',
+            status: '膳食情况',
             descript: '膳食情况'
         },
         {
-            status: '等待填写',
+            status: '空气污染',
             descript: '被动吸烟和室内空气污染'
         },
         {
-            status: '等待填写',
+            status: '健康状况',
             descript: '个人及家庭健康状况'
         },
         {
-            status: '等待填写',
+            status: '体力活动',
             descript: '体力活动情况'
         },
         {
-            status: '等待填写',
+            status: '女性生育史',
             descript: '女性生育史情况'
         },
         {
-            status: '等待填写',
+            status: '精神及生活质量',
             descript: '精神、睡眠、情绪状况及生活质量'
         }
 
@@ -89,8 +91,10 @@ export class SurveyManagementComponent implements OnInit {
     };
 
     @ViewChildren(InputcmpComponent) InputItems: QueryList<InputcmpComponent>;
-    @ViewChildren(RadiocmpComponent) RadioItems: QueryList<InputcmpComponent>;
-    
+    @ViewChildren(RadiocmpComponent) RadioItems: QueryList<RadiocmpComponent>;
+    @ViewChildren(CheckboxcmpComponent) Checkbox: QueryList<CheckboxcmpComponent>;
+    @ViewChildren(TablecmpComponent) Table: QueryList<TablecmpComponent>;
+
     /**
      * 查询操作，PID 病人编号，RecordID 记录编号
      * @type {{PID: string; RecordID: string}}
@@ -124,19 +128,18 @@ export class SurveyManagementComponent implements OnInit {
 
     pre() {
         this.current -= 1;
-        this.schedule_list[this.current].status = '正在填写';
-        this.schedule_list[this.current + 1].status = '等待填写';
     }
-
+    confirm() {
+        const current_list = this.qlist[this.current];
+        console.log(current_list);
+    }
     next() {
-        this.confirmServ.error({
-            title: '有必填项未完成',
-            content: ''
-        });
+        // this.confirmServ.error({
+        //     title: '有必填项未完成',
+        //     content: ''
+        // });
         if (true) { // 检查当前步骤是否合法，如果不合法禁止转向下一步
             this.current += 1;
-            this.schedule_list[this.current].status = '正在填写';
-            this.schedule_list[this.current - 1].status = '已完成';
         }
     }
 
@@ -147,10 +150,6 @@ export class SurveyManagementComponent implements OnInit {
         });
 
         console.log(this.RadioItems);
-        // this.httpService.getRecord(this.api, this.params).subscribe((res) => {
-        //     console.log(res);
-        // });
-        // console.log(this.questions);
         this.router.navigate(['/survey/detail']);
     }
 
