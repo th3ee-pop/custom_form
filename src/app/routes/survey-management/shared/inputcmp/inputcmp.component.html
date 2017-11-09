@@ -5,19 +5,30 @@
                 <label nz-form-item-required >{{question.id}} {{question.tittle}}</label>
             </ng-template>
             <ng-template #body>
-                <form nz-form [nzLayout]="'inline'">
+                <form nz-form [formGroup]="validateForm" [nzLayout]="'inline'">
                     <div nz-form-item *ngFor="let item of question.content;index as i">
-                        <ng-container [ngSwitch]="item.dataType">
-                            <div nz-form-control *ngSwitchCase="'number'" >
-                                <nz-input-number [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
-                            </div>
-                            <div nz-form-control *ngSwitchCase="'text'">
-                                <nz-input [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input>
-                            </div>
-                            <div nz-form-control *ngSwitchCase="'date'">
-                                <nz-datepicker [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-datepicker>
-                            </div>
-                        </ng-container>
+                        <div nz-form-control *ngIf="item.dataType == 'number'" >
+                            <nz-input-number [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
+                        </div>
+                        <div nz-form-control [nzValidateStatus]="getFormControl(item.validType)" *ngIf="item.dataType == 'text'">
+                            <nz-input *ngIf="item.validType&&item.validType == 'number'" formControlName="number" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" ></nz-input>
+                        </div>
+                        <div nz-form-explain *ngIf="item.validType == 'number'&&getFormControl(item.validType).dirty&&getFormControl(item.validType).hasError(item.validType)">体检编号必须是11位数字</div>
+                        <div nz-form-control [nzValidateStatus]="getFormControl(item.validType)" *ngIf="item.dataType == 'text'">
+                            <nz-input *ngIf="item.validType&&item.validType == 'icd'" formControlName="icd" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" ></nz-input>
+                        </div>
+                        <div nz-form-explain *ngIf="item.validType == 'icd'&&getFormControl(item.validType).dirty&&getFormControl(item.validType).hasError(item.validType)">身份证格式不合法</div>
+                        <div nz-form-control [nzValidateStatus]="getFormControl(item.validType)" *ngIf="item.dataType == 'text'">
+                            <nz-input *ngIf="item.validType&&item.validType == 'phone'" formControlName="phone" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" ></nz-input>
+                        </div>
+                        <div nz-form-explain *ngIf="item.validType == 'phone'&&getFormControl(item.validType).dirty&&getFormControl(item.validType).hasError(item.validType)">手机格式不合法</div>
+                        <div nz-form-control [nzValidateStatus]="getFormControl(item.validType)" *ngIf="item.dataType == 'text'">
+                            <nz-input *ngIf="item.validType&&item.validType == 'twonum'" formControlName="twonum" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" ></nz-input>
+                        </div>
+                        <div nz-form-explain *ngIf="item.validType == 'twonum'&&getFormControl(item.validType).dirty&&getFormControl(item.validType).hasError(item.validType)">不能大于99</div>
+                        <div nz-form-control [nzValidateStatus]="getFormControl(item.validType)" *ngIf="item.dataType == 'text'">
+                            <nz-input *ngIf="!item.validType" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input>
+                        </div>
                         <div nz-form-control>
                             <label >{{item.inform}}</label>
                         </div>
