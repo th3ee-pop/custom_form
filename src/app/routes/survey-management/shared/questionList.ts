@@ -54,6 +54,17 @@ export class QuestionList {
             'tittle': '身份证号码（必填）：'
         },
         {
+            'id': '1.5',
+            'type': 'input',
+            'content': [
+                {
+                    'dataType': 'date',
+                    'inform': '（可以直接输入数字，格式 xxxx-xx-xx）'
+                }
+            ],
+            'tittle': '出生日期'
+        },
+        {
             'id': '1.7',
             'type': 'input',
             'content': [
