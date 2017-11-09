@@ -315,34 +315,9 @@ export class SurveyManagementComponent implements OnInit {
     editDisable = {};
 
     @ViewChildren(InputcmpComponent) Items: QueryList<InputcmpComponent>;
-    api = '/healthexamination/recordop/';
-    /**
-     * 查询操作，PID 病人编号，RecordID 记录编号
-     * @type {{PID: string; RecordID: string}}
-     */
-    params = {
-        'PID' : '003',
-        'RecordID' : 'ID2'
-    };
 
-    /**
-     * 添加记录操作，ID1_1：题1的第一个选择，ID1_4_2: 题4的第二个选项
-     * @type {{PID: string; Records: [{ID1_1: string; Updated_time: string},{ID1_4_2: string; Updated_time: string}]}}
-     */
-    putRecord = {
-        'PID' : '006',
-        'Records' : [
-            {
-                 'ID1_1': '1000000001', 'Updated_time': ''
-            },
-            {
-                'ID1_4_2': 'true', 'Updated_time': ''
-            }
-        ]
-    };
     current = 0;
     constructor(
-        private httpService: HttpService,
         private router: Router
     ) { }
 
@@ -377,12 +352,6 @@ export class SurveyManagementComponent implements OnInit {
         // });
         // console.log(this.questions);
         this.router.navigate(['/survey/detail']);
-    }
-
-    submit(){
-        this.httpService.putRecord(this.api, this.putRecord).subscribe((res) => {
-            console.log(res);
-        });
     }
 
 }
