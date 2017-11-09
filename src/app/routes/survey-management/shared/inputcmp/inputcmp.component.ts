@@ -14,10 +14,32 @@ export class InputcmpComponent extends Question  implements AnswerInterface {
     localAnswer= new Array(10); // 存储数据
     changed = false;
     validateForm: FormGroup;
+    idctem = '';
+    phonetem = '';
+
+    onidcBlur = function(event) {
+        this.idctem = this.localAnswer[0];
+        const str = this.localAnswer[0];
+        if (event.length === 18)
+            this.localAnswer[0] = str.substring(0, 6) + '********' + str.substring(14);
+    };
+    onidcFocus = function () {
+        if (this.idctem !== '')
+            this.localAnswer[0] = this.idctem;
+    };
+    onphoneBlur = function(event) {
+        this.phonetem = this.localAnswer[0];
+        const str = this.localAnswer[0];
+        if (event.length === 11)
+            this.localAnswer[0] = str.substring(0, 3) + '****' + str.substring(7);
+    };
+    onphoneFocus = function () {
+        if (this.phonetem !== '')
+            this.localAnswer[0] = this.phonetem;
+    }
 
     numberVaildator = (control: FormControl): { [s: string]: boolean } => {
         const NUM_REGEXP = /[0-9]*/;
-
         if (!control.value) {
             return {required: true};
         }else if (control.value.length !== 11 || !NUM_REGEXP.test(control.value)) {
@@ -25,25 +47,27 @@ export class InputcmpComponent extends Question  implements AnswerInterface {
         }
     }
     IDCVaildator = (control: FormControl): { [s: string]: boolean } => {
-        const IDC_REGEXP = /(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+        const IDC_REGEXP = /((^\d{18}$)|(^\d{17}(\d|X|x)$))||((^\d{6}[\*]{8}(\d{3}|\d{4})))/;
         if (!control.value) {
             return {required: true};
-        }else if (control.value.length !== 18 || !IDC_REGEXP.test(control.value)) {
-            return { error: true, idc: true};
+        } else if (control.value.length !== 18 || !IDC_REGEXP.test(control.value)) {
+            return {error: true, idc: true};
         }
     }
     phoneVaildator = (control: FormControl): { [s: string]: boolean } => {
-        const NUM_REGEXP = /[0-9]*/;
+        const NUM_REGEXP = /([0-9]*)|(^\d{3}[\*]{4}\d{4}})/;
         if (!control.value) {
             return {required: true};
         }else if (control.value.length !== 11 || !NUM_REGEXP.test(control.value)) {
             return { error: true, phone: true};
         }
     }
+
+
     twonumValidator = ( control: FormControl): { [s: string]: boolean } => {
         const NUM_REGEXP = /[0-9]*/;
         if (!control.value) {
-           return {required: true};
+            return {required: true};
         }else if (control.value.length > 2 || !NUM_REGEXP.test(control.value)) {
             return { error: true, twonum: true};
         }
@@ -96,11 +120,8 @@ export class InputcmpComponent extends Question  implements AnswerInterface {
         );
     }
 
-
     answerChange() {
         const question = this.question;
-
-
         const res = new Array();
         for (const index in this.localAnswer) {
             if (this.localAnswer[index] !== '') {
