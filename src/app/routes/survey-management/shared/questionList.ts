@@ -6,7 +6,8 @@ export class QuestionList {
             'content': [
                 {
                     'dataType': 'text',
-                    'inform': ''
+                    'inform': '',
+                    'validType': 'number'
                 }
             ],
             'tittle': '基线调查研究编码（此处填写项目分配的调查编码，共十位）：'
@@ -17,7 +18,8 @@ export class QuestionList {
             'content': [
                 {
                     'dataType': 'text',
-                    'inform': ''
+                    'inform': '',
+                    'validType': 'other'
                 }
             ],
             'tittle': '你所在单位的名称:'
@@ -28,7 +30,8 @@ export class QuestionList {
             'content': [
                 {
                     'dataType': 'text',
-                    'inform': ''
+                    'inform': '',
+                    'validType': 'other'
                 }
             ],
             'tittle': '姓名'
@@ -48,7 +51,8 @@ export class QuestionList {
             'content': [
                 {
                     'dataType': 'text',
-                    'inform': ''
+                    'inform': '',
+                    'validType': 'idc'
                 }
             ],
             'tittle': '身份证号码（必填）：'
@@ -70,7 +74,8 @@ export class QuestionList {
             'content': [
                 {
                     'dataType': 'text',
-                    'inform': ''
+                    'inform': '',
+                    'validType': 'other'
                 }
             ],
             'tittle': '家庭住址（为便于今后长期随访，请详细填写）：'
@@ -80,8 +85,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'phone'
                 }
             ],
             'tittle': '手机号码'
@@ -91,8 +97,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'phone'
                 }
             ],
             'tittle': '重要联系人的手机号码:'
@@ -114,7 +121,8 @@ export class QuestionList {
             'content': [
                 {
                     'dataType': 'text',
-                    'inform': ''
+                    'inform': '',
+                    'validType': 'other'
                 }
             ],
             'tittle': '如果选择其他民族，具体是？'
@@ -135,7 +143,8 @@ export class QuestionList {
             'content': [
                 {
                     'dataType': 'text',
-                    'inform': ''
+                    'inform': '',
+                    'validType': 'other'
                 }
             ],
             'tittle': '如果信仰其他宗教，具体是？'
@@ -156,8 +165,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '包括你自己在内，你全家一共几口人共同生活在一起呢？'
@@ -206,7 +216,8 @@ export class QuestionList {
             'content': [
                 {
                     'dataType': 'text',
-                    'inform': ''
+                    'inform': '',
+                    'validType': 'other'
                 }
             ],
             'tittle': '如果选择其他的离退休原因，具体是？'
@@ -249,8 +260,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'fivenum'
                 }
             ],
             'tittle': '去年你全家平均一个月的日常支出（不含特殊支出如买车住院等）约为：'
@@ -298,8 +310,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '若有，那停饮的时候大概是在多少年以前？（单位：年）'
@@ -319,8 +332,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '你大约从几岁开始养成每周喝茶的习惯？（单位：岁）'
@@ -342,7 +356,8 @@ export class QuestionList {
             'content': [
                 {
                     'dataType': 'text',
-                    'inform': ''
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '当你喝茶时，通常每次放的茶叶量大约是多少克？（单位：克/次）'
@@ -372,8 +387,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '你大约从多大年龄开始养成每周都喝咖啡的习惯？'
@@ -384,7 +400,8 @@ export class QuestionList {
             'content': [
                 {
                     'dataType': 'text',
-                    'inform': ''
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '一般一天喝几杯？（单位：杯/天 ，按250ml纸杯计量）'
@@ -403,8 +420,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '若是，那停止饮酒大概在多少年以前？（单位：年）'
@@ -415,7 +433,8 @@ export class QuestionList {
             'content': [
                 {
                     'dataType': 'text',
-                    'inform': ''
+                    'inform': '',
+                    'validType': 'other'
                 }
             ],
             'tittle': '选择其他，具体原因是？'
@@ -435,8 +454,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '你大约从几岁开始养成每周都喝酒的习惯？'
@@ -468,8 +488,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '你过去曾吸烟现在已不吸，那你戒烟有多久了？（单位：年）'
@@ -479,8 +500,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '你大约从几岁开始养成每天或基本上每天都吸烟的习惯？（单位：岁）'
@@ -490,8 +512,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '吸烟斗/水烟，具体的量是多少？（单位：两/月）'
@@ -501,8 +524,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '吸手卷烟/旱烟，具体的量是多少？（单位：两/月）'
@@ -512,8 +536,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '吸雪茄，具体的量是多少？（单位：支/天）'
@@ -523,8 +548,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '吸过滤嘴香烟，具体的量是多少？（单位：支/天）'
@@ -534,8 +560,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '吸无滤嘴香烟，具体的量是多少？（单位：支/天）'
@@ -564,8 +591,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '你最近一次尝试戒烟是在几年以前？（单位：年）'
@@ -575,8 +603,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '你最近一次尝试戒烟时，坚持了多长时间未吸烟？（单位：年）'
@@ -619,8 +648,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'fivenum'
                 }
             ],
             'tittle': '你所经历的食物短缺，最为严重的是在哪一年？（公历纪年）'
@@ -640,8 +670,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '若体重明显下降，大概下降了多少斤？（单位：斤）'
@@ -661,8 +692,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '到目前为止你使用冰箱一共有多少年了（单位：年，若无则请填写0）？'
@@ -672,8 +704,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '你大约从几岁开始养成每周吃辣食的习惯？（单位：岁）'
@@ -693,8 +726,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '通常情况下，你每周吸入同住者二手烟的时间累计有多长？（单位：小时/周）'
@@ -704,8 +738,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '通常情况下，你每周在工作或公共场所吸入二手烟的时间累计有多长？（单位：小时/周）'
@@ -735,8 +770,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '你每周做饭时，大概累积有多长时间花在炉灶前？（单位：小时/周）'
@@ -746,8 +782,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '你大概从几岁开始，经常在家做饭？（单位：岁）'
@@ -849,8 +886,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'other'
                 }
             ],
             'tittle': '燃煤污染出现时间'
@@ -869,8 +907,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'other'
                 }
             ],
             'tittle': '燃煤污染不再出现时间'
@@ -892,7 +931,8 @@ export class QuestionList {
             'content': [
                 {
                     'dataType': 'text',
-                    'inform': ''
+                    'inform': '',
+                    'validType': 'other'
                 }
             ],
             'tittle': '其它防护措施具体是指'
@@ -1024,8 +1064,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '在过去一年里，你一共因病去医院看过几次门诊？（单位：次 ，如无请填0）'
@@ -1035,8 +1076,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '在过去一年里，你一共因病住过几次院？（单位：次 ，如无请填0）'
@@ -1046,8 +1088,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '到目前为止，你一共因患病等接受过多少次输血？（单位：次，如无请填0）'
@@ -1058,7 +1101,8 @@ export class QuestionList {
             'content': [
                 {
                     'dataType': 'text',
-                    'inform': ''
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '到目前为止，你一共献过几次血？（单位：次  ，如无请填0）'
@@ -1078,8 +1122,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '你生母去世时的年龄是？（单位：岁）'
@@ -1089,8 +1134,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'threenum'
                 }
             ],
             'tittle': '你生母目前的年龄是？（单位：岁）'
@@ -1121,8 +1167,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '亲兄弟姐妹患糖尿病的人数'
@@ -1132,8 +1179,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '亲兄弟姐妹患中风的人数'
@@ -1143,8 +1191,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '亲兄弟姐妹患抑郁症的人数'
@@ -1154,8 +1203,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '亲兄弟姐妹患慢阻肺/肺气肿/肺心病/慢支的人数'
@@ -1165,8 +1215,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '亲兄弟姐妹患恶性肿瘤的人数'
@@ -1176,8 +1227,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '亲兄弟姐妹患急性心梗的人数'
@@ -1197,10 +1249,11 @@ export class QuestionList {
             'content': [
                 {
                     'dataType': 'text',
-                    'inform': ''
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
-            'tittle': '你的出生体重是多少？'
+            'tittle': '你的出生体重是多少斤？'
         },
         {
             'id': '7.17',
@@ -1237,7 +1290,7 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
+                    'dataType': 'text',
                     'inform': ''
                 }
             ],
@@ -1248,8 +1301,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '亲生子女患急性心梗的人数'
@@ -1259,8 +1313,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '亲生子女患慢阻肺/肺气肿/肺心病/慢支的人数'
@@ -1270,8 +1325,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '亲生子女患恶性肿瘤的人数'
@@ -1281,8 +1337,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '亲生子女患糖尿病的人数'
@@ -1292,8 +1349,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '亲生子女患中风的人数'
@@ -1303,8 +1361,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'onenum'
                 }
             ],
             'tittle': '你每周平均工作多少天？'
@@ -1314,8 +1373,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '你每天平均工作多少小时？'
@@ -1338,8 +1398,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'threenum'
                 }
             ],
             'tittle': '你外出工作/干活时，每天花在路上的往返时间有多长？（单位：分钟）'
@@ -1374,8 +1435,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '在过去一年里，你每周参加业余体育锻炼的累计时间有多长？（单位：小时/周）'
@@ -1397,8 +1459,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '你平均每周从事类似强体力活动的累计时间大约有多长？（单位：小时/周）'
@@ -1408,8 +1471,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '你平均每天做各类家务活（包括带孩子）的时间有多长？（单位：小时/天）'
@@ -1419,8 +1483,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '你平均每天业余时间用于坐立活动（包括看电视，读书报，吃饭，聚餐，下棋，打牌，玩电子游戏，上网等）的时间一共有多长？（单位：小时/天）'
@@ -1451,8 +1516,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'threenum'
                 }
             ],
             'tittle': '你在25岁前后时，体重大约是多少斤？（如不清楚，请填写999）'
@@ -1462,8 +1528,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '你第一次来月经时的实足年龄是多大？（单位：岁；若记不清，请填0）'
@@ -1483,8 +1550,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '如已经闭经，闭经的年龄是？（单位：岁）'
@@ -1512,8 +1580,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '到现在为止一共怀孕过多少次？（单位：次，若无，填0）'
@@ -1523,8 +1592,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '死产多少次？（单位：次，若无填0）'
@@ -1534,8 +1604,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '人工流产多少次？（单位：次，若无填0）'
@@ -1545,8 +1616,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '活产多少次？（单位：次，若无填0）'
@@ -1556,8 +1628,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '自然流产多少次？（单位：次，若无填0）'
@@ -1577,8 +1650,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '你最近一次停用口服避孕药时龄是多少岁？（单位：岁）'
@@ -1588,8 +1662,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '你首次开始服避孕药的年龄是多大？（单位：岁）'
@@ -1599,8 +1674,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '到目前为止，你使用口服避孕药累积年限有多长？（单位：年）'
@@ -1620,8 +1696,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '请说明最近一次停用时的年龄？（单位：岁）'
@@ -1631,8 +1708,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '你首次放置避孕环的年龄？（单位：岁）'
@@ -1642,8 +1720,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '到目前为止，你一共累积使用了多少年的避孕环？（单位：年）'
@@ -1755,8 +1834,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '这种情况持续了多少年？'
@@ -1766,8 +1846,9 @@ export class QuestionList {
             'type': 'input',
             'content': [
                 {
-                    'dataType': 'number',
-                    'inform': ''
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'twonum'
                 }
             ],
             'tittle': '通常情况下，你平均每天睡几个小时（包括午睡）？'
