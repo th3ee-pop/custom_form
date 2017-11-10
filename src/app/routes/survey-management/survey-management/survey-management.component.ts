@@ -79,7 +79,7 @@ export class SurveyManagementComponent implements OnInit {
      */
     questionList = new QuestionList();
     qlist = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(index => this.questionList.getQuestions(index));
-
+    confirmlist = [];
 
     answers = {};
     editDisable = {};
@@ -108,7 +108,7 @@ export class SurveyManagementComponent implements OnInit {
         'PID' : '006',
         'Records' : [
             {
-                 'ID1_1': '1000000001', 'Updated_time': ''
+                'ID1_1': '1000000001', 'Updated_time': ''
             },
             {
                 'ID1_4_2': 'true', 'Updated_time': ''
@@ -131,37 +131,49 @@ export class SurveyManagementComponent implements OnInit {
     }
     confirm() {
         let confirms = true;
+        this.confirmlist = [];
         this.InputItems.forEach(item => {
-           if (item.changed === false) {
-               confirms = false;
-           }
+            if (item.changed === false) {
+                confirms = false;
+                this.confirmlist.push(item.question.id);
+            }
         });
         this.RadioItems.forEach(item => {
             if (item.answerChanged === false) {
                 confirms = false;
+                this.confirmlist.push(item.question.id);
             }
         });
         this.Checkbox.forEach(item => {
             if (item.Changed === false) {
                 confirms = false;
+                this.confirmlist.push(item.question.id);
             }
         });
-        return confirms;
+        const confirmall = {
+            confirms: confirms,
+            confirmslist: this.confirmlist
+        };
+        return confirmall;
 
-        //     if (current_list[index].type === 'table') {
-        //         this.Table.forEach(item => {
-        //            // console.log(item.getAnswer().available);
-        //         });
+        // if (current_list[index].type === 'table') {
+        //     this.Table.forEach(item => {
+        //         console.log(item.getAnswer().available);
+        //  });
 
     }
     next() {
 
-        if (this.confirm()) { // 检查当前步骤是否合法，如果不合法禁止转向下一步
+        if (this.confirm().confirms) { // 检查当前步骤是否合法，如果不合法禁止转向下一步
             this.current += 1;
         }else {
+            let str = '';
+            for (let i = 0; i < this.confirm().confirmslist.length; i++){
+                str = str + this.confirm().confirmslist[i] + '、';
+            }
             this.confirmServ.error({
-                title: '有必填项未完成',
-                content: ''
+                title: '您还有以下必填项未完成：' ,
+                content: str
             });
         }
     }
@@ -169,7 +181,7 @@ export class SurveyManagementComponent implements OnInit {
 
     log() {
         this.RadioItems.forEach(item => {
-            console.log(item.question.id + item.answerChanged);
+            console.log('答案是' + item.localAnswer);
         });
 
         console.log(this.RadioItems);
