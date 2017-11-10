@@ -29,6 +29,7 @@ export class TokenInterceptor implements HttpInterceptor {
         if (!req.url.includes('auth/') && !req.url.includes('assets/') && !req.url.includes('login/')) {
             // 可以进一步处理，比如：重新刷新或重新登录
             const authData = this.injector.get(TokenService).data;
+            console.log(authData);
             if (!authData.access_token) {
                 this.goLogin();
                 return Observable.create(observer => observer.error({ status: 401 }));
@@ -55,7 +56,7 @@ export class TokenInterceptor implements HttpInterceptor {
                     // 允许统一对请求错误处理，这是因为一个请求若是业务上错误的情况下其HTTP请求的状态是200的情况下需要
                     if (event instanceof HttpResponse && event.status !== 200) {
                         // observer.error 会跳转至后面的 `catch`
-                        // return Observable.create(observer => observer.error(event));
+                        return Observable.create(observer => observer.error(event));
                     }
                     // 若一切都正常，则后续操作
                     return Observable.create(observer => observer.next(event));

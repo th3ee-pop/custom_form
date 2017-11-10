@@ -22,7 +22,7 @@ export class HttpService {
     ){}
 
     options = {
-        headers: new HttpHeaders().set("X-CSRFToken", this.injector.get(TokenService).data.access_token)
+        headers:new HttpHeaders({"X-CSRFToken": this.injector.get(TokenService).data.access_token})
     };
 
     getParams(params: any):any{
@@ -43,7 +43,9 @@ export class HttpService {
 
     getRecord(api: string, params?: any): Observable<any> {
             return this.http
-            .get(this.baseUrl + api, { params: this.getParams(params) })
+            .get(this.baseUrl + api, {
+                headers:new HttpHeaders({"X-CSRFToken": this.injector.get(TokenService).data.access_token}),
+                params: this.getParams(params) })
             .do(() => {})
             .catch((res) => {
             // console.log(res);
@@ -52,12 +54,6 @@ export class HttpService {
     }
 
     putRecord(api: string, params?: any): Observable<any> {
-        //     console.log(params);
-        //     let recordID = this.getRecordId(params);
-        //     console.log(recordID);
-        // this.getRecordId(params).forEach(function () {
-        //
-        // });
         return this.http.put(this.baseUrl + api, params, this.options)
             .do(() => {})
             .catch((res) => {
@@ -82,20 +78,12 @@ export class HttpService {
             "password":params.password
         };
         console.log(login);
-        // const headers = new HttpHeaders()
-        //     .set("Access-Control-Allow-Headers","x-csrftoken")
-            // .set("withCredentials", 'true');
-        // console.log(headers);
-        // return this.http.post(this.baseUrl + api, login,{headers})
         return this.http.post(this.baseUrl + api, login)
                .do((res:any) => {
-            // res.header("Access-Control-Allow-Credentials", true);
-            // let my = new CookieXSRFStrategy();
-            // console.log(my);
             console.log(res);
                    let localuser = new TokenService();
                    localuser.data = <TokenData>{
-                       access_token:res.HTTP_X_CSRFTOKEN,
+                       access_token:res.TOKEN,
                        expire_time: moment().add(7, 'days').unix(),
                        refresh_token: '234567890',
                        refresh_token_valid_time: moment().add(14, 'days').unix(),
