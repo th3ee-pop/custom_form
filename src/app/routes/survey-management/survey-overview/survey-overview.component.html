@@ -15,13 +15,16 @@
                                             <tr>
                                                 <th nz-th><span>PID</span></th>
                                                 <th nz-th><span>姓名</span></th>
+                                                <th nz-th><span>状态</span></th>
                                                 <th nz-th><span>操作</span></th>
+
                                             </tr>
                                         </thead>
                                         <tbody nz-tbody>
                                             <tr nz-tbody-tr *ngFor="let data of nzTable.data">
                                                 <td nz-td>{{data.PID}}</td>
                                                 <td nz-td>{{data.name}}</td>
+                                                <td nz-td>已完成</td>
                                                 <td nz-td>
                                                   <span>
                                                       <a [routerLink]="['/survey/management']">查看</a>
@@ -38,7 +41,6 @@
                           </ng-template>
                       </nz-card>
                   </div>
-                  
               </div>
 
               <button nz-button [nzType]="'primary'" [nzSize]="'large'" [nzShape]="'circle'" [routerLink]="['/survey/management']" class="mr-sm">

@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SettingsService } from '@core/services/settings.service';
 import { HttpService } from '@core/services/http.service';
+import { LoginAuthService } from './login.auth.service';
 
 @Component({
   selector: 'app-pages-login',
@@ -10,11 +11,10 @@ import { HttpService } from '@core/services/http.service';
 })
 export class LoginComponent {
   valForm: FormGroup;
-  data;
 
-  constructor(public settings: SettingsService, fb: FormBuilder, private router: Router, private service: HttpService) {
+  constructor(public settings: SettingsService, fb: FormBuilder, private router: Router, private authService: LoginAuthService, private service: HttpService) {
     this.valForm = fb.group({
-      email: [null, Validators.compose([Validators.required, Validators.email])],
+      email: [null, Validators.required],
       password: [null, Validators.required],
       remember_me: [null]
     });
@@ -34,5 +34,25 @@ export class LoginComponent {
       });
       this.router.navigate(['dashboard']);
     }
+    console.log(this.valForm.value);
+    const FormVal = {
+        'username': this.valForm.value.email,
+        'password': this.valForm.value.password
+    };
+    this.authService.loginObservable(FormVal).subscribe(
+          (res) => {
+              console.log(this.valForm.value);
+              console.log(res);
+              if (res.TOKEN) {
+                  const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/dashboard/v1';
+                  this.router.navigate([redirect]);
+                  console.log(sessionStorage.getItem('TOKEN'));
+                  this.authService.getUsers().subscribe(
+                      (response) => {
+                          console.log(response);
+                      }
+                  );
+              }
+          });
   }
 }

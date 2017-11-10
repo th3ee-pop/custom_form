@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
 // import { Http } from '@angular/http';
 import { InputcmpComponent } from '../shared/inputcmp/inputcmp.component';
+import { RadiocmpComponent } from '../shared/radiocmp/radiocmp.component';
 import { NzMessageService } from 'ng-zorro-antd';
 import { Directive,  Input, HostListener } from '@angular/core';
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
@@ -9,6 +10,7 @@ import { saveAs } from 'file-saver';
 import { _HttpClient } from '@core/services/http.client';
 import { HttpService } from '@core/services/http.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NzModalService } from 'ng-zorro-antd';
 // import {routes} from "../../routes";
 // import { environment } from '../../../environments/environment';
 // import { InputcmpComponent } from '../shared/inputcmp/inputcmp.component';
@@ -24,47 +26,47 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class SurveyManagementComponent implements OnInit {
     schedule_list = [
         {
-            status: 'In Progress',
+            status: '正在填写',
             descript: '一般信息'
         },
         {
-            status: 'Waiting',
+            status: '等待填写',
             descript: '饮茶及咖啡情况'
         },
         {
-            status: 'Waiting',
+            status: '等待填写',
             descript: '饮酒情况'
         },
         {
-            status: 'Waiting',
+            status: '等待填写',
             descript: '吸烟情况'
         },
         {
-            status: 'Waiting',
+            status: '等待填写',
             descript: '膳食情况'
         },
         {
-            status: 'Waiting',
+            status: '等待填写',
             descript: '被动吸烟和室内空气污染'
         },
         {
-            status: 'Waiting',
+            status: '等待填写',
             descript: '个人及家庭健康状况'
         },
         {
-            status: 'Waiting',
+            status: '等待填写',
             descript: '体力活动情况'
         },
         {
-            status: 'Waiting',
+            status: '等待填写',
             descript: '女性生育史情况'
         },
         {
-            status: 'Waiting',
+            status: '等待填写',
             descript: '精神、睡眠、情绪状况及生活质量'
         }
 
-    ]
+    ];
 
     questions = [
         {
@@ -315,10 +317,12 @@ export class SurveyManagementComponent implements OnInit {
     editDisable = {};
 
     @ViewChildren(InputcmpComponent) Items: QueryList<InputcmpComponent>;
+    @ViewChildren(RadiocmpComponent) RadioItems: QueryList<InputcmpComponent>;
 
     current = 0;
     constructor(
-        private router: Router
+        private router: Router,
+        private confirmServ: NzModalService
     ) { }
 
     ngOnInit() {
@@ -328,25 +332,29 @@ export class SurveyManagementComponent implements OnInit {
 
     pre() {
         this.current -= 1;
-        this.schedule_list[this.current].status = 'In progress';
-        this.schedule_list[this.current + 1].status = 'Waiting';
+        this.schedule_list[this.current].status = '正在填写';
+        this.schedule_list[this.current + 1].status = '等待填写';
     }
 
     next() {
+        this.confirmServ.error({
+            title: '有必填项未完成',
+            content: ''
+        });
         if (true) { // 检查当前步骤是否合法，如果不合法禁止转向下一步
             this.current += 1;
-            this.schedule_list[this.current].status = 'In progress';
-            this.schedule_list[this.current - 1].status = 'Finished';
+            this.schedule_list[this.current].status = '正在填写';
+            this.schedule_list[this.current - 1].status = '已完成';
         }
     }
 
 
     log() {
-        this.Items.forEach(item => {
+        this.RadioItems.forEach(item => {
             console.log(item['answer']);
         });
 
-        console.log(this.Items);
+        console.log(this.RadioItems);
         // this.httpService.getRecord(this.api, this.params).subscribe((res) => {
         //     console.log(res);
         // });

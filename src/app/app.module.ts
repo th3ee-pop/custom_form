@@ -5,7 +5,7 @@ import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-transla
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LocalStorageService } from 'angular-web-storage';
-
+import { HttpModule } from '@angular/http';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
@@ -34,6 +34,7 @@ export function StartupServiceFactory(startupService: StartupService): Function 
         BrowserModule,
         BrowserAnimationsModule,
         SharedModule.forRoot(),
+        HttpModule,
         CoreModule,
         LayoutModule,
         RoutesModule,
