@@ -13,14 +13,13 @@ export class LoginComponent {
 
   constructor(public settings: SettingsService, fb: FormBuilder, private router: Router, private authService: LoginAuthService) {
     this.valForm = fb.group({
-      email: [null, Validators.compose([Validators.required, Validators.email])],
+      email: [null, Validators.required],
       password: [null, Validators.required],
       remember_me: [null]
     });
   }
 
   submit() {
-
     // tslint:disable-next-line:forin
     for (const i in this.valForm.controls) {
       this.valForm.controls[i].markAsDirty();
@@ -30,11 +29,24 @@ export class LoginComponent {
       console.log(this.valForm.value);
      // this.router.navigate(['dashboard']);
     }
-      this.authService.login().subscribe(
-          () => {
-              if (this.authService.isLoggedIn) {
+    console.log(this.valForm.value);
+    const FormVal = {
+        'username': this.valForm.value.email,
+        'password': this.valForm.value.password
+    };
+    this.authService.loginObservable(FormVal).subscribe(
+          (res) => {
+              console.log(this.valForm.value);
+              console.log(res);
+              if (res.TOKEN) {
                   const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/dashboard/v1';
                   this.router.navigate([redirect]);
+                  console.log(sessionStorage.getItem('TOKEN'));
+                  this.authService.getUsers().subscribe(
+                      (response) => {
+                          console.log(response);
+                      }
+                  );
               }
           });
   }

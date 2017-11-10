@@ -16,7 +16,7 @@ export class LoginAuthGuard implements CanActivate, CanActivateChild {
         return this.canActivate(route, state);
     }
     checkLogin(url: string): boolean {
-        if (this.authService.isLoggedIn) {
+        if (sessionStorage.getItem('TOKEN')) {
             return true;
         }
         this.authService.redirectUrl = url;
