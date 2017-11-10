@@ -178,12 +178,13 @@ export class SurveyManagementComponent implements OnInit {
         }
     }
 
+    allAnswer() {
 
+    }
     log() {
         this.RadioItems.forEach(item => {
-            console.log('答案是' + item.localAnswer);
+            console.log('答案是' + item.answer);
         });
-
         console.log(this.RadioItems);
         this.router.navigate(['/survey/detail']);
     }
@@ -194,6 +195,7 @@ export class SurveyManagementComponent implements OnInit {
     }
 
     submit() {
+
         this.httpService.putRecord(this.api, this.putRecord).subscribe((res) => {
             console.log(res);
         });
