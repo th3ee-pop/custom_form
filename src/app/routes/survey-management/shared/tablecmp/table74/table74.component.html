@@ -15,7 +15,7 @@
                                     <th nz-th><span>首次诊断年龄</span></th>
                                     <th nz-th><span>目前是否仍接受治疗</span></th>
                                     <th nz-th><span>是否住过院</span></th>
-                                    <th nz-th><span>如是，上次住院日期</span></th>
+                                    <th nz-th><span>如是，上次住院日期(可直接输入，格式xxxx-xx-xx）</span></th>
                                 </tr>
                             </thead>
 
@@ -41,9 +41,8 @@
                                     
                                       <td nz-td>
                                         <span>
-                                            <nz-datapicker [(ngModel)]="lastTimeInHospital[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-datapicker>
+                                            <nz-datepicker [(ngModel)]="lastTimeInHospital[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-datepicker>
                                         </span>
-                                        
                                       </td>
                                 </tr>
                             </tbody>

@@ -92,7 +92,6 @@ export class Table74Component extends Question implements AnswerInterface {
      */
     answerChange(row, col) {
   
-  
         if (this.required === true) {
           if (this.answerCheck() === true)
             this.changed =  true;
