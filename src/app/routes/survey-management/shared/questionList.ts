@@ -58,7 +58,7 @@ export class QuestionList {
         },
         {
             'id': '1.5',
-            'type': 'input',
+            'type': 'idc',
             'content': [
                 {
                     'dataType': 'text',
@@ -68,7 +68,7 @@ export class QuestionList {
             ],
             'tittle': '身份证号码（必填）：'
         },
-        
+
         {
             'id': '1.6',
             'type': 'input',
@@ -83,7 +83,7 @@ export class QuestionList {
         },
         {
             'id': '1.7a',                       // 题号不一样
-            'type': 'input',
+            'type': 'phone',
             'content': [
                 {
                     'dataType': 'text',
@@ -95,7 +95,7 @@ export class QuestionList {
         },
         {
             'id': '1.7b',
-            'type': 'input',
+            'type': 'phone',
             'content': [
                 {
                     'dataType': 'text',
@@ -138,7 +138,7 @@ export class QuestionList {
             ],
             'tittle': '你是否有任何宗教信仰？'
         },
-        
+
         {
             'id': '1.10a',
             'type': 'radio',
@@ -216,7 +216,7 @@ export class QuestionList {
             ],
             'tittle': '你目前所从事的主要是哪方面的职业？'
         },
-        
+
         {
             'id': '1.14',
             'type': 'radio',
@@ -234,8 +234,8 @@ export class QuestionList {
             ],
             'tittle': '去年你全家一年的总收入（包含各种来源）约为多少？'
         },
-        
-        
+
+
         {
             'id': '1.15',
             'type': 'input',
@@ -824,11 +824,11 @@ export class QuestionList {
             ],
             'tittle': '你通常是爱吃微辣的食物或是极辣的食物？'
         },
-        
-        
+
+
         // ------------------------------------------------------------------------------------------------------------------------------
-        
-        
+
+
         {
             'id': '6.1',
             'type': 'radio',
@@ -1426,7 +1426,7 @@ export class QuestionList {
             ],
             'tittle': '(如果生母已经去世）你生母去世时的年龄是？（单位：岁）'
         },
-        
+
         {
             'id': '7.14',
             'type': 'radio',
@@ -1508,7 +1508,7 @@ export class QuestionList {
             ],
             'tittle': '亲兄弟姐妹患糖尿病的人数'
         },
-        
+
         {
             'id': '7.15d',
             'type': 'input',
@@ -1616,7 +1616,7 @@ export class QuestionList {
             ],
             'tittle': '亲兄弟姐妹患恶性肿瘤的人数'
         },
-        
+
         {
             'id': '7.16',
             'type': 'radio',
@@ -1687,7 +1687,7 @@ export class QuestionList {
             ],
             'tittle': '你出生时是否受过与生育有关的产伤？'
         },
-        
+
         {
             'id': '8.2',
             'type': 'input',
@@ -1917,7 +1917,7 @@ export class QuestionList {
             ],
             'tittle': '如已经闭经，闭经的年龄是？（单位：岁）'
         },
-        
+
         {
             'id': '9.3',
             'type': 'radio',
@@ -1985,7 +1985,7 @@ export class QuestionList {
             ],
             'tittle': '人工流产多少次？（单位：次，若无填0）'
         },
-        
+
         {
             'id': '9.5c',
             'type': 'input',

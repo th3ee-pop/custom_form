@@ -9,28 +9,37 @@ import { AnswerInterface } from '../answerInterface';
     templateUrl: './checkboxcmp.component.html',
     styleUrls: ['./checkboxcmp.component.less']
 })
-export class CheckboxcmpComponent extends Question implements AnswerInterface {// 继承自Question类，
-    localAnswer = new Array(20);
-    Changed = false;
+export class CheckboxcmpComponent extends Question implements OnInit {// 继承自Question类，
+    localAnswer;
+    answerChanged = false;
+    ngOnInit() {
+        this.localAnswer = new Array(this.question.content.length);
+    }
     constructor() {
         super();
     }
 
     answerChange() {
-        this.answer = this.localAnswer;
-        if ( this.localAnswer ) {
-            this.Changed = true;
-        }else {
-            this.Changed = false;
+        const res = [];
+        for (let index = 0; index < this.question.content.length; index++ ) {
+            const tem = {
+                questionID: '',
+                answer: false
+            };
+            const  questionID = 'ID' + this.question.id.replace('.' , '_') + '_' + index;
+            tem.questionID = questionID;
+            if (this.localAnswer[index] === true) {
+                tem.answer = true;
+            }else {
+                tem.answer = false;
+            }
+            res.push(tem);
         }
-    }
-
-
-    getAnswer() {
-        const res = {
-            available : this.Changed,
-            answer : this.answer
-        };
-        return res;
+        this.answer = res;
+        if ( this.localAnswer ) {
+            this.answerChanged = true;
+        }else {
+            this.answerChanged = false;
+        }
     }
 }

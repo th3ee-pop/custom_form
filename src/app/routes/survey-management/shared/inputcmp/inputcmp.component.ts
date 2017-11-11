@@ -10,13 +10,15 @@ import { Observable } from 'rxjs/Observable';
     templateUrl: './inputcmp.component.html',
     styleUrls: ['./inputcmp.component.css']
 })
-export class InputcmpComponent extends Question  implements AnswerInterface {
-    localAnswer= new Array(10); // 存储数据
-    changed = false;
+export class InputcmpComponent extends Question implements OnInit {
+    localAnswer = []; // 存储数据
+    answerChanged = false;
     validateForm: FormGroup;
     idctem = '';
     phonetem = '';
-
+    ngOnInit() {
+     this.localAnswer = new Array(this.question.content.length);
+    }
     onidcBlur = function(event) {
         this.idctem = this.localAnswer[0];
         const str = this.localAnswer[0];
@@ -41,37 +43,37 @@ export class InputcmpComponent extends Question  implements AnswerInterface {
     numberVaildator = (control: FormControl): { [s: string]: boolean } => {
         const NUM_REGEXP = /^[0-9]*$/;
         if (!control.value) {
-            this.changed = false;
+            this.answerChanged = false;
             return {required: true};
         }else if (control.value.length !== 11 || !NUM_REGEXP.test(control.value)) {
-            this.changed = false;
+            this.answerChanged = false;
             return { error: true, number: true};
         }else {
-            this.changed = true;
+            this.answerChanged = true;
         }
     }
     IDCVaildator = (control: FormControl): { [s: string]: boolean } => {
         const IDC_REGEXP = /((^\d{18}$)|(^\d{17}(\d|X|x)$))||((^\d{6}[\*]{8}(\d{3}|\d{4})))/;
         if (!control.value) {
-            this.changed = false;
+            this.answerChanged = false;
             return {required: true};
         } else if (control.value.length !== 18 || !IDC_REGEXP.test(control.value)) {
-            this.changed = false;
+            this.answerChanged = false;
             return {error: true, idc: true};
         }else {
-            this.changed = true;
+            this.answerChanged = true;
         }
     }
     phoneVaildator = (control: FormControl): { [s: string]: boolean } => {
         const NUM_REGEXP = /^([0-9]*)|(^\d{3}[\*]{4}\d{4}})$/;
         if (!control.value) {
-            this.changed = false;
+            this.answerChanged = false;
             return {required: true};
         }else if (control.value.length !== 11 || !NUM_REGEXP.test(control.value)) {
-            this.changed = false;
+            this.answerChanged = false;
             return { error: true, phone: true};
         }else {
-            this.changed = true;
+            this.answerChanged = true;
         }
     }
 
@@ -79,57 +81,57 @@ export class InputcmpComponent extends Question  implements AnswerInterface {
     twonumValidator = ( control: FormControl): { [s: string]: boolean } => {
         const NUM_REGEXP = /^[0-9]*$/;
         if (!control.value) {
-            this.changed = false;
+            this.answerChanged = false;
             return {required: true};
         }else if (control.value.length > 2 || !NUM_REGEXP.test(control.value)) {
-            this.changed = false;
+            this.answerChanged = false;
             return { error: true, twonum: true};
         }else {
-            this.changed = true;
+            this.answerChanged = true;
         }
     }
     onenumValidator = ( control: FormControl): { [s: string]: boolean } => {
         const NUM_REGEXP = /^[0-9]*$/;
         if (!control.value) {
-            this.changed = false;
+            this.answerChanged = false;
             return {required: true};
         }else if (control.value.length > 1 || !NUM_REGEXP.test(control.value)) {
-            this.changed = false;
+            this.answerChanged = false;
             return { error: true, onenum: true};
         }else {
-            this.changed = true;
+            this.answerChanged = true;
         }
     }
     threenumValidator = ( control: FormControl): { [s: string]: boolean } => {
         const NUM_REGEXP = /^[0-9]*$/;
         if (!control.value) {
-            this.changed = false;
+            this.answerChanged = false;
             return {required: true};
         }else if (control.value.length > 3 || !NUM_REGEXP.test(control.value)) {
-            this.changed = false;
+            this.answerChanged = false;
             return { error: true, threenum: true};
         }else {
-            this.changed = true;
+            this.answerChanged = true;
         }
     }
     fivenumValidator = ( control: FormControl): { [s: string]: boolean } => {
         const NUM_REGEXP = /^[0-9]*$/;
         if (!control.value) {
-            this.changed = false;
+            this.answerChanged = false;
             return {required: true};
         }else if (control.value.length > 5 || !NUM_REGEXP.test(control.value)) {
-            this.changed = false;
+            this.answerChanged = false;
             return { error: true, fivenum: true};
         }else {
-            this.changed = true;
+            this.answerChanged = true;
         }
     }
     otherValidator = ( control: FormControl): { [s: string]: boolean } => {
         if (!control.value) {
-            this.changed = false;
+            this.answerChanged = false;
             return {required: true};
         }else {
-            this.changed = true;
+            this.answerChanged = true;
         }
     }
     getFormControl(name) {
@@ -152,26 +154,17 @@ export class InputcmpComponent extends Question  implements AnswerInterface {
     }
 
     answerChange() {
-        const question = this.question;
-        const res = new Array();
-        for (const index in this.localAnswer) {
-            if (this.localAnswer[index] !== '') {
-                const questionID = 'ID' + question.id;
-                const item = {};
-                // item[questionID] = this.localAnswer
-                res.push(item);
-            }
+        const res = [];
+        for ( let index = 0; index < this.question.content.length; index++) {
+            const tem = {
+                questionID: '',
+                answer: ''
+            };
+            const questionID = 'ID' + this.question.id.replace('.' , '_') + '_' + index;
+            tem.questionID = questionID;
+            tem.answer = this.localAnswer[index];
+            res.push(tem);
         }
         this.answer = res;
     }
-
-    getAnswer() {
-        const answer = {
-            available : this.changed ? 'true' : 'false',
-            answer : this.answer
-        };
-
-        return answer;
-    }
-
 }

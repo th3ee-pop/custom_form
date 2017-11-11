@@ -8,7 +8,7 @@ import { AnswerInterface } from '../answerInterface';
   templateUrl: './radiocmp.component.html',
   styleUrls: ['./radiocmp.component.less']
 })
-export class RadiocmpComponent extends Question implements AnswerInterface {
+export class RadiocmpComponent extends Question {
 
   /**
    *  存储答案的变量数组
@@ -24,29 +24,27 @@ export class RadiocmpComponent extends Question implements AnswerInterface {
     super();
   }
 
-
   /**
    * 答案改变后触发
    */
   answerChange() {
-    const numOfRadio = this.question.content.length;
-    const res = new Array();
+    const numOfRadio = this.question.content.length; // 选项个数
+    const res = [];
     for (let index = 0; index < numOfRadio ; index++) {
+      const tem = {
+          questionID: '',
+          answer: false
+      };
       const questionID = 'ID' + this.question.id.replace('.' , '_') + '_' + index;
-      const item = {};
-      item[questionID] = index === this.localAnswer ? 'true' : 'false';
-      item['update_time'] = '';
-      res.push(item);
+      tem.questionID = questionID;
+      if (index === this.localAnswer) {
+          tem.answer = true;
+      }
+      res.push(tem);
     }
+
     this.answer = res;
     this.answerChanged =  true;
-  }
-
-  getAnswer() {
-    const res = {
-      available : this.answerChanged,
-      answer : this.answer
-    };
-    return res;
+    console.log(this.answer);
   }
 }

@@ -14,13 +14,9 @@ import { _HttpClient } from '@core/services/http.client';
 import { HttpService } from '@core/services/http.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd';
-import {CheckboxcmpComponent} from '../shared/checkboxcmp/checkboxcmp.component';
-import {TablecmpComponent} from '../shared/tablecmp/tablecmp.component';
-
-// import {routes} from "../../routes";
-// import { environment } from '../../../environments/environment';
-// import { InputcmpComponent } from '../shared/inputcmp/inputcmp.component';
-
+import { CheckboxcmpComponent} from '../shared/checkboxcmp/checkboxcmp.component';
+import { TablecmpComponent} from '../shared/tablecmp/tablecmp.component';
+import { IdccmpComponent} from '../shared/idccmp/idccmp.component';
 @Component({
     selector: 'app-survey-management',
     templateUrl: './survey-management.component.html',
@@ -79,8 +75,10 @@ export class SurveyManagementComponent implements OnInit {
      */
     questionList = new QuestionList();
     qlist = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(index => this.questionList.getQuestions(index));
+    answerlist = [];
+    hiddens = [false, true, true, true, true, true, true, true, true, true] ;
     confirmlist = [];
-
+    manOrwoman = true; // ture 表示女 false 表示男
     answers = {};
     editDisable = {};
 
@@ -94,6 +92,7 @@ export class SurveyManagementComponent implements OnInit {
     @ViewChildren(RadiocmpComponent) RadioItems: QueryList<RadiocmpComponent>;
     @ViewChildren(CheckboxcmpComponent) Checkbox: QueryList<CheckboxcmpComponent>;
     @ViewChildren(TablecmpComponent) Table: QueryList<TablecmpComponent>;
+    @ViewChildren(IdccmpComponent) Idc: QueryList<TablecmpComponent>;
 
     /**
      * 查询操作，PID 病人编号，RecordID 记录编号
@@ -125,15 +124,31 @@ export class SurveyManagementComponent implements OnInit {
     ngOnInit() {
     }
 
+    changeHiddens(current: number) {
+        for (let i = 0; i <= 9; i++) {
+            if ( i === current) {
+               this.hiddens[i] = false;
+            }else {
+                this.hiddens[i] = true;
+            }
+        }
+    }
 
     pre() {
         this.current -= 1;
+        // this.RadioItems.forEach(item => {
+        //     item.answer.a
+        //    console.log(item.answer);
+        // });
+        //
+
+        this.changeHiddens(this.current);
     }
     confirm() {
         let confirms = true;
         this.confirmlist = [];
         this.InputItems.forEach(item => {
-            if (item.changed === false) {
+            if (item.answerChanged === false) {
                 confirms = false;
                 this.confirmlist.push(item.question.id);
             }
@@ -145,7 +160,7 @@ export class SurveyManagementComponent implements OnInit {
             }
         });
         this.Checkbox.forEach(item => {
-            if (item.Changed === false) {
+            if (item.answerChanged === false) {
                 confirms = false;
                 this.confirmlist.push(item.question.id);
             }
@@ -162,30 +177,63 @@ export class SurveyManagementComponent implements OnInit {
         //  });
 
     }
-    next() {
 
-        if (this.confirm().confirms) { // 检查当前步骤是否合法，如果不合法禁止转向下一步
-            this.current += 1;
-        }else {
-            let str = '';
-            for (let i = 0; i < this.confirm().confirmslist.length; i++){
-                str = str + this.confirm().confirmslist[i] + '、';
-            }
-            this.confirmServ.error({
-                title: '您还有以下必填项未完成：' ,
-                content: str
+    next() {
+        if (this.current === 0) {
+            this.RadioItems.forEach(item => {
+                if ( item.answerChanged === true)
+                for (let i = 0; i < item.answer.length; i++) {
+                    if (item.answer[i].questionID === 'ID1_3_0') {
+                        if ( item.answer[i].answer === true ) {
+                            this.manOrwoman = false;
+                            break;
+                        }else {
+                            this.manOrwoman = true;
+                        }
+                    }
+                }
             });
         }
+        // if (this.confirm().confirms) { // 检查当前步骤是否合法，如果不合法禁止转向下一步
+        //     this.current += 1;
+        // }
+
+
+
+        if (true) { // 检查当前步骤是否合法，如果不合法禁止转向下一步
+            if (this.current === 7) {
+                if (this.manOrwoman === false) {
+                    this.current += 2;
+                }else {
+                    this.current += 1;
+                }
+            }else {
+                this.current += 1;
+            }
+        }else {
+            // let str = '';
+            // for (let i = 0; i < this.confirm().confirmslist.length; i++){
+            //     str = str + this.confirm().confirmslist[i] + '、';
+            // }
+            // this.confirmServ.error({
+            //     title: '您还有以下必填项未完成：' ,
+            //     content: str
+            // });
+        }
+        this.changeHiddens(this.current);
     }
 
     allAnswer() {
 
     }
     log() {
-        this.RadioItems.forEach(item => {
-            console.log('答案是' + item.answer);
-        });
         console.log(this.RadioItems);
+        console.log(this.Checkbox);
+        console.log(this.InputItems);
+        //
+        // this.RadioItems.forEach(item => {
+        //     console.log(item.answer);
+        // });
         this.router.navigate(['/survey/detail']);
     }
 
