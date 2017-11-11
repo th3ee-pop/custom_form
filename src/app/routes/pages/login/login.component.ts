@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SettingsService } from '@core/services/settings.service';
+import { HttpService } from '@core/services/http.service';
 import { LoginAuthService } from './login.auth.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { LoginAuthService } from './login.auth.service';
 export class LoginComponent {
   valForm: FormGroup;
 
-  constructor(public settings: SettingsService, fb: FormBuilder, private router: Router, private authService: LoginAuthService) {
+  constructor(public settings: SettingsService, fb: FormBuilder, private router: Router, private authService: LoginAuthService, private service: HttpService) {
     this.valForm = fb.group({
       email: [null, Validators.required],
       password: [null, Validators.required],
@@ -27,7 +28,11 @@ export class LoginComponent {
     if (this.valForm.valid) {
       console.log('Valid!');
       console.log(this.valForm.value);
-     // this.router.navigate(['dashboard']);
+      this.service.login(this.valForm.value).subscribe((resp) => {
+          console.log(resp);
+          console.log("login success");
+      });
+      this.router.navigate(['dashboard']);
     }
     console.log(this.valForm.value);
     const FormVal = {
