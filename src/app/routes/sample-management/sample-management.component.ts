@@ -115,8 +115,6 @@ export class SampleManagementComponent implements OnInit {
        */
       this.records = this.getData(this.content);
       console.log(this.records);
-      // console.log(d3);
-      // console.log(dc);
       let recordsCF = crossfilter(this.records);
       console.log(recordsCF);
       let path = {
@@ -130,24 +128,30 @@ export class SampleManagementComponent implements OnInit {
               return d.Score;
           })
       };
+      console.log(path);
 
       let genderGroup = path.gender.group().reduceCount();
           // ageGroup = path.age.group().reduceCount
-      // let genderChart = dc.barChart("#gender");
-      // genderChart.margins().left = 60;
-      // let width = "250px",
-      //     height = '100px';
-      // genderChart.width(width)
-      //     .height(height)
-      //     .x(d3.scale.ordinal())
-      //     .xUnits(dc.units.ordinal)
-      //     // .brushOn(true)
-      //     // .yAxisLabel("Y Axis")
-      //     .xAxisLabel("性别")
-      //     .dimension(path.gender)
-      //     .group(genderGroup)
-      //     .elasticY(true)
-      //     .controlsUseVisibility(true);
+      let genderChart = dc.barChart("#gender");
+
+      // console.log(genderChart);
+      // console.log(genderGroup);
+      genderChart.margins().left = 60;
+      let width = 250,
+          height = 250;
+      genderChart.width(width)
+          .height(height)
+          .x(d3.scale.ordinal())
+          .xUnits(dc.units.ordinal)
+          // .brushOn(true)
+          // .yAxisLabel("Y Axis")
+          .xAxisLabel("性别")
+          .dimension(path.gender)
+          .group(genderGroup)
+          .elasticY(true)
+          .controlsUseVisibility(true);
+
+      dc.renderAll();
 
   }
 
