@@ -75,33 +75,6 @@ export class SampleManagementComponent implements OnInit {
 
  records = [];
 
-    /**
-     * 查询操作，PID 病人编号，RecordID 记录编号
-     * @type {{PID: string; RecordID: string}}
-     */
-    params = {
-        'PID' : '003',
-        'RecordID' : 'ID1'
-    };
-
-    /**
-     * 添加记录操作，ID1_1：题1的第一个选择，ID1_4_2: 题4的第二个选项
-     * @type {{PID: string; Records: [{ID1_1: string; Updated_time: string},{ID1_4_2: string; Updated_time: string}]}}
-     */
-    putRecord = {
-        'PID' : '006',
-        'Records' : [
-            {
-                'ID1_1': '1000000001', 'Updated_time': ''
-            },
-            {
-                'ID1_4_2': 'true', 'Updated_time': ''
-            }
-        ]
-    };
-
-    api = '/healthexamination/recordop/';
-
     constructor(
         private fb: FormBuilder,
         private service: HttpService
@@ -156,25 +129,25 @@ export class SampleManagementComponent implements OnInit {
   }
 
     submit(){
-        //获取记录
-        this.service.getRecord(this.api, this.params)
-            .subscribe((res) => {
-            console.log(res);
-        },err => {
-            console.log(err);
-            });
-        //添加信息
-        this.service.putRecord(this.api, this.putRecord).subscribe((res) => {
-            console.log(res);
-        },err => {
-            console.log(err);
-        });
-        //获取所有记录
-        this.service.getRecordList().subscribe((res) =>{
-            console.log(res);
-        },err => {
-                console.log(err);
-            })
+        // //获取记录
+        // this.service.getRecord(this.api, this.params)
+        //     .subscribe((res) => {
+        //     console.log(res);
+        // },err => {
+        //     console.log(err);
+        //     });
+        // //添加信息
+        // this.service.putRecord(this.api, this.putRecord).subscribe((res) => {
+        //     console.log(res);
+        // },err => {
+        //     console.log(err);
+        // });
+        // //获取所有记录
+        // this.service.getRecordList().subscribe((res) =>{
+        //     console.log(res);
+        // },err => {
+        //         console.log(err);
+        //     })
     }
 
   getData(content){
