@@ -1,0 +1,56 @@
+<div nz-row>
+  <div nz-col>
+      <nz-card>
+          <ng-template #title>
+              <label nz-form-item-required >5.1 在过去一年里，你大概多久食用一次下列食物或者饮品？（请在每行选择一个，并填写摄入量）</label>
+          </ng-template>
+          <ng-template #body>
+                <form nz-form [nzLayout]="'inline'" >
+                    <div nz-form-control nz-col [nzSm]="20">
+                        <nz-table>
+                            <thead nz-thead>
+                                <tr>
+                                    <th nz-th><span>疾病名称</span></th>
+                                    <th nz-th><span>是否患病</span></th>
+                                    <th nz-th><span>首次诊断年龄</span></th>
+                                    <th nz-th><span>目前是否仍接受治疗</span></th>
+                                    <th nz-th><span>是否住过院</span></th>
+                                    <th nz-th><span>如是，上次住院日期</span></th>
+                                </tr>
+                            </thead>
+
+                            <tbody nz-tbody>
+                                <tr nz-tbody-tr *ngFor="let illnessName of illnessNames,index as i">  <!--根据酒名生成每一行数据-->
+                                      <td nz-td>{{illnessName}}</td>
+
+                                      <td nz-td >
+                                          <label nz-checkbox [(ngModel)]="hasThisIllness[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></label>
+                                      </td>
+                                      <td nz-td>
+                                        <span>
+                                            <nz-input-number [nzMin]="0" [nzMax]="130" [(ngModel)]="firstSickAge[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
+                                        </span>
+                                        岁
+                                      </td>
+                                      <td nz-td>
+                                          <label nz-checkbox [(ngModel)]="beingTreated[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></label>
+                                      </td>
+                                      <td nz-td>
+                                          <label nz-checkbox [(ngModel)]="hospitalized[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></label>
+                                      </td>
+                                    
+                                      <td nz-td>
+                                        <span>
+                                            <nz-datapicker [(ngModel)]="lastTimeInHospital[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-datapicker>
+                                        </span>
+                                        
+                                      </td>
+                                </tr>
+                            </tbody>
+                        </nz-table>
+                    </div>
+                </form>
+          </ng-template>
+      </nz-card>
+  </div>
+</div>

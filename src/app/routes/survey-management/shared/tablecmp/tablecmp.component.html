@@ -13,41 +13,67 @@
                                     <!-- 表头第一项 -->
                                     <th nz-th><span>{{question.content.head.tittle}}</span></th>
                                     <!-- 表头后面的项，根据类型选择，动态生成 -->
-                                    <th nz-th *ngFor="let item of question.content.body">
-                                        <span>{{item.tittle}}</span>
-                                    </th>
+
+
+                                    <ng-container *ngFor="let item of question.content.body">   <!-- 遍历表体类型 -->
+                                        <ng-container [ngSwitch]="item.type">          <!-- 根据type类型选择 -->
+
+                                            <!-- 如果是radio -->
+                                            <ng-container *ngSwitchCase="'radio'">   
+                                                <th nz-th *ngFor="let it of item.content">    <!--将radio里面的内容生成表头-->
+                                                    <span>{{it}}</span>
+                                                </th>           
+                                            </ng-container>
+
+                                            <!-- 如果是checkbox,或者Input -->
+                                            <ng-container *ngSwitchDefault>
+                                                <th nz-th>    
+                                                    <span>{{item.tittle}}</span>  <!-- 直接把tittle放在表头 -->
+                                                </th> 
+                                            </ng-container>
+
+                                        </ng-container>
+                                    </ng-container>
                                 </tr>
                             </thead>
+
+
                             <tbody nz-tbody>
-                                <tr nz-tbody-tr *ngFor="let name of question.content.head.content">
+                                <tr nz-tbody-tr *ngFor="let name of question.content.head.content">  <!-- 根据问题列表生成 -->
                                     <td nz-td>{{name}}</td>
 
-                                     <td nz-td *ngFor="let body of question.content.body">
+                                     <ng-container *ngFor="let body of question.content.body">
+
                                         <ng-container [ngSwitch]="body.type">
                                             <!-- 如果是radio，则生成一组radio -->
                                             <ng-container *ngSwitchCase="'radio'">
-                                                <nz-radio-group >
-                                                    <label nz-radio [nzValue]="i" *ngFor="let item of body.content,index as i">
-                                                        <span>{{item}}</span>
-                                                    </label>
-                                                </nz-radio-group>
+                                                <ng-container *ngFor="let item of body.content,index as i">
+                                                    <td nz-td>
+                                                        <span>
+                                                            <label nz-checkbox [(ngModel)]="radioState[i]" (ngModelChange)="radioChange(i)" [ngModelOptions]="{standalone: true}"></label>    <!-- radio控件有group限制，故采用checkbox模拟radio -->
+                                                        </span>
+                                                    </td>
+                                                </ng-container>
                                             </ng-container>
                                             <!-- 如果是checkbox，则生成一个checkbox -->
                                             <ng-container *ngSwitchCase="'checkbox'">
-                                                <span>
-                                                    <label nz-checkbox >
-                                                    </label>
-                                                </span>
+                                                <td nz-td>
+                                                    <span>
+                                                        <label nz-checkbox ></label>
+                                                    </span>
+                                                </td>
                                             </ng-container>
                                             <!-- 如果是input，则生成输入框和提示 -->
                                             <ng-container *ngSwitchCase="'input'">
-                                                <span>
-                                                    <nz-input ></nz-input>
-                                                    <label>{{body.inform}}</label>
-                                                </span>
+                                                <td nz-td>
+                                                    <span>
+                                                        <nz-input ></nz-input>
+                                                        <label>{{body.inform}}</label>
+                                                    </span>
+                                                </td>
                                             </ng-container>
                                         </ng-container>
-                                     </td>
+                                     </ng-container>
                                 </tr>
                             </tbody>
                         </nz-table>

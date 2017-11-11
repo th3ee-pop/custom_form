@@ -1,0 +1,57 @@
+<div nz-row>
+    <div nz-col>
+        <nz-card>
+            <ng-template #title>
+                <label nz-form-item-required >5.1 在过去一年里，你大概多久食用一次下列食物或者饮品？（请在每行选择一个，并填写摄入量）</label>
+            </ng-template>
+            <ng-template #body>
+                  <form nz-form [nzLayout]="'inline'" >
+                      <div nz-form-control nz-col [nzSm]="20">
+                          <nz-table>
+                              <thead nz-thead>
+                                  <tr>
+                                      <th nz-th><span>主食</span></th>
+                                      <th nz-th><span>每天</span></th>
+                                      <th nz-th><span>4-6次/周</span></th>
+                                      <th nz-th><span>1-3次/周</span></th>
+                                      <th nz-th><span>1-3次/月</span></th>
+                                      <th nz-th><span>不吃或极少吃</span></th>
+                                      <th nz-th><span>你食用时，每天摄入量是多少？</span></th>
+                                  </tr>
+                              </thead>
+  
+                              <tbody nz-tbody>
+                                  <tr nz-tbody-tr *ngFor="let foodName of foodNames,index as i">  <!--根据酒名生成每一行数据-->
+                                        <td nz-td>{{foodName}}</td>
+
+                                        <td nz-td >
+                                            <label nz-checkbox [(ngModel)]="localAnswer[i][0]" (ngModelChange)="answerChange(i,0)" [ngModelOptions]="{standalone: true}"></label>
+                                        </td>
+                                        <td nz-td>
+                                            <label nz-checkbox [(ngModel)]="localAnswer[i][1]" (ngModelChange)="answerChange(i,1)" [ngModelOptions]="{standalone: true}"></label>
+                                        </td>
+                                        <td nz-td>
+                                            <label nz-checkbox [(ngModel)]="localAnswer[i][2]" (ngModelChange)="answerChange(i,2)" [ngModelOptions]="{standalone: true}"></label>
+                                        </td>
+                                        <td nz-td>
+                                            <label nz-checkbox [(ngModel)]="localAnswer[i][3]" (ngModelChange)="answerChange(i,3)" [ngModelOptions]="{standalone: true}"></label>
+                                        </td>
+                                        <td nz-td>
+                                            <label nz-checkbox [(ngModel)]="localAnswer[i][4]" (ngModelChange)="answerChange(i,4)" [ngModelOptions]="{standalone: true}"></label>
+                                        </td>
+                                      
+                                        <td nz-td>
+                                          <span>
+                                              <nz-input-number [nzMin]="0" [nzMax]="1000" [(ngModel)]="amount[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
+                                          </span>
+                                          两/次
+                                        </td>
+                                  </tr>
+                              </tbody>
+                          </nz-table>
+                      </div>
+                  </form>
+            </ng-template>
+        </nz-card>
+    </div>
+  </div>

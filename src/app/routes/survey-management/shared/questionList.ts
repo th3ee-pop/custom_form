@@ -1,5 +1,82 @@
 export class QuestionList {
     questions = [
+
+        {
+            'id' : '1.13',
+            'tittle' : '在过去的一年里，你多久进行一次如下活动？',
+            'type' : 'table',
+            'content' : {
+                'head' : {
+                    'tittle' : '活动名称',
+                    'content' : [
+                          '看电视/碟片',
+                          '看书/看报',
+                          '吃饭/聚餐/闲聊',
+                          '下棋/打牌/打麻将',
+                          '上网/写作/文件管理'
+                      ]
+                  },
+                'body' : [
+                      {
+                        'type' : 'radio',
+                        'content': [
+                              '每天', '4-6次/每周', '1-3次/周', '1-3次/月', '从不或者几乎不'
+                          ]
+                      },
+                      {
+                        'type' : 'checkbox',
+                        'tittle' : '中风'
+                      },
+                      {
+                        'type' : 'input',
+                        'tittle' : '每天多长时间?',
+                        'dataType' : 'number',
+                        'inform' : '小时/天'
+                      }
+                  ]
+              }
+          },
+  
+          {
+            'id' : '1.15',
+            'tittle' : '在你的直系亲属中，是否有人被乡区级医院或以上单位医生诊断患有过下述疾病？',
+            'type' : 'table',
+            'content' : {
+                'head' : {
+                    'tittle' : '活动名称',
+                    'content' : [
+                          '生母',
+                          '生父',
+                          '亲兄妹',
+                          '亲生子女'
+                      ]
+                  },
+                'body' : [
+                      {
+                        'tittle' : '中风',
+                        'type' : 'checkbox'
+                      },
+                      {
+                        'tittle' : '急性心梗',
+                        'type' : 'checkbox'
+                      },
+                      {
+                        'tittle' : '急性心梗',
+                        'type' : 'checkbox'
+                      },
+                      {
+                        'tittle' : '急性心梗',
+                        'type' : 'checkbox'
+                      },
+                      {
+                        'tittle' : '急性心梗',
+                        'type' : 'checkbox'
+                      }
+                  ]
+              }
+  
+        },
+
         {
             'id': '1.1',
             'type': 'input',
@@ -249,7 +326,7 @@ export class QuestionList {
             'tittle': '去年你全家平均一个月的日常支出（不含特殊支出如买车住院等）约为：'
         },
         {
-            'id': '1.16',
+            'id': '1.16.1',
             'type': 'checkbox',
             'content': [
                 '医疗保险（公费、医保、商业保险及合作医疗）（限本人）',

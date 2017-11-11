@@ -1,0 +1,41 @@
+<div nz-row>
+  <div nz-col>
+      <nz-card>
+          <ng-template #title>
+              <label nz-form-item-required >5.8 请你回忆一下，在所经历的最严重的食物短缺时，你是否遇到过下列情况？</label>
+          </ng-template>
+          <ng-template #body>
+                <form nz-form [nzLayout]="'inline'" >
+                    <div nz-form-control nz-col [nzSm]="20">
+                        <nz-table>
+                            <thead nz-thead>
+                                <tr>
+                                    <th nz-th><span>是</span></th>
+                                    <th nz-th><span>否</span></th>
+                                    <th nz-th><span>不确定</span></th>
+                                    <th nz-th><span>遇到的情况</span></th>
+                                </tr>
+                            </thead>
+
+                            <tbody nz-tbody>
+                                <tr nz-tbody-tr *ngFor="let situationName of situationNames,index as i">  <!--根据酒名生成每一行数据-->
+                                    
+                                    <td nz-td>
+                                        <label nz-checkbox [(ngModel)]="localAnswer[i][0]" (ngModelChange)="answerChange(i,0)" [ngModelOptions]="{standalone: true}"></label>
+                                    </td>
+                                    <td nz-td>
+                                        <label nz-checkbox [(ngModel)]="localAnswer[i][1]" (ngModelChange)="answerChange(i,1)" [ngModelOptions]="{standalone: true}"></label>
+                                    </td>
+                                    <td nz-td>
+                                        <label nz-checkbox [(ngModel)]="localAnswer[i][2]" (ngModelChange)="answerChange(i,2)" [ngModelOptions]="{standalone: true}"></label>
+                                    </td>
+                                    <td nz-td>{{situationName}}</td>
+                                </tr>
+                            </tbody>
+                        </nz-table>
+                    </div>
+                </form>
+          </ng-template>
+      </nz-card>
+  </div>
+</div>
