@@ -2,12 +2,7 @@ import { Component, OnInit, ViewChildren, QueryList, ElementRef } from '@angular
 // import { Http } from '@angular/http';
 import { InputcmpComponent } from '../shared/inputcmp/inputcmp.component';
 import { RadiocmpComponent } from '../shared/radiocmp/radiocmp.component';
-import { NzMessageService } from 'ng-zorro-antd';
-import { Directive,  Input, HostListener } from '@angular/core';
-import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
-import * as moment from 'moment';
 import { saveAs } from 'file-saver';
-import { _HttpClient } from '@core/services/http.client';
 import { HttpService } from '@core/services/http.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd';
@@ -81,12 +76,6 @@ export class SurveyManagementComponent implements OnInit {
     manOrwoman = true; // ture 表示女 false 表示男
     answers = {};
     editDisable = {};
-
-    api = '/healthexamination/recordop/';
-    params = {
-        'PID' : '003',
-        'RecordID' : 'ID1'
-    };
 
     @ViewChildren(InputcmpComponent) InputItems: QueryList<InputcmpComponent>;
     @ViewChildren(RadiocmpComponent) RadioItems: QueryList<RadiocmpComponent>;

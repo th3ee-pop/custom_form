@@ -1,0 +1,54 @@
+<div class="content__title">
+    <h1>
+        生物样本库
+        <!--<small>Native support</small>-->
+    </h1>
+</div>
+
+
+<div nz-row [nzGutter]="16">
+    <div nz-col [nzMd]="24">
+        <nz-card>
+            <ng-template #title>生物样本记录</ng-template>
+            <ng-template #body>
+                <form nz-form>
+                    <div nz-form-item nz-row>
+                        <div nz-form-label nz-col [nzSm]="4">
+                            <label>条码</label>
+                        </div>
+                        <div nz-form-control nz-col [nzSm]="20">
+                            <nz-input></nz-input>
+                        </div>
+                    </div>
+                    <div nz-form-item nz-row>
+                        <div nz-form-label nz-col [nzSm]="4">
+                            <label>省</label>
+                        </div>
+                        <div nz-form-control nz-col [nzSm]="20">
+                            <nz-input></nz-input>
+                        </div>
+                    </div>
+                    <div nz-form-item nz-row>
+                        <div nz-form-label nz-col [nzSm]="4">
+                            <label>……</label>
+                        </div>
+                        <div nz-form-control nz-col [nzSm]="20">
+                            <nz-input></nz-input>
+                        </div>
+                    </div>
+                    <div nz-form-item nz-row>
+                        <div nz-form-label nz-col [nzSm]="4">
+                            <label>条码</label>
+                        </div>
+                        <div nz-form-control nz-col [nzSm]="20">
+                            <nz-input></nz-input>
+                        </div>
+                    </div>
+                </form>
+                <button nz-button [nzType]="'primary'" [disabled]="disabled" class="mr-sm" (click)="goBack()">
+                    <span>保存</span>
+                </button>
+            </ng-template>
+        </nz-card>
+    </div>
+</div>
