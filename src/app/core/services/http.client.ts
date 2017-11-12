@@ -39,6 +39,10 @@ export class _HttpClient {
         return ret;
     }
 
+    getParams(params: any):any{
+        return 'q='+JSON.stringify(params);
+    }
+
     private begin() {
         console.time('http');
         this._loading = true;
@@ -64,7 +68,8 @@ export class _HttpClient {
         this.begin();
         return this.http
             .get(url, {
-                params: this.parseParams(params)
+                // params: this.parseParams(params)
+                params: this.getParams(params)
             })
             .do(() => this.end())
             .catch((res) => {
@@ -86,6 +91,24 @@ export class _HttpClient {
             .post(url, body || null, {
                 params: this.parseParams(params)
             })
+            .do(() => this.end())
+            .catch((res) => {
+                this.end();
+                return res;
+            });
+    }
+
+    /**
+     * put 请求
+     * @param url URL地址
+     * @param body 数据
+     * @param params 请求参数
+     */
+    put(url: string, body?: any, params?: any): Observable<any> {
+        this.begin();
+        return this.http.put(url, body || null, {
+            params: this.parseParams(params)
+        })
             .do(() => this.end())
             .catch((res) => {
                 this.end();

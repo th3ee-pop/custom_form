@@ -284,7 +284,7 @@
                                     <td nz-td>{{data.price | _currency}}</td>
                                     <td nz-td>{{data.registered | _date: 'YYYY年MM月DD日'}}</td>
                                     <td nz-td>
-                                        <a (click)="showMsg('Edit')">Edit</a>
+                                        <a (click)="showMsg('Edit');customCompModel('',data)">Edit</a>
                                         <span nz-table-divider></span>
                                         <nz-popconfirm [nzTitle]="'Are you sure？'" [nzOkText]="'ok'" [nzCancelText]="'cancel'" (nzOnConfirm)="showMsg('has deleted')" (nzOnCancel)="showMsg('cancel delete')">
                                             <a nz-popconfirm>Delete</a>

@@ -1,59 +1,134 @@
 import { HttpClient, HttpResponse, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 import * as moment from 'moment';
 
+import { TokenService } from '../net/token/token.service';
+import {TokenData} from "@core/net/token/token.type";
+import {Headers, CookieXSRFStrategy} from "@angular/http";
+
 @Injectable()
 export class HttpService {
 
     baseUrl = 'http://59.110.52.133:9500';
-    private headers = new HttpHeaders({'Content-Type': 'application/json'});
 
     constructor(
         private http: HttpClient,
-        private msgSrv: NzMessageService
+        private injector: Injector
     ){}
 
-   private getParams(params: any):any{
+    options = {
+        headers:new HttpHeaders({"X-CSRFToken": this.injector.get(TokenService).data.access_token})
+    };
+
+    getParams(params: any):any{
        return 'q='+JSON.stringify(params);
     }
 
-    getRecord(api: string, params?: any): Observable<any> {
+
+    getRecordId(params: any):any{
+        let recordId = [];
+            params.Records.forEach(function (v) {
+                for( let key in v ){
+                    if (key != "Updated_time") {
+                        recordId.push(key);
+                    }
+                }
+            });
+            return recordId;
+    }
+
+    /**
+     * 查询操作，PID 病人编号，RecordID 记录编号
+     * @parmas {{PID: string; RecordID: string}}
+     * params = {
+        'PID' : '003',
+        'RecordID' : 'ID1'
+    };
+     */
+    getRecord(params: any): Observable<any> {
             return this.http
-            .get(this.baseUrl + api, { params: this.getParams(params) })
-            .do(() => {
-                // this.msgSrv.error(`测试do`, {nzDuration: 1000 * 3});
-            })
+            .get(this.baseUrl + '/healthexamination/recordop/', {
+                headers:new HttpHeaders({"X-CSRFToken": this.injector.get(TokenService).data.access_token}),
+                params: this.getParams(params) })
+            .do(() => {})
             .catch((res) => {
             // console.log(res);
                 return res;
             });
     }
 
-    putRecord(api: string, params?: any): Observable<any> {
-        return this.http.put(this.baseUrl + api, params)
-            .do(() => {
-                console.log("putDO!")
-            })
+    /**
+     * 添加记录操作，ID1_1：题1的第一个选择，ID1_4_2: 题4的第二个选项
+     * @params {{PID: string; Records: [{ID1_1: string; Updated_time: string},{ID1_4_2: string; Updated_time: string}]}}
+     *  params = {
+        'PID' : '006',
+        'Records' : [
+    {
+      "ID1_1": "1000000001",
+      "Updated_time": "2017-11-04T23:31:23.339478"
+    },
+    {
+      "ID1_2": "1000000001",
+      "Updated_time": "2017-11-07T16:46:01.615804"
+    },
+    {
+      "ID1_4_2": "true",
+      "Updated_time": "2017-11-04T23:52:08.196347"
+    }
+  ]
+    };
+     */
+    putRecord(params: any): Observable<any> {
+        return this.http.put(this.baseUrl + '/healthexamination/recordop/', params, this.options)
+            .do(() => {})
             .catch((res) => {
                 console.log(res);
                 return res;
             })
     }
 
-    login(params){
-           const api = "/account/login";
-           const localUrl = '202.117.54.88:8000';
-           return this.http.post(localUrl + api, { params: 'data='+ JSON.stringify(params)})
-               .do(() => {
-                   console.log("login!")
+    /**
+     * 获取所有病人
+     * @returns {Observable<R|T>}
+     */
+    getPatientList(): Observable<any>{
+        return this.http.get(this.baseUrl + "/healthexamination/recordlist/",this.options)
+            .do(()=>{})
+            .catch((res)=>{
+            console.log(res);
+            return res;
+            })
+    }
+
+    /**
+     * 登录，并将token添加到localstorage中
+     * @param user
+     * user{
+            "username":params.username,
+            "password":params.password
+        };
+     */
+    login(user){
+        const api = "/account/login/";
+        console.log(user);
+        return this.http.post(this.baseUrl + api, user)
+               .do((res:any) => {
+                   let localuser = new TokenService();
+                   localuser.data = <TokenData>{
+                       access_token:res.TOKEN,
+                       expire_time: moment().add(7, 'days').unix(),
+                       refresh_token: '',
+                       refresh_token_valid_time: moment().add(14, 'days').unix(),
+                       user_name: user.username
+                   };
+                   console.log(localuser);
                })
                .catch((res) => {
-                   console.log(res);
-                   return res;
-               })
+               return res;
+           })
     }
 
 

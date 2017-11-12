@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '@shared/shared.module';
 import { Routes, RouterModule } from '@angular/router';
 import { RandomUserService } from '../tables/randomUser.service';
-
+import { ModelCustomComponent } from './user-setting/settings.modal.component';
 import { UserManagementComponent } from './user-management/user-management.component';
 import { UserSettingsComponent } from './user-setting/settings.component';
 const routes: Routes = [
@@ -23,10 +23,14 @@ const routes: Routes = [
     ],
     declarations: [
         UserManagementComponent,
-        UserSettingsComponent
+        UserSettingsComponent,
+        ModelCustomComponent
     ],
     providers: [
         RandomUserService
+    ],
+    entryComponents: [
+        ModelCustomComponent
     ]
 })
 export class UserManagementModule { }

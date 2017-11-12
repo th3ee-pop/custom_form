@@ -1,13 +1,33 @@
-import { NzMessageService } from 'ng-zorro-antd';
+import { NzModalService, NzMessageService } from 'ng-zorro-antd';
 import { RandomUserService } from '../../tables/randomUser.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ModelCustomComponent } from './settings.modal.component';
 
 @Component({
     selector: 'app-extras-settings',
     templateUrl: './settings.component.html'
 })
 export class UserSettingsComponent implements OnInit {
+
+
+    constructor(fb: FormBuilder,
+                public msg: NzMessageService,
+                private modal: NzModalService,
+                private _randomUser: RandomUserService,
+                private message: NzMessageService) {
+        this.profileForm = fb.group({
+            name: [null, Validators.compose([Validators.required, Validators.pattern(`^[-_a-zA-Z0-9]{4,20}$`)])],
+            email: '',
+            bio: [null, Validators.maxLength(160)],
+            url: '',
+            company: '',
+            location: ''
+        });
+    }
+
+    selecteduser;
+    options = {};
     active = 1;
     profileForm: FormGroup;
     pwd = {
@@ -69,16 +89,6 @@ export class UserSettingsComponent implements OnInit {
         this.message.info(msg);
     }
 
-    constructor(fb: FormBuilder, public msg: NzMessageService, private _randomUser: RandomUserService, private message: NzMessageService) {
-        this.profileForm = fb.group({
-            name: [null, Validators.compose([Validators.required, Validators.pattern(`^[-_a-zA-Z0-9]{4,20}$`)])],
-            email: '',
-            bio: [null, Validators.maxLength(160)],
-            url: '',
-            company: '',
-            location: ''
-        });
-    }
 
     get name() { return this.profileForm.get('name'); }
 
@@ -98,12 +108,26 @@ export class UserSettingsComponent implements OnInit {
         }
         console.log('pwd value', this.pwd);
     }
+    customCompModel(size: '' | 'lg' | 'sm' = '', user: object) {
+        this.options = {
+            wrapClassName: size ? 'modal-' + size : '',
+            content: ModelCustomComponent,
+            footer: false,
+            componentParams: {
+                user: user
+            }
+        };
+        this.modal.open(this.options).subscribe(result => {
+            this.msg.info(`subscribe status: ${JSON.stringify(result)}`);
+        });
+    }
 
     ngOnInit() {
         this.load();
         this.profileForm.patchValue({
             name: 'cipchk',
-            email: 'cipchk@qq.com'
+            email: 'cipchk@qq.com',
+            company: 'hospital'
         });
     }
 }
