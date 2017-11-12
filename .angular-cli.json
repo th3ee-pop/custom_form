@@ -29,7 +29,6 @@
             "../node_modules/echarts/theme/dark.js",
             "assets/js/d3/crossfilter.js",
             "assets/js/d3/d3.v3.min.js",
-            "../node_modules/dc/dc.js",
             "assets/js/d3/dc/dc.js"
         ],
         "environmentSource": "environments/environment.ts",

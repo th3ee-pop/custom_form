@@ -275,10 +275,10 @@ export class SurveyManagementComponent implements OnInit {
     }
 
     submit() { // 提交
-
-        this.httpService.putRecord(this.api, this.putRecord).subscribe((res) => {
-            console.log(res);
-        });
+        //
+        //     this.httpService.putRecord(this.api, this.putRecord).subscribe((res) => {
+        //         console.log(res);
+        //     });
+        // }
     }
-
 }
