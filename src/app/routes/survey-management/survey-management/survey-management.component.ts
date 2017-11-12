@@ -83,26 +83,7 @@ export class SurveyManagementComponent implements OnInit {
     @ViewChildren(TablecmpComponent) Table: QueryList<TablecmpComponent>;
     @ViewChildren(IdccmpComponent) Idc: QueryList<TablecmpComponent>;
 
-    /**
-     * 查询操作，PID 病人编号，RecordID 记录编号
-     * @type {{PID: string; RecordID: string}}
-     */
 
-    /**
-     * 添加记录操作，ID1_1：题1的第一个选择，ID1_4_2: 题4的第二个选项
-     * @type {{PID: string; Records: [{ID1_1: string; Updated_time: string},{ID1_4_2: string; Updated_time: string}]}}
-     */
-    putRecord = {
-        'PID' : '006',
-        'Records' : [
-            {
-                'ID1_1': '1000000001', 'Updated_time': ''
-            },
-            {
-                'ID1_4_2': 'true', 'Updated_time': ''
-            }
-        ]
-    };
     current = 0;
     constructor(
         private router: Router,
