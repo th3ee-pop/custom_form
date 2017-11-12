@@ -1,82 +1,5 @@
 export class QuestionList {
     questions = [
-
-        {
-            'id' : '1.13',
-            'tittle' : '在过去的一年里，你多久进行一次如下活动？',
-            'type' : 'table',
-            'content' : {
-                'head' : {
-                    'tittle' : '活动名称',
-                    'content' : [
-                          '看电视/碟片',
-                          '看书/看报',
-                          '吃饭/聚餐/闲聊',
-                          '下棋/打牌/打麻将',
-                          '上网/写作/文件管理'
-                      ]
-                  },
-                'body' : [
-                      {
-                        'type' : 'radio',
-                        'content': [
-                              '每天', '4-6次/每周', '1-3次/周', '1-3次/月', '从不或者几乎不'
-                          ]
-                      },
-                      {
-                        'type' : 'checkbox',
-                        'tittle' : '中风'
-                      },
-                      {
-                        'type' : 'input',
-                        'tittle' : '每天多长时间?',
-                        'dataType' : 'number',
-                        'inform' : '小时/天'
-                      }
-                  ]
-              }
-          },
-  
-          {
-            'id' : '1.15',
-            'tittle' : '在你的直系亲属中，是否有人被乡区级医院或以上单位医生诊断患有过下述疾病？',
-            'type' : 'table',
-            'content' : {
-                'head' : {
-                    'tittle' : '活动名称',
-                    'content' : [
-                          '生母',
-                          '生父',
-                          '亲兄妹',
-                          '亲生子女'
-                      ]
-                  },
-                'body' : [
-                      {
-                        'tittle' : '中风',
-                        'type' : 'checkbox'
-                      },
-                      {
-                        'tittle' : '急性心梗',
-                        'type' : 'checkbox'
-                      },
-                      {
-                        'tittle' : '急性心梗',
-                        'type' : 'checkbox'
-                      },
-                      {
-                        'tittle' : '急性心梗',
-                        'type' : 'checkbox'
-                      },
-                      {
-                        'tittle' : '急性心梗',
-                        'type' : 'checkbox'
-                      }
-                  ]
-              }
-  
-        },
-
         {
             'id': '1.1',
             'type': 'input',
@@ -112,14 +35,8 @@ export class QuestionList {
         },
         {
             'id': '1.4',
-            'type': 'input',
-            'content': [
-                {
-                    'dataType': 'date',
-                    'inform': '（可以直接输入数字，格式 xxxx-xx-xx）'
-                }
-            ],
-            'tittle': '出生日期'
+            'type': 'date',
+            'tittle': '出生日期(可以直接输入，格式20xx-xx-xx）'
         },
         {
             'id': '1.4a',                    // 纸质版上面没有
@@ -597,10 +514,10 @@ export class QuestionList {
             ],
             'tittle': '你大约从几岁开始养成每周都喝酒的习惯？'
         },
-
-
-
-
+        {
+            'id': '3.5',
+            'type': 'table35'
+        },
 
 // ------------------------------------------------------------------------------------
         {
@@ -661,6 +578,11 @@ export class QuestionList {
                 }
             ],
             'tittle': '你大约从几岁开始养成每天或基本上每天都吸烟的习惯？（单位：岁）'
+        },
+
+        {
+            'id': '4.6',
+            'type': 'table46'
         },
         // {
         //     'id': '4.6d',
@@ -769,6 +691,11 @@ export class QuestionList {
 
 // ------------------------------------------------------------------------------------------------------------------------------
         {
+            'id': '5.1',
+            'type': 'table51'
+        },    
+
+        {
             'id': '5.2',
             'type': 'radio',
             'content': [
@@ -779,17 +706,25 @@ export class QuestionList {
             'tittle': '与你的朋友或者同事相比，你所喜欢的口味如何？'
         },
         {
+            'id': '5.3',
+            'type': 'table53'
+        }, 
+        {
             'id': '5.4',
-            'type': 'checkbox',
-            'content': [
-                '吃零食/小吃（包括夜宵）',
-                '不吃早餐',
-                '在餐馆或小吃店吃饭',
-                '吃深度油炸的食物',
-                '吃西式快餐（如比萨饼、汉堡等）'
-            ],
-            'tittle': '在过去一年里。你大约多久出现一次下面列举的情况？'
-        },
+            'type': 'table54'
+        }, 
+        // {
+        //     'id': '5.4',
+        //     'type': 'checkbox',
+        //     'content': [
+        //         '吃零食/小吃（包括夜宵）',
+        //         '不吃早餐',
+        //         '在餐馆或小吃店吃饭',
+        //         '吃深度油炸的食物',
+        //         '吃西式快餐（如比萨饼、汉堡等）'
+        //     ],
+        //     'tittle': '在过去一年里。你大约多久出现一次下面列举的情况？'
+        // },
         {
             'id': '5.5',
             'type': 'checkbox',
@@ -825,26 +760,30 @@ export class QuestionList {
         },
         {
             'id': '5.8',
-            'type': 'checkbox',
-            'content': [
-                '体重明显下降',
-                '因为食物短缺而出现浮肿、严重贫血等相关疾病',
-                '在此期间有家人、亲朋好友或邻居因食物短缺而死亡'
-            ],
-            'tittle': '请你回忆一下，在所经历的最严重的食物短缺时，你是否遇到过下列情况？'
-        },
-        {
-            'id': '5.8a',
-            'type': 'input',
-            'content': [
-                {
-                    'dataType': 'text',
-                    'inform': '',
-                    'validType': 'twonum'
-                }
-            ],
-            'tittle': '若体重明显下降，大概下降了多少斤？（单位：斤）'
-        },
+            'type': 'table58'
+        }, 
+        // {
+        //     'id': '5.8',
+        //     'type': 'checkbox',
+        //     'content': [
+        //         '体重明显下降',
+        //         '因为食物短缺而出现浮肿、严重贫血等相关疾病',
+        //         '在此期间有家人、亲朋好友或邻居因食物短缺而死亡'
+        //     ],
+        //     'tittle': '请你回忆一下，在所经历的最严重的食物短缺时，你是否遇到过下列情况？'
+        // },
+        // {
+        //     'id': '5.8a',
+        //     'type': 'input',
+        //     'content': [
+        //         {
+        //             'dataType': 'text',
+        //             'inform': '',
+        //             'validType': 'twonum'
+        //         }
+        //     ],
+        //     'tittle': '若体重明显下降，大概下降了多少斤？（单位：斤）'
+        // },
         {
             'id': '5.9',
             'type': 'radio',
@@ -1147,6 +1086,10 @@ export class QuestionList {
         //     'tittle': '请你回忆一下，在你工作的这些年，是否曾经暴露于以下污染物，并且持续时间至少达6个月？'
         // },
         {
+            'id': '6.13',
+            'type': 'table613'
+        }, 
+        {
             'id': '6.14',
             'type': 'checkbox',
             'content': [
@@ -1251,7 +1194,10 @@ export class QuestionList {
             'tittle': '如果咳痰持续>=3个月，那么这种现象持续了多久？'
         },
 
-
+        {
+            'id': '7.4',
+            'type': 'table74'
+        }, 
         // {
         //     'id': '7.4',
         //     'type': 'radio',
@@ -1899,6 +1845,10 @@ export class QuestionList {
             ],
             'tittle': '你平均每天业余时间用于坐立活动（包括看电视，读书报，吃饭，聚餐，下棋，打牌，玩电子游戏，上网等）的时间一共有多长？（单位：小时/天）'
         },
+        {
+            'id': '8.13',
+            'type': 'table813'
+        }, 
         // {
         //     'id': '8.17',
         //     'type': 'checkbox',
@@ -2076,6 +2026,10 @@ export class QuestionList {
             'tittle': '自然流产多少次？（单位：次，若无填0）'
         },
         {
+            'id': '9.6',
+            'type': 'table96'
+        }, 
+        {
             'id': '9.7',
             'type': 'radio',
             'content': [
@@ -2167,6 +2121,10 @@ export class QuestionList {
             ],
             'tittle': '到目前为止，你一共累积使用了多少年的避孕环？（单位：年）'
         },
+        {
+            'id': '9.13',
+            'type': 'table913'
+        }, 
         // {
         //     'id': '9.13',
         //     'type': 'checkbox',

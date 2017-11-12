@@ -13,11 +13,11 @@
                         <div *ngFor="let question of qlist[0]">
                             <div [ngSwitch]="question.type">
                                 <app-inputcmp     *ngSwitchCase="'input'"     [question]="question"></app-inputcmp>
+                                <app-datecmp     *ngSwitchCase="'date'"     [question]="question"></app-datecmp>
                                 <app-radiocmp     *ngSwitchCase="'radio'"     [question]="question"></app-radiocmp>
                                 <app-phonecmp     *ngSwitchCase="'phone'"     [question]="question"></app-phonecmp>
                                 <app-idccmp       *ngSwitchCase="'idc'"       [question]="question"></app-idccmp>
                                 <app-checkboxcmp  *ngSwitchCase="'checkbox'"  [question]="question"></app-checkboxcmp>
-                                <app-tablecmp     *ngSwitchCase="'table'"     [question]="question"></app-tablecmp>
                             </div>
                         </div>
                     </div>
@@ -29,7 +29,6 @@
                                 <app-phonecmp     *ngSwitchCase="'phone'"     [question]="question"></app-phonecmp>
                                 <app-idccmp       *ngSwitchCase="'idc'"       [question]="question"></app-idccmp>
                                 <app-checkboxcmp  *ngSwitchCase="'checkbox'"  [question]="question"></app-checkboxcmp>
-                                <app-tablecmp     *ngSwitchCase="'table'"     [question]="question"></app-tablecmp>
                             </div>
                         </div>
                     </div>
@@ -41,7 +40,7 @@
                                 <app-phonecmp     *ngSwitchCase="'phone'"     [question]="question"></app-phonecmp>
                                 <app-idccmp       *ngSwitchCase="'idc'"       [question]="question"></app-idccmp>
                                 <app-checkboxcmp  *ngSwitchCase="'checkbox'"  [question]="question"></app-checkboxcmp>
-                                <app-tablecmp     *ngSwitchCase="'table'"     [question]="question"></app-tablecmp>
+                                <app-table35      *ngSwitchCase="'table35'"     [question]="question"></app-table35>
                             </div>
                         </div>
                     </div>
@@ -53,7 +52,7 @@
                                 <app-phonecmp     *ngSwitchCase="'phone'"     [question]="question"></app-phonecmp>
                                 <app-idccmp       *ngSwitchCase="'idc'"       [question]="question"></app-idccmp>
                                 <app-checkboxcmp  *ngSwitchCase="'checkbox'"  [question]="question"></app-checkboxcmp>
-                                <app-tablecmp     *ngSwitchCase="'table'"     [question]="question"></app-tablecmp>
+                                <app-table46     *ngSwitchCase="'table46'"     [question]="question"></app-table46>
                             </div>
                         </div>
                     </div>
@@ -65,7 +64,10 @@
                                 <app-phonecmp     *ngSwitchCase="'phone'"     [question]="question"></app-phonecmp>
                                 <app-idccmp       *ngSwitchCase="'idc'"       [question]="question"></app-idccmp>
                                 <app-checkboxcmp  *ngSwitchCase="'checkbox'"  [question]="question"></app-checkboxcmp>
-                                <app-tablecmp     *ngSwitchCase="'table'"     [question]="question"></app-tablecmp>
+                                <app-table51     *ngSwitchCase="'table51'"     [question]="question"></app-table51>
+                                <app-table53     *ngSwitchCase="'table53'"     [question]="question"></app-table53>
+                                <app-table54     *ngSwitchCase="'table54'"     [question]="question"></app-table54>
+                                <app-table58     *ngSwitchCase="'table58'"     [question]="question"></app-table58>
                             </div>
                         </div>
                     </div>
@@ -77,7 +79,7 @@
                                 <app-phonecmp     *ngSwitchCase="'phone'"     [question]="question"></app-phonecmp>
                                 <app-idccmp       *ngSwitchCase="'idc'"       [question]="question"></app-idccmp>
                                 <app-checkboxcmp  *ngSwitchCase="'checkbox'"  [question]="question"></app-checkboxcmp>
-                                <app-tablecmp     *ngSwitchCase="'table'"     [question]="question"></app-tablecmp>
+                                <app-table613     *ngSwitchCase="'table613'"     [question]="question"></app-table613>
                             </div>
                         </div>
                     </div>
@@ -89,7 +91,8 @@
                                 <app-phonecmp     *ngSwitchCase="'phone'"     [question]="question"></app-phonecmp>
                                 <app-idccmp       *ngSwitchCase="'idc'"       [question]="question"></app-idccmp>
                                 <app-checkboxcmp  *ngSwitchCase="'checkbox'"  [question]="question"></app-checkboxcmp>
-                                <app-tablecmp     *ngSwitchCase="'table'"     [question]="question"></app-tablecmp>
+                                <app-table74     *ngSwitchCase="'table74'"     [question]="question"></app-table74>
+                                <app-table715     *ngSwitchCase="'table715'"     [question]="question"></app-table715>
                             </div>
                         </div>
                     </div>
@@ -101,7 +104,7 @@
                                 <app-phonecmp     *ngSwitchCase="'phone'"     [question]="question"></app-phonecmp>
                                 <app-idccmp       *ngSwitchCase="'idc'"       [question]="question"></app-idccmp>
                                 <app-checkboxcmp  *ngSwitchCase="'checkbox'"  [question]="question"></app-checkboxcmp>
-                                <app-tablecmp     *ngSwitchCase="'table'"     [question]="question"></app-tablecmp>
+                                <app-table813     *ngSwitchCase="'table813'"     [question]="question"></app-table813>
                             </div>
                         </div>
                     </div>
@@ -113,7 +116,7 @@
                                 <app-phonecmp     *ngSwitchCase="'phone'"     [question]="question"></app-phonecmp>
                                 <app-idccmp       *ngSwitchCase="'idc'"       [question]="question"></app-idccmp>
                                 <app-checkboxcmp  *ngSwitchCase="'checkbox'"  [question]="question"></app-checkboxcmp>
-                                <app-tablecmp     *ngSwitchCase="'table'"     [question]="question"></app-tablecmp>
+                                <app-table913     *ngSwitchCase="'table913'"     [question]="question"></app-table913>
                             </div>
                         </div>
                     </div>
@@ -125,25 +128,9 @@
                                 <app-phonecmp     *ngSwitchCase="'phone'"     [question]="question"></app-phonecmp>
                                 <app-idccmp       *ngSwitchCase="'idc'"       [question]="question"></app-idccmp>
                                 <app-checkboxcmp  *ngSwitchCase="'checkbox'"  [question]="question"></app-checkboxcmp>
-                                <app-tablecmp     *ngSwitchCase="'table'"     [question]="question"></app-tablecmp>
                             </div>
                         </div>
                     </div>
-
-                    <app-table35>   </app-table35>
-                    <app-table46>   </app-table46>
-                    <app-table51>   </app-table51>
-                    <app-table53>   </app-table53>
-                    <app-table54>   </app-table54>
-                    <app-table58>   </app-table58>
-                    <app-table613>   </app-table613>
-                    <app-table715>   </app-table715>
-                    <app-table74>   </app-table74>
-                    <app-table813>   </app-table813>
-                    <app-table96>   </app-table96>
-                    <app-table913>   </app-table913>
-
-
 
 
                     <div class="steps-action">

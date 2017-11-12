@@ -27,7 +27,7 @@ export class Table35Component extends Question implements AnswerInterface {
     /**
      * 是否必填，如果是true，则必填
      */
-    required = true;
+    required = false;
 
     /**
      * 每行前面的checkbox

@@ -27,6 +27,7 @@ import { Table715Component } from './shared/tablecmp/table715/table715.component
 import { Table813Component } from './shared/tablecmp/table813/table813.component';
 import { Table96Component } from './shared/tablecmp/table96/table96.component';
 import { Table913Component } from './shared/tablecmp/table913/table913.component';
+import { DatecmpComponent } from './shared/datecmp/datecmp.component';
 /**/
 
 // import { MdRadioModule, MdInputModule} from '@angular/material';
@@ -74,6 +75,7 @@ const routes: Routes = [
         Table813Component,
         Table96Component,
         Table913Component,
+        DatecmpComponent,
         SurveyDetailComponent,
     ]
 })
