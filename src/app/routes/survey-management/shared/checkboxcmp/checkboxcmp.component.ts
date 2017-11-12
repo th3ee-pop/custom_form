@@ -9,41 +9,37 @@ import { AnswerInterface } from '../answerInterface';
     templateUrl: './checkboxcmp.component.html',
     styleUrls: ['./checkboxcmp.component.less']
 })
-export class CheckboxcmpComponent extends Question implements AnswerInterface {// 继承自Question类，
-
-
-    localAnswer = new Array(20);
-    Changed = false;
+export class CheckboxcmpComponent extends Question implements OnInit {// 继承自Question类，
+    localAnswer;
+    answerChanged = false;
+    ngOnInit() {
+        this.localAnswer = new Array(this.question.content.length);
+    }
     constructor() {
         super();
     }
 
     answerChange() {
         const res = [];
-        const RecordID = 'ID' + this.question.id.replace(/\./g , '_');  // 替换id 中的.  比如16.1.1 替换为  ID16_1_1
-        console.log(RecordID);
-        for (let index = 0; index < this.question.content.length ; index++) {
+        for (let index = 0; index < this.question.content.length; index++ ) {
+            const tem = {
+                questionID: '',
+                answer: false
+            };
+            const  questionID = 'ID' + this.question.id.replace('.' , '_') + '_' + index;
+            tem.questionID = questionID;
             if (this.localAnswer[index] === true) {
-                const item = {};
-                const itemID = RecordID + '_' + (index + 1);
-                item[itemID] = 'true';
-                res.push(item);
+                tem.answer = true;
+            }else {
+                tem.answer = false;
             }
+            res.push(tem);
         }
         this.answer = res;
         if ( this.localAnswer ) {
-            this.Changed = true;
+            this.answerChanged = true;
         }else {
-            this.Changed = false;
+            this.answerChanged = false;
         }
-    }
-
-
-    getAnswer() {
-        const res = {
-            available : this.Changed,
-            answer : this.answer
-        };
-        return res;
     }
 }

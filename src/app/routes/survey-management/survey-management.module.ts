@@ -9,6 +9,8 @@ import { SurveyManagementComponent } from './survey-management/survey-management
 /*自定义组件类型*/
 import { InputcmpComponent } from './shared/inputcmp/inputcmp.component';
 import { RadiocmpComponent } from './shared/radiocmp/radiocmp.component';
+import { IdccmpComponent} from './shared/idccmp/idccmp.component';
+import { PhoneComponent} from './shared/phonecmp/phonecmp.component';
 import { CheckboxcmpComponent } from './shared/checkboxcmp/checkboxcmp.component';
 import { TablecmpComponent } from './shared/tablecmp/tablecmp.component';
 import { SurveyOverviewComponent } from './survey-overview/survey-overview.component';
@@ -55,6 +57,8 @@ const routes: Routes = [
         SurveyManagementComponent,
         InputcmpComponent,
         RadiocmpComponent,
+        PhoneComponent,
+        IdccmpComponent,
         CheckboxcmpComponent,
         TablecmpComponent,
         SurveyOverviewComponent,
