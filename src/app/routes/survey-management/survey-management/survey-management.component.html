@@ -134,7 +134,6 @@
 
 
                     <div class="steps-action">
-
                         <button nz-button [nzType]="'default'" (click)="pre()" *ngIf="current > 0">
                             <span>返回上一步</span>
                         </button>
@@ -145,18 +144,12 @@
                             <span>提交</span>
                         </button>
                         <button nz-button [nzType]="'default'" (click)="log()" *ngIf="current < 9">
-                            <span>暂存</span>
-                        </button>
-                        <button nz-button [nzType]="'default'" (click)="log()" *ngIf="current < 9">
-                            <span>退出</span>
+                            <span>暂存并退出</span>
                         </button>
                     </div>
                 </ng-template>
             </nz-card>
         </div>
     </div>
+    <button nz-button [nzType]=" 'primary'" (click)="submit(answer)"><span>提交</span></button>
 </div>
-
-<!--<button nz-button [nzType]="'primary'" [nzSize]="'large'" [nzShape]="'circle'" (click)="log()" class="mr-sm">-->
-<!--<i class="anticon anticon-right"></i>-->
-<!--</button>-->

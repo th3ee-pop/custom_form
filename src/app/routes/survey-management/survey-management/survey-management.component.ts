@@ -1,10 +1,7 @@
 import { Component, OnInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
-
-
+// import { Http } from '@angular/http';
 import { InputcmpComponent } from '../shared/inputcmp/inputcmp.component';
 import { RadiocmpComponent } from '../shared/radiocmp/radiocmp.component';
-import { QuestionList } from '../shared/questionList';
-
 import { NzMessageService } from 'ng-zorro-antd';
 import { Directive,  Input, HostListener } from '@angular/core';
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
@@ -17,6 +14,9 @@ import { NzModalService } from 'ng-zorro-antd';
 import { CheckboxcmpComponent} from '../shared/checkboxcmp/checkboxcmp.component';
 import { TablecmpComponent} from '../shared/tablecmp/tablecmp.component';
 import { IdccmpComponent} from '../shared/idccmp/idccmp.component';
+import { QuestionList } from '../shared/questionList';
+
+
 @Component({
     selector: 'app-survey-management',
     templateUrl: './survey-management.component.html',
@@ -28,43 +28,43 @@ import { IdccmpComponent} from '../shared/idccmp/idccmp.component';
 export class SurveyManagementComponent implements OnInit {
     schedule_list = [
         {
-            status: '一般信息',
+            status: '正在填写',
             descript: '一般信息'
         },
         {
-            status: '饮茶及咖啡情况',
+            status: '等待填写',
             descript: '饮茶及咖啡情况'
         },
         {
-            status: '饮酒情况',
+            status: '等待填写',
             descript: '饮酒情况'
         },
         {
-            status: '吸烟情况',
+            status: '等待填写',
             descript: '吸烟情况'
         },
         {
-            status: '膳食情况',
+            status: '等待填写',
             descript: '膳食情况'
         },
         {
-            status: '空气污染',
+            status: '等待填写',
             descript: '被动吸烟和室内空气污染'
         },
         {
-            status: '健康状况',
+            status: '等待填写',
             descript: '个人及家庭健康状况'
         },
         {
-            status: '体力活动',
+            status: '等待填写',
             descript: '体力活动情况'
         },
         {
-            status: '女性生育史',
+            status: '等待填写',
             descript: '女性生育史情况'
         },
         {
-            status: '精神及生活质量',
+            status: '等待填写',
             descript: '精神、睡眠、情绪状况及生活质量'
         }
 
@@ -116,12 +116,12 @@ export class SurveyManagementComponent implements OnInit {
     };
     current = 0;
     constructor(
-        private httpService: HttpService,
         private router: Router,
         private confirmServ: NzModalService
     ) { }
 
     ngOnInit() {
+
     }
 
     changeHiddens(current: number) {
@@ -223,9 +223,7 @@ export class SurveyManagementComponent implements OnInit {
         this.changeHiddens(this.current);
     }
 
-    allAnswer() {
 
-    }
     log() {
         console.log(this.RadioItems);
         console.log(this.Checkbox);
@@ -235,18 +233,6 @@ export class SurveyManagementComponent implements OnInit {
         //     console.log(item.answer);
         // });
         this.router.navigate(['/survey/detail']);
-    }
-
-
-    test() {
-        console.log(this.qlist);
-    }
-
-    submit() {
-
-        this.httpService.putRecord(this.api, this.putRecord).subscribe((res) => {
-            console.log(res);
-        });
     }
 
 }
