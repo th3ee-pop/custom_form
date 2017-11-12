@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { SampleManagementComponent } from './sample-management.component';
 
-const routes:Routes = [
+const routes: Routes = [
     { path: 'detail', component: SampleManagementComponent }
 ];
 
@@ -11,7 +11,7 @@ const routes:Routes = [
   imports: [
     CommonModule, RouterModule.forChild(routes),
   ],
-    exports:[
+    exports: [
         RouterModule
     ],
   declarations: [

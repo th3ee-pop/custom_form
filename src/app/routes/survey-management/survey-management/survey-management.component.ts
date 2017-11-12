@@ -1,6 +1,4 @@
 import { Component, OnInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
-
-
 import { InputcmpComponent } from '../shared/inputcmp/inputcmp.component';
 import { RadiocmpComponent } from '../shared/radiocmp/radiocmp.component';
 import { QuestionList } from '../shared/questionList';
@@ -12,11 +10,14 @@ import * as moment from 'moment';
 import { saveAs } from 'file-saver';
 import { _HttpClient } from '@core/services/http.client';
 import { HttpService } from '@core/services/http.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, PreloadingStrategy} from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd';
 import { CheckboxcmpComponent} from '../shared/checkboxcmp/checkboxcmp.component';
 import { TablecmpComponent} from '../shared/tablecmp/tablecmp.component';
 import { IdccmpComponent} from '../shared/idccmp/idccmp.component';
+import { PhoneComponent } from '../shared/phonecmp/phonecmp.component';
+import { SelectivePreloadingStrategy} from './selective-preloading-strategy';
+
 @Component({
     selector: 'app-survey-management',
     templateUrl: './survey-management.component.html',
@@ -26,6 +27,8 @@ import { IdccmpComponent} from '../shared/idccmp/idccmp.component';
 
 
 export class SurveyManagementComponent implements OnInit {
+
+
     schedule_list = [
         {
             status: '一般信息',
@@ -73,12 +76,14 @@ export class SurveyManagementComponent implements OnInit {
     /**
      * 将数据转化为10个列表
      */
+
     questionList = new QuestionList();
     qlist = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(index => this.questionList.getQuestions(index));
     answerlist = [];
     hiddens = [false, true, true, true, true, true, true, true, true, true] ;
     confirmlist = [];
     manOrwoman = true; // ture 表示女 false 表示男
+    singleif = '';
     answers = {};
     editDisable = {};
 
@@ -91,8 +96,9 @@ export class SurveyManagementComponent implements OnInit {
     @ViewChildren(InputcmpComponent) InputItems: QueryList<InputcmpComponent>;
     @ViewChildren(RadiocmpComponent) RadioItems: QueryList<RadiocmpComponent>;
     @ViewChildren(CheckboxcmpComponent) Checkbox: QueryList<CheckboxcmpComponent>;
-    @ViewChildren(TablecmpComponent) Table: QueryList<TablecmpComponent>;
-    @ViewChildren(IdccmpComponent) Idc: QueryList<TablecmpComponent>;
+    @ViewChildren(IdccmpComponent) Idc: QueryList<IdccmpComponent>;
+    @ViewChildren(PhoneComponent) Phone: QueryList<PhoneComponent>;
+    // @ViewChildren(IdccmpComponent) Idc: QueryList<TablecmpComponent>;
 
     /**
      * 查询操作，PID 病人编号，RecordID 记录编号
@@ -118,32 +124,30 @@ export class SurveyManagementComponent implements OnInit {
     constructor(
         private httpService: HttpService,
         private router: Router,
-        private confirmServ: NzModalService
-    ) { }
-
+        private confirmServ: NzModalService,
+        private preloadStrategy: SelectivePreloadingStrategy
+    ) {
+        this.singleif = preloadStrategy.preloadedModules;
+    }
+    // resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    //
+    //    console.log(route.data);
+    // }
     ngOnInit() {
+
     }
 
     changeHiddens(current: number) {
         for (let i = 0; i <= 9; i++) {
             if ( i === current) {
-               this.hiddens[i] = false;
+                this.hiddens[i] = false;
             }else {
                 this.hiddens[i] = true;
             }
         }
     }
 
-    pre() {
-        this.current -= 1;
-        // this.RadioItems.forEach(item => {
-        //     item.answer.a
-        //    console.log(item.answer);
-        // });
-        //
 
-        this.changeHiddens(this.current);
-    }
     confirm() {
         let confirms = true;
         this.confirmlist = [];
@@ -165,41 +169,50 @@ export class SurveyManagementComponent implements OnInit {
                 this.confirmlist.push(item.question.id);
             }
         });
-        const confirmall = {
-            confirms: confirms,
-            confirmslist: this.confirmlist
-        };
-        return confirmall;
 
         // if (current_list[index].type === 'table') {
         //     this.Table.forEach(item => {
         //         console.log(item.getAnswer().available);
         //  });
+        const confirmall = {
+            confirms: confirms,
+            confirmslist: this.confirmlist
+        };
+
+        return confirmall;
+
+
 
     }
+    pre() { // 跳转至上一步
+        this.current -= 1;
+        // this.RadioItems.forEach(item => {
+        //     item.answer.a
+        //    console.log(item.answer);
+        // });
+        //
 
-    next() {
+        this.changeHiddens(this.current);
+    }
+    next() { // 跳转至下一步
         if (this.current === 0) {
             this.RadioItems.forEach(item => {
                 if ( item.answerChanged === true)
-                for (let i = 0; i < item.answer.length; i++) {
-                    if (item.answer[i].questionID === 'ID1_3_0') {
-                        if ( item.answer[i].answer === true ) {
-                            this.manOrwoman = false;
-                            break;
-                        }else {
-                            this.manOrwoman = true;
+                    for (let i = 0; i < item.answer.length; i++) {
+                        if (item.answer[i].questionID === 'ID1_3_0') {
+                            if ( item.answer[i].answer === true ) {
+                                this.manOrwoman = false;
+                                break;
+                            }else {
+                                this.manOrwoman = true;
+                            }
                         }
                     }
-                }
             });
         }
         // if (this.confirm().confirms) { // 检查当前步骤是否合法，如果不合法禁止转向下一步
         //     this.current += 1;
         // }
-
-
-
         if (true) { // 检查当前步骤是否合法，如果不合法禁止转向下一步
             if (this.current === 7) {
                 if (this.manOrwoman === false) {
@@ -223,26 +236,45 @@ export class SurveyManagementComponent implements OnInit {
         this.changeHiddens(this.current);
     }
 
-    allAnswer() {
-
+    collectallAnswer() {
+        this.RadioItems.forEach(item => {
+            if (item.answerChanged === true)
+                for ( let i = 0; i < item.answer.length; i++) {
+                    this.answerlist.push(item.answer[i]);
+                }
+        });
+        this.Checkbox.forEach(item => {
+            if (item.answerChanged === true)
+                for ( let i = 0; i < item.answer.length; i++) {
+                    this.answerlist.push(item.answer[i]);
+                }
+        });
+        this.InputItems.forEach(item => {
+            if (item.answerChanged === true)
+                for ( let i = 0; i < item.answer.length; i++) {
+                    this.answerlist.push(item.answer[i]);
+                }
+        });
+        this.Idc.forEach(item => {
+            if (item.answerChanged === true)
+                for ( let i = 0; i < item.answer.length; i++) {
+                    this.answerlist.push(item.answer[i]);
+                }
+        });
+        this.Phone.forEach(item => {
+            if (item.answerChanged === true)
+                for ( let i = 0; i < item.answer.length; i++) {
+                    this.answerlist.push(item.answer[i]);
+                }
+        });
     }
-    log() {
-        console.log(this.RadioItems);
-        console.log(this.Checkbox);
-        console.log(this.InputItems);
-        //
-        // this.RadioItems.forEach(item => {
-        //     console.log(item.answer);
-        // });
+    log() { // 暂存
+        this.collectallAnswer();
+        console.log(this.answerlist);
         this.router.navigate(['/survey/detail']);
     }
 
-
-    test() {
-        console.log(this.qlist);
-    }
-
-    submit() {
+    submit() { // 提交
 
         this.httpService.putRecord(this.api, this.putRecord).subscribe((res) => {
             console.log(res);
