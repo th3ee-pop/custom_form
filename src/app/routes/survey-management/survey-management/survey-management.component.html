@@ -10,14 +10,31 @@
                     </nz-steps>
 
                     <!-- 遍历questions列表，根据元素的type属性，选择相应模板渲染 -->
-                    <div *ngFor="let question of qlist[current]">
+                    <!-- <div *ngFor="let question of qlist[current]">
                         <div [ngSwitch]="question.type">
                             <app-inputcmp     *ngSwitchCase="'input'"     [question]="question"></app-inputcmp>
                             <app-radiocmp     *ngSwitchCase="'radio'"     [question]="question"></app-radiocmp>
                             <app-checkboxcmp  *ngSwitchCase="'checkbox'"  [question]="question"></app-checkboxcmp>
-                            <app-table715     *ngSwitchCase="'table'">   </app-table715>
+                            <app-table913     *ngSwitchCase="'table'">   </app-table913>
                         </div>
-                    </div>
+                    </div> -->
+
+                    <app-table35>   </app-table35>
+                    <app-table46>   </app-table46>
+                    <app-table51>   </app-table51>
+                    <app-table53>   </app-table53>
+                    <app-table54>   </app-table54>
+                    <app-table58>   </app-table58>
+                    <app-table613>   </app-table613>
+                    <app-table715>   </app-table715>
+                    <app-table74>   </app-table74>
+                    <app-table813>   </app-table813>
+                    <app-table96>   </app-table96>
+                    <app-table913>   </app-table913>
+
+
+
+
                     <div class="steps-action">
 
                         <button nz-button [nzType]="'default'" (click)="pre()" *ngIf="current > 0">

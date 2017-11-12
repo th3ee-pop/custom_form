@@ -23,27 +23,35 @@
                             <tbody nz-tbody>
                                 <tr nz-tbody-tr >  <!--根据疾病生成一行-->
                                     <td nz-td>生父（请打勾）</td>
-                                    <td nz-td　*ngFor="let illnessName of illnessNames,index as i">
-                                        <label nz-checkbox [(ngModel)]="father[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></label>
-                                    </td>
+                                    <ng-container *ngFor="let illnessName of illnessNames,index as i">
+                                        <td nz-td>
+                                            <label nz-checkbox [(ngModel)]="father[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></label>
+                                        </td>
+                                    </ng-container>
                                 </tr>
-                                <tr nz-tbody-tr >  <!--根据疾病生成一行-->
+                                <tr nz-tbody-tr >  <!--根据疾病生成二行-->
                                     <td nz-td>生母（请打勾）</td>
-                                    <td nz-td　*ngFor="let illnessName of illnessNames,index as i">
-                                        <label nz-checkbox [(ngModel)]="mother[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></label>
-                                    </td>
+                                    <ng-container *ngFor="let illnessName of illnessNames,index as i">
+                                        <td nz-td>
+                                            <label nz-checkbox [(ngModel)]="mother[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></label>
+                                        </td>
+                                    </ng-container>
                                 </tr>
-                                <tr nz-tbody-tr >  <!--根据疾病生成一行-->
+                                <tr nz-tbody-tr >  <!--根据疾病生成三行-->
                                     <td nz-td>亲兄弟姐妹（请写数量）</td>
-                                    <td nz-td　*ngFor="let illnessName of illnessNames,index as i">
-                                        <label nz-checkbox [(ngModel)]="brothersAndsisters[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></label>
-                                    </td>
+                                    <ng-container *ngFor="let illnessName of illnessNames,index as i">
+                                        <td nz-td>
+                                            <nz-input-number [nzMin]="0" [nzMax]="20" [(ngModel)]="brothersAndSisters[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
+                                        </td>
+                                    </ng-container>
                                 </tr>
-                                <tr nz-tbody-tr >  <!--根据疾病生成一行-->
+                                <tr nz-tbody-tr >  <!--根据疾病生成四行-->
                                     <td nz-td>亲生子女（请写数量）</td>
-                                    <td nz-td　*ngFor="let illnessName of illnessNames,index as i">
-                                        <label nz-checkbox [(ngModel)]="children[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></label>
-                                    </td>
+                                    <ng-container *ngFor="let illnessName of illnessNames,index as i">
+                                        <td nz-td>
+                                            <nz-input-number [nzMin]="0" [nzMax]="20" [(ngModel)]="children[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
+                                        </td>
+                                    </ng-container>
                                 </tr>
                             </tbody>
                         </nz-table>

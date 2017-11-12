@@ -64,15 +64,14 @@ export class Table715Component extends Question implements AnswerInterface {
    */
   answerChange() {
 
-
-      if (this.required) {  // 如果表格必填
-          if (this.answerCheck() === true) // 如果校验成功
-              this.changed = true;
-          else 
-              this.changed = false;
-      }else {  // 如果非必填
-          this.changed = true;
-      }
+    if (this.required) {  // 如果表格必填
+        if (this.answerCheck() === true) // 如果校验成功
+            this.changed = true;
+        else 
+            this.changed = false;
+    }else {  // 如果非必填
+        this.changed = true;
+    }
   }
 
 
@@ -81,18 +80,17 @@ export class Table715Component extends Question implements AnswerInterface {
    */
   answerCheck() {
       
-      return true;
+    return true;
   }
 
   /**
    * 外部调用，用来获取本例答案
    */
   getAnswer() {
-      const answer = {
-          available : this.changed ? 'true' : 'false',
-          answer : this.answer
-      };
-      return answer;
+    const answer = {
+        available : this.changed ? 'true' : 'false',
+        answer : this.answer
+    };
+    return answer;
   }
-
 }
