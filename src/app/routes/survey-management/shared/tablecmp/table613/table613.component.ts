@@ -46,7 +46,9 @@ export class Table613Component extends  Question implements AnswerInterface {
   /**
    * 有数据改变,执行校验
    */
-  answerChange(row, col) {
+  answerChange() {
+
+    
     
       if (this.required) {  // 如果表格必填
           if (this.answerCheck() === true) // 如果校验成功
