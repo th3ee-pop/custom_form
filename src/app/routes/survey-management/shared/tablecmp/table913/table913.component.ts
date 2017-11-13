@@ -14,12 +14,12 @@ import { AnswerInterface } from 'app/routes/survey-management/shared/answerInter
 export class Table913Component extends Question implements AnswerInterface {
 
   /**
-   * 是否暴露过
+   * 是否接受过手术
    */
   selected = [];
   
   /**
-   * 暴露时间
+   * 手术时年龄
    */
   operationAge = [];
 
@@ -33,7 +33,7 @@ export class Table913Component extends Question implements AnswerInterface {
   /**
    * 答案的校验结果,true为校验成功
    */
-  changed = false;
+  answerChanged = false;
 
 
   /**
@@ -56,13 +56,32 @@ export class Table913Component extends Question implements AnswerInterface {
     if (this.operationAge[row] !== undefined) // 如果用户填写了第row行的数据，则帮助用户勾选
       this.selected[row] = true;
     
+
+    const questionID = 'ID9_13';
+    const res = [];
+
+    for (let i = 0; i < this.operationNames.length ; i++) {
+        res.push({
+            Record_ID : questionID + '_' + (i + 1) + '_a',
+            Record_Value :  this.selected[i] === undefined ? false : this.selected[i]
+        });
+
+        res.push({
+            Record_ID : questionID + '_' + (i + 1) + '_b',
+            Record_Value :  this.operationAge[i] === undefined ? '' : this.operationAge[i]
+        });
+    }
+
+    this.answer = res;
+    console.log(res);
+
       if (this.required) {  // 如果表格必填
           if (this.answerCheck() === true) // 如果校验成功
-              this.changed = true;
+              this.answerChanged = true;
           else 
-              this.changed = false;
+              this.answerChanged = false;
       }else {  // 如果非必填
-          this.changed = true;
+          this.answerChanged = true;
       }
   }
 
@@ -79,7 +98,7 @@ export class Table913Component extends Question implements AnswerInterface {
    */
   getAnswer() {
       const answer = {
-          available : this.changed ? 'true' : 'false',
+          available : this.answerChanged ? 'true' : 'false',
           answer : this.answer
       };
       return answer;

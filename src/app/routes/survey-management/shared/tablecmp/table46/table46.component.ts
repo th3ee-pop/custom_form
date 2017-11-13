@@ -20,7 +20,7 @@ export class Table46Component extends Question implements AnswerInterface {
   /**
    * 是否必填，如果是true，则必填
    */
-  required = true;
+  required = false;
 
   /**
    * 每行前面的checkbox
@@ -41,7 +41,7 @@ export class Table46Component extends Question implements AnswerInterface {
   /**
    * 答案的校验结果,true为校验成功
    */
-  changed = false;
+  answerChanged = false;
 
 
   constructor() {
@@ -62,13 +62,35 @@ export class Table46Component extends Question implements AnswerInterface {
             this.selected[row] = true;
       }
 
+
+
+      const questionID = 'ID4_6';
+      const res = [];
+
+      for (let row = 0; row < 5; row ++) {  // 行
+        // 答案中的一项
+        const item = {
+            Record_ID : '',
+            Record_Value: ''
+        };
+        // 答案id ,最够一项为了实现 a-e的序列
+        item.Record_ID = questionID + '_' + String.fromCharCode(row + 'a'.charCodeAt(0));  
+        item.Record_Value = (this.localAnswer[row] === undefined) ? '' : this.localAnswer[row]; // 答案内容，如果没有填写，则改为空
+        res.push(item);
+      }
+
+      this.answer = res;
+
+
+
+
       if (this.required) {  // 如果表格必填
           if (this.answerCheck() === true) // 如果校验成功
-              this.changed = true;
+              this.answerChanged = true;
           else 
-              this.changed = false;
+              this.answerChanged = false;
       }else {  // 如果非必填
-          this.changed = true;
+          this.answerChanged = true;
       }
   }
 
@@ -90,7 +112,7 @@ export class Table46Component extends Question implements AnswerInterface {
    */
   getAnswer() {
       const answer = {
-          available : this.changed ? 'true' : 'false',
+          available : this.answerChanged ? 'true' : 'false',
           answer : this.answer
       };
       return answer;

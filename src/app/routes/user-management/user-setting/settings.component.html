@@ -11,53 +11,53 @@
             <ng-template #title>开发者设置</ng-template>
             <ng-template #body>
                 <a (click)="active=3" class="d-block py-sm px-md" [ngClass]="{'bg-primary-light text-white':active===5}">用户管理</a>
-                <a (click)="active=4" class="d-block py-sm px-md" [ngClass]="{'bg-primary-light text-white':active===6}">权限管理</a>
+                <!--<a (click)="active=4" class="d-block py-sm px-md" [ngClass]="{'bg-primary-light text-white':active===6}">权限管理</a>-->
             </ng-template>
         </nz-card>
     </div>
     <div nz-col [nzSpan]="18">
         <nz-card [nzNoHovering]="true" *ngIf="active===1">
-            <ng-template #title>Public profile</ng-template>
+            <ng-template #title>个人资料设置</ng-template>
             <ng-template #body>
                 <div nz-row [nzGutter]="64">
                     <div nz-col [nzSpan]="16">
                         <form nz-form [formGroup]="profileForm" (ngSubmit)="profileSave($event, profileForm.value)" [nzLayout]="'vertical'">
                             <div nz-form-item nz-row>
                                 <div nz-form-label nz-col>
-                                    <label for="name" nz-form-item-required>name</label>
+                                    <label for="name" nz-form-item-required>姓名</label>
                                 </div>
                                 <div nz-form-control nz-col [nzHasFeedback]="'true'" [nzValidateStatus]="name">
                                     <nz-input formControlName="name" [nzId]="'name'"></nz-input>
                                     <div *ngIf="name.invalid && (name.dirty || name.touched)">
-                                        <div nz-form-explain *ngIf="name.errors.required">required</div>
-                                        <div nz-form-explain *ngIf="name.errors.pattern">must match pattern [-_a-zA-Z0-9]</div>
+                                        <div nz-form-explain *ngIf="name.errors.required">必填</div>
+                                        <div nz-form-explain *ngIf="name.errors.pattern">请匹配 [-_a-zA-Z0-9]</div>
                                     </div>
                                 </div>
                             </div>
                             <div nz-form-item nz-row>
                                 <div nz-form-label nz-col>
-                                    <label for="email">email</label>
+                                    <label for="email">邮箱</label>
                                 </div>
                                 <div nz-form-control nz-col>
                                     <nz-select formControlName="email">
                                         <nz-option [nzLabel]="'Select a verified email to display'" [nzValue]="''"></nz-option>
                                         <nz-option [nzLabel]="'cipchk@qq.com'" [nzValue]="'cipchk@qq.com'"></nz-option>
                                     </nz-select>
-                                    <div nz-form-explain>You can manage verified email addresses in your <a (click)="active=3">email settings</a>.</div>
+                                    <div nz-form-explain>你可以在 <a (click)="active=3">邮箱设置</a>中管理邮件验证.</div>
                                 </div>
                             </div>
                             <div nz-form-item nz-row>
                                 <div nz-form-label nz-col>
-                                    <label for="bio">Bio</label>
+                                    <label for="bio">个人签名</label>
                                 </div>
                                 <div nz-form-control nz-col>
-                                    <nz-input formControlName="bio" [nzId]="'bio'" [nzType]="'textarea'" [nzRows]="'4'" [nzPlaceHolder]="'Tell us a little bit about yourself'"></nz-input>
-                                    <div nz-form-explain>You can <strong>@mention</strong> other users and organizations to link to them.</div>
+                                    <nz-input formControlName="bio" [nzId]="'bio'" [nzType]="'textarea'" [nzRows]="'4'" [nzPlaceHolder]="'简要介绍自己'"></nz-input>
+                                    <div nz-form-explain>你可以 <strong>@</strong> 其他人或组织.</div>
                                 </div>
                             </div>
                             <div nz-form-item nz-row>
                                 <div nz-form-label nz-col>
-                                    <label for="url">URL</label>
+                                    <label for="url">个人网址</label>
                                 </div>
                                 <div nz-form-control nz-col>
                                     <nz-input formControlName="url" [nzId]="'url'"></nz-input>
@@ -65,45 +65,45 @@
                             </div>
                             <div nz-form-item nz-row>
                                 <div nz-form-label nz-col>
-                                    <label for="company">Company</label>
+                                    <label for="company">工作单位</label>
                                 </div>
                                 <div nz-form-control nz-col>
                                     <nz-input formControlName="company" [nzId]="'company'"></nz-input>
-                                    <div nz-form-explain>You can <strong>@mention</strong> your company's GitHub organization to link it.</div>
+                                    <!--<div nz-form-explain>You can <strong>@mention</strong> your company's GitHub organization to link it.</div>-->
                                 </div>
                             </div>
                             <div nz-form-item nz-row class="border-top-1 mt-md pt-md">
                                 <div nz-form-label nz-col>
-                                    <label for="location">Location</label>
+                                    <label for="location">所在地</label>
                                 </div>
                                 <div nz-form-control nz-col>
                                     <nz-input formControlName="location" [nzId]="'location'"></nz-input>
                                 </div>
                             </div>
                             <div nz-row>
-                                <button nz-button [nzType]="'primary'" [disabled]="profileForm.invalid">Update profile</button>
+                                <button nz-button [nzType]="'primary'" [disabled]="profileForm.invalid">更新档案</button>
                             </div>
                         </form>
                     </div>
                     <div nz-col [nzSpan]="8">
-                        <h4>Profile picture</h4>
+                        <h4>个人头像</h4>
                         <img src="./assets/img/avatar.jpg" style="width: 100%;">
                         <button nz-button class="ant-btn__block">
-                            <span>Upload new picture</span>
+                            <span>上传新的头像</span>
                         </button>
                     </div>
                 </div>
             </ng-template>
         </nz-card>
         <nz-card [nzNoHovering]="true" *ngIf="active===2">
-            <ng-template #title>Change password</ng-template>
+            <ng-template #title>修改密码</ng-template>
             <ng-template #body>
                 <div nz-row [nzGutter]="64">
                     <div nz-col [nzSpan]="16">
                         <form nz-form [nzLayout]="'vertical'">
                             <div nz-form-item nz-row>
                                 <div nz-form-label nz-col>
-                                    <label for="old_password" nz-form-item-required>Old password</label>
+                                    <label for="old_password" nz-form-item-required>旧密码</label>
                                 </div>
                                 <div nz-form-control nz-col>
                                     <nz-input [(ngModel)]="pwd.old_password" name="old_password" [nzId]="'old_password'" [nzType]="'password'" required></nz-input>
@@ -111,7 +111,7 @@
                             </div>
                             <div nz-form-item nz-row>
                                 <div nz-form-label nz-col>
-                                    <label for="new_password" nz-form-item-required>New password</label>
+                                    <label for="new_password" nz-form-item-required>新密码</label>
                                 </div>
                                 <div nz-form-control nz-col>
                                     <nz-input [(ngModel)]="pwd.new_password" name="new_password" [nzId]="'new_password'" [nzType]="'password'" required></nz-input>
@@ -119,23 +119,23 @@
                             </div>
                             <div nz-form-item nz-row>
                                 <div nz-form-label nz-col>
-                                    <label for="confirm_new_password" nz-form-item-required>Confirm new password</label>
+                                    <label for="confirm_new_password" nz-form-item-required>确定新密码</label>
                                 </div>
                                 <div nz-form-control nz-col>
                                     <nz-input [(ngModel)]="pwd.confirm_new_password" name="confirm_new_password" [nzId]="'confirm_new_password'" [nzType]="'password'" required></nz-input>
                                 </div>
                             </div>
                             <div nz-row>
-                                <button nz-button (click)="pwdSave()" [nzType]="'primary'">Update profile</button>
-                                <a class="pl-sm" [routerLink]="['/forget']">I forgot my password</a>
+                                <button nz-button (click)="pwdSave()" [nzType]="'primary'">更新密码</button>
+                                <a class="pl-sm" [routerLink]="['/forget']">忘记密码？</a>
                             </div>
                         </form>
                     </div>
                 </div>
-                <h2 class="py-md mt-lg border-bottom-1">Change username</h2>
-                <p class="py-sm">Changing your username can have unintended side effects.</p>
-                <button nz-button (click)="msg.info('to change username page')" [nzSize]="'large'">
-                    <span>Change username</span>
+                <h2 class="py-md mt-lg border-bottom-1">修改用户名</h2>
+                <p class="py-sm">直接修改用户名可能有不可预知的问题。</p>
+                <button nz-button (click)="msg.info('前往修改用户名页面')" [nzSize]="'large'">
+                    <span>修改用户名</span>
                 </button>
 
             </ng-template>
@@ -148,29 +148,29 @@
                         <form nz-form>
                             <div nz-row nz-form-item [nzGutter]="16">
                                 <div nz-form-label nz-col [nzSm]="2">
-                                    <label for="name">Name</label>
+                                    <label for="name">姓名</label>
                                 </div>
                                 <div nz-form-control nz-col [nzSm]="5">
                                     <nz-input [(ngModel)]="args.name" name="name" [nzId]="'name'"></nz-input>
                                 </div>
                                 <div nz-form-label nz-col [nzSm]="2">
-                                    <label>Created</label>
+                                    <label>注册日期</label>
                                 </div>
                                 <div nz-form-control nz-col [nzSm]="8">
                                     <div nz-row>
                                         <div nz-form-control nz-col [nzSpan]="11">
-                                            <nz-datepicker [(ngModel)]="args.created_begin" name="created_begin" [nzPlaceHolder]="'begin'"></nz-datepicker>
+                                            <nz-datepicker [(ngModel)]="args.created_begin" name="created_begin" [nzPlaceHolder]="'开始日期'"></nz-datepicker>
                                         </div>
                                         <div nz-col [nzSpan]="1">
                                             <p nz-form-split>-</p>
                                         </div>
                                         <div nz-form-control nz-col [nzSpan]="11">
-                                            <nz-datepicker [(ngModel)]="args.created_end" name="created_end" [nzPlaceHolder]="'end'"></nz-datepicker>
+                                            <nz-datepicker [(ngModel)]="args.created_end" name="created_end" [nzPlaceHolder]="'截止日期'"></nz-datepicker>
                                         </div>
                                     </div>
                                 </div>
                                 <div nz-form-label nz-col [nzSm]="2">
-                                    <label>Gender</label>
+                                    <label>用户权限</label>
                                 </div>
                                 <div nz-form-control nz-col [nzSm]="5">
                                     <nz-dropdown>
@@ -178,9 +178,9 @@
                                             {{args.gender ? args.gender : 'unlimit'}} <i class="anticon anticon-down"></i>
                                         </a>
                                         <ul nz-menu>
-                                            <li nz-menu-item (click)="args.gender=''">unlimit</li>
-                                            <li nz-menu-item (click)="args.gender='male'">male</li>
-                                            <li nz-menu-item (click)="args.gender='female'">female</li>
+                                            <li nz-menu-item (click)="args.gender=''">不限</li>
+                                            <li nz-menu-item (click)="args.gender='male'">普通用户</li>
+                                            <li nz-menu-item (click)="args.gender='female'">高级用户</li>
                                         </ul>
                                     </nz-dropdown>
                                     <span class="text-grey-light">(only valid)</span>
@@ -188,30 +188,30 @@
                             </div>
                             <div nz-row nz-form-item [nzGutter]="16" class="mb0">
                                 <div nz-form-label nz-col [nzSm]="2">
-                                    <label for="userid">User ID</label>
+                                    <label for="userid">用户ID</label>
                                 </div>
                                 <div nz-form-control nz-col [nzSm]="5">
-                                    <nz-input [(ngModel)]="args.userid" name="userid" [nzId]="'userid'" [nzPlaceHolder]="'placeholder'"></nz-input>
+                                    <nz-input [(ngModel)]="args.userid" name="userid" [nzId]="'userid'" [nzPlaceHolder]="'00X'"></nz-input>
                                 </div>
                                 <div nz-form-label nz-col [nzSm]="2">
-                                    <label>Modified</label>
+                                    <label>最近登录</label>
                                 </div>
                                 <div nz-form-control nz-col [nzSm]="8">
                                     <div nz-row>
                                         <div nz-form-control nz-col [nzSpan]="11">
-                                            <nz-datepicker [(ngModel)]="args.modified_begin" name="modified_begin" [nzPlaceHolder]="'begin'"></nz-datepicker>
+                                            <nz-datepicker [(ngModel)]="args.modified_begin" name="modified_begin" [nzPlaceHolder]="'开始日期'"></nz-datepicker>
                                         </div>
                                         <div nz-col [nzSpan]="1">
                                             <p nz-form-split>-</p>
                                         </div>
                                         <div nz-form-control nz-col [nzSpan]="11">
-                                            <nz-datepicker [(ngModel)]="args.modified_end" name="modified_end" [nzPlaceHolder]="'end'"></nz-datepicker>
+                                            <nz-datepicker [(ngModel)]="args.modified_end" name="modified_end" [nzPlaceHolder]="'截止日期'"></nz-datepicker>
                                         </div>
                                     </div>
                                 </div>
                                 <div nz-col [nzSm]="5" [nzOffset]="2">
-                                    <button nz-button [nzType]="'primary'" (click)="load(1)" [nzLoading]="loading">Search</button>
-                                    <button nz-button (click)="clear()" [disabled]="loading">Clear</button>
+                                    <button nz-button [nzType]="'primary'" (click)="load(1)" [nzLoading]="loading">查询</button>
+                                    <button nz-button (click)="clear()" [disabled]="loading">清空</button>
                                 </div>
                             </div>
                         </form>
@@ -250,7 +250,7 @@
                                                (ngModelChange)="_checkAll()">
                                         </label>
                                     </th>
-                                    <th nz-th><span></span></th>
+                                    <!--<th nz-th><span></span></th>-->
                                     <th nz-th><span>姓名</span></th>
                                     <th nz-th><span>年龄</span></th>
                                     <th nz-th><span>邮箱</span></th>
@@ -267,27 +267,29 @@
                                                (ngModelChange)="refChecked()">
                                         </label>
                                     </td>
-                                    <td nz-td>
+                                   <!-- <td nz-td>
                                         <nz-avatar [nzSrc]="data.picture.thumbnail" [nzSize]="'large'"></nz-avatar>
-                                    </td>
-                                    <td nz-td>{{data.name.first}} {{data.name.last}}</td>
+                                    </td>-->
+                                    <td nz-td>{{data.first_name}} {{data.last_name}}</td>
                                     <td nz-td>
-                                        <nz-tag *ngIf="data.gender=='female'" [nzColor]="'pink'">female</nz-tag>
-                                        <nz-tag *ngIf="data.gender=='male'" [nzColor]="'green'">male</nz-tag>
+                                        25
+                                        <!--<nz-tag *ngIf="data.gender=='female'" [nzColor]="'pink'">female</nz-tag>
+                                        <nz-tag *ngIf="data.gender=='male'" [nzColor]="'green'">male</nz-tag>-->
                                     </td>
                                     <td nz-td>{{data.email}}</td>
                                     <td nz-td>
-                                        <div sparkline data-bar-color="#cfdbe2"
+                                        {{data.province}}
+                                        <!--<div sparkline data-bar-color="#cfdbe2"
                                              data-height="20" data-bar-width="2" data-bar-spacing="2"
-                                             values="1,0,4,6,5,7,8,3,5,7,8"></div>
+                                             values="1,0,4,6,5,7,8,3,5,7,8"></div>-->
                                     </td>
-                                    <td nz-td>{{data.price | _currency}}</td>
-                                    <td nz-td>{{data.registered | _date: 'YYYY年MM月DD日'}}</td>
+                                    <td nz-td>{{data.group}}</td>
+                                    <td nz-td>2017年11月13日</td>
                                     <td nz-td>
-                                        <a (click)="showMsg('Edit');customCompModel('',data)">Edit</a>
+                                        <a (click)="showMsg('Edit');customCompModel('',data, authority[data.group])">管理</a>
                                         <span nz-table-divider></span>
-                                        <nz-popconfirm [nzTitle]="'Are you sure？'" [nzOkText]="'ok'" [nzCancelText]="'cancel'" (nzOnConfirm)="showMsg('has deleted')" (nzOnCancel)="showMsg('cancel delete')">
-                                            <a nz-popconfirm>Delete</a>
+                                        <nz-popconfirm [nzTitle]="'确定删除用户？'" [nzOkText]="'确定'" [nzCancelText]="'取消'" (nzOnConfirm)="showMsg('has deleted')" (nzOnCancel)="showMsg('cancel delete')">
+                                            <a nz-popconfirm>删除</a>
                                         </nz-popconfirm>
                                     </td>
                                 </tr>

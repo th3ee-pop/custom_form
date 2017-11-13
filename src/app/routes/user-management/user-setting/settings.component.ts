@@ -28,6 +28,12 @@ export class UserSettingsComponent implements OnInit {
         });
     }
 
+    authority = {
+        '1': '总管理员',
+        '2': '省内管理员',
+        '3': '高级用户',
+        '4': '普通用户'
+    };
     options = {};
     active = 1;
     profileForm: FormGroup;
@@ -60,7 +66,8 @@ export class UserSettingsComponent implements OnInit {
             .map(data => {
                 data.Users.forEach(item => {
                     item.checked = false;
-                    console.log(data);
+                    item.group = this.authority[item.group];
+                    console.log(item);
                   //  item.price = +((Math.random() * (10000000 - 100)) + 100).toFixed(2);
                 });
                 return data;
@@ -111,13 +118,14 @@ export class UserSettingsComponent implements OnInit {
         console.log('pwd value', this.pwd);
     }
 
-    customCompModel(size: '' | 'lg' | 'sm' = '', user: object) {
+    customCompModel(size: '' | 'lg' | 'sm' = '', user: object, authoriy: string) {
         this.options = {
             wrapClassName: size ? 'modal-' + size : '',
             content: ModelCustomComponent,
             footer: false,
             componentParams: {
-                user: user
+                user: user,
+                authority: authoriy
             }
         };
         this.modal.open(this.options).subscribe(result => {
@@ -128,7 +136,7 @@ export class UserSettingsComponent implements OnInit {
     ngOnInit() {
         this.load();
         this.profileForm.patchValue({
-            name: 'cipchk',
+            name: localStorage.getItem('userID'),
             email: 'cipchk@qq.com',
             company: 'hospital'
         });

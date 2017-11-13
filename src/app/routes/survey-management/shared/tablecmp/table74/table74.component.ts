@@ -75,7 +75,7 @@ export class Table74Component extends Question implements AnswerInterface {
     /**
      * 答案的校验结果,true为校验成功
      */
-    changed = false;
+    answerChanged = false;
   
   
     constructor() {
@@ -90,15 +90,50 @@ export class Table74Component extends Question implements AnswerInterface {
     /**
      * 有数据改变,执行校验
      */
-    answerChange(row, col) {
+    answerChange() {
+
+      const questionID = 'ID7_4';
+      const res = []; // 结果暂存
+
+      for (let row = 0; row < this.illnessNames.length; row++) {
+
+        res.push({   // 是否患病
+          Record_ID : questionID + '_' + (row + 1) + '_a' , // 题号
+          Record_Value : this.hasThisIllness[row] !== undefined ? this.hasThisIllness[row] : ''    // 如不为空，则push进
+        });
+
+        res.push({   // 首次诊断年龄
+          Record_ID :  questionID + '_' + (row + 1) + '_b' ,
+          Record_Value : this.firstSickAge[row] !== undefined ? this.firstSickAge[row] : ''
+        });
+
+        res.push({   // 目前是否仍接受治疗
+          Record_ID : questionID + '_' + (row + 1) + '_c' ,
+          Record_Value : this.beingTreated[row] !== undefined ? this.beingTreated : ''
+        });
+
+        res.push({   // 上次住院时间呢
+          Record_ID : questionID + '_' + (row + 1) + '_d' ,
+          Record_Value : this.hospitalized[row] !== undefined ? this.hospitalized[row] : ''
+        });
+
+        res.push({   // 上次住院时间呢
+          Record_ID : questionID + '_' + (row + 1) + '_e' ,
+          Record_Value : this.lastTimeInHospital[row] !== undefined ? this.lastTimeInHospital[row] : ''
+        });
+      }
+
+      this.answer = res;
+
+      console.log(res);
   
         if (this.required === true) {
           if (this.answerCheck() === true)
-            this.changed =  true;
+            this.answerChanged =  true;
           else
-            this.changed = false;
+            this.answerChanged = false;
         } else {
-          this.changed = true;
+          this.answerChanged = true;
         }
   
     }
@@ -109,7 +144,7 @@ export class Table74Component extends Question implements AnswerInterface {
      */
     answerCheck() {
         
-        return false;
+        return true;
     }
   
     /**
@@ -117,7 +152,7 @@ export class Table74Component extends Question implements AnswerInterface {
      */
     getAnswer() {
         const answer = {
-            available : this.changed ? 'true' : 'false',
+            available : this.answerChanged ? 'true' : 'false',
   
             // 此处answer需要根据api，在answerChanged里面修改
             answer : this.answer
