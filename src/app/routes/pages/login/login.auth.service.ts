@@ -29,6 +29,9 @@ export class LoginAuthService {
         return this.http.post(this.Url + 'account/login/', JSON.stringify(Formval), this.options)
             .do((res: Response) => {
             sessionStorage.setItem('TOKEN', res.json().TOKEN);
+            sessionStorage.setItem('userID', '001');
+            sessionStorage.setItem('userGroup', '1');
+            sessionStorage.setItem('userProvince', '陕西');
             console.log(res.json().TOKEN);
             console.log(res);
             console.log(res.headers);
@@ -51,6 +54,13 @@ export class LoginAuthService {
             .do((res: Response) =>
             console.log(res)
             )
+            .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    }
+
+    register(body): Observable<any> {
+        console.log(body);
+        return this.http.post(this.Url + 'account/register/', JSON.stringify(body))
+            .do((res: Response) => console.log(res))
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
 }

@@ -26,11 +26,29 @@
                                                 <td nz-td>{{data.name}}</td>
                                                 <td nz-td>已完成</td>
                                                 <td nz-td>
-                                                  <span>
+                                                    <!--前段根据四种权限，对应有不同的操作组合。-->
+                                                  <span *ngIf="userGroup ==='4'">
                                                       <a [routerLink]="['/survey/management']">查看</a>
                                                       <span nz-table-divider></span>
                                                   </span>
-                                                  <span>
+                                                  <span *ngIf="userGroup ==='3' && userProvince === data.province">
+                                                      <a [routerLink]="['/survey/management']">查看</a>
+                                                      <span nz-table-divider></span>
+                                                  </span>
+                                                  <span *ngIf="userGroup ==='2' && userProvince === data.province">
+                                                      <a [routerLink]="['/survey/management']">查看</a>
+                                                      <span nz-table-divider></span>
+                                                  </span>
+                                                    <span *ngIf="userGroup ==='1' && loggedUser === data.completedBy">
+                                                      <a [routerLink]="['/survey/management']">查看</a>
+                                                      <span nz-table-divider></span>
+                                                  </span>
+
+                                                  <span *ngIf="userGroup > '1'">
+                                                      <a>删除</a>
+                                                      <span nz-table-divider></span>
+                                                  </span>
+                                                  <span *ngIf="userGroup === '1' && loggedUser === data.completedBy">
                                                       <a>删除</a>
                                                       <span nz-table-divider></span>
                                                   </span>
