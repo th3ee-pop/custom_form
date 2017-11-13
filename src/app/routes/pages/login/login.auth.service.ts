@@ -61,6 +61,7 @@ export class LoginAuthService {
         console.log(body);
         return this.http.post(this.Url + 'account/register/', JSON.stringify(body))
             .do((res: Response) => console.log(res))
+            .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
 }

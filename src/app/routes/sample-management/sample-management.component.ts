@@ -13,13 +13,13 @@ import { HttpService } from '@core/services/http.service';
 })
 export class SampleManagementComponent implements OnInit {
 
-    // 查询参数
+    //查询参数
     params = {
         'PID' : '003',
         'RecordID' : 'ID1'
-    };
+};
 
-    // 新增记录
+    //新增记录
     putRecord = {
         'Records' : [
             {
@@ -47,7 +47,7 @@ export class SampleManagementComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-        this.submit();
+        // this.submit();
   }
 
     submit() {
