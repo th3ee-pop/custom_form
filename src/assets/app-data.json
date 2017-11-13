@@ -9,7 +9,6 @@
         "email": "drcubic@xjtu.edu.cn"
     },
     "menu": [{
-        "translate": "main_navigation",
         "group": true,
         "children": [{
             "text": "Health Survey",
