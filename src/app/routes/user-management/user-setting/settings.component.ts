@@ -108,6 +108,7 @@ export class UserSettingsComponent implements OnInit {
         }
         console.log('pwd value', this.pwd);
     }
+
     customCompModel(size: '' | 'lg' | 'sm' = '', user: object) {
         this.options = {
             wrapClassName: size ? 'modal-' + size : '',

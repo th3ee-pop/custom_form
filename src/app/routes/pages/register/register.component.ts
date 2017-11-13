@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SettingsService } from '@core/services/settings.service';
 import { Observable } from 'rxjs/Observable';
 import { LoginAuthService } from '../login/login.auth.service';
+import { NzMessageService } from 'ng-zorro-antd';
 
 const UserData = {
     'email': '',
@@ -18,7 +19,12 @@ const UserData = {
 })
 export class RegisterComponent {
   valForm: FormGroup;
-  constructor(public settings: SettingsService, fb: FormBuilder, private router: Router, private service: LoginAuthService) {
+  constructor(public settings: SettingsService,
+              fb: FormBuilder,
+              private router: Router,
+              private service: LoginAuthService,
+              private msg: NzMessageService
+  ) {
     this.valForm = fb.group({
       email: [null, Validators.compose([Validators.required])],
       real_first_name: [null],
@@ -45,8 +51,15 @@ export class RegisterComponent {
           'email': 'abc@163.com'
       };
       console.log(submitBody);
-     this.service.register(submitBody).subscribe((res) => {
+     this.service.register(submitBody)
+         .subscribe((res) => {
          console.log(res);
+         if (res.TOKEN) {
+             this.msg.info(res.Result);
+             this.router.navigate(['dashboard']);
+         } else {
+             this.msg.info(res.Result);
+         }
      });
      // this.router.navigate(['dashboard']);
     }
