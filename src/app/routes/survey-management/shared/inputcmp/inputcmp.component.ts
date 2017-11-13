@@ -157,12 +157,12 @@ export class InputcmpComponent extends Question implements OnInit {
         const res = [];
         for ( let index = 0; index < this.question.content.length; index++) {
             const tem = {
-                questionID: '',
-                answer: ''
+                Record_ID: '',
+                Record_Value: ''
             };
             const questionID = 'ID' + this.question.id.replace('.' , '_') + '_' + index;
-            tem.questionID = questionID;
-            tem.answer = this.localAnswer[index];
+            tem.Record_ID = questionID;
+            tem.Record_Value = this.localAnswer[index];
             res.push(tem);
         }
         this.answer = res;

@@ -10,24 +10,24 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
   styleUrls: ['./datecmp.component.less']
 })
 export class DatecmpComponent extends Question {
-  date = ''; // 
+  date = ''; //
   answerChanged = false;
 
 
   constructor(private fb: FormBuilder) {
       super();
-      
+
   }
 
   answerChange() {
     const res = [];
     const tem = {
-        questionID: '',
-        answer: ''
+        Record_ID: '',
+        Record_Value: ''
     };
     const questionID = 'ID' + this.question.id.replace('.' , '_');
-    tem.questionID = questionID;
-    tem.answer = this.date;
+    tem.Record_ID = questionID;
+    tem.Record_Value = this.date;
     res.push(tem);
     this.answer = res;
 

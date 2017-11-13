@@ -29,7 +29,7 @@ export const routes = [
             { path: 'logics', loadChildren: './logics/logics.module#LogicsModule' },
             { path: 'extras', loadChildren: './extras/extras.module#ExtrasModule' },
             { path: 'survey', loadChildren: './survey-management/survey-management.module#SurveyManagementModule',
-                data: { title: 'single'}},
+                data: { title: 'survey'}},
             { path: 'user', loadChildren: './user-management/user-management.module#UserManagementModule' },
             { path: 'trace', loadChildren: './trace-management/trace-management.module#TraceManagementModule' },
             { path: 'sample', loadChildren: './sample-management/sample-management.module#SampleManagementModule' },

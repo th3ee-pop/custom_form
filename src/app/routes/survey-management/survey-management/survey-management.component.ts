@@ -11,66 +11,15 @@ import { IdccmpComponent} from '../shared/idccmp/idccmp.component';
 import { PhoneComponent } from '../shared/phonecmp/phonecmp.component';
 import { SelectivePreloadingStrategy} from './selective-preloading-strategy';
 import { QuestionList } from '../shared/questionList';
+import { ScheduleList } from '../shared/scheduleList';
 
 @Component({
     selector: 'app-survey-management',
     templateUrl: './survey-management.component.html',
     styleUrls: ['./survey-management.component.css']
 })
-
-
-
 export class SurveyManagementComponent implements OnInit {
-
-
-    schedule_list = [
-        {
-            status: '一般信息',
-            descript: '一般信息'
-        },
-        {
-            status: '饮茶及咖啡情况',
-            descript: '饮茶及咖啡情况'
-        },
-        {
-            status: '饮酒情况',
-            descript: '饮酒情况'
-        },
-        {
-            status: '吸烟情况',
-            descript: '吸烟情况'
-        },
-        {
-            status: '膳食情况',
-            descript: '膳食情况'
-        },
-        {
-            status: '空气污染',
-            descript: '被动吸烟和室内空气污染'
-        },
-        {
-            status: '健康状况',
-            descript: '个人及家庭健康状况'
-        },
-        {
-            status: '体力活动',
-            descript: '体力活动情况'
-        },
-        {
-            status: '女性生育史',
-            descript: '女性生育史情况'
-        },
-        {
-            status: '精神及生活质量',
-            descript: '精神、睡眠、情绪状况及生活质量'
-        }
-
-    ];
-
-    /**
-     * 将数据转化为10个列表
-     */
-
+    schedule_list =  new ScheduleList().schedule_list;
     questionList = new QuestionList();
     qlist = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(index => this.questionList.getQuestions(index));
     answerlist = [];
@@ -80,31 +29,24 @@ export class SurveyManagementComponent implements OnInit {
     singleif = '';
     answers = {};
     editDisable = {};
-
     @ViewChildren(InputcmpComponent) InputItems: QueryList<InputcmpComponent>;
     @ViewChildren(RadiocmpComponent) RadioItems: QueryList<RadiocmpComponent>;
     @ViewChildren(CheckboxcmpComponent) Checkbox: QueryList<CheckboxcmpComponent>;
     @ViewChildren(IdccmpComponent) Idc: QueryList<IdccmpComponent>;
     @ViewChildren(PhoneComponent) Phone: QueryList<PhoneComponent>;
     // @ViewChildren(IdccmpComponent) Idc: QueryList<TablecmpComponent>;
-
-
     current = 0;
     constructor(
         private router: Router,
         private confirmServ: NzModalService,
-        private preloadStrategy: SelectivePreloadingStrategy
+        private preloadStrategy: SelectivePreloadingStrategy,
+        private service: HttpService
     ) {
         this.singleif = preloadStrategy.preloadedModules;
     }
-    // resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    //
-    //    console.log(route.data);
-    // }
     ngOnInit() {
 
     }
-
     changeHiddens(current: number) {
         for (let i = 0; i <= 9; i++) {
             if ( i === current) {
@@ -114,15 +56,8 @@ export class SurveyManagementComponent implements OnInit {
             }
         }
     }
-
     pre() {
         this.current -= 1;
-        // this.RadioItems.forEach(item => {
-        //     item.answer.a
-        //    console.log(item.answer);
-        // });
-        //
-
         this.changeHiddens(this.current);
     }
     confirm() {
@@ -146,23 +81,12 @@ export class SurveyManagementComponent implements OnInit {
                 this.confirmlist.push(item.question.id);
             }
         });
-
-        // if (current_list[index].type === 'table') {
-        //     this.Table.forEach(item => {
-        //         console.log(item.getAnswer().available);
-        //  });
         const confirmall = {
             confirms: confirms,
             confirmslist: this.confirmlist
         };
 
         return confirmall;
-
-        // if (current_list[index].type === 'table') {
-        //     this.Table.forEach(item => {
-        //         console.log(item.getAnswer().available);
-        //  });
-
     }
     next() { // 跳转至下一步
         if (this.current === 0) {
@@ -241,6 +165,16 @@ export class SurveyManagementComponent implements OnInit {
     log() { // 暂存
         this.collectallAnswer();
         console.log(this.answerlist);
+        const putRecord = {
+            'Records': this.answerlist
+        }
+        this.service.putRecord(putRecord).subscribe((res) => {
+            console.log('这是返回结果！');
+            console.log(res);
+        }, err => {
+            console.log('这是错误信息！');
+            console.log(err);
+        });
         this.router.navigate(['/survey/detail']);
     }
 

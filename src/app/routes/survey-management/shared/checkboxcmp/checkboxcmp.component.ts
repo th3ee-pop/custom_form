@@ -23,15 +23,15 @@ export class CheckboxcmpComponent extends Question implements OnInit {// 继承�
         const res = [];
         for (let index = 0; index < this.question.content.length; index++ ) {
             const tem = {
-                questionID: '',
-                answer: false
+                Record_ID: '',
+                Record_Value: false
             };
             const  questionID = 'ID' + this.question.id.replace('.' , '_') + '_' + index;
-            tem.questionID = questionID;
+            tem.Record_ID = questionID;
             if (this.localAnswer[index] === true) {
-                tem.answer = true;
+                tem.Record_Value = true;
             }else {
-                tem.answer = false;
+                tem.Record_Value = false;
             }
             res.push(tem);
         }
