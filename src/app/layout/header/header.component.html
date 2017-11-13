@@ -164,7 +164,8 @@
                 </div>
                 <ul nz-menu class="pt-sm pb-sm" style="width:200px">
                     <li nz-menu-item class="theme-switch">
-                        <strong>{{ 'theme-switch' | translate}}</strong>
+                        <strong>切换主题</strong>
+                        <!--<strong>{{ 'theme-switch' | translate}}</strong>-->
                         <div class="theme-icons">
                             <label *ngFor="let item of themes" (click)="changeTheme(item.l)" [style.background]="item.bg">
                                 <i class="anticon anticon-check" *ngIf="item.l == settings.layout.theme"></i>
