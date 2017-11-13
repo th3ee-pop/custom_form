@@ -7,9 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SurveyOverviewComponent implements OnInit {
 
-  loggedUser = sessionStorage.getItem('userID');
-  userGroup = sessionStorage.getItem('userGroup');
-  userProvince = sessionStorage.getItem('userProvince');
+  loggedUser = localStorage.getItem('userID');
+  userGroup = localStorage.getItem('userGroup');
+  userProvince = localStorage.getItem('userProvince');
   data = [
     {
       PID : '001',
@@ -44,7 +44,6 @@ export class SurveyOverviewComponent implements OnInit {
       console.log(this.loggedUser);
       console.log(this.userGroup);
   }
-
   isVisible( data ): boolean {
       if (this.userGroup === '4') {
           return true;
