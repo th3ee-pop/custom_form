@@ -28,17 +28,16 @@ export class LoginComponent {
     if (this.valForm.valid) {
       console.log('Valid!');
       console.log(this.valForm.value);
-      this.service.login(this.valForm.value).subscribe((resp) => {
-          console.log(resp);
-          console.log("login success");
-      });
-      this.router.navigate(['dashboard']);
     }
     console.log(this.valForm.value);
     const FormVal = {
         'username': this.valForm.value.email,
         'password': this.valForm.value.password
     };
+      this.service.login(FormVal).subscribe((resp) => {
+          console.log(resp);
+          console.log("login success");
+      });
     this.authService.loginObservable(FormVal).subscribe(
           (res) => {
               console.log(this.valForm.value);
@@ -46,7 +45,7 @@ export class LoginComponent {
               if (res.TOKEN) {
                   const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/dashboard/v1';
                   this.router.navigate([redirect]);
-                  console.log(sessionStorage.getItem('TOKEN'));
+                  console.log(localStorage.getItem('TOKEN'));
                   this.authService.getUsers().subscribe(
                       (response) => {
                           console.log(response);

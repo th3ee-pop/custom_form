@@ -6,9 +6,12 @@ import {
     from '@angular/forms';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { SampleManagementComponent } from './sample-management.component';
+import { SampleFormComponent } from './sample-form/sample-form.component';
+import { SampleAddComponent } from './sample-add/sample-add.component';
 
-const routes: Routes = [
-    { path: 'detail', component: SampleManagementComponent }
+const routes:Routes = [
+    { path: 'detail', component: SampleManagementComponent },
+    { path: 'add', component: SampleAddComponent}
 ];
 
 @NgModule({
@@ -22,7 +25,9 @@ const routes: Routes = [
         RouterModule
     ],
   declarations: [
-      SampleManagementComponent
+      SampleManagementComponent,
+      SampleFormComponent,
+      SampleAddComponent
   ]
 })
 export class SampleManagementModule { }

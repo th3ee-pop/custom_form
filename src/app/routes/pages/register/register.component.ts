@@ -2,6 +2,16 @@ import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SettingsService } from '@core/services/settings.service';
+import { Observable } from 'rxjs/Observable';
+import { LoginAuthService } from '../login/login.auth.service';
+import { NzMessageService } from 'ng-zorro-antd';
+
+const UserData = {
+    'email': '',
+    'real_name': '',
+    'password': '',
+    'province': '陕西',
+};
 
 @Component({
   selector: 'app-pages-register',
@@ -9,15 +19,19 @@ import { SettingsService } from '@core/services/settings.service';
 })
 export class RegisterComponent {
   valForm: FormGroup;
-
-  constructor(public settings: SettingsService, fb: FormBuilder, private router: Router) {
+  constructor(public settings: SettingsService,
+              fb: FormBuilder,
+              private router: Router,
+              private service: LoginAuthService,
+              private msg: NzMessageService
+  ) {
     this.valForm = fb.group({
-      email: [null, Validators.compose([Validators.required, Validators.email])],
-      mobile: [null, Validators.compose([Validators.required, Validators.pattern('^1[0-9]{10}$')])],
+      email: [null, Validators.compose([Validators.required])],
+      real_first_name: [null],
+      real_last_name: [null],
       password: [null, Validators.required],
-      agreed: [null, Validators.required]
+      province: ['陕西', Validators.required],
     });
-
   }
 
   submit() {
@@ -28,7 +42,33 @@ export class RegisterComponent {
     if (this.valForm.valid) {
       console.log('Valid!');
       console.log(this.valForm.value);
-      this.router.navigate(['dashboard']);
+      const submitBody = {
+          'province': this.valForm.value.province,
+          'username': this.valForm.value.email,
+          'first_name': this.valForm.value.real_first_name,
+          'last_name': this.valForm.value.real_last_name,
+          'password': this.valForm.value.password,
+          'email': 'abc@163.com'
+      };
+      console.log(submitBody);
+     this.service.register(submitBody)
+         .subscribe((res) => {
+         console.log(res);
+         if (res.TOKEN) {
+             this.msg.info(res.Result);
+             this.router.navigate(['dashboard']);
+         } else {
+             this.msg.info(res.Result);
+         }
+     });
+     // this.router.navigate(['dashboard']);
     }
   }
+    loadData() {
+        Observable.of(UserData)
+            .delay(1000)
+            .subscribe(data => {
+                this.valForm.reset(data);
+            });
+    }
 }

@@ -46,12 +46,12 @@ export class PhoneComponent extends Question {
     answerChange() {
         const res = [];
         const tem = {
-            questionID: '',
-            answer: ''
+            Record_ID: '',
+            Record_Value: ''
         };
-        const questionID = 'ID' + this.question.id.replace('.' , '_') + '_' + 0;
-        tem.questionID = questionID;
-        tem.answer = this.localAnswer;
+        const questionID = 'ID' + this.question.id.replace(/\./g , '_');
+        tem.Record_ID = questionID;
+        tem.Record_Value = this.localAnswer;
         res.push(tem);
         this.answer = res;
     }

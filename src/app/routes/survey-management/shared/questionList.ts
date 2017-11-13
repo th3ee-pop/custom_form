@@ -1,6 +1,18 @@
 export class QuestionList {
     questions = [
         {
+            'id': '1.0',
+            'type': 'input',
+            'content': [
+                {
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'other'
+                }
+            ],
+            'tittle': '姓名'
+        },
+        {
             'id': '1.1',
             'type': 'input',
             'content': [
@@ -39,18 +51,6 @@ export class QuestionList {
             'tittle': '出生日期(可以直接输入，格式20xx-xx-xx）'
         },
         {
-            'id': '1.4a',                    // 纸质版上面没有
-            'type': 'input',
-            'content': [
-                {
-                    'dataType': 'text',
-                    'inform': '',
-                    'validType': 'other'
-                }
-            ],
-            'tittle': '姓名'
-        },
-        {
             'id': '1.5',
             'type': 'idc',
             'content': [
@@ -76,7 +76,7 @@ export class QuestionList {
             'tittle': '家庭住址（为便于今后长期随访，请详细填写）：'
         },
         {
-            'id': '1.7a',                       // 题号不一样
+            'id': '1.7.1',                       // 题号不一样
             'type': 'phone',
             'content': [
                 {
@@ -88,7 +88,7 @@ export class QuestionList {
             'tittle': '手机号码'
         },
         {
-            'id': '1.7b',
+            'id': '1.7.2',
             'type': 'phone',
             'content': [
                 {
@@ -243,7 +243,7 @@ export class QuestionList {
             'tittle': '去年你全家平均一个月的日常支出（不含特殊支出如买车住院等）约为：'
         },
         {
-            'id': '1.16.1',
+            'id': '1.16',
             'type': 'checkbox',
             'content': [
                 '医疗保险（公费、医保、商业保险及合作医疗）（限本人）',
@@ -693,7 +693,7 @@ export class QuestionList {
         {
             'id': '5.1',
             'type': 'table51'
-        },    
+        },
 
         {
             'id': '5.2',
@@ -708,11 +708,11 @@ export class QuestionList {
         {
             'id': '5.3',
             'type': 'table53'
-        }, 
+        },
         {
             'id': '5.4',
             'type': 'table54'
-        }, 
+        },
         // {
         //     'id': '5.4',
         //     'type': 'checkbox',
@@ -761,7 +761,7 @@ export class QuestionList {
         {
             'id': '5.8',
             'type': 'table58'
-        }, 
+        },
         // {
         //     'id': '5.8',
         //     'type': 'checkbox',
@@ -1088,7 +1088,7 @@ export class QuestionList {
         {
             'id': '6.13',
             'type': 'table613'
-        }, 
+        },
         {
             'id': '6.14',
             'type': 'checkbox',
@@ -1197,7 +1197,7 @@ export class QuestionList {
         {
             'id': '7.4',
             'type': 'table74'
-        }, 
+        },
         // {
         //     'id': '7.4',
         //     'type': 'radio',
@@ -1853,7 +1853,7 @@ export class QuestionList {
         {
             'id': '8.13',
             'type': 'table813'
-        }, 
+        },
         // {
         //     'id': '8.17',
         //     'type': 'checkbox',
@@ -2033,7 +2033,7 @@ export class QuestionList {
         {
             'id': '9.6',
             'type': 'table96'
-        }, 
+        },
         {
             'id': '9.7',
             'type': 'radio',
@@ -2129,7 +2129,7 @@ export class QuestionList {
         {
             'id': '9.13',
             'type': 'table913'
-        }, 
+        },
         // {
         //     'id': '9.13',
         //     'type': 'checkbox',

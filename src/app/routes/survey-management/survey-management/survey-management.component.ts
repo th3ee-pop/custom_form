@@ -1,82 +1,26 @@
 import { Component, OnInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { InputcmpComponent } from '../shared/inputcmp/inputcmp.component';
 import { RadiocmpComponent } from '../shared/radiocmp/radiocmp.component';
-import { QuestionList } from '../shared/questionList';
-
-import { NzMessageService } from 'ng-zorro-antd';
-import { Directive,  Input, HostListener } from '@angular/core';
-import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
-import * as moment from 'moment';
 import { saveAs } from 'file-saver';
-import { _HttpClient } from '@core/services/http.client';
 import { HttpService } from '@core/services/http.service';
-import { ActivatedRoute, Router, PreloadingStrategy} from '@angular/router';
+import { ActivatedRoute, Router, PreloadingStrategy, Params} from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd';
 import { CheckboxcmpComponent} from '../shared/checkboxcmp/checkboxcmp.component';
 import { TablecmpComponent} from '../shared/tablecmp/tablecmp.component';
 import { IdccmpComponent} from '../shared/idccmp/idccmp.component';
 import { PhoneComponent } from '../shared/phonecmp/phonecmp.component';
 import { SelectivePreloadingStrategy} from './selective-preloading-strategy';
+import { QuestionList } from '../shared/questionList';
+import { ScheduleList } from '../shared/scheduleList';
 
 @Component({
     selector: 'app-survey-management',
     templateUrl: './survey-management.component.html',
     styleUrls: ['./survey-management.component.css']
 })
-
-
-
 export class SurveyManagementComponent implements OnInit {
-
-
-    schedule_list = [
-        {
-            status: '一般信息',
-            descript: '一般信息'
-        },
-        {
-            status: '饮茶及咖啡情况',
-            descript: '饮茶及咖啡情况'
-        },
-        {
-            status: '饮酒情况',
-            descript: '饮酒情况'
-        },
-        {
-            status: '吸烟情况',
-            descript: '吸烟情况'
-        },
-        {
-            status: '膳食情况',
-            descript: '膳食情况'
-        },
-        {
-            status: '空气污染',
-            descript: '被动吸烟和室内空气污染'
-        },
-        {
-            status: '健康状况',
-            descript: '个人及家庭健康状况'
-        },
-        {
-            status: '体力活动',
-            descript: '体力活动情况'
-        },
-        {
-            status: '女性生育史',
-            descript: '女性生育史情况'
-        },
-        {
-            status: '精神及生活质量',
-            descript: '精神、睡眠、情绪状况及生活质量'
-        }
-
-    ];
-
-    /**
-     * 将数据转化为10个列表
-     */
-
+    schedule_list =  new ScheduleList().schedule_list;
+    PID = '';
     questionList = new QuestionList();
     qlist = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(index => this.questionList.getQuestions(index));
     answerlist = [];
@@ -86,57 +30,32 @@ export class SurveyManagementComponent implements OnInit {
     singleif = '';
     answers = {};
     editDisable = {};
-
-    api = '/healthexamination/recordop/';
-    params = {
-        'PID' : '003',
-        'RecordID' : 'ID1'
-    };
-
     @ViewChildren(InputcmpComponent) InputItems: QueryList<InputcmpComponent>;
     @ViewChildren(RadiocmpComponent) RadioItems: QueryList<RadiocmpComponent>;
     @ViewChildren(CheckboxcmpComponent) Checkbox: QueryList<CheckboxcmpComponent>;
     @ViewChildren(IdccmpComponent) Idc: QueryList<IdccmpComponent>;
     @ViewChildren(PhoneComponent) Phone: QueryList<PhoneComponent>;
     // @ViewChildren(IdccmpComponent) Idc: QueryList<TablecmpComponent>;
-
-    /**
-     * 查询操作，PID 病人编号，RecordID 记录编号
-     * @type {{PID: string; RecordID: string}}
-     */
-
-    /**
-     * 添加记录操作，ID1_1：题1的第一个选择，ID1_4_2: 题4的第二个选项
-     * @type {{PID: string; Records: [{ID1_1: string; Updated_time: string},{ID1_4_2: string; Updated_time: string}]}}
-     */
-    putRecord = {
-        'PID' : '006',
-        'Records' : [
-            {
-                'ID1_1': '1000000001', 'Updated_time': ''
-            },
-            {
-                'ID1_4_2': 'true', 'Updated_time': ''
-            }
-        ]
-    };
     current = 0;
     constructor(
-        private httpService: HttpService,
         private router: Router,
+        private route: ActivatedRoute,
         private confirmServ: NzModalService,
-        private preloadStrategy: SelectivePreloadingStrategy
+        private preloadStrategy: SelectivePreloadingStrategy,
+        private service: HttpService
     ) {
         this.singleif = preloadStrategy.preloadedModules;
     }
-    // resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    //
-    //    console.log(route.data);
-    // }
     ngOnInit() {
-
+        // this.route.params.switchMap((params: Params) => () );
+        // console.log('OnInit');
+        // console.log(this.route.params['value']['PID']);
+        this.PID = this.route.params['value']['PID'];
+        this.answerlist.push(
+            { 'Record_ID': 'ID0_3', 'Record_Value': localStorage.getItem('userProvince')},
+            { 'Record_ID': 'ID0_5', 'Record_Value': localStorage.getItem('userID')}
+        );
     }
-
     changeHiddens(current: number) {
         for (let i = 0; i <= 9; i++) {
             if ( i === current) {
@@ -146,8 +65,10 @@ export class SurveyManagementComponent implements OnInit {
             }
         }
     }
-
-
+    pre() {
+        this.current -= 1;
+        this.changeHiddens(this.current);
+    }
     confirm() {
         let confirms = true;
         this.confirmlist = [];
@@ -169,32 +90,15 @@ export class SurveyManagementComponent implements OnInit {
                 this.confirmlist.push(item.question.id);
             }
         });
-
-        // if (current_list[index].type === 'table') {
-        //     this.Table.forEach(item => {
-        //         console.log(item.getAnswer().available);
-        //  });
         const confirmall = {
             confirms: confirms,
             confirmslist: this.confirmlist
         };
 
         return confirmall;
-
-
-
-    }
-    pre() { // 跳转至上一步
-        this.current -= 1;
-        // this.RadioItems.forEach(item => {
-        //     item.answer.a
-        //    console.log(item.answer);
-        // });
-        //
-
-        this.changeHiddens(this.current);
     }
     next() { // 跳转至下一步
+
         if (this.current === 0) {
             this.RadioItems.forEach(item => {
                 if ( item.answerChanged === true)
@@ -210,6 +114,16 @@ export class SurveyManagementComponent implements OnInit {
                     }
             });
         }
+        this.RadioItems.forEach(
+            item => {
+                console.log('##################');
+                console.log(item.answerChanged);
+                console.log(item.answer);
+                console.log(item.question);
+                console.log(item.localAnswer);
+                item.localAnswer = 1;
+            }
+        );
         // if (this.confirm().confirms) { // 检查当前步骤是否合法，如果不合法禁止转向下一步
         //     this.current += 1;
         // }
@@ -223,9 +137,9 @@ export class SurveyManagementComponent implements OnInit {
             }else {
                 this.current += 1;
             }
-        }else {
-            // let str = '';
-            // for (let i = 0; i < this.confirm().confirmslist.length; i++){
+        } else {
+            // let str;
+            // for (let i = 0; i < this.confirm().confirmslist.length; i++) {
             //     str = str + this.confirm().confirmslist[i] + '、';
             // }
             // this.confirmServ.error({
@@ -234,6 +148,12 @@ export class SurveyManagementComponent implements OnInit {
             // });
         }
         this.changeHiddens(this.current);
+    }
+
+    fillingAnswer() {
+        this.RadioItems.forEach( item => {
+
+        } );
     }
 
     collectallAnswer() {
@@ -269,16 +189,32 @@ export class SurveyManagementComponent implements OnInit {
         });
     }
     log() { // 暂存
+        const date = new Date();
+        let str = '';
+        str = date.getFullYear() + '年' + date.getMonth() + '月' + date.getDate() + '日' + date.getHours() + '时'
+            + date.getMinutes() + '分';
+        if (this.confirm().confirms === false) {
+            this.answerlist.push({'Record_ID': 'ID0_2', 'Record_Value': '未完成'}, {'Record_ID': 'ID0_4', 'Record_Value': str});
+        }
         this.collectallAnswer();
+        console.log('answerlist');
         console.log(this.answerlist);
+        const putRecord = {
+            'Records': this.answerlist
+        }
+
+        this.service.putRecord(putRecord).subscribe((res) => {
+            console.log('这是返回结果！');
+            console.log(res);
+        }, err => {
+            console.log('这是错误信息！');
+            console.log(err);
+        });
+
+        this.router.navigate(['/survey/detail']);
+    }
+    exit() {
         this.router.navigate(['/survey/detail']);
     }
 
-    submit() { // 提交
-        //
-        //     this.httpService.putRecord(this.api, this.putRecord).subscribe((res) => {
-        //         console.log(res);
-        //     });
-        // }
-    }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { HttpService } from '@core/services/http.service';
 @Component({
   selector: 'app-survey-overview',
   templateUrl: './survey-overview.component.html',
@@ -7,27 +7,71 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SurveyOverviewComponent implements OnInit {
 
-  data = [
-    {
-      PID : '001',
-      name : '张三'
+  loggedUser = localStorage.getItem('userID');
+  userGroup = localStorage.getItem('userGroup');
+  userProvince = localStorage.getItem('userProvince');
+  data = [];
 
-    },
-    {
-      PID : '002',
-      name : '李四'
-
-    },
-    {
-      PID : '003',
-      name : '王二'
-
-    },
-  ];
-  constructor() { }
+  constructor(private service: HttpService) { }
 
   ngOnInit() {
+      this.service.getPatientList().subscribe( (res) => {
+          console.log(res);
+          this.data = res.PIDs;
+      });
   }
-
-  
+  isVisible( data ): boolean {
+      if (this.userGroup === '4') {
+          return true;
+      } else if (this.userGroup === '3' || '2') {
+         return data.province === this.userProvince;
+      } else if (this.userGroup === '1') {
+          console.log(data.completedBy);
+          return data.completedBy === this.loggedUser;
+      }
+  }
 }
+
+
+// data = [
+//   {
+//     PID : '001',
+//     name : '张三',
+//     completedBy: '001',
+//     province: '陕西'
+//
+//   },
+//   {
+//     PID : '002',
+//     name : '李四',
+//     completedBy: '001',
+//     province: '陕西'
+//
+//   },
+//   {
+//     PID : '003',
+//     name : '王二',
+//     completedBy: '002',
+//     province: '陕西'
+//   },
+//   {
+//     PID : '004',
+//     name : '赵五',
+//     completedBy: '002',
+//     province: '陕西'
+//   },
+// ];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
