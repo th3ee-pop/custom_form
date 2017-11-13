@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { HttpService } from '@core/services/http.service';
 @Component({
   selector: 'app-survey-overview',
   templateUrl: './survey-overview.component.html',
@@ -7,9 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SurveyOverviewComponent implements OnInit {
 
-  loggedUser = sessionStorage.getItem('userID');
-  userGroup = sessionStorage.getItem('userGroup');
-  userProvince = sessionStorage.getItem('userProvince');
+  loggedUser = localStorage.getItem('userID');
+  userGroup = localStorage.getItem('userGroup');
+  userProvince = localStorage.getItem('userProvince');
   data = [
     {
       PID : '001',
@@ -38,10 +38,17 @@ export class SurveyOverviewComponent implements OnInit {
       province: '陕西'
     },
   ];
-  constructor() { }
+  constructor(private service: HttpService) { }
 
   ngOnInit() {
+      this.service.getPatientList().subscribe( (res) => {
+          console.log(res);
+          this.data = res.PIDs;
+      });
+      console.log(localStorage.getItem('userID'))
+      console.log('loggedUser');
       console.log(this.loggedUser);
+      console.log('userGroup');
       console.log(this.userGroup);
   }
 

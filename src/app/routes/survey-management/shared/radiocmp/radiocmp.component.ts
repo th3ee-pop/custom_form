@@ -30,15 +30,15 @@ export class RadiocmpComponent extends Question {
   answerChange() {
     const numOfRadio = this.question.content.length; // 选项个数
     const res = [];
-    for (let index = 0; index < numOfRadio ; index++) {
+    for (let index = 1; index <= numOfRadio ; index++) {
       const tem = {
-          questionID: '',
-          answer: false
+          Record_ID: '',
+          Record_Value: false
       };
       const questionID = 'ID' + this.question.id.replace('.' , '_') + '_' + index;
-      tem.questionID = questionID;
-      if (index === this.localAnswer) {
-          tem.answer = true;
+      tem.Record_ID = questionID;
+      if (index - 1 === this.localAnswer) {
+          tem.Record_Value = true;
       }
       res.push(tem);
     }

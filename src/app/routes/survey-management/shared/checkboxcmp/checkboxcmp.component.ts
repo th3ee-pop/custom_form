@@ -21,14 +21,14 @@ export class CheckboxcmpComponent extends Question implements OnInit {// 继承�
 
     answerChange() {
         const res = [];
-        for (let index = 0; index < this.question.content.length; index++ ) {
+        for (let index = 1; index <= this.question.content.length; index++ ) {
             const tem = {
                 Record_ID: '',
                 Record_Value: false
             };
             const  questionID = 'ID' + this.question.id.replace('.' , '_') + '_' + index;
             tem.Record_ID = questionID;
-            if (this.localAnswer[index] === true) {
+            if (this.localAnswer[index - 1] === true) {
                 tem.Record_Value = true;
             }else {
                 tem.Record_Value = false;

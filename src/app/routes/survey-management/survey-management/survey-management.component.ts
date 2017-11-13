@@ -164,6 +164,7 @@ export class SurveyManagementComponent implements OnInit {
     }
     log() { // 暂存
         this.collectallAnswer();
+        console.log('answerlist');
         console.log(this.answerlist);
         const putRecord = {
             'Records': this.answerlist
@@ -175,6 +176,9 @@ export class SurveyManagementComponent implements OnInit {
             console.log('这是错误信息！');
             console.log(err);
         });
+        this.router.navigate(['/survey/detail']);
+    }
+    exit() {
         this.router.navigate(['/survey/detail']);
     }
 

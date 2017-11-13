@@ -49,7 +49,7 @@ export class IdccmpComponent extends Question {
             Record_ID: '',
             Record_Value: ''
         }
-        const questionID = 'ID' + this.question.id.replace('.' , '_') + '_' + 0;
+        const questionID = 'ID' + this.question.id.replace('.' , '_');
         tem.Record_ID = questionID;
         tem.Record_Value = this.localAnswer;
         res.push(tem);

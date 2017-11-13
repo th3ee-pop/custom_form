@@ -17,7 +17,7 @@ export class InputcmpComponent extends Question implements OnInit {
     idctem = '';
     phonetem = '';
     ngOnInit() {
-     this.localAnswer = new Array(this.question.content.length);
+        this.localAnswer = new Array(this.question.content.length);
     }
     onidcBlur = function(event) {
         this.idctem = this.localAnswer[0];
@@ -155,14 +155,31 @@ export class InputcmpComponent extends Question implements OnInit {
 
     answerChange() {
         const res = [];
-        for ( let index = 0; index < this.question.content.length; index++) {
+        if (this.question.content.length !== 1) {
+            for ( let index = 1; index <= this.question.content.length; index++) {
+                const tem = {
+                    Record_ID: '',
+                    Record_Value: ''
+                };
+                const questionID = 'ID' + this.question.id.replace('.' , '_') + '_' + index;
+                tem.Record_ID = questionID;
+                tem.Record_Value = this.localAnswer[index - 1];
+                res.push(tem);
+            }
+
+        }  else {
             const tem = {
                 Record_ID: '',
                 Record_Value: ''
             };
-            const questionID = 'ID' + this.question.id.replace('.' , '_') + '_' + index;
-            tem.Record_ID = questionID;
-            tem.Record_Value = this.localAnswer[index];
+            if (this.question.id === '1.0' ) {
+                const questionID = 'ID0_1';
+                tem.Record_ID = questionID;
+            } else {
+                const questionID = 'ID' + this.question.id.replace('.', '_');
+                tem.Record_ID = questionID;
+            }
+            tem.Record_Value = this.localAnswer[0];
             res.push(tem);
         }
         this.answer = res;
