@@ -25,14 +25,6 @@ export class SampleManagementComponent implements OnInit {
             {
                 "ID1_1": "1000000001",
                 "Updated_time": ""
-            },
-            {
-                "ID1_2": "1000000001",
-                "Updated_time": ""
-            },
-            {
-                "ID1_4_2": "true",
-                "Updated_time": ""
             }
         ]
     };
@@ -40,10 +32,20 @@ export class SampleManagementComponent implements OnInit {
     //修改记录
     insertRecord = {
         'PID':'3',
-        'Records':[{
-                "ID1_5_1": "true",
-                "Updated_time": ""//必须跟上一次修改时间一样
-        }]
+        'Records':[[
+            {
+                "ID1_1": "1000000001",
+                "Updated_time": ""
+            },
+            {
+                "ID1_3_2": "true",
+                "Updated_time": ""
+            },
+            {
+                "ID1_9_2": "true",
+                "Updated_time": ""
+            }
+        ]]
     };
 
     constructor(
@@ -51,7 +53,7 @@ export class SampleManagementComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-        this.submit();
+        // this.submit();
   }
 
     submit(){

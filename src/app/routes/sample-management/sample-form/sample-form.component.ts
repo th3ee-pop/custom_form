@@ -27,6 +27,18 @@ export class SampleFormComponent implements OnInit {
         // this.loading = true;
         this._allChecked = false;
         this._indeterminate = false;
+        this.list = [{
+            'id1':'0000000',
+            'id2':'陕西省',
+            'id3':'10000000001',
+            'id4':'xx楼',
+            'id5':'xx号',
+            'id6':'xx层',
+            'id7':'1',
+            'id8':'1',
+            'id9':'1',
+            'id10':'xxx'
+        }];
         // this._randomUser.getUsers(this.pi, this.ps, this.args)
         //     .map(data => {
         //         data.results.forEach(item => {
