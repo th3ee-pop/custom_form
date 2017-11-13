@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NzModalSubject, NzModalService, NzMessageService } from 'ng-zorro-antd';
-
+import { LoginAuthService } from '../../pages/login/login.auth.service';
 @Component({
     selector: 'app-model-custom',
     template: `
@@ -44,7 +44,8 @@ import { NzModalSubject, NzModalService, NzMessageService } from 'ng-zorro-antd'
         <button nz-button [nzType]="'default'" [nzSize]="'large'" (click)="cancel()">
             关闭
         </button>
-        <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="ok()">
+        <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="ok();
+        updateAuth()">
             确认
         </button>
     </div>
@@ -52,13 +53,16 @@ import { NzModalSubject, NzModalService, NzMessageService } from 'ng-zorro-antd'
 })
 export class ModelCustomComponent {
 
-    @Input() user: object;
+    @Input() user: any;
     @Input() authority: string;
+
 
     constructor(
         private model: NzModalService,
         private msg: NzMessageService,
-        private subject: NzModalSubject) {}
+        private subject: NzModalSubject,
+        private service: LoginAuthService
+    ) {}
 
     ok() {
         this.subject.next(`new time: ${+new Date}`);
@@ -67,5 +71,18 @@ export class ModelCustomComponent {
 
     cancel() {
         this.subject.destroy();
+    }
+
+    updateAuth() {
+        let group = '0';
+        if (this.authority === '省内管理员') {
+            group = '2';
+        } else if (this.authority === '普通用户') {
+            group = '4';
+        } else group = '3';
+
+        this.service.updateAuth({'group': group, 'username': this.user.username}).subscribe((res) => {
+            console.log(res);
+        });
     }
 }

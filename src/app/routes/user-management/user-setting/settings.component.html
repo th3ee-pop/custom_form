@@ -286,7 +286,7 @@
                                     <td nz-td>{{data.group}}</td>
                                     <td nz-td>2017年11月13日</td>
                                     <td nz-td>
-                                        <a (click)="showMsg('Edit');customCompModel('',data, authority[data.group])">管理</a>
+                                        <a (click)="showMsg('Edit');customCompModel('', data, data.group)">管理</a>
                                         <span nz-table-divider></span>
                                         <nz-popconfirm [nzTitle]="'确定删除用户？'" [nzOkText]="'确定'" [nzCancelText]="'取消'" (nzOnConfirm)="showMsg('has deleted')" (nzOnCancel)="showMsg('cancel delete')">
                                             <a nz-popconfirm>删除</a>
