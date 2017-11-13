@@ -4,9 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { SharedModule } from '@shared/shared.module';
 import { SurveyManagementComponent } from './survey-management/survey-management.component';
-/*在下面添加新的组件类型*/
 
-/*自定义组件类型*/
 import { InputcmpComponent } from './shared/inputcmp/inputcmp.component';
 import { RadiocmpComponent } from './shared/radiocmp/radiocmp.component';
 import { IdccmpComponent} from './shared/idccmp/idccmp.component';
@@ -28,21 +26,11 @@ import { Table813Component } from './shared/tablecmp/table813/table813.component
 import { Table96Component } from './shared/tablecmp/table96/table96.component';
 import { Table913Component } from './shared/tablecmp/table913/table913.component';
 import { DatecmpComponent } from './shared/datecmp/datecmp.component';
-/**/
 
-// import { MdRadioModule, MdInputModule} from '@angular/material';
 
 const routes: Routes = [
-    // { path: 'detail', component: SurveyOverviewComponent }
-
-
-
-    { path: 'management', component: SurveyManagementComponent },
-    {
-        path: 'detail',
-        component: SurveyOverviewComponent,
-    },
-    { path: 'overview', component: SurveyOverviewComponent },
+    { path: 'management/:PID', component: SurveyManagementComponent },
+    { path: 'detail', component: SurveyOverviewComponent  }
 ];
 
 @NgModule({

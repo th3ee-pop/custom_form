@@ -11,14 +11,14 @@ import { AnswerInterface } from '../../answerInterface';
 export class Table813Component extends Question implements AnswerInterface {
 
   /**
- * 暂存答案的矩阵,5行* 5列 ,在consttuctor里面初始化为false
- */
-localAnswer = [];
+     * 暂存答案的矩阵,5行* 5列 ,在consttuctor里面初始化为false
+     */
+    localAnswer = [];
 
   /**
    * 是否必填，如果是true，则必填
    */
-  required = true;
+  required = false;
 
   /**
    * 每行后面的input
@@ -35,7 +35,7 @@ localAnswer = [];
   /**
    * 答案的校验结果,true为校验成功
    */
-  changed = false;
+  answerChanged = false;
 
 
   constructor() {
@@ -51,24 +51,59 @@ localAnswer = [];
   }
 
   /**
+   * radio 框改变
+   */
+  radioChange(row, col) {
+    // 模拟radio,实现每行checkbox之间的互斥
+    for (let i = 0; i < 5; i++) {
+        this.localAnswer[row][i] = false; // 其他置为false
+    }
+    this.localAnswer[row][col] = true; // 本列置为true
+
+    this.answerChange();
+  }
+
+  /**
    * 有数据改变,执行校验
    */
-  answerChange(row, col) {
+  answerChange() {
 
-      // 模拟radio,实现每行checkbox之间的互斥
-      for (let i = 0; i < 5; i++) {
-        this.localAnswer[row][i] = false; // 其他置为false
-      }
-      this.localAnswer[row][col] = true; // 本列置为true
+    const questionID = 'ID8_13';
+    const res = [];
 
-      if (this.required === true) {
+    for (let row = 0; row < this.activityNames.length; row++) {  // 行
+        for (let col = 0; col < 5; col++) {
+            const item = {
+                Record_ID : '',
+                Record_Value: ''
+            };
+            // radio 组
+            item.Record_ID = questionID + '_' + (row + 1) + '_' + String.fromCharCode(col + 'a'.charCodeAt(0));  
+            item.Record_Value = (this.localAnswer[row][col] === undefined) ? false : this.localAnswer[row][col]; // 答案内容，如果没有填写，则改为空
+            res.push(item);
+        }
+        const item = {
+            Record_ID : '',
+            Record_Value: ''
+        };
+        // 时间长度组
+        item.Record_ID = questionID + '_' + (row + 1) + '_f';  
+        item.Record_Value = (this.time[row] === undefined) ? '' : this.time[row]; // 答案内容，如果没有填写，则改为空
+        res.push(item);
+    }
+
+
+    this.answer = res;
+    console.log(res);
+
+    if (this.required === true) {
         if (this.answerCheck() === true)
-          this.changed =  true;
+            this.answerChanged =  true;
         else
-          this.changed = false;
-      } else {
-        this.changed = true;
-      }
+            this.answerChanged = false;
+    } else {
+        this.answerChanged = true;
+    }
 
   }
 
@@ -92,7 +127,7 @@ localAnswer = [];
    */
   getAnswer() {
       const answer = {
-          available : this.changed ? 'true' : 'false',
+          available : this.answerChanged ? 'true' : 'false',
 
           // 此处answer需要根据api，在answerChanged里面修改
           answer : this.answer

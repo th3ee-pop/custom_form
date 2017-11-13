@@ -1,6 +1,18 @@
 export class QuestionList {
     questions = [
         {
+            'id': '1.0',
+            'type': 'input',
+            'content': [
+                {
+                    'dataType': 'text',
+                    'inform': '',
+                    'validType': 'other'
+                }
+            ],
+            'tittle': '姓名'
+        },
+        {
             'id': '1.1',
             'type': 'input',
             'content': [
@@ -39,18 +51,6 @@ export class QuestionList {
             'tittle': '出生日期(可以直接输入，格式20xx-xx-xx）'
         },
         {
-            'id': '1.4a',                    // 纸质版上面没有
-            'type': 'input',
-            'content': [
-                {
-                    'dataType': 'text',
-                    'inform': '',
-                    'validType': 'other'
-                }
-            ],
-            'tittle': '姓名'
-        },
-        {
             'id': '1.5',
             'type': 'idc',
             'content': [
@@ -76,7 +76,7 @@ export class QuestionList {
             'tittle': '家庭住址（为便于今后长期随访，请详细填写）：'
         },
         {
-            'id': '1.7a',                       // 题号不一样
+            'id': '1.7.1',                       // 题号不一样
             'type': 'phone',
             'content': [
                 {
@@ -88,7 +88,7 @@ export class QuestionList {
             'tittle': '手机号码'
         },
         {
-            'id': '1.7b',
+            'id': '1.7.2',
             'type': 'phone',
             'content': [
                 {
@@ -106,12 +106,14 @@ export class QuestionList {
                 '汉族',
                 '回族',
                 '维族',
+                '哈萨克',
+                '蒙古',
                 '其他'
             ],
             'tittle': '你的民族'
         },
         {
-            'id': '1.8a',
+            'id': '1.8.a',
             'type': 'input',
             'content': [
                 {
@@ -134,7 +136,7 @@ export class QuestionList {
         },
 
         {
-            'id': '1.10a',
+            'id': '1.9.a',
             'type': 'radio',
             'content': [
                 '伊斯兰教',
@@ -145,7 +147,7 @@ export class QuestionList {
             'tittle': '如果有宗教信仰，具体宗教是？'
         },
         {
-            'id': '1.10b',
+            'id': '1.9.b',
             'type': 'input',
             'content': [
                 {
@@ -243,7 +245,7 @@ export class QuestionList {
             'tittle': '去年你全家平均一个月的日常支出（不含特殊支出如买车住院等）约为：'
         },
         {
-            'id': '1.16.1',
+            'id': '1.16',
             'type': 'checkbox',
             'content': [
                 '医疗保险（公费、医保、商业保险及合作医疗）（限本人）',
@@ -290,7 +292,7 @@ export class QuestionList {
             'tittle': '请回忆一下，你以前是否曾经有过每周都喝茶并且至少持续一年时间的经历？'
         },
         {
-            'id': '2.2a',
+            'id': '2.2.a',
             'type': 'input',
             'content': [
                 {
@@ -335,7 +337,7 @@ export class QuestionList {
             'tittle': '当你喝茶时，最常喝哪种茶？'
         },
         {
-            'id': '2.5a',
+            'id': '2.5.a',
             'type': 'input',
             'content': [
                 {
@@ -413,7 +415,7 @@ export class QuestionList {
             'tittle': '你最常喝哪种咖啡？（请选择最常用的一种回答）'
         },
         {
-            'id': '2.11a',
+            'id': '2.11.a',
             'type': 'input',
             'content': [
                 {
@@ -442,7 +444,7 @@ export class QuestionList {
                 '只在特殊场合下（如喜庆或节假日）偶尔喝',
                 '一年当中只在特定的几个月喝（如农忙或夏季），而其他季节一般不喝',
                 '一年当中不分季节，每个月都喝，但频度不到每周一次',
-                '一年当中不分季节，基本上每周至少喝一次酒'
+                '一年当中不分季节，基本上每周至少喝一次酒(若选择此项，请转至问题3.2.b)'
             ],
             'tittle': '在过去的一年里，你大概多长时间喝一次酒？'
         },
@@ -450,13 +452,13 @@ export class QuestionList {
             'id': '3.2',
             'type': 'radio',
             'content': [
-                '是',
+                '是 ',
                 '否'
             ],
             'tittle': '请回忆一下，你以前是否曾经有过每周都喝酒并且至少持续一年时间的经历？'
         },
         {
-            'id': '3.2a',
+            'id': '3.2.a',
             'type': 'input',
             'content': [
                 {
@@ -468,7 +470,7 @@ export class QuestionList {
             'tittle': '若是，那停止饮酒大概在多少年以前？（单位：年）'
         },
         {
-            'id': '3.2b',
+            'id': '3.2.b',
             'type': 'radio',
             'content': [
                 '患病',
@@ -481,7 +483,7 @@ export class QuestionList {
             'tittle': '你停止饮酒的主要原因是什么？'
         },
         {
-            'id': '3.2c',
+            'id': '3.2.c',
             'type': 'input',
             'content': [
                 {
@@ -524,10 +526,10 @@ export class QuestionList {
             'id': '4.1',
             'type': 'radio',
             'content': [
-                '不吸烟',
-                '偶尔吸',
-                '大部分天数吸',
-                '每天都吸'
+                '不吸烟->转至问题4.2',
+                '偶尔吸->转至问题4.2',
+                '大部分天数吸->转至问题4.5',
+                '每天都吸->转至问题4.5'
             ],
             'tittle': '你现在多长时间抽一次烟？'
         },
@@ -535,8 +537,8 @@ export class QuestionList {
             'id': '4.2',
             'type': 'radio',
             'content': [
-                '从不吸',
-                '偶尔吸',
+                '从不吸->转至问题5.1',
+                '偶尔吸->转至问题5.1',
                 '曾经大部分天数吸',
                 '曾经每天都吸'
             ],
@@ -659,7 +661,7 @@ export class QuestionList {
             'type': 'radio',
             'content': [
                 '是',
-                '否'
+                '否 -> 请转至问卷第五部分'
             ],
             'tittle': '你是否曾经尝试过戒烟（需至少坚持1周才算）？'
         },
@@ -693,7 +695,7 @@ export class QuestionList {
         {
             'id': '5.1',
             'type': 'table51'
-        },    
+        },
 
         {
             'id': '5.2',
@@ -708,11 +710,11 @@ export class QuestionList {
         {
             'id': '5.3',
             'type': 'table53'
-        }, 
+        },
         {
             'id': '5.4',
             'type': 'table54'
-        }, 
+        },
         // {
         //     'id': '5.4',
         //     'type': 'checkbox',
@@ -742,7 +744,7 @@ export class QuestionList {
             'type': 'radio',
             'content': [
                 '是',
-                '否'
+                '否->请转至问题5.9'
             ],
             'tittle': '你是否经历过严重的食物短缺？'
         },
@@ -761,7 +763,7 @@ export class QuestionList {
         {
             'id': '5.8',
             'type': 'table58'
-        }, 
+        },
         // {
         //     'id': '5.8',
         //     'type': 'checkbox',
@@ -938,7 +940,7 @@ export class QuestionList {
             'tittle': '你每周做饭时，大概累积有多长时间花在炉灶前？（单位：小时/周）'
         },
         {
-            'id': '6.8a',
+            'id': '6.8.1',
             'type': 'input',
             'content': [
                 {
@@ -950,7 +952,7 @@ export class QuestionList {
             'tittle': '你大概从几岁开始，经常在家做饭？（单位：岁）'
         },
         {
-            'id': '6.8b',
+            'id': '6.8.2',
             'type': 'radio',
             'content': [
                 '菜籽油',
@@ -974,7 +976,7 @@ export class QuestionList {
             'tittle': '现在你家里做饭或烧水时，通常用哪一种燃料？'
         },
         {
-            'id': '6.9a',
+            'id': '6.9.a',
             'type': 'radio',
             'content': [
                 '无烟煤',
@@ -995,7 +997,7 @@ export class QuestionList {
             'tittle': '在你家里，是否所有的炉灶都有烟囱或排烟装置？'
         },
         {
-            'id': '6.10a',
+            'id': '6.10.a',
             'type': 'radio',
             'content': [
                 '是，一直有',
@@ -1005,7 +1007,7 @@ export class QuestionList {
             'tittle': '除了做饭和烧水时，你家平时（尤其在冬天）是否有炉子全天不熄火？'
         },
         {
-            'id': '6.10b',
+            'id': '6.10.b',
             'type': 'radio',
             'content': [
                 '屋内',
@@ -1023,7 +1025,22 @@ export class QuestionList {
             'tittle': '在你现居所，冬天屋内是否取暖？'
         },
         {
-            'id': '6.11a',
+            'id': '6.11.a',
+            'type': 'radio',
+            'content': [
+                '集中供暖',
+                '煤气/天然气',
+                '无烟煤',
+                '有烟煤',
+                '煤球/煤饼',
+                '柴/炭',
+                '电',
+                '其它燃料（如沼气等）'
+            ],
+            'tittle': '你家冬天取暖一般用什么燃料？'
+        },
+        {
+            'id': '6.11.b',
             'type': 'radio',
             'content': [
                 '是',
@@ -1042,7 +1059,7 @@ export class QuestionList {
             'tittle': '请回忆一下，从何时开始你家屋内（尤其在冬天）出现燃煤污染？'
         },
         {
-            'id': '6.12a',
+            'id': '6.12.a',
             'type': 'input',
             'content': [
                 {
@@ -1054,7 +1071,7 @@ export class QuestionList {
             'tittle': '燃煤污染出现时间'
         },
         {
-            'id': '6.12b',
+            'id': '6.12.b',
             'type': 'radio',
             'content': [
                 '从______年起，不再出现',
@@ -1063,7 +1080,7 @@ export class QuestionList {
             'tittle': '从哪一年开始，你家屋内（尤其在冬天）不再出现燃煤污染？'
         },
         {
-            'id': '6.12c',
+            'id': '6.12.c',
             'type': 'input',
             'content': [
                 {
@@ -1088,7 +1105,7 @@ export class QuestionList {
         {
             'id': '6.13',
             'type': 'table613'
-        }, 
+        },
         {
             'id': '6.14',
             'type': 'checkbox',
@@ -1101,7 +1118,7 @@ export class QuestionList {
             'tittle': '请你回忆一下，雾霾天气时，你是否采取过防护措施（可多选）'
         },
         {
-            'id': '6.14a',
+            'id': '6.14.a',
             'type': 'input',
             'content': [
                 {
@@ -1120,7 +1137,7 @@ export class QuestionList {
 // ----------------------------------------------------------------------------------------------------------------------------------------
 
         {
-            'id': '7.1a',
+            'id': '7.1.1',
             'type': 'radio',
             'content': [
                 '良好',
@@ -1131,7 +1148,7 @@ export class QuestionList {
             'tittle': '你目前的健康状况自我评价如何？'
         },
         {
-            'id': '7.1b',
+            'id': '7.1.2',
             'type': 'radio',
             'content': [
                 '更好',
@@ -1142,7 +1159,7 @@ export class QuestionList {
             'tittle': '你的身体状况和同龄人相对比情况如何？'
         },
         {
-            'id': '7.2a',
+            'id': '7.2.1',
             'type': 'radio',
             'content': [
                 '是',
@@ -1152,7 +1169,7 @@ export class QuestionList {
             'tittle': '和健康的同龄人一起以正常的速度在平地行走时，你是否会感到气短?'
         },
         {
-            'id': '7.2b',
+            'id': '7.2.2',
             'type': 'radio',
             'content': [
                 '是',
@@ -1162,7 +1179,7 @@ export class QuestionList {
             'tittle': '和健康的同龄人一起以正常的速度在平地行走时，你是否因胸部不适而减速或停止行走?'
         },
         {
-            'id': '7.3a',
+            'id': '7.3.1',
             'type': 'radio',
             'content': [
                 '否',
@@ -1172,7 +1189,7 @@ export class QuestionList {
             'tittle': '在过去的一年里，你是否白天或者晚上咳嗽?'
         },
         {
-            'id': '7.3b',
+            'id': '7.3.2',
             'type': 'radio',
             'content': [
                 '否',
@@ -1182,7 +1199,7 @@ export class QuestionList {
             'tittle': '在过去的一年里，你是否每天早晨睡醒后经常由肺部咳出痰液?'
         },
         {
-            'id': '7.3c',
+            'id': '7.3.2.a',
             'type': 'input',
             'content': [
                 {
@@ -1193,11 +1210,20 @@ export class QuestionList {
             ],
             'tittle': '如果咳痰持续>=3个月，那么这种现象持续了多久？'
         },
-
+        {
+            'id': '7.3.3',
+            'type': 'radio',
+            'content': [
+                '否',
+                '是',
+                '是,但只在感冒或病毒感染时出现',
+            ],
+            'tittle': '在过去一年里，你是否胸部有口哨音或喘气音'
+        },
         {
             'id': '7.4',
             'type': 'table74'
-        }, 
+        },
         // {
         //     'id': '7.4',
         //     'type': 'radio',
@@ -1426,7 +1452,7 @@ export class QuestionList {
             'tittle': '你的生母是否仍在世？'
         },
         {
-            'id': '7.13a',
+            'id': '7.13.a',
             'type': 'input',
             'content': [
                 {
@@ -1438,7 +1464,7 @@ export class QuestionList {
             'tittle': '你生母目前的年龄是？（单位：岁）'
         },
         {
-            'id': '7.13b',
+            'id': '7.13.b',
             'type': 'input',
             'content': [
                 {
@@ -1461,7 +1487,7 @@ export class QuestionList {
             'tittle': '你的生父是否仍在世？'
         },
         {
-            'id': '7.14a',
+            'id': '7.14.a',
             'type': 'input',
             'content': [
                 {
@@ -1473,7 +1499,7 @@ export class QuestionList {
             'tittle': '你生父目前的年龄是？（单位：岁）'
         },
         {
-            'id': '7.14b',
+            'id': '7.14.b',
             'type': 'input',
             'content': [
                 {
@@ -1486,160 +1512,163 @@ export class QuestionList {
         },
         {
             'id': '7.15',
-            'type': 'checkbox',
-            'content': [
-                '生母',
-                '生父',
-                '亲兄弟姐妹',
-                '亲生子女'
-            ],
-            'tittle': '在你的直系亲属中，是否有人曾被乡/区级医院或以上单位医生诊断患有过下述疾病？'
+            'type': 'table715'
         },
-        {
-            'id': '7.15a',
-            'type': 'input',
-            'content': [
-                {
-                    'dataType': 'text',
-                    'inform': '',
-                    'validType': 'twonum'
-                }
-            ],
-            'tittle': '亲兄弟姐妹患中风的人数'
-        },
-        {
-            'id': '7.15b',
-            'type': 'input',
-            'content': [
-                {
-                    'dataType': 'text',
-                    'inform': '',
-                    'validType': 'twonum'
-                }
-            ],
-            'tittle': '亲兄弟姐妹患急性心梗的人数'
-        },
-        {
-            'id': '7.15c',
-            'type': 'input',
-            'content': [
-                {
-                    'dataType': 'text',
-                    'inform': '',
-                    'validType': 'twonum'
-                }
-            ],
-            'tittle': '亲兄弟姐妹患糖尿病的人数'
-        },
-
-        {
-            'id': '7.15d',
-            'type': 'input',
-            'content': [
-                {
-                    'dataType': 'text',
-                    'inform': '',
-                    'validType': 'twonum'
-                }
-            ],
-            'tittle': '亲兄弟姐妹患抑郁症的人数'
-        },
-        {
-            'id': '7.15d1',
-            'type': 'input',
-            'content': [
-                {
-                    'dataType': 'text',
-                    'inform': ''
-                }
-            ],
-            'tittle': '亲生子女患抑郁症的人数'
-        },
-        {
-            'id': '7.15b1',
-            'type': 'input',
-            'content': [
-                {
-                    'dataType': 'text',
-                    'inform': '',
-                    'validType': 'twonum'
-                }
-            ],
-            'tittle': '亲生子女患急性心梗的人数'
-        },
-        {
-            'id': '7.15f1',
-            'type': 'input',
-            'content': [
-                {
-                    'dataType': 'text',
-                    'inform': '',
-                    'validType': 'twonum'
-                }
-            ],
-            'tittle': '亲生子女患慢阻肺/肺气肿/肺心病/慢支的人数'
-        },
-        {
-            'id': '7.15e1',
-            'type': 'input',
-            'content': [
-                {
-                    'dataType': 'text',
-                    'inform': '',
-                    'validType': 'twonum'
-                }
-            ],
-            'tittle': '亲生子女患恶性肿瘤的人数'
-        },
-        {
-            'id': '7.15c1',
-            'type': 'input',
-            'content': [
-                {
-                    'dataType': 'text',
-                    'inform': '',
-                    'validType': 'twonum'
-                }
-            ],
-            'tittle': '亲生子女患糖尿病的人数'
-        },
-        {
-            'id': '7.15a1',
-            'type': 'input',
-            'content': [
-                {
-                    'dataType': 'text',
-                    'inform': '',
-                    'validType': 'twonum'
-                }
-            ],
-            'tittle': '亲生子女患中风的人数'
-        },
-        {
-            'id': '7.15f',
-            'type': 'input',
-            'content': [
-                {
-                    'dataType': 'text',
-                    'inform': '',
-                    'validType': 'twonum'
-                }
-            ],
-            'tittle': '亲兄弟姐妹患慢阻肺/肺气肿/肺心病/慢支的人数'
-        },
-        {
-            'id': '7.15e',
-            'type': 'input',
-            'content': [
-                {
-                    'dataType': 'text',
-                    'inform': '',
-                    'validType': 'twonum'
-                }
-            ],
-            'tittle': '亲兄弟姐妹患恶性肿瘤的人数'
-        },
-
+        // {
+        //     'id': '7.15',
+        //     'type': 'checkbox',
+        //     'content': [
+        //         '生母',
+        //         '生父',
+        //         '亲兄弟姐妹',
+        //         '亲生子女'
+        //     ],
+        //     'tittle': '在你的直系亲属中，是否有人曾被乡/区级医院或以上单位医生诊断患有过下述疾病？'
+        // },
+        // {
+        //     'id': '7.15.a',
+        //     'type': 'input',
+        //     'content': [
+        //         {
+        //             'dataType': 'text',
+        //             'inform': '',
+        //             'validType': 'twonum'
+        //         }
+        //     ],
+        //     'tittle': '亲兄弟姐妹患中风的人数'
+        // },
+        // {
+        //     'id': '7.15b',
+        //     'type': 'input',
+        //     'content': [
+        //         {
+        //             'dataType': 'text',
+        //             'inform': '',
+        //             'validType': 'twonum'
+        //         }
+        //     ],
+        //     'tittle': '亲兄弟姐妹患急性心梗的人数'
+        // },
+        // {
+        //     'id': '7.15c',
+        //     'type': 'input',
+        //     'content': [
+        //         {
+        //             'dataType': 'text',
+        //             'inform': '',
+        //             'validType': 'twonum'
+        //         }
+        //     ],
+        //     'tittle': '亲兄弟姐妹患糖尿病的人数'
+        // },
+        //
+        // {
+        //     'id': '7.15d',
+        //     'type': 'input',
+        //     'content': [
+        //         {
+        //             'dataType': 'text',
+        //             'inform': '',
+        //             'validType': 'twonum'
+        //         }
+        //     ],
+        //     'tittle': '亲兄弟姐妹患抑郁症的人数'
+        // },
+        // {
+        //     'id': '7.15d1',
+        //     'type': 'input',
+        //     'content': [
+        //         {
+        //             'dataType': 'text',
+        //             'inform': ''
+        //         }
+        //     ],
+        //     'tittle': '亲生子女患抑郁症的人数'
+        // },
+        // {
+        //     'id': '7.15b1',
+        //     'type': 'input',
+        //     'content': [
+        //         {
+        //             'dataType': 'text',
+        //             'inform': '',
+        //             'validType': 'twonum'
+        //         }
+        //     ],
+        //     'tittle': '亲生子女患急性心梗的人数'
+        // },
+        // {
+        //     'id': '7.15f1',
+        //     'type': 'input',
+        //     'content': [
+        //         {
+        //             'dataType': 'text',
+        //             'inform': '',
+        //             'validType': 'twonum'
+        //         }
+        //     ],
+        //     'tittle': '亲生子女患慢阻肺/肺气肿/肺心病/慢支的人数'
+        // },
+        // {
+        //     'id': '7.15e1',
+        //     'type': 'input',
+        //     'content': [
+        //         {
+        //             'dataType': 'text',
+        //             'inform': '',
+        //             'validType': 'twonum'
+        //         }
+        //     ],
+        //     'tittle': '亲生子女患恶性肿瘤的人数'
+        // },
+        // {
+        //     'id': '7.15c1',
+        //     'type': 'input',
+        //     'content': [
+        //         {
+        //             'dataType': 'text',
+        //             'inform': '',
+        //             'validType': 'twonum'
+        //         }
+        //     ],
+        //     'tittle': '亲生子女患糖尿病的人数'
+        // },
+        // {
+        //     'id': '7.15a1',
+        //     'type': 'input',
+        //     'content': [
+        //         {
+        //             'dataType': 'text',
+        //             'inform': '',
+        //             'validType': 'twonum'
+        //         }
+        //     ],
+        //     'tittle': '亲生子女患中风的人数'
+        // },
+        // {
+        //     'id': '7.15f',
+        //     'type': 'input',
+        //     'content': [
+        //         {
+        //             'dataType': 'text',
+        //             'inform': '',
+        //             'validType': 'twonum'
+        //         }
+        //     ],
+        //     'tittle': '亲兄弟姐妹患慢阻肺/肺气肿/肺心病/慢支的人数'
+        // },
+        // {
+        //     'id': '7.15e',
+        //     'type': 'input',
+        //     'content': [
+        //         {
+        //             'dataType': 'text',
+        //             'inform': '',
+        //             'validType': 'twonum'
+        //         }
+        //     ],
+        //     'tittle': '亲兄弟姐妹患恶性肿瘤的人数'
+        // },
         {
             'id': '7.16',
             'type': 'radio',
@@ -1650,7 +1679,7 @@ export class QuestionList {
             'tittle': '你是否知道你的出生体重？'
         },
         {
-            'id': '7.16a',
+            'id': '7.16.a',
             'type': 'input',
             'content': [
                 {
@@ -1848,7 +1877,7 @@ export class QuestionList {
         {
             'id': '8.13',
             'type': 'table813'
-        }, 
+        },
         // {
         //     'id': '8.17',
         //     'type': 'checkbox',
@@ -1924,7 +1953,7 @@ export class QuestionList {
             'tittle': '你目前是否已完全闭经？'
         },
         {
-            'id': '9.2a',
+            'id': '9.2.a',
             'type': 'radio',
             'content': [
                 '是',
@@ -1933,7 +1962,7 @@ export class QuestionList {
             'tittle': '你今天是否在月经期？'
         },
         {
-            'id': '9.2b',
+            'id': '9.2.b',
             'type': 'input',
             'content': [
                 {
@@ -2028,7 +2057,7 @@ export class QuestionList {
         {
             'id': '9.6',
             'type': 'table96'
-        }, 
+        },
         {
             'id': '9.7',
             'type': 'radio',
@@ -2124,7 +2153,7 @@ export class QuestionList {
         {
             'id': '9.13',
             'type': 'table913'
-        }, 
+        },
         // {
         //     'id': '9.13',
         //     'type': 'checkbox',

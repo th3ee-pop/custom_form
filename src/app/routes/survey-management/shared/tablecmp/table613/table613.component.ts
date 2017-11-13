@@ -32,7 +32,7 @@ export class Table613Component extends  Question implements AnswerInterface {
   /**
    * 答案的校验结果,true为校验成功
    */
-  changed = false;
+  answerChanged = false;
 
   required = true;
 
@@ -48,16 +48,33 @@ export class Table613Component extends  Question implements AnswerInterface {
    */
   answerChange() {
 
+    const questionID = 'ID6_13';
+    const res = []; // 结果暂存
+    for (let row = 0; row < this.smokeNames.length; row++) {
+        
+        res.push({   // 生育时年龄
+            Record_ID : questionID + '_' + (row + 1) + '_a' , // 题号
+            Record_Value : this.selected[row] !== undefined ? this.selected[row] : false    // 如不为空，则push进
+        });
+
+        res.push({   // 母乳喂养时间
+            Record_ID : questionID + '_' + (row + 1) + '_b' , // 题号
+            Record_Value : this.exposureTime[row] !== undefined ? this.exposureTime[row] : ''    // 如不为空，则push进
+        });
+    }
+
+    this.answer = res;
+
+    console.log(res);
     
-    
-      if (this.required) {  // 如果表格必填
-          if (this.answerCheck() === true) // 如果校验成功
-              this.changed = true;
-          else 
-              this.changed = false;
-      }else {  // 如果非必填
-          this.changed = true;
-      }
+    if (this.required) {  // 如果表格必填
+        if (this.answerCheck() === true) // 如果校验成功
+            this.answerChanged = true;
+        else 
+            this.answerChanged = false;
+    }else {  // 如果非必填
+        this.answerChanged = true;
+    }
   }
 
 
@@ -73,7 +90,7 @@ export class Table613Component extends  Question implements AnswerInterface {
    */
   getAnswer() {
       const answer = {
-          available : this.changed ? 'true' : 'false',
+          available : this.answerChanged ? 'true' : 'false',
           answer : this.answer
       };
       return answer;

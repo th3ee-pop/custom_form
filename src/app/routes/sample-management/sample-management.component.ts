@@ -23,29 +23,23 @@ export class SampleManagementComponent implements OnInit {
     putRecord = {
         'Records' : [
             {
-                "ID1_1": "1000000001",
-                "Updated_time": ""
+                'ID1_1': '1000000001',
+                'Updated_time': ''
+            },
+            {
+                'ID1_4_2': 'true',
+                'Updated_time': ''
             }
         ]
     };
 
-    //修改记录
+    // 修改记录
     insertRecord = {
-        'PID':'3',
-        'Records':[[
-            {
-                "ID1_1": "1000000001",
-                "Updated_time": ""
-            },
-            {
-                "ID1_3_2": "true",
-                "Updated_time": ""
-            },
-            {
-                "ID1_9_2": "true",
-                "Updated_time": ""
-            }
-        ]]
+        'PID': '3',
+        'Records': [{
+                'ID1_5_1': 'true',
+                'Updated_time': ''// 必须跟上一次修改时间一样
+        }]
     };
 
     constructor(
@@ -53,29 +47,29 @@ export class SampleManagementComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-        // this.submit();
+         this.submit();
   }
 
-    submit(){
-        //获取记录
+    submit() {
+        // 获取记录
         this.service.getRecord(this.params)
             .subscribe((res) => {
             console.log(res);
-        },err => {
+        }, err => {
             console.log(err);
             });
-        //添加信息
+        // 添加信息
         this.service.putRecord(this.putRecord).subscribe((res) => {
             console.log(res);
-        },err => {
+        }, err => {
             console.log(err);
         });
-        //获取所有记录
+        // 获取所有记录
         this.service.getPatientList().subscribe((res) =>{
             console.log(res);
-        },err => {
+        }, err => {
                 console.log(err);
-            })
+            });
     }
 
 }

@@ -34,10 +34,10 @@ export class LoginComponent {
         'username': this.valForm.value.email,
         'password': this.valForm.value.password
     };
-      this.service.login(FormVal).subscribe((resp) => {
+      /*this.service.login(FormVal).subscribe((resp) => {
           console.log(resp);
           console.log("login success");
-      });
+      });*/
     this.authService.loginObservable(FormVal).subscribe(
           (res) => {
               console.log(this.valForm.value);
@@ -45,12 +45,12 @@ export class LoginComponent {
               if (res.TOKEN) {
                   const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/dashboard/v1';
                   this.router.navigate([redirect]);
-                  console.log(sessionStorage.getItem('TOKEN'));
-                  this.authService.getUsers().subscribe(
+                  console.log(localStorage.getItem('TOKEN'));
+                  /*this.authService.getUsers().subscribe(
                       (response) => {
                           console.log(response);
                       }
-                  );
+                  );*/
               }
           });
   }
