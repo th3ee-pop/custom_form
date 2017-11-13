@@ -25,26 +25,26 @@
                                         <tbody nz-tbody>
                                             <tr nz-tbody-tr *ngFor="let data of nzTable.data">
                                                 <td nz-td>{{data.PID}}</td>
-                                                <td nz-td>{{data.name}}</td>
-                                                <td nz-td>编号</td>
-                                                <td nz-td>已完成</td>
-                                                <td nz-td>上次修改时间</td>
+                                                <td nz-td>{{data.Name}}</td>
+                                                <td nz-td>{{data.No}}</td>
+                                                <td nz-td>{{data.Status}}</td>
+                                                <td nz-td>{{data.Updated_time}}</td>
                                                 <td nz-td>
                                                     <!--前段根据四种权限，对应有不同的操作组合。-->
                                                   <span *ngIf="userGroup ==='4'">
-                                                      <a [routerLink]="['/survey/management']">查看</a>
+                                                      <a [routerLink]="'/survey/management/' + data.PID">查看</a>
                                                       <span nz-table-divider></span>
                                                   </span>
-                                                  <span *ngIf="userGroup ==='3' && userProvince === data.province">
-                                                      <a [routerLink]="['/survey/management']">查看</a>
+                                                  <span *ngIf="userGroup ==='3' && userProvince === data.Province">
+                                                      <a [routerLink]="'/survey/management/' + data.PID">查看</a>
                                                       <span nz-table-divider></span>
                                                   </span>
-                                                  <span *ngIf="userGroup ==='2' && userProvince === data.province">
-                                                      <a [routerLink]="['/survey/management']">查看</a>
+                                                  <span *ngIf="userGroup ==='2' && userProvince === data.Province">
+                                                      <a [routerLink]="'/survey/management/' + data.PID">查看</a>
                                                       <span nz-table-divider></span>
                                                   </span>
-                                                    <span *ngIf="userGroup ==='1' && loggedUser === data.completedBy">
-                                                      <a [routerLink]="['/survey/management']">查看</a>
+                                                    <span *ngIf="userGroup ==='1' && loggedUser === data.Complete_by">
+                                                      <a [routerLink]="'/survey/management/' + data.PID">查看</a>
                                                       <span nz-table-divider></span>
                                                   </span>
 
@@ -52,7 +52,7 @@
                                                       <a>删除</a>
                                                       <span nz-table-divider></span>
                                                   </span>
-                                                  <span *ngIf="userGroup === '1' && loggedUser === data.completedBy">
+                                                  <span *ngIf="userGroup === '1' && loggedUser === data.Complete_by">
                                                       <a>删除</a>
                                                       <span nz-table-divider></span>
                                                   </span>

@@ -10,34 +10,8 @@ export class SurveyOverviewComponent implements OnInit {
   loggedUser = localStorage.getItem('userID');
   userGroup = localStorage.getItem('userGroup');
   userProvince = localStorage.getItem('userProvince');
-  data = [
-    {
-      PID : '001',
-      name : '张三',
-      completedBy: '001',
-      province: '陕西'
+  data = [];
 
-    },
-    {
-      PID : '002',
-      name : '李四',
-      completedBy: '001',
-      province: '陕西'
-
-    },
-    {
-      PID : '003',
-      name : '王二',
-      completedBy: '002',
-      province: '陕西'
-    },
-    {
-      PID : '004',
-      name : '赵五',
-      completedBy: '002',
-      province: '陕西'
-    },
-  ];
   constructor(private service: HttpService) { }
 
   ngOnInit() {
@@ -45,11 +19,6 @@ export class SurveyOverviewComponent implements OnInit {
           console.log(res);
           this.data = res.PIDs;
       });
-      console.log(localStorage.getItem('userID'))
-      console.log('loggedUser');
-      console.log(this.loggedUser);
-      console.log('userGroup');
-      console.log(this.userGroup);
   }
   isVisible( data ): boolean {
       if (this.userGroup === '4') {
@@ -62,3 +31,47 @@ export class SurveyOverviewComponent implements OnInit {
       }
   }
 }
+
+
+// data = [
+//   {
+//     PID : '001',
+//     name : '张三',
+//     completedBy: '001',
+//     province: '陕西'
+//
+//   },
+//   {
+//     PID : '002',
+//     name : '李四',
+//     completedBy: '001',
+//     province: '陕西'
+//
+//   },
+//   {
+//     PID : '003',
+//     name : '王二',
+//     completedBy: '002',
+//     province: '陕西'
+//   },
+//   {
+//     PID : '004',
+//     name : '赵五',
+//     completedBy: '002',
+//     province: '陕西'
+//   },
+// ];
+
+
+
+
+
+
+
+
+
+
+
+
+
+

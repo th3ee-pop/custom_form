@@ -3,7 +3,7 @@ import { InputcmpComponent } from '../shared/inputcmp/inputcmp.component';
 import { RadiocmpComponent } from '../shared/radiocmp/radiocmp.component';
 import { saveAs } from 'file-saver';
 import { HttpService } from '@core/services/http.service';
-import { ActivatedRoute, Router, PreloadingStrategy} from '@angular/router';
+import { ActivatedRoute, Router, PreloadingStrategy, Params} from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd';
 import { CheckboxcmpComponent} from '../shared/checkboxcmp/checkboxcmp.component';
 import { TablecmpComponent} from '../shared/tablecmp/tablecmp.component';
@@ -20,6 +20,7 @@ import { ScheduleList } from '../shared/scheduleList';
 })
 export class SurveyManagementComponent implements OnInit {
     schedule_list =  new ScheduleList().schedule_list;
+    PID = '';
     questionList = new QuestionList();
     qlist = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(index => this.questionList.getQuestions(index));
     answerlist = [];
@@ -38,6 +39,7 @@ export class SurveyManagementComponent implements OnInit {
     current = 0;
     constructor(
         private router: Router,
+        private route: ActivatedRoute,
         private confirmServ: NzModalService,
         private preloadStrategy: SelectivePreloadingStrategy,
         private service: HttpService
@@ -45,7 +47,14 @@ export class SurveyManagementComponent implements OnInit {
         this.singleif = preloadStrategy.preloadedModules;
     }
     ngOnInit() {
-
+        // this.route.params.switchMap((params: Params) => () );
+        // console.log('OnInit');
+        // console.log(this.route.params['value']['PID']);
+        this.PID = this.route.params['value']['PID'];
+        this.answerlist.push(
+            { 'Record_ID': 'ID0_3', 'Record_Value': localStorage.getItem('userProvince')},
+            { 'Record_ID': 'ID0_5', 'Record_Value': localStorage.getItem('userID')}
+        );
     }
     changeHiddens(current: number) {
         for (let i = 0; i <= 9; i++) {
@@ -89,6 +98,7 @@ export class SurveyManagementComponent implements OnInit {
         return confirmall;
     }
     next() { // 跳转至下一步
+
         if (this.current === 0) {
             this.RadioItems.forEach(item => {
                 if ( item.answerChanged === true)
@@ -104,6 +114,16 @@ export class SurveyManagementComponent implements OnInit {
                     }
             });
         }
+        this.RadioItems.forEach(
+            item => {
+                console.log('##################');
+                console.log(item.answerChanged);
+                console.log(item.answer);
+                console.log(item.question);
+                console.log(item.localAnswer);
+                item.localAnswer = 1;
+            }
+        );
         // if (this.confirm().confirms) { // 检查当前步骤是否合法，如果不合法禁止转向下一步
         //     this.current += 1;
         // }
@@ -117,9 +137,9 @@ export class SurveyManagementComponent implements OnInit {
             }else {
                 this.current += 1;
             }
-        }else {
-            // let str = '';
-            // for (let i = 0; i < this.confirm().confirmslist.length; i++){
+        } else {
+            // let str;
+            // for (let i = 0; i < this.confirm().confirmslist.length; i++) {
             //     str = str + this.confirm().confirmslist[i] + '、';
             // }
             // this.confirmServ.error({
@@ -128,6 +148,12 @@ export class SurveyManagementComponent implements OnInit {
             // });
         }
         this.changeHiddens(this.current);
+    }
+
+    fillingAnswer() {
+        this.RadioItems.forEach( item => {
+
+        } );
     }
 
     collectallAnswer() {
@@ -163,12 +189,20 @@ export class SurveyManagementComponent implements OnInit {
         });
     }
     log() { // 暂存
+        const date = new Date();
+        let str = '';
+        str = date.getFullYear() + '年' + date.getMonth() + '月' + date.getDate() + '日' + date.getHours() + '时'
+            + date.getMinutes() + '分';
+        if (this.confirm().confirms === false) {
+            this.answerlist.push({'Record_ID': 'ID0_2', 'Record_Value': '未完成'}, {'Record_ID': 'ID0_4', 'Record_Value': str});
+        }
         this.collectallAnswer();
         console.log('answerlist');
         console.log(this.answerlist);
         const putRecord = {
             'Records': this.answerlist
         }
+
         this.service.putRecord(putRecord).subscribe((res) => {
             console.log('这是返回结果！');
             console.log(res);
@@ -176,6 +210,7 @@ export class SurveyManagementComponent implements OnInit {
             console.log('这是错误信息！');
             console.log(err);
         });
+
         this.router.navigate(['/survey/detail']);
     }
     exit() {
