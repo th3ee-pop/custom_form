@@ -1984,7 +1984,7 @@ export class QuestionList {
             'tittle': '你是否用过或正在服用雌激素替代治疗药物缓解更年期症状？'
         },
         {
-            'id': '9.3a',
+            'id': '9.3.a',
             'type': 'checkbox',
             'content': [
                 '雌激素替代治疗',
@@ -2006,7 +2006,7 @@ export class QuestionList {
             'tittle': '到现在为止一共怀孕过多少次？（单位：次，若无，填0）'
         },
         {
-            'id': '9.5a',
+            'id': '9.5.a',
             'type': 'input',
             'content': [
                 {
@@ -2018,7 +2018,7 @@ export class QuestionList {
             'tittle': '活产多少次？（单位：次，若无填0）'
         },
         {
-            'id': '9.5b',
+            'id': '9.5.b',
             'type': 'input',
             'content': [
                 {
@@ -2030,7 +2030,7 @@ export class QuestionList {
             'tittle': '死产多少次？（单位：次，若无填0）'
         },
         {
-            'id': '9.5d',
+            'id': '9.5.c',
             'type': 'input',
             'content': [
                 {
@@ -2043,7 +2043,7 @@ export class QuestionList {
         },
 
         {
-            'id': '9.5c',
+            'id': '9.5.d',
             'type': 'input',
             'content': [
                 {
@@ -2069,7 +2069,7 @@ export class QuestionList {
             'tittle': '你是否服用过口服避孕药？'
         },
         {
-            'id': '9.7a',
+            'id': '9.7.a',
             'type': 'input',
             'content': [
                 {
@@ -2115,7 +2115,7 @@ export class QuestionList {
             'tittle': '你是否使用过避孕环？'
         },
         {
-            'id': '9.10a',
+            'id': '9.10.a',
             'type': 'input',
             'content': [
                 {
@@ -2247,7 +2247,7 @@ export class QuestionList {
             'tittle': '在你现在或前一份工作中，是否需要上夜班？'
         },
         {
-            'id': '10.7a',
+            'id': '10.7.a',
             'type': 'radio',
             'content': [
                 '每天',
@@ -2257,7 +2257,7 @@ export class QuestionList {
             'tittle': '多久一次夜班？'
         },
         {
-            'id': '10.7b',
+            'id': '10.7.b',
             'type': 'input',
             'content': [
                 {
