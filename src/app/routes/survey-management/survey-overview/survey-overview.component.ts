@@ -51,7 +51,6 @@ export class SurveyOverviewComponent implements OnInit {
       console.log('userGroup');
       console.log(this.userGroup);
   }
-
   isVisible( data ): boolean {
       if (this.userGroup === '4') {
           return true;

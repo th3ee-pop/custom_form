@@ -3,7 +3,7 @@
  */
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import {Headers, Http, Response, RequestOptions, CookieXSRFStrategy} from '@angular/http';
+import { Headers, Http, Response, RequestOptions} from '@angular/http';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/do';
@@ -21,17 +21,17 @@ export class LoginAuthService {
 
     redirectUrl: String;
     creatAuthorizationHeader(headers: Headers) {
-        headers.append('x-csrftoken', sessionStorage.getItem('TOKEN'));
+        headers.append('x-csrftoken', localStorage.getItem('TOKEN'));
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
     }
 
     loginObservable(Formval: object): Observable<any> {
         return this.http.post(this.Url + 'account/login/', JSON.stringify(Formval), this.options)
             .do((res: Response) => {
-            sessionStorage.setItem('TOKEN', res.json().TOKEN);
-            sessionStorage.setItem('userID', '001');
-            sessionStorage.setItem('userGroup', '1');
-            sessionStorage.setItem('userProvince', '陕西');
+            localStorage.setItem('TOKEN', res.json().TOKEN);
+            localStorage.setItem('userID', '001');
+            localStorage.setItem('userGroup', '1');
+            localStorage.setItem('userProvince', '陕西');
             console.log(res.json().TOKEN);
             console.log(res);
             console.log(res.headers);
@@ -41,16 +41,17 @@ export class LoginAuthService {
     }
 
     logout(): Object {
-        sessionStorage.removeItem('TOKEN');
+        localStorage.removeItem('TOKEN');
         return ({'status': 'TOKEN_REMOVED'});
     }
 
     getUsers(): Observable<any> {
-        let headers= new Headers();
+        const headers = new Headers();
         this.creatAuthorizationHeader(headers);
         console.log(headers);
         return this.http.get(this.Url + 'account/userlist/',
             {headers: headers})
+            .map((res: Response) => res.json())
             .do((res: Response) =>
             console.log(res)
             )

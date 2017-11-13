@@ -45,7 +45,7 @@ export class LoginComponent {
               if (res.TOKEN) {
                   const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/dashboard/v1';
                   this.router.navigate([redirect]);
-                  console.log(sessionStorage.getItem('TOKEN'));
+                  console.log(localStorage.getItem('TOKEN'));
                   this.authService.getUsers().subscribe(
                       (response) => {
                           console.log(response);

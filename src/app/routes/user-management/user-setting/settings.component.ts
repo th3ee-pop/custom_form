@@ -3,6 +3,7 @@ import { RandomUserService } from '../../tables/randomUser.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModelCustomComponent } from './settings.modal.component';
+import { LoginAuthService } from '../../pages/login/login.auth.service';
 
 @Component({
     selector: 'app-extras-settings',
@@ -15,6 +16,7 @@ export class UserSettingsComponent implements OnInit {
                 public msg: NzMessageService,
                 private modal: NzModalService,
                 private _randomUser: RandomUserService,
+                private loginService: LoginAuthService,
                 private message: NzMessageService) {
         this.profileForm = fb.group({
             name: [null, Validators.compose([Validators.required, Validators.pattern(`^[-_a-zA-Z0-9]{4,20}$`)])],
@@ -26,7 +28,6 @@ export class UserSettingsComponent implements OnInit {
         });
     }
 
-    selecteduser;
     options = {};
     active = 1;
     profileForm: FormGroup;
@@ -55,17 +56,18 @@ export class UserSettingsComponent implements OnInit {
         this.loading = true;
         this._allChecked = false;
         this._indeterminate = false;
-        this._randomUser.getUsers(this.pi, this.ps, this.args)
+        this.loginService.getUsers()
             .map(data => {
-                data.results.forEach(item => {
+                data.Users.forEach(item => {
                     item.checked = false;
-                    item.price = +((Math.random() * (10000000 - 100)) + 100).toFixed(2);
+                    console.log(data);
+                  //  item.price = +((Math.random() * (10000000 - 100)) + 100).toFixed(2);
                 });
                 return data;
             })
             .subscribe(data => {
                 this.loading = false;
-                this.list = data.results;
+                this.list = data.Users;
             });
     }
 
