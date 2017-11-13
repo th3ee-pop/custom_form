@@ -36,7 +36,7 @@ export class Table715Component extends Question implements AnswerInterface {
   /**
    * 答案的校验结果,true为校验成功
    */
-  changed = false;
+  answerChanged = false;
 
   /**
    * 非必填项
@@ -64,13 +64,43 @@ export class Table715Component extends Question implements AnswerInterface {
    */
   answerChange() {
 
+
+    const questionID = 'ID7_15';
+    const res = []; // 结果暂存
+    for (let col = 0; col < this.illnessNames.length; col++) {  // 本题结构和其他的不一样，所以需要横向遍历
+        const colName = String.fromCharCode(col + 'a'.charCodeAt(0));  // 本列后缀，从a-f
+        res.push({   // 母亲
+            Record_ID : questionID + '_1_' +  colName, 
+            Record_Value : this.mother[col] !== undefined ? this.mother[col] : false    // 如不为空，则push进
+        });
+
+        res.push({   // 父亲
+          Record_ID : questionID + '_2_' +  colName, 
+          Record_Value : this.father[col] !== undefined ? this.father[col] : false    // 如不为空，则push进
+        });
+
+        res.push({   // 兄弟姐妹
+          Record_ID : questionID + '_3_' +  colName, 
+          Record_Value : this.brothersAndSisters[col] !== undefined ? this.brothersAndSisters[col] : ''    // 如不为空，则push进
+        });
+
+        res.push({   // 兄弟姐妹
+          Record_ID : questionID + '_4_' +  colName, 
+          Record_Value : this.children[col] !== undefined ? this.children[col] : ''    // 如不为空，则push进
+        });
+    }
+
+    this.answer = res;
+
+    console.log(res);
+
     if (this.required) {  // 如果表格必填
         if (this.answerCheck() === true) // 如果校验成功
-            this.changed = true;
+            this.answerChanged = true;
         else 
-            this.changed = false;
+            this.answerChanged = false;
     }else {  // 如果非必填
-        this.changed = true;
+        this.answerChanged = true;
     }
   }
 
@@ -88,7 +118,7 @@ export class Table715Component extends Question implements AnswerInterface {
    */
   getAnswer() {
     const answer = {
-        available : this.changed ? 'true' : 'false',
+        available : this.answerChanged ? 'true' : 'false',
         answer : this.answer
     };
     return answer;

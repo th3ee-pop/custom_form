@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Question } from '../../question';
 import { AnswerInterface } from '../../answerInterface';
+import { PACKAGE_ROOT_URL } from '@angular/core/src/application_tokens';
 
 @Component({
   selector: 'app-table51',
@@ -17,7 +18,7 @@ export class Table51Component  extends Question implements AnswerInterface {
   /**
    * 是否必填，如果是true，则必填
    */
-  required = true;
+  required = false;
 
   /**
    * 每行后面的input
@@ -56,7 +57,7 @@ export class Table51Component  extends Question implements AnswerInterface {
   /**
    * 答案的校验结果,true为校验成功
    */
-  changed = false;
+  answerChanged = false;
 
 
   constructor() {
@@ -69,12 +70,9 @@ export class Table51Component  extends Question implements AnswerInterface {
   }
 
   /**
-   * 有数据改变,执行校验
+   * radio 选择
    */
-  answerChange(row, col) {
-      this.answer = this.localAnswer;
-
-
+  radioChange(row, col) {
 
       // 模拟radio,实现checkbox之间的互斥
       for (let i = 0; i < 5; i++) {
@@ -82,15 +80,60 @@ export class Table51Component  extends Question implements AnswerInterface {
       }
       this.localAnswer[row][col] = true;
 
+      this.answerChange();
+    
+
+  }
+
+  answerChange() {
+    
+    const questionID = 'ID5_1';
+    const res = [];     
+
+
+    // 获取右边摄入量
+    for (let index = 0; index < this.foodNames.length; index ++) {  // 遍历每一行, 获取摄入量
+      // 答案中的一项
+      const item = {
+          questionID : '',
+          answer: ''
+      };
+      // 答案id
+      item.questionID = questionID + '_' + (index + 1) + '_' + 'f';  
+      item.answer = (this.amount[index] === undefined) ? '' : this.amount[index]; // 答案内容，如果没有填写，则改为空
+      res.push(item);
+    }
+
+
+    // 获取中间checkbox内容
+    for (let row = 0; row < this.foodNames.length; row ++) {
+        for (let col = 0; col < 5; col ++ ) {
+            const item = {
+                Record_ID : '',
+                Record_Value: ''
+            };
+            item.Record_ID = questionID + '_' + (row + 1) + '_' + String.fromCharCode(col + 'a'.charCodeAt(0));  
+            item.Record_Value = (this.localAnswer[row][col] === undefined) ? false : this.localAnswer[row][col]; // 答案内容，如果没有填写，则改为空
+            res.push(item);
+
+        }
+    }
+
+
+
+    this.answer = res;
+
+    console.log(res);
+
+
       if (this.required === true) {
         if (this.answerCheck() === true)
-          this.changed =  true;
+          this.answerChanged =  true;
         else
-          this.changed = false;
+          this.answerChanged = false;
       } else {
-        this.changed = true;
+        this.answerChanged = true;
       }
-
   }
 
 
@@ -100,8 +143,8 @@ export class Table51Component  extends Question implements AnswerInterface {
   answerCheck() {
       // 本题只需校验checkbox勾选的一行，是否填写
       for (let row = 0; row < 24; row++) {
-          for (let line = 0; line < 5; line++) { // 逐行检查
-              if (this.localAnswer[line][row] !== undefined) // 至少有一个填写
+          for (let col = 0; col < 5; col++) { // 逐行检查
+              if (this.localAnswer[col][row] !== undefined) // 至少有一个填写
                   return true;
           }
       }
@@ -113,7 +156,7 @@ export class Table51Component  extends Question implements AnswerInterface {
    */
   getAnswer() {
       const answer = {
-          available : this.changed ? 'true' : 'false',
+          available : this.answerChanged ? 'true' : 'false',
 
           // 此处answer需要根据api，在answerChanged里面修改
           answer : this.answer

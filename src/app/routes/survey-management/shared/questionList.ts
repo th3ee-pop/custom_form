@@ -1484,161 +1484,166 @@ export class QuestionList {
             ],
             'tittle': '(如果生父已经去世）你生母去世时的年龄是？（单位：岁）'
         },
-        {
-            'id': '7.15',
-            'type': 'checkbox',
-            'content': [
-                '生母',
-                '生父',
-                '亲兄弟姐妹',
-                '亲生子女'
-            ],
-            'tittle': '在你的直系亲属中，是否有人曾被乡/区级医院或以上单位医生诊断患有过下述疾病？'
-        },
-        {
-            'id': '7.15a',
-            'type': 'input',
-            'content': [
-                {
-                    'dataType': 'text',
-                    'inform': '',
-                    'validType': 'twonum'
-                }
-            ],
-            'tittle': '亲兄弟姐妹患中风的人数'
-        },
-        {
-            'id': '7.15b',
-            'type': 'input',
-            'content': [
-                {
-                    'dataType': 'text',
-                    'inform': '',
-                    'validType': 'twonum'
-                }
-            ],
-            'tittle': '亲兄弟姐妹患急性心梗的人数'
-        },
-        {
-            'id': '7.15c',
-            'type': 'input',
-            'content': [
-                {
-                    'dataType': 'text',
-                    'inform': '',
-                    'validType': 'twonum'
-                }
-            ],
-            'tittle': '亲兄弟姐妹患糖尿病的人数'
-        },
 
         {
-            'id': '7.15d',
-            'type': 'input',
-            'content': [
-                {
-                    'dataType': 'text',
-                    'inform': '',
-                    'validType': 'twonum'
-                }
-            ],
-            'tittle': '亲兄弟姐妹患抑郁症的人数'
+            'id': '7.15',
+            'type': 'table715',
         },
-        {
-            'id': '7.15d1',
-            'type': 'input',
-            'content': [
-                {
-                    'dataType': 'text',
-                    'inform': ''
-                }
-            ],
-            'tittle': '亲生子女患抑郁症的人数'
-        },
-        {
-            'id': '7.15b1',
-            'type': 'input',
-            'content': [
-                {
-                    'dataType': 'text',
-                    'inform': '',
-                    'validType': 'twonum'
-                }
-            ],
-            'tittle': '亲生子女患急性心梗的人数'
-        },
-        {
-            'id': '7.15f1',
-            'type': 'input',
-            'content': [
-                {
-                    'dataType': 'text',
-                    'inform': '',
-                    'validType': 'twonum'
-                }
-            ],
-            'tittle': '亲生子女患慢阻肺/肺气肿/肺心病/慢支的人数'
-        },
-        {
-            'id': '7.15e1',
-            'type': 'input',
-            'content': [
-                {
-                    'dataType': 'text',
-                    'inform': '',
-                    'validType': 'twonum'
-                }
-            ],
-            'tittle': '亲生子女患恶性肿瘤的人数'
-        },
-        {
-            'id': '7.15c1',
-            'type': 'input',
-            'content': [
-                {
-                    'dataType': 'text',
-                    'inform': '',
-                    'validType': 'twonum'
-                }
-            ],
-            'tittle': '亲生子女患糖尿病的人数'
-        },
-        {
-            'id': '7.15a1',
-            'type': 'input',
-            'content': [
-                {
-                    'dataType': 'text',
-                    'inform': '',
-                    'validType': 'twonum'
-                }
-            ],
-            'tittle': '亲生子女患中风的人数'
-        },
-        {
-            'id': '7.15f',
-            'type': 'input',
-            'content': [
-                {
-                    'dataType': 'text',
-                    'inform': '',
-                    'validType': 'twonum'
-                }
-            ],
-            'tittle': '亲兄弟姐妹患慢阻肺/肺气肿/肺心病/慢支的人数'
-        },
-        {
-            'id': '7.15e',
-            'type': 'input',
-            'content': [
-                {
-                    'dataType': 'text',
-                    'inform': '',
-                    'validType': 'twonum'
-                }
-            ],
-            'tittle': '亲兄弟姐妹患恶性肿瘤的人数'
-        },
+        // {
+        //     'id': '7.15',
+        //     'type': 'checkbox',
+        //     'content': [
+        //         '生母',
+        //         '生父',
+        //         '亲兄弟姐妹',
+        //         '亲生子女'
+        //     ],
+        //     'tittle': '在你的直系亲属中，是否有人曾被乡/区级医院或以上单位医生诊断患有过下述疾病？'
+        // },
+        // {
+        //     'id': '7.15a',
+        //     'type': 'input',
+        //     'content': [
+        //         {
+        //             'dataType': 'text',
+        //             'inform': '',
+        //             'validType': 'twonum'
+        //         }
+        //     ],
+        //     'tittle': '亲兄弟姐妹患中风的人数'
+        // },
+        // {
+        //     'id': '7.15b',
+        //     'type': 'input',
+        //     'content': [
+        //         {
+        //             'dataType': 'text',
+        //             'inform': '',
+        //             'validType': 'twonum'
+        //         }
+        //     ],
+        //     'tittle': '亲兄弟姐妹患急性心梗的人数'
+        // },
+        // {
+        //     'id': '7.15c',
+        //     'type': 'input',
+        //     'content': [
+        //         {
+        //             'dataType': 'text',
+        //             'inform': '',
+        //             'validType': 'twonum'
+        //         }
+        //     ],
+        //     'tittle': '亲兄弟姐妹患糖尿病的人数'
+        // },
+
+        // {
+        //     'id': '7.15d',
+        //     'type': 'input',
+        //     'content': [
+        //         {
+        //             'dataType': 'text',
+        //             'inform': '',
+        //             'validType': 'twonum'
+        //         }
+        //     ],
+        //     'tittle': '亲兄弟姐妹患抑郁症的人数'
+        // },
+        // {
+        //     'id': '7.15d1',
+        //     'type': 'input',
+        //     'content': [
+        //         {
+        //             'dataType': 'text',
+        //             'inform': ''
+        //         }
+        //     ],
+        //     'tittle': '亲生子女患抑郁症的人数'
+        // },
+        // {
+        //     'id': '7.15b1',
+        //     'type': 'input',
+        //     'content': [
+        //         {
+        //             'dataType': 'text',
+        //             'inform': '',
+        //             'validType': 'twonum'
+        //         }
+        //     ],
+        //     'tittle': '亲生子女患急性心梗的人数'
+        // },
+        // {
+        //     'id': '7.15f1',
+        //     'type': 'input',
+        //     'content': [
+        //         {
+        //             'dataType': 'text',
+        //             'inform': '',
+        //             'validType': 'twonum'
+        //         }
+        //     ],
+        //     'tittle': '亲生子女患慢阻肺/肺气肿/肺心病/慢支的人数'
+        // },
+        // {
+        //     'id': '7.15e1',
+        //     'type': 'input',
+        //     'content': [
+        //         {
+        //             'dataType': 'text',
+        //             'inform': '',
+        //             'validType': 'twonum'
+        //         }
+        //     ],
+        //     'tittle': '亲生子女患恶性肿瘤的人数'
+        // },
+        // {
+        //     'id': '7.15c1',
+        //     'type': 'input',
+        //     'content': [
+        //         {
+        //             'dataType': 'text',
+        //             'inform': '',
+        //             'validType': 'twonum'
+        //         }
+        //     ],
+        //     'tittle': '亲生子女患糖尿病的人数'
+        // },
+        // {
+        //     'id': '7.15a1',
+        //     'type': 'input',
+        //     'content': [
+        //         {
+        //             'dataType': 'text',
+        //             'inform': '',
+        //             'validType': 'twonum'
+        //         }
+        //     ],
+        //     'tittle': '亲生子女患中风的人数'
+        // },
+        // {
+        //     'id': '7.15f',
+        //     'type': 'input',
+        //     'content': [
+        //         {
+        //             'dataType': 'text',
+        //             'inform': '',
+        //             'validType': 'twonum'
+        //         }
+        //     ],
+        //     'tittle': '亲兄弟姐妹患慢阻肺/肺气肿/肺心病/慢支的人数'
+        // },
+        // {
+        //     'id': '7.15e',
+        //     'type': 'input',
+        //     'content': [
+        //         {
+        //             'dataType': 'text',
+        //             'inform': '',
+        //             'validType': 'twonum'
+        //         }
+        //     ],
+        //     'tittle': '亲兄弟姐妹患恶性肿瘤的人数'
+        // },
 
         {
             'id': '7.16',
