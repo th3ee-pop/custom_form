@@ -10,6 +10,7 @@ import { TablecmpComponent} from '../shared/tablecmp/tablecmp.component';
 import { IdccmpComponent} from '../shared/idccmp/idccmp.component';
 import { PhoneComponent } from '../shared/phonecmp/phonecmp.component';
 import { SelectivePreloadingStrategy} from './selective-preloading-strategy';
+import { QuestionList } from '../shared/questionList';
 
 @Component({
     selector: 'app-survey-management',
