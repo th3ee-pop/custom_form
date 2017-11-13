@@ -118,14 +118,14 @@ export class UserSettingsComponent implements OnInit {
         console.log('pwd value', this.pwd);
     }
 
-    customCompModel(size: '' | 'lg' | 'sm' = '', user: object, authoriy: string) {
+    customCompModel(size: '' | 'lg' | 'sm' = '', user: object, group: string) {
         this.options = {
             wrapClassName: size ? 'modal-' + size : '',
             content: ModelCustomComponent,
             footer: false,
             componentParams: {
                 user: user,
-                authority: authoriy
+                authority: group
             }
         };
         this.modal.open(this.options).subscribe(result => {
