@@ -45,7 +45,7 @@ export class HttpService {
      * @parmas {{PID: string; RecordID: string}}
      * params = {
         'PID' : '003',
-        'RecordID' : 'ID1'
+        'RecordID' : 'ID1' 返回第一部分的所有答案。检索ID返回该用户全部答案。
     };
      */
     getRecord(params: any): Observable<any> {
@@ -80,6 +80,8 @@ export class HttpService {
     }
   ]
     };
+     * @returns {Observable<R|T>}
+     * {
      */
     putRecord(params: any): Observable<any> {
         return this.http.put(this.baseUrl + '/healthexamination/recordop/', params, this.options)
@@ -91,8 +93,23 @@ export class HttpService {
     }
 
     /**
-     * 获取所有病人
+     * 获取所有问卷及基本信息（上一次填写记录时间暂未增加）
      * @returns {Observable<R|T>}
+     * {
+     * "Count": 2,
+     * "PIDs": [{
+       "PID": 3,
+      "体检编号": "1000000001",
+      "表格是否完成": "",
+      "姓名": ""
+    },
+     {
+       "PID": 4,
+       "体检编号": "1000000001",
+       "表格是否完成": "",
+       "姓名": ""
+     }]
+     }
      */
     getPatientList(): Observable<any>{
         return this.http.get(this.baseUrl + "/healthexamination/recordlist/",this.options)
