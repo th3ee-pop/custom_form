@@ -6,8 +6,8 @@ import 'rxjs/add/operator/do';
 import * as moment from 'moment';
 
 import { TokenService } from '../net/token/token.service';
-import {TokenData} from "@core/net/token/token.type";
-import {Headers, CookieXSRFStrategy} from "@angular/http";
+import {TokenData} from '@core/net/token/token.type';
+import {Headers, CookieXSRFStrategy} from '@angular/http';
 
 @Injectable()
 export class HttpService {
@@ -17,22 +17,22 @@ export class HttpService {
     constructor(
         private http: HttpClient,
         private injector: Injector
-    ){}
+    ) {}
 
     options = {
-        headers:new HttpHeaders({"X-CSRFToken": this.injector.get(TokenService).data.access_token})
+        headers: new HttpHeaders({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
     };
 
-    getParams(params: any):any{
-       return 'q='+JSON.stringify(params);
+    getParams(params: any): any {
+       return 'q=' + JSON.stringify(params);
     }
 
 
-    getRecordId(params: any):any{
-        let recordId = [];
+    getRecordId(params: any): any {
+        const recordId = [];
             params.Records.forEach(function (v) {
-                for( let key in v ){
-                    if (key != "Updated_time") {
+                for ( const key in v ) {
+                    if (key !== 'Updated_time') {
                         recordId.push(key);
                     }
                 }
@@ -45,13 +45,13 @@ export class HttpService {
      * @parmas {{PID: string; RecordID: string}}
      * params = {
         'PID' : '003',
-        'RecordID' : 'ID1'
+        'RecordID' : 'ID1' 返回第一部分的所有答案。检索ID返回该用户全部答案。
     };
      */
     getRecord(params: any): Observable<any> {
             return this.http
             .get(this.baseUrl + '/healthexamination/recordop/', {
-                headers:new HttpHeaders({"X-CSRFToken": this.injector.get(TokenService).data.access_token}),
+                headers: new HttpHeaders({'X-CSRFToken': this.injector.get(TokenService).data.access_token}),
                 params: this.getParams(params) })
             .do(() => {})
             .catch((res) => {
@@ -80,6 +80,8 @@ export class HttpService {
     }
   ]
     };
+     * @returns {Observable<R|T>}
+     * {
      */
     putRecord(params: any): Observable<any> {
         return this.http.put(this.baseUrl + '/healthexamination/recordop/', params, this.options)
@@ -91,16 +93,31 @@ export class HttpService {
     }
 
     /**
-     * 获取所有病人
+     * 获取所有问卷及基本信息（上一次填写记录时间暂未增加）
      * @returns {Observable<R|T>}
+     * {
+     * "Count": 2,
+     * "PIDs": [{
+       "PID": 3,
+      "体检编号": "1000000001",
+      "表格是否完成": "",
+      "姓名": ""
+    },
+     {
+       "PID": 4,
+       "体检编号": "1000000001",
+       "表格是否完成": "",
+       "姓名": ""
+     }]
+     }
      */
-    getPatientList(): Observable<any>{
-        return this.http.get(this.baseUrl + "/healthexamination/recordlist/",this.options)
-            .do(()=>{})
-            .catch((res)=>{
+    getPatientList(): Observable<any> {
+        return this.http.get(this.baseUrl + '/healthexamination/recordlist/', this.options)
+            .do(() => {} )
+            .catch((res) => {
             console.log(res);
             return res;
-            })
+            });
     }
 
     /**
@@ -111,14 +128,14 @@ export class HttpService {
             "password":params.password
         };
      */
-    login(user){
-        const api = "/account/login/";
+    login(user) {
+        const api = '/account/login/';
         console.log(user);
         return this.http.post(this.baseUrl + api, user)
-               .do((res:any) => {
-                   let localuser = new TokenService();
+               .do((res: any) => {
+                   const localuser = new TokenService();
                    localuser.data = <TokenData>{
-                       access_token:res.TOKEN,
+                       access_token: res.TOKEN,
                        expire_time: moment().add(7, 'days').unix(),
                        refresh_token: '',
                        refresh_token_valid_time: moment().add(14, 'days').unix(),
@@ -128,7 +145,7 @@ export class HttpService {
                })
                .catch((res) => {
                return res;
-           })
+           });
     }
 
 

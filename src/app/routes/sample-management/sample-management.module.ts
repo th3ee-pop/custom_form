@@ -21,7 +21,7 @@ const routes:Routes = [
       ReactiveFormsModule ,
       NgZorroAntdModule.forRoot()
   ],
-    exports:[
+    exports: [
         RouterModule
     ],
   declarations: [
