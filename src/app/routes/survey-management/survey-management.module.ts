@@ -30,6 +30,7 @@ import { DatecmpComponent } from './shared/datecmp/datecmp.component';
 
 const routes: Routes = [
     { path: 'management/:PID', component: SurveyManagementComponent },
+    { path: 'management', component: SurveyManagementComponent },
     { path: 'detail', component: SurveyOverviewComponent  }
 ];
 

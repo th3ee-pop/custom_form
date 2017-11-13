@@ -151,6 +151,8 @@ export class SurveyManagementComponent implements OnInit {
     }
 
     fillingAnswer() {
+        // let
+        // this.service.getRecord()
         this.RadioItems.forEach( item => {
 
         } );
