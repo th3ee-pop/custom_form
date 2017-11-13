@@ -1,9 +1,9 @@
-<div class="content__title">
-    <h1>
-        生物样本库
-        <!--<small>Native support</small>-->
-    </h1>
-</div>
+<!--<div class="content__title">-->
+    <!--<h1>-->
+        <!--生物样本库-->
+        <!--&lt;!&ndash;<small>Native support</small>&ndash;&gt;-->
+    <!--</h1>-->
+<!--</div>-->
 
 
 <div nz-row [nzGutter]="16">
@@ -11,43 +11,95 @@
         <nz-card>
             <ng-template #title>生物样本记录</ng-template>
             <ng-template #body>
-                <form nz-form>
+                <form nz-form [formGroup]="validateForm" (ngSubmit)="_submitForm()">
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col [nzSm]="4">
-                            <label>条码</label>
+                            <label nz-form-item-required>条码</label>
                         </div>
-                        <div nz-form-control nz-col [nzSm]="20">
-                            <nz-input></nz-input>
+                        <div nz-form-control nz-col [nzSm]="10">
+                            <nz-input formControlName="barcode"></nz-input>
+                        </div>
+                    </div>
+                    <div nz-form-item nz-row>
+                        <div nz-form-label nz-col [nzSpan]="4">
+                            <label nz-form-item-required>省份</label>
+                        </div>
+                        <div nz-form-control nz-col [nzSpan]="5">
+                            <nz-select formControlName="province" [nzSize]="'large'">
+                                <nz-option [nzLabel]="'陕西'" [nzValue]="'1'"></nz-option>
+                                <nz-option [nzLabel]="'甘肃'" [nzValue]="'2'"></nz-option>
+                                <nz-option [nzLabel]="'宁夏'" [nzValue]="'3'"></nz-option>
+                                <nz-option [nzLabel]="'青海'" [nzValue]="'4'"></nz-option>
+                                <nz-option [nzLabel]="'新疆'" [nzValue]="'5'"></nz-option>
+                            </nz-select>
                         </div>
                     </div>
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col [nzSm]="4">
-                            <label>省</label>
+                            <label nz-form-item-required>项目点</label>
                         </div>
-                        <div nz-form-control nz-col [nzSm]="20">
-                            <nz-input></nz-input>
-                        </div>
-                    </div>
-                    <div nz-form-item nz-row>
-                        <div nz-form-label nz-col [nzSm]="4">
-                            <label>……</label>
-                        </div>
-                        <div nz-form-control nz-col [nzSm]="20">
-                            <nz-input></nz-input>
+                        <div nz-form-control nz-col [nzSm]="5">
+                            <nz-input formControlName="point"></nz-input>
+                            <!--<div nz-form-explain *ngIf="getFormControl('point').dirty&&getFormControl('point').hasError('required')">请检查您的输入</div>-->
                         </div>
                     </div>
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col [nzSm]="4">
-                            <label>条码</label>
+                            <label nz-form-item-required>存放地点</label>
                         </div>
-                        <div nz-form-control nz-col [nzSm]="20">
-                            <nz-input></nz-input>
+                        <div nz-form-control nz-col [nzSm]="10">
+                            <nz-input formControlName="building" (ngModelChange)="updateConfirmValidator('building')"></nz-input>
+                            <div nz-form-explain *ngIf="getFormControl('building').dirty&&getFormControl('building').hasError('required')">请检查您的输入</div>
+                        </div>
+                    </div>
+                    <div nz-form-item nz-row>
+                        <div nz-form-label nz-col [nzSm]="4">
+                            <label nz-form-item-required>具体位置</label>
+                        </div>
+                        <div nz-form-control nz-col [nzSm]="2" [nzValidateStatus]="getFormControl('ref')">
+                            <nz-input-number formControlName="ref" (ngModelChange)="updateConfirmValidator('ref')"></nz-input-number>
+                            <span nz-form-text> 号冰柜</span>
+                        </div>
+                        <div nz-form-control nz-col [nzSm]="2" [nzValidateStatus]="getFormControl('lay')">
+                            <nz-input-number formControlName="lay" (ngModelChange)="updateConfirmValidator('lay')"></nz-input-number>
+                            <span nz-form-text> 层</span>
+                        </div>
+                        <div nz-form-control nz-col [nzSm]="2" [nzValidateStatus]="getFormControl('col')">
+                            <nz-input-number formControlName="col" (ngModelChange)="updateConfirmValidator('col')"></nz-input-number>
+                            <span nz-form-text> 行</span>
+                        </div>
+                        <div nz-form-control nz-col [nzSm]="2" [nzValidateStatus]="getFormControl('row')">
+                            <nz-input-number formControlName="row" (ngModelChange)="updateConfirmValidator('row')"></nz-input-number>
+                            <span nz-form-text> 列</span>
+                        </div>
+                        <div nz-form-control nz-col [nzSm]="2" [nzValidateStatus]="getFormControl('shelf')">
+                            <nz-input-number formControlName="shelf" (ngModelChange)="updateConfirmValidator('shelf')"></nz-input-number>
+                            <span nz-form-text> 号架子</span>
+                        </div>
+                    </div>
+                    <!--<div nz-form-item nz-row>-->
+                            <!--<div nz-col [nzSm]="5" nz-form-explain *ngIf="(getFormControl('ref').dirty&&getFormControl('ref').hasError('error'))-->
+                            <!--||(getFormControl('lay').dirty&&getFormControl('lay').hasError('error'))-->
+                            <!--||(getFormControl('col').dirty&&getFormControl('col').hasError('error'))-->
+                            <!--||(getFormControl('row').dirty&&getFormControl('row').hasError('error'))-->
+                            <!--||(getFormControl('shelf').dirty&&getFormControl('shelf').hasError('error'))">数据不可为负！</div>-->
+                    <!--</div>-->
+                    <div nz-form-item nz-row>
+                        <div nz-form-label nz-col [nzSm]="4">
+                            <label nz-form-item-required>编号</label>
+                        </div>
+                        <div nz-form-control nz-col [nzSm]="10" [nzValidateStatus]="getFormControl('num')">
+                            <nz-input formControlName="num" (ngModelChange)="updateConfirmValidator('num')"></nz-input>
+                            <div nz-form-explain *ngIf="getFormControl('num').dirty&&getFormControl('num').hasError('required')">请检查您的输入</div>
+                            <div nz-form-explain *ngIf="getFormControl('num').dirty&&getFormControl('num').hasError('error')">请参照省份和项目点填写编号</div>
                         </div>
                     </div>
                 </form>
-                <button nz-button [nzType]="'primary'" [disabled]="disabled" class="mr-sm" (click)="goBack()">
+                <div nz-form-control nz-col [nzSpan]="14" [nzOffset]="4">
+                <button nz-button [nzType]="'primary'" [disabled]="disabled" class="mr-sm" (click)="goBack();_submitForm()">
                     <span>保存</span>
                 </button>
+                </div>
             </ng-template>
         </nz-card>
     </div>
