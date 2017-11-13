@@ -63,23 +63,15 @@ export class HttpService {
     /**
      * 添加记录操作，ID1_1：题1的第一个选择，ID1_4_2: 题4的第二个选项
      * @params {{PID: string; Records: [{ID1_1: string; Updated_time: string},{ID1_4_2: string; Updated_time: string}]}}
-     *  params = {
-        'PID' : '006',
-        'Records' : [
-    {
-      "ID1_1": "1000000001",
-      "Updated_time": "2017-11-04T23:31:23.339478"
-    },
-    {
-      "ID1_2": "1000000001",
-      "Updated_time": "2017-11-07T16:46:01.615804"
-    },
-    {
-      "ID1_4_2": "true",
-      "Updated_time": "2017-11-04T23:52:08.196347"
-    }
-  ]
-    };
+     * 'PID':'3'
+     'Records' :
+     '[
+     {"Record_ID":"ID1_1","Record_Value": "1000000001", "Updated_time": "" },
+     {"Record_ID":"ID1_3_2","Record_Value": "true", "Updated_time": "" },
+     {"Record_ID":"ID1_9_2","Record_Value": "true", "Updated_time": "" },
+     {"Record_ID":"ID2_2_2","Record_Value": "true", "Updated_time": "" }
+     ]'
+     };
      * @returns {Observable<R|T>}
      * {
      */
