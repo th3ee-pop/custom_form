@@ -68,7 +68,7 @@ export class Table913Component extends Question implements AnswerInterface {
 
         res.push({
             Record_ID : questionID + '_' + (i + 1) + '_b',
-            Record_Value :  this.operationAge[i] === undefined ? false : this.operationAge[i]
+            Record_Value :  this.operationAge[i] === undefined ? '' : this.operationAge[i]
         });
     }
 
