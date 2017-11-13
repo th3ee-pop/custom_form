@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import {Router, convertToParamMap} from '@angular/router';
 
 @Component({
     selector: 'app-sample-add',
@@ -9,91 +9,64 @@ import { Router } from '@angular/router';
 })
 export class SampleAddComponent implements OnInit {
 
-    selectValue;
-
-    options = [
-        { value: 'jack', label: 'Jack' },
-        { value: 'lucy', label: 'Lucy' },
-        { value: 'disabled', label: 'Disabled', disabled: true }
-    ];
-
-    cityValue: any[] = null;
-    cities = [{
-        value: 'zhejiang',
-        label: 'Zhejiang',
-        children: [{
-            value: 'hangzhou',
-            label: 'Hangzhou',
-            children: [{
-                value: 'xihu',
-                label: 'West Lake',
-                isLeaf: true
-            }],
-        }],
-    }, {
-        value: 'jiangsu',
-        label: 'Jiangsu',
-        children: [{
-            value: 'nanjing',
-            label: 'Nanjing',
-            children: [{
-                value: 'zhonghuamen',
-                label: 'Zhong Hua Men',
-                isLeaf: true
-            }],
-        }],
-    }];
-
-    marks = {
-        0: 'A',
-        25: 'B',
-        50: 'C',
-        75: 'D',
-        100: 'E'
-    };
-
-    rate = 3;
-
-    hotTags: string[] = ['Movie', 'Books', 'Music', 'Sports'];
-
-    selectedTags: string[] = [];
-
     validateForm: FormGroup;
 
-    controlArray = [];
+    provinces=['陕西','甘肃','宁夏','青海','新疆'];
 
-    isCollapse = true;
+    _submitForm() {
+        for (const i in this.validateForm.controls) {
+            this.validateForm.controls[ i ].markAsDirty();
+        }
+        console.log("submit!");
+
+    }
 
     constructor(private fb: FormBuilder, private router: Router) {
-        this.selectValue = this.options[0];
     }
+
+    updateConfirmValidator(key) {
+        /** wait for refresh value */
+        setTimeout(_ => {
+            this.validateForm.controls[ key ].updateValueAndValidity();
+        });
+    }
+
+    confirmationValidator = (control: FormControl): { [s: string]: boolean } => {
+        const temp = control.value;
+        console.log(temp);
+        if (!control.value) {
+            return { required: true };
+        } else if ( temp[0] !== this.validateForm.value.province ||  temp[1]!== this.validateForm.value.point ) {
+            console.info("error");
+            return { confirm: true, error: true };
+        }
+    };
+
+    confirmationNum = (control: FormControl): { [s: string]: boolean } => {
+        if(!control.value){
+            return { required: true };
+        }else if( control.value < 0 ){
+            return { confirm: true, error: true};
+        }
+    };
 
     ngOnInit() {
-        this.validateForm = this.fb.group({});
-        for (let i = 0; i < 10; i++) {
-            this.controlArray.push({ index: i, show: i < 6 });
-            this.validateForm.addControl(`field${i}`, new FormControl());
-        }
-    }
-
-    changeCity(value) {
-        console.log(value);
-    }
-
-    handleChange(checked: boolean, tag: string): void {
-        if (checked) {
-            this.selectedTags.push(tag);
-        } else {
-            this.selectedTags = this.selectedTags.filter(t => t !== tag);
-        }
-        console.log('You are interested in: ', this.selectedTags);
-    }
-
-    toggleCollapse() {
-        this.isCollapse = !this.isCollapse;
-        this.controlArray.forEach((c, index) => {
-            c.show = this.isCollapse ? (index < 6) : true;
+        this.validateForm = this.fb.group({
+            barcode:[null, [ Validators.required]],
+            province:[null, [ Validators.required]],
+            point:[null, [ Validators.required]],
+            building:[null, [ Validators.required]],
+            ref:[null, [ Validators.required, this.confirmationNum]],
+            lay:[null, [ Validators.required, this.confirmationNum]],
+            col:[null, [ Validators.required, this.confirmationNum]],
+            row:[null, [ Validators.required, this.confirmationNum]],
+            shelf:[null, [ Validators.required, this.confirmationNum]],
+            num:[null, [ Validators.required, this.confirmationValidator]],
         });
+    }
+
+    getFormControl(name) {
+        return this.validateForm.controls[ name ];
     }
 
     resetForm() {

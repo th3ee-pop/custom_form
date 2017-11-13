@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NzMessageService } from 'ng-zorro-antd';
+import { NzMessageService,NzModalService } from 'ng-zorro-antd';
 import { Router } from '@angular/router';
+import { ModelCustomComponent } from './custom.component';
 
 @Component({
     selector: 'app-sample-form',
@@ -28,16 +29,16 @@ export class SampleFormComponent implements OnInit {
         this._allChecked = false;
         this._indeterminate = false;
         this.list = [{
-            'id1':'0000000',
+            'id1':'00000000000',
             'id2':'陕西省',
-            'id3':'10000000001',
+            'id3':'1',
             'id4':'xx楼',
             'id5':'xx号',
             'id6':'xx层',
             'id7':'1',
             'id8':'1',
             'id9':'1',
-            'id10':'xxx'
+            'id10':'110000111'
         }];
         // this._randomUser.getUsers(this.pi, this.ps, this.args)
         //     .map(data => {
@@ -68,7 +69,7 @@ export class SampleFormComponent implements OnInit {
         this._indeterminate = this._allChecked ? false : checkedCount > 0;
     }
 
-    constructor(private message: NzMessageService,private router: Router) {
+    constructor(private message: NzMessageService,private router: Router,private modal: NzModalService,) {
     }
 
     ngOnInit() {
@@ -77,6 +78,21 @@ export class SampleFormComponent implements OnInit {
 
     showMsg(msg: string) {
         this.message.info(msg);
+    }
+
+    confirmModel(contentTpl) {
+        this.modal.open({
+            title: '详细信息',
+            content: contentTpl,
+            okText: '关闭',
+            // cancelText: '取消',
+            // onOk: () => {
+            //     this.message.success('关闭');
+            // },
+            // onCancel: () => {
+            //     this.message.error('Click Return!');
+            // }
+        });
     }
 
     goAdd(){
