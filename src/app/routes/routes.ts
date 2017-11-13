@@ -9,6 +9,7 @@ import { Page404Component } from './pages/404/404.component';
 import { Page500Component } from './pages/500/500.component';
 import { DashboardV1Component } from './dashboard/v1/v1.component';
 import { LoginAuthGuard } from './pages/login/login.guard.service';
+import { SurveyManagementComponent} from './survey-management/survey-management/survey-management.component';
 
 export const routes = [
     {
@@ -27,7 +28,8 @@ export const routes = [
             { path: 'maps', loadChildren: './maps/maps.module#MapsModule' },
             { path: 'logics', loadChildren: './logics/logics.module#LogicsModule' },
             { path: 'extras', loadChildren: './extras/extras.module#ExtrasModule' },
-            { path: 'survey', loadChildren: './survey-management/survey-management.module#SurveyManagementModule' },
+            { path: 'survey', loadChildren: './survey-management/survey-management.module#SurveyManagementModule',
+                data: { title: 'single'}},
             { path: 'user', loadChildren: './user-management/user-management.module#UserManagementModule' },
             { path: 'trace', loadChildren: './trace-management/trace-management.module#TraceManagementModule' },
             { path: 'sample', loadChildren: './sample-management/sample-management.module#SampleManagementModule' },
@@ -46,9 +48,10 @@ export const routes = [
     // 单页不包裹Layout
     { path: 'register', component: RegisterComponent, data: { translate: 'register' } },
     { path: 'login', component: LoginComponent, data: { title: 'login' } },
+    { path: 'single_survey', component: SurveyManagementComponent, data: { title: 'single' } },
     { path: 'forget', component: ForgetComponent, data: { translate: 'forget' } },
     { path: 'lock', component: LockComponent, data: { translate: 'lock' } },
-    { path: 'maintenance', component: MaintenanceComponent },
+    { path: 'maintenance', component: MaintenanceComponent},
     { path: '404', component: Page404Component },
     { path: '500', component: Page500Component },
     { path: '**', redirectTo: 'dashboard' }

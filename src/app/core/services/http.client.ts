@@ -39,8 +39,8 @@ export class _HttpClient {
         return ret;
     }
 
-    getParams(params: any):any{
-        return 'q='+JSON.stringify(params);
+    getParams(params: any): any {
+        return 'q=' + JSON.stringify(params);
     }
 
     private begin() {
