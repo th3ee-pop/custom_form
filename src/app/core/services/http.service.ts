@@ -112,10 +112,8 @@ export class HttpService {
                 return res;
             });
     }
-
-    deleteRecord():Observable<any> {
-        const deleteId = { 'PID': '1'};
-        console.log(deleteId);
+    // deleteId = { 'PID': '1'};
+    deleteRecord(deleteId):Observable<any> {
         return this.Http.delete(this.baseUrl + '/healthexamination/recordop/',{
             body: deleteId,
             headers:new Headers({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
