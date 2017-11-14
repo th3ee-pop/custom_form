@@ -17,7 +17,7 @@ export const routes = [
         component: LayoutComponent,
         canActivateChild: [LoginAuthGuard],
         children: [
-            { path: '', redirectTo: 'user', pathMatch: 'full' },
+            { path: '', redirectTo: 'user/setting', pathMatch: 'full' },
             { path: 'dashboard', redirectTo: 'dashboard/v1', pathMatch: 'full' },
             { path: 'dashboard/v1', component: DashboardV1Component, data: { translate: 'dashboard_v1' } },
             { path: 'widgets', loadChildren: './widgets/widgets.module#WidgetsModule' },

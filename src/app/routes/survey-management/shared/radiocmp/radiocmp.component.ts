@@ -28,23 +28,20 @@ export class RadiocmpComponent extends Question {
    * 答案改变后触发
    */
   answerChange() {
-    const numOfRadio = this.question.content.length; // 选项个数
-    const res = [];
-    for (let index = 1; index <= numOfRadio ; index++) {
+      const res = [];
       const tem = {
           Record_ID: '',
           Record_Value: false
       };
-      const questionID = 'ID' + this.question.id.replace('.' , '_') + '_' + index;
-      tem.Record_ID = questionID;
-      if (index - 1 === this.localAnswer) {
+      if (this.localAnswer !== -1) {
+          const questionID = 'ID' + this.question.id.replace(/\./g , '_') + '_' + (this.localAnswer + 1);
+          tem.Record_ID = questionID;
           tem.Record_Value = true;
+          res.push(tem);
+          this.answer = res;
       }
-      res.push(tem);
-    }
 
-    this.answer = res;
-    this.answerChanged =  true;
-    console.log(this.answer);
+      this.answerChanged =  true;
+      console.log(this.answer);
   }
 }

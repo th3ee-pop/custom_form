@@ -24,7 +24,7 @@ export class LockComponent {
     if (this.valForm.valid) {
       console.log('Valid!');
       console.log(this.valForm.value);
-      this.router.navigate(['dashboard']);
+      this.router.navigate(['user/setting']);
     }
   }
 }

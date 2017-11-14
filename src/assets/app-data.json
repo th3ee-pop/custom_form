@@ -29,7 +29,17 @@
             "text":"Sample Bank",
             "translate":"生物样本库",
             "link":"/sample/detail",
-            "icon":"icon-layers"
+            "icon":"icon-layers",
+            "children": [
+                {
+                    "text": "生物样本表单",
+                    "link": "/sample/detail",
+                    "translate": "生物样本表单"
+                },{
+                "text": "交叉过滤",
+                "link": "/sample/crossfilter",
+                "translate": "交叉过滤"
+            }]
         },{
             "text":"Property Management",
             "translate":"项目资产管理",

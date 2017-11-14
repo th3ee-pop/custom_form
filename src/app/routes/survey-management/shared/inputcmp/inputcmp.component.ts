@@ -161,7 +161,7 @@ export class InputcmpComponent extends Question implements OnInit {
                     Record_ID: '',
                     Record_Value: ''
                 };
-                const questionID = 'ID' + this.question.id.replace('.' , '_') + '_' + index;
+                const questionID = 'ID' + this.question.id.replace(/\./g , '_') + '_' + index;
                 tem.Record_ID = questionID;
                 tem.Record_Value = this.localAnswer[index - 1];
                 res.push(tem);
@@ -176,12 +176,13 @@ export class InputcmpComponent extends Question implements OnInit {
                 const questionID = 'ID0_1';
                 tem.Record_ID = questionID;
             } else {
-                const questionID = 'ID' + this.question.id.replace('.', '_');
+                const questionID = 'ID' + this.question.id.replace(/\./g, '_');
                 tem.Record_ID = questionID;
             }
             tem.Record_Value = this.localAnswer[0];
             res.push(tem);
         }
-        this.answer = res;
+        if (this.answerChanged === true)
+            this.answer = res;
     }
 }

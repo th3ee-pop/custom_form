@@ -26,14 +26,12 @@ export class CheckboxcmpComponent extends Question implements OnInit {// 继承�
                 Record_ID: '',
                 Record_Value: false
             };
-            const  questionID = 'ID' + this.question.id.replace('.' , '_') + '_' + index;
-            tem.Record_ID = questionID;
             if (this.localAnswer[index - 1] === true) {
+                const  questionID = 'ID' + this.question.id.replace(/\./g , '_') + '_' + index;
+                tem.Record_ID = questionID;
                 tem.Record_Value = true;
-            }else {
-                tem.Record_Value = false;
+                res.push(tem);
             }
-            res.push(tem);
         }
         this.answer = res;
         if ( this.localAnswer ) {
