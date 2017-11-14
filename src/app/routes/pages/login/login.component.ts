@@ -34,24 +34,29 @@ export class LoginComponent {
         'username': this.valForm.value.email,
         'password': this.valForm.value.password
     };
-      /*this.service.login(FormVal).subscribe((resp) => {
+      this.service.login(FormVal).subscribe((resp) => {
           console.log(resp);
-          console.log("login success");
-      });*/
-    this.authService.loginObservable(FormVal).subscribe(
+          console.log('login success');
+          if (resp.Return === 0) {
+              const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/user/setting';
+              console.log(redirect);
+              this.router.navigate([redirect]);
+          }
+      });
+    /*this.authService.loginObservable(FormVal).subscribe(
           (res) => {
               console.log(this.valForm.value);
               console.log(res);
               if (res.TOKEN) {
-                  const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/dashboard/v1';
+                  const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/user/setting';
                   this.router.navigate([redirect]);
                   console.log(localStorage.getItem('TOKEN'));
-                  /*this.authService.getUsers().subscribe(
+                  /!*this.authService.getUsers().subscribe(
                       (response) => {
                           console.log(response);
                       }
-                  );*/
+                  );*!/
               }
-          });
+          });*/
   }
 }

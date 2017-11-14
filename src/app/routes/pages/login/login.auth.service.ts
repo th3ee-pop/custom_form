@@ -17,9 +17,7 @@ export class LoginAuthService {
     constructor(private http: HttpClient, private injector: Injector) {
     }
     private Url = 'http://59.110.52.133:9500/';
-    private options = {
-        headers: new HttpHeaders({'X-CSRFToken': localStorage.getItem('TOKEN')})
-    };
+
 
 
     redirectUrl: String;
@@ -29,7 +27,7 @@ export class LoginAuthService {
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
     }
 
-    loginObservable(Formval: object): Observable<any> {
+   /* loginObservable(Formval: object): Observable<any> {
         return this.http.post(this.Url + 'account/login/', JSON.stringify(Formval))
             .do((res: any) => {
             console.log(res);
@@ -41,21 +39,23 @@ export class LoginAuthService {
         })
 
             .catch((error: any) => Observable.throw(error || 'Server error'));
-    }
+    }*/
 
     logout(): Object {
-        localStorage.removeItem('TOKEN');
-        localStorage.removeItem('userID');
-        localStorage.removeItem('userGroup');
-        localStorage.removeItem('userProvince');
+        localStorage.removeItem('_user');
         return ({'status': 'TOKEN_REMOVED'});
     }
 
     getUsers(): Observable<any> {
         const headers = new Headers();
         this.createAuthorizationHeader(headers);
+        const Returns = JSON.parse(localStorage.getItem('_user'));
+        console.log(Returns);
+        const options = {
+            headers: new HttpHeaders({'X-CSRFToken': Returns.access_token})
+        };
         console.log(headers);
-        return this.http.get(this.Url + 'account/userlist/', this.options)
+        return this.http.get(this.Url + 'account/userlist/', options)
             .do((res: Response) =>
             console.log(res)
             )

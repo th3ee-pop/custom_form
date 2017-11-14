@@ -131,7 +131,9 @@ export class HttpService {
                     expire_time: moment().add(7, 'days').unix(),
                     refresh_token: '',
                     refresh_token_valid_time: moment().add(14, 'days').unix(),
-                    user_name: user.username
+                    user_name: user.username,
+                    user_group: res.group,
+                    user_province: res.province
                 };
                 console.log(localuser);
             })

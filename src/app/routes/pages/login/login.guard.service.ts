@@ -16,8 +16,9 @@ export class LoginAuthGuard implements CanActivate, CanActivateChild {
         return this.canActivate(route, state);
     }
     checkLogin(url: string): boolean {
-        if (localStorage.getItem('TOKEN')) {
-            console.log(localStorage.getItem('TOKEN'));
+        const Returns = JSON.parse(localStorage.getItem('_user'));
+        if (localStorage.getItem('_user')) {
+            console.log(Returns.access_token);
             return true;
         }
         this.authService.redirectUrl = url;

@@ -7,14 +7,16 @@ import { HttpService } from '@core/services/http.service';
 })
 export class SurveyOverviewComponent implements OnInit {
 
-  loggedUser = localStorage.getItem('userID');
-  userGroup = localStorage.getItem('userGroup');
-  userProvince = localStorage.getItem('userProvince');
+  localInfo = JSON.parse(localStorage.getItem('_user'));
+  loggedUser = this.localInfo.user_name;
+  userGroup = this.localInfo.user_group;
+  userProvince = this.localInfo.user_province;
   data = [];
 
   constructor(private service: HttpService) { }
 
   ngOnInit() {
+      console.log(this.localInfo);
       this.service.getPatientList().subscribe( (res) => {
           console.log(res);
           this.data = res.PIDs;
