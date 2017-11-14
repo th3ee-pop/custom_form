@@ -53,7 +53,6 @@ export class PhoneComponent extends Question {
         tem.Record_ID = questionID;
         tem.Record_Value = this.localAnswer;
         res.push(tem);
-        if (this.answerChanged === true)
-            this.answer = res;
+        this.answer = res;
     }
 }
