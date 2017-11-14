@@ -133,8 +133,8 @@ export class SampleCrossfilterComponent implements OnInit {
         let genderChart = dc.barChart("#gender"),
              ageRangeChart = dc.barChart("#age");
 
-        // console.log(genderChart);
-        // console.log(genderGroup);
+        console.log(genderChart);
+        console.log(genderGroup);
         genderChart.margins().left = 60;
         ageRangeChart.margins().left = 60;
         let width = 250,

@@ -136,7 +136,7 @@ export class SurveyManagementComponent implements OnInit {
     fillingAnswer() {
         const putRecord = {
             'PID': this.PID
-        }
+        };
         let fillinglist = [];
         this.service.getRecord(putRecord).subscribe((res) => {
             console.log('这是返回结果！');
