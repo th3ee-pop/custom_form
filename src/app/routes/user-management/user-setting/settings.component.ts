@@ -129,10 +129,15 @@ export class UserSettingsComponent implements OnInit {
             }
         };
         this.modal.open(this.options).subscribe(result => {
-            this.msg.info(`subscribe status: ${JSON.stringify(result)}`);
+           // this.msg.info(`subscribe status: ${JSON.stringify(result)}`);
         });
     }
 
+    deleteUser(username) {
+        this.loginService.remove(username).subscribe((res) => {
+            console.log(res);
+        });
+    }
     ngOnInit() {
         this.load();
         this.profileForm.patchValue({

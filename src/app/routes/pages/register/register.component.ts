@@ -5,6 +5,7 @@ import { SettingsService } from '@core/services/settings.service';
 import { Observable } from 'rxjs/Observable';
 import { LoginAuthService } from '../login/login.auth.service';
 import { NzMessageService } from 'ng-zorro-antd';
+import { HttpService } from '@core/services/http.service';
 
 const UserData = {
     'email': '',
@@ -23,7 +24,8 @@ export class RegisterComponent {
               fb: FormBuilder,
               private router: Router,
               private service: LoginAuthService,
-              private msg: NzMessageService
+              private msg: NzMessageService,
+              private httpService: HttpService,
   ) {
     this.valForm = fb.group({
       email: [null, Validators.compose([Validators.required])],
@@ -51,17 +53,16 @@ export class RegisterComponent {
           'email': 'abc@163.com'
       };
       console.log(submitBody);
-     this.service.register(submitBody)
+     this.httpService.register(submitBody)
          .subscribe((res) => {
          console.log(res);
-         if (res.TOKEN) {
+         if (res.Return === 0) {
              this.msg.info(res.Result);
-             this.router.navigate(['dashboard']);
+             this.router.navigate(['/user']);
          } else {
              this.msg.info(res.Result);
          }
      });
-     // this.router.navigate(['dashboard']);
     }
   }
     loadData() {
