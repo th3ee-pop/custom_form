@@ -152,7 +152,7 @@ export class SampleCrossfilterComponent implements OnInit {
             .controlsUseVisibility(true)
             .on("preRedraw",() => {
                 const data = path.score.top(5);
-                this.draw(data);
+                // this.draw(data);
             });
 
         ageRangeChart.width(width)
