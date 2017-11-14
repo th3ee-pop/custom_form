@@ -12,6 +12,7 @@ import { PhoneComponent } from '../shared/phonecmp/phonecmp.component';
 import { SelectivePreloadingStrategy} from './selective-preloading-strategy';
 import { QuestionList } from '../shared/questionList';
 import { ScheduleList } from '../shared/scheduleList';
+import {DatecmpComponent} from '../shared/datecmp/datecmp.component';
 
 @Component({
     selector: 'app-survey-management',
@@ -28,14 +29,12 @@ export class SurveyManagementComponent implements OnInit {
     confirmlist = [];
     manOrwoman = true; // ture 表示女 false 表示男
     singleif = '';
-    answers = {};
-    editDisable = {};
     @ViewChildren(InputcmpComponent) InputItems: QueryList<InputcmpComponent>;
     @ViewChildren(RadiocmpComponent) RadioItems: QueryList<RadiocmpComponent>;
     @ViewChildren(CheckboxcmpComponent) Checkbox: QueryList<CheckboxcmpComponent>;
     @ViewChildren(IdccmpComponent) Idc: QueryList<IdccmpComponent>;
     @ViewChildren(PhoneComponent) Phone: QueryList<PhoneComponent>;
-    // @ViewChildren(IdccmpComponent) Idc: QueryList<TablecmpComponent>;
+    @ViewChildren(DatecmpComponent) DateItem: QueryList<DatecmpComponent>;
     current = 0;
     constructor(
         private router: Router,
@@ -47,10 +46,8 @@ export class SurveyManagementComponent implements OnInit {
         this.singleif = preloadStrategy.preloadedModules;
     }
     ngOnInit() {
-        // this.route.params.switchMap((params: Params) => () );
-        // console.log('OnInit');
-        // console.log(this.route.params['value']['PID']);
         this.PID = this.route.params['value']['PID'];
+        this.fillingAnswer();
         this.answerlist.push(
             { 'Record_ID': 'ID0_3', 'Record_Value': localStorage.getItem('userProvince')},
             { 'Record_ID': 'ID0_5', 'Record_Value': localStorage.getItem('userID')}
@@ -98,13 +95,12 @@ export class SurveyManagementComponent implements OnInit {
         return confirmall;
     }
     next() { // 跳转至下一步
-
         if (this.current === 0) {
             this.RadioItems.forEach(item => {
                 if ( item.answerChanged === true)
                     for (let i = 0; i < item.answer.length; i++) {
-                        if (item.answer[i].questionID === 'ID1_3_0') {
-                            if ( item.answer[i].answer === true ) {
+                        if (item.answer[i]['Record_ID'] === 'ID1_3_0') {
+                            if ( item.answer[i]['Record_Value'] === true ) {
                                 this.manOrwoman = false;
                                 break;
                             }else {
@@ -114,19 +110,6 @@ export class SurveyManagementComponent implements OnInit {
                     }
             });
         }
-        this.RadioItems.forEach(
-            item => {
-                console.log('##################');
-                console.log(item.answerChanged);
-                console.log(item.answer);
-                console.log(item.question);
-                console.log(item.localAnswer);
-                item.localAnswer = 1;
-            }
-        );
-        // if (this.confirm().confirms) { // 检查当前步骤是否合法，如果不合法禁止转向下一步
-        //     this.current += 1;
-        // }
         if (true) { // 检查当前步骤是否合法，如果不合法禁止转向下一步
             if (this.current === 7) {
                 if (this.manOrwoman === false) {
@@ -151,11 +134,77 @@ export class SurveyManagementComponent implements OnInit {
     }
 
     fillingAnswer() {
-        // let
-        // this.service.getRecord()
-        this.RadioItems.forEach( item => {
-
+        const putRecord = {
+            'PID': this.PID
+        }
+        let fillinglist = [];
+        this.service.getRecord(putRecord).subscribe((res) => {
+            console.log('这是返回结果！');
+            console.log(res);
+            fillinglist = res['Records'];
+            this.InputItems.forEach(item => {
+                for (let i = 0; i < fillinglist.length; i++) {
+                    let id = '';
+                    if ( item.question.id === '1.0') {
+                        id = 'ID0_1';
+                    }else {
+                        id = 'ID' + item.question.id.replace(/\./g , '_');
+                    }
+                    if (fillinglist[i][id] && fillinglist[i][id] !== '') {
+                        item.localAnswer[0] = fillinglist[i][id];
+                    }
+                }
+            });
+            this.RadioItems.forEach(item => {
+                for (let i = 0; i < fillinglist.length; i++) {
+                    for ( let j = 1 ; j <= item.question.content.length; j ++) {
+                        const id = 'ID' + item.question.id.replace(/\./g , '_') + '_' + j;
+                        if (fillinglist[i][id] && fillinglist[i][id] !== '') {
+                            const ar = id.split('_');
+                            item.localAnswer = Number.parseInt (ar[ar.length - 1]) - 1;
+                        }
+                    }
+                }
+            });
+            this.Checkbox.forEach(item => {
+                for (let i = 0; i < fillinglist.length; i++) {
+                    for ( let j = 1 ; j <= item.question.content.length; j ++) {
+                        const id = 'ID' + item.question.id.replace(/\./g , '_') + '_' + j;
+                        if (fillinglist[i][id] && fillinglist[i][id] !== '') {
+                            const ar = id.split('_');
+                            item.localAnswer[Number.parseInt (ar[ar.length - 1]) - 1] = true;
+                        }
+                    }
+                }
+            });
+            this.Idc.forEach( item => {
+                for (let i = 0; i < fillinglist.length; i++) {
+                    if (fillinglist[i]['ID1_5'] && fillinglist[i]['ID1_5'] !== '') {
+                        item.localAnswer = fillinglist[i]['ID1_5'];
+                    }
+                }
+            });
+            this.Phone.forEach( item => {
+                const id = 'ID' + item.question.id.replace(/\./g, '_');
+                for (let i = 0; i < fillinglist.length; i++) {
+                    if ( fillinglist[i][id] && fillinglist[i][id] !== '') {
+                        item.localAnswer = fillinglist[i][id];
+                    }
+                }
+            });
+            this.DateItem.forEach( item => {
+                const id = 'ID' + item.question.id.replace(/\./g, '_');
+                for (let i = 0; i < fillinglist.length; i++) {
+                    if (fillinglist[i][id] && fillinglist[i][id] !== '') {
+                        item.date = new Date(fillinglist[i][id]);
+                    }
+                }
+            });
+        }, err => {
+            console.log('这是错误信息！');
+            console.log(err);
         } );
+
     }
 
     collectallAnswer() {
@@ -189,6 +238,11 @@ export class SurveyManagementComponent implements OnInit {
                     this.answerlist.push(item.answer[i]);
                 }
         });
+        this.DateItem.forEach(item => {
+            if (item.answerChanged === true) {
+                this.answerlist.push(item.answer[0]);
+            }
+        });
     }
     log() { // 暂存
         const date = new Date();
@@ -199,17 +253,21 @@ export class SurveyManagementComponent implements OnInit {
             this.answerlist.push({'Record_ID': 'ID0_2', 'Record_Value': '未完成'}, {'Record_ID': 'ID0_4', 'Record_Value': str});
         }
         this.collectallAnswer();
-        console.log('answerlist');
-        console.log(this.answerlist);
-        const putRecord = {
-            'Records': this.answerlist
+        let putRecord = {};
+        if (this.PID !== '') {
+            putRecord = {
+                'Records': this.answerlist,
+                'PID': this.PID
+            };
+        }else {
+            putRecord = {
+                'Records': this.answerlist
+            };
         }
 
         this.service.putRecord(putRecord).subscribe((res) => {
-            console.log('这是返回结果！');
             console.log(res);
         }, err => {
-            console.log('这是错误信息！');
             console.log(err);
         });
 
