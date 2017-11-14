@@ -51,25 +51,28 @@ export class SampleManagementComponent implements OnInit {
   }
 
     submit() {
-        // 获取记录
-        this.service.getRecord(this.params)
-            .subscribe((res) => {
+        // // 获取记录
+        // this.service.getRecord(this.params)
+        //     .subscribe((res) => {
+        //     console.log(res);
+        // }, err => {
+        //     console.log(err);
+        //     });
+        // // 添加信息
+        // this.service.putRecord(this.putRecord).subscribe((res) => {
+        //     console.log(res);
+        // }, err => {
+        //     console.log(err);
+        // });
+        // // 获取所有记录
+        // this.service.getPatientList().subscribe((res) =>{
+        //     console.log(res);
+        // }, err => {
+        //         console.log(err);
+        //     });
+        this.service.deleteRecord().subscribe((res) => {
             console.log(res);
-        }, err => {
-            console.log(err);
-            });
-        // 添加信息
-        this.service.putRecord(this.putRecord).subscribe((res) => {
-            console.log(res);
-        }, err => {
-            console.log(err);
         });
-        // 获取所有记录
-        this.service.getPatientList().subscribe((res) =>{
-            console.log(res);
-        }, err => {
-                console.log(err);
-            });
     }
 
 }

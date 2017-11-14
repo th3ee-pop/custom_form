@@ -8,10 +8,12 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { SampleManagementComponent } from './sample-management.component';
 import { SampleFormComponent } from './sample-form/sample-form.component';
 import { SampleAddComponent } from './sample-add/sample-add.component';
+import { SampleCrossfilterComponent } from './sample-crossfilter/sample-crossfilter.component';
 
 const routes:Routes = [
     { path: 'detail', component: SampleManagementComponent },
-    { path: 'add', component: SampleAddComponent}
+    { path: 'add', component: SampleAddComponent},
+    { path: 'crossfilter', component: SampleCrossfilterComponent}
 ];
 
 @NgModule({
@@ -27,7 +29,8 @@ const routes:Routes = [
   declarations: [
       SampleManagementComponent,
       SampleFormComponent,
-      SampleAddComponent
+      SampleAddComponent,
+      SampleCrossfilterComponent
   ]
 })
 export class SampleManagementModule { }
