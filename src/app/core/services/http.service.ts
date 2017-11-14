@@ -113,13 +113,13 @@ export class HttpService {
             });
     }
     // deleteId = { 'PID': '1'};
-    deleteRecord(deleteId):Observable<any> {
-        return this.Http.delete(this.baseUrl + '/healthexamination/recordop/',{
+    deleteRecord(deleteId): Observable<any> {
+        return this.Http.delete(this.baseUrl + '/healthexamination/recordop/', {
             body: deleteId,
-            headers:new Headers({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
+            headers: new Headers({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
         })
             .do(() => {
-            console.log("delete!")
+            console.log('delete!');
             } )
             .catch((res) => {
                 console.log(res);
