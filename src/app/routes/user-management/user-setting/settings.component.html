@@ -288,7 +288,7 @@
                                     <td nz-td>
                                         <a (click)="showMsg('Edit');customCompModel('', data, data.group)">管理</a>
                                         <span nz-table-divider></span>
-                                        <nz-popconfirm [nzTitle]="'确定删除用户？'" [nzOkText]="'确定'" [nzCancelText]="'取消'" (nzOnConfirm)="showMsg('has deleted')" (nzOnCancel)="showMsg('cancel delete')">
+                                        <nz-popconfirm [nzTitle]="'确定删除用户？'" [nzOkText]="'确定'" [nzCancelText]="'取消'" (nzOnConfirm)="showMsg('has deleted');deleteUser(data.username)" (nzOnCancel)="showMsg('cancel delete')">
                                             <a nz-popconfirm>删除</a>
                                         </nz-popconfirm>
                                     </td>

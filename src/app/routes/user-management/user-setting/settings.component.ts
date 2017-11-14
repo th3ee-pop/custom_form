@@ -133,6 +133,11 @@ export class UserSettingsComponent implements OnInit {
         });
     }
 
+    deleteUser(username) {
+        this.loginService.remove(username).subscribe((res) => {
+            console.log(res);
+        });
+    }
     ngOnInit() {
         this.load();
         this.profileForm.patchValue({

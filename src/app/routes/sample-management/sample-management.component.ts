@@ -47,7 +47,7 @@ export class SampleManagementComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-         this.submit();
+        // this.submit();
   }
 
     submit() {

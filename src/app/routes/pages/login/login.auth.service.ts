@@ -14,7 +14,7 @@ import 'rxjs/add/operator/delay';
 
 @Injectable()
 export class LoginAuthService {
-    constructor(private http: HttpClient, private injector: Injector) {
+    constructor(private http: HttpClient, private normalHttp: Http, private injector: Injector) {
     }
     private Url = 'http://59.110.52.133:9500/';
 
@@ -22,8 +22,8 @@ export class LoginAuthService {
 
     redirectUrl: String;
     createAuthorizationHeader(headers: Headers) {
-        console.log(localStorage.getItem('TOKEN'));
-        headers.append('X-CSRFToken', localStorage.getItem('TOKEN'));
+        const localInfo = JSON.parse(localStorage.getItem('_user'));
+        headers.append('X-CSRFToken', localInfo.access_token);
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
     }
 
@@ -72,6 +72,19 @@ export class LoginAuthService {
     updateAuth(body): Observable<any> {
         console.log(body);
         return this.http.put(this.Url + 'account/user/', JSON.stringify(body))
+            .do((res: Response) => console.log(res))
+            .catch((error: any) => Observable.throw(error || 'Server error'));
+    }
+
+    remove(username): Observable<any> {
+        const header = new Headers();
+        this.createAuthorizationHeader(header);
+        console.log(username);
+        return this.normalHttp.delete(this.Url + 'account/user/',  new RequestOptions({
+            headers: header,
+            body: JSON.stringify({username: username})
+            }
+        ))
             .do((res: Response) => console.log(res))
             .catch((error: any) => Observable.throw(error || 'Server error'));
     }
