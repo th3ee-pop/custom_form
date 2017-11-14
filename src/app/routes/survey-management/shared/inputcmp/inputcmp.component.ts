@@ -181,8 +181,7 @@ export class InputcmpComponent extends Question implements OnInit {
             }
             tem.Record_Value = this.localAnswer[0];
             res.push(tem);
-        }
-        if (this.answerChanged === true)
             this.answer = res;
+        }
     }
 }
