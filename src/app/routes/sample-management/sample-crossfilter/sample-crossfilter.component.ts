@@ -108,6 +108,7 @@ export class SampleCrossfilterComponent implements OnInit {
                 }else {
                     tempA.Pathway_on = "是";
                 }
+                console.log(tempA);
                 patientL.push(tempA);
             }
         }
@@ -130,11 +131,12 @@ export class SampleCrossfilterComponent implements OnInit {
             ageRangeGroup = path.ageRange.group().reduceCount();
         // ageGroup = path.age.group().reduceCount
         let genderChart = dc.barChart("#gender"),
-             ageRangeChart = dc.barChart("#cfAgeRangBar");
+             ageRangeChart = dc.barChart("#age");
 
         // console.log(genderChart);
         // console.log(genderGroup);
         genderChart.margins().left = 60;
+        ageRangeChart.margins().left = 60;
         let width = 250,
             height = 250;
         genderChart.width(width)
@@ -146,6 +148,22 @@ export class SampleCrossfilterComponent implements OnInit {
             .xAxisLabel("性别")
             .dimension(path.gender)
             .group(genderGroup)
+            .elasticY(true)
+            .controlsUseVisibility(true)
+            .on("preRedraw",() => {
+                const data = path.score.top(5);
+                this.draw(data);
+            });
+
+        ageRangeChart.width(width)
+            .height(height)
+            .x(d3.scale.ordinal())
+            .xUnits(dc.units.ordinal)
+            // .brushOn(true)
+            .yAxisLabel("人数")
+            .xAxisLabel("年龄段")
+            .dimension(path.ageRange)
+            .group(ageRangeGroup)
             .elasticY(true)
             .controlsUseVisibility(true);
 
@@ -159,6 +177,59 @@ export class SampleCrossfilterComponent implements OnInit {
             records.push(content[key]);
         }
         return records;
+    }
+
+    draw(data){
+        console.log(data);
+        let width = 500,
+            height = 400,
+
+            divideLineX = width * 0.15;
+
+        let svg = d3.select('#result').append("svg")
+            .attr("width",500)
+            .attr("height",400)
+            .append("g");
+
+        let  y = d3.scale.ordinal()
+            .rangeRoundBands([-8,height],.2)
+            .domain(data.map(function (d) {
+                return d.ID;
+            }));
+
+        let x = d3.scale.linear().range([0,width - divideLineX - 50])
+            .domain([2,72]);
+        svg.selectAll()
+            .data(data)
+            .enter().append("rect")
+            .attr("class", "bar")
+            // .attr("transform", "translate(0,30)")
+            .attr("y", function(d) { return y(d.ID); })
+            .attr("height", y.rangeBand())
+            .attr("x", function(d) { return divideLineX - 10; })
+
+        svg.selectAll()
+            .data(data)
+            .enter().append("text")
+            .attr("class","featuretext")
+            .attr("text-anchor","right")
+            // .attr("transform","translate(0,30)")
+            // .on("mouseover",tip.show)
+            // .on("mouseout",tip.hide)
+            // .attr("x",function(){return 0;})
+            // .style({"opacity":0,"color":"steelblue"})
+            // .transition()
+            // .duration(500)
+            // .transition()
+            // .duration(800)
+            .style("opacity",1)
+            .attr("x",function(d){return x(d.Score) + divideLineX - 10})
+            .attr("y",function(d){return y(d.ID);})
+            .attr("dy",15)
+            .attr("dx",4)
+            .text(function(d){return (d.Score).toFixed(2)+"%";});
+
+        return svg;
     }
 
 }

@@ -47,6 +47,7 @@ export class SampleManagementComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+        //for api test
          // this.submit();
   }
 
@@ -70,10 +71,11 @@ export class SampleManagementComponent implements OnInit {
         // }, err => {
         //         console.log(err);
         //     });
-        const deleteId = { 'PID': '1'};
-        this.service.deleteRecord(deleteId).subscribe((res) => {
-            console.log(res);
-        });
+        //删除记录
+        // const deleteId = { 'PID': '1'};
+        // this.service.deleteRecord(deleteId).subscribe((res) => {
+        //     console.log(res);
+        // });
     }
 
 }
