@@ -38,7 +38,7 @@ export class LoginComponent {
           console.log(resp);
           console.log('login success');
           if (resp.Return === 0) {
-              const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/user/setting';
+              const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/user';
               console.log(redirect);
               this.router.navigate([redirect]);
           }

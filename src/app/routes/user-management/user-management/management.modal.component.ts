@@ -9,7 +9,7 @@ import { NzModalSubject, NzModalService, NzMessageService } from 'ng-zorro-antd'
     </div>
     <div nz-row>
         <div nz-col [nzXs]="24" [nzSm]="12">
-            <img alt width="95%" src="./assets/img/polo.jpg">
+            <img alt width="95%" src="/assets/img/{{url}}" >
         </div>
         <div nz-col [nzXs]="24" [nzSm]="12">
             <h3>
@@ -43,6 +43,7 @@ import { NzModalSubject, NzModalService, NzMessageService } from 'ng-zorro-antd'
 export class ManageModelCustomComponent {
 
     @Input() charactor: object;
+    @Input() url: string;
 
     constructor(
         private model: NzModalService,
