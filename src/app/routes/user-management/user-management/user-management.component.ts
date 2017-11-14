@@ -52,7 +52,7 @@ export class UserManagementComponent implements OnInit {
             }
         };
         this.modal.open(this.options).subscribe(result => {
-            this.msg.info(`subscribe status: ${JSON.stringify(result)}`);
+          //  this.msg.info(`subscribe status: ${JSON.stringify(result)}`);
         });
     }
 
