@@ -7,7 +7,7 @@ import * as moment from 'moment';
 
 import { TokenService } from '../net/token/token.service';
 import {TokenData} from '@core/net/token/token.type';
-import {Headers, CookieXSRFStrategy} from '@angular/http';
+import {Headers, Http} from '@angular/http';
 
 @Injectable()
 export class HttpService {
@@ -16,6 +16,7 @@ export class HttpService {
 
     constructor(
         private http: HttpClient,
+        private Http: Http,
         private injector: Injector
     ) {}
 
@@ -106,6 +107,20 @@ export class HttpService {
     getPatientList(): Observable<any> {
         return this.http.get(this.baseUrl + '/healthexamination/recordlist/', this.options)
             .do(() => {} )
+            .catch((res) => {
+                console.log(res);
+                return res;
+            });
+    }
+    // deleteId = { 'PID': '1'};
+    deleteRecord(deleteId):Observable<any> {
+        return this.Http.delete(this.baseUrl + '/healthexamination/recordop/',{
+            body: deleteId,
+            headers:new Headers({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
+        })
+            .do(() => {
+            console.log("delete!")
+            } )
             .catch((res) => {
                 console.log(res);
                 return res;

@@ -47,29 +47,33 @@ export class SampleManagementComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-         this.submit();
+         // this.submit();
   }
 
     submit() {
-        // 获取记录
-        this.service.getRecord(this.params)
-            .subscribe((res) => {
+        // // 获取记录
+        // this.service.getRecord(this.params)
+        //     .subscribe((res) => {
+        //     console.log(res);
+        // }, err => {
+        //     console.log(err);
+        //     });
+        // // 添加信息
+        // this.service.putRecord(this.putRecord).subscribe((res) => {
+        //     console.log(res);
+        // }, err => {
+        //     console.log(err);
+        // });
+        // // 获取所有记录
+        // this.service.getPatientList().subscribe((res) =>{
+        //     console.log(res);
+        // }, err => {
+        //         console.log(err);
+        //     });
+        const deleteId = { 'PID': '1'};
+        this.service.deleteRecord(deleteId).subscribe((res) => {
             console.log(res);
-        }, err => {
-            console.log(err);
-            });
-        // 添加信息
-        this.service.putRecord(this.putRecord).subscribe((res) => {
-            console.log(res);
-        }, err => {
-            console.log(err);
         });
-        // 获取所有记录
-        this.service.getPatientList().subscribe((res) =>{
-            console.log(res);
-        }, err => {
-                console.log(err);
-            });
     }
 
 }

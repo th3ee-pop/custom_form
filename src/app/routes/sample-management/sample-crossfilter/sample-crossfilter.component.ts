@@ -86,15 +86,39 @@ export class SampleCrossfilterComponent implements OnInit {
          * @type {Array}
          */
         this.records = this.getData(this.content);
+        const patientL = [];
         console.log(this.records);
-        let recordsCF = crossfilter(this.records);
+        for(var key in this.records){
+            if(this.records.hasOwnProperty(key)){
+                var tempA = this.records[key];
+                tempA.ID = key;
+                if(tempA.Age < 26){
+                    tempA.AgeRange = "0~25";
+                }else if(tempA.Age < 46){
+                    tempA.AgeRange = "26~45";
+                }else if(tempA.Age < 61){
+                    tempA.AgeRange = "46~60";
+                }else if(tempA.Age <71){
+                    tempA.AgeRange = "61~70";
+                }else {
+                    tempA.AgeRange = "70~";
+                }
+                if(tempA.Pathway_on === 0){
+                    tempA.Pathway_on = "否";
+                }else {
+                    tempA.Pathway_on = "是";
+                }
+                patientL.push(tempA);
+            }
+        }
+        let recordsCF = crossfilter(patientL);
         console.log(recordsCF);
         let path = {
             "gender":recordsCF.dimension(function (d) {
                 return d.Gender;
             }),
-            "age":recordsCF.dimension(function (d) {
-                return d.age;
+            "ageRange":recordsCF.dimension(function (d) {
+                return d.AgeRange;
             }),
             "score":recordsCF.dimension(function (d) {
                 return d.Score;
@@ -102,9 +126,11 @@ export class SampleCrossfilterComponent implements OnInit {
         };
         console.log(path);
 
-        let genderGroup = path.gender.group().reduceCount();
+        let genderGroup = path.gender.group().reduceCount(),
+            ageRangeGroup = path.ageRange.group().reduceCount();
         // ageGroup = path.age.group().reduceCount
-        let genderChart = dc.barChart("#gender");
+        let genderChart = dc.barChart("#gender"),
+             ageRangeChart = dc.barChart("#cfAgeRangBar");
 
         // console.log(genderChart);
         // console.log(genderGroup);
@@ -125,28 +151,6 @@ export class SampleCrossfilterComponent implements OnInit {
 
         dc.renderAll();
 
-    }
-
-    submit(){
-        // //获取记录
-        // this.service.getRecord(this.api, this.params)
-        //     .subscribe((res) => {
-        //     console.log(res);
-        // },err => {
-        //     console.log(err);
-        //     });
-        // //添加信息
-        // this.service.putRecord(this.api, this.putRecord).subscribe((res) => {
-        //     console.log(res);
-        // },err => {
-        //     console.log(err);
-        // });
-        // //获取所有记录
-        // this.service.getRecordList().subscribe((res) =>{
-        //     console.log(res);
-        // },err => {
-        //         console.log(err);
-        //     })
     }
 
     getData(content){
