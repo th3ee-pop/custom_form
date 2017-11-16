@@ -3,7 +3,7 @@ import { RandomUserService } from '../../tables/randomUser.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModelCustomComponent } from './settings.modal.component';
-import { LoginAuthService } from '../../pages/login/login.auth.service';
+import { LoginAuthService } from '@core/services/login.auth.service';
 
 @Component({
     selector: 'app-extras-settings',

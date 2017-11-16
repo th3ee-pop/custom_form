@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NzModalSubject, NzModalService, NzMessageService } from 'ng-zorro-antd';
-import { LoginAuthService } from '../../pages/login/login.auth.service';
+import { LoginAuthService } from '@core/services/login.auth.service';
 @Component({
     selector: 'app-model-custom',
     template: `

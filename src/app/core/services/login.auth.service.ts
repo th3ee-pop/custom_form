@@ -4,7 +4,7 @@
 import { HttpClient, HttpResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable, Injector} from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { TokenService } from '../../../core/net/token/token.service';
+import { TokenService } from '../net/token/token.service';
 import { Headers, Http, Response, RequestOptions} from '@angular/http';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/throw';

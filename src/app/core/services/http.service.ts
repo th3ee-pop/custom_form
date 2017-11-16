@@ -3,12 +3,24 @@ import { Injectable, Injector } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import * as moment from 'moment';
 
 import { TokenService } from '../net/token/token.service';
 import {TokenData} from '@core/net/token/token.type';
 import {Headers, Http} from '@angular/http';
 
+
+export class Record {
+    constructor(
+        public Complete_by: string,
+        public Name: string,
+        public No: string,
+        public Province: string,
+        public Status: string,
+        public Updated_time: string
+    ) {}
+}
 @Injectable()
 export class HttpService {
 
@@ -23,6 +35,11 @@ export class HttpService {
     options = {
         headers: new HttpHeaders({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
     };
+
+    private handleError(error: any): Promise<any> {
+        console.error('An error occured', error);
+        return Promise.reject(error.message || error); // ?
+    }
 
     getParams(params: any): any {
         return 'q=' + JSON.stringify(params);
@@ -39,6 +56,25 @@ export class HttpService {
             }
         });
         return recordId;
+    }
+
+    getRecordInfo(params: string): Observable<any> {
+        return this.http.get(this.baseUrl + '/healthexamination/basicinfo/', {
+            params: this.getParams({'PID': params})
+        })
+            .map((res: any) => {
+            return res.Records;
+            })
+            .do((res) => console.log(res));
+    }
+
+    getRecordInfoPromise(params: string): Promise<any> {
+        return this.http.get(this.baseUrl + '/healthexamination/basicinfo/', {
+            params: this.getParams({'PID': params})
+        })
+            .toPromise()
+            .then((res) => console.log(res))
+            .catch(this.handleError);
     }
 
     /**

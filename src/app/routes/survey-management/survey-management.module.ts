@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { SharedModule } from '@shared/shared.module';
 import { SurveyManagementComponent } from './survey-management/survey-management.component';
+import { RecordResolverGuard } from '@core/services/edit.guard.service';
 
 import { InputcmpComponent } from './shared/inputcmp/inputcmp.component';
 import { RadiocmpComponent } from './shared/radiocmp/radiocmp.component';
@@ -29,8 +30,8 @@ import { DatecmpComponent } from './shared/datecmp/datecmp.component';
 
 
 const routes: Routes = [
-    { path: 'management/:PID', component: SurveyManagementComponent },
     { path: 'management', component: SurveyManagementComponent },
+    { path: 'management/:PID', component: SurveyManagementComponent, resolve: {res: RecordResolverGuard}},
     { path: 'detail', component: SurveyOverviewComponent  }
 ];
 
@@ -66,6 +67,9 @@ const routes: Routes = [
         Table913Component,
         DatecmpComponent,
         SurveyDetailComponent,
+    ],
+    providers: [
+        RecordResolverGuard
     ]
 })
 export class SurveyManagementModule { }

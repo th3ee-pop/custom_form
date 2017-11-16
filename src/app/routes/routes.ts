@@ -8,7 +8,7 @@ import { MaintenanceComponent } from './pages/maintenance/maintenance.component'
 import { Page404Component } from './pages/404/404.component';
 import { Page500Component } from './pages/500/500.component';
 import { DashboardV1Component } from './dashboard/v1/v1.component';
-import { LoginAuthGuard } from './pages/login/login.guard.service';
+import { LoginAuthGuard } from '@core/services/login.guard.service';
 import { SurveyManagementComponent} from './survey-management/survey-management/survey-management.component';
 
 export const routes = [
@@ -17,7 +17,7 @@ export const routes = [
         component: LayoutComponent,
         canActivateChild: [LoginAuthGuard],
         children: [
-            { path: '', redirectTo: 'user/setting', pathMatch: 'full' },
+            { path: '', redirectTo: 'survey/detail', pathMatch: 'full' },
             { path: 'dashboard', redirectTo: 'dashboard/v1', pathMatch: 'full' },
             { path: 'dashboard/v1', component: DashboardV1Component, data: { translate: 'dashboard_v1' } },
             { path: 'widgets', loadChildren: './widgets/widgets.module#WidgetsModule' },
