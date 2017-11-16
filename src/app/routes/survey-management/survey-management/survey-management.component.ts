@@ -52,9 +52,6 @@ export class SurveyManagementComponent implements OnInit {
             { 'Record_ID': 'ID0_3', 'Record_Value': localStorage.getItem('userProvince')},
             { 'Record_ID': 'ID0_5', 'Record_Value': localStorage.getItem('userID')}
         );
-        this.route.data.subscribe((data: { resp: any }) => {
-            console.log(data);
-        });
     }
     changeHiddens(current: number) {
         for (let i = 0; i <= 9; i++) {
