@@ -21,7 +21,8 @@ resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<R
     return this.service.getRecordInfo(id).take(1).map((res) => {
         console.log(res);
         console.log('getting id');
-        if (this.localGroup === '4') {
+        console.log(this.localGroup);
+        if (this.localGroup === 4) {
             if (res.Complete_by === this.localInfo.user_name) {
                 console.log(res.Complete_by);
                 console.log(this.localInfo.user_name);
@@ -34,7 +35,7 @@ resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<R
                 console.log('redirect');
                 return null;
             }
-        } else if (this.localGroup !== '1') {
+        } else if (this.localGroup !== 1) {
           return  res.Province === this.localProvince ? res : null;
         } else return res;
     });
