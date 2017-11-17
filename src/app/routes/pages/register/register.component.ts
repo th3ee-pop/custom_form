@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SettingsService } from '@core/services/settings.service';
 import { Observable } from 'rxjs/Observable';
-import { LoginAuthService } from '../login/login.auth.service';
+import { LoginAuthService } from '@core/services/login.auth.service';
 import { NzMessageService } from 'ng-zorro-antd';
 import { HttpService } from '@core/services/http.service';
 
@@ -58,7 +58,7 @@ export class RegisterComponent {
          console.log(res);
          if (res.Return === 0) {
              this.msg.info(res.Result);
-             this.router.navigate(['/user']);
+             this.router.navigate(['']);
          } else {
              this.msg.info(res.Result);
          }

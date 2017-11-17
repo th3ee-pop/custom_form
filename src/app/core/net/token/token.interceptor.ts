@@ -63,8 +63,9 @@ export class TokenInterceptor implements HttpInterceptor {
                         console.log(event);
                         this.goLogin();
                     }
-                    if (event instanceof HttpResponse && event.body.Return === 1) {
-                        console.log( '业务错误！');
+                    if (event instanceof HttpResponse && event.body.Return === 1 && event.body.Result === 'Token 过期!') {
+                        console.log( event);
+                        this.goLogin();
                     }
                     // 若一切都正常，则后续操作
                     return Observable.create(observer => observer.next(event));
