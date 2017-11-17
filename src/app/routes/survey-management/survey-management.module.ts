@@ -8,7 +8,6 @@ import { SecondStepComponent} from './step-second/second-step.component';
 import { ThirdStepComponent} from './step-third/third-step.component';
 import { ForthStepComponent} from './step-forth/forth-step.component';
 import { FifthStepComponent} from './step-fifth/fifth-step.component';
-import { SurveyManagementComponent } from './survey-management/survey-management.component';
 import { RecordResolverGuard } from '@core/services/edit.guard.service';
 
 import { InputcmpComponent } from './shared/inputcmp/inputcmp.component';
