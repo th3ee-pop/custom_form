@@ -36,11 +36,15 @@
                     </div>
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col [nzSm]="4">
-                            <label nz-form-item-required>项目点</label>
+                            <label nz-form-item-required>类别</label>
                         </div>
                         <div nz-form-control nz-col [nzSm]="5">
-                            <nz-input formControlName="point"></nz-input>
-                            <!--<div nz-form-explain *ngIf="getFormControl('point').dirty&&getFormControl('point').hasError('required')">请检查您的输入</div>-->
+                            <nz-select formControlName="type" [nzSize]="'large'">
+                                <nz-option [nzLabel]="'血样'" [nzValue]="'1'"></nz-option>
+                                <nz-option [nzLabel]="'尿液'" [nzValue]="'2'"></nz-option>
+                                <nz-option [nzLabel]="'粪'" [nzValue]="'3'"></nz-option>
+                                <nz-option [nzLabel]="'毛发'" [nzValue]="'4'"></nz-option>
+                            </nz-select>
                         </div>
                     </div>
                     <div nz-form-item nz-row>
@@ -77,13 +81,6 @@
                             <span nz-form-text> 号架子</span>
                         </div>
                     </div>
-                    <!--<div nz-form-item nz-row>-->
-                            <!--<div nz-col [nzSm]="5" nz-form-explain *ngIf="(getFormControl('ref').dirty&&getFormControl('ref').hasError('error'))-->
-                            <!--||(getFormControl('lay').dirty&&getFormControl('lay').hasError('error'))-->
-                            <!--||(getFormControl('col').dirty&&getFormControl('col').hasError('error'))-->
-                            <!--||(getFormControl('row').dirty&&getFormControl('row').hasError('error'))-->
-                            <!--||(getFormControl('shelf').dirty&&getFormControl('shelf').hasError('error'))">数据不可为负！</div>-->
-                    <!--</div>-->
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col [nzSm]="4">
                             <label nz-form-item-required>编号</label>
@@ -96,9 +93,12 @@
                     </div>
                 </form>
                 <div nz-form-control nz-col [nzSpan]="14" [nzOffset]="4">
-                <button nz-button [nzType]="'primary'" [disabled]="disabled" class="mr-sm" (click)="goBack();_submitForm()">
+                <button nz-button [nzType]="'primary'" [disabled]="disabled" class="mr-sm" (click)="_submitForm()">
                     <span>保存</span>
                 </button>
+                    <button nz-button [nzType]="'primary'" [disabled]="disabled" class="mr-sm" (click)="goBack()">
+                        <span>返回列表</span>
+                    </button>
                 </div>
             </ng-template>
         </nz-card>

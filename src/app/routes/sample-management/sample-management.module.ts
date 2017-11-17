@@ -9,6 +9,7 @@ import { SampleManagementComponent } from './sample-management.component';
 import { SampleFormComponent } from './sample-form/sample-form.component';
 import { SampleAddComponent } from './sample-add/sample-add.component';
 import { SampleCrossfilterComponent } from './sample-crossfilter/sample-crossfilter.component';
+import { BiologyService } from './biology.service';
 
 const routes:Routes = [
     { path: 'detail', component: SampleManagementComponent },
@@ -25,6 +26,9 @@ const routes:Routes = [
   ],
     exports: [
         RouterModule
+    ],
+    providers:[
+        BiologyService
     ],
   declarations: [
       SampleManagementComponent,
