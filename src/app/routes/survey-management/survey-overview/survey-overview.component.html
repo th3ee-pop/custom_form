@@ -33,20 +33,20 @@
                                             <!--前段根据四种权限，对应有不同的操作组合。-->
                                             <!---->
                                             <span *ngIf="userGroup === 1">
-                                                      <a [routerLink]="'/survey/management/'+ data.PID">查看</a>
+                                                      <a [routerLink]="'/survey/first_step/'+ data.PID">查看</a>
                                                       <span nz-table-divider></span>
                                             </span>
                                             <span *ngIf="userGroup ===3 && userProvince === data.Province">
-                                                      <a [routerLink]="'/survey/management/' + data.PID">查看</a>
+                                                      <a [routerLink]="'/survey/first_step/' + data.PID">查看</a>
                                                       <span nz-table-divider></span>
                                             </span>
                                             <span *ngIf="userGroup ===2 && userProvince === data.Province">
-                                                      <a [routerLink]="'/survey/management/' + data.PID">查看</a>
+                                                      <a [routerLink]="'/survey/first_step/' + data.PID">查看</a>
                                                       <span nz-table-divider></span>
                                             </span>
 
                                             <span *ngIf="userGroup ===4 && loggedUser === data.completedBy">
-                                                      <a [routerLink]="'/survey/management' +  + data.PID">查看</a>
+                                                      <a [routerLink]="'/survey/first_step' +  + data.PID">查看</a>
                                                 <span nz-table-divider></span>
                                                   </span>
 
@@ -68,7 +68,7 @@
                     </div>
                 </div>
 
-                <button nz-button [nzType]="'primary'" [nzSize]="'large'" [nzShape]="'circle'" [routerLink]="['/survey/management']" class="mr-sm">
+                <button nz-button [nzType]="'primary'" [nzSize]="'large'" [nzShape]="'circle'" [routerLink]="['/survey/first_step']" class="mr-sm">
                     <i class="anticon anticon-plus"></i>
                 </button>
 

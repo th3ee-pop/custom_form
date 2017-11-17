@@ -22,10 +22,11 @@ export class PhoneComponent extends Question {
     };
     phoneVaildator = (control: FormControl): { [s: string]: boolean } => {
         const NUM_REGEXP = /(^\d{11})$/;
-        if (!control.value) {
+        if (!control.value) {;
             this.answerChanged = false;
             return {required: true};
-        }else if (control.value.length !== 11 || !NUM_REGEXP.test(control.value)) {
+        }else if ( !NUM_REGEXP.test(control.value) ) {
+            console.log(control.value.length);
             this.answerChanged = false;
             return { error: true, phone: true};
         }else {

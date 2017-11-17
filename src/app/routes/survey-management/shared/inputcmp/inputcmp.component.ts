@@ -14,32 +14,9 @@ export class InputcmpComponent extends Question implements OnInit {
     localAnswer = []; // 存储数据
     answerChanged = false;
     validateForm: FormGroup;
-    idctem = '';
-    phonetem = '';
     ngOnInit() {
         this.localAnswer = new Array(this.question.content.length);
     }
-    onidcBlur = function(event) {
-        this.idctem = this.localAnswer[0];
-        const str = this.localAnswer[0];
-        if (event.length === 18)
-            this.localAnswer[0] = str.substring(0, 6) + '********' + str.substring(14);
-    };
-    onidcFocus = function () {
-        if (this.idctem !== '')
-            this.localAnswer[0] = this.idctem;
-    };
-    onphoneBlur = function(event) {
-        this.phonetem = this.localAnswer[0];
-        const str = this.localAnswer[0];
-        if (event.length === 11)
-            this.localAnswer[0] = str.substring(0, 3) + '****' + str.substring(7);
-    };
-    onphoneFocus = function () {
-        if (this.phonetem !== '')
-            this.localAnswer[0] = this.phonetem;
-    };
-
     numberVaildator = (control: FormControl): { [s: string]: boolean } => {
         const NUM_REGEXP = /^[0-9]*$/;
         if (!control.value) {
@@ -52,32 +29,6 @@ export class InputcmpComponent extends Question implements OnInit {
             this.answerChanged = true;
         }
     }
-    IDCVaildator = (control: FormControl): { [s: string]: boolean } => {
-        const IDC_REGEXP = /((^\d{18}$)|(^\d{17}(\d|X|x)$))||((^\d{6}[\*]{8}(\d{3}|\d{4})))/;
-        if (!control.value) {
-            this.answerChanged = false;
-            return {required: true};
-        } else if (control.value.length !== 18 || !IDC_REGEXP.test(control.value)) {
-            this.answerChanged = false;
-            return {error: true, idc: true};
-        }else {
-            this.answerChanged = true;
-        }
-    }
-    phoneVaildator = (control: FormControl): { [s: string]: boolean } => {
-        const NUM_REGEXP = /^([0-9]*)|(^\d{3}[\*]{4}\d{4}})$/;
-        if (!control.value) {
-            this.answerChanged = false;
-            return {required: true};
-        }else if (control.value.length !== 11 || !NUM_REGEXP.test(control.value)) {
-            this.answerChanged = false;
-            return { error: true, phone: true};
-        }else {
-            this.answerChanged = true;
-        }
-    }
-
-
     twonumValidator = ( control: FormControl): { [s: string]: boolean } => {
         const NUM_REGEXP = /^[0-9]*$/;
         if (!control.value) {
@@ -142,8 +93,6 @@ export class InputcmpComponent extends Question implements OnInit {
         this.validateForm = this.fb.group(
             {
                 number : ['', [ this.numberVaildator]],
-                idc: ['', [ this.IDCVaildator]],
-                phone: ['', [ this.phoneVaildator]],
                 twonum: ['', [ this.twonumValidator]],
                 onenum: ['', [ this.onenumValidator]],
                 threenum: ['', [ this.threenumValidator]],

@@ -9,7 +9,6 @@ import { Page404Component } from './pages/404/404.component';
 import { Page500Component } from './pages/500/500.component';
 import { DashboardV1Component } from './dashboard/v1/v1.component';
 import { LoginAuthGuard } from './pages/login/login.guard.service';
-import { SurveyManagementComponent} from './survey-management/survey-management/survey-management.component';
 
 export const routes = [
     {
@@ -48,7 +47,6 @@ export const routes = [
     // 单页不包裹Layout
     { path: 'register', component: RegisterComponent, data: { translate: 'register' } },
     { path: 'login', component: LoginComponent, data: { title: 'login' } },
-    { path: 'single_survey', component: SurveyManagementComponent, data: { title: 'single' } },
     { path: 'forget', component: ForgetComponent, data: { translate: 'forget' } },
     { path: 'lock', component: LockComponent, data: { translate: 'lock' } },
     { path: 'maintenance', component: MaintenanceComponent},

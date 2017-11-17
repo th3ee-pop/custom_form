@@ -3,7 +3,11 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
 import { SharedModule } from '@shared/shared.module';
-import { SurveyManagementComponent } from './survey-management/survey-management.component';
+import { FirstStepComponent} from './step-first/first-step.component';
+import { SecondStepComponent} from './step-second/second-step.component';
+import { ThirdStepComponent} from './step-third/third-step.component';
+import { ForthStepComponent} from './step-forth/forth-step.component';
+import { FifthStepComponent} from './step-fifth/fifth-step.component';
 
 import { InputcmpComponent } from './shared/inputcmp/inputcmp.component';
 import { RadiocmpComponent } from './shared/radiocmp/radiocmp.component';
@@ -26,12 +30,25 @@ import { Table813Component } from './shared/tablecmp/table813/table813.component
 import { Table96Component } from './shared/tablecmp/table96/table96.component';
 import { Table913Component } from './shared/tablecmp/table913/table913.component';
 import { DatecmpComponent } from './shared/datecmp/datecmp.component';
-
+import { SixthStepComponent } from './step-sixth/sixth-step.component';
+import { SeventhStepComponent } from './step-seventh/seventh-step.component';
+import { EighthStepComponent} from './step-eighth/eighth-step.component';
+import { NinthStepComponent} from './step-ninth/ninth-step.component';
+import { TenthStepComponent} from './step-tenth/tenth-step.component';
 
 const routes: Routes = [
-    { path: 'management/:PID', component: SurveyManagementComponent },
-    { path: 'management', component: SurveyManagementComponent },
-    { path: 'detail', component: SurveyOverviewComponent  }
+    { path: 'detail', component: SurveyOverviewComponent  },
+    { path: 'first_step', component: FirstStepComponent },
+    { path: 'first_step/:PID', component: FirstStepComponent },
+    { path: 'second_step/:PID', component: SecondStepComponent },
+    { path: 'third_step/:PID', component: ThirdStepComponent},
+    { path: 'forth_step/:PID', component: ForthStepComponent},
+    { path: 'fifth_step/:PID', component: FifthStepComponent},
+    { path: 'sixth_step/:PID', component: SixthStepComponent},
+    { path: 'seventh_step/:PID', component: SeventhStepComponent},
+    { path: 'eighth_step/:PID', component: EighthStepComponent},
+    { path: 'ninth_step/:PID', component: NinthStepComponent},
+    { path: 'tenth_step/:PID', component: TenthStepComponent}
 ];
 
 @NgModule({
@@ -44,7 +61,6 @@ const routes: Routes = [
         RouterModule
     ],
     declarations: [
-        SurveyManagementComponent,
         InputcmpComponent,
         RadiocmpComponent,
         PhoneComponent,
@@ -66,6 +82,16 @@ const routes: Routes = [
         Table913Component,
         DatecmpComponent,
         SurveyDetailComponent,
+        FirstStepComponent,
+        SecondStepComponent,
+        ThirdStepComponent,
+        ForthStepComponent,
+        FifthStepComponent,
+        SixthStepComponent,
+        SeventhStepComponent,
+        EighthStepComponent,
+        NinthStepComponent,
+        TenthStepComponent
     ]
 })
 export class SurveyManagementModule { }

@@ -35,7 +35,7 @@ export class SurveyOverviewComponent implements OnInit {
     getTableData() {
         this.service.getPatientList().subscribe( (res) => {
             console.log(res);
-            this.data = res.PIDs;
+            this.data = res.PID_info;
         });
     }
 

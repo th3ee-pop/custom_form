@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output , EventEmitter} from '@angular/core';
 
 import { Question } from '../question';
 
@@ -14,16 +14,18 @@ export class RadiocmpComponent extends Question {
    *  存储答案的变量数组
    */
   localAnswer = -1;
-
+  @Output() onVoted = new EventEmitter< any [] >();
   /**
    * 存储问题是否填写的变量,默认false
    */
   answerChanged = false;
-
   constructor() {
     super();
   }
 
+  // vote ( hiddenList: any [] ) {
+  //     this.onVoted.emit(hiddenList);
+  // }
   /**
    * 答案改变后触发
    */
@@ -40,8 +42,10 @@ export class RadiocmpComponent extends Question {
           res.push(tem);
           this.answer = res;
       }
-
-      this.answerChanged =  true;
+      // if (this.question.hiddenList.length !== 0) {
+      //     if (this.localAnswer === this.question.emitId) {  console.log('事件触发在radio'); this.vote(this.question.hiddenList); }
+      // }
+      if ( this.localAnswer !== -1 )  this.answerChanged =  true;
       console.log(this.answer);
   }
 }

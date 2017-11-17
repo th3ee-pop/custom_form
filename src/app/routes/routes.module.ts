@@ -7,13 +7,12 @@ import { routes } from './routes';
 import { DashboardV1Component } from './dashboard/v1/v1.component';
 import { LoginAuthService } from './pages/login/login.auth.service';
 import { LoginAuthGuard } from './pages/login/login.guard.service';
-import { SelectivePreloadingStrategy} from './survey-management/survey-management/selective-preloading-strategy';
 
 @NgModule({
     imports: [
         SharedModule,
         RouterModule.forRoot(routes,
-            { useHash: true, preloadingStrategy: SelectivePreloadingStrategy }),
+            { useHash: true }),
         PagesModule,
         SurveyManagementModule
     ],
@@ -25,8 +24,7 @@ import { SelectivePreloadingStrategy} from './survey-management/survey-managemen
     ],
     providers: [
         LoginAuthGuard,
-        LoginAuthService,
-        SelectivePreloadingStrategy
+        LoginAuthService
     ]
 })
 

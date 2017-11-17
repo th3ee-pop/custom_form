@@ -7,17 +7,9 @@
             <ng-template #body>
                 <form nz-form [formGroup]="validateForm" [nzLayout]="'inline'">
                     <div nz-form-item *ngFor="let item of question.content;index as i">
-                        <div nz-form-control *ngIf="item.dataType == 'number'" >
-                            <nz-input-number [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
-                        </div>
-                        <div nz-form-control *ngIf="item.dataType == 'date'" >
-                            <nz-datepicker [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-datepicker>
-                        </div>
                         <div nz-form-control [nzValidateStatus]="getFormControl(item.validType)" *ngIf="item.dataType == 'text'">
                             <div [ngSwitch]="item.validType">
                                 <nz-input  *ngSwitchCase="'number'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()"  formControlName="number" ></nz-input>
-                                <nz-input  *ngSwitchCase="'idc'"   [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()"  (nzBlur)="onidcBlur($event.target.value)" (nzFocus)="onidcFocus()" formControlName="idc" ></nz-input>
-                                <nz-input  *ngSwitchCase="'phone'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()"  (nzBlur)="onphoneBlur($event.target.value)" (nzFocus)="onphoneFocus()"formControlName="phone" ></nz-input>
                                 <nz-input  *ngSwitchCase="'twonum'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()"  formControlName="twonum" ></nz-input>
                                 <nz-input  *ngSwitchCase="'onenum'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()"  formControlName="onenum" ></nz-input>
                                 <nz-input  *ngSwitchCase="'threenum'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()"  formControlName="threenum" ></nz-input>
@@ -25,14 +17,8 @@
                                 <nz-input  *ngSwitchCase="'other'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()"  formControlName="other"></nz-input>
                                 <nz-input  *ngSwitchCase="" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()"  formControlName="other"></nz-input>
                             </div>
-                            <div nz-form-explain *ngIf="item.validType==='idc'&&getFormControl('idc').dirty&&getFormControl('idc').touched&&getFormControl('idc').hasError('idc')">
-                                身份证格式不合法
-                            </div>
                             <div nz-form-explain *ngIf="item.validType==='number'&&getFormControl('number').dirty&&getFormControl('number').touched&&getFormControl('number').hasError('number')">
-                                编号必须为10位数字
-                            </div>
-                            <div nz-form-explain *ngIf="item.validType==='phone'&&getFormControl('phone').dirty&&getFormControl('phone').touched&&getFormControl('phone').hasError('phone')">
-                                手机号格式不合法
+                                体检编号必须为11位数字
                             </div>
                             <div nz-form-explain *ngIf="item.validType==='onenum'&&getFormControl('onenum').dirty&&getFormControl('onenum').touched&&getFormControl('onenum').hasError('onenum')">
                                 大小不能超过9的数值
@@ -41,7 +27,7 @@
                                 大小不能超过99的数值
                             </div>
                             <div nz-form-explain *ngIf="item.validType==='threenum'&&getFormControl('threenum').dirty&&getFormControl('threenum').touched&&getFormControl('threenum').hasError('threenum')">
-                               m大小不能超过999的数值
+                                大小不能超过999的数值
                             </div>
                             <div nz-form-explain *ngIf="item.validType==='fivenum'&&getFormControl('fivenum').dirty&&getFormControl('fivenum').touched&&getFormControl('fivenum').hasError('fivenum')">
                                 大小不能超过99999的数值
