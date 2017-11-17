@@ -40,7 +40,7 @@ import { TenthStepComponent} from './step-tenth/tenth-step.component';
 const routes: Routes = [
     { path: 'detail', component: SurveyOverviewComponent  },
     { path: 'first_step', component: FirstStepComponent },
-    { path: 'first_step/:PID', component: FirstStepComponent },
+    { path: 'first_step/:PID', component: FirstStepComponent},
     { path: 'second_step/:PID', component: SecondStepComponent },
     { path: 'third_step/:PID', component: ThirdStepComponent},
     { path: 'forth_step/:PID', component: ForthStepComponent},

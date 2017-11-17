@@ -37,6 +37,7 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
     PID = '';                                           // PID
     finished = false;
     answerList = [];
+    localInfo = JSON.parse(localStorage.getItem('_user'));
     constructor(
         private router: Router,
         private route: ActivatedRoute,
@@ -48,8 +49,8 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
         this.PID = this.route.params['value']['PID'];
         if ( !this.PID )
             this.resultList.push(
-                { 'Record_ID': 'ID0_3', 'Record_Value': localStorage.getItem('userProvince')}, // 省份
-                { 'Record_ID': 'ID0_5', 'Record_Value': localStorage.getItem('userID')}        // 用户ID
+                { 'Record_ID': 'ID0_3', 'Record_Value': this.localInfo.user_province}, // 省份
+                { 'Record_ID': 'ID0_5', 'Record_Value': this.localInfo.user_name}        // 用户ID
             );
     }
     ngAfterViewInit() {
