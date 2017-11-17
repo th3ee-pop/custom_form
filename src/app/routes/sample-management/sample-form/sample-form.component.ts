@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NzMessageService,NzModalService } from 'ng-zorro-antd';
 import { Router } from '@angular/router';
 import { ModelCustomComponent } from './custom.component';
+import { BiologyService } from '../biology.service';
 
 @Component({
     selector: 'app-sample-form',
@@ -25,7 +26,7 @@ export class SampleFormComponent implements OnInit {
             this.pi = pi || 1;
         }
 
-        // this.loading = true;
+        this.loading = true;
         this._allChecked = false;
         this._indeterminate = false;
         this.list = [{
@@ -40,6 +41,14 @@ export class SampleFormComponent implements OnInit {
             'id9':'1',
             'id10':'110000111'
         }];
+        // this.service.getBasicInfo().subscribe(data => {
+        // this.service.getRecordlist().subscribe(data => {
+        const getRecordApi = '/biology/recordop/',
+            params = { 'PID': 1};
+        this.service.getService(getRecordApi, params).subscribe(data => {
+            console.log(data);
+            this.loading = false;
+        });
         // this._randomUser.getUsers(this.pi, this.ps, this.args)
         //     .map(data => {
         //         data.results.forEach(item => {
@@ -69,7 +78,7 @@ export class SampleFormComponent implements OnInit {
         this._indeterminate = this._allChecked ? false : checkedCount > 0;
     }
 
-    constructor(private message: NzMessageService,private router: Router,private modal: NzModalService,) {
+    constructor(private message: NzMessageService,private router: Router,private modal: NzModalService,private service: BiologyService) {
     }
 
     ngOnInit() {
@@ -85,13 +94,13 @@ export class SampleFormComponent implements OnInit {
             title: '详细信息',
             content: contentTpl,
             okText: '关闭',
-            // cancelText: '取消',
+            cancelText: '查看详情',
             // onOk: () => {
             //     this.message.success('关闭');
             // },
-            // onCancel: () => {
-            //     this.message.error('Click Return!');
-            // }
+            onCancel: () => {
+                this.message.info('跳转到相应页面');
+            }
         });
     }
 
