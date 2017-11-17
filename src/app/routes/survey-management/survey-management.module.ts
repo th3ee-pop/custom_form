@@ -62,7 +62,6 @@ const routes: Routes = [
         RouterModule
     ],
     declarations: [
-        SurveyManagementComponent,
         InputcmpComponent,
         RadiocmpComponent,
         PhoneComponent,
