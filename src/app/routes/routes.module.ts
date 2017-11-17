@@ -5,8 +5,9 @@ import { PagesModule } from './pages/pages.module';
 import { SurveyManagementModule} from './survey-management/survey-management.module';
 import { routes } from './routes';
 import { DashboardV1Component } from './dashboard/v1/v1.component';
-import { LoginAuthService } from './pages/login/login.auth.service';
-import { LoginAuthGuard } from './pages/login/login.guard.service';
+import { LoginAuthService } from '@core/services/login.auth.service';
+import { LoginAuthGuard } from '@core/services/login.guard.service';
+
 
 @NgModule({
     imports: [

@@ -8,7 +8,7 @@ import { MaintenanceComponent } from './pages/maintenance/maintenance.component'
 import { Page404Component } from './pages/404/404.component';
 import { Page500Component } from './pages/500/500.component';
 import { DashboardV1Component } from './dashboard/v1/v1.component';
-import { LoginAuthGuard } from './pages/login/login.guard.service';
+import { LoginAuthGuard } from '@core/services/login.guard.service';
 
 export const routes = [
     {
