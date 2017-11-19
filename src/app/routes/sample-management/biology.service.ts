@@ -55,8 +55,9 @@ export class BiologyService {
             });
     }
 
-    deleteRecord(): Observable<any> {
-        const params = { 'PID': '1' };
+    deleteRecord(PID): Observable<any> {
+        const params = { 'PID':PID };
+        // console.log(params);
         const api = '/biology/recordop/';
         return this.Http.delete(this.baseUrl + api, {
             headers: new Headers({ 'X-CSRFToken': this.injector.get(TokenService).data.access_token }),
@@ -69,16 +70,20 @@ export class BiologyService {
             });
     }
 
-    putRecord(): Observable<any> {
+    /*
+
+     body = {
+     'Records':
+     {
+     'number': {'Record_Value': 1000000001,  'Updated_time': '' },
+     'type': {'Record_Value': 1, 'Updated_time': '' },
+     'user_info': {'Record_Value': [], 'Updated_time': '' }
+     }
+     };
+     */
+    putRecord(body): Observable<any> {
+        console.log(body);
         const api = '/biology/recordop/';
-        const body = {
-            'Records':
-            {
-                'number': {'Record_Value': 1000000001,  'Updated_time': '' },
-                'type': {'Record_Value': 1, 'Updated_time': '' },
-                'user_info': {'Record_Value': [], 'Updated_time': '' }
-             }
-        };
         return this.http.put(this.baseUrl + api, body)
             .do(() => { })
             .catch((res) => {

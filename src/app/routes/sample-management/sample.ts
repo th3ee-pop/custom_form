@@ -1,47 +1,47 @@
 export class Use_info{
     constructor(
-        public user:string,
-        public use_time: string,
-        public use_count: number,
-        public useage:string
+        public user:{},
+        public use_time: {},
+        public use_count: {},
+        public useage:{}
     ){}
 }
 export class Accident_info{
     constructor(
-        public accident:string,
-        public acc_time: string,
-        public duration: string,
-        public resolvent: string,
-        public influence: string
+        public accident:{},
+        public acc_time: {},
+        public duration: {},
+        public resolvent: {},
+        public influence: {}
     ){}
 }
 
 export class Sample {
     constructor(
-        public sample_info: string,
-        public number: number,
-        public repository: number,
-        public type: number,
-        public owner: number,
-        public capacity: string,
-        public collect_time: Date,
-        public branch : number,
-        public lost_msg: string,
-        public collect_count: number,
-        public collector: string,
-        public building: string,
-        public ref: number,
-        public shelf: number,
-        public row: number,
-        public col: number,
-        public keeper: string,
-        public pipe_Num: number,
-        public store_time: Date,
-        public placer: string,
-        public requirement: string,
-        public emergency: string,
-        public belong_rep: number,
-        public blood_type?: number,
+        public sample_info: {},
+        public number: {},
+        public repository: {},
+        public type: {},
+        public owner: {},
+        public capacity: {},
+        public collect_time: {},
+        public branch : {},
+        public lost_msg: {},
+        public collect_count: {},
+        public collector: {},
+        public building: {},
+        public ref: {},
+        public shelf: {},
+        public row: {},
+        public col: {},
+        public keeper: {},
+        public pipe_Num: {},
+        public store_time: {},
+        public placer: {},
+        public requirement: {},
+        public emergency: {},
+        public belong_rep: {},
+        public blood_type?: {},
         public use_info?: Use_info[],
         public accident_info?: Accident_info[]
     ){}
