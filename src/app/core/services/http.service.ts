@@ -198,7 +198,7 @@ export class HttpService {
         console.log(body);
         return this.http.post(this.baseUrl + api, JSON.stringify(body))
             .do((res: any) => {
-            const localuser = new TokenService();
+            /*const localuser = new TokenService();
             localuser.data = <TokenData>{
                 access_token: res.TOKEN,
                 expire_time: moment().add(7, 'days').unix(),
@@ -207,8 +207,8 @@ export class HttpService {
                 user_name: body.username,
                 user_group: '4',
                 user_province: body.province
-            };
-            console.log(localuser);
+            };*/
+           // console.log(localuser);
             })
             .catch((res) => {
                 return res;

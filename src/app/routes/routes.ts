@@ -16,7 +16,7 @@ export const routes = [
         component: LayoutComponent,
         canActivateChild: [LoginAuthGuard],
         children: [
-            { path: '', redirectTo: 'user/setting', pathMatch: 'full' },
+            { path: '', redirectTo: 'user/detail', pathMatch: 'full' },
             { path: 'dashboard', redirectTo: 'dashboard/v1', pathMatch: 'full' },
             { path: 'dashboard/v1', component: DashboardV1Component, data: { translate: 'dashboard_v1' } },
             { path: 'widgets', loadChildren: './widgets/widgets.module#WidgetsModule' },
@@ -45,7 +45,6 @@ export const routes = [
         ]
     },
     // 单页不包裹Layout
-    { path: 'register', component: RegisterComponent, data: { translate: 'register' } },
     { path: 'login', component: LoginComponent, data: { title: 'login' } },
     { path: 'forget', component: ForgetComponent, data: { translate: 'forget' } },
     { path: 'lock', component: LockComponent, data: { translate: 'lock' } },
