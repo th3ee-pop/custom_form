@@ -14,6 +14,7 @@ import { BiologyService } from './biology.service';
 const routes:Routes = [
     { path: 'detail', component: SampleManagementComponent },
     { path: 'add', component: SampleAddComponent},
+    { path: 'add/:PID', component: SampleAddComponent},
     { path: 'crossfilter', component: SampleCrossfilterComponent}
 ];
 

@@ -29,24 +29,13 @@ export class SampleFormComponent implements OnInit {
         this.loading = true;
         this._allChecked = false;
         this._indeterminate = false;
-        this.list = [{
-            'id1':'00000000000',
-            'id2':'陕西省',
-            'id3':'1',
-            'id4':'xx楼',
-            'id5':'xx号',
-            'id6':'xx层',
-            'id7':'1',
-            'id8':'1',
-            'id9':'1',
-            'id10':'110000111'
-        }];
         // this.service.getBasicInfo().subscribe(data => {
-        // this.service.getRecordlist().subscribe(data => {
-        const getRecordApi = '/biology/recordop/',
-            params = { 'PID': 1};
-        this.service.getService(getRecordApi, params).subscribe(data => {
+        this.service.getRecordlist().subscribe(data => {
+        // const getRecordApi = '/biology/recordop/',
+        //     params = { 'PID': 1};
+        // this.service.getService(getRecordApi, params).subscribe(data => {
             console.log(data);
+            this.list = data.PID_info;
             this.loading = false;
         });
         // this._randomUser.getUsers(this.pi, this.ps, this.args)
@@ -104,7 +93,18 @@ export class SampleFormComponent implements OnInit {
         });
     }
 
-    goAdd(){
-        this.router.navigate(['sample/add']);
+    deleteRecord(id){
+        this.service.deleteRecord(id).subscribe(res =>{
+            console.log(res);
+            this.showMsg("已删除！");
+        });
+        this.load();
+    }
+    goAdd(id?){
+        if(id) {
+            this.router.navigate(['sample/add/' + id]);
+        }else {
+            this.router.navigate(['sample/add']);
+        }
     }
 }
