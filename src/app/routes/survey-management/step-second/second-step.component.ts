@@ -127,8 +127,7 @@ export class SecondStepComponent implements OnInit, AfterViewInit {
     }
     fillingAllanswer() {
         const getRecord = {
-            'PID': this.PID,
-            'RecordID': 'ID2'
+            'PID': this.PID
         };
         this.service.getRecord(getRecord).subscribe( (res) => {
             const fillingList = res.Records;
