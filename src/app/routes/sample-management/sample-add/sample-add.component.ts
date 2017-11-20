@@ -139,6 +139,7 @@ export class SampleAddComponent implements OnInit {
     validateForm: FormGroup;
     PID;
     loading = false;
+    read=true;
 
     provinces = ['陕西', '甘肃', '宁夏', '青海', '新疆'];
 
@@ -257,12 +258,16 @@ export class SampleAddComponent implements OnInit {
             }
         }
         console.log(this.validateForm.value);
-        const data={
-            'Records':this.transfer(this.validateForm.value)
-        };
-        this.service.putRecord(data).subscribe(res => {
-            console.log(res);
-        });
+        if( !this.PID) {
+            const data = {
+                'Records': this.transfer(this.validateForm.value)
+            };
+            this.service.putRecord(data).subscribe(res => {
+                console.log(res);
+            });
+        }else {
+            this.modify();
+        }
         // this.resetForm();
     }
 
@@ -299,6 +304,10 @@ export class SampleAddComponent implements OnInit {
         this.service.putRecord(body).subscribe(res => {
             console.log(res);
         });
+    }
+
+    correct(){
+        this.read = !this.read;
     }
 
     getNowdate() {
