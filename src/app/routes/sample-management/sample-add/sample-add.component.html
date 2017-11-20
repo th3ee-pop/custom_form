@@ -142,7 +142,8 @@
                             <label>应急措施</label>
                         </div>
                         <div nz-form-control nz-col [nzSm]="10">
-                            <nz-input formControlName="emergency" [(ngModel)] = 'Sample.emergency.Record_Value' [nzDisabled]="true"></nz-input>
+                            <nz-input formControlName="emergency" [(ngModel)] = 'Sample.emergency.Record_Value'></nz-input>
+                            <!--<nz-input formControlName="emergency"  [nzDisabled]="true"></nz-input>-->
                         </div>
                     </div>
                     <div nz-form-item nz-row>
@@ -202,22 +203,62 @@
                         </div>
                     </div>
                     <div nz-form-item nz-row>
-
-                        <!--<div nz-form-label nz-col [nzSm]="4">-->
-                            <!--<label nz-form-item-required>编号</label>-->
-                        <!--</div>-->
-                        <!--<div nz-form-control nz-col [nzSm]="10" [nzValidateStatus]="getFormControl('num')">-->
-                            <!--<nz-input formControlName="num" (ngModelChange)="updateConfirmValidator('num')"></nz-input>-->
-                            <!--<div nz-form-explain *ngIf="getFormControl('num').dirty&&getFormControl('num').hasError('required')">请检查您的输入</div>-->
-                            <!--<div nz-form-explain *ngIf="getFormControl('num').dirty&&getFormControl('num').hasError('error')">请参照省份和项目点填写编号</div>-->
-                        <!--</div>-->
+                        <div  nz-form-control nz-col [nzSm]="20" [nzOffset]="2">
+                        <nz-table>
+                            <thead nz-thead>
+                            <tr>
+                                <th nz-th><span>使用人</span></th>
+                                <th nz-th><span>使用数量</span></th>
+                                <th nz-th><span>使用用途</span></th>
+                                <th nz-th><span>使用日期</span></th>
+                            </tr>
+                            </thead>
+                            <tbody nz-tbody>
+                            <tr nz-tbody-tr *ngFor="let item of Sample.user_info, index as i">
+                                <td nz-td>
+                                    <span>
+                                        <nz-input formControlName="keeper"  [(ngModel)] = 'Sample.keeper.Record_Value'></nz-input>
+                                    </span>
+                                    <!--{{item.user}}-->
+                                </td>
+                                <td nz-td>{{item.use_count}}</td>
+                                <td nz-td>{{item.usage}}</td>
+                                <td nz-td>{{item.use_time}}</td>
+                            </tr>
+                            </tbody>
+                        </nz-table>
+                        </div>
+                    </div>
+                    <div nz-form-item nz-row>
+                        <div  nz-form-control nz-col [nzSm]="20" [nzOffset]="2">
+                        <nz-table>
+                            <thead nz-thead>
+                            <tr>
+                                <th nz-th><span>意外事件</span></th>
+                                <th nz-th><span>日期</span></th>
+                                <th nz-th><span>时长</span></th>
+                                <th nz-th><span>解决方法</span></th>
+                                <th nz-th><span>影响</span></th>
+                            </tr>
+                            </thead>
+                            <tbody nz-tbody>
+                            <tr nz-tbody-tr *ngFor="let item of Sample.accident_info, index as i">
+                                <td nz-td>{{item.accident}}</td>
+                                <td nz-td>{{item.acc_time}}</td>
+                                <td nz-td>{{item.duration}}</td>
+                                <td nz-td>{{item.resolvent}}</td>
+                                <td nz-td>{{item.influence}}</td>
+                            </tr>
+                            </tbody>
+                        </nz-table>
+                    </div>
                     </div>
                 </form>
                 <div nz-form-control nz-col [nzSpan]="14" [nzOffset]="4">
-                <button nz-button [nzType]="'primary'" [disabled]="disabled" class="mr-sm" (click)="_submitForm()" *ngIf = '!PID'>
+                    <button nz-button [nzType]="'primary'" [disabled]="disabled" class="mr-sm" (click)="_submitForm()" *ngIf = '!PID'>
                     <span>保存</span>
-                </button>
-                    <button nz-button [nzType]="'primary'" [disabled]="disableed" class="mr-sm" (click)="_submitForm()" *ngIf = 'PID'>
+                    `</button>
+                    <button nz-button [nzType]="'primary'" [disabled]="disabled" class="mr-sm" (click)="modify()" *ngIf = 'PID'>
                         <span>修改</span>
                     </button>
                     <button nz-button [nzType]="'primary'" [disabled]="disabled" class="mr-sm" (click)="goBack()">

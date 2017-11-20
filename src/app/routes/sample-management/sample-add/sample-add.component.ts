@@ -118,22 +118,22 @@ export class SampleAddComponent implements OnInit {
             'Record_Value': '',
             'Updated_time': ''
         },
-        // 'user_info': [
-        //     {
-        //         'user': 'www',
-        //         'use_time': '2017-9-9',
-        //         'use_count': '200ml',
-        //         'usage': '为了xxx'
-        //     }],
-        // 'accident_info': [
-        //     {
-        //         'acc_name': '试管泄漏',
-        //         'acc_time': '2017-9-10',
-        //         'duration': '10min',
-        //         'resolvent': '更换试管',
-        //         'influence': '剩余100ml'
-        //     }
-        // ]
+        'user_info': [
+            {
+                'user': 'www',
+                'use_time': '2017-9-9',
+                'use_count': '200ml',
+                'usage': '为了xxx'
+            }],
+        'accident_info': [
+            {
+                'acc_name': '试管泄漏',
+                'acc_time': '2017-9-10',
+                'duration': '10min',
+                'resolvent': '更换试管',
+                'influence': '剩余100ml'
+            }
+        ]
     };
 
     validateForm: FormGroup;
@@ -281,6 +281,24 @@ export class SampleAddComponent implements OnInit {
         };
         console.log(data);
         return data;
+    }
+
+    modify(){
+        const body = {
+            'PID':parseInt(this.PID),
+            'Records':{}
+        };
+        for(let key in this.Sample){
+            if( !this.Sample[key].Record_Value){
+                console.log(key + 'is not added');
+            }else {
+                body.Records[key] = this.Sample[key];
+            }
+        }
+        console.log(body);
+        this.service.putRecord(body).subscribe(res => {
+            console.log(res);
+        });
     }
 
     getNowdate() {
