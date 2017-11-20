@@ -50,6 +50,25 @@ export class UserSettingsComponent implements OnInit {
         });
     }
 
+    pi = 1;
+    ps = 5;
+    total = 200; // mock total
+    list = [];
+    loading = false;
+    args = {};
+    _indeterminate = false;
+    _allChecked = false;
+    start_time = '';
+    end_time = '';
+
+    conditions = {
+        'filter': {
+            'date_joined': []
+        },
+        'sorted_key': 'username',
+        'start': (this.pi - 1) * this.ps,
+        'offset': this.ps,
+    };
     valForm: FormGroup;
     authority = {
         '1': '总管理员',
@@ -68,42 +87,52 @@ export class UserSettingsComponent implements OnInit {
     // Email
     primary_email = 'cipchk@qq.com';
 
-    pi = 1;
-    ps = 10;
-    total = 200; // mock total
-    list = [];
-    loading = false;
-    args = {};
-    _indeterminate = false;
-    _allChecked = false;
+
 
     load(pi?: number) {
         if (typeof pi !== 'undefined') {
             this.pi = pi || 1;
         }
-
+        this.setTime();
+        this.changePage();
+        console.log(this.pi);
         this.loading = true;
         this._allChecked = false;
         this._indeterminate = false;
-        this.loginService.getUsers()
+        this.httpService.getUser(this.conditions)
             .map(data => {
+                console.log(data);
                 data.Users.forEach(item => {
                     item.checked = false;
                     item.group = this.authority[item.group];
-                    console.log(item);
-                  //  item.price = +((Math.random() * (10000000 - 100)) + 100).toFixed(2);
+                    item.date_joined = item.date_joined.substring(0, 19);
                 });
                 return data;
             })
             .subscribe(data => {
                 this.loading = false;
                 this.list = data.Users;
+                this.total = data.Count_total;
+                console.log(this.list);
             });
     }
 
+    changePage() {
+        this.conditions.start = (this.pi - 1) * this.ps;
+        this.conditions.offset = this.ps;
+    }
+
+    showConditions() {
+        console.log(this.conditions);
+        this.load();
+    }
+
     clear() {
-        this.args = {};
-        this.load(1);
+        for (const key in this.conditions.filter) {
+            if (this.conditions.filter[key])
+            delete this.conditions.filter[key];
+        }
+        this.load();
     }
 
     _checkAll() {
@@ -121,6 +150,26 @@ export class UserSettingsComponent implements OnInit {
         this.message.info(msg);
     }
 
+    GMTToStr(time) {
+        const date = new Date(time);
+        const Str = date.getFullYear() + '-' +
+            (date.getMonth() + 1) + '-' +
+            date.getDate() + ' ' +
+                date.getHours() + ':' +
+                date.getMinutes() + ':' +
+                date.getSeconds();
+        return Str;
+    }
+
+    setTime() {
+        if (this.start_time === '' || this.end_time === '') {
+            delete this.conditions.filter.date_joined;
+        } else {
+            this.conditions.filter.date_joined = [];
+            this.conditions.filter.date_joined.push(this.GMTToStr(this.start_time));
+            this.conditions.filter.date_joined.push(this.GMTToStr(this.end_time));
+        }
+    }
 
     get name() { return this.profileForm.get('name'); }
 
@@ -159,6 +208,7 @@ export class UserSettingsComponent implements OnInit {
     deleteUser(username) {
         this.loginService.remove(username).subscribe((res) => {
             console.log(res);
+            this.load();
         });
     }
     ngOnInit() {
