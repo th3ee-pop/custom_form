@@ -1532,7 +1532,7 @@ export class QuestionList {
             },
             {
                 'id': '8.3.3',
-                'type': 'input',
+                'type': 'radio',
                 'content': [
                    '以静坐为主', '以站立为主', '以一般的体力劳动为主', '以重体力劳动为主'
                 ],

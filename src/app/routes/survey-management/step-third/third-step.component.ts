@@ -113,7 +113,8 @@ export class ThirdStepComponent implements OnInit, AfterViewInit {
         else {
             this.resultList.push(
                 {'Record_ID': 'ID0_4', 'Record_Value': this.getNowdate()},
-                {'Record_ID': 'ID3', 'Record_Value': ''});
+                {'Record_ID': 'ID3', 'Record_Value': ''},
+                {'Record_ID': 'ID0_2', 'Record_Value': '未完成'});
         }
         for ( let i = 0; i < this.answerList.length; i ++) {
             for ( let j = 0; j < this.resultList.length; j++) {
@@ -126,7 +127,8 @@ export class ThirdStepComponent implements OnInit, AfterViewInit {
     }
     fillingAllanswer() {
         const getRecord = {
-            'PID': this.PID
+            'PID': this.PID,
+            'RecordID': 'ID3'
         };
         this.service.getRecord(getRecord).subscribe( (res) => {
             const fillingList = res.Records;

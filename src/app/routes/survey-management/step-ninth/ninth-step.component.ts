@@ -76,6 +76,8 @@ export class NinthStepComponent implements OnInit, AfterViewInit {
         this.collectAllanswer();
         const putRecord = { 'PID': this.PID, 'Records' : this.resultList };
         this.service.putRecord(putRecord).subscribe( (res) => {
+            console.log('123');
+            console.log(res);
             this.router.navigate( ['/survey/detail/']);
         }, error => { });
     }
@@ -88,6 +90,8 @@ export class NinthStepComponent implements OnInit, AfterViewInit {
         this.InputItems.forEach(item => { if (item.answerChanged === false) { confirms = false; confirmlist.push(item.question.id);
         }});
         this.RadioItems.forEach(item => { if (item.localAnswer === -1) { confirms = false; confirmlist.push(item.question.id);
+        }});
+        this.CheckboxItems.forEach(item => { if ( !item.localAnswer) { confirms = false; confirmlist.push(item.question.id);
         }});
         this.Table96Items.forEach( item => { if ( item.answerCheck() === false) { confirms = false; confirmlist.push(item.question.id);
         }});
@@ -106,6 +110,9 @@ export class NinthStepComponent implements OnInit, AfterViewInit {
         this.InputItems.forEach(item => {
             if (item.answerChanged === true) { for ( let i = 0; i < item.answer.length; i++) { this.resultList.push(item.answer[i]); } }
         });
+        this.CheckboxItems.forEach(item => {
+            if (item.answerChanged === true) { for ( let i = 0; i < item.answer.length; i++) { this.resultList.push(item.answer[i]); } }
+        });
         this.Table96Items.forEach( item => {
             if (item.answerCheck() === true) { item.getAnswer().forEach( it => { this.resultList.push(it); }); }
         });
@@ -119,7 +126,8 @@ export class NinthStepComponent implements OnInit, AfterViewInit {
         else {
             this.resultList.push(
                 {'Record_ID': 'ID0_4', 'Record_Value': this.getNowdate()},
-                {'Record_ID': 'ID9', 'Record_Value': ''});
+                {'Record_ID': 'ID9', 'Record_Value': ''},
+                {'Record_ID': 'ID0_2', 'Record_Value': '未完成'});
         }
         for ( let i = 0; i < this.answerList.length; i ++) {
             for ( let j = 0; j < this.resultList.length; j++) {
@@ -132,7 +140,8 @@ export class NinthStepComponent implements OnInit, AfterViewInit {
     }
     fillingAnswer() {
         const getRecord = {
-            'PID': this.PID
+            'PID': this.PID,
+            'RecordID': 'ID9'
         };
         this.service.getRecord(getRecord).subscribe( (res) => {
             const fillingList = res.Records;
@@ -145,6 +154,15 @@ export class NinthStepComponent implements OnInit, AfterViewInit {
                 id = this.getTransid( item.question.id );
                 if ( it[id] && it[id] !== '') {  item.localAnswer[0] = it[id]; }});
             });
+            this.CheckboxItems.forEach( item => { for ( let i = 0; i < fillingList.length; i++) {
+                for ( let j = 1; j <= item.question.content.length; j++ ) {
+                    const id = this.getTransid(item.question.id) + '_' + j;
+                    if ( fillingList[i][id] && fillingList[i][id] !== '') {
+                        const nums = id.split('_');
+                        item.localAnswer[Number.parseInt (nums[nums.length - 1]) - 1] = true;
+                    }
+                }
+            }});
             this.RadioItems.forEach( item => {
                 for ( let i = 0; i < fillingList.length; i++) {
                     for ( let j = 1 ; j <= item.question.content.length; j++) {
@@ -158,30 +176,34 @@ export class NinthStepComponent implements OnInit, AfterViewInit {
             });
             this.Table96Items.forEach( item => {
                     for ( let i = 0; i < fillingList.length; i++) {
-                        const id1 = 'ID9_6_a_' + ( i + 1 );
-                        const id2 = 'ID9_6_b_' + ( i + 1 );
-                        const id3 = 'ID9_6_c_' + ( i + 1 );
-                        if ( fillingList[i][id1] && fillingList[i][id1] !== '') {
-                            item.birthAge[i] = fillingList[i][id1];
-                        }
-                        if ( fillingList[i][id2] && fillingList[i][id2] !== '') {
-                            item.feedMonths[i] = fillingList[i][id2];
-                        }
-                        if ( fillingList[i][id3]) {
-                            item.isTwins[i] = fillingList[i][id3];
+                        for ( let j = 0; j < 5 ; j++) {
+                            const id1 = 'ID9_6_a_' + ( j + 1 );
+                            const id2 = 'ID9_6_b_' + ( j + 1 );
+                            const id3 = 'ID9_6_c_' + ( j + 1 );
+                            if ( fillingList[i][id1] && fillingList[i][id1] !== '') {
+                                item.birthAge[j] = fillingList[i][id1];
+                            }
+                            if ( fillingList[i][id2] && fillingList[i][id2] !== '') {
+                                item.feedMonths[j] = fillingList[i][id2];
+                            }
+                            if ( fillingList[i][id3]) {
+                                item.isTwins[j] = true;
+                            }
                         }
                     }
                 }
             );
             this.Table913Items.forEach( item => {
                     for ( let i = 0; i < fillingList.length; i++ ) {
-                        const id1 = 'ID9_13_' + ( i + 1 );
-                        const id2 = 'ID9_13_a_' + ( i + 1 );
-                        if ( fillingList[i][id1]) {
-                            item.selected[i] = fillingList[i][id1];
-                        }
-                        if ( fillingList[i][id2]) {
-                            item.operationAge[i] = fillingList[i][id2];
+                        for ( let j = 0; j < 5; j++) {
+                            const id1 = 'ID9_13_' + ( j + 1 );
+                            const id2 = 'ID9_13_a_' + ( j + 1 );
+                            if ( fillingList[i][id1]) {
+                                item.selected[j] = true;
+                            }
+                            if ( fillingList[i][id2]) {
+                                item.operationAge[j] = fillingList[i][id2];
+                            }
                         }
                     }
                 }

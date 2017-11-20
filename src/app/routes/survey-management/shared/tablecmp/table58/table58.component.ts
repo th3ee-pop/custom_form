@@ -61,6 +61,7 @@ export class Table58Component extends Question implements AnswerInterface, OnIni
         console.log(res);
     }
     answerCheck() {
+        this.answerChange();
         for (let row = 0; row < 3; row++) {
             let flag2 = false;
             for (let col = 0; col < 3; col++) { // 逐行检查

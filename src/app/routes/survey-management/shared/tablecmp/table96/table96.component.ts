@@ -47,7 +47,7 @@ export class Table96Component extends Question implements AnswerInterface, OnIni
             if ( this.isTwins [row] ) {
                 res.push({
                     Record_ID: questionID + '_c_' + ( row + 1),
-                    Record_value: true
+                    Record_Value: true
                 });
             }
         }
@@ -55,6 +55,7 @@ export class Table96Component extends Question implements AnswerInterface, OnIni
         console.log(res);
     }
     answerCheck() {
+        this.answerChange();
         for ( let i = 0; i < this.birthTimeList.length; i++) {
             if ( this.isTwins[i]) return true;
             if ( this.feedMonths[i] && this.feedMonths[i] !== '') return true;

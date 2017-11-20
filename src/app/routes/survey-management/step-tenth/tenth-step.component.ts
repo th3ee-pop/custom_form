@@ -44,19 +44,31 @@ export class TenthStepComponent implements OnInit, AfterViewInit {
         this.PID = this.route.params['value']['PID'];
     }
     ngAfterViewInit() {
+        const getRecord = {
+            'PID': this.PID,
+            'RecordID': 'ID1'
+        };
+        this.service.getRecord(getRecord).subscribe( (res) => {
+            console.log(res);
+            res.Records.forEach( it => {
+                console.log('sex######################');
+                if (it['ID1_3_1'] === 'True' ) {  console.log('sssss'); this.sex  = true; }
+
+            });
+        });
         this.fillingAllanswer();
     }
     pre() {                                            // 上一步
         this.collectAllanswer();
         const putRecord = { 'PID': this.PID, 'Records' : this.resultList };
         this.service.putRecord(putRecord).subscribe( (res) => {
-
+            if ( this.sex === true) {
+                this.router.navigate(['/survey/eighth_step/' + this.PID]);
+            }else {
+                this.router.navigate(['/survey/ninth_step/' + this.PID]);
+            }
         }, error => { });
-        if ( this.sex === true) {
-            this.router.navigate(['/survey/eighth/' + this.PID]);
-        }else {
-            this.router.navigate(['/survey/ninth_step/' + this.PID]);
-        }
+
     }
     submit() {                                         // 暂存
         if ( this.confirm().confirms ) {
@@ -112,11 +124,13 @@ export class TenthStepComponent implements OnInit, AfterViewInit {
         if (this.confirm().confirms)
             this.resultList.push(
                 {'Record_ID': 'ID0_4', 'Record_Value': this.getNowdate()},
-                {'Record_ID': 'ID10', 'Record_Value': 'finished'});
+                {'Record_ID': 'ID10', 'Record_Value': 'finished'},
+                {'Record_ID': 'ID0_2', 'Record_Value': '已完成'});
         else {
             this.resultList.push(
                 {'Record_ID': 'ID0_4', 'Record_Value': this.getNowdate()},
-                {'Record_ID': 'ID10', 'Record_Value': ''});
+                {'Record_ID': 'ID10', 'Record_Value': ''},
+                {'Record_ID': 'ID0_2', 'Record_Value': '未完成'});
         }
         for ( let i = 0; i < this.answerList.length; i ++) {
             for ( let j = 0; j < this.resultList.length; j++) {
@@ -129,12 +143,13 @@ export class TenthStepComponent implements OnInit, AfterViewInit {
     }
     fillingAllanswer() {
         const getRecord = {
-            'PID': this.PID
+            'PID': this.PID,
+            'RecordID': 'ID10'
         };
         this.service.getRecord(getRecord).subscribe( (res) => {
             const fillingList = res.Records;
             this.answerList = fillingList;
-            fillingList.forEach( it => { if ( it['ID2'] && it['ID2'] === 'finished') this.finished = true;
+            fillingList.forEach( it => { if ( it['ID10'] && it['ID10'] === 'finished') this.finished = true;
             });
             console.log(fillingList);
             this.InputItems.forEach( item => { fillingList.forEach( it => {

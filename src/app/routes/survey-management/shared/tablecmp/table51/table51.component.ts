@@ -45,7 +45,7 @@ export class Table51Component  extends Question implements AnswerInterface, OnIn
 
     }
     ngOnInit() {
-        for (let i = 0; i < 24; i++) {
+        for (let i = 0; i < 23; i++) {
             this.localAnswer[i] = new Array(5);
         }
     }
@@ -88,6 +88,7 @@ export class Table51Component  extends Question implements AnswerInterface, OnIn
     }
 
     answerCheck() {
+        this.answerChange();
         for (let row = 0; row < 23; row++) {
             let flag2 = false;
             for (let col = 0; col < 5; col++) {

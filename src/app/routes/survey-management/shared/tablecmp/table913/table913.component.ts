@@ -42,7 +42,8 @@ export class Table913Component extends Question implements AnswerInterface, OnIn
             }
             if ( this.operationAge[i] && this.operationAge[i] !== '' ) {
                 res.push({
-                    Record_ID: questionID + '_a_' + ( i + 1)
+                    Record_ID: questionID + '_a_' + ( i + 1),
+                    Record_Value : this.operationAge[i]
                 });
             }
         }

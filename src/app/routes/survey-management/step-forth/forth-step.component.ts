@@ -110,6 +110,17 @@ export class ForthStepComponent implements OnInit, AfterViewInit {
         this.Table46.forEach( item => {
             if (item.answerCheck() === true) { item.getAnswer().forEach( it => { this.resultList.push(it); }); }
         });
+        if (this.confirm().confirms)
+            this.resultList.push(
+                {'Record_ID': 'ID0_4', 'Record_Value': this.getNowdate()},
+                {'Record_ID': 'ID4', 'Record_Value': 'finished'});
+        else {
+            this.resultList.push(
+                {'Record_ID': 'ID0_4', 'Record_Value': this.getNowdate()},
+                {'Record_ID': 'ID4', 'Record_Value': ''},
+                {'Record_ID': 'ID0_2', 'Record_Value': '未完成'});
+        }
+
         for ( let i = 0; i < this.answerList.length; i ++) {
             for ( let j = 0; j < this.resultList.length; j++) {
                 const id = this.resultList[j].Record_ID;

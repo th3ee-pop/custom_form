@@ -21,14 +21,6 @@ export class SurveyOverviewComponent implements OnInit {
         ) { }
 
     ngOnInit() {
-        // this.PID = this.route.params['value']['PID'];
-        // if (this.PID && this.PID !== '') {
-        //     const deleteId = { 'PID': this.PID };
-        //     this.service.deleteRecord(deleteId).subscribe((res) => {
-        //         console.log(res);
-        //         this.router.navigate(['/detail']);
-        //     });
-        // }
         this.getTableData();
     }
 

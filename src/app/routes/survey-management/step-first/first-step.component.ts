@@ -50,7 +50,8 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
         if ( !this.PID )
             this.resultList.push(
                 { 'Record_ID': 'ID0_3', 'Record_Value': this.localInfo.user_province}, // 省份
-                { 'Record_ID': 'ID0_5', 'Record_Value': this.localInfo.user_name}        // 用户ID
+                { 'Record_ID': 'ID0_5', 'Record_Value': this.localInfo.user_name},        // 用户ID
+                { 'Record_ID': 'ID0_2', 'Record_Value': '未完成'}
             );
     }
     ngAfterViewInit() {
@@ -85,6 +86,17 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
         }
     }
 
+    /**
+     *  点击steps上的按钮，进行步骤跳跃
+     */
+    jumpTo(step_index) {
+        const numWords = ['first', 'second', 'third', 'forth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth'];
+        if (this.PID) { // 如果有病人编号，则跳跃
+            console.log(step_index);
+            this.router.navigate(['/survey/' + numWords[step_index] + '_step/' + this.PID]);  // 拼接跳转链接
+        }
+
+    }
 
 
     temporary_deposit() {                               // 暂存
@@ -164,7 +176,8 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
                 {'Record_ID': 'ID1', 'Record_Value': 'finished'});
         else {
             this.resultList.push(
-                {'Record_ID': 'ID0_4', 'Record_Value': this.getNowdate()});
+                {'Record_ID': 'ID0_4', 'Record_Value': this.getNowdate()},
+                {'Record_ID': 'ID0_2', 'Record_Value': '未完成'});
         }
         for ( let i = 0; i < this.answerList.length; i ++) {
             for ( let j = 0; j < this.resultList.length; j++) {
@@ -179,8 +192,8 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
 
     fillingAllanswer() {
         const getRecord = {
-            'PID': this.PID
-            // 'RecordID': 'ID1'
+            'PID': this.PID,
+            'RecordID': 'ID1'
         };
         this.service.getRecord(getRecord).subscribe( (res) => {
                 const fillingList = res.Records;
@@ -248,7 +261,7 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
         id = id + str.replace(/\./g, '_');
         return id;
     }
-
+}
 // onVoted ( hiddenList: any[] ) {
 //     console.log('事件出发');
 //     for (let i = 0; i < hiddenList.length; i++) {
@@ -261,6 +274,3 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
 //         }
 //     }
 // }
-
-
-}

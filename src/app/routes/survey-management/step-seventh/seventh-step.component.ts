@@ -107,6 +107,9 @@ export class SeventhStepComponent implements OnInit, AfterViewInit {
         this.InputItems.forEach(item => {
             if (item.answerChanged === true) { for ( let i = 0; i < item.answer.length; i++) { this.resultList.push(item.answer[i]); } }
         });
+        this.CheckboxItem.forEach(item => {
+            if (item.answerChanged === true) { for ( let i = 0; i < item.answer.length; i++) { this.resultList.push(item.answer[i]); } }
+        });
         this.Table74Item.forEach( item => {
                 if ( item.answerCheck() ) for ( let i = 0; i < item.answer.length; i++) { this.resultList.push(item.answer[i]); }
             }
@@ -118,11 +121,12 @@ export class SeventhStepComponent implements OnInit, AfterViewInit {
         if (this.confirm().confirms)
             this.resultList.push(
                 {'Record_ID': 'ID0_4', 'Record_Value': this.getNowdate()},
-                {'Record_ID': 'ID3', 'Record_Value': 'finished'});
+                {'Record_ID': 'ID7', 'Record_Value': 'finished'});
         else {
             this.resultList.push(
                 {'Record_ID': 'ID0_4', 'Record_Value': this.getNowdate()},
-                {'Record_ID': 'ID3', 'Record_Value': ''});
+                {'Record_ID': 'ID7', 'Record_Value': ''},
+                {'Record_ID': 'ID0_2', 'Record_Value': '未完成'});
         }
         for ( let i = 0; i < this.answerList.length; i ++) {
             for ( let j = 0; j < this.resultList.length; j++) {
@@ -135,7 +139,8 @@ export class SeventhStepComponent implements OnInit, AfterViewInit {
     }
     fillingAllanswer() {
         const getRecord = {
-            'PID': this.PID
+            'PID': this.PID,
+            'RecordID': 'ID7'
         };
         this.service.getRecord( getRecord).subscribe( (res) => {
             const fillingList = res.Records;

@@ -115,7 +115,7 @@ export class Table74Component extends Question implements AnswerInterface, OnIni
         console.log(res);
     }
     answerCheck() {
-
+        this.answerChange();
         for ( let i = 0; i < this.illnessNames.length; i++) {
             if (this.other[i] && this.other[i] !== '') return true;
             if ( this.firstSickAge [i] && this.firstSickAge[i] !== '' ) return true;
