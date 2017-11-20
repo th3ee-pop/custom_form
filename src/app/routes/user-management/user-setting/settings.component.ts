@@ -50,6 +50,7 @@ export class UserSettingsComponent implements OnInit {
         });
     }
 
+    // 分页信息，pi表示第几页，ps表示1页的条目数，total为条目总数。
     pi = 1;
     ps = 5;
     total = 200; // mock total
@@ -61,6 +62,7 @@ export class UserSettingsComponent implements OnInit {
     start_time = '';
     end_time = '';
 
+    // 所有的过滤条件在这个对象里添加
     conditions = {
         'filter': {
             'date_joined': []
@@ -88,7 +90,7 @@ export class UserSettingsComponent implements OnInit {
     primary_email = 'cipchk@qq.com';
 
 
-
+    //  数据加载
     load(pi?: number) {
         if (typeof pi !== 'undefined') {
             this.pi = pi || 1;
@@ -117,22 +119,51 @@ export class UserSettingsComponent implements OnInit {
             });
     }
 
+    // 改变分页和页面
     changePage() {
         this.conditions.start = (this.pi - 1) * this.ps;
         this.conditions.offset = this.ps;
     }
 
+    // 点击查询按钮
     showConditions() {
-        console.log(this.conditions);
         this.load();
     }
 
+    // 清除所有条件
     clear() {
         for (const key in this.conditions.filter) {
             if (this.conditions.filter[key])
             delete this.conditions.filter[key];
         }
         this.load();
+    }
+
+    // 时间格式转换
+    GMTToStr(time) {
+        const date = new Date(time);
+        const Str = date.getFullYear() + '-' +
+            (date.getMonth() + 1) + '-' +
+            date.getDate() + ' ' +
+            date.getHours() + ':' +
+            date.getMinutes() + ':' +
+            date.getSeconds();
+        return Str;
+    }
+
+    // 时间设置
+    setTime() {
+        if (this.start_time === '' || this.end_time === '') {
+            delete this.conditions.filter.date_joined;
+        } else {
+            this.conditions.filter.date_joined = [];
+            this.conditions.filter.date_joined.push(this.GMTToStr(this.start_time));
+            this.conditions.filter.date_joined.push(this.GMTToStr(this.end_time));
+        }
+    }
+
+    showMsg(msg: string) {
+        this.message.info(msg);
     }
 
     _checkAll() {
@@ -146,30 +177,8 @@ export class UserSettingsComponent implements OnInit {
     }
 
 
-    showMsg(msg: string) {
-        this.message.info(msg);
-    }
 
-    GMTToStr(time) {
-        const date = new Date(time);
-        const Str = date.getFullYear() + '-' +
-            (date.getMonth() + 1) + '-' +
-            date.getDate() + ' ' +
-                date.getHours() + ':' +
-                date.getMinutes() + ':' +
-                date.getSeconds();
-        return Str;
-    }
 
-    setTime() {
-        if (this.start_time === '' || this.end_time === '') {
-            delete this.conditions.filter.date_joined;
-        } else {
-            this.conditions.filter.date_joined = [];
-            this.conditions.filter.date_joined.push(this.GMTToStr(this.start_time));
-            this.conditions.filter.date_joined.push(this.GMTToStr(this.end_time));
-        }
-    }
 
     get name() { return this.profileForm.get('name'); }
 
@@ -211,6 +220,7 @@ export class UserSettingsComponent implements OnInit {
             this.load();
         });
     }
+
     ngOnInit() {
         this.load();
         this.profileForm.patchValue({
