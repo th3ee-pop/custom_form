@@ -14,29 +14,110 @@ import {sample} from "rxjs/operators";
 export class SampleAddComponent implements OnInit {
 
     Sample = {
-        'sample_info': {},
-        'number': {},
-        'repository': {},
-        'type': {},
-        'blood_type': {},
-        'owner': {},
-        'capcaity': {},
-        'collect_time': {},
-        'branch': {},
-        'lost_msg': {},
-        'collect_count': {},
-        'pipe_num': {},
-        'store_time': {},
-        'placer':{},
-        'requirement': {},
-        'emergency': {},
-        'belong_rep': {},
-        'building': {},
-        'ref': {},
-        'shelf': {},
-        'row': {},
-        'col': {},
-        'keeper': {},
+        'sample_info': {
+            'Record_Value': '',
+            'Updated_time': ''
+        },
+        'number':  {
+            'Record_Value': '',
+            'Updated_time': ''
+        },
+        'repository': {
+            'Record_Value': '',
+            'Updated_time': ''
+        },
+        'type':{
+            'Record_Value': '',
+            'Updated_time': ''
+        },
+        'capacity':{
+            'Record_Value': '',
+            'Updated_time': ''
+        },
+        'blood_type': {
+            'Record_Value': '',
+            'Updated_time': ''
+        },
+        'owner': {
+            'Record_Value': '',
+            'Updated_time': ''
+        },
+        'capcaity': {
+            'Record_Value': '',
+            'Updated_time': ''
+        },
+        'collect_time': {
+            'Record_Value': '',
+            'Updated_time': ''
+        },
+        'branch': {
+            'Record_Value': '',
+            'Updated_time': ''
+        },
+        'lost_msg': {
+            'Record_Value': '',
+            'Updated_time': ''
+        },
+        'collect_count':{
+            'Record_Value': '',
+            'Updated_time': ''
+        },
+        'collecter':{
+            'Record_Value': '',
+            'Updated_time': ''
+        },
+        'pipe_Num':{
+            'Record_Value': '',
+            'Updated_time': ''
+        },
+        'store_time': {
+            'Record_Value': '',
+            'Updated_time': ''
+        },
+        'placer':{
+            'Record_Value': '',
+            'Updated_time': ''
+        },
+        'requirement':{
+            'Record_Value': '',
+            'Updated_time': ''
+        },
+        'emergency': {
+            'Record_Value': '',
+            'Updated_time': ''
+        },
+        'belong_rep': {
+            'Record_Value': '',
+            'Updated_time': ''
+        },
+        'building': {
+            'Record_Value': '',
+            'Updated_time': ''
+        },
+        'ref': {
+            'Record_Value': '',
+            'Updated_time': ''
+        },
+        'lay':{
+            'Record_Value': '',
+            'Updated_time': ''
+        },
+        'shelf': {
+            'Record_Value': '',
+            'Updated_time': ''
+        },
+        'row': {
+            'Record_Value': '',
+            'Updated_time': ''
+        },
+        'col': {
+            'Record_Value': '',
+            'Updated_time': ''
+        },
+        'keeper':{
+            'Record_Value': '',
+            'Updated_time': ''
+        },
         // 'user_info': [
         //     {
         //         'user': 'www',
@@ -57,6 +138,7 @@ export class SampleAddComponent implements OnInit {
 
     validateForm: FormGroup;
     PID;
+    loading = false;
 
     provinces = ['陕西', '甘肃', '宁夏', '青海', '新疆'];
 
@@ -67,6 +149,25 @@ export class SampleAddComponent implements OnInit {
         private service: BiologyService,
          private route:ActivatedRoute) {
     }
+
+    load(id?: number) {
+        console.log(id);
+                if( id ){
+                const api = '/biology/recordop/',
+                    params = {'PID':id};
+                    this.loading = true;
+                this.service.getService(api,params).subscribe(res => {
+                    console.log(res);
+                    for( let key in res.Records){
+                        this.Sample[key].Record_Value = res.Records[key].Record_Value;
+                        this.Sample[key].Updated_time = res.Records[key].Updated_time;
+                    }
+                    // this.Sample = res.Records;
+                    console.log(this.Sample);
+                    this.loading = false;
+                })
+            }
+        }
 
     updateConfirmValidator(key) {
         /** wait for refresh value */
@@ -84,6 +185,35 @@ export class SampleAddComponent implements OnInit {
             console.info('error');
             return { confirm: true, error: true };
         }
+    };
+
+    defineForm(){
+        this.validateForm = this.fb.group({
+            number: [null, [Validators.required]],
+            repository: [null, [Validators.required]],
+            type: [null, [Validators.required]],
+            blood_type:[null, [ ]],
+            owner:[null, [ Validators.required]],
+            collect_count:[null, [ Validators.required]],
+            collect_time:[null, [ Validators.required]],
+            collecter:[null, [ Validators.required]],
+            branch:[null, [ Validators.required]],
+            lost_msg:[null, [  ]],
+            pipe_Num:[null, [ Validators.required, this.confirmationValidator]],
+            store_time:[null, [ Validators.required]],
+            placer:[null, [ Validators.required]],
+            requirement:[null, [ ]],
+            emergency:[null, [ ]],
+            belong_rep:[null, [ ]],
+            building: [null, [Validators.required]],
+            ref: [null, [Validators.required ]],
+            lay: [null, [Validators.required ]],
+            col: [null, [Validators.required ]],
+            row: [null, [Validators.required ]],
+            shelf: [null, [Validators.required ]],
+            keeper:[null,[ ]]
+            // num: [null, [Validators.required, this.confirmationValidator]],
+        });
     }
 
     // confirmationNum = (control: FormControl): { [s: string]: boolean } => {
@@ -96,38 +226,11 @@ export class SampleAddComponent implements OnInit {
 
     ngOnInit() {
         this.PID = this.route.params['value']['PID'];
-        if(this.PID){
-            const api = '/biology/recordop/',
-                params = {'PID':parseInt(this.PID)};
-            this.service.getService(api,params).subscribe(res => {
-                console.log(res);
-            })
-        }
-        this.validateForm = this.fb.group({
-            number: [null, [Validators.required]],
-            repository: [null, [Validators.required]],
-            type: [null, [Validators.required]],
-            blood_type:[null, [ Validators.required]],
-            owner:[null, [ Validators.required]],
-            collect_count:[null, [ Validators.required]],
-            collect_time:[null, [ Validators.required]],
-            branch:[null, [ Validators.required]],
-            lost_msg:[null, [ Validators.required]],
-            pipe_Num:[null, [ Validators.required, this.confirmationValidator]],
-            store_time:[null, [ Validators.required]],
-            placer:[null, [ Validators.required]],
-            requirement:[null, [ Validators.required]],
-            emergency:[null, [ Validators.required]],
-            belong_rep:[null, [ Validators.required]],
-            building: [null, [Validators.required]],
-            ref: [null, [Validators.required ]],
-            lay: [null, [Validators.required ]],
-            col: [null, [Validators.required ]],
-            row: [null, [Validators.required ]],
-            shelf: [null, [Validators.required ]],
-            // num: [null, [Validators.required, this.confirmationValidator]],
-        });
+        this.defineForm();
         // console.log(this.newSample);
+    }
+    ngAfterViewInit(){
+        this.load(this.PID);
     }
 
     getFormControl(name) {
@@ -159,7 +262,6 @@ export class SampleAddComponent implements OnInit {
         };
         this.service.putRecord(data).subscribe(res => {
             console.log(res);
-            this.msg.success('保存成功！');
         });
         // this.resetForm();
     }
@@ -170,13 +272,13 @@ export class SampleAddComponent implements OnInit {
             if(formData[key]){
                     data[key] = {
                         'Record_Value': formData[key],
-                        'Updated_time':''
+                        'Updated_time': ''
                     };
         }}
         data['capacity'] ={
-            'Record_Value': formData['collect_count'] || 0,
+            'Record_Value': formData['collect_count'] || '0',
             'Updated_time':''
-        }
+        };
         console.log(data);
         return data;
     }
