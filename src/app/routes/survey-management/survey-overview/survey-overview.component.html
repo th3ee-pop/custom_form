@@ -8,7 +8,7 @@
                 <div nz-row [nzGutter]="16">
                     <div nz-col [nzMd]="24">
                         <nz-card>
-                            <ng-template #title>Basic</ng-template>
+                            <ng-template #title>调查表总览</ng-template>
                             <ng-template #body>
                                 <nz-table #nzTable [nzDataSource]="data" [nzPageSize]="10">
                                     <thead nz-thead>
@@ -59,6 +59,11 @@
                                                       <a (click)="deleteRecord(data.PID)">删除</a>
                                                       <span nz-table-divider></span>
                                                   </span>
+
+                                            <span>
+                                                <a (click)="downloadByPID(data.PID)">下载此调查表</a>
+                                                <span nz-table-divider></span>
+                                            </span>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -68,10 +73,25 @@
                     </div>
                 </div>
 
-                <button nz-button [nzType]="'primary'" [nzSize]="'large'" [nzShape]="'circle'" [routerLink]="['/survey/first_step']" class="mr-sm">
-                    <i class="anticon anticon-plus"></i>
-                </button>
 
+                <div nz-row [nzGutter]="40">
+                    <div nz-col [nzSpan]="6">
+                        <button nz-button [nzType]="'primary'" [nzSize]="'large'" [nzShape]="'circle'" [routerLink]="['/survey/first_step']" class="mr-sm">
+                            <i class="anticon anticon-plus"></i>
+                        </button>
+                        新增调查表
+                    </div>
+                    <div nz-col [nzSpan]="6"></div>
+                    <div nz-col [nzSpan]="6"></div>
+                    <div nz-col [nzSpan]="6">
+                        <button nz-button [nzType]="'primary'" [nzSize]="'large'" [nzShape]="'circle'" class="mr-sm" (click)="downloadAll()">
+                                <i class="anticon anticon-download"></i>
+                        </button>
+                        下载所有数据
+                    </div>
+                </div>
+                
+         
             </ng-template>
         </nz-card>
     </div>
