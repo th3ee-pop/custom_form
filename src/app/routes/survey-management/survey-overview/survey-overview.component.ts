@@ -63,10 +63,13 @@ export class SurveyOverviewComponent implements OnInit {
     }
 
     downloadByPID(PID) {
-        this.fileDownloader.downloadFile('all.csv?PID=' + PID);
+        const filePath = 'healthexamination/exportcsv/';
+        const fileName = 'PID' + PID + '.csv';
+        this.fileDownloader.downloadFile(filePath, {'PID': PID}, fileName);
     }
     downloadAll() {
-        this.fileDownloader.downloadFile('all.csv');
+        const filePath = 'healthexamination/exportcsv/';
+        this.fileDownloader.downloadFile(filePath, {}, 'All.csv');
     }
 
     

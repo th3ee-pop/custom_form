@@ -61,7 +61,7 @@
                                                   </span>
 
                                             <span>
-                                                <a (click)="downloadByPID(data.PID)">下载此调查表</a>
+                                                <a (click)="downloadByPID(data.PID)">下载</a>
                                                 <span nz-table-divider></span>
                                             </span>
                                         </td>
@@ -79,13 +79,13 @@
                         <button nz-button [nzType]="'primary'" [nzSize]="'large'" [nzShape]="'circle'" [routerLink]="['/survey/first_step']" class="mr-sm">
                             <i class="anticon anticon-plus"></i>
                         </button>
-                        新增调查表
+                        新增
                     </div>
                     <div nz-col [nzSpan]="6"></div>
                     <div nz-col [nzSpan]="6"></div>
                     <div nz-col [nzSpan]="6">
                         <button nz-button [nzType]="'primary'" [nzSize]="'large'" [nzShape]="'circle'" class="mr-sm" (click)="downloadAll()">
-                                <i class="anticon anticon-download"></i>
+                            <i class="anticon anticon-download"></i>
                         </button>
                         下载所有数据
                     </div>
