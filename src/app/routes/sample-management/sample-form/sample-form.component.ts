@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NzMessageService,NzModalService } from 'ng-zorro-antd';
 import { Router } from '@angular/router';
 import { ModelCustomComponent } from './custom.component';
+import { BiologyService } from '../biology.service';
 
 @Component({
     selector: 'app-sample-form',
@@ -25,33 +26,14 @@ export class SampleFormComponent implements OnInit {
             this.pi = pi || 1;
         }
 
-        // this.loading = true;
+        this.loading = true;
         this._allChecked = false;
         this._indeterminate = false;
-        this.list = [{
-            'id1':'00000000000',
-            'id2':'陕西省',
-            'id3':'1',
-            'id4':'xx楼',
-            'id5':'xx号',
-            'id6':'xx层',
-            'id7':'1',
-            'id8':'1',
-            'id9':'1',
-            'id10':'110000111'
-        }];
-        // this._randomUser.getUsers(this.pi, this.ps, this.args)
-        //     .map(data => {
-        //         data.results.forEach(item => {
-        //             item.checked = false;
-        //             item.price = +((Math.random() * (10000000 - 100)) + 100).toFixed(2);
-        //         });
-        //         return data;
-        //     })
-        //     .subscribe(data => {
-        //         this.loading = false;
-        //         this.list = data.results;
-        //     });
+        this.service.getRecordlist().subscribe(data => {
+            console.log(data);
+            this.list = data.PID_info;
+            this.loading = false;
+        });
     }
 
     clear() {
@@ -69,7 +51,7 @@ export class SampleFormComponent implements OnInit {
         this._indeterminate = this._allChecked ? false : checkedCount > 0;
     }
 
-    constructor(private message: NzMessageService,private router: Router,private modal: NzModalService,) {
+    constructor(private message: NzMessageService,private router: Router,private modal: NzModalService,private service: BiologyService) {
     }
 
     ngOnInit() {
@@ -85,17 +67,36 @@ export class SampleFormComponent implements OnInit {
             title: '详细信息',
             content: contentTpl,
             okText: '关闭',
-            // cancelText: '取消',
+            cancelText: '查看详情',
             // onOk: () => {
             //     this.message.success('关闭');
             // },
-            // onCancel: () => {
-            //     this.message.error('Click Return!');
-            // }
+            onCancel: () => {
+                this.message.info('跳转到相应页面');
+            }
         });
     }
 
-    goAdd(){
-        this.router.navigate(['sample/add']);
+    deleteRecord(id){
+        this.service.deleteRecord(id).subscribe(res =>{
+            console.log(res);
+            this.showMsg("已删除！");
+        });
+        this.load();
+    }
+    goAdd(id?){
+        if(id) {
+            this.router.navigate(['sample/add/' + id]);
+        }else {
+            this.router.navigate(['sample/add']);
+        }
+    }
+
+    deleteAll(){
+        const deleteAll = '/biology/deleteallrecord/';
+        this.service.getService(deleteAll).subscribe(res => {
+            console.log(res);
+        });
+        this.load();
     }
 }

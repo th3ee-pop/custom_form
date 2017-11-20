@@ -6,3 +6,7 @@
     margin-right: 24px;
     float: right;
 }
+
+.ant-steps-item {
+    cursor: pointer;
+}

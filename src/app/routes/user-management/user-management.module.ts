@@ -8,7 +8,7 @@ import { ManageModelCustomComponent } from './user-management/management.modal.c
 import { UserManagementComponent } from './user-management/user-management.component';
 import { UserSettingsComponent } from './user-setting/settings.component';
 const routes: Routes = [
-    { path: 'detail', component: UserManagementComponent },
+    { path: 'detail', component: UserSettingsComponent },
     { path: 'setting', component: UserSettingsComponent }
 ];
 

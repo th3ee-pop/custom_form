@@ -198,7 +198,7 @@ export class HttpService {
         console.log(body);
         return this.http.post(this.baseUrl + api, JSON.stringify(body))
             .do((res: any) => {
-            const localuser = new TokenService();
+            /*const localuser = new TokenService();
             localuser.data = <TokenData>{
                 access_token: res.TOKEN,
                 expire_time: moment().add(7, 'days').unix(),
@@ -207,12 +207,30 @@ export class HttpService {
                 user_name: body.username,
                 user_group: '4',
                 user_province: body.province
-            };
-            console.log(localuser);
+            };*/
+           // console.log(localuser);
             })
             .catch((res) => {
                 return res;
             });
+    }
+
+    getUser(conditions) {
+        const body = {
+            'filter_dict': conditions.filter,
+            'sorted_key': conditions.sorted_key,
+            'start': conditions.start,
+            'offset': conditions.offset
+        };
+        const api = '/account/userlist/';
+        console.log(conditions);
+        return this.http.post(this.baseUrl + api, JSON.stringify(body))
+            .do((res: any) => {
+            console.log(res);
+            })
+            .catch((res) => {
+            return res;
+        });
     }
 
 

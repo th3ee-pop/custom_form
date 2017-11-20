@@ -6,7 +6,7 @@
                 <ng-template #title>健康体检调查表<span id="red">&nbsp;( *为必填项 )</span></ng-template>
                 <ng-template #body>
                     <nz-steps [(nzCurrent)]="current" [nzSize]="'small'" >
-                        <nz-step *ngFor="let step of schedule_list" [nzTitle]="step.status" [nzDescription]="step.descript"></nz-step>
+                        <nz-step *ngFor="let step of schedule_list,index as i" [nzTitle]="step.status" [nzDescription]="step.descript" (click)="jumpTo(i)"></nz-step>
                     </nz-steps>
                     <div *ngFor="let question of questionList">
                         <div [ngSwitch]="question.type">

@@ -72,6 +72,19 @@ export class SeventhStepComponent implements OnInit, AfterViewInit {
             });
         }
     }
+
+    /**
+     *  点击steps上的按钮，进行步骤跳跃
+     */
+    jumpTo(step_index) {
+        const numWords = ['first', 'second', 'third', 'forth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth'];
+        if (this.PID) { // 如果有病人编号，则跳跃
+            console.log(step_index);
+            this.router.navigate(['/survey/' + numWords[step_index] + '_step/' + this.PID]);  // 拼接跳转链接
+        }
+        
+    }
+    
     temporary_deposit() {                               // 暂存
         this.collectAllanswer();
         const putRecord = { 'PID': this.PID, 'Records' : this.resultList };

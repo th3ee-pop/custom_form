@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '@core/services/http.service';
 import { ActivatedRoute, Router, PreloadingStrategy, Params} from '@angular/router';
+import { FileDownloadService } from '@core/services/fileDownload.service';
+
 @Component({
     selector: 'app-survey-overview',
     templateUrl: './survey-overview.component.html',
@@ -17,7 +19,8 @@ export class SurveyOverviewComponent implements OnInit {
     constructor(
         private service: HttpService,
         private route: ActivatedRoute,
-        private router: Router
+        private router: Router,
+        private fileDownloader: FileDownloadService,
         ) { }
 
     ngOnInit() {
@@ -50,6 +53,18 @@ export class SurveyOverviewComponent implements OnInit {
             return data.completedBy === this.loggedUser;
         }
     }
+
+    downloadByPID(PID) {
+        const filePath = 'healthexamination/exportcsv/';
+        const fileName = 'PID' + PID + '.csv';
+        this.fileDownloader.downloadFile(filePath, {'PID': PID}, fileName);
+    }
+    downloadAll() {
+        const filePath = 'healthexamination/exportcsv/';
+        this.fileDownloader.downloadFile(filePath, {}, 'All.csv');
+    }
+
+    
 }
 
 
