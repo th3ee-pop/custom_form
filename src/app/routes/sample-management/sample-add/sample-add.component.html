@@ -9,7 +9,7 @@
                             <label nz-form-item-required>编号</label>
                         </div>
                         <div nz-form-control nz-col [nzSm]="5">
-                            <nz-input formControlName="number" [nzType]="number"></nz-input>
+                            <nz-input formControlName="number" [nzType]="number" [(ngModel)] = 'Sample.number.Record_Value' ></nz-input>
                         </div>
                     </div>
                     <div nz-form-item nz-row>
@@ -17,7 +17,7 @@
                             <label nz-form-item-required>分库（省份）</label>
                         </div>
                         <div nz-form-control nz-col [nzSpan]="3">
-                            <nz-select formControlName="repository" [nzSize]="'large'">
+                            <nz-select formControlName="repository" [nzSize]="'large'" [(ngModel)] = 'Sample.repository.Record_Value' >
                                 <nz-option [nzLabel]="'陕西'" [nzValue]="'1'"></nz-option>
                                 <nz-option [nzLabel]="'甘肃'" [nzValue]="'2'"></nz-option>
                                 <nz-option [nzLabel]="'宁夏'" [nzValue]="'3'"></nz-option>
@@ -30,8 +30,8 @@
                         <div nz-form-label nz-col [nzSm]="4">
                             <label nz-form-item-required>类别</label>
                         </div>
-                        <div nz-form-control nz-col [nzSm]="3">
-                            <nz-select formControlName="type" [nzSize]="'large'">
+                        <div nz-form-control nz-col [nzSm]="3" >
+                            <nz-select formControlName="type" [nzSize]="'large'" [(ngModel)] = 'Sample.type.Record_Value'  >
                                 <nz-option [nzLabel]="'血样'" [nzValue]="'1'"></nz-option>
                                 <nz-option [nzLabel]="'尿液'" [nzValue]="'2'"></nz-option>
                                 <nz-option [nzLabel]="'粪'" [nzValue]="'3'"></nz-option>
@@ -41,10 +41,10 @@
                     </div>
                     <div nz-form-item nz-row *ngIf="getTypeValue() == 1">
                         <div nz-form-label nz-col [nzSm]="4" >
-                            <label nz-form-item-required>血液类型</label>
+                            <label>血液类型</label>
                         </div>
                         <div nz-form-control nz-col [nzSm]="3" >
-                            <nz-select formControlName="blood_type" [nzSize]="'large'">
+                            <nz-select formControlName="blood_type" [nzSize]="'large'" [(ngModel)] = 'Sample.blood_type.Record_Value'>
                                 <nz-option [nzLabel]="'全血'" [nzValue]="'1'"></nz-option>
                                 <nz-option [nzLabel]="'血浆'" [nzValue]="'2'"></nz-option>
                                 <nz-option [nzLabel]="'白膜层'" [nzValue]="'3'"></nz-option>
@@ -57,23 +57,34 @@
                             <label nz-form-item-required>来源人</label>
                         </div>
                         <div nz-form-control nz-col [nzSm]="5">
-                            <nz-input formControlName="owner"></nz-input>
+                            <nz-input formControlName="owner" [(ngModel)] = 'Sample.owner.Record_Value'></nz-input>
                         </div>
                     </div>
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col [nzSm]="4">
-                            <label nz-form-item-required>采集容量</label>
+                            <label nz-form-item-required>采集数量</label>
                         </div>
                         <div nz-form-control nz-col [nzSm]="5">
-                            <nz-input formControlName="collect_count" [nzType]="number"></nz-input>
+                            <nz-input formControlName="collect_count" [nzType]="number" [(ngModel)] = 'Sample.collect_count.Record_Value'></nz-input>
+                        </div>
+                        <div nz-col [nzSm]="2">
+                            <span nz-form-text>ml/ul</span>
                         </div>
                     </div>
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col [nzSm]="4">
-                            <label nz-form-item-required>采集时间</label>
+                            <label nz-form-item-required >采集时间</label>
                         </div>
                         <div nz-form-control nz-col [nzSm]="5">
-                            <nz-datepicker formControlName="collect_time"></nz-datepicker>
+                            <nz-datepicker formControlName="collect_time" [(ngModel)] = 'Sample.collect_time.Record_Value'></nz-datepicker>
+                        </div>
+                    </div>
+                    <div nz-form-item nz-row>
+                        <div nz-form-label nz-col [nzSm]="4">
+                            <label nz-form-item-required>采集人</label>
+                        </div>
+                        <div nz-form-control nz-col [nzSm]="5">
+                            <nz-input formControlName="collecter" [(ngModel)] = 'Sample.collecter.Record_Value'></nz-input>
                         </div>
                     </div>
                     <div nz-form-item nz-row>
@@ -81,15 +92,15 @@
                             <label nz-form-item-required>分管数量</label>
                         </div>
                         <!--<div nz-form-control nz-col [nzSm]="10">-->
-                            <nz-input-number formControlName="branch"  (ngModelChange)="updateConfirmValidator('branch')" [nzMin]="0"></nz-input-number>
+                            <nz-input-number formControlName="branch"  [(ngModel)] = 'Sample.branch.Record_Value' (ngModelChange)="updateConfirmValidator('branch')" [nzMin]="0"></nz-input-number>
                         <!--</div>-->
                     </div>
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col [nzSm]="4">
-                            <label nz-form-item-required>缺失分管说明</label>
+                            <label>缺失分管说明</label>
                         </div>
                         <div nz-form-control nz-col [nzSm]="10">
-                            <nz-input formControlName="lost_msg"></nz-input>
+                            <nz-input formControlName="lost_msg"  [(ngModel)] = 'Sample.lost_msg.Record_Value'></nz-input>
                         </div>
                     </div>
                     <div nz-form-item nz-row>
@@ -97,7 +108,7 @@
                             <label nz-form-item-required>存放管条码</label>
                         </div>
                         <div nz-form-control nz-col [nzSm]="5">
-                            <nz-input formControlName="pipe_Num"  (ngModelChange)="updateConfirmValidator('pipe_Num')" [nzType]="number"></nz-input>
+                            <nz-input formControlName="pipe_Num"  (ngModelChange)="updateConfirmValidator('pipe_Num')" [nzType]="number" [(ngModel)] = 'Sample.pipe_Num.Record_Value'></nz-input>
                             <div nz-form-explain *ngIf="getFormControl('pipe_Num').dirty&&getFormControl('pipe_Num').hasError('required')">请检查您的输入</div>
                             <div nz-form-explain *ngIf="getFormControl('pipe_Num').dirty&&getFormControl('pipe_Num').hasError('error')">请参照省份填写编号</div>
                         </div>
@@ -107,7 +118,7 @@
                             <label nz-form-item-required>存放日期</label>
                         </div>
                         <div nz-form-control nz-col [nzSm]="5">
-                            <nz-datepicker formControlName="store_time"></nz-datepicker>
+                            <nz-datepicker formControlName="store_time" [(ngModel)] = 'Sample.store_time.Record_Value'></nz-datepicker>
                         </div>
                     </div>
                     <div nz-form-item nz-row>
@@ -115,31 +126,31 @@
                             <label nz-form-item-required>存放人</label>
                         </div>
                         <div nz-form-control nz-col [nzSm]="5">
-                            <nz-input formControlName="placer"></nz-input>
+                            <nz-input formControlName="placer" [(ngModel)] = 'Sample.placer.Record_Value'></nz-input>
                         </div>
                     </div>
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col [nzSm]="4">
-                            <label nz-form-item-required>存放要求</label>
+                            <label>存放要求</label>
                         </div>
                         <div nz-form-control nz-col [nzSm]="10">
-                            <nz-input formControlName="requirement"></nz-input>
+                            <nz-input formControlName="requirement"  [(ngModel)] = 'Sample.requirement.Record_Value'></nz-input>
                         </div>
                     </div>
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col [nzSm]="4">
-                            <label nz-form-item-required>应急措施</label>
+                            <label>应急措施</label>
                         </div>
                         <div nz-form-control nz-col [nzSm]="10">
-                            <nz-input formControlName="emergency"></nz-input>
+                            <nz-input formControlName="emergency" [(ngModel)] = 'Sample.emergency.Record_Value' [nzDisabled]="true"></nz-input>
                         </div>
                     </div>
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col [nzSm]="4">
-                            <label nz-form-item-required>所在队列</label>
+                            <label>所在队列</label>
                         </div>
                         <div nz-form-control nz-col [nzSm]="3">
-                            <nz-select formControlName="belong_rep" [nzSize]="'large'">
+                            <nz-select formControlName="belong_rep" [nzSize]="'large'" [(ngModel)] = 'Sample.belong_rep.Record_Value'>
                                 <nz-option [nzLabel]="'陕西'" [nzValue]="'1'"></nz-option>
                                 <nz-option [nzLabel]="'甘肃'" [nzValue]="'2'"></nz-option>
                                 <nz-option [nzLabel]="'宁夏'" [nzValue]="'3'"></nz-option>
@@ -153,7 +164,7 @@
                             <label nz-form-item-required>存放地点</label>
                         </div>
                         <div nz-form-control nz-col [nzSm]="10">
-                            <nz-input formControlName="building" (ngModelChange)="updateConfirmValidator('building')"></nz-input>
+                            <nz-input formControlName="building" (ngModelChange)="updateConfirmValidator('building')"  [(ngModel)] = 'Sample.building.Record_Value'></nz-input>
                             <div nz-form-explain *ngIf="getFormControl('building').dirty&&getFormControl('building').hasError('required')">请检查您的输入</div>
                         </div>
                     </div>
@@ -162,24 +173,32 @@
                             <label nz-form-item-required>具体位置</label>
                         </div>
                         <div nz-form-control nz-col [nzSm]="2" [nzValidateStatus]="getFormControl('ref')">
-                            <nz-input-number formControlName="ref" (ngModelChange)="updateConfirmValidator('ref')" [nzMin]="0"></nz-input-number>
+                            <nz-input-number formControlName="ref" (ngModelChange)="updateConfirmValidator('ref')" [nzMin]="0"  [(ngModel)] = 'Sample.ref.Record_Value'></nz-input-number>
                             <span nz-form-text> 号冰柜</span>
                         </div>
                         <div nz-form-control nz-col [nzSm]="2" [nzValidateStatus]="getFormControl('shelf')">
-                            <nz-input-number formControlName="shelf" (ngModelChange)="updateConfirmValidator('shelf')" [nzMin]="0"></nz-input-number>
+                            <nz-input-number formControlName="shelf" (ngModelChange)="updateConfirmValidator('shelf')" [nzMin]="0"  [(ngModel)] = 'Sample.shelf.Record_Value'></nz-input-number>
                             <span nz-form-text> 号架子</span>
                         </div>
                         <div nz-form-control nz-col [nzSm]="2" [nzValidateStatus]="getFormControl('lay')">
-                            <nz-input-number formControlName="lay" (ngModelChange)="updateConfirmValidator('lay')" [nzMin]="0"></nz-input-number>
+                            <nz-input-number formControlName="lay" (ngModelChange)="updateConfirmValidator('lay')" [nzMin]="0"  [(ngModel)] = 'Sample.lay.Record_Value'></nz-input-number>
                             <span nz-form-text> 层</span>
                         </div>
                         <div nz-form-control nz-col [nzSm]="2" [nzValidateStatus]="getFormControl('col')">
-                            <nz-input-number formControlName="col" (ngModelChange)="updateConfirmValidator('col')" [nzMin]="0"></nz-input-number>
+                            <nz-input-number formControlName="col" (ngModelChange)="updateConfirmValidator('col')" [nzMin]="0"  [(ngModel)] = 'Sample.col.Record_Value'></nz-input-number>
                             <span nz-form-text> 行</span>
                         </div>
                         <div nz-form-control nz-col [nzSm]="2" [nzValidateStatus]="getFormControl('row')">
-                            <nz-input-number formControlName="row" (ngModelChange)="updateConfirmValidator('row')" [nzMin]="0"></nz-input-number>
+                            <nz-input-number formControlName="row" (ngModelChange)="updateConfirmValidator('row')" [nzMin]="0"  [(ngModel)] = 'Sample.row.Record_Value'></nz-input-number>
                             <span nz-form-text> 列</span>
+                        </div>
+                    </div>
+                    <div nz-form-item nz-row>
+                        <div nz-form-label nz-col [nzSm]="4">
+                            <label>保管人</label>
+                        </div>
+                        <div nz-form-control nz-col [nzSm]="5">
+                            <nz-input formControlName="keeper"  [(ngModel)] = 'Sample.keeper.Record_Value'></nz-input>
                         </div>
                     </div>
                     <div nz-form-item nz-row>
@@ -195,9 +214,12 @@
                     </div>
                 </form>
                 <div nz-form-control nz-col [nzSpan]="14" [nzOffset]="4">
-                <button nz-button [nzType]="'primary'" [disabled]="disabled" class="mr-sm" (click)="_submitForm()">
+                <button nz-button [nzType]="'primary'" [disabled]="disabled" class="mr-sm" (click)="_submitForm()" *ngIf = '!PID'>
                     <span>保存</span>
                 </button>
+                    <button nz-button [nzType]="'primary'" [disabled]="disableed" class="mr-sm" (click)="_submitForm()" *ngIf = 'PID'>
+                        <span>修改</span>
+                    </button>
                     <button nz-button [nzType]="'primary'" [disabled]="disabled" class="mr-sm" (click)="goBack()">
                         <span>返回列表</span>
                     </button>

@@ -29,27 +29,11 @@ export class SampleFormComponent implements OnInit {
         this.loading = true;
         this._allChecked = false;
         this._indeterminate = false;
-        // this.service.getBasicInfo().subscribe(data => {
         this.service.getRecordlist().subscribe(data => {
-        // const getRecordApi = '/biology/recordop/',
-        //     params = { 'PID': 1};
-        // this.service.getService(getRecordApi, params).subscribe(data => {
             console.log(data);
             this.list = data.PID_info;
             this.loading = false;
         });
-        // this._randomUser.getUsers(this.pi, this.ps, this.args)
-        //     .map(data => {
-        //         data.results.forEach(item => {
-        //             item.checked = false;
-        //             item.price = +((Math.random() * (10000000 - 100)) + 100).toFixed(2);
-        //         });
-        //         return data;
-        //     })
-        //     .subscribe(data => {
-        //         this.loading = false;
-        //         this.list = data.results;
-        //     });
     }
 
     clear() {
@@ -106,5 +90,13 @@ export class SampleFormComponent implements OnInit {
         }else {
             this.router.navigate(['sample/add']);
         }
+    }
+
+    deleteAll(){
+        const deleteAll = '/biology/deleteallrecord/';
+        this.service.getService(deleteAll).subscribe(res => {
+            console.log(res);
+        });
+        this.load();
     }
 }

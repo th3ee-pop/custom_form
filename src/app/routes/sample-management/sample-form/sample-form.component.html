@@ -103,6 +103,10 @@
                             <span>添加记录</span>
                             <!--<i class="anticon anticon-down"></i>-->
                         </button>
+                        <button nz-button nz-dropdown [disabled]="!_manager"  (click)="deleteAll()">
+                            <span>清空记录</span>
+                            <!--<i class="anticon anticon-down"></i>-->
+                        </button>
                         <!--<ul nz-menu>-->
                             <!--<li nz-menu-item>Excel</li>-->
                             <!--<li nz-menu-item>JSON</li>-->

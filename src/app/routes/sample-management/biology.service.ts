@@ -21,7 +21,9 @@ export class BiologyService {
     constructor(
         private http: HttpClient,
         private Http: Http,
-        private injector: Injector) {
+        private injector: Injector,
+        private msg: NzMessageService
+    ) {
     }
 
     getRecordlist(): Observable<any> {
@@ -30,6 +32,7 @@ export class BiologyService {
             .do(() => { })
             .catch((res) => {
                 console.log(res);
+                this.popMsg(res);
                 return res;
             });
     }
@@ -41,6 +44,7 @@ export class BiologyService {
             .do(() => { })
             .catch((res) => {
                 console.log(res);
+                this.popMsg(res);
                 return res;
             });
     }
@@ -51,6 +55,7 @@ export class BiologyService {
             .do(() => { })
             .catch((res) => {
                 console.log(res);
+                this.popMsg(res);
                 return res;
             });
     }
@@ -66,6 +71,7 @@ export class BiologyService {
             .do(() => { })
             .catch((res) => {
                 console.log(res);
+                this.popMsg(res);
                 return res;
             });
     }
@@ -88,6 +94,7 @@ export class BiologyService {
             .do(() => { })
             .catch((res) => {
                 console.log(res);
+                this.popMsg(res);
                 return res;
             });
     }
@@ -98,6 +105,16 @@ export class BiologyService {
     //         headers: new Headers({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
     //     });
     // }
+
+    popMsg(res){
+        if( res.Return == 1){
+            this.msg.error('操作失败!');
+        }else if(res.Return == 0){
+            this.msg.success('操作成功！');
+        }else {
+            this.msg.info('未知错误：'+ res.Return);
+        }
+    }
 
 
 }
