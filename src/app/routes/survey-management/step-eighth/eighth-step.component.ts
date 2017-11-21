@@ -102,7 +102,6 @@ export class EighthStepComponent implements OnInit, AfterViewInit {
 
     }
 
-
     temporary_deposit() {                               // 暂存
         this.collectAllanswer();
         const putRecord = { 'PID': this.PID, 'Records' : this.resultList };
@@ -157,7 +156,6 @@ export class EighthStepComponent implements OnInit, AfterViewInit {
             }
         }
     }
-
     fillingAllanswer() {
         const getRecord = {
             'PID': this.PID,

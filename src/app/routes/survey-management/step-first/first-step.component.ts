@@ -186,6 +186,26 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
         }
     }
 
+    disabledAll () {
+        this.InputItems.forEach( item => {
+            item.editdisabled = true;
+        });
+        this.RadioItems.forEach( item => {
+            item.editdisabled = true;
+        });
+        this.CheckboxItems.forEach( item => {
+            item.editdisabled = true;
+        });
+        this.IdcItems.forEach( item => {
+            item.editdisabled = true;
+        });
+        this.PhoneItems.forEach( item => {
+            item.editdisabled = true;
+        });
+        this.DateItem.forEach( item => {
+            item.editdisabled = true;
+        });
+    }
 
     fillingAllanswer() {
         const getRecord = {
