@@ -57,7 +57,6 @@ export class ForthStepComponent implements OnInit, AfterViewInit {
             this.collectAllanswer();
             const putRecord = { 'Records': this.resultList, 'PID': this.PID};
             this.service.putRecord(putRecord).subscribe( (res) => {
-                console.log(res);
                 this.router.navigate(['/survey/fifth_step/' + this.PID]);
             }, error => {
                 console.log(error);
@@ -151,7 +150,6 @@ export class ForthStepComponent implements OnInit, AfterViewInit {
         };
         this.service.getRecord(getRecord).subscribe( (res) => {
             const fillingList = res.Records;
-            console.log('第四部分', fillingList);
             this.answerList = fillingList;
             fillingList.forEach( it => { if ( it['ID3'] && it['ID3'] === 'finished') this.finished = true;
             });
@@ -159,7 +157,9 @@ export class ForthStepComponent implements OnInit, AfterViewInit {
             this.InputItems.forEach( item => { fillingList.forEach( it => {
                 let id = '';
                 id = this.getTransid( item.question.id );
-                if ( it[id] && it[id] !== '') {  item.localAnswer[0] = it[id]; }});
+                if ( it[id] && it[id] !== '') {  item.localAnswer[0] = it[id]; }
+                if ( it[id] === 0) { item.localAnswer[0] = '0'; }
+            });
             });
             this.RadioItems.forEach( item => {
                 for ( let i = 0; i < fillingList.length; i++) {

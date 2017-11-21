@@ -51,9 +51,7 @@ export class TenthStepComponent implements OnInit, AfterViewInit {
         this.service.getRecord(getRecord).subscribe( (res) => {
             console.log(res);
             res.Records.forEach( it => {
-                console.log('sex######################');
-                if (it['ID1_3_1'] === 'True' ) {  console.log('sssss'); this.sex  = true; }
-
+                if (it['ID1_3_1'] === 'True' ) {  this.sex  = true; }
             });
         });
         this.fillingAllanswer();
@@ -75,7 +73,6 @@ export class TenthStepComponent implements OnInit, AfterViewInit {
             this.collectAllanswer();
             const putRecord = { 'Records': this.resultList, 'PID': this.PID};
             this.service.putRecord(putRecord).subscribe( (res) => {
-                console.log(res);
                 this.router.navigate(['/survey/detail/']);
             }, error => {
                 console.log(error);
@@ -165,11 +162,12 @@ export class TenthStepComponent implements OnInit, AfterViewInit {
             this.answerList = fillingList;
             fillingList.forEach( it => { if ( it['ID10'] && it['ID10'] === 'finished') this.finished = true;
             });
-            console.log(fillingList);
             this.InputItems.forEach( item => { fillingList.forEach( it => {
                 let id = '';
                 id = this.getTransid( item.question.id );
-                if ( it[id] && it[id] !== '') {  item.localAnswer[0] = it[id]; }});
+                if ( it[id] && it[id] !== '') {  item.localAnswer[0] = it[id]; }
+                if ( it[id] === 0) { item.localAnswer[0] = '0'; }
+            });
             });
             this.RadioItems.forEach( item => {
                 for ( let i = 0; i < fillingList.length; i++) {

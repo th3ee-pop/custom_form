@@ -111,9 +111,9 @@ export class FifthStepComponent implements OnInit, AfterViewInit {
         }});
         this.RadioItems.forEach(item => { if (item.localAnswer === -1) { confirms = false; confirmlist.push(item.question.id);
         }});
-        // this.Table51Item.forEach( item => { if ( item.answerCheck() === false || item.answertextCheck() === false) {
-        //     confirms = false; confirmlist.push(item.question.id);
-        // }});
+        this.Table51Item.forEach( item => { if ( item.answerCheck() === false) {
+            confirms = false; confirmlist.push(item.question.id);
+        }});
         this.Table53Item.forEach( item => { if ( item.answerCheck() === false) {
             confirms = false; confirmlist.push(item.question.id);
         }});
@@ -180,9 +180,13 @@ export class FifthStepComponent implements OnInit, AfterViewInit {
             });
             console.log(fillingList);
             this.InputItems.forEach( item => { fillingList.forEach( it => {
-                let id = '';
-                id = this.getTransid( item.question.id );
-                if ( it[id] && it[id] !== '') {  item.localAnswer[0] = it[id]; }});
+                    let id = '';
+                    id = this.getTransid( item.question.id );
+                    if ( it[id] && it[id] !== '') {  item.localAnswer[0] = it[id]; }
+                    if ( it[id] === 0) { item.localAnswer[0] = '0'; }
+                }
+
+            );
             });
             this.RadioItems.forEach( item => {
                 for ( let i = 0; i < fillingList.length; i++) {

@@ -59,8 +59,7 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
             this.fillingAllanswer();
         }
     }
-    next() { // 下一步
-        // if ( ! this.PID )
+    next() {
 
         if ( this.confirm().confirms ) {
             this.collectAllanswer();
@@ -204,6 +203,7 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
                     let id = '';
                     if ( item.question.id === '1.0') { console.log('姓名'); id = 'ID0_1'; } else { id = this.getTransid( item.question.id); }
                     if ( fillingList[i][id] && fillingList[i][id] !== '') {  item.localAnswer[0] = fillingList[i][id]; }
+                    if ( fillingList[i][id] && fillingList[i][id] !== '') {  item.localAnswer[0] = '0'; }
                 }});
                 this.RadioItems.forEach( item => { for ( let i = 0; i < fillingList.length; i++) {
                     for ( let j = 1 ; j <= item.question.content.length; j++) {
