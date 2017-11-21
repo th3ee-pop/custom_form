@@ -37,6 +37,7 @@ export class FifthStepComponent implements OnInit, AfterViewInit {
     PID = '';
     finished = false;
     answerList = [];
+    localInfo = JSON.parse(localStorage.getItem('_user'));
 
     constructor(
         private router: Router,
@@ -192,6 +193,23 @@ export class FifthStepComponent implements OnInit, AfterViewInit {
             }
         }
     }
+
+    rundisabledAll (completeby, province) {
+        if ( this.localInfo.user_group > 1 ) {
+            if ( this.localInfo.user_group === 4) {
+                if ( completeby !== this.localInfo.user_name ) {
+                    this.disabledAll();
+                }
+            }else {
+                if ( province !== this.localInfo.province) {
+                    this.disabledAll();
+                }
+            }
+        }
+
+    }
+
+
     fillingAllanswer() {
         const getRecord = {
             'PID': this.PID,
@@ -201,8 +219,17 @@ export class FifthStepComponent implements OnInit, AfterViewInit {
         this.service.getRecord(getRecord).subscribe( (res) => {
             const fillingList = res.Records;
             this.answerList = fillingList;
-            fillingList.forEach( it => { if ( it['ID5'] && it['ID5'] === 'finished') this.finished = true;
+
+            let province = '';
+            let completeby = '';
+            fillingList.forEach( it => { 
+                if ( it['ID5'] && it['ID5'] === 'finished') this.finished = true;
+                if ( it['ID0_5'] && it['ID0_5'] !== '' )    { completeby = it['ID0_5']; }
+                if ( it['ID0_3'] && it['ID0_3'] !== '' )    { province = it['ID0_3']; }
             });
+            if ( province !== '' && completeby !== '')  this.rundisabledAll(completeby, province);
+
+
             console.log(fillingList);
             this.InputItems.forEach( item => { fillingList.forEach( it => {
                     let id = '';

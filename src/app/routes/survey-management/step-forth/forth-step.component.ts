@@ -31,6 +31,7 @@ export class ForthStepComponent implements OnInit, AfterViewInit {
     PID = '';
     finished = false;
     answerList = [];
+    localInfo = JSON.parse(localStorage.getItem('_user'));
 
     constructor(
         private router: Router,
@@ -96,6 +97,26 @@ export class ForthStepComponent implements OnInit, AfterViewInit {
         if (this.PID) { // 如果有病人编号，则跳跃
             console.log(step_index);
             this.router.navigate(['/survey/' + numWords[step_index] + '_step/' + this.PID]);  // 拼接跳转链接
+        }
+
+    }
+
+    /**
+     * 
+     * @param completeby 
+     * @param province 
+     */
+    rundisabledAll (completeby, province) {
+        if ( this.localInfo.user_group > 1 ) {
+            if ( this.localInfo.user_group === 4) {
+                if ( completeby !== this.localInfo.user_name ) {
+                    this.disabledAll();
+                }
+            }else {
+                if ( province !== this.localInfo.province) {
+                    this.disabledAll();
+                }
+            }
         }
 
     }
@@ -166,8 +187,17 @@ export class ForthStepComponent implements OnInit, AfterViewInit {
         this.service.getRecord(getRecord).subscribe( (res) => {
             const fillingList = res.Records;
             this.answerList = fillingList;
-            fillingList.forEach( it => { if ( it['ID3'] && it['ID3'] === 'finished') this.finished = true;
+
+            let province = '';
+            let completeby = '';
+            fillingList.forEach( it => { 
+                if ( it['ID3'] && it['ID3'] === 'finished') this.finished = true;
+                if ( it['ID0_5'] && it['ID0_5'] !== '' )    { completeby = it['ID0_5']; }
+                if ( it['ID0_3'] && it['ID0_3'] !== '' )    { province = it['ID0_3']; }
             });
+            if ( province !== '' && completeby !== '')  this.rundisabledAll(completeby, province);
+
+
             console.log(fillingList);
             this.InputItems.forEach( item => { fillingList.forEach( it => {
                 let id = '';
