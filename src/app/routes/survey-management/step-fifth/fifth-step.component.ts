@@ -81,6 +81,31 @@ export class FifthStepComponent implements OnInit, AfterViewInit {
     }
 
     /**
+     * 所有空间改为不可编辑状态
+     */
+    disabledAll() {
+        this.InputItems.forEach(item => {
+            item.editdisabled = true;
+        });
+        this.RadioItems.forEach(item => {
+            item.editdisabled = true;
+        });
+        this.Table51Item.forEach(item => {
+            item.editdisabled = true;
+        });
+
+        this.Table53Item.forEach(item => {
+            item.editdisabled = true;
+        });
+        this.Table54Item.forEach(item => {
+            item.editdisabled = true;
+        });
+        this.Table58Item.forEach(item => {
+            item.editdisabled = true;
+        });
+    }
+
+    /**
      *  点击steps上的按钮，进行步骤跳跃
      */
     jumpTo(step_index) {
