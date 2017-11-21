@@ -9,7 +9,7 @@
                     <div nz-form-item *ngFor="let item of question.content;index as i">
                         <div nz-form-control [nzValidateStatus]="getFormControl(item.validType)" *ngIf="item.dataType == 'text'">
                             <div [ngSwitch]="item.validType">
-                                <nz-input  *ngSwitchCase="'number'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()"  formControlName="number" ></nz-input>
+                                <nz-input  *ngSwitchCase="'number'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()"   formControlName="number" ></nz-input>
                                 <nz-input  *ngSwitchCase="'twonum'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()"  formControlName="twonum" ></nz-input>
                                 <nz-input  *ngSwitchCase="'onenum'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()"  formControlName="onenum" ></nz-input>
                                 <nz-input  *ngSwitchCase="'threenum'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()"  formControlName="threenum" ></nz-input>

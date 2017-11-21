@@ -56,7 +56,6 @@ export class NinthStepComponent implements OnInit, AfterViewInit {
             this.collectAllanswer();
             const putRecord = { 'Records': this.resultList, 'PID': this.PID};
             this.service.putRecord(putRecord).subscribe( (res) => {
-                console.log(res);
                 this.router.navigate(['/survey/tenth_step/' + this.PID]);
             }, error => {
                 console.log(error);
@@ -90,8 +89,6 @@ export class NinthStepComponent implements OnInit, AfterViewInit {
         this.collectAllanswer();
         const putRecord = { 'PID': this.PID, 'Records' : this.resultList };
         this.service.putRecord(putRecord).subscribe( (res) => {
-            console.log('123');
-            console.log(res);
             this.router.navigate( ['/survey/detail/']);
         }, error => { });
     }
@@ -162,11 +159,12 @@ export class NinthStepComponent implements OnInit, AfterViewInit {
             this.answerList = fillingList;
             fillingList.forEach( it => { if ( it['ID9'] && it['ID9'] === 'finished') this.finished = true;
             });
-            console.log(fillingList);
             this.InputItems.forEach( item => { fillingList.forEach( it => {
                 let id = '';
                 id = this.getTransid( item.question.id );
-                if ( it[id] && it[id] !== '') {  item.localAnswer[0] = it[id]; }});
+                if ( it[id] && it[id] !== '') {  item.localAnswer[0] = it[id]; }
+                if ( it[id] === 0) { item.localAnswer[0] = '0'; }
+            });
             });
             this.CheckboxItems.forEach( item => { for ( let i = 0; i < fillingList.length; i++) {
                 for ( let j = 1; j <= item.question.content.length; j++ ) {

@@ -49,10 +49,8 @@ export class EighthStepComponent implements OnInit, AfterViewInit {
             'RecordID': 'ID1'
         };
         this.service.getRecord(getRecord).subscribe( (res) => {
-            console.log(res);
             res.Records.forEach( it => {
-                console.log('sex######################');
-                if (it['ID1_3_1'] === 'True' ) {  console.log('sssss'); this.sex  = true; }
+                if (it['ID1_3_1'] === 'True' ) { this.sex  = true; }
 
             });
         });
@@ -72,7 +70,6 @@ export class EighthStepComponent implements OnInit, AfterViewInit {
             console.log(this.resultList);
             const putRecord = { 'Records': this.resultList, 'PID': this.PID};
             this.service.putRecord(putRecord).subscribe( (res) => {
-                console.log('this is res', res);
                 if ( this.sex === true) {
                     this.router.navigate(['/survey/tenth_step/' + this.PID]);
                 }else {
@@ -110,7 +107,6 @@ export class EighthStepComponent implements OnInit, AfterViewInit {
         this.collectAllanswer();
         const putRecord = { 'PID': this.PID, 'Records' : this.resultList };
         this.service.putRecord(putRecord).subscribe( (res) => {
-            console.log('this is temporary_deposit', res);
             this.router.navigate( ['/survey/detail/']);
         }, error => { });
     }
@@ -172,11 +168,11 @@ export class EighthStepComponent implements OnInit, AfterViewInit {
             this.answerList = fillingList;
             fillingList.forEach( it => { if ( it['ID8'] && it['ID8'] === 'finished') this.finished = true;
             });
-            console.log(fillingList);
             this.InputItems.forEach( item => { fillingList.forEach( it => {
                 let id = '';
                 id = this.getTransid( item.question.id );
-                if ( it[id] && it[id] !== '') {  item.localAnswer[0] = it[id]; }});
+                if ( it[id] && it[id] !== '') {  item.localAnswer[0] = it[id]; }
+                if ( it[id] === 0) { item.localAnswer[0] = '0'; } });
             });
             this.RadioItems.forEach( item => {
                 for ( let i = 0; i < fillingList.length; i++) {
@@ -199,17 +195,6 @@ export class EighthStepComponent implements OnInit, AfterViewInit {
                             item.localAnswer[i][col] = true;
                         }
                     });
-
-                    // for ( let j = 0; j < 5; j++) {
-                    //     const y = j + 1;
-                    //     const id = 'ID8_13_' + y;
-                    //     fillingList.forEach( it => {
-                    //         if ( it[id] && it[id] !== '') {
-                    //             const col = Number.parseInt(it[id]);
-                    //             item.localAnswer[i][j] = true;
-                    //         }
-                    //     });
-                    // }
                 }
             });
             this.Table813Items.forEach( item => {

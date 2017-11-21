@@ -160,7 +160,6 @@ export class SeventhStepComponent implements OnInit, AfterViewInit {
             this.answerList = fillingList;
             fillingList.forEach( it => { if ( it['ID7'] && it['ID7'] === 'finished') this.finished = true;
             });
-            console.log(fillingList);
             this.InputItems.forEach( item => { fillingList.forEach( it => {
                 let id = '';
                 id = this.getTransid( item.question.id );
