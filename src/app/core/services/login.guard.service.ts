@@ -4,12 +4,11 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivateChild} from '@angular/router';
 import { LoginAuthService } from './login.auth.service';
-import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class LoginAuthGuard implements CanActivate, CanActivateChild {
     constructor(private authService: LoginAuthService, private router: Router) {}
-    Returns = JSON.parse(localStorage.getItem('_user'));
+
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
         const url: string = state.url;
         return this.checkLogin(url);
@@ -19,7 +18,6 @@ export class LoginAuthGuard implements CanActivate, CanActivateChild {
     }
     checkLogin(url: string): boolean {
         if (localStorage.getItem('_user')) {
-            console.log(this.Returns.access_token);
             return true;
         }
         this.authService.redirectUrl = url;
