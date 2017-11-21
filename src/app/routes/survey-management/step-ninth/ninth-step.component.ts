@@ -31,6 +31,7 @@ export class NinthStepComponent implements OnInit, AfterViewInit {
     PID = '';
     finished = false;
     answerList = [];
+    buttondisable = false;
     localInfo = JSON.parse(localStorage.getItem('_user'));
     constructor(
         private router: Router,
@@ -91,6 +92,7 @@ export class NinthStepComponent implements OnInit, AfterViewInit {
         }
     }
     disabledAll() {
+        this.buttondisable = true;
         this.InputItems.forEach(item => {
             item.editdisabled = true;
         });
