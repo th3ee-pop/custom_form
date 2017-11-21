@@ -186,7 +186,21 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
         }
     }
 
-    disabledAll () {
+    rundisabledAll (completeby, province) {
+        if ( this.localInfo.user_group > 1 ) {
+            if ( this.localInfo.user_group === 4) {
+                if ( completeby !== this.localInfo.user_name ) {
+                    this.disabledAll();
+                }
+            }else {
+                if ( province !== this.localInfo.province) {
+                    this.disabledAll();
+                }
+            }
+        }
+
+    }
+    disabledAll() {
         this.InputItems.forEach( item => {
             item.editdisabled = true;
         });
@@ -206,7 +220,6 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
             item.editdisabled = true;
         });
     }
-
     fillingAllanswer() {
         const getRecord = {
             'PID': this.PID,
@@ -215,10 +228,18 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
         this.service.getRecord(getRecord).subscribe( (res) => {
                 const fillingList = res.Records;
                 this.answerList = fillingList;
+
+
+                let province = '';
+                let completeby = '';
                 fillingList.forEach( it => {
                     if ( it['ID1'] && it['ID1'] === 'finished') { this.finished = true; }
+                    if ( it['ID0_5'] && it['ID0_5'] !== '' )    { completeby = it['ID0_5']; }
+                    if ( it['ID0_3'] && it['ID0_3'] !== '' )    { province = it['ID0_3']; }
                 });
-                console.log(fillingList);
+                if ( province !== '' && completeby !== '')  this.rundisabledAll(completeby, province);
+
+
                 this.InputItems.forEach( item => { for ( let i = 0; i < fillingList.length; i++) {
                     let id = '';
                     if ( item.question.id === '1.0') { console.log('姓名'); id = 'ID0_1'; } else { id = this.getTransid( item.question.id); }
@@ -262,9 +283,14 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
                     }
                 });
 
+
+
             }, error => {
                 console.log(error);
             }
+
+
+
         );
     }
 
