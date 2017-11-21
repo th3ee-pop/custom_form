@@ -119,11 +119,13 @@ export class SampleAddComponent implements OnInit {
         },
         'user_info': [
             {
-                'user': 'www',
-                'use_time': '2017-9-9',
-                'use_count': '200ml',
-                'usage': '为了xxx'
-            }],
+                'key':0,
+                'user'    : '',
+                'use_count'   : '',
+                'use_time'    : '',
+                'usage': '',
+            }
+            ],
         'accident_info': [
             {
                 'acc_name': '试管泄漏',
@@ -224,9 +226,57 @@ export class SampleAddComponent implements OnInit {
     //     }
     // }
 
+    editRow = null;
+    tempEditObject = {};
+    data = this.Sample.user_info;
+    // data = [
+    //     {
+    //         key:0,
+    //         user    : '',
+    //         use_count   : '',
+    //         use_time    : '',
+    //         usage: '',
+    //     }
+    // ];
+
+    edit(data) {
+        console.log(data);
+        // this.tempEditObject[ data.key ] = { ...data };
+        this.Sample.user_info[ data.key ] = { ...data };
+        this.editRow = data.key;
+    }
+
+    save(data) {
+        console.log(data);
+        // Object.assign(data, this.tempEditObject[ data.key ]);
+        Object.assign(data, this.Sample.user_info[ data.key ]);
+        this.editRow = null;
+    }
+
+    cancel(data) {
+        this.tempEditObject[ data.key ] = {};
+        this.editRow = null;
+    }
+
+    add(id){
+        this.Sample.user_info.push(
+        {
+            key:id+1,
+            user    : '',
+            use_count   : '',
+            use_time    : '',
+            usage: '',
+        }
+        );
+        this.editRow = id;
+    }
+
     ngOnInit() {
         this.PID = this.route.params['value']['PID'];
         this.defineForm();
+        this.data.forEach(item => {
+            this.tempEditObject[ item.key ] = {};
+        });
         // console.log(this.newSample);
     }
     ngAfterViewInit(){
