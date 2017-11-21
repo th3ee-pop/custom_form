@@ -20,7 +20,7 @@
                                     <td nz-td>{{flavoringName}}</td>
                                     <td nz-td>
                                         <span>
-                                            <nz-input-number [nzMin]="0" [nzMax]="999" [(ngModel)]="days[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
+                                            <nz-input-number [nzMin]="0" [nzDisabled]="editdisabled" [nzMax]="999" [(ngModel)]="days[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
                                         </span>
                                         天
                                     </td>

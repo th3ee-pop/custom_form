@@ -20,6 +20,12 @@ export class Table96Component extends Question implements AnswerInterface, OnIni
     ];
 
     answerChanged = false;
+
+    /**
+     * 是否可编辑
+     */
+    editdisabled = false; 
+
     required = false;
     constructor() {
         super();

@@ -23,26 +23,26 @@
                             <tr nz-tbody-tr *ngFor="let illnessName of illnessNames,index as i">  <!--根据酒名生成每一行数据-->
                                 <td nz-td>{{illnessName}}
                                     <span>
-                                        <nz-input id = "small" *ngIf = "i === 25|| i === 26" [(ngModel)]="other[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input>
+                                        <nz-input id = "small" *ngIf = "i === 25|| i === 26" [(ngModel)]="other[i]" (ngModelChange)="answerChange()" [nzDisabled]="editdisabled" [ngModelOptions]="{standalone: true}"></nz-input>
                                     </span>
                                 </td>
                                 <td nz-td >
-                                    <label nz-checkbox [(ngModel)]="hasThisIllness[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></label>
+                                    <label nz-checkbox [(ngModel)]="hasThisIllness[i]" (ngModelChange)="answerChange()" [nzDisabled]="editdisabled" [ngModelOptions]="{standalone: true}"></label>
                                 </td>
                                 <td nz-td>
                                     <span>
-                                        <nz-input-number [nzMin]="0" [nzMax]="130" [(ngModel)]="firstSickAge[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
+                                        <nz-input-number [nzMin]="0" [nzMax]="130" [(ngModel)]="firstSickAge[i]" [nzDisabled]="editdisabled" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
                                     </span>岁
                                 </td>
                                 <td nz-td>
-                                    <label nz-checkbox [(ngModel)]="beingTreated[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></label>
+                                    <label nz-checkbox [(ngModel)]="beingTreated[i]" (ngModelChange)="answerChange()" [nzDisabled]="editdisabled" [ngModelOptions]="{standalone: true}"></label>
                                 </td>
                                 <td nz-td>
-                                    <label nz-checkbox [(ngModel)]="hospitalized[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></label>
+                                    <label nz-checkbox [(ngModel)]="hospitalized[i]" (ngModelChange)="answerChange()" [nzDisabled]="editdisabled" [ngModelOptions]="{standalone: true}"></label>
                                 </td>
                                 <td nz-td>
                                     <span>
-                                        <nz-datepicker [(ngModel)]="lastTimeInHospital[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-datepicker>
+                                        <nz-datepicker [(ngModel)]="lastTimeInHospital[i]" (ngModelChange)="answerChange()" [nzDisabled]="editdisabled" [ngModelOptions]="{standalone: true}"></nz-datepicker>
                                     </span>
                                 </td>
                             </tr>
