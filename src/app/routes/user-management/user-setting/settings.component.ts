@@ -2,6 +2,7 @@ import { NzModalService, NzMessageService } from 'ng-zorro-antd';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModelCustomComponent } from './settings.modal.component';
+import { ModelRegisterComponent } from './settings.register.modal.component';
 import { LoginAuthService } from '@core/services/login.auth.service';
 import { SettingsService } from '@core/services/settings.service';
 import { HttpService } from '@core/services/http.service';
@@ -41,13 +42,7 @@ export class UserSettingsComponent implements OnInit {
             company: '',
             location: ''
         });
-        this.valForm = fb.group({
-            email: [null, Validators.compose([Validators.required])],
-            real_first_name: [null],
-            real_last_name: [null],
-            password: [null, Validators.required],
-            province: ['陕西', Validators.required],
-        });
+
     }
 
     // 分页信息，pi表示第几页，ps表示1页的条目数，total为条目总数。
@@ -71,7 +66,7 @@ export class UserSettingsComponent implements OnInit {
         'start': (this.pi - 1) * this.ps,
         'offset': this.ps,
     };
-    valForm: FormGroup;
+
     authority = {
         '1': '总管理员',
         '2': '省内管理员',
@@ -104,11 +99,13 @@ export class UserSettingsComponent implements OnInit {
         this.httpService.getUser(this.conditions)
             .map(data => {
                 console.log(data);
-                data.Users.forEach(item => {
-                    item.checked = false;
-                    item.group = this.authority[item.group];
-                    item.date_joined = item.date_joined.substring(0, 19);
-                });
+                if (data.Return !== 1) {
+                    data.Users.forEach(item => {
+                        item.checked = false;
+                        item.group = this.authority[item.group];
+                        item.date_joined = item.date_joined.substring(0, 19);
+                    });
+                }
                 return data;
             })
             .subscribe(data => {
@@ -214,6 +211,18 @@ export class UserSettingsComponent implements OnInit {
         });
     }
 
+    registerCompModel() {
+        this.options = {
+            content: ModelRegisterComponent,
+            footer: false,
+            componentParams: {
+            }
+        };
+        this.modal.open(this.options).subscribe(result => {
+            // this.msg.info(`subscribe status: ${JSON.stringify(result)}`);
+        });
+    }
+
     deleteUser(username) {
         this.loginService.remove(username).subscribe((res) => {
             console.log(res);
@@ -230,33 +239,5 @@ export class UserSettingsComponent implements OnInit {
         });
     }
 
-    submit() {
-        // tslint:disable-next-line:forin
-        for (const i in this.valForm.controls) {
-            this.valForm.controls[i].markAsDirty();
-        }
-        if (this.valForm.valid) {
-            console.log('Valid!');
-            console.log(this.valForm.value);
-            const submitBody = {
-                'province': this.valForm.value.province,
-                'username': this.valForm.value.email,
-                'first_name': this.valForm.value.real_first_name,
-                'last_name': this.valForm.value.real_last_name,
-                'password': this.valForm.value.password,
-                'email': 'abc@163.com'
-            };
-            console.log(submitBody);
-            this.httpService.register(submitBody)
-                .subscribe((res) => {
-                    console.log(res);
-                    if (res.Return === 0) {
-                        this.msg.info(res.Result);
-                        this.router.navigate(['/user/detail']);
-                    } else {
-                        this.msg.info(res.Result);
-                    }
-                });
-        }
-    }
+
 }

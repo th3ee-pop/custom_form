@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { RandomUserService } from '../tables/randomUser.service';
 import { ModelCustomComponent } from './user-setting/settings.modal.component';
 import { ManageModelCustomComponent } from './user-management/management.modal.component';
+import { ModelRegisterComponent } from './user-setting/settings.register.modal.component';
 import { UserManagementComponent } from './user-management/user-management.component';
 import { UserSettingsComponent } from './user-setting/settings.component';
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
         UserManagementComponent,
         UserSettingsComponent,
         ModelCustomComponent,
+        ModelRegisterComponent,
         ManageModelCustomComponent
     ],
     providers: [
@@ -33,6 +35,7 @@ const routes: Routes = [
     ],
     entryComponents: [
         ModelCustomComponent,
+        ModelRegisterComponent,
         ManageModelCustomComponent
     ]
 })
