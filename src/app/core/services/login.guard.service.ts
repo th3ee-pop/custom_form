@@ -8,7 +8,7 @@ import { LoginAuthService } from './login.auth.service';
 @Injectable()
 export class LoginAuthGuard implements CanActivate, CanActivateChild {
     constructor(private authService: LoginAuthService, private router: Router) {}
-   // Returns = JSON.parse(localStorage.getItem('_user'));
+
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
         const url: string = state.url;
         return this.checkLogin(url);
