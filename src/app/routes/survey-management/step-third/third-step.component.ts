@@ -107,7 +107,7 @@ export class ThirdStepComponent implements OnInit, AfterViewInit {
         };
         return confirmAll;
     }
-    collectAllanswer() {
+    collectAllanswer() {InputItems
 
         this.RadioItems.forEach(item => {
             if (item.answerChanged === true) { for ( let i = 0; i < item.answer.length; i++) { this.resultList.push(item.answer[i]); } }
@@ -137,6 +137,22 @@ export class ThirdStepComponent implements OnInit, AfterViewInit {
             }
         }
     }
+
+    /**
+     * 所有空间改为不可编辑状态
+     */
+    disabledAll() {
+        this.InputItems.forEach(item => {
+            item.editdisabled = true;
+        });
+        this.RadioItems.forEach(item => {
+            item.editdisabled = true;
+        });
+        this.Table35.forEach(item => {
+            item.editdisabled = true;
+        });
+    }
+
     fillingAllanswer() {
         const getRecord = {
             'PID': this.PID,

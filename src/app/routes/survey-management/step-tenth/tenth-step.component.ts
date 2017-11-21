@@ -90,6 +90,22 @@ export class TenthStepComponent implements OnInit, AfterViewInit {
     }
 
     /**
+     * 所有空间改为不可编辑状态
+     */
+    disabledAll() {
+        this.InputItems.forEach(item => {
+            item.editdisabled = true;
+        });
+        this.RadioItems.forEach(item => {
+            item.editdisabled = true;
+        });
+        this.CheckboxItems.forEach(item => {
+            item.editdisabled = true;
+        });
+    }
+
+
+    /**
      *  点击steps上的按钮，进行步骤跳跃
      */
     jumpTo(step_index) {
