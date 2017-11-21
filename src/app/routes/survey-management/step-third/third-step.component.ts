@@ -107,7 +107,7 @@ export class ThirdStepComponent implements OnInit, AfterViewInit {
         };
         return confirmAll;
     }
-    collectAllanswer() {InputItems
+    collectAllanswer() {
 
         this.RadioItems.forEach(item => {
             if (item.answerChanged === true) { for ( let i = 0; i < item.answer.length; i++) { this.resultList.push(item.answer[i]); } }
