@@ -4,7 +4,6 @@ import {Router, ActivatedRoute} from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd';
 import { Sample, Use_info, Accident_info} from '../sample';
 import { BiologyService } from '../biology.service';
-// import {sample} from "rxjs/operators";
 
 @Component({
     selector: 'app-sample-add',
@@ -148,7 +147,7 @@ export class SampleAddComponent implements OnInit {
         private router: Router,
         private msg: NzMessageService,
         private service: BiologyService,
-         private route:ActivatedRoute) {
+         private route: ActivatedRoute) {
     }
 
     load(id?: number) {
