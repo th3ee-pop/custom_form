@@ -241,6 +241,7 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
                         if (fillingList[i][id] && fillingList[i][id] !== '') { item.date = new Date(fillingList[i][id]); }
                     }
                 });
+
             }, error => {
                 console.log(error);
             }

@@ -8,7 +8,7 @@
                 <form nz-form [nzLayout]="'inline'">
                     <div nz-form-control nz-col [nzSm]="20">
                         <ng-container *ngFor="let item of question.content,index as i">
-                            <label nz-checkbox [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}">
+                            <label nz-checkbox [(ngModel)]="localAnswer[i]" [nzDisabled]="editdisabled"(ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}">
                                 <span>{{item}}</span>
                             </label>
                         </ng-container>

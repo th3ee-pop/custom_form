@@ -14,6 +14,7 @@ export class Table613Component extends  Question implements AnswerInterface, OnI
      * 是否暴露过
      */
     selected = [];
+    editdisabled = false;
     exposureTime = [];
     smokeNames = [
         '煤气/蒸汽/烟/雾', '粉尘（如：硅石/煤炭/棉花）', '纤维（如　石棉/纺织品）', '化学制品（如：苯/甲苯）'

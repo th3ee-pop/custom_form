@@ -9,13 +9,13 @@
                     <div nz-form-item *ngFor="let item of question.content;index as i">
                         <div nz-form-control [nzValidateStatus]="getFormControl(item.validType)" *ngIf="item.dataType == 'text'">
                             <div [ngSwitch]="item.validType">
-                                <nz-input  *ngSwitchCase="'number'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()"  formControlName="number" ></nz-input>
-                                <nz-input  *ngSwitchCase="'twonum'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()"  formControlName="twonum" ></nz-input>
-                                <nz-input  *ngSwitchCase="'onenum'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()"  formControlName="onenum" ></nz-input>
-                                <nz-input  *ngSwitchCase="'threenum'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()"  formControlName="threenum" ></nz-input>
-                                <nz-input  *ngSwitchCase="'fivenum'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()"  formControlName="fivenum" ></nz-input>
-                                <nz-input  *ngSwitchCase="'other'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()"  formControlName="other"></nz-input>
-                                <nz-input  *ngSwitchCase="" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()"  formControlName="other"></nz-input>
+                                <nz-input  *ngSwitchCase="'number'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" [nzDisabled]="editdisabled" formControlName="number" ></nz-input>
+                                <nz-input  *ngSwitchCase="'twonum'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" [nzDisabled]="editdisabled" formControlName="twonum" ></nz-input>
+                                <nz-input  *ngSwitchCase="'onenum'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" [nzDisabled]="editdisabled" formControlName="onenum" ></nz-input>
+                                <nz-input  *ngSwitchCase="'threenum'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" [nzDisabled]="editdisabled" formControlName="threenum" ></nz-input>
+                                <nz-input  *ngSwitchCase="'fivenum'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" [nzDisabled]="editdisabled" formControlName="fivenum" ></nz-input>
+                                <nz-input  *ngSwitchCase="'other'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" [nzDisabled]="editdisabled" formControlName="other"></nz-input>
+                                <nz-input  *ngSwitchCase="" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" [nzDisabled]="editdisabled" formControlName="other"></nz-input>
                             </div>
                             <div nz-form-explain *ngIf="item.validType==='number'&&getFormControl('number').dirty&&getFormControl('number').touched&&getFormControl('number').hasError('number')">
                                 体检编号必须为11位数字

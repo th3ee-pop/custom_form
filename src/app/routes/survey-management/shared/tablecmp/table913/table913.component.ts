@@ -15,6 +15,7 @@ export class Table913Component extends Question implements AnswerInterface, OnIn
 
     selected = [];
     operationAge = [];
+    editdisabled = false;
     operationNames = [
         '子宫切除术', '卵巢（单侧或双侧）摘除术', '乳房肿块/肿瘤摘除术', '绝育术', '剖腹产'
     ];

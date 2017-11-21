@@ -11,6 +11,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 export class DatecmpComponent extends Question {
     date = new Date();
     answerChanged = false;
+    editdisabled = false;
     constructor(private fb: FormBuilder) {
         super();
     }

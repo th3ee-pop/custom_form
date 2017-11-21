@@ -18,6 +18,7 @@ export class Table715Component extends Question implements AnswerInterface, OnIn
     brothersAndSisters = [];
     children = [];
     answerChanged = false;
+    editdisabled = false;
     required = false;
 
     illnessNames = [

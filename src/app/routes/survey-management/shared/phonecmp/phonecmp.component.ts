@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 export class PhoneComponent extends Question {
     localAnswer = ''; // 存储数据
     answerChanged = false;
+    editdisabled = false;
     validateForm: FormGroup;
     flag = false;
     pwdOrtext = 'password';

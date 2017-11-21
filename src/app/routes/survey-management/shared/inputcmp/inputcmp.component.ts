@@ -14,6 +14,7 @@ export class InputcmpComponent extends Question implements OnInit {
     localAnswer = []; // 存储数据
     answerChanged = false;
     validateForm: FormGroup;
+    editdisabled = false;
     ngOnInit() {
         this.localAnswer = new Array(this.question.content.length);
     }
