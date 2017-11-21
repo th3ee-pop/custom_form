@@ -20,6 +20,8 @@ export class Table35Component extends Question implements AnswerInterface {
         '啤酒', '高度白酒', '低度白酒', '葡萄酒/果酒', '黄酒/米酒'
     ];
     answerChanged = false;
+    editdisabled = false;
+
     constructor() {
         super();
     }

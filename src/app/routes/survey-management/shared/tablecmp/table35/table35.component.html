@@ -23,17 +23,17 @@
                                     <td nz-td>{{wineName}}</td>
                                     <td nz-td>
                                         <span>
-                                            <nz-input-number [nzMin]="0" [nzMax]="100" [(ngModel)]="localAnswer[i][0]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
+                                            <nz-input-number [nzMin]="0" [nzMax]="100" [(ngModel)]="localAnswer[i][0]" [nzDisabled]="editdisabled" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
                                         </span>
                                     </td>
                                     <td nz-td>
                                         <span>
-                                            <nz-input-number [nzMin]="0" [nzMax]="100" [(ngModel)]="localAnswer[i][1]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
+                                            <nz-input-number [nzMin]="0" [nzMax]="100" [(ngModel)]="localAnswer[i][1]" [nzDisabled]="editdisabled" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
                                         </span>
                                     </td>
                                     <td nz-td>
                                         <span>
-                                            <nz-input-number [nzMin]="0" [nzMax]="100" [(ngModel)]="localAnswer[i][2]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
+                                            <nz-input-number [nzMin]="0" [nzMax]="100" [(ngModel)]="localAnswer[i][2]" [nzDisabled]="editdisabled" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
                                         </span>
                                     </td>
                                 </tr>

@@ -17,6 +17,14 @@ export class Table58Component extends Question implements AnswerInterface, OnIni
     situationNames = [
         '体重明显下降', '因为食物短缺出现浮肿、严重贫血等相关疾病', '在此期间有家人、亲朋好友或邻居因食物短缺而死亡'
     ];
+
+
+    /**
+     * 是否可编辑
+     */
+    editdisabled = false;
+
+
     constructor() {
         super();
     }

@@ -16,6 +16,13 @@ export class Table53Component extends Question implements AnswerInterface, OnIni
         '一袋盐（500克）', '一瓶酱油（500毫升）', '一瓶醋(500毫升)', '一瓶食用油（1000毫升）'
     ];
     answerChanged = false;
+
+    /**
+   * 是否可编辑
+   */
+  editdisabled = false;
+
+
     constructor() {
         super();
         this.days = new Array(this.flavoringNames.length);

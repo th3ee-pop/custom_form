@@ -39,6 +39,12 @@ export class Table51Component  extends Question implements AnswerInterface, OnIn
     ];
 
     answerChanged = false;
+
+    /**
+   * 是否可编辑
+   */
+  editdisabled = false;
+
     constructor() {
         super();
 

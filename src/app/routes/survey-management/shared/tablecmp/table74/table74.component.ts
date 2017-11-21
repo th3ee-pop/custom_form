@@ -46,6 +46,11 @@ export class Table74Component extends Question implements AnswerInterface, OnIni
     ];
     answerChanged = false;
 
+    /**
+     * 是否可编辑
+     */
+    editdisabled = false;
+
     constructor() {
         super();
     }
