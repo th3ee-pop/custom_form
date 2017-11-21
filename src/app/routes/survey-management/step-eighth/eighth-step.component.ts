@@ -31,6 +31,7 @@ export class EighthStepComponent implements OnInit, AfterViewInit {
     finished = false;
     answerList = [];
     sex = false;
+    localInfo = JSON.parse(localStorage.getItem('_user'));
 
     constructor(
         private router: Router,
@@ -93,6 +94,19 @@ export class EighthStepComponent implements OnInit, AfterViewInit {
     /**
      * 所有空间改为不可编辑状态
      */
+    rundisabledAll (completeby, province) {
+        if ( this.localInfo.user_group > 1 ) {
+            if ( this.localInfo.user_group === 4) {
+                if ( completeby !== this.localInfo.user_name ) {
+                    this.disabledAll();
+                }
+            }else {
+                if ( province !== this.localInfo.province) {
+                    this.disabledAll();
+                }
+            }
+        }
+    }
     disabledAll() {
         this.InputItems.forEach(item => {
             item.editdisabled = true;
@@ -104,7 +118,7 @@ export class EighthStepComponent implements OnInit, AfterViewInit {
             item.editdisabled = true;
         });
     }
-    
+
 
     /**
      *  点击steps上的按钮，进行步骤跳跃
@@ -180,8 +194,17 @@ export class EighthStepComponent implements OnInit, AfterViewInit {
         this.service.getRecord(getRecord).subscribe( (res) => {
             const fillingList = res.Records;
             this.answerList = fillingList;
-            fillingList.forEach( it => { if ( it['ID8'] && it['ID8'] === 'finished') this.finished = true;
+
+            let province = '';
+            let completeby = '';
+            fillingList.forEach( it => {
+                if ( it['ID8'] && it['ID8'] === 'finished') this.finished = true;
+                if ( it['ID0_5'] && it['ID0_5'] !== '' )    { completeby = it['ID0_5']; }
+                if ( it['ID0_3'] && it['ID0_3'] !== '' )    { province = it['ID0_3']; }
             });
+            if ( province !== '' && completeby !== '')  this.rundisabledAll(completeby, province);
+
+
             this.InputItems.forEach( item => { fillingList.forEach( it => {
                 let id = '';
                 id = this.getTransid( item.question.id );

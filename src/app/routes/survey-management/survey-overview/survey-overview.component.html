@@ -32,23 +32,23 @@
                                         <td nz-td>
                                             <!--前段根据四种权限，对应有不同的操作组合。-->
                                             <!---->
-                                            <span *ngIf="userGroup === 1">
+                                            <span >
                                                       <a [routerLink]="'/survey/first_step/'+ data.PID">查看</a>
                                                       <span nz-table-divider></span>
                                             </span>
-                                            <span *ngIf="userGroup ===3 && userProvince === data.Province">
-                                                      <a [routerLink]="'/survey/first_step/' + data.PID">查看</a>
-                                                      <span nz-table-divider></span>
-                                            </span>
-                                            <span *ngIf="userGroup ===2 && userProvince === data.Province">
-                                                      <a [routerLink]="'/survey/first_step/' + data.PID">查看</a>
-                                                      <span nz-table-divider></span>
-                                            </span>
+                                            <!--<span *ngIf="userGroup ===3 && userProvince === data.Province">-->
+                                                      <!--<a [routerLink]="'/survey/first_step/' + data.PID">查看</a>-->
+                                                      <!--<span nz-table-divider></span>-->
+                                            <!--</span>-->
+                                            <!--<span *ngIf="userGroup ===2 && userProvince === data.Province">-->
+                                                      <!--<a [routerLink]="'/survey/first_step/' + data.PID">查看</a>-->
+                                                      <!--<span nz-table-divider></span>-->
+                                            <!--</span>-->
 
-                                            <span *ngIf="userGroup ===4 && loggedUser === data.completedBy">
-                                                      <a [routerLink]="'/survey/first_step' +  + data.PID">查看</a>
-                                                <span nz-table-divider></span>
-                                                  </span>
+                                            <!--<span *ngIf="userGroup ===4 && loggedUser === data.completedBy">-->
+                                                      <!--<a [routerLink]="'/survey/first_step' +  + data.PID">查看</a>-->
+                                                <!--<span nz-table-divider></span>-->
+                                                  <!--</span>-->
 
                                             <span *ngIf="userGroup < 4">
                                                       <a (click)="deleteRecord(data.PID)" >删除</a>
@@ -90,8 +90,8 @@
                         下载所有数据
                     </div>
                 </div>
-                
-         
+
+
             </ng-template>
         </nz-card>
     </div>
