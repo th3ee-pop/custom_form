@@ -68,7 +68,6 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
             if (!this.PID)  putRecord = { 'Records' : this.resultList };
             else putRecord = { 'PID': this.PID, 'Records' : this.resultList };
             this.service.putRecord(putRecord).subscribe( (res) => {
-                console.log(res);
                 this.PID = res.PID;
                 this.router.navigate(['/survey/second_step/' + this.PID]);
             }, err => {
@@ -181,7 +180,7 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
         for ( let i = 0; i < this.answerList.length; i ++) {
             for ( let j = 0; j < this.resultList.length; j++) {
                 const id = this.resultList[j].Record_ID;
-                if (this.answerList[i][id]) {
+                if (this.answerList[i][id] || this.answerList[i][id] === 0) {
                     this.resultList[j]['Updated_time'] = this.answerList[i]['Updated_time'];
                 }
             }

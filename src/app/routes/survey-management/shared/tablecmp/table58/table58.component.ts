@@ -38,7 +38,7 @@ export class Table58Component extends Question implements AnswerInterface, OnIni
         const res = [];
         if (this.text && this.text !== '' ) {
             const item = {
-                Record_ID: '',
+                Record_ID: 'ID5_8_a',
                 Record_Value: this.text
             };
             res.push(item);

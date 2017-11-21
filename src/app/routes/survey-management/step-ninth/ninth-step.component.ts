@@ -82,10 +82,10 @@ export class NinthStepComponent implements OnInit, AfterViewInit {
             console.log(step_index);
             this.router.navigate(['/survey/' + numWords[step_index] + '_step/' + this.PID]);  // 拼接跳转链接
         }
-        
+
     }
 
-    
+
     temporary_deposit() {                               // 暂存
         this.collectAllanswer();
         const putRecord = { 'PID': this.PID, 'Records' : this.resultList };
@@ -146,7 +146,7 @@ export class NinthStepComponent implements OnInit, AfterViewInit {
         for ( let i = 0; i < this.answerList.length; i ++) {
             for ( let j = 0; j < this.resultList.length; j++) {
                 const id = this.resultList[j].Record_ID;
-                if (this.answerList[i][id]) {
+                if (this.answerList[i][id] || this.answerList[i][id] === 0) {
                     this.resultList[j]['Updated_time'] = this.answerList[i]['Updated_time'];
                 }
             }

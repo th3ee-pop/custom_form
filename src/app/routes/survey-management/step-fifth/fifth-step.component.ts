@@ -89,9 +89,9 @@ export class FifthStepComponent implements OnInit, AfterViewInit {
             console.log(step_index);
             this.router.navigate(['/survey/' + numWords[step_index] + '_step/' + this.PID]);  // 拼接跳转链接
         }
-        
+
     }
-    
+
     temporary_deposit() {                               // 暂存
         this.collectAllanswer();
         console.log(this.resultList);
@@ -148,8 +148,6 @@ export class FifthStepComponent implements OnInit, AfterViewInit {
         this.Table58Item.forEach( item => {
             if ( item.answerCheck() === true ) { item.getAnswer().forEach( it => { this.resultList.push(it); }); }
         });
-
-        console.log(this.resultList);
         if (this.confirm().confirms)
             this.resultList.push(
                 {'Record_ID': 'ID0_4', 'Record_Value': this.getNowdate()},
@@ -163,12 +161,11 @@ export class FifthStepComponent implements OnInit, AfterViewInit {
         for ( let i = 0; i < this.answerList.length; i ++) {
             for ( let j = 0; j < this.resultList.length; j++) {
                 const id = this.resultList[j].Record_ID;
-                if (this.answerList[i][id]) {
+                if (this.answerList[i][id] || this.answerList[i][id] === 0) {
                     this.resultList[j]['Updated_time'] = this.answerList[i]['Updated_time'];
                 }
             }
         }
-        console.log(this.resultList);
     }
     fillingAllanswer() {
         const getRecord = {

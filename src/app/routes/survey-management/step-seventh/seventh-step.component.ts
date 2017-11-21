@@ -82,9 +82,9 @@ export class SeventhStepComponent implements OnInit, AfterViewInit {
             console.log(step_index);
             this.router.navigate(['/survey/' + numWords[step_index] + '_step/' + this.PID]);  // 拼接跳转链接
         }
-        
+
     }
-    
+
     temporary_deposit() {                               // 暂存
         this.collectAllanswer();
         const putRecord = { 'PID': this.PID, 'Records' : this.resultList };
@@ -144,7 +144,7 @@ export class SeventhStepComponent implements OnInit, AfterViewInit {
         for ( let i = 0; i < this.answerList.length; i ++) {
             for ( let j = 0; j < this.resultList.length; j++) {
                 const id = this.resultList[j].Record_ID;
-                if (this.answerList[i][id]) {
+                if (this.answerList[i][id] || this.answerList[i][id] === 0) {
                     this.resultList[j]['Updated_time'] = this.answerList[i]['Updated_time'];
                 }
             }
@@ -164,7 +164,9 @@ export class SeventhStepComponent implements OnInit, AfterViewInit {
             this.InputItems.forEach( item => { fillingList.forEach( it => {
                 let id = '';
                 id = this.getTransid( item.question.id );
-                if ( it[id] && it[id] !== '') {  item.localAnswer[0] = it[id]; }});
+                if ( it[id] && it[id] !== '') {  item.localAnswer[0] = it[id]; }
+                if ( it[id] === 0 ) { item.localAnswer[0] = '0'; }
+            });
             });
             this.RadioItems.forEach( item => {
                 for ( let i = 0; i < fillingList.length; i++) {
