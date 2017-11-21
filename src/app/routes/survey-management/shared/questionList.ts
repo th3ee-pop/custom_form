@@ -111,7 +111,7 @@ export class QuestionList {
                     '维族',
                     '哈萨克',
                     '蒙古',
-                    '其他'
+                    '其他（请转问题1.8.a）'
                 ],
                 // 'hidden': false,
                 // 'hiddenList': [],
@@ -133,7 +133,7 @@ export class QuestionList {
                 'id': '1.9',
                 'type': 'radio',
                 'content': [
-                    '是',
+                    '是（请转问题1.9.a）',
                     '不想回答',
                     '否'
                 ],
@@ -147,7 +147,7 @@ export class QuestionList {
                     '伊斯兰教',
                     '佛教',
                     '基督教',
-                    '其他'
+                    '其他（请转问题1.9.b）'
                 ],
                 'tittle': '如果有宗教信仰，具体宗教是？'
             },
