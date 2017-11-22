@@ -10,13 +10,12 @@
                     </nz-steps>
                     <div *ngFor="let question of questionList">
                         <div [ngSwitch]="question.type">
-                            <app-inputcmp     *ngSwitchCase="'input'"     [question]="question"></app-inputcmp>
-                            <app-datecmp      *ngSwitchCase="'date'"      [question]="question"></app-datecmp>
-                            <app-radiocmp     *ngSwitchCase="'radio'"     [question]="question"></app-radiocmp>
-                            <!--<app-radiocmp     *ngSwitchCase="'radio'"     [question]="question" (onVoted)="onVoted($event)"></app-radiocmp>-->
-                            <app-idccmp       *ngSwitchCase="'idc'"       [question]="question"></app-idccmp>
-                            <app-phonecmp     *ngSwitchCase="'phone'"     [question]="question"></app-phonecmp>
-                            <app-checkboxcmp  *ngSwitchCase="'checkbox'"  [question]="question"></app-checkboxcmp>
+                            <app-inputcmp     *ngSwitchCase="'input'"     [question]="question" (onVoted)="onVoted($event)" ></app-inputcmp>
+                            <app-datecmp      *ngSwitchCase="'date'"      [question]="question" (onVoted)="onVoted($event)" ></app-datecmp>
+                            <app-radiocmp     *ngSwitchCase="'radio'"     [question]="question" (onVoted)="onVoted($event)" ></app-radiocmp>
+                            <app-idccmp       *ngSwitchCase="'idc'"       [question]="question" (onVoted)="onVoted($event)" ></app-idccmp>
+                            <app-phonecmp     *ngSwitchCase="'phone'"     [question]="question" (onVoted)="onVoted($event)" ></app-phonecmp>
+                            <app-checkboxcmp  *ngSwitchCase="'checkbox'"  [question]="question" (onVoted)="onVoted($event)" ></app-checkboxcmp>
                         </div>
                     </div>
                     <div class="steps-action">

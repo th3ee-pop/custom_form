@@ -1,14 +1,15 @@
-<div nz-row>
-  <div nz-col>
-      <nz-card>
-          <ng-template #title>
-              <label nz-form-item-required >3.5 下面了解一下在三种不同情况下，你喝的是什么酒，喝多少？</label>
-          </ng-template>
-          <ng-template #body>
-                <form nz-form [nzLayout]="'inline'" >
-                    <div nz-form-control nz-col [nzSm]="20">
-                        <nz-table>
-                            <thead nz-thead>
+<div [hidden]="question.hidden">
+    <div nz-row >
+        <div nz-col>
+            <nz-card>
+                <ng-template #title>
+                    <label nz-form-item-required >3.5 下面了解一下在三种不同情况下，你喝的是什么酒，喝多少？</label>
+                </ng-template>
+                <ng-template #body>
+                    <form nz-form [nzLayout]="'inline'" >
+                        <div nz-form-control nz-col [nzSm]="20">
+                            <nz-table>
+                                <thead nz-thead>
                                 <tr>
 
                                     <th nz-th><span>酒类</span></th>
@@ -16,9 +17,9 @@
                                     <th nz-th><span>因特殊情况而大量饮酒时</span></th>
                                     <th nz-th><span>最近一次饮酒时</span></th>
                                 </tr>
-                            </thead>
+                                </thead>
 
-                            <tbody nz-tbody>
+                                <tbody nz-tbody>
                                 <tr nz-tbody-tr *ngFor="let wineName of wineNames,index as i">
                                     <td nz-td>{{wineName}}</td>
                                     <td nz-td>
@@ -37,11 +38,13 @@
                                         </span>
                                     </td>
                                 </tr>
-                            </tbody>
-                        </nz-table>
-                    </div>
-                </form>
-          </ng-template>
-      </nz-card>
-  </div>
+                                </tbody>
+                            </nz-table>
+                        </div>
+                    </form>
+                </ng-template>
+            </nz-card>
+        </div>
+    </div>
+
 </div>

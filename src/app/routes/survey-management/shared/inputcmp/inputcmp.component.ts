@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output , EventEmitter } from '@angular/core';
 
 import { Question } from '../question';
 
@@ -15,8 +15,17 @@ export class InputcmpComponent extends Question implements OnInit {
     answerChanged = false;
     validateForm: FormGroup;
     editdisabled = false;
+    @Output() onVoted = new EventEmitter < any >();
+
     ngOnInit() {
         this.localAnswer = new Array(this.question.content.length);
+    }
+    vote ( hiddenList: any [], hiddenshowList: any[] ) {
+        const showAndhidden = {
+            'hiddenlist': hiddenList,
+            'hiddenshowlist' : hiddenshowList
+        }
+        this.onVoted.emit(showAndhidden);
     }
     numberVaildator = (control: FormControl): { [s: string]: boolean } => {
         const NUM_REGEXP = /^[0-9]*$/;
@@ -105,6 +114,14 @@ export class InputcmpComponent extends Question implements OnInit {
 
     answerChange() {
         const res = [];
+        if ( this.question.id === '9.1' || this.question.id === '9.4' || this.question.id === '9.5.a') {
+            if ( this.localAnswer[0] === '#' ) {
+                this.vote( this.question.hiddenlist[0], []);
+            } else {
+                this.vote([], this.question.hiddenlist[0]);
+            }
+        }
+
         if (this.question.content.length !== 1) {
             for ( let index = 1; index <= this.question.content.length; index++) {
                 const tem = {
