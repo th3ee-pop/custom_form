@@ -12,6 +12,7 @@ import { AnswerInterface } from '../answerInterface';
 export class CheckboxcmpComponent extends Question implements OnInit {// 继承自Question类，
     localAnswer;
     answerChanged = false;
+    editdisabled = false;
     ngOnInit() {
         this.localAnswer = new Array(this.question.content.length);
     }

@@ -17,6 +17,11 @@ export class Table54Component extends Question implements AnswerInterface, OnIni
 
     answerChanged = false;
 
+    /**
+   * 是否可编辑
+   */
+  editdisabled = false;
+
 
     constructor() {
         super();
@@ -54,6 +59,7 @@ export class Table54Component extends Question implements AnswerInterface, OnIni
         console.log(this.answer);
     }
     answerCheck() {
+        this.answerChange();
         for (let row = 0; row < 5; row++) {
             let flag2 = false;
             for (let col = 0; col < 5; col++) {

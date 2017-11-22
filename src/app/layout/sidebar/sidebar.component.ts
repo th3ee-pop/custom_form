@@ -9,4 +9,8 @@ import { SettingsService } from '@core/services/settings.service';
 export class SidebarComponent {
     constructor(public settings: SettingsService, public msgSrv: NzMessageService) {
     }
+
+    removeLocalInfo() {
+        localStorage.removeItem('_user');
+    }
 }

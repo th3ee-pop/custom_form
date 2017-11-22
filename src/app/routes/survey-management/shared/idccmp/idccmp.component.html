@@ -9,7 +9,7 @@
                     <div nz-form-item>
                         <div nz-form-control [nzValidateStatus]="getFormControl('idc')">
                             <div style="float: left">
-                                <nz-input   [(ngModel)]="localAnswer" (ngModelChange)="answerChange()" [nzType]="pwdOrtext" formControlName="idc" ></nz-input>
+                                <nz-input   [(ngModel)]="localAnswer"  [nzDisabled]="editdisabled" (ngModelChange)="answerChange()" [nzType]="pwdOrtext" formControlName="idc" ></nz-input>
                             </div>
                             <div style="float: left" (click)="Onclick()">
                                 <i class="anticon anticon-eye" ></i>

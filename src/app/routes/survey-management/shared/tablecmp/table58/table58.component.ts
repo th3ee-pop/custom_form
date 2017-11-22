@@ -17,6 +17,14 @@ export class Table58Component extends Question implements AnswerInterface, OnIni
     situationNames = [
         '体重明显下降', '因为食物短缺出现浮肿、严重贫血等相关疾病', '在此期间有家人、亲朋好友或邻居因食物短缺而死亡'
     ];
+
+
+    /**
+     * 是否可编辑
+     */
+    editdisabled = false;
+
+
     constructor() {
         super();
     }
@@ -38,7 +46,7 @@ export class Table58Component extends Question implements AnswerInterface, OnIni
         const res = [];
         if (this.text && this.text !== '' ) {
             const item = {
-                Record_ID: '',
+                Record_ID: 'ID5_8_a',
                 Record_Value: this.text
             };
             res.push(item);
@@ -61,6 +69,7 @@ export class Table58Component extends Question implements AnswerInterface, OnIni
         console.log(res);
     }
     answerCheck() {
+        this.answerChange();
         for (let row = 0; row < 3; row++) {
             let flag2 = false;
             for (let col = 0; col < 3; col++) { // 逐行检查

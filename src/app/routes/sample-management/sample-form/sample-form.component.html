@@ -103,6 +103,10 @@
                             <span>添加记录</span>
                             <!--<i class="anticon anticon-down"></i>-->
                         </button>
+                        <button nz-button nz-dropdown [disabled]="!_manager"  (click)="deleteAll()">
+                            <span>清空记录</span>
+                            <!--<i class="anticon anticon-down"></i>-->
+                        </button>
                         <!--<ul nz-menu>-->
                             <!--<li nz-menu-item>Excel</li>-->
                             <!--<li nz-menu-item>JSON</li>-->
@@ -127,17 +131,13 @@
                                     (ngModelChange)="_checkAll()">
                                 </label>
                             </th>
-                            <!--<th nz-th><span>Avatar</span></th>-->
-                            <th nz-th><span>条码</span></th>
-                            <th nz-th><span>省</span></th>
-                            <th nz-th><span>项目点</span></th>
-                            <th nz-th><span>存放地点</span></th>
-                            <th nz-th><span>冰箱号</span></th>
-                            <th nz-th><span>层号</span></th>
-                            <th nz-th><span>层内行号</span></th>
-                            <th nz-th><span>层内列号</span></th>
-                            <th nz-th><span>架子号</span></th>
+                            <th nz-th><span>PID</span></th>
                             <th nz-th><span>编号</span></th>
+                            <th nz-th><span>省</span></th>
+                            <th nz-th><span>类型</span></th>
+                            <th nz-th><span>来源人</span></th>
+                            <th nz-th><span>剩余量</span></th>
+                            <th nz-th><span>采集时间</span></th>
                             <th nz-th><span>操作</span></th>
                         </tr>
                     </thead>
@@ -151,16 +151,15 @@
                             <!--<td nz-td>-->
                                 <!--<nz-avatar [nzSrc]="data.picture.thumbnail" [nzSize]="'large'"></nz-avatar>-->
                             <!--</td>-->
-                            <td nz-td>{{data.id1}}</td>
-                            <td nz-td>{{data.id2}}</td>
-                            <td nz-td>{{data.id3}}</td>
-                            <td nz-td>{{data.id4}}</td>
-                            <td nz-td>{{data.id5}}</td>
-                            <td nz-td>{{data.id6}}</td>
-                            <td nz-td>{{data.id7}}</td>
-                            <td nz-td>{{data.id8}}</td>
-                            <td nz-td>{{data.id9}}</td>
-                            <td nz-td>{{data.id10}}</td>
+                            <td nz-td>{{data.PID}}</td>
+                            <td nz-td>{{data.number}}</td>
+                            <td nz-td>{{data.repository}}</td>
+                            <td nz-td>{{data.type}}
+                                <!--<span *ngIf="data.type == 1" >({{data.blood_type}})</span>-->
+                            </td>
+                            <td nz-td>{{data.owner}}</td>
+                            <td nz-td>{{data.capacity}}</td>
+                            <td nz-td>{{data.collect_time}}</td>
                             <!--<td nz-td>{{data.name.first}} {{data.name.last}}</td>-->
                             <!--<td nz-td>-->
                                 <!--<nz-tag *ngIf="data.gender=='female'" [nzColor]="'pink'"></nz-tag>-->
@@ -184,10 +183,12 @@
                                     <p>民族：汉族</p>
                                     <p>居住地址: 陕西省西安市xx区xx街道xx号</p>
                                 </ng-template>
-                                <a (click)="confirmModel(modelContent)">详细信息</a>
+                                <a (click)="confirmModel(modelContent)">关联问卷</a>
                                 <span nz-table-divider></span>
-                                <nz-popconfirm [nzTitle]="'确定删除？'" [nzOkText]="'确定'" [nzCancelText]="'取消'" (nzOnConfirm)="showMsg('已删除')" (nzOnCancel)="showMsg('取消删除')">
-                                    <a nz-popconfirm>删除记录（管理员可见）</a>
+                                <a  (click)="goAdd(data.PID)">查看详情</a>
+                                <span nz-table-divider></span>
+                                <nz-popconfirm [nzTitle]="'确定删除？'" [nzOkText]="'确定'" [nzCancelText]="'取消'" (nzOnConfirm)="deleteRecord(data.PID);" (nzOnCancel)="showMsg('取消删除')">
+                                    <a nz-popconfirm>删除记录</a>
                                 </nz-popconfirm>
                             </td>
                         </tr>

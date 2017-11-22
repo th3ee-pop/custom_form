@@ -22,15 +22,15 @@
                                 <td nz-td>{{birthTime}}</td>
                                 <td nz-td>
                                       <span>
-                                          <nz-input-number [nzMin]="0" [nzMax]="100" [(ngModel)]="birthAge[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
+                                          <nz-input-number [nzMin]="0" [nzMax]="100" [(ngModel)]="birthAge[i]" [nzDisabled]="editdisabled" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
                                       </span>
                                 </td>
                                 <td nz-td><span>
-                                          <nz-input-number [nzMin]="0" [nzMax]="100" [(ngModel)]="feedMonths[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
+                                          <nz-input-number [nzMin]="0" [nzMax]="100" [(ngModel)]="feedMonths[i]" [nzDisabled]="editdisabled" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
                                       </span>
                                 </td>
                                 <td nz-td>
-                                    <label nz-checkbox [(ngModel)]="isTwins[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></label>
+                                    <label nz-checkbox [(ngModel)]="isTwins[i]" (ngModelChange)="answerChange()" [nzDisabled]="editdisabled" [ngModelOptions]="{standalone: true}"></label>
                                 </td>
                             </tr>
                             </tbody>

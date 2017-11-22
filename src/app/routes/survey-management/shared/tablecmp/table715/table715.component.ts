@@ -18,6 +18,7 @@ export class Table715Component extends Question implements AnswerInterface, OnIn
     brothersAndSisters = [];
     children = [];
     answerChanged = false;
+    editdisabled = false;
     required = false;
 
     illnessNames = [
@@ -71,6 +72,7 @@ export class Table715Component extends Question implements AnswerInterface, OnIn
         console.log(res);
     }
     answerCheck() {
+        this.answerChange();
         for ( let i = 0; i < 5; i++) {
             if ( this.father[i] )  return true;
             if ( this.mother[i] )  return true;

@@ -1,22 +1,5 @@
 <div nz-row [nzGutter]="24" class="py-lg">
-    <div nz-col [nzSpan]="6">
-        <!--<nz-card [nzNoHovering]="true" class="ant-card__body-nopadding">
-            <ng-template #title>个人设置</ng-template>
-            <ng-template #body>
-                <a (click)="active=1" class="d-block py-sm px-md" [ngClass]="{'bg-primary-light text-white':active===1}">个人资料</a>
-                <a (click)="active=2" class="d-block py-sm px-md" [ngClass]="{'bg-primary-light text-white':active===2}">修改密码</a>
-            </ng-template>
-        </nz-card>-->
-        <nz-card [nzNoHovering]="true" class="ant-card__body-nopadding">
-            <ng-template #title>人员管理</ng-template>
-            <ng-template #body>
-                <a (click)="active=1" class="d-block py-sm px-md" [ngClass]="{'bg-primary-light text-white':active===1}">用户管理</a>
-                <a (click)="active=2" class="d-block py-sm px-md" [ngClass]="{'bg-primary-light text-white':active===2}">用户注册</a>
-                <!--<a (click)="active=4" class="d-block py-sm px-md" [ngClass]="{'bg-primary-light text-white':active===6}">权限管理</a>-->
-            </ng-template>
-        </nz-card>
-    </div>
-    <div nz-col [nzSpan]="18">
+    <div nz-col [nzSpan]="24">
         <!--<nz-card [nzNoHovering]="true" *ngIf="active===1">
             <ng-template #title>个人资料设置</ng-template>
             <ng-template #body>
@@ -149,69 +132,73 @@
                         <form nz-form>
                             <div nz-row nz-form-item [nzGutter]="16">
                                 <div nz-form-label nz-col [nzSm]="2">
-                                    <label for="name">姓名</label>
+                                    <label>姓名</label>
                                 </div>
                                 <div nz-form-control nz-col [nzSm]="5">
-                                    <nz-input [(ngModel)]="args.name" name="name" [nzId]="'name'"></nz-input>
+                                    <nz-input [(ngModel)]="conditions.filter.first_name" name="name" [nzId]="'name'"></nz-input>
                                 </div>
                                 <div nz-form-label nz-col [nzSm]="2">
-                                    <label>注册日期</label>
+                                    <label>用户ID</label>
                                 </div>
-                                <div nz-form-control nz-col [nzSm]="8">
-                                    <div nz-row>
-                                        <div nz-form-control nz-col [nzSpan]="11">
-                                            <nz-datepicker [(ngModel)]="args.created_begin" name="created_begin" [nzPlaceHolder]="'开始日期'"></nz-datepicker>
-                                        </div>
-                                        <div nz-col [nzSpan]="1">
-                                            <p nz-form-split>-</p>
-                                        </div>
-                                        <div nz-form-control nz-col [nzSpan]="11">
-                                            <nz-datepicker [(ngModel)]="args.created_end" name="created_end" [nzPlaceHolder]="'截止日期'"></nz-datepicker>
-                                        </div>
-                                    </div>
+                                <div nz-form-control nz-col [nzSm]="5">
+                                    <nz-input [(ngModel)]="conditions.filter.username" name="userId" [nzId]="'userId'" [nzPlaceHolder]="'00X'"></nz-input>
                                 </div>
+
                                 <div nz-form-label nz-col [nzSm]="2">
                                     <label>用户权限</label>
                                 </div>
                                 <div nz-form-control nz-col [nzSm]="5">
                                     <nz-dropdown>
                                         <a class="ant-dropdown-link" nz-dropdown>
-                                            {{args.gender ? args.gender : 'unlimit'}} <i class="anticon anticon-down"></i>
+                                            {{conditions.filter.group ? conditions.filter.group : '不限'}} <i class="anticon anticon-down"></i>
                                         </a>
                                         <ul nz-menu>
-                                            <li nz-menu-item (click)="args.gender=''">不限</li>
-                                            <li nz-menu-item (click)="args.gender='male'">普通用户</li>
-                                            <li nz-menu-item (click)="args.gender='female'">高级用户</li>
+                                            <li nz-menu-item (click)="conditions.filter.group=''">不限</li>
+                                            <li nz-menu-item (click)="conditions.filter.group='4'">普通用户</li>
+                                            <li nz-menu-item (click)="conditions.filter.group='3'">高级用户</li>
                                         </ul>
                                     </nz-dropdown>
-                                    <span class="text-grey-light">(only valid)</span>
+                                    <span class="text-grey-light">(点击选择)</span>
                                 </div>
                             </div>
                             <div nz-row nz-form-item [nzGutter]="16" class="mb0">
                                 <div nz-form-label nz-col [nzSm]="2">
-                                    <label for="userid">用户ID</label>
+                                    <label>省份</label>
                                 </div>
                                 <div nz-form-control nz-col [nzSm]="5">
-                                    <nz-input [(ngModel)]="args.userid" name="userid" [nzId]="'userid'" [nzPlaceHolder]="'00X'"></nz-input>
+                                    <nz-dropdown>
+                                        <a class="ant-dropdown-link" nz-dropdown>
+                                            {{conditions.filter.province ? conditions.filter.province : '不限'}} <i class="anticon anticon-down"></i>
+                                        </a>
+                                        <ul nz-menu>
+                                            <li nz-menu-item (click)="conditions.filter.province=''">不限</li>
+                                            <li nz-menu-item (click)="conditions.filter.province='陕西'">陕西</li>
+                                            <li nz-menu-item (click)="conditions.filter.province='甘肃'">甘肃</li>
+                                            <li nz-menu-item (click)="conditions.filter.province='青海'">青海</li>
+                                            <li nz-menu-item (click)="conditions.filter.province='宁夏'">宁夏</li>
+                                            <li nz-menu-item (click)="conditions.filter.province='新疆'">新疆</li>
+                                        </ul>
+                                    </nz-dropdown>
+                                    <span class="text-grey-light">(点击选择)</span>
                                 </div>
                                 <div nz-form-label nz-col [nzSm]="2">
-                                    <label>最近登录</label>
+                                    <label>注册日期</label>
                                 </div>
-                                <div nz-form-control nz-col [nzSm]="8">
+                                <div nz-form-control nz-col [nzSm]="5">
                                     <div nz-row>
                                         <div nz-form-control nz-col [nzSpan]="11">
-                                            <nz-datepicker [(ngModel)]="args.modified_begin" name="modified_begin" [nzPlaceHolder]="'开始日期'"></nz-datepicker>
+                                            <nz-datepicker [(ngModel)]="start_time" name="created_begin" [nzPlaceHolder]="'开始日期'"></nz-datepicker>
                                         </div>
-                                        <div nz-col [nzSpan]="1">
+                                        <div nz-col [nzSpan]="2">
                                             <p nz-form-split>-</p>
                                         </div>
                                         <div nz-form-control nz-col [nzSpan]="11">
-                                            <nz-datepicker [(ngModel)]="args.modified_end" name="modified_end" [nzPlaceHolder]="'截止日期'"></nz-datepicker>
+                                            <nz-datepicker [(ngModel)]="end_time" name="created_end" [nzPlaceHolder]="'截止日期'"></nz-datepicker>
                                         </div>
                                     </div>
                                 </div>
-                                <div nz-col [nzSm]="5" [nzOffset]="2">
-                                    <button nz-button [nzType]="'primary'" (click)="load(1)" [nzLoading]="loading">查询</button>
+                                <div nz-col [nzSm]="4" [nzOffset]="6">
+                                    <button nz-button [nzType]="'primary'" (click)="showConditions()" [nzLoading]="loading">查询</button>
                                     <button nz-button (click)="clear()" [disabled]="loading">清空</button>
                                 </div>
                             </div>
@@ -223,16 +210,10 @@
                     <nz-card>
                         <ng-template #body>
                             <div class="mb-sm text-right">
-                                <nz-dropdown>
-                                    <button nz-button nz-dropdown [disabled]="!_allChecked && !_indeterminate">
-                                        <span>Export</span> <i class="anticon anticon-down"></i>
+
+                                    <button nz-button (click)="registerCompModel()" >
+                                        <span>添加用户</span> <i class="anticon anticon-plus"></i>
                                     </button>
-                                    <ul nz-menu>
-                                        <li nz-menu-item>Excel</li>
-                                        <li nz-menu-item>JSON</li>
-                                        <li nz-menu-item>PNG</li>
-                                    </ul>
-                                </nz-dropdown>
                             </div>
                             <nz-table #nzTable
                                       [nzAjaxData]="list"
@@ -285,11 +266,11 @@
                                              values="1,0,4,6,5,7,8,3,5,7,8"></div>-->
                                     </td>
                                     <td nz-td>{{data.group}}</td>
-                                    <td nz-td>2017年11月13日</td>
+                                    <td nz-td>{{data.date_joined}}</td>
                                     <td nz-td>
                                         <a (click)="showMsg('Edit');customCompModel('', data, data.group)">管理</a>
                                         <span nz-table-divider></span>
-                                        <nz-popconfirm [nzTitle]="'确定删除用户？'" [nzOkText]="'确定'" [nzCancelText]="'取消'" (nzOnConfirm)="showMsg('has deleted');deleteUser(data.username)" (nzOnCancel)="showMsg('cancel delete')">
+                                        <nz-popconfirm [nzTitle]="'确定删除用户？'" [nzOkText]="'确定'" [nzCancelText]="'取消'" (nzOnConfirm)="showMsg('has deleted');deleteUser(data.username)" (nzOnCancel)="showMsg('删除成功')">
                                             <a nz-popconfirm>删除</a>
                                         </nz-popconfirm>
                                     </td>
@@ -302,101 +283,6 @@
                 </div>
             </ng-template>
         </nz-card>
-        <nz-card [nzNoHovering]="true" *ngIf="active===2">
-            <ng-template #title>新用户注册</ng-template>
-            <ng-template #body >
 
-                    <form nz-form [formGroup]="valForm" (ngSubmit)="submit()" role="form" >
-                        <div nz-row nz-form-item >
-                            <div nz-col [nzXs]="24" [nzSm]="12">
-                            <div nz-form-control [nzValidateStatus]="valForm.controls.email">
-                                <nz-input formControlName="email" [nzPlaceHolder]="'邮箱/用户名'" [nzSize]="'large'">
-                                    <ng-template #suffix>
-                                        <i class="anticon anticon-mail"></i>
-                                    </ng-template>
-                                </nz-input>
-                                <div nz-form-explain *ngIf="valForm.controls.email.dirty&&valForm.controls.email.hasError('required')">邮箱必填</div>
-                            </div>
-                            </div>
-                            <div nz-col [nzXs]="24" [nzSm]="12" style="padding-top: 1%;color: #929292">
-                                <em>&nbsp;&nbsp;必填。请输入注册用户名，建议格式“00X”</em>
-                            </div>
-                        </div>
-
-                        <div nz-row nz-form-item >
-                            <div nz-col [nzXs]="24" [nzSm]="12">
-                            <div nz-form-control [nzValidateStatus]="valForm.controls.real_first_name">
-                                <nz-input formControlName="real_first_name" [nzPlaceHolder]="'名'" [nzSize]="'large'">
-                                    <ng-template #suffix>
-                                        <i class="anticon anticon-user"></i>
-                                    </ng-template>
-                                </nz-input>
-                            </div>
-                            </div>
-                                <div nz-col [nzXs]="24" [nzSm]="12" style="padding-top: 1%;color: #929292">
-                                <em>
-                                    &nbsp;&nbsp;请输入真实名。
-                                </em>
-                                </div>
-                        </div>
-                        <div nz-row nz-form-item >
-                            <div nz-col [nzXs]="24" [nzSm]="12">
-                            <div nz-form-control [nzValidateStatus]="valForm.controls.real_last_name">
-                                <nz-input formControlName="real_last_name" [nzPlaceHolder]="'姓'" [nzSize]="'large'">
-                                    <ng-template #suffix>
-                                        <i class="anticon anticon-user"></i>
-                                    </ng-template>
-                                </nz-input>
-                            </div>
-                            </div>
-                            <div nz-col [nzXs]="24" [nzSm]="12" style="padding-top: 1%;color: #929292">
-                            <em>
-                                &nbsp;&nbsp;请输入真实姓氏。
-                            </em>
-                            </div>
-                        </div>
-                        <div nz-row nz-form-item >
-                            <div nz-col [nzXs]="24" [nzSm]="12">
-                            <div nz-form-control [nzValidateStatus]="valForm.controls.password">
-                                <nz-input formControlName="password" [nzPlaceHolder]="'密码'" [nzType]="'password'" [nzSize]="'large'">
-                                    <ng-template #suffix>
-                                        <i class="anticon anticon-lock"></i>
-                                    </ng-template>
-                                </nz-input>
-                                <div nz-form-explain *ngIf="valForm.controls.password.dirty&&valForm.controls.password.hasError('required')">密码必填</div>
-                            </div>
-                            </div>
-                            <div nz-col [nzXs]="24" [nzSm]="12" style="padding-top: 1%;color: #929292">
-                                <em>
-                                    &nbsp;&nbsp;必填。请输入注册密码。
-                                </em>
-                            </div>
-                        </div>
-                        <div nz-row nz-form-item >
-                            <div nz-col [nzXs]="24" [nzSm]="12">
-                            <div nz-form-control nzHasFeedback [nzValidateStatus]="valForm.controls.province">
-                                <nz-select formControlName="province" (click)="console.log('clicked')">
-                                    <nz-option [nzLabel]="'陕西'" [nzValue]="'陕西'"></nz-option>
-                                    <nz-option [nzLabel]="'甘肃'" [nzValue]="'甘肃'"></nz-option>
-                                </nz-select>
-                            </div>
-                            </div>
-                            <div nz-col [nzXs]="24" [nzSm]="12" style="padding-top: 1%;color: #929292">
-                                <em>
-                                    &nbsp;&nbsp;必填。请选择该用户所属省份。
-                                </em>
-                            </div>
-                        </div>
-                        <div nz-form-item style="width: 10%">
-                            <div nz-col [nzSpan]="24" style="left: 200%">
-                                <button nz-button [disabled]="!valForm.valid" [nzType]="'primary'" [nzSize]="'large'" class="ant-btn__block">
-                                    <span>注册</span>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-
-            </ng-template>
-        </nz-card>
     </div>
 </div>

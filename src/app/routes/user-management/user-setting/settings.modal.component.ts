@@ -20,7 +20,7 @@ import { LoginAuthService } from '@core/services/login.auth.service';
     <h3>
         注册日期
     </h3>
-    <p>2017年11月13日</p>
+    <p>{{user.date_joined}}</p>
     <br>
     <h3>
         所属省份

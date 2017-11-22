@@ -19,6 +19,7 @@ export class RadiocmpComponent extends Question {
    * 存储问题是否填写的变量,默认false
    */
   answerChanged = false;
+  editdisabled = false;
   constructor() {
     super();
   }

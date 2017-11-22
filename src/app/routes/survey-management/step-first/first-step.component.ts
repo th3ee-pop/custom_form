@@ -37,7 +37,9 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
     PID = '';                                           // PID
     finished = false;
     answerList = [];
+    buttondisable = false;
     localInfo = JSON.parse(localStorage.getItem('_user'));
+
     constructor(
         private router: Router,
         private route: ActivatedRoute,
@@ -50,7 +52,8 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
         if ( !this.PID )
             this.resultList.push(
                 { 'Record_ID': 'ID0_3', 'Record_Value': this.localInfo.user_province}, // 省份
-                { 'Record_ID': 'ID0_5', 'Record_Value': this.localInfo.user_name}        // 用户ID
+                { 'Record_ID': 'ID0_5', 'Record_Value': this.localInfo.user_name},        // 用户ID
+                { 'Record_ID': 'ID0_2', 'Record_Value': '未完成'}
             );
     }
     ngAfterViewInit() {
@@ -58,8 +61,7 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
             this.fillingAllanswer();
         }
     }
-    next() { // 下一步
-        // if ( ! this.PID )
+    next() {
 
         if ( this.confirm().confirms ) {
             this.collectAllanswer();
@@ -67,7 +69,6 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
             if (!this.PID)  putRecord = { 'Records' : this.resultList };
             else putRecord = { 'PID': this.PID, 'Records' : this.resultList };
             this.service.putRecord(putRecord).subscribe( (res) => {
-                console.log(res);
                 this.PID = res.PID;
                 this.router.navigate(['/survey/second_step/' + this.PID]);
             }, err => {
@@ -175,35 +176,80 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
                 {'Record_ID': 'ID1', 'Record_Value': 'finished'});
         else {
             this.resultList.push(
-                {'Record_ID': 'ID0_4', 'Record_Value': this.getNowdate()});
+                {'Record_ID': 'ID0_4', 'Record_Value': this.getNowdate()},
+                {'Record_ID': 'ID0_2', 'Record_Value': '未完成'});
         }
         for ( let i = 0; i < this.answerList.length; i ++) {
             for ( let j = 0; j < this.resultList.length; j++) {
                 const id = this.resultList[j].Record_ID;
-                if (this.answerList[i][id]) {
+                if (this.answerList[i][id] || this.answerList[i][id] === 0) {
                     this.resultList[j]['Updated_time'] = this.answerList[i]['Updated_time'];
                 }
             }
         }
     }
 
+    rundisabledAll (completeby, province) {
 
+        if ( this.localInfo.user_group > 1 ) {
+            if ( this.localInfo.user_group === 4) {
+                if ( completeby !== this.localInfo.user_name ) {
+                    this.disabledAll();
+                }
+            }else {
+                if ( province !== this.localInfo.province) {
+                    this.disabledAll();
+                }
+            }
+        }
+
+    }
+    disabledAll() {
+        this.buttondisable = true;
+        this.InputItems.forEach( item => {
+            item.editdisabled = true;
+        });
+        this.RadioItems.forEach( item => {
+            item.editdisabled = true;
+        });
+        this.CheckboxItems.forEach( item => {
+            item.editdisabled = true;
+        });
+        this.IdcItems.forEach( item => {
+            item.editdisabled = true;
+        });
+        this.PhoneItems.forEach( item => {
+            item.editdisabled = true;
+        });
+        this.DateItem.forEach( item => {
+            item.editdisabled = true;
+        });
+    }
     fillingAllanswer() {
         const getRecord = {
-            'PID': this.PID
-            // 'RecordID': 'ID1'
+            'PID': this.PID,
+            'RecordID': 'ID1'
         };
         this.service.getRecord(getRecord).subscribe( (res) => {
                 const fillingList = res.Records;
                 this.answerList = fillingList;
+
+
+                let province = '';
+                let completeby = '';
                 fillingList.forEach( it => {
                     if ( it['ID1'] && it['ID1'] === 'finished') { this.finished = true; }
+                    if ( it['ID0_5'] && it['ID0_5'] !== '' )    { completeby = it['ID0_5']; }
+                    if ( it['ID0_3'] && it['ID0_3'] !== '' )    { province = it['ID0_3']; }
                 });
-                console.log(fillingList);
+                if ( province !== '' && completeby !== '')  this.rundisabledAll(completeby, province);
+
+
                 this.InputItems.forEach( item => { for ( let i = 0; i < fillingList.length; i++) {
                     let id = '';
-                    if ( item.question.id === '1.0') { console.log('姓名'); id = 'ID0_1'; } else { id = this.getTransid( item.question.id); }
+                    if ( item.question.id === '1.0') { id = 'ID0_1'; } else { id = this.getTransid( item.question.id); }
                     if ( fillingList[i][id] && fillingList[i][id] !== '') {  item.localAnswer[0] = fillingList[i][id]; }
+                    if ( fillingList[i][id] === 0) {  item.localAnswer[0] = '0'; }
                 }});
                 this.RadioItems.forEach( item => { for ( let i = 0; i < fillingList.length; i++) {
                     for ( let j = 1 ; j <= item.question.content.length; j++) {
@@ -241,9 +287,15 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
                         if (fillingList[i][id] && fillingList[i][id] !== '') { item.date = new Date(fillingList[i][id]); }
                     }
                 });
+
+
+
             }, error => {
                 console.log(error);
             }
+
+
+
         );
     }
 
@@ -259,7 +311,7 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
         id = id + str.replace(/\./g, '_');
         return id;
     }
-
+}
 // onVoted ( hiddenList: any[] ) {
 //     console.log('事件出发');
 //     for (let i = 0; i < hiddenList.length; i++) {
@@ -272,6 +324,3 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
 //         }
 //     }
 // }
-
-
-}

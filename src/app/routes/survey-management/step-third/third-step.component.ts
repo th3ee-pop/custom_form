@@ -30,6 +30,8 @@ export class ThirdStepComponent implements OnInit, AfterViewInit {
     PID = '';
     finished = false;
     answerList = [];
+    buttondisable = false;
+    localInfo = JSON.parse(localStorage.getItem('_user'));
     constructor(
         private router: Router,
         private route: ActivatedRoute,
@@ -54,7 +56,6 @@ export class ThirdStepComponent implements OnInit, AfterViewInit {
             this.collectAllanswer();
             const putRecord = { 'Records': this.resultList, 'PID': this.PID};
             this.service.putRecord(putRecord).subscribe( (res) => {
-                console.log(res);
                 this.router.navigate(['/survey/forth_step/' + this.PID]);
             }, error => {
                 console.log(error);
@@ -80,9 +81,9 @@ export class ThirdStepComponent implements OnInit, AfterViewInit {
             console.log(step_index);
             this.router.navigate(['/survey/' + numWords[step_index] + '_step/' + this.PID]);  // 拼接跳转链接
         }
-        
+
     }
-    
+
     temporary_deposit() {                               // 暂存
         this.collectAllanswer();
         const putRecord = { 'PID': this.PID, 'Records' : this.resultList };
@@ -126,31 +127,82 @@ export class ThirdStepComponent implements OnInit, AfterViewInit {
         else {
             this.resultList.push(
                 {'Record_ID': 'ID0_4', 'Record_Value': this.getNowdate()},
-                {'Record_ID': 'ID3', 'Record_Value': ''});
+                {'Record_ID': 'ID3', 'Record_Value': ''},
+                {'Record_ID': 'ID0_2', 'Record_Value': '未完成'});
         }
         for ( let i = 0; i < this.answerList.length; i ++) {
             for ( let j = 0; j < this.resultList.length; j++) {
                 const id = this.resultList[j].Record_ID;
-                if (this.answerList[i][id]) {
+                if (this.answerList[i][id] || this.answerList[i][id] === 0) {
                     this.resultList[j]['Updated_time'] = this.answerList[i]['Updated_time'];
                 }
             }
         }
     }
+
+    /**
+     * 所有空间改为不可编辑状态
+     */
+    disabledAll() {
+        this.buttondisable = true;
+        this.InputItems.forEach(item => {
+            item.editdisabled = true;
+        });
+        this.RadioItems.forEach(item => {
+            item.editdisabled = true;
+        });
+        this.Table35.forEach(item => {
+            item.editdisabled = true;
+        });
+    }
+
+    /**
+     *
+     * @param completeby
+     * @param province
+     */
+    rundisabledAll (completeby, province) {
+        if ( this.localInfo.user_group > 1 ) {
+            if ( this.localInfo.user_group === 4) {
+                if ( completeby !== this.localInfo.user_name ) {
+                    this.disabledAll();
+                }
+            }else {
+                if ( province !== this.localInfo.province) {
+                    this.disabledAll();
+                }
+            }
+        }
+
+    }
+
+
     fillingAllanswer() {
         const getRecord = {
-            'PID': this.PID
+            'PID': this.PID,
+            'RecordID': 'ID3'
         };
         this.service.getRecord(getRecord).subscribe( (res) => {
             const fillingList = res.Records;
             this.answerList = fillingList;
-            fillingList.forEach( it => { if ( it['ID3'] && it['ID3'] === 'finished') this.finished = true;
+
+            let province = '';
+            let completeby = '';
+            fillingList.forEach( it => {
+                if ( it['ID3'] && it['ID3'] === 'finished') this.finished = true;
+                if ( it['ID0_5'] && it['ID0_5'] !== '' )    { completeby = it['ID0_5']; }
+                if ( it['ID0_3'] && it['ID0_3'] !== '' )    { province = it['ID0_3']; }
             });
-            console.log(fillingList);
+
+            if ( province !== '' && completeby !== '')  this.rundisabledAll(completeby, province);
+
+
             this.InputItems.forEach( item => { fillingList.forEach( it => {
                 let id = '';
                 id = this.getTransid( item.question.id );
-                if ( it[id] && it[id] !== '') {  item.localAnswer[0] = it[id]; }});
+                if ( it[id] && it[id] !== '') {  item.localAnswer[0] = it[id]; }
+                if ( it[id] === 0) { item.localAnswer[0] = '0'; }
+            });
             });
             this.RadioItems.forEach( item => {
                 for ( let i = 0; i < fillingList.length; i++) {

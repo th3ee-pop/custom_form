@@ -16,10 +16,13 @@
                         </div>
                     </div>
                     <div class="steps-action">
-                        <button nz-button [nzType]="'default'" (click)="next()">
+                        <button *ngIf="!buttondisable"  nz-button [nzType]="'default'" (click)="pre()">
+                            <span>上一步</span>
+                        </button>
+                        <button *ngIf="!buttondisable"  nz-button [nzType]="'default'" (click)="next()">
                             <span>下一步</span>
                         </button>
-                        <button nz-button [nzType]="'default'" (click)="log()" >
+                        <button *ngIf="!buttondisable" nz-button [nzType]="'default'" (click)="temporary_deposit()" >
                             <span>暂存</span>
                         </button>
                         <button nz-button [nzType]="'default'" (click)="exit()">
