@@ -3,7 +3,7 @@ import { HttpService } from '@core/services/http.service';
 import { HttpHeaders } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
 import { ActivatedRoute, Router, PreloadingStrategy, Params} from '@angular/router';
-import { NzModalService } from 'ng-zorro-antd';
+import { NzModalService, NzMessageService } from 'ng-zorro-antd';
 import { FileUploader } from 'ng2-file-upload';
 import { TokenService } from '@core/net/token/token.service';
 
@@ -17,7 +17,7 @@ export class FileUploadComponent implements OnInit, AfterViewInit {
     uploader: FileUploader = new FileUploader({
         url: 'http://59.110.52.133:9500/filesystem/fileop/',    // http://202.117.54.95:8888/filesystem/fileop/
         method: 'POST',
-        itemAlias: 'uploadedfile',
+        itemAlias: 'File',
         autoUpload: false,
         headers: [
             {name: 'X-CSRFToken', value: this.injector.get(TokenService).data.access_token}
@@ -33,7 +33,9 @@ export class FileUploadComponent implements OnInit, AfterViewInit {
 
     constructor(private router: Router,
                 private service: HttpService,
-                private injector: Injector) {
+                private injector: Injector,
+                private msg: NzMessageService
+    ) {
         this.uploader.onBeforeUploadItem = (item) => {
             item.withCredentials = false;
         };
@@ -48,13 +50,14 @@ export class FileUploadComponent implements OnInit, AfterViewInit {
         console.log('-*->' + event.target);
     }
 
-    uploadedfile() {
+    File() {
         this.uploader.queue[0].onSuccess = function (response, status, headers) {
             // 上传文件成功
             console.log(status);
             console.log(response);
             console.log(headers);
             if (status === 200) {
+                this.msg.info('文件上传成功');
                 // 上传文件后获取服务器返回的数据
                 const tempRes = JSON.parse(response);
                 console.log('-->' + tempRes);

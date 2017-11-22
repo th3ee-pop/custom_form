@@ -17,7 +17,7 @@ const UserData = {
 
 @Component({
     selector: 'app-extras-settings',
-    templateUrl: './settings.component.html'
+    templateUrl: './settings.component.html',
 })
 
 
@@ -237,6 +237,14 @@ export class UserSettingsComponent implements OnInit {
             email: 'cipchk@qq.com',
             company: 'hospital'
         });
+    }
+
+    sort(title, value) {
+        console.log(value);
+        if (value === 'ascend')
+        this.conditions.sorted_key = title;
+        else this.conditions.sorted_key = '-' + title;
+        this.load();
     }
 
 

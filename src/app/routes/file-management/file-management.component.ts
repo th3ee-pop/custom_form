@@ -15,6 +15,7 @@ export class FileManagementComponent implements OnInit {
     userProvince = this.localInfo.user_province;
     data = [];
     PID = '';
+    searchValue = '';
 
 
     constructor(private service: HttpService,
@@ -27,7 +28,24 @@ export class FileManagementComponent implements OnInit {
 
     // 读取文件数据，调用读文件api
     getTableData() {
-        this.service.getFileList().subscribe( (res) => {
+        this.service.getFileList()
+            .map((res) => {
+            console.log(res.Files);
+            res.Files.forEach(function (item) {
+                if (item.Name.length > 30) {
+                    item.Name = item.Name.substring(0, 39) + '...';
+                }
+                if (item.Size >= 1024 && item.Size < 1024 * 1024) {
+                    item.Size = (item.Size / 1024).toFixed(2) + ' K';
+                } else if (item.Size < 1024) {
+                    item.Size = item.Size + ' B';
+                } else if (item.Size >= 1024 * 1024) {
+                   item.Size = (item.Size / (1024 * 1024)).toFixed(2) + ' M';
+                }
+            });
+            return res;
+            })
+            .subscribe( (res) => {
             console.log(res);
             this.data = res.Files;
         });
@@ -40,10 +58,8 @@ export class FileManagementComponent implements OnInit {
             const downloadId = { 'id': id };
             this.service.downloadFile(downloadId).subscribe((res) => {
                 console.log('download file work!', res);
-
                 // Blob转化为链接
-                const blob = new Blob([res]);
-                link.setAttribute('href', window.URL.createObjectURL(blob));
+                link.setAttribute('href', window.URL.createObjectURL(res));
                 link.setAttribute('download', name);
                 link.style.visibility = 'hidden';
                 document.body.appendChild(link);
@@ -65,4 +81,12 @@ export class FileManagementComponent implements OnInit {
         }
     }
 
+    search() {
+        const filterFunc = (item) => {
+            return (item.Name.indexOf(this.searchValue) !== -1);
+        };
+        this.data = [ ...this.data.filter(item => filterFunc(item)) ];
+    }
+
 }
+

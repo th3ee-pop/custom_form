@@ -198,14 +198,16 @@ export class HttpService {
      * @param downloadId  {"id":3}
      * @returns {Observable<any>}
      */
-    downloadFile(downloadId): Observable<any> {
+    downloadFile(downloadId): Observable<File> {
         return this.Http.get(this.baseUrl + '/filesystem/fileop/', {
             params: this.getParams(downloadId),
+            responseType: 3,
             headers: new Headers({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
         })
-            .do(() => {
-                console.log('download!');
-            } )
+            .do((res) => {
+            console.log(res);
+            })
+            .map(res => res.blob())
             .catch((res) => {
                 console.log(res);
                 return res;
@@ -234,16 +236,6 @@ export class HttpService {
     /**
      * 上传文件：没有使用
      */
-    uploadFile(): FileUploader {
-        console.log('FileUploader');
-        return new FileUploader({
-            url: this.baseUrl + '/filesystem/fileop/',
-            isHTML5: true,
-            // removeAfterUpload: true, // 上传后删除文件
-            queueLimit: 10, // 最大上传文件数量
-            // headers: [new Headers({'X-CSRFToken': this.injector.get(TokenService).data.access_token})]
-        });
-    }
 
     /**
      * 登录，并将token添加到localstorage中
