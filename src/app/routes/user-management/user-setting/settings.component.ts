@@ -17,7 +17,7 @@ const UserData = {
 
 @Component({
     selector: 'app-extras-settings',
-    templateUrl: './settings.component.html'
+    templateUrl: './settings.component.html',
 })
 
 
@@ -56,6 +56,7 @@ export class UserSettingsComponent implements OnInit {
     _allChecked = false;
     start_time = '';
     end_time = '';
+    nowuser = JSON.parse(localStorage.getItem('_user'));
 
     // 所有的过滤条件在这个对象里添加
     conditions = {
@@ -73,6 +74,13 @@ export class UserSettingsComponent implements OnInit {
         '3': '高级用户',
         '4': '普通用户'
     };
+    authorityToNum = {
+        '总管理员': '1',
+        '省内管理员': '2',
+        '高级用户': '3',
+        '普通用户': '4'
+    };
+
     options = {};
     active = 1;
     profileForm: FormGroup;
@@ -159,6 +167,7 @@ export class UserSettingsComponent implements OnInit {
         }
     }
 
+
     showMsg(msg: string) {
         this.message.info(msg);
     }
@@ -203,7 +212,8 @@ export class UserSettingsComponent implements OnInit {
             footer: false,
             componentParams: {
                 user: user,
-                authority: group
+                authority: group,
+                user_group: JSON.parse(localStorage.getItem('_user')).user_group
             }
         };
         this.modal.open(this.options).subscribe(result => {
@@ -237,6 +247,14 @@ export class UserSettingsComponent implements OnInit {
             email: 'cipchk@qq.com',
             company: 'hospital'
         });
+    }
+
+    sort(title, value) {
+        console.log(value);
+        if (value === 'ascend')
+        this.conditions.sorted_key = title;
+        else this.conditions.sorted_key = '-' + title;
+        this.load();
     }
 
 

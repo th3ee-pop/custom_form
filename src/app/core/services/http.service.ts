@@ -170,6 +170,79 @@ export class HttpService {
     }
 
     /**
+     * 获取所有文件信息
+     * @returns {Observable<R|T>}
+     * {
+      "Files": [{
+            "id": 9,
+            "Name": "health.xls",
+            "Created_user": "",
+            "Updated_time": "2017-11-21 16:02:03.168667"
+        },
+        {
+            "id": 10,
+            "Name": "health.xls",
+            "Created_user": "",
+            "Updated_time": "2017-11-21 16:02:04.169766"
+        }],
+      "Count": 2,
+      "Return": 0
+     }
+     */
+    getFileList(): Observable<any> {
+        return this.http.get(this.baseUrl + '/filesystem/filelist/', this.options)
+            .do(() => {} )
+            .catch((res) => {
+                console.log(res);
+                return res;
+            });
+    }
+
+    /**
+     * 下载文件
+     * @param downloadId  {"id":3}
+     * @returns {Observable<any>}
+     */
+    downloadFile(downloadId): Observable<File> {
+        return this.Http.get(this.baseUrl + '/filesystem/fileop/', {
+            params: this.getParams(downloadId),
+            responseType: 3,
+            headers: new Headers({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
+        })
+            .do((res) => {
+            console.log(res);
+            })
+            .map(res => res.blob())
+            .catch((res) => {
+                console.log(res);
+                return res;
+            });
+    }
+
+    /**
+     * 删除文件
+     * @param deleteId
+     * @returns {Observable<any>}
+     */
+    deleteFile(deleteId): Observable<any> {
+        return this.Http.delete(this.baseUrl + '/filesystem/fileop/', {
+            body: deleteId,
+            headers: new Headers({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
+        })
+            .do(() => {
+                console.log('delete!');
+            } )
+            .catch((res) => {
+                console.log(res);
+                return res;
+            });
+    }
+
+    /**
+     * 上传文件：没有使用
+     */
+
+    /**
      * 登录，并将token添加到localstorage中
      * @param user
      * user{

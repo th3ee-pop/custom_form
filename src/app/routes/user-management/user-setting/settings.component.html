@@ -150,7 +150,7 @@
                                 <div nz-form-control nz-col [nzSm]="5">
                                     <nz-dropdown>
                                         <a class="ant-dropdown-link" nz-dropdown>
-                                            {{conditions.filter.group ? conditions.filter.group : '不限'}} <i class="anticon anticon-down"></i>
+                                            {{conditions.filter.group ? authority[conditions.filter.group] : '不限'}} <i class="anticon anticon-down"></i>
                                         </a>
                                         <ul nz-menu>
                                             <li nz-menu-item (click)="conditions.filter.group=''">不限</li>
@@ -233,12 +233,12 @@
                                         </label>
                                     </th>
                                     <!--<th nz-th><span></span></th>-->
-                                    <th nz-th><span>姓名</span></th>
-                                    <th nz-th><span>年龄</span></th>
+                                    <th nz-th><span>姓名</span><nz-table-sort  (nzValueChange)="sort('username',$event)"></nz-table-sort></th>
+                                    <!--<th nz-th><span>年龄</span></th>-->
                                     <th nz-th><span>邮箱</span></th>
                                     <th nz-th><span>省份</span></th>
-                                    <th nz-th><span>权限</span></th>
-                                    <th nz-th><span>注册日期</span></th>
+                                    <th nz-th><span>权限</span><nz-table-sort  (nzValueChange)="sort('group',$event)"></nz-table-sort></th>
+                                    <th nz-th><span>注册日期</span><nz-table-sort  (nzValueChange)="sort('date_joined',$event)"></nz-table-sort></th>
                                     <th nz-th><span>操作</span></th>
                                 </tr>
                                 </thead>
@@ -253,11 +253,6 @@
                                         <nz-avatar [nzSrc]="data.picture.thumbnail" [nzSize]="'large'"></nz-avatar>
                                     </td>-->
                                     <td nz-td>{{data.first_name}} {{data.last_name}}</td>
-                                    <td nz-td>
-                                        25
-                                        <!--<nz-tag *ngIf="data.gender=='female'" [nzColor]="'pink'">female</nz-tag>
-                                        <nz-tag *ngIf="data.gender=='male'" [nzColor]="'green'">male</nz-tag>-->
-                                    </td>
                                     <td nz-td>{{data.email}}</td>
                                     <td nz-td>
                                         {{data.province}}
@@ -270,7 +265,7 @@
                                     <td nz-td>
                                         <a (click)="showMsg('Edit');customCompModel('', data, data.group)">管理</a>
                                         <span nz-table-divider></span>
-                                        <nz-popconfirm [nzTitle]="'确定删除用户？'" [nzOkText]="'确定'" [nzCancelText]="'取消'" (nzOnConfirm)="showMsg('has deleted');deleteUser(data.username)" (nzOnCancel)="showMsg('删除成功')">
+                                        <nz-popconfirm [nzTitle]="'确定删除用户？'" [nzOkText]="'确定'" [nzCancelText]="'取消'" (nzOnConfirm)="showMsg('删除成功');deleteUser(data.username)">
                                             <a nz-popconfirm>删除</a>
                                         </nz-popconfirm>
                                     </td>

@@ -35,7 +35,7 @@ import { LoginAuthService } from '@core/services/login.auth.service';
             {{authority}} <i class="anticon anticon-down"></i>
         </a>
         <ul nz-menu>
-            <li nz-menu-item (click)="authority='省内管理员'">省内管理员</li>
+            <li *ngIf="user_group == '1'" nz-menu-item (click)="authority='省内管理员'">省内管理员</li>
             <li nz-menu-item (click)="authority='普通用户'">普通用户</li>
             <li nz-menu-item (click)="authority='高级用户'">高级用户</li>
         </ul>
@@ -55,14 +55,18 @@ export class ModelCustomComponent {
 
     @Input() user: any;
     @Input() authority: string;
+    @Input() user_group: string;
 
 
     constructor(
         private model: NzModalService,
         private msg: NzMessageService,
         private subject: NzModalSubject,
-        private service: LoginAuthService
-    ) {}
+        private service: LoginAuthService,
+    ) {
+
+    }
+
 
     ok() {
         this.subject.next(`new time: ${+new Date}`);
@@ -71,6 +75,7 @@ export class ModelCustomComponent {
 
     cancel() {
         this.subject.destroy();
+        console.log(this.user_group);
     }
 
     updateAuth() {
