@@ -56,11 +56,18 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
                 { 'Record_ID': 'ID0_2', 'Record_Value': '未完成'}
             );
     }
-    onVoted ( hiddenList: any[] ) {
+    onVoted (showAndhidden: any) {
         console.log('事件出发');
-        for (let i = 0; i < hiddenList.length; i++) {
+        for ( let i = 0; i <  showAndhidden.hiddenshowlist.length; i++) {
             for ( let j = 0; j < this.questionList.length; j++) {
-                if ( this.questionList[j].id === hiddenList[i] ) {
+                if ( this.questionList[j].id === showAndhidden.hiddenshowlist[i] ) {
+                    this.questionList[j]['hidden'] = false;
+                }
+            }
+        }
+        for (let i = 0; i < showAndhidden.hiddenlist.length; i++) {
+            for ( let j = 0; j < this.questionList.length; j++) {
+                if ( this.questionList[j].id === showAndhidden.hiddenlist[i] ) {
                     console.log(this.questionList[j]);
                     this.questionList[j]['hidden'] = true;
                     console.log(this.questionList[j]);
@@ -68,16 +75,7 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
             }
         }
     }
-    onVotedShow ( hiddenshowList: any[] ) {
-        console.log('show');
-        for ( let i = 0; i <  hiddenshowList.length; i++) {
-            for ( let j = 0; j < this.questionList.length; j++) {
-                if ( this.questionList[j].id === hiddenshowList[i] ) {
-                    this.questionList[j]['hidden'] = false;
-                }
-            }
-        }
-    }
+
 
     ngAfterViewInit() {
         if ( this.PID ) {
@@ -153,15 +151,20 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
     confirm() {
         const confirmlist = [];                                   // 验证列表
         let confirms = true;
-        this.InputItems.forEach(item => { if (item.answerChanged === false) { confirms = false; confirmlist.push(item.question.id);
+        this.InputItems.forEach(item => { if ( item.question.hidden === false && item.answerChanged === false) {
+            confirms = false; confirmlist.push(item.question.id);
         }});
-        this.RadioItems.forEach(item => { if (item.localAnswer === -1) { confirms = false; confirmlist.push(item.question.id);
+        this.RadioItems.forEach(item => { if ( item.question.hidden === false && item.localAnswer === -1) {
+            confirms = false; confirmlist.push(item.question.id);
         }});
-        this.CheckboxItems.forEach(item => { if ( !item.localAnswer) { confirms = false; confirmlist.push(item.question.id);
+        this.CheckboxItems.forEach(item => { if ( item.question.hidden === false && !item.localAnswer) {
+            confirms = false; confirmlist.push(item.question.id);
         }});
-        this.IdcItems.forEach( item => { if (item.answerChanged === false) { confirms = false; confirmlist.push(item.question.id);
+        this.IdcItems.forEach( item => { if ( item.question.hidden === false && item.answerChanged === false) {
+            confirms = false; confirmlist.push(item.question.id);
         }});
-        this.PhoneItems.forEach( item => { if ( item.answerChanged === false) { confirms = false; confirmlist.push(item.question.id);
+        this.PhoneItems.forEach( item => { if ( item.question.hidden === false && item.answerChanged === false) {
+            confirms = false; confirmlist.push(item.question.id);
         }});
         // this.DateItem.forEach( item => { if ( item.answerChanged === false) { confirms = false; confirmlist.push(item.question.id);
         // }});
@@ -175,7 +178,7 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
 
     collectAllanswer() {
         this.RadioItems.forEach(item => {
-            if (item.answerChanged === true) { for ( let i = 0; i < item.answer.length; i++) { this.resultList.push(item.answer[i]); } }
+            if ( item.answerChanged === true) { for ( let i = 0; i < item.answer.length; i++) { this.resultList.push(item.answer[i]); } }
         });
         this.CheckboxItems.forEach(item => {
             if (item.answerChanged === true) { for ( let i = 0; i < item.answer.length; i++) { this.resultList.push(item.answer[i]); } }

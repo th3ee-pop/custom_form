@@ -1,47 +1,50 @@
-<div nz-row [hidden]="question.hidden" >
-    <div nz-col>
-        <nz-card>
-            <ng-template #title>
-                <label nz-form-item-required >{{question.id}} {{question.tittle}}</label>
-            </ng-template>
-            <ng-template #body>
-                <form nz-form [formGroup]="validateForm" [nzLayout]="'inline'">
-                    <div nz-form-item *ngFor="let item of question.content;index as i">
-                        <div nz-form-control [nzValidateStatus]="getFormControl(item.validType)" *ngIf="item.dataType == 'text'">
-                            <div [ngSwitch]="item.validType">
-                                <nz-input  *ngSwitchCase="'number'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" [nzDisabled]="editdisabled" formControlName="number" ></nz-input>
-                                <nz-input  *ngSwitchCase="'twonum'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" [nzDisabled]="editdisabled" formControlName="twonum" ></nz-input>
-                                <nz-input  *ngSwitchCase="'onenum'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" [nzDisabled]="editdisabled" formControlName="onenum" ></nz-input>
-                                <nz-input  *ngSwitchCase="'threenum'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" [nzDisabled]="editdisabled" formControlName="threenum" ></nz-input>
-                                <nz-input  *ngSwitchCase="'fivenum'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" [nzDisabled]="editdisabled" formControlName="fivenum" ></nz-input>
-                                <nz-input  *ngSwitchCase="'other'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" [nzDisabled]="editdisabled" formControlName="other"></nz-input>
-                                <nz-input  *ngSwitchCase="" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" [nzDisabled]="editdisabled" formControlName="other"></nz-input>
+<div [hidden]="question.hidden">
+    <div nz-row >
+        <div nz-col>
+            <nz-card>
+                <ng-template #title>
+                    <label nz-form-item-required >{{question.id}} {{question.tittle}}</label>
+                </ng-template>
+                <ng-template #body>
+                    <form nz-form [formGroup]="validateForm" [nzLayout]="'inline'">
+                        <div nz-form-item *ngFor="let item of question.content;index as i">
+                            <div nz-form-control [nzValidateStatus]="getFormControl(item.validType)" *ngIf="item.dataType == 'text'" >
+                                <div [ngSwitch]="item.validType">
+                                    <nz-input  *ngSwitchCase="'number'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" [nzDisabled]="editdisabled" formControlName="number" ></nz-input>
+                                    <nz-input  *ngSwitchCase="'twonum'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" [nzDisabled]="editdisabled" formControlName="twonum" ></nz-input>
+                                    <nz-input  *ngSwitchCase="'onenum'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" [nzDisabled]="editdisabled" formControlName="onenum" ></nz-input>
+                                    <nz-input  *ngSwitchCase="'threenum'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" [nzDisabled]="editdisabled" formControlName="threenum" ></nz-input>
+                                    <nz-input  *ngSwitchCase="'fivenum'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" [nzDisabled]="editdisabled" formControlName="fivenum" ></nz-input>
+                                    <nz-input  *ngSwitchCase="'other'" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" [nzDisabled]="editdisabled" formControlName="other"></nz-input>
+                                    <nz-input  *ngSwitchCase="" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" [nzDisabled]="editdisabled" formControlName="other"></nz-input>
+                                </div>
+                                <div nz-form-explain *ngIf="item.validType==='number'&&getFormControl('number').dirty&&getFormControl('number').touched&&getFormControl('number').hasError('number')">
+                                    体检编号必须为11位数字
+                                </div>
+                                <div nz-form-explain *ngIf="item.validType==='onenum'&&getFormControl('onenum').dirty&&getFormControl('onenum').touched&&getFormControl('onenum').hasError('onenum')">
+                                    大小不能超过9的数值
+                                </div>
+                                <div nz-form-explain *ngIf="item.validType==='twonum'&&getFormControl('twonum').dirty&&getFormControl('twonum').touched&&getFormControl('twonum').hasError('twonum')">
+                                    大小不能超过99的数值
+                                </div>
+                                <div nz-form-explain *ngIf="item.validType==='threenum'&&getFormControl('threenum').dirty&&getFormControl('threenum').touched&&getFormControl('threenum').hasError('threenum')">
+                                    大小不能超过999的数值
+                                </div>
+                                <div nz-form-explain *ngIf="item.validType==='fivenum'&&getFormControl('fivenum').dirty&&getFormControl('fivenum').touched&&getFormControl('fivenum').hasError('fivenum')">
+                                    大小不能超过99999的数值
+                                </div>
+                                <div nz-form-explain *ngIf="item.validType&&(getFormControl(item.validType).dirty||getFormControl(item.validType).touched)&&getFormControl(item.validType).hasError('required')">
+                                    <span id="explan">必填项</span>
+                                </div>
                             </div>
-                            <div nz-form-explain *ngIf="item.validType==='number'&&getFormControl('number').dirty&&getFormControl('number').touched&&getFormControl('number').hasError('number')">
-                                体检编号必须为11位数字
-                            </div>
-                            <div nz-form-explain *ngIf="item.validType==='onenum'&&getFormControl('onenum').dirty&&getFormControl('onenum').touched&&getFormControl('onenum').hasError('onenum')">
-                                大小不能超过9的数值
-                            </div>
-                            <div nz-form-explain *ngIf="item.validType==='twonum'&&getFormControl('twonum').dirty&&getFormControl('twonum').touched&&getFormControl('twonum').hasError('twonum')">
-                                大小不能超过99的数值
-                            </div>
-                            <div nz-form-explain *ngIf="item.validType==='threenum'&&getFormControl('threenum').dirty&&getFormControl('threenum').touched&&getFormControl('threenum').hasError('threenum')">
-                                大小不能超过999的数值
-                            </div>
-                            <div nz-form-explain *ngIf="item.validType==='fivenum'&&getFormControl('fivenum').dirty&&getFormControl('fivenum').touched&&getFormControl('fivenum').hasError('fivenum')">
-                                大小不能超过99999的数值
-                            </div>
-                            <div nz-form-explain *ngIf="item.validType&&(getFormControl(item.validType).dirty||getFormControl(item.validType).touched)&&getFormControl(item.validType).hasError('required')">
-                                <span id="explan">必填项</span>
+                            <div nz-form-control>
+                                <label >{{item.inform}}</label>
                             </div>
                         </div>
-                        <div nz-form-control>
-                            <label >{{item.inform}}</label>
-                        </div>
-                    </div>
-                </form>
-            </ng-template>
-        </nz-card>
+                    </form>
+                </ng-template>
+            </nz-card>
+        </div>
     </div>
+
 </div>
