@@ -20,15 +20,15 @@
                                 <tr nz-tbody-tr *ngFor="let smokeName of smokeNames,index as i">  <!--根据酒名生成每一行数据-->
                                     <td nz-td>{{smokeName}}</td>
                                     <td nz-td>
-                                        <label nz-checkbox [(ngModel)]="selected[i]" (ngModelChange)="answerChange(row)" [ngModelOptions]="{standalone: true}"></label>
+                                        <label nz-checkbox [(ngModel)]="selected[i]" [nzDisabled]="editdisabled" (ngModelChange)="answerChange(row)" [ngModelOptions]="{standalone: true}"></label>
                                     </td>
                                     <td nz-td>
                                       <span>
-                                          <nz-input-number [nzMin]="0" [nzMax]="100" [(ngModel)]="exposureTime[i]" (ngModelChange)="answerChange(row)" [ngModelOptions]="{standalone: true}"></nz-input-number>
+                                          <nz-input-number [nzMin]="0" [nzMax]="100" [nzDisabled]="editdisabled" [(ngModel)]="exposureTime[i]" (ngModelChange)="answerChange(row)" [ngModelOptions]="{standalone: true}"></nz-input-number>
                                       </span>
                                       年
                                     </td>
-                                    
+
                                 </tr>
                             </tbody>
                         </nz-table>

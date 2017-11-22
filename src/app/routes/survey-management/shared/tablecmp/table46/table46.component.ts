@@ -43,6 +43,11 @@ export class Table46Component extends Question implements AnswerInterface {
    */
   answerChanged = false;
 
+  /**
+   * 是否可编辑
+   */
+  editdisabled = false;
+
 
   constructor() {
       super();

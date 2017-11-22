@@ -9,7 +9,7 @@
                     <div nz-form-control nz-col [nzSm]="20">
                         <nz-radio-group  [(ngModel)]="localAnswer" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}" >
                             <ng-container *ngFor="let item of question.content,index as i">
-                                <label  nz-radio [nzValue]="i">
+                                <label  nz-radio [nzValue]="i"  [nzDisabled]="editdisabled">
                                     <span>{{item}}</span>
                                 </label>
                             </ng-container>

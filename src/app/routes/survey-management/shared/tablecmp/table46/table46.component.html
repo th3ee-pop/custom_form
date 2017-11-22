@@ -19,7 +19,7 @@
                                     <td nz-td>{{smokeName}}</td>
                                     <td nz-td>
                                         <span>
-                                            <nz-input-number [nzMin]="0" [nzMax]="40" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
+                                            <nz-input-number [nzMin]="0" [nzMax]="40" [nzDisabled]="editdisabled" [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
                                         </span>
                                         {{unit[i]}}
                                     </td>

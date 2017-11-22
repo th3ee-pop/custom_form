@@ -10,6 +10,7 @@ export class IdccmpComponent extends Question {
     localAnswer = ''; // 存储数据
     answerChanged = false;
     validateForm: FormGroup;
+    editdisabled = false;
     flag = false;
     pwdOrtext = 'password';
     Onclick = function() {

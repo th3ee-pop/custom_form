@@ -2,6 +2,7 @@ import { NzModalService, NzMessageService } from 'ng-zorro-antd';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModelCustomComponent } from './settings.modal.component';
+import { ModelRegisterComponent } from './settings.register.modal.component';
 import { LoginAuthService } from '@core/services/login.auth.service';
 import { SettingsService } from '@core/services/settings.service';
 import { HttpService } from '@core/services/http.service';
@@ -41,16 +42,31 @@ export class UserSettingsComponent implements OnInit {
             company: '',
             location: ''
         });
-        this.valForm = fb.group({
-            email: [null, Validators.compose([Validators.required])],
-            real_first_name: [null],
-            real_last_name: [null],
-            password: [null, Validators.required],
-            province: ['陕西', Validators.required],
-        });
+
     }
 
-    valForm: FormGroup;
+    // 分页信息，pi表示第几页，ps表示1页的条目数，total为条目总数。
+    pi = 1;
+    ps = 5;
+    total = 200; // mock total
+    list = [];
+    loading = false;
+    args = {};
+    _indeterminate = false;
+    _allChecked = false;
+    start_time = '';
+    end_time = '';
+
+    // 所有的过滤条件在这个对象里添加
+    conditions = {
+        'filter': {
+            'date_joined': []
+        },
+        'sorted_key': 'username',
+        'start': (this.pi - 1) * this.ps,
+        'offset': this.ps,
+    };
+
     authority = {
         '1': '总管理员',
         '2': '省内管理员',
@@ -68,42 +84,83 @@ export class UserSettingsComponent implements OnInit {
     // Email
     primary_email = 'cipchk@qq.com';
 
-    pi = 1;
-    ps = 10;
-    total = 200; // mock total
-    list = [];
-    loading = false;
-    args = {};
-    _indeterminate = false;
-    _allChecked = false;
 
+    //  数据加载
     load(pi?: number) {
         if (typeof pi !== 'undefined') {
             this.pi = pi || 1;
         }
-
+        this.setTime();
+        this.changePage();
+        console.log(this.pi);
         this.loading = true;
         this._allChecked = false;
         this._indeterminate = false;
-        this.loginService.getUsers()
+        this.httpService.getUser(this.conditions)
             .map(data => {
-                data.Users.forEach(item => {
-                    item.checked = false;
-                    item.group = this.authority[item.group];
-                    console.log(item);
-                  //  item.price = +((Math.random() * (10000000 - 100)) + 100).toFixed(2);
-                });
+                console.log(data);
+                if (data.Return !== 1) {
+                    data.Users.forEach(item => {
+                        item.checked = false;
+                        item.group = this.authority[item.group];
+                        item.date_joined = item.date_joined.substring(0, 19);
+                    });
+                }
                 return data;
             })
             .subscribe(data => {
                 this.loading = false;
                 this.list = data.Users;
+                this.total = data.Count_total;
+                console.log(this.list);
             });
     }
 
+    // 改变分页和页面
+    changePage() {
+        this.conditions.start = (this.pi - 1) * this.ps;
+        this.conditions.offset = this.ps;
+    }
+
+    // 点击查询按钮
+    showConditions() {
+        this.load();
+    }
+
+    // 清除所有条件
     clear() {
-        this.args = {};
-        this.load(1);
+        for (const key in this.conditions.filter) {
+            if (this.conditions.filter[key])
+            delete this.conditions.filter[key];
+        }
+        this.load();
+    }
+
+    // 时间格式转换
+    GMTToStr(time) {
+        const date = new Date(time);
+        const Str = date.getFullYear() + '-' +
+            (date.getMonth() + 1) + '-' +
+            date.getDate() + ' ' +
+            date.getHours() + ':' +
+            date.getMinutes() + ':' +
+            date.getSeconds();
+        return Str;
+    }
+
+    // 时间设置
+    setTime() {
+        if (this.start_time === '' || this.end_time === '') {
+            delete this.conditions.filter.date_joined;
+        } else {
+            this.conditions.filter.date_joined = [];
+            this.conditions.filter.date_joined.push(this.GMTToStr(this.start_time));
+            this.conditions.filter.date_joined.push(this.GMTToStr(this.end_time));
+        }
+    }
+
+    showMsg(msg: string) {
+        this.message.info(msg);
     }
 
     _checkAll() {
@@ -117,9 +174,7 @@ export class UserSettingsComponent implements OnInit {
     }
 
 
-    showMsg(msg: string) {
-        this.message.info(msg);
-    }
+
 
 
     get name() { return this.profileForm.get('name'); }
@@ -156,11 +211,25 @@ export class UserSettingsComponent implements OnInit {
         });
     }
 
+    registerCompModel() {
+        this.options = {
+            content: ModelRegisterComponent,
+            footer: false,
+            componentParams: {
+            }
+        };
+        this.modal.open(this.options).subscribe(result => {
+            // this.msg.info(`subscribe status: ${JSON.stringify(result)}`);
+        });
+    }
+
     deleteUser(username) {
         this.loginService.remove(username).subscribe((res) => {
             console.log(res);
+            this.load();
         });
     }
+
     ngOnInit() {
         this.load();
         this.profileForm.patchValue({
@@ -170,33 +239,5 @@ export class UserSettingsComponent implements OnInit {
         });
     }
 
-    submit() {
-        // tslint:disable-next-line:forin
-        for (const i in this.valForm.controls) {
-            this.valForm.controls[i].markAsDirty();
-        }
-        if (this.valForm.valid) {
-            console.log('Valid!');
-            console.log(this.valForm.value);
-            const submitBody = {
-                'province': this.valForm.value.province,
-                'username': this.valForm.value.email,
-                'first_name': this.valForm.value.real_first_name,
-                'last_name': this.valForm.value.real_last_name,
-                'password': this.valForm.value.password,
-                'email': 'abc@163.com'
-            };
-            console.log(submitBody);
-            this.httpService.register(submitBody)
-                .subscribe((res) => {
-                    console.log(res);
-                    if (res.Return === 0) {
-                        this.msg.info(res.Result);
-                        this.router.navigate(['/user/detail']);
-                    } else {
-                        this.msg.info(res.Result);
-                    }
-                });
-        }
-    }
+
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '@core/services/http.service';
 import { ActivatedRoute, Router, PreloadingStrategy, Params} from '@angular/router';
+import { FileDownloadService } from '@core/services/fileDownload.service';
+
 @Component({
     selector: 'app-survey-overview',
     templateUrl: './survey-overview.component.html',
@@ -17,18 +19,11 @@ export class SurveyOverviewComponent implements OnInit {
     constructor(
         private service: HttpService,
         private route: ActivatedRoute,
-        private router: Router
+        private router: Router,
+        private fileDownloader: FileDownloadService,
         ) { }
 
     ngOnInit() {
-        // this.PID = this.route.params['value']['PID'];
-        // if (this.PID && this.PID !== '') {
-        //     const deleteId = { 'PID': this.PID };
-        //     this.service.deleteRecord(deleteId).subscribe((res) => {
-        //         console.log(res);
-        //         this.router.navigate(['/detail']);
-        //     });
-        // }
         this.getTableData();
     }
 
@@ -58,6 +53,18 @@ export class SurveyOverviewComponent implements OnInit {
             return data.completedBy === this.loggedUser;
         }
     }
+
+    downloadByPID(PID) {
+        const filePath = 'healthexamination/exportcsv/';
+        const fileName = 'PID' + PID + '.csv';
+        this.fileDownloader.downloadFile(filePath, {'PID': PID}, fileName);
+    }
+    downloadAll() {
+        const filePath = 'healthexamination/exportcsv/';
+        this.fileDownloader.downloadFile(filePath, {}, 'All.csv');
+    }
+
+    
 }
 
 

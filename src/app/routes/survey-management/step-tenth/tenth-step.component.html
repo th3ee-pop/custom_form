@@ -16,10 +16,10 @@
                         </div>
                     </div>
                     <div class="steps-action">
-                        <button nz-button [nzType]="'default'" (click)="pre()">
+                        <button *ngIf="!buttondisable" nz-button [nzType]="'default'" (click)="pre()">
                             <span>上一步</span>
                         </button>
-                        <button nz-button [nzType]="'default'" (click)="submit()" >
+                        <button *ngIf="!buttondisable" nz-button [nzType]="'default'" (click)="submit()" >
                             <span>提交</span>
                         </button>
                         <button nz-button [nzType]="'default'" (click)="exit()">

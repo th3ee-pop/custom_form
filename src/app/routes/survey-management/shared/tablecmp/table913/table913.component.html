@@ -19,11 +19,11 @@
                             <tr nz-tbody-tr *ngFor="let operationName of operationNames,index as i">  <!--根据手术名称生成每一行数据-->
                                 <td nz-td>{{operationName}}</td>
                                 <td nz-td>
-                                    <label nz-checkbox [(ngModel)]="selected[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></label>
+                                    <label nz-checkbox [(ngModel)]="selected[i]" [nzDisabled]="editdisabled" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></label>
                                 </td>
                                 <td nz-td>
                                       <span>
-                                          <nz-input-number [nzMin]="0" [nzMax]="100" [(ngModel)]="operationAge[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
+                                          <nz-input-number [nzMin]="0" [nzMax]="100" [(ngModel)]="operationAge[i]" [nzDisabled]="editdisabled" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
                                       </span>
                                     岁
                                 </td>

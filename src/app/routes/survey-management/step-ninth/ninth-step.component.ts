@@ -31,6 +31,8 @@ export class NinthStepComponent implements OnInit, AfterViewInit {
     PID = '';
     finished = false;
     answerList = [];
+    buttondisable = false;
+    localInfo = JSON.parse(localStorage.getItem('_user'));
     constructor(
         private router: Router,
         private route: ActivatedRoute,
@@ -56,7 +58,6 @@ export class NinthStepComponent implements OnInit, AfterViewInit {
             this.collectAllanswer();
             const putRecord = { 'Records': this.resultList, 'PID': this.PID};
             this.service.putRecord(putRecord).subscribe( (res) => {
-                console.log(res);
                 this.router.navigate(['/survey/tenth_step/' + this.PID]);
             }, error => {
                 console.log(error);
@@ -74,6 +75,43 @@ export class NinthStepComponent implements OnInit, AfterViewInit {
     }
 
     /**
+     * 所有空间改为不可编辑状态
+     */
+
+    rundisabledAll (completeby, province) {
+        if ( this.localInfo.user_group > 1 ) {
+            if ( this.localInfo.user_group === 4) {
+                if ( completeby !== this.localInfo.user_name ) {
+                    this.disabledAll();
+                }
+            }else {
+                if ( province !== this.localInfo.province) {
+                    this.disabledAll();
+                }
+            }
+        }
+    }
+    disabledAll() {
+        this.buttondisable = true;
+        this.InputItems.forEach(item => {
+            item.editdisabled = true;
+        });
+        this.RadioItems.forEach(item => {
+            item.editdisabled = true;
+        });
+        this.CheckboxItems.forEach(item => {
+            item.editdisabled = true;
+        });
+
+        this.Table96Items.forEach(item => {
+            item.editdisabled = true;
+        });
+        this.Table913Items.forEach(item => {
+            item.editdisabled = true;
+        });
+    }
+
+    /**
      *  点击steps上的按钮，进行步骤跳跃
      */
     jumpTo(step_index) {
@@ -82,10 +120,10 @@ export class NinthStepComponent implements OnInit, AfterViewInit {
             console.log(step_index);
             this.router.navigate(['/survey/' + numWords[step_index] + '_step/' + this.PID]);  // 拼接跳转链接
         }
-        
+
     }
 
-    
+
     temporary_deposit() {                               // 暂存
         this.collectAllanswer();
         const putRecord = { 'PID': this.PID, 'Records' : this.resultList };
@@ -102,6 +140,8 @@ export class NinthStepComponent implements OnInit, AfterViewInit {
         this.InputItems.forEach(item => { if (item.answerChanged === false) { confirms = false; confirmlist.push(item.question.id);
         }});
         this.RadioItems.forEach(item => { if (item.localAnswer === -1) { confirms = false; confirmlist.push(item.question.id);
+        }});
+        this.CheckboxItems.forEach(item => { if ( !item.localAnswer) { confirms = false; confirmlist.push(item.question.id);
         }});
         this.Table96Items.forEach( item => { if ( item.answerCheck() === false) { confirms = false; confirmlist.push(item.question.id);
         }});
@@ -120,6 +160,9 @@ export class NinthStepComponent implements OnInit, AfterViewInit {
         this.InputItems.forEach(item => {
             if (item.answerChanged === true) { for ( let i = 0; i < item.answer.length; i++) { this.resultList.push(item.answer[i]); } }
         });
+        this.CheckboxItems.forEach(item => {
+            if (item.answerChanged === true) { for ( let i = 0; i < item.answer.length; i++) { this.resultList.push(item.answer[i]); } }
+        });
         this.Table96Items.forEach( item => {
             if (item.answerCheck() === true) { item.getAnswer().forEach( it => { this.resultList.push(it); }); }
         });
@@ -133,12 +176,13 @@ export class NinthStepComponent implements OnInit, AfterViewInit {
         else {
             this.resultList.push(
                 {'Record_ID': 'ID0_4', 'Record_Value': this.getNowdate()},
-                {'Record_ID': 'ID9', 'Record_Value': ''});
+                {'Record_ID': 'ID9', 'Record_Value': ''},
+                {'Record_ID': 'ID0_2', 'Record_Value': '未完成'});
         }
         for ( let i = 0; i < this.answerList.length; i ++) {
             for ( let j = 0; j < this.resultList.length; j++) {
                 const id = this.resultList[j].Record_ID;
-                if (this.answerList[i][id]) {
+                if (this.answerList[i][id] || this.answerList[i][id] === 0) {
                     this.resultList[j]['Updated_time'] = this.answerList[i]['Updated_time'];
                 }
             }
@@ -146,19 +190,39 @@ export class NinthStepComponent implements OnInit, AfterViewInit {
     }
     fillingAnswer() {
         const getRecord = {
-            'PID': this.PID
+            'PID': this.PID,
+            'RecordID': 'ID9'
         };
         this.service.getRecord(getRecord).subscribe( (res) => {
             const fillingList = res.Records;
             this.answerList = fillingList;
-            fillingList.forEach( it => { if ( it['ID9'] && it['ID9'] === 'finished') this.finished = true;
+
+            let province = '';
+            let completeby = '';
+            fillingList.forEach( it => {
+                if ( it['ID9'] && it['ID9'] === 'finished') this.finished = true;
+                if ( it['ID0_5'] && it['ID0_5'] !== '' )    { completeby = it['ID0_5']; }
+                if ( it['ID0_3'] && it['ID0_3'] !== '' )    { province = it['ID0_3']; }
             });
-            console.log(fillingList);
+            if ( province !== '' && completeby !== '')  this.rundisabledAll(completeby, province);
+
+
             this.InputItems.forEach( item => { fillingList.forEach( it => {
                 let id = '';
                 id = this.getTransid( item.question.id );
-                if ( it[id] && it[id] !== '') {  item.localAnswer[0] = it[id]; }});
+                if ( it[id] && it[id] !== '') {  item.localAnswer[0] = it[id]; }
+                if ( it[id] === 0) { item.localAnswer[0] = '0'; }
             });
+            });
+            this.CheckboxItems.forEach( item => { for ( let i = 0; i < fillingList.length; i++) {
+                for ( let j = 1; j <= item.question.content.length; j++ ) {
+                    const id = this.getTransid(item.question.id) + '_' + j;
+                    if ( fillingList[i][id] && fillingList[i][id] !== '') {
+                        const nums = id.split('_');
+                        item.localAnswer[Number.parseInt (nums[nums.length - 1]) - 1] = true;
+                    }
+                }
+            }});
             this.RadioItems.forEach( item => {
                 for ( let i = 0; i < fillingList.length; i++) {
                     for ( let j = 1 ; j <= item.question.content.length; j++) {
@@ -172,30 +236,34 @@ export class NinthStepComponent implements OnInit, AfterViewInit {
             });
             this.Table96Items.forEach( item => {
                     for ( let i = 0; i < fillingList.length; i++) {
-                        const id1 = 'ID9_6_a_' + ( i + 1 );
-                        const id2 = 'ID9_6_b_' + ( i + 1 );
-                        const id3 = 'ID9_6_c_' + ( i + 1 );
-                        if ( fillingList[i][id1] && fillingList[i][id1] !== '') {
-                            item.birthAge[i] = fillingList[i][id1];
-                        }
-                        if ( fillingList[i][id2] && fillingList[i][id2] !== '') {
-                            item.feedMonths[i] = fillingList[i][id2];
-                        }
-                        if ( fillingList[i][id3]) {
-                            item.isTwins[i] = fillingList[i][id3];
+                        for ( let j = 0; j < 5 ; j++) {
+                            const id1 = 'ID9_6_a_' + ( j + 1 );
+                            const id2 = 'ID9_6_b_' + ( j + 1 );
+                            const id3 = 'ID9_6_c_' + ( j + 1 );
+                            if ( fillingList[i][id1] && fillingList[i][id1] !== '') {
+                                item.birthAge[j] = fillingList[i][id1];
+                            }
+                            if ( fillingList[i][id2] && fillingList[i][id2] !== '') {
+                                item.feedMonths[j] = fillingList[i][id2];
+                            }
+                            if ( fillingList[i][id3]) {
+                                item.isTwins[j] = true;
+                            }
                         }
                     }
                 }
             );
             this.Table913Items.forEach( item => {
                     for ( let i = 0; i < fillingList.length; i++ ) {
-                        const id1 = 'ID9_13_' + ( i + 1 );
-                        const id2 = 'ID9_13_a_' + ( i + 1 );
-                        if ( fillingList[i][id1]) {
-                            item.selected[i] = fillingList[i][id1];
-                        }
-                        if ( fillingList[i][id2]) {
-                            item.operationAge[i] = fillingList[i][id2];
+                        for ( let j = 0; j < 5; j++) {
+                            const id1 = 'ID9_13_' + ( j + 1 );
+                            const id2 = 'ID9_13_a_' + ( j + 1 );
+                            if ( fillingList[i][id1]) {
+                                item.selected[j] = true;
+                            }
+                            if ( fillingList[i][id2]) {
+                                item.operationAge[j] = fillingList[i][id2];
+                            }
                         }
                     }
                 }

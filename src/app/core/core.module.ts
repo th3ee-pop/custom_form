@@ -12,6 +12,7 @@ import { TokenService } from './net/token/token.service';
 import { _HttpClient } from './services/http.client';
 import { TitleService } from '@core/services/title.service';
 import { HttpService } from './services/http.service';
+import { FileDownloadService } from './services/fileDownload.service';
 
 @NgModule({
   imports: [
@@ -27,7 +28,9 @@ import { HttpService } from './services/http.service';
     TokenService,
     _HttpClient,
     TitleService,
-      HttpService
+      HttpService,
+      FileDownloadService,
+      
   ],
   declarations: [
   ],
