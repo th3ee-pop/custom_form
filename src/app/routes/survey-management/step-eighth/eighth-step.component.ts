@@ -31,6 +31,7 @@ export class EighthStepComponent implements OnInit, AfterViewInit {
     finished = false;
     answerList = [];
     sex = false;
+    buttondisable = false;
     localInfo = JSON.parse(localStorage.getItem('_user'));
 
     constructor(
@@ -96,6 +97,7 @@ export class EighthStepComponent implements OnInit, AfterViewInit {
      */
     rundisabledAll (completeby, province) {
         if ( this.localInfo.user_group > 1 ) {
+            console.log('this is usergroup', this.localInfo.user_group);
             if ( this.localInfo.user_group === 4) {
                 if ( completeby !== this.localInfo.user_name ) {
                     this.disabledAll();
@@ -108,6 +110,7 @@ export class EighthStepComponent implements OnInit, AfterViewInit {
         }
     }
     disabledAll() {
+        this.buttondisable = true;
         this.InputItems.forEach(item => {
             item.editdisabled = true;
         });
@@ -185,22 +188,23 @@ export class EighthStepComponent implements OnInit, AfterViewInit {
                 }
             }
         }
+        console.log(this.resultList);
     }
     fillingAllanswer() {
         const getRecord = {
             'PID': this.PID,
             'RecordID': 'ID8'
         };
+        console.log(123);
         this.service.getRecord(getRecord).subscribe( (res) => {
             const fillingList = res.Records;
             this.answerList = fillingList;
-
             let province = '';
             let completeby = '';
             fillingList.forEach( it => {
                 if ( it['ID8'] && it['ID8'] === 'finished') this.finished = true;
                 if ( it['ID0_5'] && it['ID0_5'] !== '' )    { completeby = it['ID0_5']; }
-                if ( it['ID0_3'] && it['ID0_3'] !== '' )    { province = it['ID0_3']; }
+                if ( it['ID0_3'] && it['ID0_3'] !== '' )    { province = it['ID0_3'];  }
             });
             if ( province !== '' && completeby !== '')  this.rundisabledAll(completeby, province);
 

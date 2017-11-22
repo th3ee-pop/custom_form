@@ -33,6 +33,7 @@ export class SecondStepComponent implements OnInit, AfterViewInit {
     PID = '';
     finished = false;
     answerList = [];
+    buttondisable = false;
     localInfo = JSON.parse(localStorage.getItem('_user'));
     constructor(
         private router: Router,
@@ -81,6 +82,7 @@ export class SecondStepComponent implements OnInit, AfterViewInit {
      * 所有空间改为不可编辑状态
      */
     disabledAll() {
+        this.buttondisable = true;
         this.InputItems.forEach(item => {
             item.editdisabled = true;
         });
@@ -180,7 +182,7 @@ export class SecondStepComponent implements OnInit, AfterViewInit {
 
             let province = '';
             let completeby = '';
-            fillingList.forEach( it => { 
+            fillingList.forEach( it => {
                 if ( it['ID2'] && it['ID2'] === 'finished') this.finished = true;
                 if ( it['ID0_5'] && it['ID0_5'] !== '' )    { completeby = it['ID0_5']; }
                 if ( it['ID0_3'] && it['ID0_3'] !== '' )    { province = it['ID0_3']; }

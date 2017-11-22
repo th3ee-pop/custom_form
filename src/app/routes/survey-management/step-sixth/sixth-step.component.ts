@@ -31,6 +31,7 @@ export class SixthStepComponent implements OnInit, AfterViewInit {
     PID = '';
     finished = false;
     answerList = [];
+    buttondisable = false;
     localInfo = JSON.parse(localStorage.getItem('_user'));
     constructor(
         private router: Router,
@@ -79,6 +80,7 @@ export class SixthStepComponent implements OnInit, AfterViewInit {
      * 所有空间改为不可编辑状态
      */
     disabledAll() {
+        this.buttondisable = true;
         this.InputItems.forEach(item => {
             item.editdisabled = true;
         });
@@ -156,9 +158,9 @@ export class SixthStepComponent implements OnInit, AfterViewInit {
     }
 
     /**
-     * 
-     * @param completeby 
-     * @param province 
+     *
+     * @param completeby
+     * @param province
      */
     rundisabledAll (completeby, province) {
         if ( this.localInfo.user_group > 1 ) {
@@ -187,7 +189,7 @@ export class SixthStepComponent implements OnInit, AfterViewInit {
 
                 let province = '';
                 let completeby = '';
-                fillingList.forEach( it => { 
+                fillingList.forEach( it => {
                     if ( it['ID3'] && it['ID3'] === 'finished') this.finished = true;
                     if ( it['ID0_5'] && it['ID0_5'] !== '' )    { completeby = it['ID0_5']; }
                     if ( it['ID0_3'] && it['ID0_3'] !== '' )    { province = it['ID0_3']; }

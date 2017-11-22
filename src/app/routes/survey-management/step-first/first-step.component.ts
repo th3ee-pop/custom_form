@@ -37,7 +37,9 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
     PID = '';                                           // PID
     finished = false;
     answerList = [];
+    buttondisable = false;
     localInfo = JSON.parse(localStorage.getItem('_user'));
+
     constructor(
         private router: Router,
         private route: ActivatedRoute,
@@ -187,6 +189,7 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
     }
 
     rundisabledAll (completeby, province) {
+
         if ( this.localInfo.user_group > 1 ) {
             if ( this.localInfo.user_group === 4) {
                 if ( completeby !== this.localInfo.user_name ) {
@@ -201,6 +204,7 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
 
     }
     disabledAll() {
+        this.buttondisable = true;
         this.InputItems.forEach( item => {
             item.editdisabled = true;
         });
@@ -242,7 +246,7 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
 
                 this.InputItems.forEach( item => { for ( let i = 0; i < fillingList.length; i++) {
                     let id = '';
-                    if ( item.question.id === '1.0') { console.log('姓名'); id = 'ID0_1'; } else { id = this.getTransid( item.question.id); }
+                    if ( item.question.id === '1.0') { id = 'ID0_1'; } else { id = this.getTransid( item.question.id); }
                     if ( fillingList[i][id] && fillingList[i][id] !== '') {  item.localAnswer[0] = fillingList[i][id]; }
                     if ( fillingList[i][id] === 0) {  item.localAnswer[0] = '0'; }
                 }});

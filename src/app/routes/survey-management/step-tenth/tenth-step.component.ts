@@ -33,6 +33,7 @@ export class TenthStepComponent implements OnInit, AfterViewInit {
     finished = false;
     answerList = [];
     sex = false;
+    buttondisable = false;
     localInfo = JSON.parse(localStorage.getItem('_user'));
     constructor(
         private router: Router,
@@ -107,6 +108,7 @@ export class TenthStepComponent implements OnInit, AfterViewInit {
         }
     }
     disabledAll() {
+        this.buttondisable = true;
         this.InputItems.forEach(item => {
             item.editdisabled = true;
         });
