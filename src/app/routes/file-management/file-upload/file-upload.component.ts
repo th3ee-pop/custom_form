@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
 import { HttpService } from '@core/services/http.service';
+import { HttpHeaders } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
 import { ActivatedRoute, Router, PreloadingStrategy, Params} from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd';
 import { FileUploader } from 'ng2-file-upload';
-import {TokenService} from '@core/net/token/token.service';
+import { TokenService } from '@core/net/token/token.service';
 
 @Component({
     selector: 'app-file-upload',
