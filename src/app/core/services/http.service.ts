@@ -233,5 +233,29 @@ export class HttpService {
         });
     }
 
+    /**
+     * 用例参照思睿师兄写的getUser
+     * @param api
+     * @param conditions
+     * @returns {Observable<R|T>}
+     */
+    getList(api, conditions) {
+        const body = {
+            'filter_dict': conditions.filter,
+            'sorted_key': conditions.sorted_key,
+            'start': conditions.start,
+            'offset': conditions.offset
+        };
+        // const api = '/account/userlist/';
+        console.log(conditions);
+        return this.http.post(this.baseUrl + api, JSON.stringify(body))
+            .do((res: any) => {
+                console.log(res);
+            })
+            .catch((res) => {
+                return res;
+            });
+    }
+
 
 }
