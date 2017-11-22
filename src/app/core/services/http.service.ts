@@ -3,7 +3,6 @@ import { Injectable, Injector } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import * as moment from 'moment';
 
 import { TokenService } from '../net/token/token.service';
