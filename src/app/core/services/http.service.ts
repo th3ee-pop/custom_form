@@ -4,6 +4,7 @@ import { NzMessageService } from 'ng-zorro-antd';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { FileUploader } from 'ng2-file-upload';
 import * as moment from 'moment';
 
 import { TokenService } from '../net/token/token.service';
@@ -161,6 +162,87 @@ export class HttpService {
                 console.log(res);
                 return res;
             });
+    }
+
+    /**
+     * 获取所有文件信息
+     * @returns {Observable<R|T>}
+     * {
+      "Files": [{
+            "id": 9,
+            "Name": "health.xls",
+            "Created_user": "",
+            "Updated_time": "2017-11-21 16:02:03.168667"
+        },
+        {
+            "id": 10,
+            "Name": "health.xls",
+            "Created_user": "",
+            "Updated_time": "2017-11-21 16:02:04.169766"
+        }],
+      "Count": 2,
+      "Return": 0
+     }
+     */
+    getFileList(): Observable<any> {
+        return this.http.get(this.baseUrl + '/filesystem/filelist/', this.options)
+            .do(() => {} )
+            .catch((res) => {
+                console.log(res);
+                return res;
+            });
+    }
+
+    /**
+     * 下载文件
+     * @param downloadId  {"id":3}
+     * @returns {Observable<any>}
+     */
+    downloadFile(downloadId): Observable<any> {
+        return this.Http.get(this.baseUrl + '/filesystem/fileop/', {
+            params: this.getParams(downloadId),
+            headers: new Headers({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
+        })
+            .do(() => {
+                console.log('download!');
+            } )
+            .catch((res) => {
+                console.log(res);
+                return res;
+            });
+    }
+
+    /**
+     * 删除文件
+     * @param deleteId
+     * @returns {Observable<any>}
+     */
+    deleteFile(deleteId): Observable<any> {
+        return this.Http.delete(this.baseUrl + '/filesystem/fileop/', {
+            body: deleteId,
+            headers: new Headers({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
+        })
+            .do(() => {
+                console.log('delete!');
+            } )
+            .catch((res) => {
+                console.log(res);
+                return res;
+            });
+    }
+
+    /**
+     * 上传文件：没有使用
+     */
+    uploadFile(): FileUploader {
+        console.log('FileUploader');
+        return new FileUploader({
+            url: this.baseUrl + '/filesystem/fileop/',
+            isHTML5: true,
+            // removeAfterUpload: true, // 上传后删除文件
+            queueLimit: 10, // 最大上传文件数量
+            // headers: [new Headers({'X-CSRFToken': this.injector.get(TokenService).data.access_token})]
+        });
     }
 
     /**

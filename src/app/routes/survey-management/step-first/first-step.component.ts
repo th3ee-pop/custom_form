@@ -94,7 +94,7 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
             console.log(step_index);
             this.router.navigate(['/survey/' + numWords[step_index] + '_step/' + this.PID]);  // 拼接跳转链接
         }
-        
+
     }
 
 
