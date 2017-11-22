@@ -30,36 +30,18 @@
                                         <td nz-td>{{data.Status}}</td>
                                         <td nz-td>{{data.Updated_time}}</td>
                                         <td nz-td>
-                                            <!--前段根据四种权限，对应有不同的操作组合。-->
-                                            <!---->
                                             <span >
-                                                      <a [routerLink]="'/survey/first_step/'+ data.PID">查看</a>
-                                                      <span nz-table-divider></span>
+                                                <a [routerLink]="'/survey/first_step/'+ data.PID">查看</a>
+                                                <span nz-table-divider></span>
                                             </span>
-                                            <!--<span *ngIf="userGroup ===3 && userProvince === data.Province">-->
-                                                      <!--<a [routerLink]="'/survey/first_step/' + data.PID">查看</a>-->
-                                                      <!--<span nz-table-divider></span>-->
-                                            <!--</span>-->
-                                            <!--<span *ngIf="userGroup ===2 && userProvince === data.Province">-->
-                                                      <!--<a [routerLink]="'/survey/first_step/' + data.PID">查看</a>-->
-                                                      <!--<span nz-table-divider></span>-->
-                                            <!--</span>-->
-
-                                            <!--<span *ngIf="userGroup ===4 && loggedUser === data.completedBy">-->
-                                                      <!--<a [routerLink]="'/survey/first_step' +  + data.PID">查看</a>-->
-                                                <!--<span nz-table-divider></span>-->
-                                                  <!--</span>-->
-
                                             <span *ngIf="userGroup < 4">
-                                                      <a (click)="deleteRecord(data.PID)" >删除</a>
-                                                      <span nz-table-divider></span>
-                                                  </span>
-
+                                                <a (click)="deleteRecord(data.PID)" >删除</a>
+                                                <span nz-table-divider></span>
+                                            </span>
                                             <span *ngIf="userGroup === 4 && loggedUser === data.completedBy">
-                                                      <a (click)="deleteRecord(data.PID)">删除</a>
-                                                      <span nz-table-divider></span>
-                                                  </span>
-
+                                                <a (click)="deleteRecord(data.PID)">删除</a>
+                                                <span nz-table-divider></span>
+                                            </span>
                                             <span>
                                                 <a (click)="downloadByPID(data.PID)">下载</a>
                                                 <span nz-table-divider></span>
@@ -72,7 +54,6 @@
                         </nz-card>
                     </div>
                 </div>
-
 
                 <div nz-row [nzGutter]="40">
                     <div nz-col [nzSpan]="6">
