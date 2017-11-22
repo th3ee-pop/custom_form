@@ -14,8 +14,8 @@ export class RadiocmpComponent extends Question {
      *  存储答案的变量数组
      */
     localAnswer = -1;
-    @Output() onVoted = new EventEmitter< any [] >();
-    @Output() onVotedShow = new EventEmitter<any [] >();
+    @Output() onVoted = new EventEmitter< any >();
+    // @Output() onVotedShow = new EventEmitter<any [] >();
     /**
      * 存储问题是否填写的变量,默认false
      */
@@ -25,12 +25,12 @@ export class RadiocmpComponent extends Question {
         super();
     }
 
-    vote ( hiddenList: any [] ) {
-        this.onVoted.emit(hiddenList);
-    }
-
-    voteshow ( hiddenshowList: any[] ) {
-        this.onVotedShow.emit(hiddenshowList);
+    vote ( hiddenList: any [], hiddenshowList: any[] ) {
+        const showAndhidden = {
+            'hiddenlist': hiddenList,
+            'hiddenshowlist' : hiddenshowList
+        }
+        this.onVoted.emit(showAndhidden);
     }
     /**
      * 答案改变后触发
@@ -47,24 +47,27 @@ export class RadiocmpComponent extends Question {
             tem.Record_Value = true;
             res.push(tem);
             this.answer = res;
+            console.log(this.answer);
         }
-        if (this.question.hiddenlist[this.localAnswer].length !== 0) {
-            this.vote(this.question.hiddenlist[this.localAnswer]);
-        }
+
+
         const hiddenshowlist = [];
         for (let i = 0; i < this.question.content.length; i++) {
             if ( this.localAnswer !== i) {
-                if (this.question.hiddenlist[i].length !== 0) {
-                    for ( let j = 0; j < this.question.hiddenlist[i].length; j++) {
-                        hiddenshowlist.push(this.question.hiddenlist[i][j]);
+                if (this.question.hiddenlist)
+                    if ( this.question.hiddenlist[i].length !== 0) {
+                        for ( let j = 0; j < this.question.hiddenlist[i].length; j++) {
+                            hiddenshowlist.push(this.question.hiddenlist[i][j]);
+                        }
                     }
-                }
             }
         }
-        if (hiddenshowlist.length !== 0) {
-            this.voteshow(hiddenshowlist);
-        }
-
+        if ( this.question.hiddenlist)
+            if (this.question.hiddenlist[this.localAnswer].length !== 0 || hiddenshowlist.length !== 0) {
+                this.vote(this.question.hiddenlist[this.localAnswer], hiddenshowlist);
+                console.log(hiddenshowlist);
+                console.log(this.question.hiddenlist[this.localAnswer]);
+            }
         // if (this.question.hiddenList.length !== 0) {
         //     if (this.localAnswer === this.question.emitId) {  console.log('事件触发在radio'); this.vote(this.question.hiddenList); }
         // }

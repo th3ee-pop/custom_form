@@ -52,6 +52,25 @@ export class FifthStepComponent implements OnInit, AfterViewInit {
     ngAfterViewInit() {
         this.fillingAllanswer();
     }
+    onVoted (showAndhidden: any) {
+        console.log('事件出发');
+        for ( let i = 0; i <  showAndhidden.hiddenshowlist.length; i++) {
+            for ( let j = 0; j < this.questionList.length; j++) {
+                if ( this.questionList[j].id === showAndhidden.hiddenshowlist[i] ) {
+                    this.questionList[j]['hidden'] = false;
+                }
+            }
+        }
+        for (let i = 0; i < showAndhidden.hiddenlist.length; i++) {
+            for ( let j = 0; j < this.questionList.length; j++) {
+                if ( this.questionList[j].id === showAndhidden.hiddenlist[i] ) {
+                    console.log(this.questionList[j]);
+                    this.questionList[j]['hidden'] = true;
+                    console.log(this.questionList[j]);
+                }
+            }
+        }
+    }
     pre() {
         this.collectAllanswer();
         const putRecord = {'PID': this.PID, 'Records': this.resultList};
@@ -135,20 +154,22 @@ export class FifthStepComponent implements OnInit, AfterViewInit {
     confirm() {
         const confirmlist = [];
         let confirms = true;
-        this.InputItems.forEach(item => { if (item.answerChanged === false) { confirms = false; confirmlist.push(item.question.id);
-        }});
-        this.RadioItems.forEach(item => { if (item.localAnswer === -1) { confirms = false; confirmlist.push(item.question.id);
-        }});
-        this.Table51Item.forEach( item => { if ( item.answerCheck() === false) {
+        this.InputItems.forEach(item => { if ( item.question.hidden === false && item.answerChanged === false) {
             confirms = false; confirmlist.push(item.question.id);
         }});
-        this.Table53Item.forEach( item => { if ( item.answerCheck() === false) {
+        this.RadioItems.forEach(item => { if ( item.question.hidden === false && item.localAnswer === -1) {
             confirms = false; confirmlist.push(item.question.id);
         }});
-        this.Table54Item.forEach( item => { if ( item.answerCheck() === false) {
+        this.Table51Item.forEach( item => { if ( item.question.hidden === false && item.answerCheck() === false) {
             confirms = false; confirmlist.push(item.question.id);
         }});
-        this.Table58Item.forEach( item => { if ( item.answerCheck() === false) {
+        this.Table53Item.forEach( item => { if ( item.question.hidden === false && item.answerCheck() === false) {
+            confirms = false; confirmlist.push(item.question.id);
+        }});
+        this.Table54Item.forEach( item => { if ( item.question.hidden === false && item.answerCheck() === false) {
+            confirms = false; confirmlist.push(item.question.id);
+        }});
+        this.Table58Item.forEach( item => { if ( item.question.hidden === false && item.answerCheck() === false) {
             confirms = false; confirmlist.push( item.question.id);
         }});
         const confirmAll = {

@@ -1,14 +1,15 @@
-<div nz-row [hidden]="question.hidden">
-  <div nz-col>
-      <nz-card>
-          <ng-template #title>
-              <label nz-form-item-required >5.4 在过去一年中，你大约多久出现一次下面列举的情况？</label>
-          </ng-template>
-          <ng-template #body>
-                <form nz-form [nzLayout]="'inline'" >
-                    <div nz-form-control nz-col [nzSm]="20">
-                        <nz-table>
-                            <thead nz-thead>
+<div [hidden]="question.hidden">
+    <div nz-row >
+        <div nz-col>
+            <nz-card>
+                <ng-template #title>
+                    <label nz-form-item-required >5.4 在过去一年中，你大约多久出现一次下面列举的情况？</label>
+                </ng-template>
+                <ng-template #body>
+                    <form nz-form [nzLayout]="'inline'" >
+                        <div nz-form-control nz-col [nzSm]="20">
+                            <nz-table>
+                                <thead nz-thead>
                                 <tr>
                                     <th nz-th></th>
                                     <th nz-th><span>每天</span></th>
@@ -17,9 +18,9 @@
                                     <th nz-th><span>1-3次/月</span></th>
                                     <th nz-th><span>从不或极少</span></th>
                                 </tr>
-                            </thead>
+                                </thead>
 
-                            <tbody nz-tbody>
+                                <tbody nz-tbody>
                                 <tr nz-tbody-tr *ngFor="let actionName of actionNames,index as i">  <!--根据酒名生成每一行数据-->
                                     <td nz-td>{{actionName}}</td>
                                     <td nz-td>
@@ -38,11 +39,13 @@
                                         <label nz-checkbox [(ngModel)]="localAnswer[i][4]" [nzDisabled]="editdisabled" (ngModelChange)="radioChange(i,4)" [ngModelOptions]="{standalone: true}"></label>
                                     </td>
                                 </tr>
-                            </tbody>
-                        </nz-table>
-                    </div>
-                </form>
-          </ng-template>
-      </nz-card>
-  </div>
+                                </tbody>
+                            </nz-table>
+                        </div>
+                    </form>
+                </ng-template>
+            </nz-card>
+        </div>
+    </div>
+
 </div>

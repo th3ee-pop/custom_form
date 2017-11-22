@@ -118,6 +118,14 @@ export class QuestionList {
                     '蒙古',
                     '其他 ->转至问题1.8.a'
                 ],
+                'hiddenlist': [
+                    ['1.8.a'],
+                    ['1.8.a'],
+                    ['1.8.a'],
+                    ['1.8.a'],
+                    ['1.8.a'],
+                    [],
+                ],
                 'hidden': false,
                 'type': 'radio',
                 'tittle': '你的民族'
@@ -142,6 +150,11 @@ export class QuestionList {
                     '不想回答',
                     '否'
                 ],
+                'hiddenlist': [
+                    [],
+                    ['1.9.a', '1.9.b'],
+                    ['1.9.a', '1.9.b']
+                ],
                 'hidden': false,
                 'type': 'radio',
                 'tittle': '你是否有任何宗教信仰？'
@@ -153,6 +166,12 @@ export class QuestionList {
                     '佛教',
                     '基督教',
                     '其他 ->转至问题1.9.b'
+                ],
+                'hiddenlist': [
+                    ['1.9.b'],
+                    ['1.9.b'],
+                    ['1.9.b'],
+                    [],
                 ],
                 'hidden': false,
                 'type': 'radio',
@@ -288,6 +307,13 @@ export class QuestionList {
                     '一年当中不分季节，每个月都喝，但频度不到每周一次',
                     '一年当中不分季节，基本上每周都饮 ->转至问题2.3'
                 ],
+                'hiddenlist': [
+                    [ ],
+                    [ ],
+                    [ ],
+                    [ ],
+                    ['2.2'],
+                ],
                 'hidden': false,
                 'type': 'radio',
                 'tittle': '在过去一年时间里，你大概多长时间喝一次茶？'
@@ -297,6 +323,10 @@ export class QuestionList {
                 'content': [
                     '有 ->转至问题2.2.a',
                     '无'
+                ],
+                'hiddenlist': [
+                    [],
+                    ['2.2.a'],
                 ],
                 'hidden': false,
                 'type': 'radio',
@@ -391,10 +421,16 @@ export class QuestionList {
             {
                 'id': '2.8',
                 'content': [
-                    '从不或者几乎不喝咖啡',
-                    '只在特殊情况（如节假日或做客时）偶尔喝',
-                    '每月都喝，但频度不到每周一次',
+                    '从不或者几乎不喝咖啡  ->转至问题3.1',
+                    '只在特殊情况（如节假日或做客时）偶尔喝  ->转至问题3.1',
+                    '每月都喝，但频度不到每周一次  ->转至问题3.1',
                     '基本上每周都喝'
+                ],
+                'hiddenlist': [
+                    ['2.9', '2.10', '2.11', '2.11.a'],
+                    ['2.9', '2.10', '2.11', '2.11.a'],
+                    ['2.9', '2.10', '2.11', '2.11.a'],
+                    []
                 ],
                 'hidden': false,
                 'type': 'radio',
@@ -460,6 +496,13 @@ export class QuestionList {
                     '一年当中不分季节，每个月都喝，但频度不到每周一次',
                     '一年当中不分季节，基本上每周至少喝一次酒  ->转至问题3.3'
                 ],
+                'hiddenlist': [
+                    ['3.3', '3.4', '3.5'],
+                    ['3.3', '3.4', '3.5'],
+                    ['3.3', '3.4', '3.5'],
+                    ['3.3', '3.4', '3.5'],
+                    ['3.2', '3.2.a', '3.2.b', '3.2.c'],
+                ],
                 'hidden': false,
                 'type': 'radio',
                 'tittle': '在过去的一年里，你大概多长时间喝一次酒？'
@@ -469,6 +512,10 @@ export class QuestionList {
                 'content': [
                     '是 ->转至问题3.2.a',
                     '否 ->转至问卷第四部分'
+                ],
+                'hiddenlist': [
+                    ['3.3', '3.4', '3.5'],
+                    ['3.2.a', '3.2.b', '3.2.c', '3.3', '3.4', '3.5'],
                 ],
                 'hidden': false,
                 'type': 'radio',
@@ -496,6 +543,15 @@ export class QuestionList {
                     '家人反对',
                     '医生建议',
                     '其他 ->转至问题3.2.c'
+                ],
+                'hiddenlist': [
+                    ['3.2.c'],
+                    ['3.2.c'],
+                    ['3.2.c'],
+                    ['3.2.c'],
+                    ['3.2.c'],
+                    ['3.2.c'],
+                    []
                 ],
                 'hidden': false,
                 'type': 'radio',
@@ -541,7 +597,7 @@ export class QuestionList {
             {
                 'id': '3.5',
                 'type': 'table35',
-                'hidden': 'false'
+                'hidden': false
             }
         ],
         [
@@ -552,6 +608,12 @@ export class QuestionList {
                     '偶尔吸->转至问题4.2',
                     '大部分天数吸->转至问题4.5',
                     '每天都吸->转至问题4.5'
+                ],
+                'hiddenlist': [
+                    [],
+                    [],
+                    ['4.2', '4.3', '4.4'],
+                    ['4.2', '4.3', '4.4'],
                 ],
                 'hidden': false,
                 'type': 'radio',
@@ -564,6 +626,12 @@ export class QuestionList {
                     '偶尔吸->转至问题5.1',
                     '曾经大部分天数吸',
                     '曾经每天都吸'
+                ],
+                'hiddenlist': [
+                    ['4.3', '4.4', '4.5', '4.6', '4.7', '4.8', '4.9', '4.10'],
+                    ['4.3', '4.4', '4.5', '4.6', '4.7', '4.8', '4.9', '4.10'],
+                    [],
+                    []
                 ],
                 'hidden': false,
                 'type': 'radio',
@@ -612,7 +680,7 @@ export class QuestionList {
             {
                 'id': '4.6',
                 'type': 'table46',
-                'hidden': 'false'
+                'hidden': false
             },
             {
                 'id': '4.7',
@@ -630,6 +698,10 @@ export class QuestionList {
                 'content': [
                     '是',
                     '否 -> 请转至问卷第五部分'
+                ],
+                'hiddenlist': [
+                    [],
+                    ['4.9', '4.10']
                 ],
                 'hidden': false,
                 'type': 'radio',
@@ -666,7 +738,7 @@ export class QuestionList {
             {
                 'id': '5.1',
                 'type': 'table51',
-                'hidden': 'false'
+                'hidden': false
             },
             {
                 'id': '5.2',
@@ -682,12 +754,12 @@ export class QuestionList {
             {
                 'id': '5.3',
                 'type': 'table53',
-                'hidden': 'false'
+                'hidden': false
             },
             {
                 'id': '5.4',
                 'type': 'table54',
-                'hidden': 'false'
+                'hidden': false
             },
             {
                 'id': '5.5',
@@ -707,6 +779,10 @@ export class QuestionList {
                 'content': [
                     '是',
                     '否->请转至问题5.9'
+                ],
+                'hiddenlist': [
+                    [],
+                    ['5.7', '5.8', '5.8.a']
                 ],
                 'hidden': false,
                 'type': 'radio',
@@ -728,7 +804,7 @@ export class QuestionList {
             {
                 'id': '5.8',
                 'type': 'table58',
-                'hidden': 'false'
+                'hidden': false
             },
             {
                 'id': '5.9',
@@ -762,6 +838,13 @@ export class QuestionList {
                     '每周1-2次',
                     '每周3-5次',
                     '每天或者几乎每天都吃'
+                ],
+                'hiddenlist': [
+                    ['5.12', '5.13'],
+                    ['5.12', '5.13'],
+                    [],
+                    [],
+                    [],
                 ],
                 'hidden': false,
                 'type': 'radio',
@@ -802,6 +885,14 @@ export class QuestionList {
                     '3-5次每周',
                     '每天或几乎每天都有'
                 ],
+                'hiddenlist': [
+                    ['6.2'],
+                    ['6.2'],
+                    [],
+                    [],
+                    [],
+
+                ],
                 'hidden': false,
                 'type': 'radio',
                 'tittle': '在过去的一年里，你每周通常有多少天会在家里吸入同住者的二手烟？（指每次至少持续5分钟）'
@@ -822,11 +913,17 @@ export class QuestionList {
             {
                 'id': '6.3',
                 'content': [
-                    '从未有或几乎没有',
-                    '偶尔有，平均每周不到1天',
+                    '从未有或几乎没有  ->转至问题6.5',
+                    '偶尔有，平均每周不到1天  ->转至问题6.5',
                     '1-2次每周',
                     '3-5次每周',
                     '每天或几乎每天都有'
+                ],
+                'hiddenlist': [
+                    ['6.4'],
+                    ['6.4'],
+                    [],
+                    [],
                 ],
                 'hidden': false,
                 'type': 'radio',
@@ -875,6 +972,13 @@ export class QuestionList {
                     '平均每月做几次',
                     '不做/极少做 ->转至问题6.11',
                     '无厨房设施 ->转至问题6.11'
+                ],
+                'hiddenlist': [
+                    [],
+                    [],
+                    [],
+                    ['6.8', '6.8.1', '6.8.2', '6.9', '6.9.a', '6.10', '6.10.a', '6.10.b'],
+                    ['6.8', '6.8.1', '6.8.2', '6.9', '6.9.a', '6.10', '6.10.a', '6.10.b'],
                 ],
                 'hidden': false,
                 'type': 'radio',
@@ -928,6 +1032,14 @@ export class QuestionList {
                     '电（包括微波炉/电磁炉）',
                     '其他油'
                 ],
+                'hiddenlist': [
+                    ['6.9.a'],
+                    [],
+                    ['6.9.a'],
+                    ['6.9.a'],
+                    ['6.9.a'],
+
+                ],
                 'hidden': false,
                 'type': 'radio',
                 'tittle': '现在你家里做饭或烧水时，通常用哪一种燃料？'
@@ -962,6 +1074,12 @@ export class QuestionList {
                     '是，有时有',
                     '从无 ->转至问题6.11'
                 ],
+                'hiddenlist': [
+                    [],
+                    [],
+                    ['6.10.b'],
+
+                ],
                 'hidden': false,
                 'type': 'radio',
                 'tittle': '除了做饭和烧水时，你家平时（尤其在冬天）是否有炉子全天不熄火？'
@@ -981,6 +1099,10 @@ export class QuestionList {
                 'content': [
                     '是',
                     '否 ->转至问题6.12'
+                ],
+                'hiddenlist': [
+                    [],
+                    ['6.11.a', '6.11.b']
                 ],
                 'hidden': false,
                 'type': 'radio',
@@ -1019,6 +1141,11 @@ export class QuestionList {
                     '自从儿童期开始',
                     '从_______年开始出现 ->转至6.12.a填写具体时间'
                 ],
+                'hiddenlist': [
+                    ['6.12.a', '6.12.b', '6.12.c'],
+                    ['6.12.a'],
+                    ['']
+                ],
                 'hidden': false,
                 'type': 'radio',
                 'tittle': '请回忆一下，从何时开始你家屋内（尤其在冬天）出现燃煤污染？'
@@ -1042,6 +1169,10 @@ export class QuestionList {
                     '从______年起，不再出现 ->转至6.12.c填写具体时间',
                     '目前仍有'
                 ],
+                'hiddenlist': [
+                    [],
+                    ['6.12.c']
+                ],
                 'hidden': false,
                 'type': 'radio',
                 'tittle': '从哪一年开始，你家屋内（尤其在冬天）不再出现燃煤污染？'
@@ -1062,7 +1193,7 @@ export class QuestionList {
             {
                 'id': '6.13',
                 'type': 'table613',
-                'hidden': 'false'
+                'hidden': false
             },
             {
                 'id': '6.14',
@@ -1071,6 +1202,12 @@ export class QuestionList {
                     '佩戴口罩',
                     '室内开启空气净化器等设备',
                     '其他 ->转至6.14.a填写'
+                ],
+                'hiddenlist': [
+                    ['6.14.a'],
+                    ['6.14.a'],
+                    ['6.14.a'],
+                    []
                 ],
                 'hidden': false,
                 'type': 'checkbox',
@@ -1155,6 +1292,11 @@ export class QuestionList {
                     '是,持续时间<3个月',
                     '是，持续时间>=3个月 ->转至7.3.2.a'
                 ],
+                'hiddenlist': [
+                    ['7.3.2.a'],
+                    ['7.3.2.a'],
+                    []
+                ],
                 'hidden': false,
                 'type': 'radio',
                 'tittle': '在过去的一年里，你是否每天早晨睡醒后经常由肺部咳出痰液?'
@@ -1186,7 +1328,7 @@ export class QuestionList {
             {
                 'id': '7.4',
                 'type': 'table74',
-                'hidden': 'false'
+                'hidden': false
             },
             {
                 'id': '7.4.f',
@@ -1200,6 +1342,17 @@ export class QuestionList {
                     '前列腺',
                     '宫颈',
                     '其他 ->转至问题7.4.g'
+                ],
+                'hiddenlist': [
+                    ['7.4.g'],
+                    ['7.4.g'],
+                    ['7.4.g'],
+                    ['7.4.g'],
+                    ['7.4.g'],
+                    ['7.4.g'],
+                    ['7.4.g'],
+                    ['7.4.g'],
+                    []
                 ],
                 'hidden': false,
                 'type': 'checkbox',
@@ -1328,6 +1481,11 @@ export class QuestionList {
                     '否 ->转至7.13.b',
                     '不知道'
                 ],
+                'hiddenlist': [
+                    ['7.13.b'],
+                    ['7.13.a'],
+                    ['7.13.a', '7.13.b']
+                ],
                 'hidden': false,
                 'type': 'radio',
                 'tittle': '你的生母是否仍在世？'
@@ -1365,6 +1523,11 @@ export class QuestionList {
                     '否 ->转至问题7.14.b',
                     '不知道'
                 ],
+                'hiddenlist': [
+                    ['7.14.b'],
+                    ['7.14.a'],
+                    ['7.14.a', '7.14.b'],
+                ],
                 'hidden': false,
                 'type': 'radio',
                 'tittle': '你的生父是否仍在世？'
@@ -1398,13 +1561,17 @@ export class QuestionList {
             {
                 'id': '7.15',
                 'type': 'table715',
-                'hidden': 'false'
+                'hidden': false
             },
             {
                 'id': '7.16',
                 'content': [
                     '是 ->转至问题7.16.a',
                     '否'
+                ],
+                'hiddenlist': [
+                    [],
+                    ['7.16.a']
                 ],
                 'hidden': false,
                 'type': 'radio',
@@ -1467,9 +1634,16 @@ export class QuestionList {
                     '以重体力劳动为主（常温下容易出汗如装卸、采矿、炼钢等）',
                     '离退休或者家务、待业一年以上或肢体残疾无法正常劳动 -> 若选此项，转至问题8.6'
                 ],
+                'hiddenlist': [
+                    [],
+                    [],
+                    [],
+                    [],
+                    ['8.2', '8.3', '8.1.o', '8.2.1', '8.2.2', '8.2.3', '8.2.4', '8.3.1', '8.3.2', '8.3.3', '8.3.4', '8.3.5', '8.4', '8.5']
+                ],
                 'hidden': false,
                 'type': 'radio',
-                'tittle': '你出生时是否受过与生育有关的产伤？（非农林牧渔劳动者填写）'
+                'tittle': '在过去一年里，你上班是以静坐、站立或干体力活为主？（非农林牧渔劳动者填写）'
             },
             {
                 'id': '8.2',
@@ -1500,8 +1674,12 @@ export class QuestionList {
             {
                 'id': '8.1.o',
                 'content': [
-                    '否 ->转至问题8.3',
+                    '否 ->转至问题8.3.1',
                     '是'
+                ],
+                'hiddenlist': [
+                    ['8.2.1', '8.2.2', '8.2.3', '8.2.4'],
+                    []
                 ],
                 'hidden': false,
                 'type': 'radio',
@@ -1576,6 +1754,10 @@ export class QuestionList {
                     '否 ->转至问题8.7',
                     '是'
                 ],
+                'hiddenlist': [
+                    ['8.3.3', '8.3.4', '8.3.5', '8.4', '8.5', '8.6'],
+                    []
+                ],
                 'hidden': false,
                 'type': 'radio',
                 'tittle': '除农活外，你平时是否还同时做其它正式工作？（农林牧鱼劳动者填写）'
@@ -1626,7 +1808,15 @@ export class QuestionList {
                     '骑自行车',
                     '公共交通（车、地铁、渡船）',
                     '私家车/出租',
-                    '通常在家里或在家附近上班'
+                    '通常在家里或在家附近上班  ->转至问题8.6'
+                ],
+                'hiddenlist': [
+                    [],
+                    [],
+                    [],
+                    [],
+                    [],
+                    ['8.5'],
                 ],
                 'hidden': false,
                 'type': 'radio',
@@ -1648,11 +1838,18 @@ export class QuestionList {
             {
                 'id': '8.6',
                 'content': [
-                    '从不或几乎从不参加',
-                    '每月1-3次',
+                    '从不或几乎从不参加  ->转问题8.9',
+                    '每月1-3次  ->转问题8.9',
                     '每周1-2次',
                     '每周3-5次',
                     '每天或几乎每天都锻炼'
+                ],
+                'hiddenlist': [
+                    ['8.7', '8.8'],
+                    ['8.7', '8.8'],
+                    [],
+                    [],
+                    [],
                 ],
                 'hidden': false,
                 'type': 'radio',
@@ -1688,11 +1885,18 @@ export class QuestionList {
             {
                 'id': '8.9',
                 'content': [
-                    '从无或几乎从来没有',
-                    '偶尔有，但不到每周一次',
+                    '从无或几乎从来没有  ->转8.11',
+                    '偶尔有，但不到每周一次  ->转8.11',
                     '每周有1-2次',
                     '每周有3-5次',
                     '每天或几乎每天都有'
+                ],
+                'hiddenlist': [
+                    ['8.10'],
+                    ['8.10'],
+                    [],
+                    [],
+                    [],
                 ],
                 'hidden': false,
                 'type': 'radio',
@@ -1740,7 +1944,7 @@ export class QuestionList {
             {
                 'id': '8.13',
                 'type': 'table813',
-                'hidden': 'false'
+                'hidden': false
             },
             {
                 'id': '8.14',
@@ -1784,12 +1988,15 @@ export class QuestionList {
                     {
                         'dataType': 'text',
                         'inform': '',
-                        'validType': 'twonum'
+                        'validType': 'other'
                     }
+                ],
+                'hiddenlist': [
+                    ['9.2', '9.2.a', '9.2.b', '9.3', '9.3.a', '9.4', '9.5.a', '9.5.b', '9.5.c', '9.5.d', '9.6']
                 ],
                 'hidden': false,
                 'type': 'input',
-                'tittle': '你第一次来月经时的实足年龄是多大？（单位：岁；若记不清，请填0；若无，请转问题9.7）'
+                'tittle': '你第一次来月经时的实足年龄是多大？（单位：岁；若无，请填 # 并转问题9.7）'
             },
             {
                 'id': '9.2',
@@ -1797,6 +2004,11 @@ export class QuestionList {
                     '尚未闭经 ->转至问题9.2.a',
                     '目前正处于更年期',
                     '已完全闭经 ->转至问题9.2.b'
+                ],
+                'hiddenlist': [
+                    ['9.2.b'],
+                    ['9.2.a', '9.2.b'],
+                    ['9.2.a']
                 ],
                 'hidden': false,
                 'type': 'radio',
@@ -1831,6 +2043,10 @@ export class QuestionList {
                     '否',
                     '是 ->转至问题9.3.a'
                 ],
+                'hiddenlist': [
+                    ['9.3.a'],
+                    []
+                ],
                 'hidden': false,
                 'type': 'radio',
                 'tittle': '你是否用过或正在服用雌激素替代治疗药物缓解更年期症状？'
@@ -1852,12 +2068,15 @@ export class QuestionList {
                     {
                         'dataType': 'text',
                         'inform': '',
-                        'validType': 'twonum'
+                        'validType': 'other'
                     }
+                ],
+                'hiddenlist': [
+                    ['9.5.a', '9.5.b', '9.5.c', '9.5.d', '9.6']
                 ],
                 'hidden': false,
                 'type': 'input',
-                'tittle': '到现在为止一共怀孕过多少次？（单位：次，若无，填0，并转至问题9.7）'
+                'tittle': '到现在为止一共怀孕过多少次？（单位：次，若无，填 #，并转至问题9.7）'
             },
             {
                 'id': '9.5.a',
@@ -1865,12 +2084,15 @@ export class QuestionList {
                     {
                         'dataType': 'text',
                         'inform': '',
-                        'validType': 'twonum'
+                        'validType': 'other'
                     }
+                ],
+                'hiddenlist': [
+                    ['9.5.b', '9.5.c', '9.5.d', '9.6'],
                 ],
                 'hidden': false,
                 'type': 'input',
-                'tittle': '活产多少次？（单位：次，若无填0,并转9.7）'
+                'tittle': '活产多少次？（单位：次，若无填#,并转9.7）'
             },
             {
                 'id': '9.5.b',
@@ -1914,7 +2136,7 @@ export class QuestionList {
             {
                 'id': '9.6',
                 'type': 'table96',
-                'hidden': 'false'
+                'hidden': false
             },
             {
                 'id': '9.7',
@@ -1922,6 +2144,11 @@ export class QuestionList {
                     '从未用过 ->转至问题9.10',
                     '曾经用过 ->转至问题9.7.a',
                     '目前仍用'
+                ],
+                'hiddenlist': [
+                    ['9.7.a', '9.8', '9.9'],
+                    [],
+                    ['9.7.a']
                 ],
                 'hidden': false,
                 'type': 'radio',
@@ -1973,6 +2200,11 @@ export class QuestionList {
                     '曾经用过 ->转至问题9.10.a',
                     '目前仍用'
                 ],
+                'hiddenlist': [
+                    ['9.10.a', '9.11', '9.12'],
+                    [],
+                    ['9.10.a']
+                ],
                 'hidden': false,
                 'type': 'radio',
                 'tittle': '你是否使用过避孕环？'
@@ -2019,7 +2251,7 @@ export class QuestionList {
             {
                 'id': '9.13',
                 'type': 'table913',
-                'hidden': 'false'
+                'hidden': false
             }
         ],
         [
@@ -2061,6 +2293,9 @@ export class QuestionList {
                     '早上很早醒来，并难以重新入睡',
                     '至少有一天需要服安眠药（西药或中药）以帮助睡眠',
                     '因睡眠不佳，白天在工作、吃饭或和别人交谈时难于保持清醒的头脑'
+                ],
+                'hiddenlist': [
+                    ['10.4']
                 ],
                 'hidden': false,
                 'type': 'checkbox',
@@ -2106,6 +2341,10 @@ export class QuestionList {
                 'content': [
                     '否',
                     '是  ->转至问题10.7.a'
+                ],
+                'hiddenlist': [
+                    ['10.7.a' , '10.7.b'],
+                    []
                 ],
                 'hidden': false,
                 'type': 'radio',
@@ -2192,6 +2431,9 @@ export class QuestionList {
                     '没有 ->转至问题10.16'
                 ],
                 'hidden': false,
+                'hiddenlist': [
+                    [  ], [ '10.13', '10.14', '10.15']
+                ] ,
                 'type': 'radio',
                 'tittle': '在过去一年里，您是否患上一些长期疾病？（注：长期疾病是指某一疾病已影响您已有一段很长的时间或您因某一疾病而有一段很长的时间已受到困扰）'
             },
@@ -2202,6 +2444,10 @@ export class QuestionList {
                     '没有 ->转至问题10.16'
                 ],
                 'hidden': false,
+                'hiddenlist': [
+                    [ ],
+                    [ '10.14', '10.15' ]
+                ],
                 'type': 'radio',
                 'tittle': '如有，您有否因这些疾病而限制了您的日常活动？'
             },
