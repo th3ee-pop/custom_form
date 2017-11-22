@@ -21,14 +21,21 @@ export class SurveyOverviewComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private fileDownloader: FileDownloadService,
-        ) { }
+    ) { }
 
     ngOnInit() {
         this.getTableData();
     }
 
     getTableData() {
-        this.service.getPatientList().subscribe( (res) => {
+        const conditions = {
+            'sorted_key' : 'Province',
+            'start' : '0',
+            'offset' : '20',
+            'filter_dict' : { 'PID': [0, 20] }
+
+        };
+        this.service.getPatientList(conditions).subscribe( (res) => {
             console.log(res);
             this.data = res.PID_info;
         });
@@ -64,7 +71,7 @@ export class SurveyOverviewComponent implements OnInit {
         this.fileDownloader.downloadFile(filePath, {}, 'All.csv');
     }
 
-    
+
 }
 
 

@@ -140,8 +140,21 @@ export class HttpService {
      }]
      }
      */
-    getPatientList(): Observable<any> {
-        return this.http.get(this.baseUrl + '/healthexamination/recordlist/', this.options)
+    getPatientList(conditions): Observable<any> {
+
+        const body = {
+            'filter_dict': conditions.filter,
+            'sorted_key': conditions.sorted_key,
+            'start': conditions.start,
+            'offset': conditions.offset
+        };
+        // return this.http.get(this.baseUrl + '/healthexamination/recordlist/', this.options)
+        //     .do(() => {} )
+        //     .catch((res) => {
+        //         console.log(res);
+        //         return res;
+        //     });
+        return this.http.post(this.baseUrl + '/healthexamination/recordlist/', JSON.stringify(body))
             .do(() => {} )
             .catch((res) => {
                 console.log(res);

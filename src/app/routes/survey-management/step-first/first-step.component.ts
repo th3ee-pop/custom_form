@@ -1,7 +1,7 @@
 /**
  *  input radio idc phone checkbox date
  */
-import   { Component, OnInit, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router, Params} from '@angular/router';
 import { HttpService } from '@core/services/http.service';
 import { NzModalService } from 'ng-zorro-antd';
@@ -56,6 +56,29 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
                 { 'Record_ID': 'ID0_2', 'Record_Value': '未完成'}
             );
     }
+    onVoted ( hiddenList: any[] ) {
+        console.log('事件出发');
+        for (let i = 0; i < hiddenList.length; i++) {
+            for ( let j = 0; j < this.questionList.length; j++) {
+                if ( this.questionList[j].id === hiddenList[i] ) {
+                    console.log(this.questionList[j]);
+                    this.questionList[j]['hidden'] = true;
+                    console.log(this.questionList[j]);
+                }
+            }
+        }
+    }
+    onVotedShow ( hiddenshowList: any[] ) {
+        console.log('show');
+        for ( let i = 0; i <  hiddenshowList.length; i++) {
+            for ( let j = 0; j < this.questionList.length; j++) {
+                if ( this.questionList[j].id === hiddenshowList[i] ) {
+                    this.questionList[j]['hidden'] = false;
+                }
+            }
+        }
+    }
+
     ngAfterViewInit() {
         if ( this.PID ) {
             this.fillingAllanswer();
@@ -311,15 +334,4 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
         return id;
     }
 }
-// onVoted ( hiddenList: any[] ) {
-//     console.log('事件出发');
-//     for (let i = 0; i < hiddenList.length; i++) {
-//         for ( let j = 0; j < this.questionList.length; j++) {
-//             if ( this.questionList[j].id === hiddenList[i] ) {
-//                 console.log(this.questionList[j]);
-//                 this.questionList[j]['hidden'] = true;
-//                 console.log(this.questionList[j]);
-//             }
-//         }
-//     }
-// }
+

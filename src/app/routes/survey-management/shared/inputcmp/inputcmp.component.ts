@@ -15,6 +15,7 @@ export class InputcmpComponent extends Question implements OnInit {
     answerChanged = false;
     validateForm: FormGroup;
     editdisabled = false;
+
     ngOnInit() {
         this.localAnswer = new Array(this.question.content.length);
     }
