@@ -112,8 +112,12 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
             else putRecord = { 'PID': this.PID, 'Records' : this.resultList };
             this.service.putRecord(putRecord).subscribe( (res) => {
                 this.PID = res.PID;
-                console.log(res);
+                if ( res.Return === 0)
                 this.router.navigate(['/survey/second_step/' + this.PID]);
+                else this.confirmServ.error( {
+                    title: '未知错误',
+                    content: '请联系开发人员'
+                });
             }, err => {
                 console.log(err);
             });

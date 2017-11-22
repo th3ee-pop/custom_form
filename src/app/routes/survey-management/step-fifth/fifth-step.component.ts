@@ -31,7 +31,7 @@ export class FifthStepComponent implements OnInit, AfterViewInit {
     @ViewChildren(Table58Component) Table58Item: QueryList<Table58Component>;
 
     current = 4;                                        // 当前步骤
-   // questionList = new QuestionList().questions[this.current];     // 问题总列表
+    // questionList = new QuestionList().questions[this.current];     // 问题总列表
     schedule_list =  new ScheduleList().schedule_list;  // 步骤列表
     resultList = [];                                    // 填写结果
     PID = '';
@@ -104,8 +104,12 @@ export class FifthStepComponent implements OnInit, AfterViewInit {
             this.collectAllanswer();
             const putRecord = { 'Records': this.resultList, 'PID': this.PID};
             this.service.putRecord(putRecord).subscribe( (res) => {
-                console.log(res);
-                this.router.navigate(['/survey/sixth_step/' + this.PID]);
+                if ( res.Return === 0)
+                    this.router.navigate(['/survey/sixth_step/' + this.PID]);
+                else this.confirmServ.error( {
+                    title: '未知错误',
+                    content: '请联系开发人员'
+                });
             }, error => {
                 console.log(error);
             });

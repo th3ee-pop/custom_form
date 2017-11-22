@@ -97,8 +97,12 @@ export class SeventhStepComponent implements OnInit, AfterViewInit {
             this.collectAllanswer();
             const putRecord = { 'Records': this.resultList, 'PID': this.PID};
             this.service.putRecord(putRecord).subscribe( (res) => {
-                console.log(res);
-                this.router.navigate(['/survey/eighth_step/' + this.PID]);
+                if ( res.Return === 0)
+                    this.router.navigate(['/survey/eighth_step/' + this.PID]);
+                else this.confirmServ.error( {
+                    title: '未知错误',
+                    content: '请联系开发人员'
+                });
             }, error => {
                 console.log(error);
             });
@@ -197,7 +201,7 @@ export class SeventhStepComponent implements OnInit, AfterViewInit {
             }
         );
         this.Table715Item.forEach( item => {
-            if ( item.answerCheck() ) for ( let i = 0; i < item.answer.length; i++) { this.resultList.push(item.answer[i]); }
+                if ( item.answerCheck() ) for ( let i = 0; i < item.answer.length; i++) { this.resultList.push(item.answer[i]); }
             }
         );
         if (this.confirm().confirms) {

@@ -110,11 +110,20 @@ export class EighthStepComponent implements OnInit, AfterViewInit {
             console.log(this.resultList);
             const putRecord = { 'Records': this.resultList, 'PID': this.PID};
             this.service.putRecord(putRecord).subscribe( (res) => {
-                if ( this.sex === true) {
-                    this.router.navigate(['/survey/tenth_step/' + this.PID]);
-                }else {
-                    this.router.navigate(['/survey/ninth_step/' + this.PID]);
+                if ( res.Return === 0) {
+                    if ( this.sex === true) {
+                        this.router.navigate(['/survey/tenth_step/' + this.PID]);
+                    }else {
+                        this.router.navigate(['/survey/ninth_step/' + this.PID]);
+                    }
+                } else {
+                    this.confirmServ.error( {
+                        title: '未知错误',
+                        content: '请联系开发人员'
+                    });
+
                 }
+
             }, error => {
                 console.log(error);
             });
