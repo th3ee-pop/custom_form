@@ -12,7 +12,7 @@
                 </div>
                 <h3 class="text-md">上传文件</h3>
                 <button nz-button class="ant-btn__block file-upload mt-sm">
-                    <input id="fileMultiple" accept type="file" ng2FileSelect [uploader]="uploader" multiple />
+                    <input id="fileMultiple" accept type="file" ng2FileSelect [uploader]="uploader" (change)="selectedFileOnChanged($event)" multiple />
                     <i class="anticon anticon-upload"></i><span>选择文件</span>
                 </button>
             </ng-template>
