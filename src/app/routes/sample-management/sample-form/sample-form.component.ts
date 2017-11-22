@@ -11,7 +11,7 @@ import { BiologyService } from '../biology.service';
 export class SampleFormComponent implements OnInit {
 
     pi = 1;
-    ps = 5;
+    ps = 10;
     total = 200; // mock total
     list = [];
     loading = false;
@@ -75,7 +75,7 @@ export class SampleFormComponent implements OnInit {
                         item.repository = this.province[item.repository];
                         item.type = this.type[item.type];
                         item.blood_type = this.blood_type[item.blood_type];
-                        item.date_joined = item.date_joined.substring(0, 19);
+                        // item.date_joined = item.date_joined.substring(0, 19);
                     });
                 }
                 return data;
