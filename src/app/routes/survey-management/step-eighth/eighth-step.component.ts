@@ -9,7 +9,6 @@ import { HttpService } from '@core/services/http.service';
 import { InputcmpComponent } from '../shared/inputcmp/inputcmp.component';
 import { RadiocmpComponent } from '../shared/radiocmp/radiocmp.component';
 import { Table813Component } from '../shared/tablecmp/table813/table813.component';
-import { QuestionList } from '../shared/questionList';
 import { ScheduleList } from '../shared/scheduleList';
 
 @Component({
@@ -24,7 +23,6 @@ export class EighthStepComponent implements OnInit, AfterViewInit {
     @ViewChildren(Table813Component) Table813Items: QueryList<Table813Component>;
 
     current = 7;                                        // 当前步骤
-    questionList = new QuestionList().questions[this.current];     // 问题总列表
     schedule_list =  new ScheduleList().schedule_list;  // 步骤列表
     resultList = [];                                    // 填写结果
     PID = '';
@@ -32,6 +30,8 @@ export class EighthStepComponent implements OnInit, AfterViewInit {
     answerList = [];
     sex = false;
     buttondisable = false;
+    questionSave = [];
+    questionList = [];
     localInfo = JSON.parse(localStorage.getItem('_user'));
 
     constructor(
@@ -39,10 +39,29 @@ export class EighthStepComponent implements OnInit, AfterViewInit {
         private route: ActivatedRoute,
         private service: HttpService,
         private confirmServ: NzModalService
-    ) {}
+    ) {
+        this.PID = this.route.params['value']['PID'];
+        if ( this.PID) {
+            const getRecord = {
+                'PID': this.PID,
+                'RecordID': 'ID8'
+            };
+            this.service.getRecord(getRecord).subscribe( (res) => {
+                const list = res.Records;
+                this.answerList = list;
+                for ( let i = 0; i < list.length; i++) {
+                    if ( list[i]['ID0_0'] && list[i]['ID0_0'] !== '') {
+                        this.questionList = list[i]['ID0_0'][7];
+                        this.questionSave = list[i]['ID0_0'];
+                        break;
+                    }
+                }
+            });
+        }
+    }
 
     ngOnInit() {
-        this.PID = this.route.params['value']['PID'];
+
 
     }
     ngAfterViewInit() {
@@ -91,11 +110,20 @@ export class EighthStepComponent implements OnInit, AfterViewInit {
             console.log(this.resultList);
             const putRecord = { 'Records': this.resultList, 'PID': this.PID};
             this.service.putRecord(putRecord).subscribe( (res) => {
-                if ( this.sex === true) {
-                    this.router.navigate(['/survey/tenth_step/' + this.PID]);
-                }else {
-                    this.router.navigate(['/survey/ninth_step/' + this.PID]);
+                if ( res.Return === 0) {
+                    if ( this.sex === true) {
+                        this.router.navigate(['/survey/tenth_step/' + this.PID]);
+                    }else {
+                        this.router.navigate(['/survey/ninth_step/' + this.PID]);
+                    }
+                } else {
+                    this.confirmServ.error( {
+                        title: '未知错误',
+                        content: '请联系开发人员'
+                    });
+
                 }
+
             }, error => {
                 console.log(error);
             });
@@ -192,15 +220,18 @@ export class EighthStepComponent implements OnInit, AfterViewInit {
         this.Table813Items.forEach( item => {
             if (item.answerCheck() === true) { item.getAnswer().forEach( it => { this.resultList.push(it); }); }
         });
-        if (this.confirm().confirms)
+        if (this.confirm().confirms) {
+            this.questionSave[7] = this.questionList;
             this.resultList.push(
                 {'Record_ID': 'ID0_4', 'Record_Value': this.getNowdate()},
-                {'Record_ID': 'ID8', 'Record_Value': 'finished'});
-        else {
+                {'Record_ID': 'ID8', 'Record_Value': 'finished'},
+                {'Record_ID': 'ID0_0', 'Record_Value': this.questionSave });
+        } else {
             this.resultList.push(
                 {'Record_ID': 'ID0_4', 'Record_Value': this.getNowdate()},
                 {'Record_ID': 'ID8', 'Record_Value': ''},
-                {'Record_ID': 'ID0_2', 'Record_Value': '未完成'});
+                {'Record_ID': 'ID0_2', 'Record_Value': '未完成'},
+                {'Record_ID': 'ID0_0', 'Record_Value': this.questionSave });
         }
         for ( let i = 0; i < this.answerList.length; i ++) {
             for ( let j = 0; j < this.resultList.length; j++) {

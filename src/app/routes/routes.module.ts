@@ -7,7 +7,7 @@ import { routes } from './routes';
 import { DashboardV1Component } from './dashboard/v1/v1.component';
 import { LoginAuthService } from '@core/services/login.auth.service';
 import { LoginAuthGuard } from '@core/services/login.guard.service';
-
+import { UserAuthGuard } from '@core/services/user.guard.service';
 
 @NgModule({
     imports: [
@@ -25,7 +25,8 @@ import { LoginAuthGuard } from '@core/services/login.guard.service';
     ],
     providers: [
         LoginAuthGuard,
-        LoginAuthService
+        LoginAuthService,
+        UserAuthGuard
     ]
 })
 

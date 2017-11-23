@@ -924,6 +924,7 @@ export class QuestionList {
                     ['6.4'],
                     [],
                     [],
+                    []
                 ],
                 'hidden': false,
                 'type': 'radio',

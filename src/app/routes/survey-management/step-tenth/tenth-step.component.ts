@@ -11,7 +11,6 @@ import { RadiocmpComponent } from '../shared/radiocmp/radiocmp.component';
 import { CheckboxcmpComponent} from '../shared/checkboxcmp/checkboxcmp.component';
 
 
-import { QuestionList } from '../shared/questionList';
 import { ScheduleList } from '../shared/scheduleList';
 
 @Component({
@@ -26,7 +25,6 @@ export class TenthStepComponent implements OnInit, AfterViewInit {
     @ViewChildren(CheckboxcmpComponent) CheckboxItems: QueryList<CheckboxcmpComponent>;
 
     current = 9;                                        // 当前步骤
-    questionList = new QuestionList().questions[this.current];     // 问题总列表
     schedule_list =  new ScheduleList().schedule_list;  // 步骤列表
     resultList = [];                                    // 填写结果
     PID = '';
@@ -34,16 +32,38 @@ export class TenthStepComponent implements OnInit, AfterViewInit {
     answerList = [];
     sex = false;
     buttondisable = false;
+    questionSave = [];
+    questionList = [];
+
     localInfo = JSON.parse(localStorage.getItem('_user'));
     constructor(
         private router: Router,
         private route: ActivatedRoute,
         private service: HttpService,
         private confirmServ: NzModalService
-    ) {}
+    ) {
+        this.PID = this.route.params['value']['PID'];
+        if ( this.PID) {
+            const getRecord = {
+                'PID': this.PID,
+                'RecordID': 'ID10'
+            };
+            this.service.getRecord(getRecord).subscribe( (res) => {
+                const list = res.Records;
+                this.answerList = list;
+                for ( let i = 0; i < list.length; i++) {
+                    if ( list[i]['ID0_0'] && list[i]['ID0_0'] !== '') {
+                        this.questionList = list[i]['ID0_0'][9];
+                        this.questionSave = list[i]['ID0_0'];
+                        break;
+                    }
+                }
+            });
+        }
+    }
 
     ngOnInit() {
-        this.PID = this.route.params['value']['PID'];
+
     }
     ngAfterViewInit() {
         const getRecord = {
@@ -94,7 +114,13 @@ export class TenthStepComponent implements OnInit, AfterViewInit {
             this.collectAllanswer();
             const putRecord = { 'Records': this.resultList, 'PID': this.PID};
             this.service.putRecord(putRecord).subscribe( (res) => {
-                this.router.navigate(['/survey/detail/']);
+                if ( res.Return === 0)
+                    this.router.navigate(['/survey/detail/']);
+                else this.confirmServ.error( {
+                    title: '未知错误',
+                    content: '请联系开发人员'
+                });
+
             }, error => {
                 console.log(error);
             });
@@ -186,16 +212,19 @@ export class TenthStepComponent implements OnInit, AfterViewInit {
             if (item.answerChanged === true) { for ( let i = 0; i < item.answer.length; i++) { this.resultList.push(item.answer[i]); } }
         });
 
-        if (this.confirm().confirms)
+        if (this.confirm().confirms) {
+            this.questionSave[9] = this.questionList;
             this.resultList.push(
                 {'Record_ID': 'ID0_4', 'Record_Value': this.getNowdate()},
                 {'Record_ID': 'ID10', 'Record_Value': 'finished'},
-                {'Record_ID': 'ID0_2', 'Record_Value': '已完成'});
-        else {
+                {'Record_ID': 'ID0_2', 'Record_Value': '已完成'},
+                {'Record_ID': 'ID0_0', 'Record_Value': this.questionSave });
+        } else {
             this.resultList.push(
                 {'Record_ID': 'ID0_4', 'Record_Value': this.getNowdate()},
                 {'Record_ID': 'ID10', 'Record_Value': ''},
-                {'Record_ID': 'ID0_2', 'Record_Value': '未完成'});
+                {'Record_ID': 'ID0_2', 'Record_Value': '未完成'},
+                {'Record_ID': 'ID0_0', 'Record_Value': this.questionSave });
         }
         for ( let i = 0; i < this.answerList.length; i ++) {
             for ( let j = 0; j < this.resultList.length; j++) {

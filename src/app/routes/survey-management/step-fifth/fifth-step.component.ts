@@ -31,13 +31,15 @@ export class FifthStepComponent implements OnInit, AfterViewInit {
     @ViewChildren(Table58Component) Table58Item: QueryList<Table58Component>;
 
     current = 4;                                        // 当前步骤
-    questionList = new QuestionList().questions[this.current];     // 问题总列表
+    // questionList = new QuestionList().questions[this.current];     // 问题总列表
     schedule_list =  new ScheduleList().schedule_list;  // 步骤列表
     resultList = [];                                    // 填写结果
     PID = '';
     finished = false;
     answerList = [];
     buttondisable = false;
+    questionSave = [];
+    questionList = [];
     localInfo = JSON.parse(localStorage.getItem('_user'));
 
     constructor(
@@ -45,9 +47,28 @@ export class FifthStepComponent implements OnInit, AfterViewInit {
         private route: ActivatedRoute,
         private service: HttpService,
         private confirmServ: NzModalService
-    ) {}
-    ngOnInit() {
+    ) {
         this.PID = this.route.params['value']['PID'];
+        if ( this.PID) {
+            const getRecord = {
+                'PID': this.PID,
+                'RecordID': 'ID5'
+            };
+            this.service.getRecord(getRecord).subscribe( (res) => {
+                const list = res.Records;
+                this.answerList = list;
+                for ( let i = 0; i < list.length; i++) {
+                    if ( list[i]['ID0_0'] && list[i]['ID0_0'] !== '') {
+                        this.questionList = list[i]['ID0_0'][4];
+                        this.questionSave = list[i]['ID0_0'];
+                        break;
+                    }
+                }
+            });
+        }
+    }
+    ngOnInit() {
+
     }
     ngAfterViewInit() {
         this.fillingAllanswer();
@@ -83,8 +104,12 @@ export class FifthStepComponent implements OnInit, AfterViewInit {
             this.collectAllanswer();
             const putRecord = { 'Records': this.resultList, 'PID': this.PID};
             this.service.putRecord(putRecord).subscribe( (res) => {
-                console.log(res);
-                this.router.navigate(['/survey/sixth_step/' + this.PID]);
+                if ( res.Return === 0)
+                    this.router.navigate(['/survey/sixth_step/' + this.PID]);
+                else this.confirmServ.error( {
+                    title: '未知错误',
+                    content: '请联系开发人员'
+                });
             }, error => {
                 console.log(error);
             });
@@ -197,15 +222,18 @@ export class FifthStepComponent implements OnInit, AfterViewInit {
         this.Table58Item.forEach( item => {
             if ( item.answerCheck() === true ) { item.getAnswer().forEach( it => { this.resultList.push(it); }); }
         });
-        if (this.confirm().confirms)
+        if (this.confirm().confirms) {
+            this.questionSave[4] = this.questionList;
             this.resultList.push(
                 {'Record_ID': 'ID0_4', 'Record_Value': this.getNowdate()},
-                {'Record_ID': 'ID5', 'Record_Value': 'finished'});
-        else {
+                {'Record_ID': 'ID5', 'Record_Value': 'finished'},
+                {'Record_ID': 'ID0_0', 'Record_Value': this.questionSave });
+        } else {
             this.resultList.push(
                 {'Record_ID': 'ID0_4', 'Record_Value': this.getNowdate()},
                 {'Record_ID': 'ID5', 'Record_Value': ''},
-                {'Record_ID': 'ID0_2', 'Record_Value': '未完成'});
+                {'Record_ID': 'ID0_2', 'Record_Value': '未完成'},
+                {'Record_ID': 'ID0_0', 'Record_Value': this.questionSave });
         }
         for ( let i = 0; i < this.answerList.length; i ++) {
             for ( let j = 0; j < this.resultList.length; j++) {
@@ -276,16 +304,14 @@ export class FifthStepComponent implements OnInit, AfterViewInit {
             });
             this.Table51Item.forEach( item => {
                 for ( let i = 0 ; i < 23; i++) {
-                    for ( let j = 0; j < 5; j++) {
-                        const y = j + 1;
-                        const id = 'ID5_1_' + y;
-                        fillingList.forEach( it => {
-                            if ( it[id] && it[id] !== '' ) {
-                                const col = Number.parseInt(it[id]);
-                                item.localAnswer[i][col] = true;
-                            }
-                        });
-                    }
+                    const y = i + 1;
+                    const id = 'ID5_1_' + y;
+                    fillingList.forEach( it => {
+                        if ( it[id] && it[id] !== '' ) {
+                            const col = Number.parseInt(it[id]);
+                            item.localAnswer[i][col] = true;
+                        }
+                    });
                 }
             });
             this.Table51Item.forEach( item => {
