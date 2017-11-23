@@ -24,7 +24,7 @@ export class Table96Component extends Question implements AnswerInterface, OnIni
     /**
      * 是否可编辑
      */
-    editdisabled = false; 
+    editdisabled = false;
 
     required = false;
     constructor() {
@@ -58,7 +58,6 @@ export class Table96Component extends Question implements AnswerInterface, OnIni
             }
         }
         this.answer = res;
-        console.log(res);
     }
     answerCheck() {
         this.answerChange();

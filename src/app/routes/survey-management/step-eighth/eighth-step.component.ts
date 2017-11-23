@@ -78,7 +78,6 @@ export class EighthStepComponent implements OnInit, AfterViewInit {
         this.fillingAllanswer();
     }
     onVoted (showAndhidden: any) {
-        console.log('事件出发');
         for ( let i = 0; i <  showAndhidden.hiddenshowlist.length; i++) {
             for ( let j = 0; j < this.questionList.length; j++) {
                 if ( this.questionList[j].id === showAndhidden.hiddenshowlist[i] ) {
@@ -89,9 +88,7 @@ export class EighthStepComponent implements OnInit, AfterViewInit {
         for (let i = 0; i < showAndhidden.hiddenlist.length; i++) {
             for ( let j = 0; j < this.questionList.length; j++) {
                 if ( this.questionList[j].id === showAndhidden.hiddenlist[i] ) {
-                    console.log(this.questionList[j]);
                     this.questionList[j]['hidden'] = true;
-                    console.log(this.questionList[j]);
                 }
             }
         }
@@ -106,8 +103,6 @@ export class EighthStepComponent implements OnInit, AfterViewInit {
     next() {                                            // 下一步
         if ( this.confirm().confirms ) {
             this.collectAllanswer();
-
-            console.log(this.resultList);
             const putRecord = { 'Records': this.resultList, 'PID': this.PID};
             this.service.putRecord(putRecord).subscribe( (res) => {
                 if ( res.Return === 0) {
@@ -144,7 +139,6 @@ export class EighthStepComponent implements OnInit, AfterViewInit {
      */
     rundisabledAll (completeby, province) {
         if ( this.localInfo.user_group > 1 ) {
-            console.log('this is usergroup', this.localInfo.user_group);
             if ( this.localInfo.user_group === 4) {
                 if ( completeby !== this.localInfo.user_name ) {
                     this.disabledAll();
@@ -176,7 +170,6 @@ export class EighthStepComponent implements OnInit, AfterViewInit {
     jumpTo(step_index) {
         const numWords = ['first', 'second', 'third', 'forth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth'];
         if (this.PID) { // 如果有病人编号，则跳跃
-            console.log(step_index);
             this.router.navigate(['/survey/' + numWords[step_index] + '_step/' + this.PID]);  // 拼接跳转链接
         }
 

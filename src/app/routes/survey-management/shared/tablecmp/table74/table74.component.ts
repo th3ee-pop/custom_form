@@ -117,7 +117,6 @@ export class Table74Component extends Question implements AnswerInterface, OnIni
 
         }
         this.answer = res;
-        console.log(res);
     }
     answerCheck() {
         this.answerChange();

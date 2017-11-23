@@ -27,7 +27,6 @@ export class PhoneComponent extends Question {
             this.answerChanged = false;
             return {required: true};
         }else if ( !NUM_REGEXP.test(control.value) ) {
-            console.log(control.value.length);
             this.answerChanged = false;
             return { error: true, phone: true};
         }else {

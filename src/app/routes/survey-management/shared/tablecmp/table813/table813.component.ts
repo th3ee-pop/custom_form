@@ -61,10 +61,7 @@ export class Table813Component extends Question implements AnswerInterface, OnIn
                 }
             }
         }
-
-
         this.answer = res;
-        console.log(res);
     }
 
 

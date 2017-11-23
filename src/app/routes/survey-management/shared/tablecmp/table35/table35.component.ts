@@ -42,7 +42,6 @@ export class Table35Component extends Question implements AnswerInterface {
             }
         }
         this.answer = res;
-        console.log(res);
         if (this.answerCheck() === true) // 如果校验成功
             this.answerChanged = true;
         else
@@ -59,7 +58,6 @@ export class Table35Component extends Question implements AnswerInterface {
                     return true;
             }
         }
-        console.log('false');
         return false;
     }
 

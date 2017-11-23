@@ -74,7 +74,6 @@ export class Table46Component extends Question implements AnswerInterface {
         res.push(item);
       }
       this.answer = res;
-      console.log('table46', this.answer);
       if (this.required) {  // 如果表格必填
           if (this.answerCheck() === true) // 如果校验成功
               this.answerChanged = true;

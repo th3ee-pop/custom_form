@@ -71,7 +71,6 @@ export class TenthStepComponent implements OnInit, AfterViewInit {
             'RecordID': 'ID1'
         };
         this.service.getRecord(getRecord).subscribe( (res) => {
-            console.log(res);
             res.Records.forEach( it => {
                 if (it['ID1_3_1'] === 'True' ) {  this.sex  = true; }
             });
@@ -79,7 +78,6 @@ export class TenthStepComponent implements OnInit, AfterViewInit {
         this.fillingAllanswer();
     }
     onVoted (showAndhidden: any) {
-        console.log('事件出发');
         for ( let i = 0; i <  showAndhidden.hiddenshowlist.length; i++) {
             for ( let j = 0; j < this.questionList.length; j++) {
                 if ( this.questionList[j].id === showAndhidden.hiddenshowlist[i] ) {
@@ -90,9 +88,7 @@ export class TenthStepComponent implements OnInit, AfterViewInit {
         for (let i = 0; i < showAndhidden.hiddenlist.length; i++) {
             for ( let j = 0; j < this.questionList.length; j++) {
                 if ( this.questionList[j].id === showAndhidden.hiddenlist[i] ) {
-                    console.log(this.questionList[j]);
                     this.questionList[j]['hidden'] = true;
-                    console.log(this.questionList[j]);
                 }
             }
         }
@@ -172,7 +168,6 @@ export class TenthStepComponent implements OnInit, AfterViewInit {
     jumpTo(step_index) {
         const numWords = ['first', 'second', 'third', 'forth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth'];
         if (this.PID) { // 如果有病人编号，则跳跃
-            console.log(step_index);
             this.router.navigate(['/survey/' + numWords[step_index] + '_step/' + this.PID]);  // 拼接跳转链接
         }
 
