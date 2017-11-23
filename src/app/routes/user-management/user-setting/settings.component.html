@@ -139,9 +139,10 @@
                                     <td nz-td>{{data.group}}</td>
                                     <td nz-td>{{data.date_joined}}</td>
                                     <td nz-td>
-                                        <a (click)="showMsg('Edit');customCompModel('', data, data.group)">管理</a>
-                                        <span nz-table-divider></span>
-                                        <nz-popconfirm [nzTitle]="'确定删除用户？'" [nzOkText]="'确定'" [nzCancelText]="'取消'" (nzOnConfirm)="showMsg('删除成功');deleteUser(data.username)">
+                                        <a *ngIf="nowuser.user_group < authorityToNum[data.group]" (click)="showMsg('Edit');customCompModel('', data, data.group)">管理</a>
+                                        <span nz-table-divider *ngIf="nowuser.user_group < authorityToNum[data.group]"></span>
+                                        <em *ngIf="nowuser.user_name === data.username">当前用户</em>
+                                        <nz-popconfirm *ngIf="nowuser.user_group < authorityToNum[data.group]" [nzTitle]="'确定删除用户？'" [nzOkText]="'确定'" [nzCancelText]="'取消'" (nzOnConfirm)="showMsg('删除成功');deleteUser(data.username)">
                                             <a nz-popconfirm>删除</a>
                                         </nz-popconfirm>
                                     </td>

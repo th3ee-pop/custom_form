@@ -47,7 +47,7 @@ export class UserSettingsComponent implements OnInit {
 
     // 分页信息，pi表示第几页，ps表示1页的条目数，total为条目总数。
     pi = 1;
-    ps = 5;
+    ps = 10;
     total = 200; // mock total
     list = [];
     loading = false;
@@ -141,6 +141,8 @@ export class UserSettingsComponent implements OnInit {
             if (this.conditions.filter[key])
             delete this.conditions.filter[key];
         }
+        this.start_time = '';
+        this.end_time = '';
         this.load();
     }
 
