@@ -7,7 +7,11 @@ import { SettingsService } from '@core/services/settings.service';
   templateUrl: './sidebar.component.html'
 })
 export class SidebarComponent {
+
+    localInfo = JSON.parse(localStorage.getItem('_user'));
     constructor(public settings: SettingsService, public msgSrv: NzMessageService) {
+        settings.user.name = this.localInfo.name;
+        settings.user.email = this.localInfo.user_province;
     }
 
     removeLocalInfo() {

@@ -22,8 +22,9 @@ export class SampleFormComponent implements OnInit {
     start_time = '';
     end_time = '';
     options;
-
-    _manager = true;
+    localInfo = JSON.parse(localStorage.getItem('_user'));
+    Manager;
+    _manager;
 
     province = {
         '1':'陕西',
@@ -118,6 +119,8 @@ export class SampleFormComponent implements OnInit {
 
     ngOnInit() {
         this.load();
+        // console.log(this.localInfo);
+        this._manager = this.localInfo.user_group<4;
     }
 
     showMsg(msg: string) {

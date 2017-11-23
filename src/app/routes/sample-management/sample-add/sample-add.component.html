@@ -339,13 +339,13 @@
                     </div>
                 </div>
                 <div nz-form-control nz-col [nzSpan]="14" [nzOffset]="4">
-                    <button nz-button [nzType]="'primary'" [disabled]="disabled" class="mr-sm" (click)="_submitForm()" *ngIf = '!PID'>
+                    <button nz-button [nzType]="'primary'" [disabled]="disabled" class="mr-sm" (click)="_submitForm()" *ngIf = '!PID && _manager'>
                     <span>保存</span>
                     </button>
-                    <button nz-button [nzType]="'primary'" [disabled]="disabled" class="mr-sm" (click)="correct()" *ngIf = 'read'>
+                    <button nz-button [nzType]="'primary'" [disabled]="disabled" class="mr-sm" (click)="correct()" *ngIf = 'read && _manager'>
                         <span>修改</span>
                     </button>
-                    <button nz-button [nzType]="'primary'" [disabled]="disabled" class="mr-sm" (click)="goBack()">
+                    <button nz-button [nzType]="'primary'" [disabled]="disabled" class="mr-sm" (click)="goBack()" *ngIf="!_manager">
                         <span>返回列表</span>
                     </button>
                 </div>

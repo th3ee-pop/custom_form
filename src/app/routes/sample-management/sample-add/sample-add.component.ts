@@ -133,6 +133,8 @@ export class SampleAddComponent implements OnInit {
     loading = false;
     read: boolean;
     searchOptions = [];
+    localInfo = JSON.parse(localStorage.getItem('_user'));
+    _manager;
 
     data;
     tempEditObject;
@@ -325,6 +327,7 @@ export class SampleAddComponent implements OnInit {
         this.PID = this.route.params['value']['PID'];
         this.read = this.PID;
         this.defineForm();
+        this._manager = this.localInfo.user_group<4;
     }
     ngAfterViewInit(){
         this.load(this.PID);
@@ -364,6 +367,7 @@ export class SampleAddComponent implements OnInit {
             this.modify();
         }
         // this.resetForm();
+        this.goBack();
     }
 
     transfer(formData){

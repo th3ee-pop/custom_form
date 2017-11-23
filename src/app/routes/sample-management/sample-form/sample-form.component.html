@@ -73,14 +73,17 @@
             <ng-template #body>
                 <div class="mb-sm text-right">
                     <nz-dropdown>
-                        <button nz-button nz-dropdown [disabled]="!_manager"  (click)="goAdd()">
+                        <button nz-button nz-dropdown (click)="goAdd()">
                             <span>添加记录</span>
                         </button>
                         <button nz-button nz-dropdown [disabled]="!_allChecked && !_indeterminate" (click)="download()">
                             <span>批量导出</span>
                         </button>
-                        <button nz-button nz-dropdown [disabled]="!_manager"  (click)="deleteAll()">
-                            <span>清空记录</span>
+                        <button nz-button nz-dropdown *ngIf="_manager">
+                            <nz-popconfirm [nzTitle]="'确定删除？'" [nzOkText]="'确定'" [nzCancelText]="'取消'" (nzOnConfirm)="deleteAll()" (nzOnCancel)="showMsg('取消删除')">
+                                <a nz-popconfirm>清空记录</a>
+                            </nz-popconfirm>
+                            <!--<span></span>-->
                         </button>
                     </nz-dropdown>
                 </div>
@@ -101,7 +104,7 @@
                                     (ngModelChange)="_checkAll()">
                                 </label>
                             </th>
-                            <th nz-th><span>PID</span></th>
+                            <!--<th nz-th><span>PID</span></th>-->
                             <th nz-th><span>编号</span> <nz-table-sort  (nzValueChange)="sort('number',$event)"></nz-table-sort></th>
                             <th nz-th><span>省</span><nz-table-sort  (nzValueChange)="sort('repository',$event)"></nz-table-sort></th>
                             <th nz-th><span>类型</span><nz-table-sort  (nzValueChange)="sort('type',$event)"></nz-table-sort></th>
@@ -118,7 +121,7 @@
                                     (ngModelChange)="refChecked()">
                                 </label>
                             </td>
-                            <td nz-td>{{data.PID}}</td>
+                            <!--<td nz-td>{{data.PID}}</td>-->
                             <td nz-td>{{data.number}}</td>
                             <td nz-td>{{data.repository}}</td>
                             <td nz-td>{{data.type}}
@@ -132,8 +135,8 @@
                                 <a  (click)="goAdd(data.PID)">查看详情</a>
                                 <span nz-table-divider></span>
                                 <a  (click)="download(data.PID)">导出</a>
-                                <span nz-table-divider></span>
-                                <nz-popconfirm [nzTitle]="'确定删除？'" [nzOkText]="'确定'" [nzCancelText]="'取消'" (nzOnConfirm)="deleteRecord(data.PID);" (nzOnCancel)="showMsg('取消删除')">
+                                <span nz-table-divider *ngIf="_manager"></span>
+                                <nz-popconfirm [nzTitle]="'确定删除？'" [nzOkText]="'确定'" [nzCancelText]="'取消'" (nzOnConfirm)="deleteRecord(data.PID);" (nzOnCancel)="showMsg('取消删除')" *ngIf="_manager">
                                     <a nz-popconfirm>删除记录</a>
                                 </nz-popconfirm>
                             </td>

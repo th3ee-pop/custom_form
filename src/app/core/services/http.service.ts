@@ -263,7 +263,8 @@ export class HttpService {
                     refresh_token_valid_time: moment().add(14, 'days').unix(),
                     user_name: user.username,
                     user_group: res.group,
-                    user_province: res.province
+                    user_province: res.province,
+                    name: res.name
                 };
                 console.log(localuser);
             })
@@ -276,19 +277,7 @@ export class HttpService {
         const api = '/account/register/';
         console.log(body);
         return this.http.post(this.baseUrl + api, JSON.stringify(body))
-            .do((res: any) => {
-            /*const localuser = new TokenService();
-            localuser.data = <TokenData>{
-                access_token: res.TOKEN,
-                expire_time: moment().add(7, 'days').unix(),
-                refresh_token: '',
-                refresh_token_valid_time: moment().add(14, 'days').unix(),
-                user_name: body.username,
-                user_group: '4',
-                user_province: body.province
-            };*/
-           // console.log(localuser);
-            })
+            .do((res: any) => {})
             .catch((res) => {
                 return res;
             });
