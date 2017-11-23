@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SettingsService } from '@core/services/settings.service';
 import { HttpService } from '@core/services/http.service';
 import { LoginAuthService } from '@core/services/login.auth.service';
-
+import { NzMessageService } from 'ng-zorro-antd';
 @Component({
   selector: 'app-pages-login',
   templateUrl: './login.component.html'
@@ -12,7 +12,12 @@ import { LoginAuthService } from '@core/services/login.auth.service';
 export class LoginComponent {
   valForm: FormGroup;
 
-  constructor(public settings: SettingsService, fb: FormBuilder, private router: Router, private authService: LoginAuthService, private service: HttpService) {
+  constructor(public settings: SettingsService,
+              fb: FormBuilder,
+              private msg: NzMessageService,
+              private router: Router,
+              private authService: LoginAuthService,
+              private service: HttpService) {
     this.valForm = fb.group({
       username: [null, Validators.required],
       password: [null, Validators.required],
@@ -36,11 +41,15 @@ export class LoginComponent {
     };
       this.service.login(FormVal).subscribe((resp) => {
           console.log(resp);
+
           console.log('login success');
           if (resp.Return === 0) {
+              this.msg.info('登录成功');
               const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '';
               console.log(redirect);
               this.router.navigate([redirect]);
+          } else {
+              this.msg.info(resp.Result);
           }
       });
     /*this.authService.loginObservable(FormVal).subscribe(
