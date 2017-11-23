@@ -304,16 +304,14 @@ export class FifthStepComponent implements OnInit, AfterViewInit {
             });
             this.Table51Item.forEach( item => {
                 for ( let i = 0 ; i < 23; i++) {
-                    for ( let j = 0; j < 5; j++) {
-                        const y = j + 1;
-                        const id = 'ID5_1_' + y;
-                        fillingList.forEach( it => {
-                            if ( it[id] && it[id] !== '' ) {
-                                const col = Number.parseInt(it[id]);
-                                item.localAnswer[i][col] = true;
-                            }
-                        });
-                    }
+                    const y = i + 1;
+                    const id = 'ID5_1_' + y;
+                    fillingList.forEach( it => {
+                        if ( it[id] && it[id] !== '' ) {
+                            const col = Number.parseInt(it[id]);
+                            item.localAnswer[i][col] = true;
+                        }
+                    });
                 }
             });
             this.Table51Item.forEach( item => {
