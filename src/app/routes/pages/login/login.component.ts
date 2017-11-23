@@ -14,7 +14,7 @@ export class LoginComponent {
 
   constructor(public settings: SettingsService, fb: FormBuilder, private router: Router, private authService: LoginAuthService, private service: HttpService) {
     this.valForm = fb.group({
-      email: [null, Validators.required],
+      username: [null, Validators.required],
       password: [null, Validators.required],
       remember_me: [null]
     });
@@ -31,7 +31,7 @@ export class LoginComponent {
     }
     console.log(this.valForm.value);
     const FormVal = {
-        'username': this.valForm.value.email,
+        'username': this.valForm.value.username,
         'password': this.valForm.value.password
     };
       this.service.login(FormVal).subscribe((resp) => {
