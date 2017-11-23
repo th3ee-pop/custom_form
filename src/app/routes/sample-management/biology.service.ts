@@ -37,9 +37,9 @@ export class BiologyService {
             });
     }
 
-    getBasicInfo(): Observable<any> {
+    getBasicInfo(PID): Observable<any> {
         const api = '/biology/basicinfo/';
-        const params = { 'PID': 1 };
+        const params = { 'PID': PID };
         return this.http.get(this.baseUrl + api, { params: this.getParams(params) })
             .do(() => { })
             .catch((res) => {
@@ -48,7 +48,6 @@ export class BiologyService {
                 return res;
             });
     }
-
 
     getService(api, params?): Observable<any> {
         return this.http.get(this.baseUrl + api, { params: params ? this.getParams(params) : '' })
