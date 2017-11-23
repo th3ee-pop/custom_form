@@ -32,7 +32,7 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
     @ViewChildren(DatecmpComponent) DateItem: QueryList<DatecmpComponent>;
     current = 0; // 当前步骤
     questions = new QuestionList().questions;
-    questionSave = []
+    questionSave = this.questions;
     questionList = [];     // 问题总列表
     schedule_list =  new ScheduleList().schedule_list;  // 步骤列表
     resultList = [];                                    // 填写结果
@@ -72,7 +72,7 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
 
     ngOnInit() {
         if ( !this.PID )
-            this.questionList = this.questions[0];
+            this.questionList = this.questionSave[0];
         this.resultList.push(
             { 'Record_ID': 'ID0_3', 'Record_Value': this.localInfo.user_province}, // 省份
             { 'Record_ID': 'ID0_5', 'Record_Value': this.localInfo.user_name},        // 用户ID
