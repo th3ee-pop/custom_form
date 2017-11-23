@@ -14,7 +14,6 @@ export class SurveyOverviewComponent implements OnInit {
     loggedUser = this.localInfo.user_name;
     userGroup = this.localInfo.user_group;
     userProvince = this.localInfo.user_province;
-    data = [];
     PID = '';
     constructor(
         private service: HttpService,
@@ -22,6 +21,28 @@ export class SurveyOverviewComponent implements OnInit {
         private router: Router,
         private fileDownloader: FileDownloadService,
     ) { }
+
+    pi = 1;
+    ps = 5;
+    total = 200; // mock total
+    loading = false;
+    args = {};
+    _indeterminate = false;
+    _allChecked = false;
+    start_time = '';
+    end_time = '';
+    list = [];
+    nowuser = JSON.parse(localStorage.getItem('_user'));
+
+    // 所有的过滤条件在这个对象里添加
+    conditions = {
+        'filter': {
+            'date_joined': []
+        },
+        'sorted_key': 'username',
+        'start': (this.pi - 1) * this.ps,
+        'offset': this.ps,
+    };
 
     ngOnInit() {
         this.getTableData();
@@ -35,9 +56,14 @@ export class SurveyOverviewComponent implements OnInit {
             'filter_dict' : { 'PID': [0, 30] }
 
         };
+        this.loading = true;
+        this._allChecked = false;
+        this._indeterminate = false;
         this.service.getPatientList(conditions).subscribe( (res) => {
-
-            this.data = res.PID_info;
+            this.list = res.PID_info;
+            console.log(this.list);
+            this.loading = false;
+           // this.total = res.Count_total;
         });
     }
     deleteRecord(pid: string) {
@@ -66,6 +92,10 @@ export class SurveyOverviewComponent implements OnInit {
     downloadAll() {
         const filePath = 'healthexamination/exportcsv/';
         this.fileDownloader.downloadFile(filePath, {}, 'All.csv');
+    }
+
+    filterData() {
+        console.log('filtering');
     }
 
 
