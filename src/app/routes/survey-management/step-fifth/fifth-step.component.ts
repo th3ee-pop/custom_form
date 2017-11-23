@@ -74,7 +74,6 @@ export class FifthStepComponent implements OnInit, AfterViewInit {
         this.fillingAllanswer();
     }
     onVoted (showAndhidden: any) {
-        console.log('事件出发');
         for ( let i = 0; i <  showAndhidden.hiddenshowlist.length; i++) {
             for ( let j = 0; j < this.questionList.length; j++) {
                 if ( this.questionList[j].id === showAndhidden.hiddenshowlist[i] ) {
@@ -85,9 +84,7 @@ export class FifthStepComponent implements OnInit, AfterViewInit {
         for (let i = 0; i < showAndhidden.hiddenlist.length; i++) {
             for ( let j = 0; j < this.questionList.length; j++) {
                 if ( this.questionList[j].id === showAndhidden.hiddenlist[i] ) {
-                    console.log(this.questionList[j]);
                     this.questionList[j]['hidden'] = true;
-                    console.log(this.questionList[j]);
                 }
             }
         }
@@ -166,10 +163,8 @@ export class FifthStepComponent implements OnInit, AfterViewInit {
 
     temporary_deposit() {                               // 暂存
         this.collectAllanswer();
-        console.log(this.resultList);
         const putRecord = { 'PID': this.PID, 'Records' : this.resultList };
         this.service.putRecord(putRecord).subscribe( (res) => {
-            console.log(res);
             this.router.navigate( ['/survey/detail/']);
         }, error => { });
     }

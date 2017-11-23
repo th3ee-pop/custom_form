@@ -45,7 +45,6 @@ export class Table53Component extends Question implements AnswerInterface, OnIni
             }
         }
         this.answer = res;
-        console.log(res);
     }
     answerCheck() {
         for ( let i = 0; i < 4 ; i++) {
