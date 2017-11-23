@@ -275,7 +275,71 @@
                                     <span *ngIf="editRow===i">
                                         <a (click)="save(item)">保存</a>
                                         <span nz-table-divider></span>
-                                        <nz-popconfirm [nzTitle]="'确认取消？'" (nzOnConfirm)="cancel(item)">
+                                        <nz-popconfirm [nzTitle]="'确认取消？'" (nzOnConfirm)="cancel(item,0)">
+                                            <a nz-popconfirm>取消</a>
+                                        </nz-popconfirm>
+                                    </span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </nz-table>
+                    </div>
+                </div>
+                <div nz-row>
+                    <div nz-col [nzSm]="18" [nzOffset]="3">
+                        <nz-table [nzShowFooter] = "true">
+                            <thead nz-thead>
+                            <tr>
+                                <th nz-th><span>意外事件</span></th>
+                                <th nz-th><span>日期</span></th>
+                                <th nz-th><span>时长</span></th>
+                                <th nz-th><span>解决办法</span></th>
+                                <th nz-th><span>影像</span></th>
+                                <th nz-th><span> 操作<a (click)="addAcc()" *ngIf ='!read'>(点击添加新数据)</a></span></th>
+                            </tr>
+                            </thead>
+                            <tbody nz-tbody>
+                            <tr nz-tbody-tr *ngFor="let item of Accdata, index as i">
+                                <td nz-td>
+                                    <span *ngIf="editRow1!== i">{{item.accident}}</span>
+                                    <span *ngIf="editRow1=== i">
+                                        <nz-input [(ngModel)]="tempAccEditObject[i].accident"></nz-input>
+                                    </span>
+                                </td>
+                                <td nz-td>
+                                    <span *ngIf="editRow1!== i">{{item.acc_time}}</span>
+                                    <span *ngIf="editRow1=== i">
+                                        <nz-input [(ngModel)]="tempAccEditObject[i].acc_time"></nz-input>
+                                    </span>
+                                </td>
+                                <td nz-td>
+                                    <span *ngIf="editRow1!==i">{{item.duration}}</span>
+                                    <span *ngIf="editRow1===i">
+                                        <nz-input [(ngModel)]="tempAccEditObject[i].duration"></nz-input>
+                                    </span>
+                                </td>
+                                <td nz-td>
+                                    <span *ngIf="editRow1!==i">{{item.resolvent}}</span>
+                                    <span *ngIf="editRow1===i">
+                                        <nz-input [(ngModel)]="tempAccEditObject[i].resolvent"></nz-input>
+                                    </span>
+                                </td>
+                                <td nz-td>
+                                    <span *ngIf="editRow1!==i">{{item.influence}}</span>
+                                    <span *ngIf="editRow1===i">
+                                        <nz-input [(ngModel)]="tempAccEditObject[i].influence"></nz-input>
+                                    </span>
+                                </td>
+                                <td nz-td>
+                                    <span *ngIf="editRow1!== i && !read">
+                                        <a (click)="editAcc(item)">编辑</a>
+                                    </span>
+                                    <!--<span *ngIf="i==Sample.user_info.length-1">-->
+                                    <!--</span>-->
+                                    <span *ngIf="editRow1===i">
+                                        <a (click)="saveAcc(item)">保存</a>
+                                        <span nz-table-divider></span>
+                                        <nz-popconfirm [nzTitle]="'确认取消？'" (nzOnConfirm)="cancel(item,1)">
                                             <a nz-popconfirm>取消</a>
                                         </nz-popconfirm>
                                     </span>

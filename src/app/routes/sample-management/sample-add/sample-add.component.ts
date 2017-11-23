@@ -4,6 +4,7 @@ import {Router, ActivatedRoute} from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd';
 import { Sample, Use_info, Accident_info} from '../sample';
 import { BiologyService } from '../biology.service';
+import {element} from "protractor";
 
 @Component({
     selector: 'app-sample-add',
@@ -133,7 +134,10 @@ export class SampleAddComponent implements OnInit {
     read: boolean;
     data;
     tempEditObject;
+    Accdata;
+    tempAccEditObject;
     editRow;
+    editRow1;
 
     provinces = ['陕西', '甘肃', '宁夏', '青海', '新疆'];
 
@@ -162,11 +166,17 @@ export class SampleAddComponent implements OnInit {
                         this.Sample[key].Updated_time = res.Records[key].Updated_time;
                     }
                     this.data = this.Sample.user_info.Record_Value;
+                    this.Accdata = this.Sample.accident_info.Record_Value;
                     this.tempEditObject = {};
+                    this.tempAccEditObject = {};
                     this.data.forEach(item => {
                         this.tempEditObject[ item.key] = {};
                     });
+                    this.Accdata.forEach(item => {
+                        this.tempAccEditObject[ item.key] = {};
+                    });
                     this.editRow = null;
+                    this.editRow1 = null;
                     // this.Sample = res.Records;
                     console.log(this.Sample);
                     this.loading = false;
@@ -235,6 +245,14 @@ export class SampleAddComponent implements OnInit {
         console.log(this.tempEditObject);
         // this.Sample.user_info.Record_Value[ data.key ] = { ...data };
         this.editRow = data.key;
+    };
+    editAcc(data) {
+        console.log(data);
+        console.log(this.tempAccEditObject);
+        this.tempAccEditObject[ data.key ] = { ...data };
+        console.log(this.tempAccEditObject);
+        // this.Sample.user_info.Record_Value[ data.key ] = { ...data };
+        this.editRow1 = data.key;
     }
 
     save(data) {
@@ -245,10 +263,23 @@ export class SampleAddComponent implements OnInit {
         // Object.assign(data, this.Sample.user_info.Record_Value[ data.key ]);
         this.editRow = null;
     }
+    saveAcc(data) {
+        console.log(data);
+        Object.assign(data, this.tempAccEditObject[ data.key ]);
+        // this.Sample.user_info.Record_Value = this.data;
+        this.Sample.accident_info.Record_Value[data.key] = data;
+        // Object.assign(data, this.Sample.user_info.Record_Value[ data.key ]);
+        this.editRow1 = null;
+    }
 
-    cancel(data) {
-        this.tempEditObject[ data.key ] = {};
-        this.editRow = null;
+    cancel(data,id) {
+        if(id === 0){
+            this.tempEditObject[ data.key ] = {};
+            this.editRow = null;
+        }else if(id == 1){
+            this.tempAccEditObject[ data.key ] = {};
+            this.editRow1 = null;
+        }
     }
 
     add(){
@@ -263,6 +294,20 @@ export class SampleAddComponent implements OnInit {
         this.data.push(newRecord);
         this.tempEditObject[i] = { ...newRecord };
         this.editRow = this.data.length-1;
+    }
+    addAcc(){
+        let i = this.Accdata.length;
+        let newRecord = {
+            key:i,
+            accident    : '',
+            acc_time   : '',
+            duration    : '',
+            resolvent: '',
+            influence: '',
+        };
+        this.Accdata.push(newRecord);
+        this.tempAccEditObject[i] = { ...newRecord };
+        this.editRow1 = this.Accdata.length-1;
     }
 
     ngOnInit() {
@@ -329,6 +374,7 @@ export class SampleAddComponent implements OnInit {
             'Updated_time':''
         };
         data['user_info'] = this.Sample.user_info;
+        data['accident_info'] = this.Sample.accident_info;
         console.log(data);
         return data;
     }
@@ -364,5 +410,18 @@ export class SampleAddComponent implements OnInit {
         return str;
     }
 
+    // 时间格式转换
+    GMTToStr(time) {
+        console.log(time);
+        const date = new Date(time);
+        console.log(date);
+        const Str = date.getFullYear() + '-' +
+            (date.getMonth() + 1) + '-' +
+            date.getDate() + ' ' +
+            date.getHours() + ':' +
+            date.getMinutes() + ':' +
+            date.getSeconds();
+        console.log(Str);        return Str;
+    }
 }
 

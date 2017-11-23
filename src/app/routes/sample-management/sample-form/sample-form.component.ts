@@ -11,7 +11,7 @@ import { BiologyService } from '../biology.service';
 export class SampleFormComponent implements OnInit {
 
     pi = 1;
-    ps = 10;
+    ps = 5;
     total = 200; // mock total
     list = [];
     loading = false;
