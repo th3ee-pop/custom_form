@@ -203,7 +203,7 @@ export class HttpService {
      * @param downloadId  {"id":3}
      * @returns {Observable<any>}
      */
-    downloadFile(downloadId): Observable<File> {
+    downloadFile(downloadId): Observable<any> {
         return this.Http.get(this.baseUrl + '/filesystem/fileop/', {
             params: this.getParams(downloadId),
             responseType: 3,
