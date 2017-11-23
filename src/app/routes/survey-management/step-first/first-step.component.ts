@@ -71,13 +71,15 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
-        if ( !this.PID )
+        if ( !this.PID ) {
             this.questionList = this.questionSave[0];
-        this.resultList.push(
-            { 'Record_ID': 'ID0_3', 'Record_Value': this.localInfo.user_province}, // 省份
-            { 'Record_ID': 'ID0_5', 'Record_Value': this.localInfo.user_name},        // 用户ID
-            { 'Record_ID': 'ID0_2', 'Record_Value': '未完成'}
-        );
+            this.resultList.push(
+                { 'Record_ID': 'ID0_3', 'Record_Value': this.localInfo.user_province}, // 省份
+                { 'Record_ID': 'ID0_5', 'Record_Value': this.localInfo.user_name},        // 用户ID
+                { 'Record_ID': 'ID0_2', 'Record_Value': '未完成'}
+            );
+        }
+
     }
     onVoted (showAndhidden: any) {
         console.log('事件出发');
@@ -113,7 +115,7 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
             this.service.putRecord(putRecord).subscribe( (res) => {
                 this.PID = res.PID;
                 if ( res.Return === 0)
-                this.router.navigate(['/survey/second_step/' + this.PID]);
+                    this.router.navigate(['/survey/second_step/' + this.PID]);
                 else this.confirmServ.error( {
                     title: '未知错误',
                     content: '请联系开发人员'
