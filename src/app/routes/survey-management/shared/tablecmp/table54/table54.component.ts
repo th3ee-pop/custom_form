@@ -56,7 +56,6 @@ export class Table54Component extends Question implements AnswerInterface, OnIni
             }
         }
         this.answer = res;
-        console.log(this.answer);
     }
     answerCheck() {
         this.answerChange();

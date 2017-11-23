@@ -47,7 +47,6 @@ export class RadiocmpComponent extends Question {
             tem.Record_Value = true;
             res.push(tem);
             this.answer = res;
-            console.log(this.answer);
         }
 
 
@@ -65,13 +64,7 @@ export class RadiocmpComponent extends Question {
         if ( this.question.hiddenlist)
             if (this.question.hiddenlist[this.localAnswer].length !== 0 || hiddenshowlist.length !== 0) {
                 this.vote(this.question.hiddenlist[this.localAnswer], hiddenshowlist);
-                console.log(hiddenshowlist);
-                console.log(this.question.hiddenlist[this.localAnswer]);
             }
-        // if (this.question.hiddenList.length !== 0) {
-        //     if (this.localAnswer === this.question.emitId) {  console.log('事件触发在radio'); this.vote(this.question.hiddenList); }
-        // }
         if ( this.localAnswer !== -1 )  this.answerChanged =  true;
-        console.log(this.answer);
     }
 }

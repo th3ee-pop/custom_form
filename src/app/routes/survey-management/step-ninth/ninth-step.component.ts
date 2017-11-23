@@ -68,7 +68,6 @@ export class NinthStepComponent implements OnInit, AfterViewInit {
         this.fillingAnswer();
     }
     onVoted (showAndhidden: any) {
-        console.log('事件出发');
         for ( let i = 0; i <  showAndhidden.hiddenshowlist.length; i++) {
             for ( let j = 0; j < this.questionList.length; j++) {
                 if ( this.questionList[j].id === showAndhidden.hiddenshowlist[i] ) {
@@ -79,9 +78,7 @@ export class NinthStepComponent implements OnInit, AfterViewInit {
         for (let i = 0; i < showAndhidden.hiddenlist.length; i++) {
             for ( let j = 0; j < this.questionList.length; j++) {
                 if ( this.questionList[j].id === showAndhidden.hiddenlist[i] ) {
-                    console.log(this.questionList[j]);
                     this.questionList[j]['hidden'] = true;
-                    console.log(this.questionList[j]);
                 }
             }
         }

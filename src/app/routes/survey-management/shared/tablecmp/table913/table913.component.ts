@@ -50,7 +50,6 @@ export class Table913Component extends Question implements AnswerInterface, OnIn
         }
 
         this.answer = res;
-        console.log(res);
     }
 
 

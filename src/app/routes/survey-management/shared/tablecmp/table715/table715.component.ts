@@ -69,7 +69,6 @@ export class Table715Component extends Question implements AnswerInterface, OnIn
             }
         }
         this.answer = res;
-        console.log(res);
     }
     answerCheck() {
         this.answerChange();

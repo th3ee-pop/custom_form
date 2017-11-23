@@ -36,7 +36,7 @@ export class SurveyOverviewComponent implements OnInit {
 
         };
         this.service.getPatientList(conditions).subscribe( (res) => {
-            console.log(res);
+
             this.data = res.PID_info;
         });
     }
@@ -44,7 +44,7 @@ export class SurveyOverviewComponent implements OnInit {
         if (pid && pid !== '') {
             const deleteId = { 'PID': pid };
             this.service.deleteRecord(deleteId).subscribe((res) => {
-                console.log('delete record work!', res);
+
                 this.getTableData();
             });
         }

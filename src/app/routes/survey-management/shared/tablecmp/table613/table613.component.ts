@@ -54,7 +54,6 @@ export class Table613Component extends  Question implements AnswerInterface, OnI
             }
         }
         this.answer = res;
-        console.log(res);
     }
     answerCheck() {
         return true;

@@ -121,13 +121,11 @@ export class SixthStepComponent implements OnInit, AfterViewInit {
     jumpTo(step_index) {
         const numWords = ['first', 'second', 'third', 'forth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth'];
         if (this.PID) { // 如果有病人编号，则跳跃
-            console.log(step_index);
             this.router.navigate(['/survey/' + numWords[step_index] + '_step/' + this.PID]);  // 拼接跳转链接
         }
 
     }
     onVoted (showAndhidden: any) {
-        console.log('事件出发');
         for ( let i = 0; i <  showAndhidden.hiddenshowlist.length; i++) {
             for ( let j = 0; j < this.questionList.length; j++) {
                 if ( this.questionList[j].id === showAndhidden.hiddenshowlist[i] ) {
@@ -138,9 +136,7 @@ export class SixthStepComponent implements OnInit, AfterViewInit {
         for (let i = 0; i < showAndhidden.hiddenlist.length; i++) {
             for ( let j = 0; j < this.questionList.length; j++) {
                 if ( this.questionList[j].id === showAndhidden.hiddenlist[i] ) {
-                    console.log(this.questionList[j]);
                     this.questionList[j]['hidden'] = true;
-                    console.log(this.questionList[j]);
                 }
             }
         }

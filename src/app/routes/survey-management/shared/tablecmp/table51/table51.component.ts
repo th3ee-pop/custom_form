@@ -90,7 +90,6 @@ export class Table51Component  extends Question implements AnswerInterface, OnIn
             }
         }
         this.answer = res;
-        console.log(this.answer);
     }
 
     answerCheck() {
