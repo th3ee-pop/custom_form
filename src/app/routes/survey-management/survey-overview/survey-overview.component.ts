@@ -21,19 +21,25 @@ export class SurveyOverviewComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private fileDownloader: FileDownloadService,
-        ) { }
+    ) { }
 
     ngOnInit() {
         this.getTableData();
     }
 
     getTableData() {
-        this.service.getPatientList().subscribe( (res) => {
+        const conditions = {
+            'sorted_key' : 'Province',
+            'start' : '0',
+            'offset' : '20',
+            'filter_dict' : { 'PID': [0, 30] }
+
+        };
+        this.service.getPatientList(conditions).subscribe( (res) => {
             console.log(res);
             this.data = res.PID_info;
         });
     }
-
     deleteRecord(pid: string) {
         if (pid && pid !== '') {
             const deleteId = { 'PID': pid };
@@ -43,7 +49,6 @@ export class SurveyOverviewComponent implements OnInit {
             });
         }
     }
-
     isVisible( data ): boolean {
         if (this.userGroup === '4') {
             return true;
@@ -53,7 +58,6 @@ export class SurveyOverviewComponent implements OnInit {
             return data.completedBy === this.loggedUser;
         }
     }
-
     downloadByPID(PID) {
         const filePath = 'healthexamination/exportcsv/';
         const fileName = 'PID' + PID + '.csv';
@@ -64,7 +68,7 @@ export class SurveyOverviewComponent implements OnInit {
         this.fileDownloader.downloadFile(filePath, {}, 'All.csv');
     }
 
-    
+
 }
 
 

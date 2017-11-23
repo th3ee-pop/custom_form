@@ -58,12 +58,8 @@ export class TokenInterceptor implements HttpInterceptor {
                         // observer.error 会跳转至后面的 `catch`
                         return Observable.create(observer => observer.error(event));
                     }
-                    // 检查return 是否为2，为2则跳转到login页面
-                    if (event instanceof HttpResponse && event.body.Return === 2) {
-                        console.log(event);
-                        this.goLogin();
-                    }
-                    if (event instanceof HttpResponse && event.body.Return === 1 && event.body.Result === 'Token 过期!') {
+                    // 检查status 是否为401，为2则跳转到login页面
+                    if (event instanceof HttpResponse && event.status === 401) {
                         console.log( event);
                         this.goLogin();
                     }

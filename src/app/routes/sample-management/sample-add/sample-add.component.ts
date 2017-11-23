@@ -4,6 +4,7 @@ import {Router, ActivatedRoute} from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd';
 import { Sample, Use_info, Accident_info} from '../sample';
 import { BiologyService } from '../biology.service';
+import {element} from "protractor";
 
 @Component({
     selector: 'app-sample-add',
@@ -117,28 +118,26 @@ export class SampleAddComponent implements OnInit {
             'Record_Value': '',
             'Updated_time': ''
         },
-        'user_info': [
-            {
-                'user': 'www',
-                'use_time': '2017-9-9',
-                'use_count': '200ml',
-                'usage': '为了xxx'
-            }],
-        'accident_info': [
-            {
-                'acc_name': '试管泄漏',
-                'acc_time': '2017-9-10',
-                'duration': '10min',
-                'resolvent': '更换试管',
-                'influence': '剩余100ml'
-            }
-        ]
+        'user_info':{
+            'Record_Value':[],
+            'Updated_time': ''
+        },
+        'accident_info': {
+            'Record_Value': [],
+            'Updated_time': ''
+        }
     };
 
     validateForm: FormGroup;
     PID;
     loading = false;
-    read=true;
+    read: boolean;
+    data;
+    tempEditObject;
+    Accdata;
+    tempAccEditObject;
+    editRow;
+    editRow1;
 
     provinces = ['陕西', '甘肃', '宁夏', '青海', '新疆'];
 
@@ -159,9 +158,25 @@ export class SampleAddComponent implements OnInit {
                 this.service.getService(api,params).subscribe(res => {
                     console.log(res);
                     for( let key in res.Records){
-                        this.Sample[key].Record_Value = res.Records[key].Record_Value;
+                        if(key.indexOf('time') == -1){
+                            this.Sample[key].Record_Value = res.Records[key].Record_Value;
+                        }else {
+                            this.Sample[key].Record_Value = new Date(res.Records[key].Record_Value);
+                        }
                         this.Sample[key].Updated_time = res.Records[key].Updated_time;
                     }
+                    this.data = this.Sample.user_info.Record_Value;
+                    this.Accdata = this.Sample.accident_info.Record_Value;
+                    this.tempEditObject = {};
+                    this.tempAccEditObject = {};
+                    this.data.forEach(item => {
+                        this.tempEditObject[ item.key] = {};
+                    });
+                    this.Accdata.forEach(item => {
+                        this.tempAccEditObject[ item.key] = {};
+                    });
+                    this.editRow = null;
+                    this.editRow1 = null;
                     // this.Sample = res.Records;
                     console.log(this.Sample);
                     this.loading = false;
@@ -212,7 +227,6 @@ export class SampleAddComponent implements OnInit {
             row: [null, [Validators.required ]],
             shelf: [null, [Validators.required ]],
             keeper:[null,[ ]]
-            // num: [null, [Validators.required, this.confirmationValidator]],
         });
     }
 
@@ -224,9 +238,85 @@ export class SampleAddComponent implements OnInit {
     //     }
     // }
 
+    edit(data) {
+        console.log(data);
+        console.log(this.tempEditObject);
+        this.tempEditObject[ data.key ] = { ...data };
+        console.log(this.tempEditObject);
+        // this.Sample.user_info.Record_Value[ data.key ] = { ...data };
+        this.editRow = data.key;
+    };
+    editAcc(data) {
+        console.log(data);
+        console.log(this.tempAccEditObject);
+        this.tempAccEditObject[ data.key ] = { ...data };
+        console.log(this.tempAccEditObject);
+        // this.Sample.user_info.Record_Value[ data.key ] = { ...data };
+        this.editRow1 = data.key;
+    }
+
+    save(data) {
+        console.log(data);
+        Object.assign(data, this.tempEditObject[ data.key ]);
+        // this.Sample.user_info.Record_Value = this.data;
+        this.Sample.user_info.Record_Value[data.key] = data;
+        // Object.assign(data, this.Sample.user_info.Record_Value[ data.key ]);
+        this.editRow = null;
+    }
+    saveAcc(data) {
+        console.log(data);
+        Object.assign(data, this.tempAccEditObject[ data.key ]);
+        // this.Sample.user_info.Record_Value = this.data;
+        this.Sample.accident_info.Record_Value[data.key] = data;
+        // Object.assign(data, this.Sample.user_info.Record_Value[ data.key ]);
+        this.editRow1 = null;
+    }
+
+    cancel(data,id) {
+        if(id === 0){
+            this.tempEditObject[ data.key ] = {};
+            this.editRow = null;
+        }else if(id == 1){
+            this.tempAccEditObject[ data.key ] = {};
+            this.editRow1 = null;
+        }
+    }
+
+    add(){
+        let i = this.data.length;
+        let newRecord = {
+            key:i,
+            user    : '',
+            use_count   : '',
+            use_time    : '',
+            usage: '',
+        };
+        this.data.push(newRecord);
+        this.tempEditObject[i] = { ...newRecord };
+        this.editRow = this.data.length-1;
+    }
+    addAcc(){
+        let i = this.Accdata.length;
+        let newRecord = {
+            key:i,
+            accident    : '',
+            acc_time   : '',
+            duration    : '',
+            resolvent: '',
+            influence: '',
+        };
+        this.Accdata.push(newRecord);
+        this.tempAccEditObject[i] = { ...newRecord };
+        this.editRow1 = this.Accdata.length-1;
+    }
+
     ngOnInit() {
         this.PID = this.route.params['value']['PID'];
+        this.read = this.PID;
         this.defineForm();
+        // this.data.forEach(item => {
+        //     this.tempEditObject[ item.key ] = {};
+        // });
         // console.log(this.newSample);
     }
     ngAfterViewInit(){
@@ -257,14 +347,14 @@ export class SampleAddComponent implements OnInit {
             }
         }
         console.log(this.validateForm.value);
-        if( !this.PID) {
+        if( !this.route.params['value']['PID']) {
+            console.log('添加新记录');
             const data = {
                 'Records': this.transfer(this.validateForm.value)
             };
-            this.service.putRecord(data).subscribe(res => {
-                console.log(res);
-            });
+            this.service.putRecord(data).subscribe(res => {console.log(res);});
         }else {
+            console.log('修改记录！');
             this.modify();
         }
         // this.resetForm();
@@ -283,13 +373,15 @@ export class SampleAddComponent implements OnInit {
             'Record_Value': formData['collect_count'] || '0',
             'Updated_time':''
         };
+        data['user_info'] = this.Sample.user_info;
+        data['accident_info'] = this.Sample.accident_info;
         console.log(data);
         return data;
     }
 
     modify(){
         const body = {
-            'PID':parseInt(this.PID),
+            'PID':parseInt(this.route.params['value']['PID']),
             'Records':{}
         };
         for(let key in this.Sample){
@@ -307,6 +399,7 @@ export class SampleAddComponent implements OnInit {
 
     correct(){
         this.read = !this.read;
+        this.PID = false;
     }
 
     getNowdate() {
@@ -317,5 +410,18 @@ export class SampleAddComponent implements OnInit {
         return str;
     }
 
+    // 时间格式转换
+    GMTToStr(time) {
+        console.log(time);
+        const date = new Date(time);
+        console.log(date);
+        const Str = date.getFullYear() + '-' +
+            (date.getMonth() + 1) + '-' +
+            date.getDate() + ' ' +
+            date.getHours() + ':' +
+            date.getMinutes() + ':' +
+            date.getSeconds();
+        console.log(Str);        return Str;
+    }
 }
 

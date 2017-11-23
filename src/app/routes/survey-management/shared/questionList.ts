@@ -152,8 +152,8 @@ export class QuestionList {
                 ],
                 'hiddenlist': [
                     [],
-                    ['1.9.a'],
-                    ['1.9.a']
+                    ['1.9.a', '1.9.b'],
+                    ['1.9.a', '1.9.b']
                 ],
                 'hidden': false,
                 'type': 'radio',
@@ -308,10 +308,10 @@ export class QuestionList {
                     '一年当中不分季节，基本上每周都饮 ->转至问题2.3'
                 ],
                 'hiddenlist': [
-                    ['2.3', '2.4', '2.5', '2.5.a', '2.6', '2.7'],
-                    ['2.3', '2.4', '2.5', '2.5.a', '2.6', '2.7'],
-                    ['2.3', '2.4', '2.5', '2.5.a', '2.6', '2.7'],
-                    ['2.3', '2.4', '2.5', '2.5.a', '2.6', '2.7'],
+                    [ ],
+                    [ ],
+                    [ ],
+                    [ ],
                     ['2.2'],
                 ],
                 'hidden': false,
@@ -514,7 +514,7 @@ export class QuestionList {
                     '否 ->转至问卷第四部分'
                 ],
                 'hiddenlist': [
-                    [],
+                    ['3.3', '3.4', '3.5'],
                     ['3.2.a', '3.2.b', '3.2.c', '3.3', '3.4', '3.5'],
                 ],
                 'hidden': false,
@@ -924,6 +924,7 @@ export class QuestionList {
                     ['6.4'],
                     [],
                     [],
+                    []
                 ],
                 'hidden': false,
                 'type': 'radio',
@@ -1143,7 +1144,8 @@ export class QuestionList {
                 ],
                 'hiddenlist': [
                     ['6.12.a', '6.12.b', '6.12.c'],
-                    ['6.12.a']
+                    ['6.12.a'],
+                    ['']
                 ],
                 'hidden': false,
                 'type': 'radio',
@@ -1638,7 +1640,7 @@ export class QuestionList {
                     [],
                     [],
                     [],
-                    ['8,2', '8.3', '8.1.o', '8.2.1', '8.2.2', '8.2.3', '8.2.4', '8.3.1', '8.3.2', '8.3.3', '8.3.4', '8.3.5', '8.4', '8.5']
+                    ['8.2', '8.3', '8.1.o', '8.2.1', '8.2.2', '8.2.3', '8.2.4', '8.3.1', '8.3.2', '8.3.3', '8.3.4', '8.3.5', '8.4', '8.5']
                 ],
                 'hidden': false,
                 'type': 'radio',
@@ -1677,7 +1679,8 @@ export class QuestionList {
                     '是'
                 ],
                 'hiddenlist': [
-                    ['8.2.1', '8.2.2', '8.2.3', '8.2.4']
+                    ['8.2.1', '8.2.2', '8.2.3', '8.2.4'],
+                    []
                 ],
                 'hidden': false,
                 'type': 'radio',
@@ -1986,15 +1989,15 @@ export class QuestionList {
                     {
                         'dataType': 'text',
                         'inform': '',
-                        'validType': 'twonum'
+                        'validType': 'other'
                     }
                 ],
                 'hiddenlist': [
-                    ['9.2', '9.2.a', '9.2.b', '9.3', '9.4', '9.5.a', '9.5.b', '9.5.c', '9.5.d', '9.6']
+                    ['9.2', '9.2.a', '9.2.b', '9.3', '9.3.a', '9.4', '9.5.a', '9.5.b', '9.5.c', '9.5.d', '9.6']
                 ],
                 'hidden': false,
                 'type': 'input',
-                'tittle': '你第一次来月经时的实足年龄是多大？（单位：岁；若记不清，请填0；若无，请转问题9.7）'
+                'tittle': '你第一次来月经时的实足年龄是多大？（单位：岁；若无，请填 # 并转问题9.7）'
             },
             {
                 'id': '9.2',
@@ -2066,7 +2069,7 @@ export class QuestionList {
                     {
                         'dataType': 'text',
                         'inform': '',
-                        'validType': 'twonum'
+                        'validType': 'other'
                     }
                 ],
                 'hiddenlist': [
@@ -2074,7 +2077,7 @@ export class QuestionList {
                 ],
                 'hidden': false,
                 'type': 'input',
-                'tittle': '到现在为止一共怀孕过多少次？（单位：次，若无，填0，并转至问题9.7）'
+                'tittle': '到现在为止一共怀孕过多少次？（单位：次，若无，填 #，并转至问题9.7）'
             },
             {
                 'id': '9.5.a',
@@ -2082,7 +2085,7 @@ export class QuestionList {
                     {
                         'dataType': 'text',
                         'inform': '',
-                        'validType': 'twonum'
+                        'validType': 'other'
                     }
                 ],
                 'hiddenlist': [
@@ -2090,7 +2093,7 @@ export class QuestionList {
                 ],
                 'hidden': false,
                 'type': 'input',
-                'tittle': '活产多少次？（单位：次，若无填0,并转9.7）'
+                'tittle': '活产多少次？（单位：次，若无填#,并转9.7）'
             },
             {
                 'id': '9.5.b',
@@ -2341,7 +2344,7 @@ export class QuestionList {
                     '是  ->转至问题10.7.a'
                 ],
                 'hiddenlist': [
-                    ['10.7.a'],
+                    ['10.7.a' , '10.7.b'],
                     []
                 ],
                 'hidden': false,
@@ -2429,6 +2432,9 @@ export class QuestionList {
                     '没有 ->转至问题10.16'
                 ],
                 'hidden': false,
+                'hiddenlist': [
+                    [  ], [ '10.13', '10.14', '10.15']
+                ] ,
                 'type': 'radio',
                 'tittle': '在过去一年里，您是否患上一些长期疾病？（注：长期疾病是指某一疾病已影响您已有一段很长的时间或您因某一疾病而有一段很长的时间已受到困扰）'
             },
@@ -2439,6 +2445,10 @@ export class QuestionList {
                     '没有 ->转至问题10.16'
                 ],
                 'hidden': false,
+                'hiddenlist': [
+                    [ ],
+                    [ '10.14', '10.15' ]
+                ],
                 'type': 'radio',
                 'tittle': '如有，您有否因这些疾病而限制了您的日常活动？'
             },

@@ -9,6 +9,7 @@ import { Page404Component } from './pages/404/404.component';
 import { Page500Component } from './pages/500/500.component';
 import { DashboardV1Component } from './dashboard/v1/v1.component';
 import { LoginAuthGuard } from '@core/services/login.guard.service';
+import { UserAuthGuard } from '@core/services/user.guard.service';
 
 export const routes = [
     {
@@ -16,7 +17,7 @@ export const routes = [
         component: LayoutComponent,
         canActivateChild: [LoginAuthGuard],
         children: [
-            { path: '', redirectTo: 'user/detail', pathMatch: 'full' },
+            { path: '', redirectTo: 'survey/detail', pathMatch: 'full' },
             { path: 'dashboard', redirectTo: 'dashboard/v1', pathMatch: 'full' },
             { path: 'dashboard/v1', component: DashboardV1Component, data: { translate: 'dashboard_v1' } },
             { path: 'widgets', loadChildren: './widgets/widgets.module#WidgetsModule' },
@@ -29,7 +30,9 @@ export const routes = [
             { path: 'extras', loadChildren: './extras/extras.module#ExtrasModule' },
             { path: 'survey', loadChildren: './survey-management/survey-management.module#SurveyManagementModule',
                 data: { title: 'survey'}},
-            { path: 'user', loadChildren: './user-management/user-management.module#UserManagementModule' },
+            { path: 'user',
+              canActivateChild: [UserAuthGuard],
+              loadChildren: './user-management/user-management.module#UserManagementModule' },
             { path: 'trace', loadChildren: './trace-management/trace-management.module#TraceManagementModule' },
             { path: 'sample', loadChildren: './sample-management/sample-management.module#SampleManagementModule' },
             { path: 'property', loadChildren: './property-management/property-management.module#PropertyManagementModule' },

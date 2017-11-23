@@ -8,50 +8,56 @@
         <form nz-form>
             <div nz-row nz-form-item [nzGutter]="16">
                 <div nz-form-label nz-col [nzSm]="2">
-                    <label for="name">条码</label>
+                    <label>编号</label>
                 </div>
                 <div nz-form-control nz-col [nzSm]="5">
-                    <nz-input [(ngModel)]="args.name" name="name" [nzId]="'name'"></nz-input>
+                    <nz-input [(ngModel)]="conditions.filter.number" name="number" [nzId]="'number'" [nzPlaceHolder]="'样本编号'"></nz-input>
                 </div>
                 <div nz-form-label nz-col [nzSm]="2">
-                    <label>录入日期</label>
+                    <label>来源人</label>
+                </div>
+                <div nz-form-control nz-col [nzSm]="5">
+                    <nz-input [(ngModel)]="conditions.filter.owner" name="owner" [nzId]="'owner'" [nzPlaceHolder]="'样本来源人'"></nz-input>
+                </div>
+                <div nz-form-label nz-col [nzSm]="2">
+                    <label>采集日期</label>
                 </div>
                 <div nz-form-control nz-col [nzSm]="8">
                     <div nz-row>
-                        <div nz-form-control nz-col [nzSpan]="11">
-                            <nz-datepicker [(ngModel)]="args.created_begin" name="created_begin" [nzPlaceHolder]="'begin'"></nz-datepicker>
+                        <div nz-form-control nz-col [nzSpan]="6">
+                            <nz-datepicker [(ngModel)]="start_time" name="created_begin" [nzPlaceHolder]="'开始日期'"></nz-datepicker>
                         </div>
                         <div nz-col [nzSpan]="1">
                             <p nz-form-split>-</p>
                         </div>
-                        <div nz-form-control nz-col [nzSpan]="11">
-                            <nz-datepicker [(ngModel)]="args.created_end" name="created_end" [nzPlaceHolder]="'end'"></nz-datepicker>
+                        <div nz-form-control nz-col [nzSpan]="6">
+                            <nz-datepicker [(ngModel)]="end_time" name="created_end" [nzPlaceHolder]="'结束日期'"></nz-datepicker>
                         </div>
                     </div>
                 </div>
-                <div nz-form-label nz-col [nzSm]="2">
-                    <label>性别</label>
-                </div>
-                <div nz-form-control nz-col [nzSm]="5">
-                    <nz-dropdown>
-                        <a class="ant-dropdown-link" nz-dropdown>
-                            {{args.gender ? args.gender : '不限'}} <i class="anticon anticon-down"></i>
-                        </a>
-                        <ul nz-menu>
-                            <li nz-menu-item (click)="args.gender=''">不限</li>
-                            <li nz-menu-item (click)="args.gender='男'">男</li>
-                            <li nz-menu-item (click)="args.gender='女'">女</li>
-                        </ul>
-                    </nz-dropdown>
-                    <span class="text-grey-light">(only valid)</span>
-                </div>
+                <!--<div nz-form-label nz-col [nzSm]="2">-->
+                    <!--<label>性别</label>-->
+                <!--</div>-->
+                <!--<div nz-form-control nz-col [nzSm]="5">-->
+                    <!--<nz-dropdown>-->
+                        <!--<a class="ant-dropdown-link" nz-dropdown>-->
+                            <!--{{args.gender ? args.gender : '不限'}} <i class="anticon anticon-down"></i>-->
+                        <!--</a>-->
+                        <!--<ul nz-menu>-->
+                            <!--<li nz-menu-item (click)="args.gender=''">不限</li>-->
+                            <!--<li nz-menu-item (click)="args.gender='男'">男</li>-->
+                            <!--<li nz-menu-item (click)="args.gender='女'">女</li>-->
+                        <!--</ul>-->
+                    <!--</nz-dropdown>-->
+                    <!--<span class="text-grey-light">(only valid)</span>-->
+                <!--</div>-->
             </div>
             <div nz-row nz-form-item [nzGutter]="16" class="mb0">
                 <div nz-form-label nz-col [nzSm]="2">
-                    <label for="userid">省份</label>
+                    <label>省份</label>
                 </div>
                 <div nz-form-control nz-col [nzSm]="5">
-                    <nz-input [(ngModel)]="args.userid" name="userid" [nzId]="'userid'" [nzPlaceHolder]="'placeholder'"></nz-input>
+                    <nz-input [(ngModel)]="conditions.filter.repository" name="repository" [nzId]="'repository'" [nzPlaceHolder]="'样本采集省份'"></nz-input>
                 </div>
                 <!--<div nz-form-label nz-col [nzSm]="2">-->
                     <!--<label>录入日期</label>-->
@@ -70,15 +76,15 @@
                     <!--</div>-->
                 <!--</div>-->
                 <div nz-form-label nz-col [nzSm]="2">
-                    <label>样本细类</label>
+                    <label>样本类型</label>
                 </div>
                 <div nz-form-control nz-col [nzSm]="5">
                     <nz-dropdown>
                         <a class="ant-dropdown-link" nz-dropdown>
-                            {{args.blood ? args.blood : '全血'}} <i class="anticon anticon-down"></i>
+                            {{conditions.filter.type ? conditions.filter.type : '不限'}} <i class="anticon anticon-down"></i>
                         </a>
                         <ul nz-menu>
-                            <li nz-menu-item (click)="args.blood='全血'">全血</li>
+                            <li nz-menu-item (click)="conditions.filter.type='全血'">全血</li>
                             <li nz-menu-item (click)="args.blood='血浆'">血浆</li>
                             <li nz-menu-item (click)="args.blood='白膜层'">白膜层</li>
                         </ul>
@@ -86,7 +92,7 @@
                     <span class="text-grey-light">(only valid)</span>
                 </div>
                 <div nz-col [nzSm]="5" [nzOffset]="2">
-                    <button nz-button [nzType]="'primary'" (click)="load(1)" [nzLoading]="loading">检索</button>
+                    <button nz-button [nzType]="'primary'" (click)="load()" [nzLoading]="loading">检索</button>
                     <button nz-button (click)="clear()" [disabled]="loading">取消检索</button>
                 </div>
             </div>

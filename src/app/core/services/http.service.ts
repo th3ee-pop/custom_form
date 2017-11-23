@@ -3,7 +3,6 @@ import { Injectable, Injector } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import * as moment from 'moment';
 
 import { TokenService } from '../net/token/token.service';
@@ -140,8 +139,15 @@ export class HttpService {
      }]
      }
      */
-    getPatientList(): Observable<any> {
-        return this.http.get(this.baseUrl + '/healthexamination/recordlist/', this.options)
+    getPatientList(conditions): Observable<any> {
+
+        const body = {
+            'filter_dict': conditions.filter,
+            'sorted_key': conditions.sorted_key,
+            'start': conditions.start,
+            'offset': conditions.offset
+        };
+        return this.http.post(this.baseUrl + '/healthexamination/recordlist/', JSON.stringify(body))
             .do(() => {} )
             .catch((res) => {
                 console.log(res);
@@ -162,6 +168,79 @@ export class HttpService {
                 return res;
             });
     }
+
+    /**
+     * 获取所有文件信息
+     * @returns {Observable<R|T>}
+     * {
+      "Files": [{
+            "id": 9,
+            "Name": "health.xls",
+            "Created_user": "",
+            "Updated_time": "2017-11-21 16:02:03.168667"
+        },
+        {
+            "id": 10,
+            "Name": "health.xls",
+            "Created_user": "",
+            "Updated_time": "2017-11-21 16:02:04.169766"
+        }],
+      "Count": 2,
+      "Return": 0
+     }
+     */
+    getFileList(): Observable<any> {
+        return this.http.get(this.baseUrl + '/filesystem/filelist/', this.options)
+            .do(() => {} )
+            .catch((res) => {
+                console.log(res);
+                return res;
+            });
+    }
+
+    /**
+     * 下载文件
+     * @param downloadId  {"id":3}
+     * @returns {Observable<any>}
+     */
+    downloadFile(downloadId): Observable<any> {
+        return this.Http.get(this.baseUrl + '/filesystem/fileop/', {
+            params: this.getParams(downloadId),
+            responseType: 3,
+            headers: new Headers({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
+        })
+            .do((res) => {
+            console.log(res);
+            })
+            .map(res => res.blob())
+            .catch((res) => {
+                console.log(res);
+                return res;
+            });
+    }
+
+    /**
+     * 删除文件
+     * @param deleteId
+     * @returns {Observable<any>}
+     */
+    deleteFile(deleteId): Observable<any> {
+        return this.Http.delete(this.baseUrl + '/filesystem/fileop/', {
+            body: deleteId,
+            headers: new Headers({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
+        })
+            .do(() => {
+                console.log('delete!');
+            } )
+            .catch((res) => {
+                console.log(res);
+                return res;
+            });
+    }
+
+    /**
+     * 上传文件：没有使用
+     */
 
     /**
      * 登录，并将token添加到localstorage中
@@ -231,6 +310,30 @@ export class HttpService {
             .catch((res) => {
             return res;
         });
+    }
+
+    /**
+     * 用例参照思睿师兄写的getUser
+     * @param api
+     * @param conditions
+     * @returns {Observable<R|T>}
+     */
+    getList(api, conditions) {
+        const body = {
+            'filter_dict': conditions.filter,
+            'sorted_key': conditions.sorted_key,
+            'start': conditions.start,
+            'offset': conditions.offset
+        };
+        // const api = '/account/userlist/';
+        console.log(conditions);
+        return this.http.post(this.baseUrl + api, JSON.stringify(body))
+            .do((res: any) => {
+                console.log(res);
+            })
+            .catch((res) => {
+                return res;
+            });
     }
 
 

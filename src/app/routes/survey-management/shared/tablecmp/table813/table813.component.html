@@ -1,57 +1,60 @@
-<div nz-row>
-    <div nz-col>
-        <nz-card>
-            <ng-template #title>
-                <label nz-form-item-required >8.13 在过去一年里，你多久进行一次如下坐立活动？</label>
-            </ng-template>
-            <ng-template #body>
-                <form nz-form [nzLayout]="'inline'" >
-                    <div nz-form-control nz-col [nzSm]="20">
-                        <nz-table>
-                            <thead nz-thead>
-                            <tr>
-                                <th nz-th><span>活动名称</span></th>
-                                <th nz-th><span>每天</span></th>
-                                <th nz-th><span>4-6次/周</span></th>
-                                <th nz-th><span>1-3次/周</span></th>
-                                <th nz-th><span>1-3次/月</span></th>
-                                <th nz-th><span>从不或者几乎不</span></th>
-                                <th nz-th><span>每天多长时间？</span></th>
-                            </tr>
-                            </thead>
+<div [hidden]="question.hidden">
+    <div nz-row >
+        <div nz-col>
+            <nz-card>
+                <ng-template #title>
+                    <label nz-form-item-required >8.13 在过去一年里，你多久进行一次如下坐立活动？</label>
+                </ng-template>
+                <ng-template #body>
+                    <form nz-form [nzLayout]="'inline'" >
+                        <div nz-form-control nz-col [nzSm]="20">
+                            <nz-table>
+                                <thead nz-thead>
+                                <tr>
+                                    <th nz-th><span>活动名称</span></th>
+                                    <th nz-th><span>每天</span></th>
+                                    <th nz-th><span>4-6次/周</span></th>
+                                    <th nz-th><span>1-3次/周</span></th>
+                                    <th nz-th><span>1-3次/月</span></th>
+                                    <th nz-th><span>从不或者几乎不</span></th>
+                                    <th nz-th><span>每天多长时间？</span></th>
+                                </tr>
+                                </thead>
 
-                            <tbody nz-tbody>
-                            <tr nz-tbody-tr *ngFor="let activityName of activityNames,index as i">  <!--根据活动名称生成每一行数据-->
-                                <td nz-td>{{activityName}}</td>
+                                <tbody nz-tbody>
+                                <tr nz-tbody-tr *ngFor="let activityName of activityNames,index as i">  <!--根据活动名称生成每一行数据-->
+                                    <td nz-td>{{activityName}}</td>
 
-                                <td nz-td >
-                                    <label nz-checkbox [(ngModel)]="localAnswer[i][0]" [nzDisabled]="editdisabled" (ngModelChange)="radioChange(i,0)" [ngModelOptions]="{standalone: true}"></label>
-                                </td>
-                                <td nz-td>
-                                    <label nz-checkbox [(ngModel)]="localAnswer[i][1]" [nzDisabled]="editdisabled" (ngModelChange)="radioChange(i,1)" [ngModelOptions]="{standalone: true}"></label>
-                                </td>
-                                <td nz-td>
-                                    <label nz-checkbox [(ngModel)]="localAnswer[i][2]" [nzDisabled]="editdisabled" (ngModelChange)="radioChange(i,2)" [ngModelOptions]="{standalone: true}"></label>
-                                </td>
-                                <td nz-td>
-                                    <label nz-checkbox [(ngModel)]="localAnswer[i][3]" [nzDisabled]="editdisabled" (ngModelChange)="radioChange(i,3)" [ngModelOptions]="{standalone: true}"></label>
-                                </td>
-                                <td nz-td>
-                                    <label nz-checkbox [(ngModel)]="localAnswer[i][4]" [nzDisabled]="editdisabled" (ngModelChange)="radioChange(i,4)" [ngModelOptions]="{standalone: true}"></label>
-                                </td>
+                                    <td nz-td >
+                                        <label nz-checkbox [(ngModel)]="localAnswer[i][0]" [nzDisabled]="editdisabled" (ngModelChange)="radioChange(i,0)" [ngModelOptions]="{standalone: true}"></label>
+                                    </td>
+                                    <td nz-td>
+                                        <label nz-checkbox [(ngModel)]="localAnswer[i][1]" [nzDisabled]="editdisabled" (ngModelChange)="radioChange(i,1)" [ngModelOptions]="{standalone: true}"></label>
+                                    </td>
+                                    <td nz-td>
+                                        <label nz-checkbox [(ngModel)]="localAnswer[i][2]" [nzDisabled]="editdisabled" (ngModelChange)="radioChange(i,2)" [ngModelOptions]="{standalone: true}"></label>
+                                    </td>
+                                    <td nz-td>
+                                        <label nz-checkbox [(ngModel)]="localAnswer[i][3]" [nzDisabled]="editdisabled" (ngModelChange)="radioChange(i,3)" [ngModelOptions]="{standalone: true}"></label>
+                                    </td>
+                                    <td nz-td>
+                                        <label nz-checkbox [(ngModel)]="localAnswer[i][4]" [nzDisabled]="editdisabled" (ngModelChange)="radioChange(i,4)" [ngModelOptions]="{standalone: true}"></label>
+                                    </td>
 
-                                <td nz-td>
+                                    <td nz-td>
                                         <span>
                                             <nz-input-number [nzMin]="0" [nzMax]="24" [(ngModel)]="time[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
                                         </span>
-                                    小时/天
-                                </td>
-                            </tr>
-                            </tbody>
-                        </nz-table>
-                    </div>
-                </form>
-            </ng-template>
-        </nz-card>
+                                        小时/天
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </nz-table>
+                        </div>
+                    </form>
+                </ng-template>
+            </nz-card>
+        </div>
     </div>
+
 </div>

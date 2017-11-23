@@ -99,6 +99,24 @@ export class BiologyService {
             });
     }
 
+    getList(conditions) {
+        const body = {
+            'filter_dict': conditions.filter,
+            'sorted_key': conditions.sorted_key,
+            'start': conditions.start,
+            'offset': conditions.offset
+        };
+        const api = '/biology/recordlist/';
+        console.log(conditions);
+        return this.http.post(this.baseUrl + api, JSON.stringify(body))
+            .do((res: any) => {
+                console.log(res);
+            })
+            .catch((res) => {
+                return res;
+            });
+    }
+
     // deleteService(api, params?: any): Observable<any> {
     //     return this.Http.delete(this.baseUrl + api, {
     //         body： params || '',

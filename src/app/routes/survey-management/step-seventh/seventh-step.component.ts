@@ -25,26 +25,65 @@ export class SeventhStepComponent implements OnInit, AfterViewInit {
     @ViewChildren(Table74Component) Table74Item: QueryList<Table74Component>;
     @ViewChildren(Table715Component) Table715Item: QueryList<Table715Component>;
     current = 6;                                        // 当前步骤
-    questionList = new QuestionList().questions[this.current];     // 问题总列表
     schedule_list =  new ScheduleList().schedule_list;  // 步骤列表
     resultList = [];                                    // 填写结果
     PID = '';
     finished = false;
     answerList = [];
     buttondisable = false;
+    questionSave = [];
+    questionList = [];
     localInfo = JSON.parse(localStorage.getItem('_user'));
     constructor(
         private router: Router,
         private route: ActivatedRoute,
         private service: HttpService,
         private confirmServ: NzModalService
-    ) {}
+    ) {
+        this.PID = this.route.params['value']['PID'];
+        if ( this.PID) {
+            const getRecord = {
+                'PID': this.PID,
+                'RecordID': 'ID7'
+            };
+            this.service.getRecord(getRecord).subscribe( (res) => {
+                const list = res.Records;
+                this.answerList = list;
+                for ( let i = 0; i < list.length; i++) {
+                    if ( list[i]['ID0_0'] && list[i]['ID0_0'] !== '') {
+                        this.questionList = list[i]['ID0_0'][6];
+                        this.questionSave = list[i]['ID0_0'];
+                        break;
+                    }
+                }
+            });
+        }
+    }
 
     ngOnInit() {
-        this.PID = this.route.params['value']['PID'];
+
     }
     ngAfterViewInit() {
         this.fillingAllanswer();
+    }
+    onVoted (showAndhidden: any) {
+        console.log('事件出发');
+        for ( let i = 0; i <  showAndhidden.hiddenshowlist.length; i++) {
+            for ( let j = 0; j < this.questionList.length; j++) {
+                if ( this.questionList[j].id === showAndhidden.hiddenshowlist[i] ) {
+                    this.questionList[j]['hidden'] = false;
+                }
+            }
+        }
+        for (let i = 0; i < showAndhidden.hiddenlist.length; i++) {
+            for ( let j = 0; j < this.questionList.length; j++) {
+                if ( this.questionList[j].id === showAndhidden.hiddenlist[i] ) {
+                    console.log(this.questionList[j]);
+                    this.questionList[j]['hidden'] = true;
+                    console.log(this.questionList[j]);
+                }
+            }
+        }
     }
     pre() {                                             // 上一步
         this.collectAllanswer();
@@ -58,8 +97,12 @@ export class SeventhStepComponent implements OnInit, AfterViewInit {
             this.collectAllanswer();
             const putRecord = { 'Records': this.resultList, 'PID': this.PID};
             this.service.putRecord(putRecord).subscribe( (res) => {
-                console.log(res);
-                this.router.navigate(['/survey/eighth_step/' + this.PID]);
+                if ( res.Return === 0)
+                    this.router.navigate(['/survey/eighth_step/' + this.PID]);
+                else this.confirmServ.error( {
+                    title: '未知错误',
+                    content: '请联系开发人员'
+                });
             }, error => {
                 console.log(error);
             });
@@ -124,14 +167,19 @@ export class SeventhStepComponent implements OnInit, AfterViewInit {
     confirm() {
         const confirmlist = [];
         let confirms = true;
-        this.InputItems.forEach(item => { if (item.answerChanged === false) { confirms = false; confirmlist.push(item.question.id);
+        this.InputItems.forEach(item => { if ( item.question.hidden === false && item.answerChanged === false) {
+            confirms = false; confirmlist.push(item.question.id);
         }});
-        this.RadioItems.forEach(item => { if (item.localAnswer === -1) { confirms = false; confirmlist.push(item.question.id);
+        this.RadioItems.forEach(item => { if ( item.question.hidden === false && item.localAnswer === -1) {
+            confirms = false; confirmlist.push(item.question.id);
         }});
-        this.CheckboxItem.forEach(item => { if ( !item.localAnswer) { confirms = false; confirmlist.push(item.question.id);
+        this.CheckboxItem.forEach(item => { if ( item.question.hidden === false && !item.localAnswer) {
+            confirms = false; confirmlist.push(item.question.id);
         }});
-        this.Table74Item.forEach( item => { if ( !item.answerCheck() ) { confirms = false; confirmlist.push(item.question.id); }});
-        this.Table715Item.forEach( item => { if ( !item.answerCheck() ) { confirms = false; confirmlist.push(item.question.id); }});
+        this.Table74Item.forEach( item => { if ( item.question.hidden === false && !item.answerCheck() ) {
+            confirms = false; confirmlist.push(item.question.id); }});
+        this.Table715Item.forEach( item => { if ( item.question.hidden === false && !item.answerCheck() ) {
+            confirms = false; confirmlist.push(item.question.id); }});
         const confirmAll = {
             confirms: confirms,
             confirmList: confirmlist
@@ -153,18 +201,21 @@ export class SeventhStepComponent implements OnInit, AfterViewInit {
             }
         );
         this.Table715Item.forEach( item => {
-            if ( item.answerCheck() ) for ( let i = 0; i < item.answer.length; i++) { this.resultList.push(item.answer[i]); }
+                if ( item.answerCheck() ) for ( let i = 0; i < item.answer.length; i++) { this.resultList.push(item.answer[i]); }
             }
         );
-        if (this.confirm().confirms)
+        if (this.confirm().confirms) {
+            this.questionSave[6] = this.questionList;
             this.resultList.push(
                 {'Record_ID': 'ID0_4', 'Record_Value': this.getNowdate()},
-                {'Record_ID': 'ID7', 'Record_Value': 'finished'});
-        else {
+                {'Record_ID': 'ID7', 'Record_Value': 'finished'},
+                {'Record_ID': 'ID0_0', 'Record_Value': this.questionSave });
+        } else {
             this.resultList.push(
                 {'Record_ID': 'ID0_4', 'Record_Value': this.getNowdate()},
                 {'Record_ID': 'ID7', 'Record_Value': ''},
-                {'Record_ID': 'ID0_2', 'Record_Value': '未完成'});
+                {'Record_ID': 'ID0_2', 'Record_Value': '未完成'},
+                {'Record_ID': 'ID0_0', 'Record_Value': this.questionSave });
         }
         for ( let i = 0; i < this.answerList.length; i ++) {
             for ( let j = 0; j < this.resultList.length; j++) {
