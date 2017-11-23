@@ -3,6 +3,7 @@ import { NzMessageService,NzModalService } from 'ng-zorro-antd';
 import { Router } from '@angular/router';
 import { ModelCustomComponent } from './custom.component';
 import { BiologyService } from '../biology.service';
+import { FileDownloadService } from '@core/services/fileDownload.service';
 
 @Component({
     selector: 'app-sample-form',
@@ -20,6 +21,7 @@ export class SampleFormComponent implements OnInit {
     _allChecked = false;
     start_time = '';
     end_time = '';
+    options;
 
     _manager = true;
 
@@ -106,7 +108,12 @@ export class SampleFormComponent implements OnInit {
         this._indeterminate = this._allChecked ? false : checkedCount > 0;
     }
 
-    constructor(private message: NzMessageService,private router: Router,private modal: NzModalService,private service: BiologyService) {
+    constructor(
+        private message: NzMessageService,
+        private router: Router,
+        private modal: NzModalService,
+        private service: BiologyService,
+        private fileDownloader: FileDownloadService,) {
     }
 
     ngOnInit() {
@@ -117,18 +124,17 @@ export class SampleFormComponent implements OnInit {
         this.message.info(msg);
     }
 
-    confirmModel(contentTpl) {
-        this.modal.open({
-            title: '详细信息',
-            content: contentTpl,
-            okText: '关闭',
-            cancelText: '查看详情',
-            // onOk: () => {
-            //     this.message.success('关闭');
-            // },
-            onCancel: () => {
-                this.message.info('跳转到相应页面');
-            }
+    confirmModel(PID) {
+        console.log(PID);
+        this.service.getBasicInfo(PID).subscribe(res => {
+            const info = res.basic_info;
+            this.options = {
+                wrapClassName: '',
+                content: ModelCustomComponent,
+                footer: false,
+                componentParams: info
+            };
+            this.modal.open(this.options).subscribe(result => {});
         });
     }
 
@@ -144,6 +150,25 @@ export class SampleFormComponent implements OnInit {
             this.router.navigate(['sample/add/' + id]);
         }else {
             this.router.navigate(['sample/add']);
+        }
+    }
+
+    download(PID?){
+        const filePath = 'biology/exportcsv/';
+        if(!PID){
+            console.log(this.list);
+            const PIDs = [];
+            this.list.forEach(item => {
+                if(item.checked){
+                    console.log(item);
+                    PIDs.push(item.PID);
+                }
+            })
+            const fileName = PIDs.length + '个生物样本集.csv';
+            this.fileDownloader.downloadFile(filePath, {'PID': PIDs}, fileName);
+        }else {
+            const fileName = '生物样本' + PID + '.csv';
+            this.fileDownloader.downloadFile(filePath, {'PID': [PID]}, fileName);
         }
     }
 
@@ -182,5 +207,13 @@ export class SampleFormComponent implements OnInit {
             date.getMinutes() + ':' +
             date.getSeconds();
         return Str;
+    }
+
+    sort(title, value) {
+        console.log(value);
+        if (value === 'ascend')
+            this.conditions.sorted_key = title;
+        else this.conditions.sorted_key = '-' + title;
+        this.load();
     }
 }

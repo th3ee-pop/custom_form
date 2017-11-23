@@ -57,7 +57,24 @@
                             <label nz-form-item-required>来源人</label>
                         </div>
                         <div nz-form-control nz-col [nzSm]="5">
-                            <nz-input formControlName="owner" [(ngModel)] = 'Sample.owner.Record_Value' [nzReadonly]="read" [nzDisabled]="read"  ></nz-input>
+                            <!--<nz-input formControlName="owner" [(ngModel)] = 'Sample.owner.Record_Value' [nzReadonly]="read"  ></nz-input>-->
+                            <nz-select
+                                formControlName="owner"
+                                [nzDisabled]="read"
+                                style="width: 200px;"
+                                nzAllowClear
+                                [nzPlaceHolder]="'输入来源人编号'"
+                                [nzFilter]="false"
+                                [(ngModel)]="Sample.owner.Record_Value"
+                                (nzSearchChange)="searchChange($event)"
+                                [nzNotFoundContent]="'无法找到'"
+                                [nzShowSearch]="true">
+                                <nz-option
+                                    *ngFor="let option of searchOptions"
+                                    [nzLabel]="option"
+                                    [nzValue]="option">
+                                </nz-option>
+                            </nz-select>
                         </div>
                     </div>
                     <div nz-form-item nz-row>
@@ -203,30 +220,6 @@
                         </div>
                     </div>
                     <div nz-form-item nz-row></div>
-                    <!--<div nz-form-item nz-row>-->
-                        <!--<div  nz-form-control nz-col [nzSm]="20" [nzOffset]="2">-->
-                        <!--<nz-table >-->
-                            <!--<thead nz-thead>-->
-                            <!--<tr>-->
-                                <!--<th nz-th><span>意外事件</span></th>-->
-                                <!--<th nz-th><span>日期</span></th>-->
-                                <!--<th nz-th><span>时长</span></th>-->
-                                <!--<th nz-th><span>解决方法</span></th>-->
-                                <!--<th nz-th><span>影响</span></th>-->
-                            <!--</tr>-->
-                            <!--</thead>-->
-                            <!--<tbody nz-tbody>-->
-                            <!--<tr nz-tbody-tr *ngFor="let item of Sample.accident_info, index as i">-->
-                                <!--<td nz-td>{{item.accident}}</td>-->
-                                <!--<td nz-td>{{item.acc_time}}</td>-->
-                                <!--<td nz-td>{{item.duration}}</td>-->
-                                <!--<td nz-td>{{item.resolvent}}</td>-->
-                                <!--<td nz-td>{{item.influence}}</td>-->
-                            <!--</tr>-->
-                            <!--</tbody>-->
-                        <!--</nz-table>-->
-                    <!--</div>-->
-                    <!--</div>-->
                 </form>
                 <div nz-row>
                     <div nz-col [nzSm]="18" [nzOffset]="3">
@@ -270,8 +263,6 @@
                                     <span *ngIf="editRow!== i && !read">
                                         <a (click)="edit(item)">编辑</a>
                                     </span>
-                                    <!--<span *ngIf="i==Sample.user_info.length-1">-->
-                                    <!--</span>-->
                                     <span *ngIf="editRow===i">
                                         <a (click)="save(item)">保存</a>
                                         <span nz-table-divider></span>
@@ -334,8 +325,6 @@
                                     <span *ngIf="editRow1!== i && !read">
                                         <a (click)="editAcc(item)">编辑</a>
                                     </span>
-                                    <!--<span *ngIf="i==Sample.user_info.length-1">-->
-                                    <!--</span>-->
                                     <span *ngIf="editRow1===i">
                                         <a (click)="saveAcc(item)">保存</a>
                                         <span nz-table-divider></span>

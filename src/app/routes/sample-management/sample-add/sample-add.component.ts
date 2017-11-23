@@ -132,6 +132,8 @@ export class SampleAddComponent implements OnInit {
     PID;
     loading = false;
     read: boolean;
+    searchOptions = [];
+
     data;
     tempEditObject;
     Accdata;
@@ -238,6 +240,15 @@ export class SampleAddComponent implements OnInit {
     //     }
     // }
 
+    searchChange(searchText) {
+        const api = '/healthexamination/autono/';
+        const params = {'number': searchText};
+        this.service.getService( api, params ).subscribe( res => {
+            console.log(res);
+            this.searchOptions = res.number_list;
+        })
+    }
+
     edit(data) {
         console.log(data);
         console.log(this.tempEditObject);
@@ -314,17 +325,12 @@ export class SampleAddComponent implements OnInit {
         this.PID = this.route.params['value']['PID'];
         this.read = this.PID;
         this.defineForm();
-        // this.data.forEach(item => {
-        //     this.tempEditObject[ item.key ] = {};
-        // });
-        // console.log(this.newSample);
     }
     ngAfterViewInit(){
         this.load(this.PID);
     }
 
     getFormControl(name) {
-        // console.log(this.validateForm.controls[name]);
         return this.validateForm.controls[name];
     }
 
@@ -392,9 +398,7 @@ export class SampleAddComponent implements OnInit {
             }
         }
         console.log(body);
-        this.service.putRecord(body).subscribe(res => {
-            console.log(res);
-        });
+        this.service.putRecord(body).subscribe(res => {console.log(res);});
     }
 
     correct(){
@@ -421,7 +425,8 @@ export class SampleAddComponent implements OnInit {
             date.getHours() + ':' +
             date.getMinutes() + ':' +
             date.getSeconds();
-        console.log(Str);        return Str;
+        console.log(Str);
+        return Str;
     }
 }
 
