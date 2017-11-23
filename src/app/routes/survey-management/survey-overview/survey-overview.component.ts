@@ -31,7 +31,7 @@ export class SurveyOverviewComponent implements OnInit {
     _allChecked = false;
     start_time = '';
     end_time = '';
-    list = [];
+    data = [];
     nowuser = JSON.parse(localStorage.getItem('_user'));
 
     // 所有的过滤条件在这个对象里添加
@@ -60,8 +60,8 @@ export class SurveyOverviewComponent implements OnInit {
         this._allChecked = false;
         this._indeterminate = false;
         this.service.getPatientList(conditions).subscribe( (res) => {
-            this.list = res.PID_info;
-            console.log(this.list);
+            this.data = res.PID_info;
+            console.log(this.data);
             this.loading = false;
            // this.total = res.Count_total;
         });
@@ -86,7 +86,7 @@ export class SurveyOverviewComponent implements OnInit {
     }
 
     /**
-     * 
+     *
      * @param PID 根据pid下载单个数据
      */
     downloadByPID(PID) {
