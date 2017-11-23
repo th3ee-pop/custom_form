@@ -66,7 +66,8 @@ export class SurveyOverviewComponent implements OnInit {
     downloadByPID(PID) {
         const filePath = 'healthexamination/exportcsv/';
         const fileName = 'PID' + PID + '.csv';
-        this.fileDownloader.downloadFile(filePath, {'PID': PID}, fileName);
+        const PIDs = [PID];  // 单个元素
+        this.fileDownloader.downloadFile(filePath, {'PID_list': [PID]}, fileName);
     }
 
     /**
@@ -77,7 +78,7 @@ export class SurveyOverviewComponent implements OnInit {
             return item.PID;
         });
         const filePath = 'healthexamination/exportcsv/';
-        this.fileDownloader.downloadFile(filePath, {'PID': PIDs}, 'All.csv');
+        this.fileDownloader.downloadFile(filePath, {'PID_list': PIDs}, 'All.csv');
     }
 
 
