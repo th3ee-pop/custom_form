@@ -12,7 +12,7 @@ import { FileDownloadService } from '@core/services/fileDownload.service';
 export class SampleFormComponent implements OnInit {
 
     pi = 1;
-    ps = 5;
+    ps = 10;
     total = 200; // mock total
     list = [];
     loading = false;
@@ -51,7 +51,7 @@ export class SampleFormComponent implements OnInit {
     // 所有的过滤条件在这个对象里添加
     conditions = {
         'filter': {
-            'date_joined': []
+            'collect_time': []
         },
         'sorted_key': 'number',
         'start': (this.pi - 1) * this.ps,
@@ -76,9 +76,10 @@ export class SampleFormComponent implements OnInit {
                         console.log(item);
                         item.checked = false;
                         item.repository = this.province[item.repository];
+                        item.collect_time = this.GMTToStr(item.collect_time);
                         item.type = this.type[item.type];
                         item.blood_type = this.blood_type[item.blood_type];
-                        // item.date_joined = item.date_joined.substring(0, 19);
+                        // item.collect_time = item.collect_time.substring(0, 19);
                     });
                 }
                 return data;
@@ -92,10 +93,13 @@ export class SampleFormComponent implements OnInit {
     }
 
     clear() {
+        console.log(this.conditions);
         for (const key in this.conditions.filter) {
             if (this.conditions.filter[key])
                 delete this.conditions.filter[key];
         }
+        this.start_time = '';
+        this.end_time = '';
         this.load();
     }
 
@@ -186,11 +190,13 @@ export class SampleFormComponent implements OnInit {
     // 时间设置
     setTime() {
         if (this.start_time === '' || this.end_time === '') {
-            delete this.conditions.filter.date_joined;
+            delete this.conditions.filter.collect_time;
         } else {
-            this.conditions.filter.date_joined = [];
-            this.conditions.filter.date_joined.push(this.GMTToStr(this.start_time));
-            this.conditions.filter.date_joined.push(this.GMTToStr(this.end_time));
+            this.conditions.filter.collect_time = [];
+            // this.conditions.filter.collect_time.push(this.GMTToStr(this.start_time));
+            this.conditions.filter.collect_time.push(this.start_time);
+            // this.conditions.filter.collect_time.push(this.GMTToStr(this.end_time));
+            this.conditions.filter.collect_time.push(this.end_time);
         }
     }
 
