@@ -58,14 +58,26 @@ export class SurveyOverviewComponent implements OnInit {
             return data.completedBy === this.loggedUser;
         }
     }
+
+    /**
+     * 
+     * @param PID 根据pid下载单个数据
+     */
     downloadByPID(PID) {
         const filePath = 'healthexamination/exportcsv/';
         const fileName = 'PID' + PID + '.csv';
         this.fileDownloader.downloadFile(filePath, {'PID': PID}, fileName);
     }
+
+    /**
+     * 下载当前页面所有记录
+     */
     downloadAll() {
+        const PIDs = this.data.map(item => {  // 遍历读取表格中的pid，并合成list
+            return item.PID;
+        });
         const filePath = 'healthexamination/exportcsv/';
-        this.fileDownloader.downloadFile(filePath, {}, 'All.csv');
+        this.fileDownloader.downloadFile(filePath, {'PID': PIDs}, 'All.csv');
     }
 
 
