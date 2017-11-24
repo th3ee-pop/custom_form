@@ -9,6 +9,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
 import { environment } from '../../../../environments/environment';
+import {NzMessageService} from "ng-zorro-antd";
 
 /**
  * TOKEN拦截器，其注册细节见 `app.module.ts`
@@ -30,13 +31,12 @@ export class TokenInterceptor implements HttpInterceptor {
         if (!req.url.includes('auth/') && !req.url.includes('assets/') && !req.url.includes('login/')) {
             // 可以进一步处理，比如：重新刷新或重新登录
             const authData = this.injector.get(TokenService).data;
-            console.log(authData);
+            // console.log(authData);
             if (!authData.access_token) {
                 this.goLogin();
                 return Observable.create(observer => observer.error({ status: 401 }));
             }
             // 正常token值放在请求header当中，具体格式以后端为准
-           // header = req.headers.set('X-CSRFToken', localStorage.getItem('TOKEN'));
              header = req.headers.set('X-CSRFToken', authData.access_token);
         }
 
@@ -63,6 +63,13 @@ export class TokenInterceptor implements HttpInterceptor {
                     if (event instanceof HttpResponse && event.status === 401) {
                         console.log( event);
                         this.goLogin();
+                    }
+                    if(event instanceof HttpResponse && event.body.Return === 0  ){
+                        // console.log(event);
+                        if( event.body.Result ){
+                            const msg = this.injector.get(NzMessageService);
+                            msg.info(event.body.Result);
+                        }
                     }
                     // 若一切都正常，则后续操作
                     return Observable.create(observer => observer.next(event));
