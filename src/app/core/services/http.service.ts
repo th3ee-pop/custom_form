@@ -142,7 +142,7 @@ export class HttpService {
     getPatientList(conditions): Observable<any> {
 
         const body = {
-            'filter_dict': conditions.filter,
+            'filter_dict': conditions.filter_dict,
             'sorted_key': conditions.sorted_key,
             'start': conditions.start,
             'offset': conditions.offset

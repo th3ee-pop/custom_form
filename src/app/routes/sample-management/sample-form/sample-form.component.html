@@ -36,13 +36,33 @@
                     </div>
                 </div>
             </div>
+
             <div nz-row nz-form-item [nzGutter]="16" class="mb0">
                 <div nz-form-label nz-col [nzSm]="2">
                     <label>省份</label>
                 </div>
                 <div nz-form-control nz-col [nzSm]="5">
-                    <nz-input [(ngModel)]="conditions.filter.repository" name="repository" [nzId]="'repository'" [nzPlaceHolder]="'样本采集省份'"></nz-input>
+                    <nz-dropdown>
+                        <a class="ant-dropdown-link" nz-dropdown>
+                            {{conditions.filter.repository ? conditions.filter.repository : '不限'}} <i class="anticon anticon-down"></i>
+                        </a>
+                        <ul nz-menu>
+                            <li nz-menu-item (click)="conditions.filter.repository=''">不限</li>
+                            <li nz-menu-item (click)="conditions.filter.repository='1'">陕西</li>
+                            <li nz-menu-item (click)="conditions.filter.repository='2'">甘肃</li>
+                            <li nz-menu-item (click)="conditions.filter.repository='3'">宁夏</li>
+                            <li nz-menu-item (click)="conditions.filter.repository='4'">青海</li>
+                            <li nz-menu-item (click)="conditions.filter.repository='5'">新疆</li>
+                        </ul>
+                    </nz-dropdown>
+                    <span class="text-grey-light">(点击选择)</span>
                 </div>
+                <!--<div nz-form-label nz-col [nzSm]="2">-->
+                    <!--<label>省份</label>-->
+                <!--</div>-->
+                <!--<div nz-form-control nz-col [nzSm]="5">-->
+                    <!--<nz-input [(ngModel)]="conditions.filter.repository" name="repository" [nzId]="'repository'" [nzPlaceHolder]="'样本采集省份'"></nz-input>-->
+                <!--</div>-->
                 <div nz-form-label nz-col [nzSm]="2">
                     <label>样本类型</label>
                 </div>
@@ -52,12 +72,14 @@
                             {{conditions.filter.type ? conditions.filter.type : '不限'}} <i class="anticon anticon-down"></i>
                         </a>
                         <ul nz-menu>
-                            <li nz-menu-item (click)="conditions.filter.type='全血'">全血</li>
-                            <li nz-menu-item (click)="args.blood='血浆'">血浆</li>
-                            <li nz-menu-item (click)="args.blood='白膜层'">白膜层</li>
+                            <li nz-menu-item (click)="conditions.filter.type=''">不限</li>
+                            <li nz-menu-item (click)="conditions.filter.type='1'">血样</li>
+                            <li nz-menu-item (click)="conditions.filter.type='2'">尿液</li>
+                            <li nz-menu-item (click)="conditions.filter.type='3'">粪便</li>
+                            <li nz-menu-item (click)="conditions.filter.type='4'">毛发</li>
                         </ul>
                     </nz-dropdown>
-                    <span class="text-grey-light">(only valid)</span>
+                    <span class="text-grey-light">(点击选择)</span>
                 </div>
                 <div nz-col [nzSm]="5" [nzOffset]="2">
                     <button nz-button [nzType]="'primary'" (click)="load()" [nzLoading]="loading">检索</button>
