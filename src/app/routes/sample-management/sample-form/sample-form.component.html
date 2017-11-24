@@ -127,12 +127,12 @@
                                 </label>
                             </th>
                             <!--<th nz-th><span>PID</span></th>-->
-                            <th nz-th><span>编号</span> <nz-table-sort  (nzValueChange)="sort('number',$event)"></nz-table-sort></th>
-                            <th nz-th><span>省</span><nz-table-sort  (nzValueChange)="sort('repository',$event)"></nz-table-sort></th>
-                            <th nz-th><span>类型</span><nz-table-sort  (nzValueChange)="sort('type',$event)"></nz-table-sort></th>
-                            <th nz-th><span>来源人</span><nz-table-sort  (nzValueChange)="sort('owner',$event)"></nz-table-sort></th>
-                            <th nz-th><span>剩余量</span><nz-table-sort  (nzValueChange)="sort('capacity',$event)"></nz-table-sort></th>
-                            <th nz-th><span>采集时间</span><nz-table-sort  (nzValueChange)="sort('collect_time',$event)"></nz-table-sort></th>
+                            <th nz-th><span>编号</span> <nz-table-sort  [(nzValue)]="sortMap['number']"  (nzValueChange)="sort('number',$event)"></nz-table-sort></th>
+                            <th nz-th><span>省</span><nz-table-sort [(nzValue)]="sortMap['repository']"   (nzValueChange)="sort('repository',$event)"></nz-table-sort></th>
+                            <th nz-th><span>类型</span><nz-table-sort [(nzValue)]="sortMap['type']"   (nzValueChange)="sort('type',$event)"></nz-table-sort></th>
+                            <th nz-th><span>来源人</span><nz-table-sort  [(nzValue)]="sortMap['owner']"  (nzValueChange)="sort('owner',$event)"></nz-table-sort></th>
+                            <th nz-th><span>剩余量</span><nz-table-sort  [(nzValue)]="sortMap['capacity']"  (nzValueChange)="sort('capacity',$event)"></nz-table-sort></th>
+                            <th nz-th><span>采集时间</span><nz-table-sort  [(nzValue)]="sortMap['collect_time']"  (nzValueChange)="sort('collect_time',$event)"></nz-table-sort></th>
                             <th nz-th><span>操作</span></th>
                         </tr>
                     </thead>

@@ -21,9 +21,16 @@ export class SampleFormComponent implements OnInit {
     _allChecked = false;
     start_time = '';
     end_time = '';
+    sortMap = {
+        'number':null,
+        'reposity':null,
+        'type':null,
+        'owner':null,
+        'capacity':null,
+        'collect_time':null,
+    };
     options;
     localInfo = JSON.parse(localStorage.getItem('_user'));
-    Manager;
     _manager;
 
     province = {
@@ -231,6 +238,13 @@ export class SampleFormComponent implements OnInit {
         if (value === 'ascend')
             this.conditions.sorted_key = title;
         else this.conditions.sorted_key = '-' + title;
+        Object.keys(this.sortMap).forEach(key => {
+            if (key !== title) {
+                this.sortMap[ key ] = null;
+            } else {
+                this.sortMap[ key ] = value;
+            }
+        });
         this.load();
     }
 }
