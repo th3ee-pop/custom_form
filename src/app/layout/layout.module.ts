@@ -6,8 +6,8 @@ import { LayoutFullScreenComponent } from './fullscreen/fullscreen.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { SidebarNavComponent } from './sidebar/nav/nav.component';
-
 const COMPONENTS = [
+
     LayoutComponent,
     LayoutFullScreenComponent,
     HeaderComponent,
@@ -15,7 +15,7 @@ const COMPONENTS = [
 ];
 
 @NgModule({
-    imports: [SharedModule],
+    imports: [ SharedModule],
     providers: [],
     declarations: [
         SidebarNavComponent,

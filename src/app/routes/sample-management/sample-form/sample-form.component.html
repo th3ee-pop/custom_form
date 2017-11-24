@@ -11,82 +11,89 @@
                                     <label>编号</label>
                                 </div>
                                 <div nz-form-control nz-col [nzSm]="5">
-                    <nz-input [(ngModel)]="conditions.filter.number" name="number" [nzId]="'number'" [nzPlaceHolder]="'样本编号'"></nz-input>
-                </div>
-                <div nz-form-label nz-col [nzSm]="2">
-                    <label>来源人</label>
-                </div>
-                <div nz-form-control nz-col [nzSm]="5">
-                    <nz-input [(ngModel)]="conditions.filter.owner" name="owner" [nzId]="'owner'" [nzPlaceHolder]="'样本来源人'"></nz-input>
-                </div>
-                <div nz-form-label nz-col [nzSm]="2">
-                    <label>采集日期</label>
-                </div>
-                <div nz-form-control nz-col [nzSm]="8">
-                    <div nz-row>
-                        <div nz-form-control nz-col [nzSpan]="6">
-                            <nz-datepicker [(ngModel)]="start_time" name="created_begin" [nzPlaceHolder]="'开始日期'"></nz-datepicker>
-                        </div>
-                        <div nz-col [nzSpan]="1">
-                            <p nz-form-split>-</p>
-                        </div>
-                        <div nz-form-control nz-col [nzSpan]="6">
-                            <nz-datepicker [(ngModel)]="end_time" name="created_end" [nzPlaceHolder]="'结束日期'"></nz-datepicker>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                                    <nz-input [(ngModel)]="conditions.filter.number" name="number" [nzId]="'number'"
+                                              [nzPlaceHolder]="'样本编号'"></nz-input>
+                                </div>
+                                <div nz-form-label nz-col [nzSm]="2">
+                                    <label>来源人</label>
+                                </div>
+                                <div nz-form-control nz-col [nzSm]="5">
+                                    <nz-input [(ngModel)]="conditions.filter.owner" name="owner" [nzId]="'owner'"
+                                              [nzPlaceHolder]="'样本来源人'"></nz-input>
+                                </div>
+                                <div nz-form-label nz-col [nzSm]="2">
+                                    <label>采集日期</label>
+                                </div>
+                                <div nz-form-control nz-col [nzSm]="8">
+                                    <div nz-row>
+                                        <div nz-form-control nz-col [nzSpan]="6">
+                                            <nz-datepicker [(ngModel)]="start_time" name="created_begin"
+                                                           [nzPlaceHolder]="'开始日期'"></nz-datepicker>
+                                        </div>
+                                        <div nz-col [nzSpan]="1">
+                                            <p nz-form-split>-</p>
+                                        </div>
+                                        <div nz-form-control nz-col [nzSpan]="6">
+                                            <nz-datepicker [(ngModel)]="end_time" name="created_end"
+                                                           [nzPlaceHolder]="'结束日期'"></nz-datepicker>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-            <div nz-row nz-form-item [nzGutter]="16" class="mb0">
-                <div nz-form-label nz-col [nzSm]="2">
-                    <label>省份</label>
-                </div>
-                <div nz-form-control nz-col [nzSm]="5">
-                    <nz-dropdown>
-                        <a class="ant-dropdown-link" nz-dropdown>
-                            {{conditions.filter.repository ? province[conditions.filter.repository]: '不限'}} <i class="anticon anticon-down"></i>
-                        </a>
-                        <ul nz-menu>
-                            <li nz-menu-item (click)="conditions.filter.repository=''">不限</li>
-                            <li nz-menu-item (click)="conditions.filter.repository='1'">陕西</li>
-                            <li nz-menu-item (click)="conditions.filter.repository='2'">甘肃</li>
-                            <li nz-menu-item (click)="conditions.filter.repository='3'">宁夏</li>
-                            <li nz-menu-item (click)="conditions.filter.repository='4'">青海</li>
-                            <li nz-menu-item (click)="conditions.filter.repository='5'">新疆</li>
-                        </ul>
-                    </nz-dropdown>
-                    <span class="text-grey-light">(点击选择)</span>
-                </div>
-                <!--<div nz-form-label nz-col [nzSm]="2">-->
-                    <!--<label>省份</label>-->
-                <!--</div>-->
-                <!--<div nz-form-control nz-col [nzSm]="5">-->
-                    <!--<nz-input [(ngModel)]="conditions.filter.repository" name="repository" [nzId]="'repository'" [nzPlaceHolder]="'样本采集省份'"></nz-input>-->
-                <!--</div>-->
-                <div nz-form-label nz-col [nzSm]="2">
-                    <label>样本类型</label>
-                </div>
-                <div nz-form-control nz-col [nzSm]="5">
-                    <nz-dropdown>
-                        <a class="ant-dropdown-link" nz-dropdown>
-                            {{conditions.filter.type ? type[conditions.filter.type] : '不限'}} <i class="anticon anticon-down"></i>
-                        </a>
-                        <ul nz-menu>
-                            <li nz-menu-item (click)="conditions.filter.type=''">不限</li>
-                            <li nz-menu-item (click)="conditions.filter.type='1'">血样</li>
-                            <li nz-menu-item (click)="conditions.filter.type='2'">尿液</li>
-                            <li nz-menu-item (click)="conditions.filter.type='3'">粪便</li>
-                            <li nz-menu-item (click)="conditions.filter.type='4'">毛发</li>
-                        </ul>
-                    </nz-dropdown>
-                    <span class="text-grey-light">(点击选择)</span>
-                </div>
-                <div nz-col [nzSm]="5" [nzOffset]="2">
-                    <button nz-button [nzType]="'primary'" (click)="load()" [nzLoading]="loading">检索</button>
-                    <button nz-button (click)="clear()" [disabled]="loading">取消检索</button>
-                </div>
-            </div>
-        </form>
+                            <div nz-row nz-form-item [nzGutter]="16" class="mb0">
+                                <div nz-form-label nz-col [nzSm]="2">
+                                    <label>省份</label>
+                                </div>
+                                <div nz-form-control nz-col [nzSm]="5">
+                                    <nz-dropdown>
+                                        <a class="ant-dropdown-link" nz-dropdown>
+                                            {{conditions.filter.repository ? province[conditions.filter.repository]:
+                                            '不限'}} <i class="anticon anticon-down"></i>
+                                        </a>
+                                        <ul nz-menu>
+                                            <li nz-menu-item (click)="conditions.filter.repository=''">不限</li>
+                                            <li nz-menu-item (click)="conditions.filter.repository='1'">陕西</li>
+                                            <li nz-menu-item (click)="conditions.filter.repository='2'">甘肃</li>
+                                            <li nz-menu-item (click)="conditions.filter.repository='3'">宁夏</li>
+                                            <li nz-menu-item (click)="conditions.filter.repository='4'">青海</li>
+                                            <li nz-menu-item (click)="conditions.filter.repository='5'">新疆</li>
+                                        </ul>
+                                    </nz-dropdown>
+                                    <span class="text-grey-light">(点击选择)</span>
+                                </div>
+                                <!--<div nz-form-label nz-col [nzSm]="2">-->
+                                <!--<label>省份</label>-->
+                                <!--</div>-->
+                                <!--<div nz-form-control nz-col [nzSm]="5">-->
+                                <!--<nz-input [(ngModel)]="conditions.filter.repository" name="repository" [nzId]="'repository'" [nzPlaceHolder]="'样本采集省份'"></nz-input>-->
+                                <!--</div>-->
+                                <div nz-form-label nz-col [nzSm]="2">
+                                    <label>样本类型</label>
+                                </div>
+                                <div nz-form-control nz-col [nzSm]="5">
+                                    <nz-dropdown>
+                                        <a class="ant-dropdown-link" nz-dropdown>
+                                            {{conditions.filter.type ? type[conditions.filter.type] : '不限'}} <i
+                                            class="anticon anticon-down"></i>
+                                        </a>
+                                        <ul nz-menu>
+                                            <li nz-menu-item (click)="conditions.filter.type=''">不限</li>
+                                            <li nz-menu-item (click)="conditions.filter.type='1'">血样</li>
+                                            <li nz-menu-item (click)="conditions.filter.type='2'">尿液</li>
+                                            <li nz-menu-item (click)="conditions.filter.type='3'">粪便</li>
+                                            <li nz-menu-item (click)="conditions.filter.type='4'">毛发</li>
+                                        </ul>
+                                    </nz-dropdown>
+                                    <span class="text-grey-light">(点击选择)</span>
+                                </div>
+                                <div nz-col [nzSm]="5" [nzOffset]="2">
+                                    <button nz-button [nzType]="'primary'" (click)="load()" [nzLoading]="loading">检索
+                                    </button>
+                                    <button nz-button (click)="clear()" [disabled]="loading">取消检索</button>
+                                </div>
+                            </div>
+                        </form>
                     </ng-template>
                 </nz-card>
                 <div nz-row [nzGutter]="16">
@@ -96,78 +103,100 @@
                                 <div class="mb-sm text-right">
                                     <nz-dropdown>
                                         <button nz-button nz-dropdown (click)="goAdd()">
-                            <span>添加记录</span>
-                        </button>
-                        <button nz-button nz-dropdown [disabled]="!_allChecked && !_indeterminate" (click)="download()">
-                            <span>批量导出</span>
-                        </button>
-                        <button nz-button nz-dropdown *ngIf="_manager">
-                            <nz-popconfirm [nzTitle]="'确定删除？'" [nzOkText]="'确定'" [nzCancelText]="'取消'" (nzOnConfirm)="deleteAll()" (nzOnCancel)="showMsg('取消删除')">
-                                <a nz-popconfirm>清空记录</a>
-                            </nz-popconfirm>
-                            <!--<span></span>-->
-                        </button>
-                    </nz-dropdown>
-                </div>
-                <nz-table #nzTable
-                    [nzAjaxData]="list"
-                    [nzShowSizeChanger]="true"
-                    [nzLoading]="loading"
-                    [nzTotal]="total"
-                    [(nzPageIndex)]="pi"
-                    (nzPageIndexChange)="load()"
-                    [(nzPageSize)]="ps"
-                    (nzPageSizeChange)="load()">
-                    <thead nz-thead>
-                        <tr>
-                            <th nz-th [nzCheckbox]="true">
-                                <label nz-checkbox
-                                    [(ngModel)]="_allChecked" [nzIndeterminate]="_indeterminate"
-                                    (ngModelChange)="_checkAll()">
-                                </label>
-                            </th>
-                            <!--<th nz-th><span>PID</span></th>-->
-                            <th nz-th><span>编号</span> <nz-table-sort  [(nzValue)]="sortMap['number']"  (nzValueChange)="sort('number',$event)"></nz-table-sort></th>
-                            <th nz-th><span>省</span><nz-table-sort [(nzValue)]="sortMap['repository']"   (nzValueChange)="sort('repository',$event)"></nz-table-sort></th>
-                            <th nz-th><span>类型</span><nz-table-sort [(nzValue)]="sortMap['type']"   (nzValueChange)="sort('type',$event)"></nz-table-sort></th>
-                            <th nz-th><span>来源人</span><nz-table-sort  [(nzValue)]="sortMap['owner']"  (nzValueChange)="sort('owner',$event)"></nz-table-sort></th>
-                            <th nz-th><span>剩余量</span><nz-table-sort  [(nzValue)]="sortMap['capacity']"  (nzValueChange)="sort('capacity',$event)"></nz-table-sort></th>
-                            <th nz-th><span>采集时间</span><nz-table-sort  [(nzValue)]="sortMap['collect_time']"  (nzValueChange)="sort('collect_time',$event)"></nz-table-sort></th>
-                            <th nz-th><span>操作</span></th>
-                        </tr>
-                    </thead>
-                    <tbody nz-tbody>
-                        <tr nz-tbody-tr *ngFor="let data of nzTable.data">
-                            <td nz-td [nzCheckbox]="true">
-                                <label nz-checkbox [(ngModel)]="data.checked"
-                                    (ngModelChange)="refChecked()">
-                                </label>
-                            </td>
-                            <!--<td nz-td>{{data.PID}}</td>-->
-                            <td nz-td>{{data.number}}</td>
-                            <td nz-td>{{data.repository}}</td>
-                            <td nz-td>{{data.type}}
-                            </td>
-                            <td nz-td>{{data.owner}}</td>
-                            <td nz-td>{{data.capacity}}</td>
-                            <td nz-td>{{data.collect_time}}</td>
-                            <td nz-td>
-                                <a (click)="confirmModel(data.PID)">关联问卷</a>
-                                <span nz-table-divider></span>
-                                <a  (click)="goAdd(data.PID)">查看详情</a>
-                                <span nz-table-divider></span>
-                                <a  (click)="download(data.PID)">导出</a>
-                                <span nz-table-divider *ngIf="_manager"></span>
-                                <nz-popconfirm [nzTitle]="'确定删除？'" [nzOkText]="'确定'" [nzCancelText]="'取消'" (nzOnConfirm)="deleteRecord(data.PID);" (nzOnCancel)="showMsg('取消删除')" *ngIf="_manager">
-                                    <a nz-popconfirm>删除记录</a>
-                                </nz-popconfirm>
-                            </td>
-                        </tr>
-                    </tbody>
-                </nz-table>
-            </ng-template>
-        </nz-card>
-    </div>
+                                            <span>添加记录</span>
+                                        </button>
+                                        <button nz-button nz-dropdown [disabled]="!_allChecked && !_indeterminate"
+                                                (click)="download()">
+                                            <span>批量导出</span>
+                                        </button>
+                                        <button nz-button nz-dropdown *ngIf="_manager">
+                                            <nz-popconfirm [nzTitle]="'确定删除？'" [nzOkText]="'确定'" [nzCancelText]="'取消'"
+                                                           (nzOnConfirm)="deleteAll()" (nzOnCancel)="showMsg('取消删除')">
+                                                <a nz-popconfirm>清空记录</a>
+                                            </nz-popconfirm>
+                                            <!--<span></span>-->
+                                        </button>
+                                    </nz-dropdown>
+                                </div>
+                                <nz-table #nzTable
+                                          [nzAjaxData]="list"
+                                          [nzShowSizeChanger]="true"
+                                          [nzLoading]="loading"
+                                          [nzTotal]="total"
+                                          [(nzPageIndex)]="pi"
+                                          (nzPageIndexChange)="load()"
+                                          [(nzPageSize)]="ps"
+                                          (nzPageSizeChange)="load()">
+                                    <thead nz-thead>
+                                    <tr>
+                                        <th nz-th [nzCheckbox]="true">
+                                            <label nz-checkbox
+                                                   [(ngModel)]="_allChecked" [nzIndeterminate]="_indeterminate"
+                                                   (ngModelChange)="_checkAll()">
+                                            </label>
+                                        </th>
+                                        <!--<th nz-th><span>PID</span></th>-->
+                                        <th nz-th><span>编号</span>
+                                            <nz-table-sort [(nzValue)]="sortMap['number']"
+                                                           (nzValueChange)="sort('number',$event)"></nz-table-sort>
+                                        </th>
+                                        <th nz-th><span>省</span>
+                                            <nz-table-sort [(nzValue)]="sortMap['repository']"
+                                                           (nzValueChange)="sort('repository',$event)"></nz-table-sort>
+                                        </th>
+                                        <th nz-th><span>类型</span>
+                                            <nz-table-sort [(nzValue)]="sortMap['type']"
+                                                           (nzValueChange)="sort('type',$event)"></nz-table-sort>
+                                        </th>
+                                        <th nz-th><span>来源人</span>
+                                            <nz-table-sort [(nzValue)]="sortMap['owner']"
+                                                           (nzValueChange)="sort('owner',$event)"></nz-table-sort>
+                                        </th>
+                                        <th nz-th><span>剩余量</span>
+                                            <nz-table-sort [(nzValue)]="sortMap['capacity']"
+                                                           (nzValueChange)="sort('capacity',$event)"></nz-table-sort>
+                                        </th>
+                                        <th nz-th><span>采集时间</span>
+                                            <nz-table-sort [(nzValue)]="sortMap['collect_time']"
+                                                           (nzValueChange)="sort('collect_time',$event)"></nz-table-sort>
+                                        </th>
+                                        <th nz-th><span>操作</span></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody nz-tbody>
+                                    <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+                                        <td nz-td [nzCheckbox]="true">
+                                            <label nz-checkbox [(ngModel)]="data.checked"
+                                                   (ngModelChange)="refChecked()">
+                                            </label>
+                                        </td>
+                                        <!--<td nz-td>{{data.PID}}</td>-->
+                                        <td nz-td>{{data.number}}</td>
+                                        <td nz-td>{{data.repository}}</td>
+                                        <td nz-td>{{data.type}}
+                                        </td>
+                                        <td nz-td>{{data.owner}}</td>
+                                        <td nz-td>{{data.capacity}}</td>
+                                        <td nz-td>{{data.collect_time}}</td>
+                                        <td nz-td>
+                                            <a (click)="confirmModel(data.PID)">关联问卷</a>
+                                            <span nz-table-divider></span>
+                                            <a (click)="goAdd(data.PID)">查看详情</a>
+                                            <span nz-table-divider></span>
+                                            <a (click)="download(data.PID)">导出</a>
+                                            <span nz-table-divider *ngIf="_manager"></span>
+                                            <nz-popconfirm [nzTitle]="'确定删除？'" [nzOkText]="'确定'" [nzCancelText]="'取消'"
+                                                           (nzOnConfirm)="deleteRecord(data.PID);"
+                                                           (nzOnCancel)="showMsg('取消删除')" *ngIf="_manager">
+                                                <a nz-popconfirm>删除记录</a>
+                                            </nz-popconfirm>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </nz-table>
+                            </ng-template>
+                        </nz-card>
+                    </div>
                 </div>
             </ng-template>
         </nz-card>

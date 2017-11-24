@@ -1,10 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import {Router, ActivatedRoute} from '@angular/router';
-import { NzMessageService } from 'ng-zorro-antd';
-import { Sample, Use_info, Accident_info} from '../sample';
-import { BiologyService } from '../biology.service';
-import {element} from "protractor";
+import {NzMessageService} from 'ng-zorro-antd';
+import {BiologyService} from '../biology.service';
 
 @Component({
     selector: 'app-sample-add',
@@ -18,7 +16,7 @@ export class SampleAddComponent implements OnInit {
             'Record_Value': '',
             'Updated_time': ''
         },
-        'number':  {
+        'number': {
             'Record_Value': '',
             'Updated_time': ''
         },
@@ -26,11 +24,11 @@ export class SampleAddComponent implements OnInit {
             'Record_Value': '',
             'Updated_time': ''
         },
-        'type':{
+        'type': {
             'Record_Value': '',
             'Updated_time': ''
         },
-        'capacity':{
+        'capacity': {
             'Record_Value': '',
             'Updated_time': ''
         },
@@ -58,15 +56,15 @@ export class SampleAddComponent implements OnInit {
             'Record_Value': '',
             'Updated_time': ''
         },
-        'collect_count':{
+        'collect_count': {
             'Record_Value': '',
             'Updated_time': ''
         },
-        'collecter':{
+        'collecter': {
             'Record_Value': '',
             'Updated_time': ''
         },
-        'pipe_Num':{
+        'pipe_Num': {
             'Record_Value': '',
             'Updated_time': ''
         },
@@ -74,11 +72,11 @@ export class SampleAddComponent implements OnInit {
             'Record_Value': '',
             'Updated_time': ''
         },
-        'placer':{
+        'placer': {
             'Record_Value': '',
             'Updated_time': ''
         },
-        'requirement':{
+        'requirement': {
             'Record_Value': '',
             'Updated_time': ''
         },
@@ -98,7 +96,7 @@ export class SampleAddComponent implements OnInit {
             'Record_Value': '',
             'Updated_time': ''
         },
-        'lay':{
+        'lay': {
             'Record_Value': '',
             'Updated_time': ''
         },
@@ -114,12 +112,12 @@ export class SampleAddComponent implements OnInit {
             'Record_Value': '',
             'Updated_time': ''
         },
-        'keeper':{
+        'keeper': {
             'Record_Value': '',
             'Updated_time': ''
         },
-        'user_info':{
-            'Record_Value':[],
+        'user_info': {
+            'Record_Value': [],
             'Updated_time': ''
         },
         'accident_info': {
@@ -136,60 +134,67 @@ export class SampleAddComponent implements OnInit {
     localInfo = JSON.parse(localStorage.getItem('_user'));
     _manager;
 
-    data;
+    loadingList = false;
+
+    data = [];
     tempEditObject;
-    Accdata;
-    tempAccEditObject;
+    total = 20;
     editRow;
+
+    Accdata = [];
+    tempAccEditObject;
+    Acctotal = 20;
     editRow1;
 
-    provinces = ['陕西', '甘肃', '宁夏', '青海', '新疆'];
-
-    constructor(
-        private fb: FormBuilder,
-        private router: Router,
-        private msg: NzMessageService,
-        private service: BiologyService,
-         private route: ActivatedRoute) {
+    constructor(private fb: FormBuilder,
+                private router: Router,
+                private msg: NzMessageService,
+                private service: BiologyService,
+                private route: ActivatedRoute) {
     }
 
     load(id?: number) {
         console.log(id);
         this.tempEditObject = {};
         this.tempAccEditObject = {};
-                if( id ){
-                const api = '/biology/recordop/',
-                    params = {'PID':id};
-                    this.loading = true;
-                this.service.getService(api,params).subscribe(res => {
-                    console.log(res);
-                    for( let key in res.Records){
-                        if(key.indexOf('time') == -1){
-                            this.Sample[key].Record_Value = res.Records[key].Record_Value;
-                        }else {
-                            this.Sample[key].Record_Value = new Date(res.Records[key].Record_Value);
-                        }
-                        this.Sample[key].Updated_time = res.Records[key].Updated_time;
+        if (id) {
+            const api = '/biology/recordop/',
+                params = {'PID': id};
+            this.loading = true;
+            this.loadingList = true;
+
+            this.service.getService(api, params).subscribe(res => {
+                console.log(res);
+                for (let key in res.Records) {
+                    if (key.indexOf('time') == -1) {
+                        this.Sample[key].Record_Value = res.Records[key].Record_Value;
+                    } else {
+                        this.Sample[key].Record_Value = new Date(res.Records[key].Record_Value);
                     }
-                    this.data = this.Sample.user_info.Record_Value;
-                    this.Accdata = this.Sample.accident_info.Record_Value;
-                    this.data.forEach(item => {
-                        this.tempEditObject[ item.key] = {};
-                    });
-                    this.Accdata.forEach(item => {
-                        this.tempAccEditObject[ item.key] = {};
-                    });
-                })
-            }else {
-                    this.data = this.Sample.user_info.Record_Value;
-                    this.Accdata = this.Sample.accident_info.Record_Value;
+                    this.Sample[key].Updated_time = res.Records[key].Updated_time;
                 }
+                this.data = this.Sample.user_info.Record_Value;
+                this.total = this.data.length;
+                this.Accdata = this.Sample.accident_info.Record_Value;
+                this.Acctotal = this.Accdata.length;
+                this.data.forEach(item => {
+                    this.tempEditObject[item.key] = {};
+                });
+                this.Accdata.forEach(item => {
+                    this.tempAccEditObject[item.key] = {};
+                });
+            })
+        } else {
+            this.data = this.Sample.user_info.Record_Value;
+            this.Accdata = this.Sample.accident_info.Record_Value;
+        }
         this.editRow = null;
         this.editRow1 = null;
         // this.Sample = res.Records;
         console.log(this.Sample);
         this.loading = false;
-        }
+        this.loadingList = false;
+    }
 
     updateConfirmValidator(key) {
         /** wait for refresh value */
@@ -198,42 +203,43 @@ export class SampleAddComponent implements OnInit {
         });
     }
 
-    confirmationValidator = (control: FormControl): { [s: string]: boolean } => {
+    confirmationValidator = (control: FormControl): {[s: string]: boolean} => {
         const temp = control.value;
-        // console.log(temp);
+        console.log(temp);
         if (!control.value) {
-            return { required: true };
-        } else if (temp[0] !== this.validateForm.value.repository) {
+            return {required: true};
+        } else if (control.value[0] !== this.validateForm.controls['repository'].value) {
             console.info('error');
-            return { confirm: true, error: true };
+            return {confirm: true, error: true};
         }
     };
 
-    defineForm(){
+    defineForm() {
         this.validateForm = this.fb.group({
             number: [null, [Validators.required]],
             repository: [null, [Validators.required]],
             type: [null, [Validators.required]],
-            blood_type:[null, [ ]],
-            owner:[null, [ Validators.required]],
-            collect_count:[null, [ Validators.required]],
-            collect_time:[null, [ Validators.required]],
-            collecter:[null, [ Validators.required]],
-            branch:[null, [ Validators.required]],
-            lost_msg:[null, [  ]],
-            pipe_Num:[null, [ Validators.required, this.confirmationValidator]],
-            store_time:[null, [ Validators.required]],
-            placer:[null, [ Validators.required]],
-            requirement:[null, [ ]],
-            emergency:[null, [ ]],
-            belong_rep:[null, [ ]],
+            blood_type: [null, []],
+            owner: [null, [Validators.required]],
+            collect_count: [null, [Validators.required]],
+            capacity: [null, [Validators.required]],
+            collect_time: [null, [Validators.required]],
+            collecter: [null, [Validators.required]],
+            branch: [null, [Validators.required]],
+            lost_msg: [null, [Validators.required]],
+            pipe_Num: [null, [Validators.required, this.confirmationValidator]],
+            store_time: [null, [Validators.required]],
+            placer: [null, [Validators.required]],
+            requirement: [null, [Validators.required]],
+            emergency: [null, [Validators.required]],
+            belong_rep: [null, [Validators.required]],
             building: [null, [Validators.required]],
-            ref: [null, [Validators.required ]],
-            lay: [null, [Validators.required ]],
-            col: [null, [Validators.required ]],
-            row: [null, [Validators.required ]],
-            shelf: [null, [Validators.required ]],
-            keeper:[null,[ ]]
+            ref: [null, [Validators.required]],
+            lay: [null, [Validators.required]],
+            col: [null, [Validators.required]],
+            row: [null, [Validators.required]],
+            shelf: [null, [Validators.required]],
+            keeper: [null, [Validators.required]]
         });
     }
 
@@ -248,7 +254,7 @@ export class SampleAddComponent implements OnInit {
     searchChange(searchText) {
         const api = '/healthexamination/autono/';
         const params = {'number': searchText};
-        this.service.getService( api, params ).subscribe( res => {
+        this.service.getService(api, params).subscribe(res => {
             console.log(res);
             this.searchOptions = res.number_list;
         })
@@ -257,15 +263,16 @@ export class SampleAddComponent implements OnInit {
     edit(data) {
         console.log(data);
         console.log(this.tempEditObject);
-        this.tempEditObject[ data.key ] = { ...data };
+        this.tempEditObject[data.key] = {...data};
         console.log(this.tempEditObject);
         // this.Sample.user_info.Record_Value[ data.key ] = { ...data };
         this.editRow = data.key;
     };
+
     editAcc(data) {
         console.log(data);
         console.log(this.tempAccEditObject);
-        this.tempAccEditObject[ data.key ] = { ...data };
+        this.tempAccEditObject[data.key] = {...data};
         console.log(this.tempAccEditObject);
         // this.Sample.user_info.Record_Value[ data.key ] = { ...data };
         this.editRow1 = data.key;
@@ -273,66 +280,82 @@ export class SampleAddComponent implements OnInit {
 
     save(data) {
         console.log(data);
-        Object.assign(data, this.tempEditObject[ data.key ]);
+        Object.assign(data, this.tempEditObject[data.key]);
         // this.Sample.user_info.Record_Value = this.data;
         this.Sample.user_info.Record_Value[data.key] = data;
         // Object.assign(data, this.Sample.user_info.Record_Value[ data.key ]);
         this.editRow = null;
     }
+
     saveAcc(data) {
         console.log(data);
-        Object.assign(data, this.tempAccEditObject[ data.key ]);
+        Object.assign(data, this.tempAccEditObject[data.key]);
         // this.Sample.user_info.Record_Value = this.data;
         this.Sample.accident_info.Record_Value[data.key] = data;
         // Object.assign(data, this.Sample.user_info.Record_Value[ data.key ]);
         this.editRow1 = null;
     }
 
-    cancel(data,id) {
-        if(id === 0){
-            this.tempEditObject[ data.key ] = {};
+    cancel(data, id) {
+        if (id === 0) {
+            this.tempEditObject[data.key] = {};
             this.editRow = null;
-        }else if(id == 1){
-            this.tempAccEditObject[ data.key ] = {};
+        } else if (id == 1) {
+            this.tempAccEditObject[data.key] = {};
             this.editRow1 = null;
         }
     }
 
-    add(){
+    add() {
         let i = this.data.length;
         let newRecord = {
-            key:i,
-            user    : '',
-            use_count   : '',
-            use_time    : '',
+            key: i,
+            user: '',
+            use_count: '',
+            use_time: '',
             usage: '',
         };
         this.data.push(newRecord);
-        this.tempEditObject[i] = { ...newRecord };
-        this.editRow = this.data.length-1;
+        this.tempEditObject[i] = {...newRecord};
+        this.editRow = this.data.length - 1;
     }
-    addAcc(){
+
+    addAcc() {
+        console.info("added!");
         let i = this.Accdata.length;
         let newRecord = {
-            key:i,
-            accident    : '',
-            acc_time   : '',
-            duration    : '',
+            key: i,
+            accident: '',
+            acc_time: '',
+            duration: '',
             resolvent: '',
             influence: '',
         };
         this.Accdata.push(newRecord);
-        this.tempAccEditObject[i] = { ...newRecord };
+        console.log(this.Accdata);
+        this.tempAccEditObject[i] = {...newRecord};
+        console.log(this.tempAccEditObject);
         this.editRow1 = this.Accdata.length-1;
+    }
+
+    deleteList(data, num) {
+        if (num == 0) {
+            this.data.splice(data.key, 1);
+            delete this.tempEditObject[data.key];
+        } else {
+            this.Accdata.splice(data.key, 1);
+            delete this.tempAccEditObject[data.key];
+        }
     }
 
     ngOnInit() {
         this.PID = this.route.params['value']['PID'];
         this.read = this.PID;
         this.defineForm();
-        this._manager = this.localInfo.user_group<4;
+        this._manager = this.localInfo.user_group < 4;
     }
-    ngAfterViewInit(){
+
+    ngAfterViewInit() {
         this.load(this.PID);
     }
 
@@ -340,7 +363,7 @@ export class SampleAddComponent implements OnInit {
         return this.validateForm.controls[name];
     }
 
-    getTypeValue(){
+    getTypeValue() {
         return this.validateForm.value.type;
     }
 
@@ -359,13 +382,20 @@ export class SampleAddComponent implements OnInit {
             }
         }
         console.log(this.validateForm.value);
-        if( !this.route.params['value']['PID']) {
+        if (!this.route.params['value']['PID']) {
             console.log('添加新记录');
             const data = {
                 'Records': this.transfer(this.validateForm.value)
             };
-            this.service.putRecord(data).subscribe(res => {console.log(res);});
-        }else {
+            console.log(this.validateForm.valid);
+            console.log(this.validateForm.value);
+            if (this.validateForm.valid) {
+                this.service.putRecord(data).subscribe(res => {
+                    this.msg.success('保存成功');
+                    console.log(res);
+                });
+            }
+        } else {
             console.log('修改记录！');
             this.modify();
         }
@@ -373,42 +403,42 @@ export class SampleAddComponent implements OnInit {
         // this.goBack();
     }
 
-    transfer(formData){
+    transfer(formData) {
         let data = {};
-        for( let key in formData){
-            if(formData[key]){
-                    data[key] = {
-                        'Record_Value': formData[key],
-                        'Updated_time': ''
-                    };
-        }}
-        data['capacity'] ={
-            'Record_Value': formData['collect_count'] || '0',
-            'Updated_time':''
-        };
+        for (let key in formData) {
+            if (formData[key]) {
+                data[key] = {
+                    'Record_Value': formData[key],
+                    'Updated_time': ''
+                };
+            }
+        }
         data['user_info'] = this.Sample.user_info;
         data['accident_info'] = this.Sample.accident_info;
         console.log(data);
         return data;
     }
 
-    modify(){
+    modify() {
         const body = {
-            'PID':parseInt(this.route.params['value']['PID']),
-            'Records':{}
+            'PID': parseInt(this.route.params['value']['PID']),
+            'Records': {}
         };
-        for(let key in this.Sample){
-            if( !this.Sample[key].Record_Value){
+        for (let key in this.Sample) {
+            if (!this.Sample[key].Record_Value) {
                 console.log(key + 'is not added');
-            }else {
+            } else {
                 body.Records[key] = this.Sample[key];
             }
         }
         console.log(body);
-        this.service.putRecord(body).subscribe(res => {console.log(res);});
+        this.service.putRecord(body).subscribe(res => {
+            console.log(res);
+            // this.msg.success('修改成功');
+        });
     }
 
-    correct(){
+    correct() {
         this.read = !this.read;
         this.PID = false;
     }

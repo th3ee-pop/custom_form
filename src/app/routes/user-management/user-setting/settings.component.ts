@@ -54,8 +54,8 @@ export class UserSettingsComponent implements OnInit {
     args = {};
     _indeterminate = false;
     _allChecked = false;
-    start_time = '';
-    end_time = '';
+    start_time = null;
+    end_time = null;
     sortMap = {
         'username': null,
         'group': null,
@@ -92,17 +92,14 @@ export class UserSettingsComponent implements OnInit {
         new_password: '',
         confirm_new_password: ''
     };
-    // Email
-    primary_email = 'cipchk@qq.com';
 
 
     //  数据加载
-    load(pi?: number) {
-        if (typeof pi !== 'undefined') {
-            this.pi = pi || 1;
-        }
+    load(pageChange: boolean) {
         this.setTime();
-        this.changePage();
+        if (pageChange) {
+            this.changePage();
+        }
         console.log(this.pi);
         this.loading = true;
         this._allChecked = false;
@@ -135,7 +132,9 @@ export class UserSettingsComponent implements OnInit {
 
     // 点击查询按钮
     showConditions() {
-        this.load();
+        this.pi = 1;
+        this.conditions.start = 0;
+        this.load(true);
     }
 
     // 清除所有条件
@@ -144,9 +143,11 @@ export class UserSettingsComponent implements OnInit {
             if (this.conditions.filter[key])
             delete this.conditions.filter[key];
         }
-        this.start_time = '';
-        this.end_time = '';
-        this.load();
+        this.start_time = null;
+        this.end_time = null;
+        this.pi = 1;
+        this.conditions.start = 0;
+        this.load(true);
     }
 
     // 时间格式转换
@@ -163,7 +164,7 @@ export class UserSettingsComponent implements OnInit {
 
     // 时间设置
     setTime() {
-        if (this.start_time === '' || this.end_time === '') {
+        if (this.start_time === null || this.end_time === null) {
             delete this.conditions.filter.date_joined;
         } else {
             this.conditions.filter.date_joined = [];
@@ -241,12 +242,12 @@ export class UserSettingsComponent implements OnInit {
     deleteUser(username) {
         this.loginService.remove(username).subscribe((res) => {
             console.log(res);
-            this.load();
+            this.load(true);
         });
     }
 
     ngOnInit() {
-        this.load();
+        this.load(true);
         this.profileForm.patchValue({
             name: localStorage.getItem('userID'),
             email: 'cipchk@qq.com',
@@ -266,7 +267,7 @@ export class UserSettingsComponent implements OnInit {
                 this.sortMap[ key ] = value;
             }
         });
-        this.load();
+        this.load(true);
     }
 
 

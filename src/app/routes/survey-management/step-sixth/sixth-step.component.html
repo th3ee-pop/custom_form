@@ -11,6 +11,7 @@
                     <div *ngFor="let question of questionList">
                         <div [ngSwitch]="question.type">
                             <app-inputcmp     *ngSwitchCase="'input'"     [question]="question" (onVoted)="onVoted($event)" ></app-inputcmp>
+                            <app-checkboxcmp  *ngSwitchCase="'checkbox'"  [question]="question" (onVoted)="onVoted($event)" ></app-checkboxcmp>
                             <app-radiocmp     *ngSwitchCase="'radio'"     [question]="question" (onVoted)="onVoted($event)" ></app-radiocmp>
                             <app-table613     *ngSwitchCase="'table613'"  [question]="question" (onVoted)="onVoted($event)" ></app-table613>
                         </div>

@@ -44,7 +44,6 @@ export class LoginComponent {
 
           console.log('login success');
           if (resp.Return === 0) {
-              this.msg.info('登录成功');
               const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '';
               console.log(redirect);
               this.router.navigate([redirect]);

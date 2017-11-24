@@ -1,7 +1,7 @@
 /**
  *  input radio idc phone checkbox date
  */
-import {AfterViewInit, Component, OnInit, QueryList, ViewChildren} from '@angular/core';
+import {AfterViewInit, Component, OnInit, QueryList, ViewChildren, ChangeDetectorRef} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpService} from '@core/services/http.service';
 import {NzModalService} from 'ng-zorro-antd';
@@ -42,12 +42,13 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
     buttondisable = false;
     localInfo = JSON.parse(localStorage.getItem('_user'));
     fillingList = [];
-
+    sex = false;
     constructor(
         private router: Router,
         private route: ActivatedRoute,
         private service: HttpService,
-        private confirmServ: NzModalService
+        private confirmServ: NzModalService,
+        private ref: ChangeDetectorRef
     ) {
         this.PID = this.route.params['value']['PID'];
         if ( this.PID) {
@@ -59,6 +60,7 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
                 const list = res.Records;
                 console.log(res);
                 this.answerList = list;
+                console.log('this is answerlist', this.answerList);
                 for ( let i = 0; i < list.length; i++) {
                     if ( list[i]['ID0_0'] && list[i]['ID0_0'] !== '') {
                         this.questionList = list[i]['ID0_0'][0];
@@ -98,6 +100,16 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
         }
     }
     ngAfterViewInit() {
+        const getRecord = {
+            'PID': this.PID,
+            'RecordID': 'ID1'
+        };
+        this.service.getRecord(getRecord).subscribe( (res) => {
+            res.Records.forEach( it => {
+                if (it['ID1_3_1'] === 'True' ) { this.sex  = true; }
+
+            });
+        });
         if ( this.PID ) {
             this.fillingAllanswer();
         }
@@ -111,12 +123,8 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
             else putRecord = { 'PID': this.PID, 'Records' : this.resultList };
             this.service.putRecord(putRecord).subscribe( (res) => {
                 this.PID = res.PID;
-                if ( res.Return === 0)
-                    this.router.navigate(['/survey/second_step/' + this.PID]);
-                else this.confirmServ.error( {
-                    title: '未知错误',
-                    content: '请联系开发人员'
-                });
+                this.router.navigate(['/survey/second_step/' + this.PID]);
+
             }, err => {
                 console.log(err);
             });
@@ -137,11 +145,38 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
      */
     jumpTo(step_index) {
         const numWords = ['first', 'second', 'third', 'forth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth'];
-        if (this.PID) { // 如果有病人编号，则跳跃
+        if (this.PID && step_index !== this.current) { // 如果有病人编号，则跳跃
             console.log(step_index);
-            this.router.navigate(['/survey/' + numWords[step_index] + '_step/' + this.PID]);  // 拼接跳转链接
+            console.log(this.sex);
+            if ( numWords[step_index] === 'ninth' && this.sex === true) {
+                this.confirmServ.error({
+                    title: '提示',
+                    content: '男性无此记录'
+                });
+            }else {
+                if ( this.confirm().confirms ) {
+                    this.collectAllanswer();
+                    let  putRecord = {};
+                    if (!this.PID)  putRecord = { 'Records' : this.resultList };
+                    else putRecord = { 'PID': this.PID, 'Records' : this.resultList };
+                    this.service.putRecord(putRecord).subscribe( (res) => {
+                        this.PID = res.PID;
+                        this.router.navigate(['/survey/' + numWords[step_index] + '_step/' + this.PID]);  // 拼接跳转链接
+                    }, err => {
+                        console.log(err);
+                    });
+                }else {
+                    let str = '';
+                    for ( let i = 0; i < this.confirm().confirmList.length; i++) {
+                        str = str + this.confirm().confirmList[i] + '、';
+                    }
+                    this.confirmServ.error({
+                        title: '您还有以下必填项没有完成： ',
+                        content: str
+                    });
+                }
+            }
         }
-
     }
     temporary_deposit() {                               // 暂存
         let allow = true;
@@ -235,6 +270,7 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
                 }
             }
         }
+        console.log('this is resultlist', this.resultList);
     }
 
     rundisabledAll (completeby, province) {
@@ -335,6 +371,7 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
                     if (this.fillingList[i][id] && this.fillingList[i][id] !== '') { item.date = new Date(this.fillingList[i][id]); }
                 }
             });
+            this.ref.detectChanges();
         }, error => {
             console.log(error);
         });

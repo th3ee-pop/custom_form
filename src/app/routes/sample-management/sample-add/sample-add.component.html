@@ -18,7 +18,7 @@
                             <label nz-form-item-required>分库（省份）</label>
                         </div>
                         <div nz-form-control nz-col [nzSpan]="3"  [nzValidateStatus]="getFormControl('repository')">
-                            <nz-select formControlName="repository" [nzSize]="'large'" [(ngModel)] = 'Sample.repository.Record_Value' [nzDisabled]="read" >
+                            <nz-select formControlName="repository" [nzSize]="'large'" (ngModelChange)="updateConfirmValidator('repository')" [(ngModel)] = 'Sample.repository.Record_Value' [nzDisabled]="read" >
                                 <nz-option [nzLabel]="'陕西'" [nzValue]="'1'"></nz-option>
                                 <nz-option [nzLabel]="'甘肃'" [nzValue]="'2'"></nz-option>
                                 <nz-option [nzLabel]="'宁夏'" [nzValue]="'3'"></nz-option>
@@ -66,7 +66,7 @@
                                 [nzDisabled]="read"
                                 style="width: 200px;"
                                 nzAllowClear
-                                [nzPlaceHolder]="'请输入来源人编号'"
+                                [nzPlaceHolder]=" Sample.owner.Record_Value"
                                 [nzFilter]="false"
                                 [(ngModel)]="Sample.owner.Record_Value"
                                 (nzSearchChange)="searchChange($event)"
@@ -123,10 +123,11 @@
                     </div>
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col [nzSm]="4">
-                            <label>缺失分管说明</label>
+                            <label nz-form-item-required>缺失分管说明</label>
                         </div>
-                        <div nz-form-control nz-col [nzSm]="10">
-                            <nz-input formControlName="lost_msg"  [(ngModel)] = 'Sample.lost_msg.Record_Value' [nzReadonly]="read" [nzDisabled]="read" ></nz-input>
+                        <div nz-form-control nz-col [nzSm]="10" [nzValidateStatus]="getFormControl('lost_msg')">
+                            <nz-input formControlName="lost_msg" (ngModelChange)="updateConfirmValidator('lost_msg')"  [(ngModel)] = 'Sample.lost_msg.Record_Value' [nzReadonly]="read" [nzDisabled]="read" ></nz-input>
+                            <div nz-form-explain *ngIf="getFormControl('lost_msg').dirty&&getFormControl('lost_msg').hasError('required')">请输入缺失分管说明</div>
                         </div>
                     </div>
                     <div nz-form-item nz-row>
@@ -136,7 +137,7 @@
                         <div nz-form-control nz-col [nzSm]="5" [nzValidateStatus]="getFormControl('pipe_Num')">
                             <nz-input formControlName="pipe_Num"  (ngModelChange)="updateConfirmValidator('pipe_Num')" [nzType]="number" [(ngModel)] = 'Sample.pipe_Num.Record_Value' [nzReadonly]="read" [nzDisabled]="read" ></nz-input>
                             <div nz-form-explain *ngIf="getFormControl('pipe_Num').dirty&&getFormControl('pipe_Num').hasError('required')">请输入存放管条码</div>
-                            <div nz-form-explain *ngIf="getFormControl('pipe_Num').dirty&&getFormControl('pipe_Num').hasError('error')">请参照省份填写条码</div>
+                            <div nz-form-explain *ngIf="getFormControl('pipe_Num').dirty&&getFormControl('pipe_Num').hasError('error')">条码第一位应为分库编号</div>
                         </div>
                     </div>
                     <div nz-form-item nz-row>
@@ -155,30 +156,31 @@
                         <div nz-form-control nz-col [nzSm]="5" [nzValidateStatus]="getFormControl('placer')">
                             <nz-input formControlName="placer" [(ngModel)] = 'Sample.placer.Record_Value' [nzReadonly]="read" [nzDisabled]="read" ></nz-input>
                             <div nz-form-explain *ngIf="getFormControl('placer').dirty&&getFormControl('placer').hasError('required')">请输入存放人</div>
-                        </div>
+                    </div>
                     </div>
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col [nzSm]="4">
-                            <label>存放要求</label>
+                            <label nz-form-item-required>存放要求</label>
                         </div>
-                        <div nz-form-control nz-col [nzSm]="10">
+                        <div nz-form-control nz-col [nzSm]="10" [nzValidateStatus]="getFormControl('requirement')">
                             <nz-input formControlName="requirement"  [(ngModel)] = 'Sample.requirement.Record_Value' [nzReadonly]="read" [nzDisabled]="read" ></nz-input>
+                            <div nz-form-explain *ngIf="getFormControl('requirement').dirty&&getFormControl('requirement').hasError('required')">请输入存放要求</div>
                         </div>
                     </div>
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col [nzSm]="4">
-                            <label>应急措施</label>
+                            <label nz-form-item-required>应急措施</label>
                         </div>
-                        <div nz-form-control nz-col [nzSm]="10">
+                        <div nz-form-control nz-col [nzSm]="10" [nzValidateStatus]="getFormControl('emergency')">
                             <nz-input formControlName="emergency" [(ngModel)] = 'Sample.emergency.Record_Value' [nzReadonly]="read" [nzDisabled]="read" ></nz-input>
-                            <!--<nz-input formControlName="emergency"  [nzDisabled]="true"></nz-input>-->
+                            <div nz-form-explain *ngIf="getFormControl('emergency').dirty&&getFormControl('emergency').hasError('required')">请输入应急措施</div>
                         </div>
                     </div>
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col [nzSm]="4">
-                            <label>所在队列</label>
+                            <label nz-form-item-required>所在队列</label>
                         </div>
-                        <div nz-form-control nz-col [nzSm]="3">
+                        <div nz-form-control nz-col [nzSm]="3" [nzValidateStatus]="getFormControl('belong_rep')">
                             <nz-select formControlName="belong_rep" [nzSize]="'large'" [(ngModel)] = 'Sample.belong_rep.Record_Value'[nzDisabled]="read" >
                                 <nz-option [nzLabel]="'陕西'" [nzValue]="'1'"></nz-option>
                                 <nz-option [nzLabel]="'甘肃'" [nzValue]="'2'"></nz-option>
@@ -186,6 +188,7 @@
                                 <nz-option [nzLabel]="'青海'" [nzValue]="'4'"></nz-option>
                                 <nz-option [nzLabel]="'新疆'" [nzValue]="'5'"></nz-option>
                             </nz-select>
+                            <div nz-form-explain *ngIf="getFormControl('belong_rep').dirty&&getFormControl('belong_rep').hasError('required')">请输入所在队列</div>
                         </div>
                     </div>
                     <div nz-form-item nz-row>
@@ -224,28 +227,46 @@
                     </div>
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col [nzSm]="4">
-                            <label>保管人</label>
+                            <label nz-form-item-required>保存量</label>
                         </div>
-                        <div nz-form-control nz-col [nzSm]="5">
+                        <div nz-form-control nz-col [nzSm]="5" [nzValidateStatus]="getFormControl('capacity')" >
+                            <nz-input formControlName="capacity" [nzType]="number" [(ngModel)] = 'Sample.capacity.Record_Value' [nzReadonly]="read" [nzDisabled]="read"  ></nz-input>
+                            <div nz-form-explain *ngIf="getFormControl('capacity').dirty&&getFormControl('capacity').hasError('required')">请输入保存量</div>
+                        </div>
+                        <div nz-col [nzSm]="2">
+                            <span nz-form-text>ml/ul</span>
+                        </div>
+                    </div>
+                    <div nz-form-item nz-row>
+                        <div nz-form-label nz-col [nzSm]="4">
+                            <label nz-form-item-required>保管人</label>
+                        </div>
+                        <div nz-form-control nz-col [nzSm]="5" [nzValidateStatus]="getFormControl('keeper')">
                             <nz-input formControlName="keeper"  [(ngModel)] = 'Sample.keeper.Record_Value'[nzReadonly]="read" [nzDisabled]="read" ></nz-input>
+                            <div nz-form-explain *ngIf="getFormControl('keeper').dirty&&getFormControl('keeper').hasError('required')">请输入保存人</div>
                         </div>
                     </div>
                     <div nz-form-item nz-row></div>
                 </form>
                 <div nz-row>
                     <div nz-col [nzSm]="18" [nzOffset]="3">
-                        <nz-table >
+                        <nz-table #nzTable
+                                  [nzDataSource]="data"
+                                  [nzTotal]="total"
+                                  [nzIsPagination] = 'false'
+                                  [nzLoading]="loadingList"
+                        >
                             <thead nz-thead>
                             <tr>
                                 <th nz-th><span>使用人</span></th>
                                 <th nz-th><span>使用数量</span></th>
                                 <th nz-th><span>使用用途</span></th>
                                 <th nz-th><span>使用日期</span></th>
-                                <th nz-th><span> 操作<a (click)="add()" *ngIf ='!read'>(点击添加新数据)</a></span></th>
+                                <th nz-th *ngIf = '!read || !PID'><span> 操作<a (click)="add()" *ngIf ='!read'>(点击添加新数据)</a></span></th>
                             </tr>
                             </thead>
                             <tbody nz-tbody>
-                            <tr nz-tbody-tr *ngFor="let item of data, index as i">
+                            <tr nz-tbody-tr *ngFor="let item of nzTable.data, index as i">
                                 <td nz-td>
                                     <span *ngIf="editRow!== i">{{item.user}}</span>
                                     <span *ngIf="editRow=== i">
@@ -270,12 +291,14 @@
                                         <nz-input [(ngModel)]="tempEditObject[i].use_time"></nz-input>
                                     </span>
                                 </td>
-                                <td nz-td>
+                                <td nz-td *ngIf = '!read || !PID'>
                                     <span *ngIf="editRow!== i && !read">
                                         <a (click)="edit(item)">编辑</a>
                                     </span>
                                     <span *ngIf="editRow===i">
                                         <a (click)="save(item)">保存</a>
+                                        <span nz-table-divider></span>
+                                        <a (click)="deleteList(item,0)">删除</a>
                                         <span nz-table-divider></span>
                                         <nz-popconfirm [nzTitle]="'确认取消？'" (nzOnConfirm)="cancel(item,0)">
                                             <a nz-popconfirm>取消</a>
@@ -287,17 +310,21 @@
                         </nz-table>
                     </div>
                 </div>
+                <br>
                 <div nz-row>
                     <div nz-col [nzSm]="18" [nzOffset]="3">
-                        <nz-table [nzShowFooter] = "true">
+                        <nz-table
+                                  [nzDataSource]="Accdata"
+                                  [nzIsPagination] = 'false'
+                        >
                             <thead nz-thead>
                             <tr>
                                 <th nz-th><span>意外事件</span></th>
                                 <th nz-th><span>日期</span></th>
                                 <th nz-th><span>时长</span></th>
                                 <th nz-th><span>解决办法</span></th>
-                                <th nz-th><span>影像</span></th>
-                                <th nz-th><span> 操作<a (click)="addAcc()" *ngIf ='!read'>(点击添加新数据)</a></span></th>
+                                <th nz-th><span>影响</span></th>
+                                <th nz-th *ngIf = '!read || !PID'><span> 操作<a (click)="addAcc()" *ngIf ='!read'>(点击添加新数据)</a></span></th>
                             </tr>
                             </thead>
                             <tbody nz-tbody>
@@ -332,14 +359,16 @@
                                         <nz-input [(ngModel)]="tempAccEditObject[i].influence"></nz-input>
                                     </span>
                                 </td>
-                                <td nz-td>
+                                <td nz-td *ngIf = '!read || !PID'>
                                     <span *ngIf="editRow1!== i && !read">
                                         <a (click)="editAcc(item)">编辑</a>
                                     </span>
                                     <span *ngIf="editRow1===i">
                                         <a (click)="saveAcc(item)">保存</a>
+                                          <span nz-table-divider></span>
+                                        <a (click)="deleteList(item,1)">删除</a>
                                         <span nz-table-divider></span>
-                                        <nz-popconfirm [nzTitle]="'确认取消？'" (nzOnConfirm)="cancel(item,1)">
+                                        <nz-popconfirm [nzTitle]="'确认取消？'" (nzOnConfirm)="cancel(item1,1)">
                                             <a nz-popconfirm>取消</a>
                                         </nz-popconfirm>
                                     </span>
@@ -349,6 +378,10 @@
                         </nz-table>
                     </div>
                 </div>
+                <br>
+                <br>
+                <br>
+                <br>
                 <div nz-form-control nz-col [nzSpan]="14" [nzOffset]="4">
                     <button nz-button [nzType]="'primary'" [disabled]="disabled" class="mr-sm" (click)="_submitForm()" *ngIf = '!PID && _manager'>
                     <span>保存</span>

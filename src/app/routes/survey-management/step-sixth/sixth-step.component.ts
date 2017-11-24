@@ -1,13 +1,14 @@
 /**
  *  input radio
  */
-import { Component, OnInit, ViewChildren, QueryList, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList, ElementRef, AfterViewInit,ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router, PreloadingStrategy, Params} from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd';
 import { HttpService } from '@core/services/http.service';
 
 import { InputcmpComponent } from '../shared/inputcmp/inputcmp.component';
 import { RadiocmpComponent } from '../shared/radiocmp/radiocmp.component';
+import { CheckboxcmpComponent} from '../shared/checkboxcmp/checkboxcmp.component';
 import { Table613Component } from '../shared/tablecmp/table613/table613.component';
 
 import { ScheduleList } from '../shared/scheduleList';
@@ -22,6 +23,7 @@ export class SixthStepComponent implements OnInit, AfterViewInit {
     @ViewChildren(InputcmpComponent) InputItems: QueryList<InputcmpComponent>;
     @ViewChildren(RadiocmpComponent) RadioItems: QueryList<RadiocmpComponent>;
     @ViewChildren(Table613Component) Table613Item: QueryList<Table613Component>;
+    @ViewChildren(CheckboxcmpComponent) CheckboxItems: QueryList<CheckboxcmpComponent>;
     current = 5;                                        // 当前步骤
     schedule_list =  new ScheduleList().schedule_list;  // 步骤列表
     resultList = [];                                    // 填写结果
@@ -31,12 +33,14 @@ export class SixthStepComponent implements OnInit, AfterViewInit {
     buttondisable = false;
     questionSave = [];
     questionList = [];
+    sex = false;
     localInfo = JSON.parse(localStorage.getItem('_user'));
     constructor(
         private router: Router,
         private route: ActivatedRoute,
         private service: HttpService,
-        private confirmServ: NzModalService
+        private confirmServ: NzModalService,
+        private ref: ChangeDetectorRef
     ) {
         this.PID = this.route.params['value']['PID'];
         if ( this.PID) {
@@ -51,6 +55,7 @@ export class SixthStepComponent implements OnInit, AfterViewInit {
                     if ( list[i]['ID0_0'] && list[i]['ID0_0'] !== '') {
                         this.questionList = list[i]['ID0_0'][5];
                         this.questionSave = list[i]['ID0_0'];
+                        console.log(this.questionList);
                         break;
                     }
                 }
@@ -62,7 +67,19 @@ export class SixthStepComponent implements OnInit, AfterViewInit {
 
     }
     ngAfterViewInit() {
-        this.fillingAllanswer();
+        const getRecord = {
+            'PID': this.PID,
+            'RecordID': 'ID1'
+        };
+        this.service.getRecord(getRecord).subscribe( (res) => {
+            res.Records.forEach( it => {
+                if (it['ID1_3_1'] === 'True' ) { this.sex  = true; }
+
+            });
+        });
+        if ( this.PID ) {
+            this.fillingAllanswer();
+        }
     }
     pre() {
         this.collectAllanswer();
@@ -77,12 +94,7 @@ export class SixthStepComponent implements OnInit, AfterViewInit {
             this.collectAllanswer();
             const putRecord = { 'Records': this.resultList, 'PID': this.PID};
             this.service.putRecord(putRecord).subscribe( (res) => {
-                if ( res.Return === 0)
-                    this.router.navigate(['/survey/seventh_step/' + this.PID]);
-                else this.confirmServ.error( {
-                    title: '未知错误',
-                    content: '请联系开发人员'
-                });
+                this.router.navigate(['/survey/seventh_step/' + this.PID]);
             }, error => {
                 console.log(error);
             });
@@ -120,8 +132,36 @@ export class SixthStepComponent implements OnInit, AfterViewInit {
      */
     jumpTo(step_index) {
         const numWords = ['first', 'second', 'third', 'forth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth'];
-        if (this.PID) { // 如果有病人编号，则跳跃
-            this.router.navigate(['/survey/' + numWords[step_index] + '_step/' + this.PID]);  // 拼接跳转链接
+        if (this.PID && step_index !== this.current) { // 如果有病人编号，则跳跃
+            console.log(step_index);
+            if ( numWords[step_index] === 'ninth' && this.sex === true) {
+                this.confirmServ.error({
+                    title: '提示',
+                    content: '男性无此记录'
+                });
+            }else {
+                if ( this.confirm().confirms ) {
+                    this.collectAllanswer();
+                    let  putRecord = {};
+                    if (!this.PID)  putRecord = { 'Records' : this.resultList };
+                    else putRecord = { 'PID': this.PID, 'Records' : this.resultList };
+                    this.service.putRecord(putRecord).subscribe( (res) => {
+                        this.PID = res.PID;
+                        this.router.navigate(['/survey/' + numWords[step_index] + '_step/' + this.PID]);  // 拼接跳转链接
+                    }, err => {
+                        console.log(err);
+                    });
+                }else {
+                    let str = '';
+                    for ( let i = 0; i < this.confirm().confirmList.length; i++) {
+                        str = str + this.confirm().confirmList[i] + '、';
+                    }
+                    this.confirmServ.error({
+                        title: '您还有以下必填项没有完成： ',
+                        content: str
+                    });
+                }
+            }
         }
 
     }
@@ -160,6 +200,9 @@ export class SixthStepComponent implements OnInit, AfterViewInit {
         this.RadioItems.forEach(item => { if ( item.question.hidden === false && item.localAnswer === -1) {
             confirms = false; confirmlist.push(item.question.id);
         }});
+        this.CheckboxItems.forEach(item => { if ( item.question.hidden === false && !item.localAnswer) {
+            confirms = false; confirmlist.push(item.question.id);
+        }});
         const confirmAll = {
             confirms: confirms,
             confirmList: confirmlist
@@ -175,6 +218,9 @@ export class SixthStepComponent implements OnInit, AfterViewInit {
         });
         this.Table613Item.forEach( item => {
             if ( true ) { item.getAnswer().forEach( it => {this.resultList.push(it); } ); }
+        });
+        this.CheckboxItems.forEach(item => {
+            if (item.answerChanged === true) { for ( let i = 0; i < item.answer.length; i++) { this.resultList.push(item.answer[i]); } }
         });
         if (this.confirm().confirms) {
             this.questionSave[5] = this.questionList;
@@ -280,6 +326,16 @@ export class SixthStepComponent implements OnInit, AfterViewInit {
                         });
                     }
                 });
+                this.CheckboxItems.forEach( item => { for ( let i = 0; i < fillingList.length; i++) {
+                    for ( let j = 1; j <= item.question.content.length; j++ ) {
+                        const id = this.getTransid(item.question.id) + '_' + j;
+                        if ( fillingList[i][id] && fillingList[i][id] !== '') {
+                            const nums = id.split('_');
+                            item.localAnswer[Number.parseInt (nums[nums.length - 1]) - 1] = true;
+                        }
+                    }
+                }});
+                this.ref.detectChanges();
             }, error => {
                 console.log(error);
             }

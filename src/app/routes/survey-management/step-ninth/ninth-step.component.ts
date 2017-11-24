@@ -95,12 +95,7 @@ export class NinthStepComponent implements OnInit, AfterViewInit {
             this.collectAllanswer();
             const putRecord = { 'Records': this.resultList, 'PID': this.PID};
             this.service.putRecord(putRecord).subscribe( (res) => {
-                if ( res.Return === 0)
                     this.router.navigate(['/survey/tenth_step/' + this.PID]);
-                else this.confirmServ.error( {
-                    title: '未知错误',
-                    content: '请联系开发人员'
-                });
             }, error => {
                 console.log(error);
             });
@@ -158,8 +153,7 @@ export class NinthStepComponent implements OnInit, AfterViewInit {
      */
     jumpTo(step_index) {
         const numWords = ['first', 'second', 'third', 'forth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth'];
-        if (this.PID) { // 如果有病人编号，则跳跃
-            console.log(step_index);
+        if (this.PID && step_index !== this.current) { // 如果有病人编号，则跳跃
             this.router.navigate(['/survey/' + numWords[step_index] + '_step/' + this.PID]);  // 拼接跳转链接
         }
 
@@ -318,7 +312,6 @@ export class NinthStepComponent implements OnInit, AfterViewInit {
                     }
                 }
             );
-
         }, error => {
             console.log(error);
         });

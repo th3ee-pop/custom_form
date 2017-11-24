@@ -1,4 +1,3 @@
-<br>
 <div nz-row [nzGutter]="24" class="py-lg">
     <div nz-col [nzSpan]="24">
         <nz-card [nzNoHovering]="true">
@@ -18,7 +17,7 @@
                                     <label>体检编号</label>
                                 </div>
                                 <div nz-form-control nz-col [nzSm]="5">
-                                    <nz-input [(ngModel)]="conditions.filter_dict.No" name="userId" [nzId]="'userId'" [nzPlaceHolder]="'00X'"></nz-input>
+                                    <nz-input [(ngModel)]="conditions.filter_dict.No" name="userId" [nzId]="'userId'" ></nz-input>
                                 </div>
 
                                 <div nz-form-label nz-col [nzSm]="2">
@@ -43,10 +42,10 @@
                             </div>
                             <div nz-row nz-form-item [nzGutter]="16" class="mb0">
                                 <div nz-form-label nz-col [nzSm]="2">
-                                    <label>录入者ID</label>
+                                    <label>录入者</label>
                                 </div>
                                 <div nz-form-control nz-col [nzSm]="5">
-                                    <nz-input [(ngModel)]="conditions.filter_dict.Complete_by" name="userId" [nzId]="'userId'" [nzPlaceHolder]="'00X'"></nz-input>
+                                    <nz-input [(ngModel)]="conditions.filter_dict.Complete_by" name="userId" [nzId]="'userId'" ></nz-input>
                                 </div>
 
                                 <div nz-form-label nz-col [nzSm]="2">
@@ -99,11 +98,17 @@
                                           [nzLoading]="loading"
                                           [nzTotal]="total"
                                           [(nzPageIndex)]="pi"
-                                          (nzPageIndexChange)="getTableData()"
+                                          (nzPageIndexChange)="getTableData(true)"
                                           [(nzPageSize)]="ps"
-                                          (nzPageSizeChange)="getTableData()">
+                                          (nzPageSizeChange)="getTableData(true)">
                                     <thead nz-thead>
                                     <tr>
+                                        <th nz-th [nzCheckbox]="true">
+                                            <label nz-checkbox
+                                                   [(ngModel)]="_allChecked" [nzIndeterminate]="_indeterminate"
+                                                   (ngModelChange)="_checkAll()">
+                                            </label>
+                                        </th>
                                         <th nz-th><span>PID</span></th>
                                         <th nz-th><span>姓名</span><nz-table-sort [(nzValue)]="sortMap['Name']" (nzValueChange)="sort('Name',$event)"></nz-table-sort></th>
                                         <th nz-th><span>体检编号</span><nz-table-sort [(nzValue)]="sortMap['No']" (nzValueChange)="sort('No',$event)"></nz-table-sort></th>
@@ -117,6 +122,11 @@
                                     </thead>
                                     <tbody nz-tbody>
                                     <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+                                        <td nz-td [nzCheckbox]="true">
+                                            <label nz-checkbox [(ngModel)]="data.checked"
+                                                   (ngModelChange)="refChecked()">
+                                            </label>
+                                        </td>
                                         <td nz-td>{{data.PID}}</td>
                                         <td nz-td>{{data.Name}}</td>
                                         <td nz-td>{{data.No}}</td>
@@ -151,19 +161,24 @@
                 </div>
 
                 <div nz-row [nzGutter]="40">
-                    <div nz-col [nzSpan]="6">
+                    <div nz-col [nzSpan]="8">
                         <button nz-button [nzType]="'primary'" [nzSize]="'large'" [nzShape]="'circle'" [routerLink]="['/survey/first_step']" class="mr-sm">
                             <i class="anticon anticon-plus"></i>
                         </button>
                         新增
                     </div>
-                    <div nz-col [nzSpan]="6"></div>
-                    <div nz-col [nzSpan]="6"></div>
-                    <div nz-col [nzSpan]="6">
+                    <div nz-col [nzSpan]="10"></div>
+                    <div nz-col [nzSpan]="3">
                         <button nz-button [nzType]="'primary'" [nzSize]="'large'" [nzShape]="'circle'" class="mr-sm" (click)="downloadAll()">
                             <i class="anticon anticon-download"></i>
                         </button>
                         导出所有记录
+                    </div>
+                    <div nz-col [nzSpan]="3">
+                        <button nz-button [nzType]="'primary'" [nzSize]="'large'" [nzShape]="'circle'" class="mr-sm" (click)="downSelected()">
+                            <i class="anticon anticon-download"></i>
+                        </button>
+                        导出选中记录
                     </div>
                 </div>
 
