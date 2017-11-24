@@ -326,6 +326,15 @@ export class SampleAddComponent implements OnInit {
         this.tempAccEditObject[i] = { ...newRecord };
         this.editRow1 = this.Accdata.length-1;
     }
+    deleteList(data,num){
+        if(num ==0 ){
+            this.data.splice(data.key, 1);
+            delete this.tempEditObject[data.key];
+        }else {
+            this.Accdata.splice(data.key, 1);
+            delete this.tempAccEditObject[data.key];
+        }
+    }
 
     ngOnInit() {
         this.PID = this.route.params['value']['PID'];
@@ -411,7 +420,7 @@ export class SampleAddComponent implements OnInit {
         console.log(body);
         this.service.putRecord(body).subscribe(res => {
             console.log(res);
-            this.msg.success('修改成功');
+            // this.msg.success('修改成功');
         });
     }
 
@@ -442,5 +451,12 @@ export class SampleAddComponent implements OnInit {
         console.log(Str);
         return Str;
     }
+
+//     remove(i,val:any){
+//     var index = this.indexOf(val);
+//     if (index > -1) {
+//         this.splice(index, 1);
+//     }
+// };
 }
 

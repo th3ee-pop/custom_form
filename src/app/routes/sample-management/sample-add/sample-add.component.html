@@ -293,6 +293,8 @@
                                     <span *ngIf="editRow===i">
                                         <a (click)="save(item)">保存</a>
                                         <span nz-table-divider></span>
+                                        <a (click)="deleteList(item,0)">删除</a>
+                                        <span nz-table-divider></span>
                                         <nz-popconfirm [nzTitle]="'确认取消？'" (nzOnConfirm)="cancel(item,0)">
                                             <a nz-popconfirm>取消</a>
                                         </nz-popconfirm>
@@ -312,7 +314,7 @@
                                 <th nz-th><span>日期</span></th>
                                 <th nz-th><span>时长</span></th>
                                 <th nz-th><span>解决办法</span></th>
-                                <th nz-th><span>影像</span></th>
+                                <th nz-th><span>影响</span></th>
                                 <th nz-th *ngIf = '!read || !PID'><span> 操作<a (click)="addAcc()" *ngIf ='!read'>(点击添加新数据)</a></span></th>
                             </tr>
                             </thead>
@@ -354,6 +356,7 @@
                                     </span>
                                     <span *ngIf="editRow1===i">
                                         <a (click)="saveAcc(item)">保存</a>
+                                        <a (click)="deleteList(item,1)">删除</a>
                                         <span nz-table-divider></span>
                                         <nz-popconfirm [nzTitle]="'确认取消？'" (nzOnConfirm)="cancel(item,1)">
                                             <a nz-popconfirm>取消</a>
