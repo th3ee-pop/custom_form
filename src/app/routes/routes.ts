@@ -12,8 +12,9 @@ import { LoginAuthGuard } from '@core/services/login.guard.service';
 import { UserAuthGuard } from '@core/services/user.guard.service';
 
 export const routes = [
+    { path: '', redirectTo: 'home-page', pathMatch: 'full' },
     {
-        path: '',
+        path: 'system',
         component: LayoutComponent,
         canActivateChild: [LoginAuthGuard],
         children: [
@@ -46,11 +47,12 @@ export const routes = [
         ]
     },
     // 单页不包裹Layout
+    { path: 'home-page', loadChildren: './home-page/home-page.module#HomePageModule' },
     { path: 'login', component: LoginComponent, data: { title: 'login' } },
     { path: 'forget', component: ForgetComponent, data: { translate: 'forget' } },
     { path: 'lock', component: LockComponent, data: { translate: 'lock' } },
     { path: 'maintenance', component: MaintenanceComponent},
     { path: '404', component: Page404Component },
     { path: '500', component: Page500Component },
-    { path: '**', redirectTo: 'dashboard' }
+    { path: '**', redirectTo: 'survey/detail' }
 ];

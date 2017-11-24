@@ -1,0 +1,121 @@
+<div class="top_box">
+    <div class="top_01">
+        <ul class="info_01">
+            <li><img src="assets/img/top_tel.png" class="tip_pic01"></li>
+            <li><img src="assets/img/top_com.png" class="tip_pic02"></li>
+        </ul>
+        <ul class="info_02">
+            <li><a ><span>中文</span></a>|<a><span class="eng">English</span></a></li>
+            <li><a [routerLink]="['/survey/detail']"><img src="assets/img/top_enter.png"></a></li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="top_box02">
+    <div class="top_02">
+        <img src="assets/img/logo.png" class="logo">
+        <ul class="nav">
+            <li>
+                <a>首页</a>
+            </li>
+            <li>
+                <a>项目概况</a>
+                <ul class="column">
+                    <li><a [routerLink]="['/home-page/project-intro']">项目介绍</a></li>
+                    <li><a [routerLink]="['/home-page/project-leaders']">项目领导</a></li>
+                    <li><a [routerLink]="['/home-page/project-maps']">项目地图</a></li>
+                    <li><a [routerLink]="['/home-page/project-related']">相关项目</a></li>
+                </ul>
+            </li>
+            <li>
+                <a>项目团队</a>
+                <ul class="column">
+                    <li><a [routerLink]="['/home-page/team-shanxi']">陕西团队</a></li>
+                    <li><a [routerLink]="['/home-page/team-gansu']">甘肃团队</a></li>
+                    <li><a [routerLink]="['/home-page/team-ningxia']">宁夏团队</a></li>
+                    <li><a [routerLink]="['/home-page/team-qinghai']">青海团队</a></li>
+                    <li><a [routerLink]="['/home-page/team-xinjiang']">新疆团队</a></li>
+                </ul>
+            </li>
+            <li>
+                <a>项目研究</a>
+                <ul class="column">
+                    <li><a [routerLink]="['/home-page/study-purpose']">研究目的</a></li>
+                    <li><a [routerLink]="['/home-page/study-distribute']">队列分布</a></li>
+                    <li><a [routerLink]="['/home-page/study-handbook']">调查手册</a></li>
+                    <li><a [routerLink]="['/home-page/study-survey']">调查问卷</a></li>
+                </ul>
+            </li>
+            <li>
+                <a>数据平台</a>
+                <ul class="column">
+                    <li><a [routerLink]="['/home-page/base-member']">研究人员库</a></li>
+                    <li><a [routerLink]="['/home-page/base-equipment']">设备资产库</a></li>
+                    <li><a [routerLink]="['/home-page/base-survey']">调查数据库</a></li>
+                    <li><a [routerLink]="['/home-page/base-sample']">生物样品库</a></li>
+                    <li><a [routerLink]="['/home-page/base-track']">监测追踪库</a></li>
+                    <li><a [routerLink]="['/home-page/base-quality']">质量控制库</a></li>
+                </ul>
+            </li>
+            <li>
+                <a>项目成果</a>
+                <ul class="column">
+                    <li><a [routerLink]="['/home-page/achieve-project']">项目进展</a></li>
+                    <li><a [routerLink]="['/home-page/achieve-data']">数据成果</a></li>
+                    <li><a [routerLink]="['/home-page/achieve-research']">研究成果</a></li>
+                    <li><a [routerLink]="['/home-page/achieve-patent']">专利成果</a></li>
+                </ul>
+            </li>
+            <li>
+                <a>研究人员入口</a>
+                <ul class="column">
+                    <li><a [routerLink]="['/system/user/detail']">研究人员库</a></li>
+                    <li><a [routerLink]="['/system/survey/detail']">调查数据库</a></li>
+                    <li><a [routerLink]="['/system/sample/detail']">生物样品库</a></li>
+                    <li><a [routerLink]="['/system/file/detail']">文件共享库</a></li>
+                    <li><a>设备资产库</a></li>
+                    <li><a>监测追踪库</a></li>
+                    <li><a>质量控制库</a></li>
+                </ul>
+            </li>
+            <li>
+                <a>联系我们</a>
+                <ul class="column">
+                    <li><a [routerLink]="['/home-page/contact']">联系方式</a></li>
+                    <li><a [routerLink]="['/home-page/qa']">常见问题解答</a></li>
+                </ul>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<router-outlet></router-outlet>
+<div class="about_box">
+    <div class="about">
+        <div class="us">
+            <h3>关于我们</h3>
+            <p>中国西北区域自然人群队列研究是在国家重点研发计划“精准医学研究”重点专项支持下开展的西北区域的大规模自然人群队列研究项目。项目旨在建立涵盖西北五省超过10万人的多民族自然人群队列，系统收集队列人群的基线信息和生物样本，全面测量暴露因素，通过定期随访，建立完备的队列人群数据库和生物样本库，开展本区域常见高发疾病的病因学研究，促进西北区域人群健康，推动中国大型队列研究发展。
+            </p>
+        </div>
+        <div class="link">
+            <h3>友情链接</h3>
+            <ul>
+                <li><a [routerLink]="['/home-page/']">中国调查与数据中心</a></li>
+                <li><a [routerLink]="['/home-page/']">中国综合社会调查</a></li>
+                <li><a [routerLink]="['/home-page/']">中国教育追踪调查</a></li>
+                <li><a [routerLink]="['/home-page/']">中国宗教调查</a></li>
+            </ul>
+        </div>
+        <div class="qr">
+            <img src="assets/img/code.png">
+            <p>扫一扫  加关注<br>CNC官方微信</p>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div class="foot">
+    <div>
+        <img src="assets/img/foot.png">
+    </div>
+</div>
+

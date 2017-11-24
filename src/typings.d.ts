@@ -15,4 +15,5 @@ declare var require: NodeRequire;
 declare var G2: any,
     crossfilter: any,
     d3: any,
-    dc: any;
+    dc: any,
+    $: any;
