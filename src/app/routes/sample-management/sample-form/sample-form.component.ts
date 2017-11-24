@@ -19,8 +19,8 @@ export class SampleFormComponent implements OnInit {
     args = {};
     _indeterminate = false;
     _allChecked = false;
-    start_time = '';
-    end_time = '';
+    start_time = null;
+    end_time = null;
     sortMap = {
         'number':null,
         'reposity':null,
@@ -113,8 +113,8 @@ export class SampleFormComponent implements OnInit {
             if (this.conditions.filter[key])
                 delete this.conditions.filter[key];
         }
-        this.start_time = '';
-        this.end_time = '';
+        this.start_time = null;
+        this.end_time = null;
         this.load();
     }
 
@@ -204,13 +204,11 @@ export class SampleFormComponent implements OnInit {
 
     // 时间设置
     setTime() {
-        if (this.start_time === '' || this.end_time === '') {
+        if (this.start_time === null || this.end_time === null) {
             delete this.conditions.filter.collect_time;
         } else {
             this.conditions.filter.collect_time = [];
-            // this.conditions.filter.collect_time.push(this.GMTToStr(this.start_time));
             this.conditions.filter.collect_time.push(this.start_time);
-            // this.conditions.filter.collect_time.push(this.GMTToStr(this.end_time));
             this.conditions.filter.collect_time.push(this.end_time);
         }
     }
