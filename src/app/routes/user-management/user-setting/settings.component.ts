@@ -134,8 +134,9 @@ export class UserSettingsComponent implements OnInit {
 
     // 点击查询按钮
     showConditions() {
+        this.pi = 1;
         this.conditions.start = 0;
-        this.load(false);
+        this.load(true);
     }
 
     // 清除所有条件
@@ -146,7 +147,9 @@ export class UserSettingsComponent implements OnInit {
         }
         this.start_time = null;
         this.end_time = null;
-        this.load(false);
+        this.pi = 1;
+        this.conditions.start = 0;
+        this.load(true);
     }
 
     // 时间格式转换
