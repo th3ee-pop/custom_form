@@ -149,7 +149,6 @@ export class SecondStepComponent implements OnInit, AfterViewInit {
     jumpTo(step_index) {
         const numWords = ['first', 'second', 'third', 'forth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth'];
         if (this.PID && step_index !== this.current) { // 如果有病人编号，则跳跃
-            console.log(step_index);
             if ( numWords[step_index] === 'ninth' && this.sex === true) {
                 this.confirmServ.error({
                     title: '提示',
@@ -159,10 +158,10 @@ export class SecondStepComponent implements OnInit, AfterViewInit {
                 if ( this.confirm().confirms ) {
                     this.collectAllanswer();
                     let  putRecord = {};
+                    console.log('#########');
                     if (!this.PID)  putRecord = { 'Records' : this.resultList };
                     else putRecord = { 'PID': this.PID, 'Records' : this.resultList };
                     this.service.putRecord(putRecord).subscribe( (res) => {
-                        if ( res.Return === 0)
                             this.router.navigate(['/survey/' + numWords[step_index] + '_step/' + this.PID]);  // 拼接跳转链接
                     }, err => {
                         console.log(err);
