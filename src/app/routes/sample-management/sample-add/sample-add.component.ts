@@ -200,10 +200,10 @@ export class SampleAddComponent implements OnInit {
 
     confirmationValidator = (control: FormControl): { [s: string]: boolean } => {
         const temp = control.value;
-        // console.log(temp);
+        console.log(temp);
         if (!control.value) {
             return { required: true };
-        } else if (temp[0] !== this.validateForm.value.repository) {
+        } else if (control.value[0] !== this.validateForm.controls['repository'].value) {
             console.info('error');
             return { confirm: true, error: true };
         }
@@ -221,20 +221,20 @@ export class SampleAddComponent implements OnInit {
             collect_time:[null, [ Validators.required]],
             collecter:[null, [ Validators.required]],
             branch:[null, [ Validators.required]],
-            lost_msg:[null, [  ]],
+            lost_msg:[null, [Validators.required]],
             pipe_Num:[null, [ Validators.required, this.confirmationValidator]],
             store_time:[null, [ Validators.required]],
             placer:[null, [ Validators.required]],
-            requirement:[null, [ ]],
-            emergency:[null, [ ]],
-            belong_rep:[null, [ ]],
+            requirement:[null, [ Validators.required]],
+            emergency:[null, [ Validators.required ]],
+            belong_rep:[null, [Validators.required ]],
             building: [null, [Validators.required]],
             ref: [null, [Validators.required ]],
             lay: [null, [Validators.required ]],
             col: [null, [Validators.required ]],
             row: [null, [Validators.required ]],
             shelf: [null, [Validators.required ]],
-            keeper:[null,[ ]]
+            keeper:[null,[Validators.required ]]
         });
     }
 
@@ -366,8 +366,10 @@ export class SampleAddComponent implements OnInit {
                 'Records': this.transfer(this.validateForm.value)
             };
             console.log(this.validateForm.valid);
+            console.log(this.validateForm.value);
             if (this.validateForm.valid) {
                 this.service.putRecord(data).subscribe(res => {
+                    this.msg.success('保存成功');
                     console.log(res);
                 });
             }
@@ -390,10 +392,6 @@ export class SampleAddComponent implements OnInit {
         }}
         data['user_info'] = this.Sample.user_info;
         data['accident_info'] = this.Sample.accident_info;
-        // data['capacity'] ={
-        //     'Record_Value': formData['collect_count'] || '0',
-        //     'Updated_time':''
-        // };
         console.log(data);
         return data;
     }
@@ -411,7 +409,10 @@ export class SampleAddComponent implements OnInit {
             }
         }
         console.log(body);
-        this.service.putRecord(body).subscribe(res => {console.log(res);});
+        this.service.putRecord(body).subscribe(res => {
+            console.log(res);
+            this.msg.success('修改成功');
+        });
     }
 
     correct(){

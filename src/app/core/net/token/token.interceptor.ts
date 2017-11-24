@@ -5,7 +5,6 @@ import { HttpInterceptor, HttpRequest, HttpHandler,
          HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { TokenService } from './token.service';
-import {NzMessageService} from "ng-zorro-antd";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
@@ -16,22 +15,12 @@ import { environment } from '../../../../environments/environment';
  */
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-    public msg: NzMessageService;
+
     constructor(private injector: Injector) {}
 
     private goLogin() {
         const router = this.injector.get(Router);
         this.injector.get(Router).navigate([ '/login' ]);
-    }
-
-    popMsg(res){
-        if( res.Return == 1){
-            this.msg.error('操作失败!');
-        }else if(res.Return == 0){
-            this.msg.success('操作成功！');
-        }else {
-            this.msg.info('未知错误：'+ res.Return);
-        }
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler):
