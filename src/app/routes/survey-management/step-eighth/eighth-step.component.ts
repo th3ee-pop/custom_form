@@ -77,10 +77,6 @@ export class EighthStepComponent implements OnInit, AfterViewInit {
             });
         });
         if ( this.PID ) {
-          //  this.ref.detach();
-            setInterval(() => {
-                this.ref.detectChanges();
-            }, 500);
             this.fillingAllanswer();
         }
     }
@@ -112,18 +108,10 @@ export class EighthStepComponent implements OnInit, AfterViewInit {
             this.collectAllanswer();
             const putRecord = { 'Records': this.resultList, 'PID': this.PID};
             this.service.putRecord(putRecord).subscribe( (res) => {
-                if ( res.Return === 0) {
-                    if ( this.sex === true) {
-                        this.router.navigate(['/survey/tenth_step/' + this.PID]);
-                    }else {
-                        this.router.navigate(['/survey/ninth_step/' + this.PID]);
-                    }
-                } else {
-                    this.confirmServ.error( {
-                        title: '未知错误',
-                        content: '请联系开发人员'
-                    });
-
+                if ( this.sex === true) {
+                    this.router.navigate(['/survey/tenth_step/' + this.PID]);
+                }else {
+                    this.router.navigate(['/survey/ninth_step/' + this.PID]);
                 }
 
             }, error => {
@@ -335,6 +323,7 @@ export class EighthStepComponent implements OnInit, AfterViewInit {
                     );
                 }
             });
+            this.ref.detectChanges();
 
         }, error => {
             console.log(error);

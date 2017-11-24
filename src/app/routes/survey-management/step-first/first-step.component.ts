@@ -60,6 +60,7 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
                 const list = res.Records;
                 console.log(res);
                 this.answerList = list;
+                console.log('this is answerlist', this.answerList);
                 for ( let i = 0; i < list.length; i++) {
                     if ( list[i]['ID0_0'] && list[i]['ID0_0'] !== '') {
                         this.questionList = list[i]['ID0_0'][0];
@@ -110,11 +111,6 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
             });
         });
         if ( this.PID ) {
-            // this.ref.detach();
-            setInterval(() => {
-
-                this.ref.detectChanges();
-            }, 500);
             this.fillingAllanswer();
         }
     }
@@ -127,12 +123,8 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
             else putRecord = { 'PID': this.PID, 'Records' : this.resultList };
             this.service.putRecord(putRecord).subscribe( (res) => {
                 this.PID = res.PID;
-                if ( res.Return === 0)
-                    this.router.navigate(['/survey/second_step/' + this.PID]);
-                else this.confirmServ.error( {
-                    title: '未知错误',
-                    content: '请联系开发人员'
-                });
+                this.router.navigate(['/survey/second_step/' + this.PID]);
+
             }, err => {
                 console.log(err);
             });
@@ -169,12 +161,7 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
                     else putRecord = { 'PID': this.PID, 'Records' : this.resultList };
                     this.service.putRecord(putRecord).subscribe( (res) => {
                         this.PID = res.PID;
-                        if ( res.Return === 0)
-                            this.router.navigate(['/survey/' + numWords[step_index] + '_step/' + this.PID]);  // 拼接跳转链接
-                        else this.confirmServ.error( {
-                            title: '未知错误',
-                            content: '请联系开发人员'
-                        });
+                        this.router.navigate(['/survey/' + numWords[step_index] + '_step/' + this.PID]);  // 拼接跳转链接
                     }, err => {
                         console.log(err);
                     });
@@ -283,6 +270,7 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
                 }
             }
         }
+        console.log('this is resultlist', this.resultList);
     }
 
     rundisabledAll (completeby, province) {
@@ -383,6 +371,7 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
                     if (this.fillingList[i][id] && this.fillingList[i][id] !== '') { item.date = new Date(this.fillingList[i][id]); }
                 }
             });
+            this.ref.detectChanges();
         }, error => {
             console.log(error);
         });
