@@ -92,8 +92,6 @@ export class UserSettingsComponent implements OnInit {
         new_password: '',
         confirm_new_password: ''
     };
-    // Email
-    primary_email = 'cipchk@qq.com';
 
 
     //  数据加载
