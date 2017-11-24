@@ -39,7 +39,7 @@ export class LockComponent {
         }).subscribe((resp) => {
             console.log(resp);
             if (resp.Return === 0) {
-                this.router.navigate(['']);
+                this.router.navigate([sessionStorage.getItem('back_url')]);
             } else {
                 this.msg.info('密码错误');
             }
