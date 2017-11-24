@@ -101,14 +101,14 @@ export class SeventhStepComponent implements OnInit, AfterViewInit {
         const putRecord = { 'PID': this.PID, 'Records' : this.resultList };
         this.service.putRecord(putRecord).subscribe( (res) => {
         }, error => { });
-        this.router.navigate( ['/survey/sixth_step/' + this.PID]);
+        this.router.navigate( ['system/survey/sixth_step/' + this.PID]);
     }
     next() {                                            // 下一步
         if ( this.confirm().confirms ) {
             this.collectAllanswer();
             const putRecord = { 'Records': this.resultList, 'PID': this.PID};
             this.service.putRecord(putRecord).subscribe( (res) => {
-                this.router.navigate(['/survey/eighth_step/' + this.PID]);
+                this.router.navigate(['system/survey/eighth_step/' + this.PID]);
             }, error => {
                 console.log(error);
             });
@@ -167,7 +167,7 @@ export class SeventhStepComponent implements OnInit, AfterViewInit {
                     else putRecord = { 'PID': this.PID, 'Records' : this.resultList };
                     this.service.putRecord(putRecord).subscribe( (res) => {
                         this.PID = res.PID;
-                        this.router.navigate(['/survey/' + numWords[step_index] + '_step/' + this.PID]);  // 拼接跳转链接
+                        this.router.navigate(['system/survey/' + numWords[step_index] + '_step/' + this.PID]);  // 拼接跳转链接
                     }, err => {
                         console.log(err);
                     });
@@ -190,11 +190,11 @@ export class SeventhStepComponent implements OnInit, AfterViewInit {
         this.collectAllanswer();
         const putRecord = { 'PID': this.PID, 'Records' : this.resultList };
         this.service.putRecord(putRecord).subscribe( (res) => {
-            this.router.navigate( ['/survey/detail/']);
+            this.router.navigate( ['system/survey/detail/']);
         }, error => { });
     }
     exit() {                                            // 退出
-        this.router.navigate(['/survey/detail/']);
+        this.router.navigate(['system/survey/detail/']);
     }
 
     confirm() {

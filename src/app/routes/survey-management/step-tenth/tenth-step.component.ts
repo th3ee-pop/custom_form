@@ -100,9 +100,9 @@ export class TenthStepComponent implements OnInit, AfterViewInit {
         const putRecord = { 'PID': this.PID, 'Records' : this.resultList };
         this.service.putRecord(putRecord).subscribe( (res) => {
             if ( this.sex === true) {
-                this.router.navigate(['/survey/eighth_step/' + this.PID]);
+                this.router.navigate(['system/survey/eighth_step/' + this.PID]);
             }else {
-                this.router.navigate(['/survey/ninth_step/' + this.PID]);
+                this.router.navigate(['system/survey/ninth_step/' + this.PID]);
             }
         }, error => { });
 
@@ -113,7 +113,7 @@ export class TenthStepComponent implements OnInit, AfterViewInit {
             const putRecord = { 'Records': this.resultList, 'PID': this.PID};
             this.service.putRecord(putRecord).subscribe( (res) => {
                 if ( res.Return === 0)
-                    this.router.navigate(['/survey/detail/']);
+                    this.router.navigate(['system/survey/detail/']);
                 else this.confirmServ.error( {
                     title: '未知错误',
                     content: '请联系开发人员'
@@ -184,7 +184,7 @@ export class TenthStepComponent implements OnInit, AfterViewInit {
                     else putRecord = { 'PID': this.PID, 'Records' : this.resultList };
                     this.service.putRecord(putRecord).subscribe( (res) => {
                         this.PID = res.PID;
-                        this.router.navigate(['/survey/' + numWords[step_index] + '_step/' + this.PID]);  // 拼接跳转链接
+                        this.router.navigate(['system/survey/' + numWords[step_index] + '_step/' + this.PID]);  // 拼接跳转链接
                     }, err => {
                         console.log(err);
                     });
@@ -205,7 +205,7 @@ export class TenthStepComponent implements OnInit, AfterViewInit {
 
 
     exit() {                                            // 退出
-        this.router.navigate(['/survey/detail/']);
+        this.router.navigate(['system/survey/detail/']);
     }
     confirm() {
         const confirmlist = [];

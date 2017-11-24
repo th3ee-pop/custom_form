@@ -123,7 +123,7 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
             else putRecord = { 'PID': this.PID, 'Records' : this.resultList };
             this.service.putRecord(putRecord).subscribe( (res) => {
                 this.PID = res.PID;
-                this.router.navigate(['/survey/second_step/' + this.PID]);
+                this.router.navigate(['system/survey/second_step/' + this.PID]);
 
             }, err => {
                 console.log(err);
@@ -161,7 +161,7 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
                     else putRecord = { 'PID': this.PID, 'Records' : this.resultList };
                     this.service.putRecord(putRecord).subscribe( (res) => {
                         this.PID = res.PID;
-                        this.router.navigate(['/survey/' + numWords[step_index] + '_step/' + this.PID]);  // 拼接跳转链接
+                        this.router.navigate(['system/survey/' + numWords[step_index] + '_step/' + this.PID]);  // 拼接跳转链接
                     }, err => {
                         console.log(err);
                     });
@@ -192,7 +192,7 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
                 putRecord = { 'Records' : this.resultList };
             }
             this.service.putRecord(putRecord).subscribe( (res) => {
-                this.router.navigate(['/survey/detail/']);
+                this.router.navigate(['system/survey/detail/']);
             }, err => { });
         }else {
             this.confirmServ.error({
@@ -202,7 +202,7 @@ export class FirstStepComponent implements OnInit, AfterViewInit {
         }
     }
     exit() {                                            // 退出
-        this.router.navigate( ['/survey/detail/']);
+        this.router.navigate( ['system/survey/detail/']);
     }
 
     confirm() {

@@ -136,7 +136,7 @@
                                         <td nz-td>{{data.Complete_by}}</td>
                                         <td nz-td>
                                             <span >
-                                                <a [routerLink]="'/survey/first_step/'+ data.PID">查看</a>
+                                                <a [routerLink]="'../first_step/'+ data.PID">查看</a>
                                                 <span nz-table-divider></span>
                                             </span>
                                             <span *ngIf="userGroup < 4">
@@ -162,7 +162,7 @@
 
                 <div nz-row [nzGutter]="40">
                     <div nz-col [nzSpan]="8">
-                        <button nz-button [nzType]="'primary'" [nzSize]="'large'" [nzShape]="'circle'" [routerLink]="['/survey/first_step']" class="mr-sm">
+                        <button nz-button [nzType]="'primary'" [nzSize]="'large'" [nzShape]="'circle'" [routerLink]="['../first_step']" class="mr-sm">
                             <i class="anticon anticon-plus"></i>
                         </button>
                         新增

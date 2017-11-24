@@ -31,7 +31,7 @@ export class LockComponent {
     if (this.valForm.valid) {
         console.log('Valid!');
         console.log(this.valForm.value);
-        this.router.navigate(['user/setting']);
+        this.router.navigate(['system/user/setting']);
 
         this.service.login({
             'username': sessionStorage.getItem('User_name'),
