@@ -209,10 +209,10 @@ export class SeventhStepComponent implements OnInit, AfterViewInit {
         this.CheckboxItem.forEach(item => { if ( item.question.hidden === false && !item.localAnswer) {
             confirms = false; confirmlist.push(item.question.id);
         }});
-        this.Table74Item.forEach( item => { if ( item.question.hidden === false && !item.answerCheck() ) {
-            confirms = false; confirmlist.push(item.question.id); }});
-        this.Table715Item.forEach( item => { if ( item.question.hidden === false && !item.answerCheck() ) {
-            confirms = false; confirmlist.push(item.question.id); }});
+        // this.Table74Item.forEach( item => { if ( item.question.hidden === false && !item.answerCheck() ) {
+        //     confirms = false; confirmlist.push(item.question.id); }});
+        // this.Table715Item.forEach( item => { if ( item.question.hidden === false && !item.answerCheck() ) {
+        //     confirms = false; confirmlist.push(item.question.id); }});
         const confirmAll = {
             confirms: confirms,
             confirmList: confirmlist

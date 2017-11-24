@@ -8,6 +8,7 @@ import { HttpService } from '@core/services/http.service';
 
 import { InputcmpComponent } from '../shared/inputcmp/inputcmp.component';
 import { RadiocmpComponent } from '../shared/radiocmp/radiocmp.component';
+import { CheckboxcmpComponent} from '../shared/checkboxcmp/checkboxcmp.component';
 import { Table613Component } from '../shared/tablecmp/table613/table613.component';
 
 import { ScheduleList } from '../shared/scheduleList';
@@ -22,6 +23,7 @@ export class SixthStepComponent implements OnInit, AfterViewInit {
     @ViewChildren(InputcmpComponent) InputItems: QueryList<InputcmpComponent>;
     @ViewChildren(RadiocmpComponent) RadioItems: QueryList<RadiocmpComponent>;
     @ViewChildren(Table613Component) Table613Item: QueryList<Table613Component>;
+    @ViewChildren(CheckboxcmpComponent) CheckboxItems: QueryList<CheckboxcmpComponent>;
     current = 5;                                        // 当前步骤
     schedule_list =  new ScheduleList().schedule_list;  // 步骤列表
     resultList = [];                                    // 填写结果
@@ -53,6 +55,7 @@ export class SixthStepComponent implements OnInit, AfterViewInit {
                     if ( list[i]['ID0_0'] && list[i]['ID0_0'] !== '') {
                         this.questionList = list[i]['ID0_0'][5];
                         this.questionSave = list[i]['ID0_0'];
+                        console.log(this.questionList);
                         break;
                     }
                 }
@@ -197,6 +200,9 @@ export class SixthStepComponent implements OnInit, AfterViewInit {
         this.RadioItems.forEach(item => { if ( item.question.hidden === false && item.localAnswer === -1) {
             confirms = false; confirmlist.push(item.question.id);
         }});
+        this.CheckboxItems.forEach(item => { if ( item.question.hidden === false && !item.localAnswer) {
+            confirms = false; confirmlist.push(item.question.id);
+        }});
         const confirmAll = {
             confirms: confirms,
             confirmList: confirmlist
@@ -212,6 +218,9 @@ export class SixthStepComponent implements OnInit, AfterViewInit {
         });
         this.Table613Item.forEach( item => {
             if ( true ) { item.getAnswer().forEach( it => {this.resultList.push(it); } ); }
+        });
+        this.CheckboxItems.forEach(item => {
+            if (item.answerChanged === true) { for ( let i = 0; i < item.answer.length; i++) { this.resultList.push(item.answer[i]); } }
         });
         if (this.confirm().confirms) {
             this.questionSave[5] = this.questionList;
@@ -317,6 +326,15 @@ export class SixthStepComponent implements OnInit, AfterViewInit {
                         });
                     }
                 });
+                this.CheckboxItems.forEach( item => { for ( let i = 0; i < fillingList.length; i++) {
+                    for ( let j = 1; j <= item.question.content.length; j++ ) {
+                        const id = this.getTransid(item.question.id) + '_' + j;
+                        if ( fillingList[i][id] && fillingList[i][id] !== '') {
+                            const nums = id.split('_');
+                            item.localAnswer[Number.parseInt (nums[nums.length - 1]) - 1] = true;
+                        }
+                    }
+                }});
                 this.ref.detectChanges();
             }, error => {
                 console.log(error);

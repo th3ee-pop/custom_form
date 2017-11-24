@@ -57,7 +57,21 @@ export class CheckboxcmpComponent extends Question implements OnInit {// 继承�
                 this.vote(  [], this.question.hiddenlist[0]);
             }
         }
-
+        if ( this.question.id === '6.14') {
+            if ( this.localAnswer[3] !== true) {
+                this.vote( this.question.hiddenlist[0], []);
+            }else {
+                this.vote( [], this.question.hiddenlist[0]);
+            }
+        }
+        if ( this.question.id === '7.4.f') {
+            if ( this.localAnswer [8] === true) {
+                this.vote([],  this.question.hiddenlist[0]);
+            }else {
+                this.vote(this.question.hiddenlist[0], []);
+            }
+        }
+    //    if ( this.)
         for (let index = 1; index <= this.question.content.length; index++ ) {
             const tem = {
                 Record_ID: '',
@@ -75,6 +89,9 @@ export class CheckboxcmpComponent extends Question implements OnInit {// 继承�
             this.answerChanged = true;
         }else {
             this.answerChanged = false;
+        }
+        if ( this.question.id === '7.4.f' || this.question.id === '7.4.g') {
+            this.answerChanged = true;
         }
     }
 }
