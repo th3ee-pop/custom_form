@@ -157,6 +157,20 @@ export class SurveyOverviewComponent implements OnInit {
         this.fileDownloader.downloadFile(filePath, {'PID_list': PIDs}, 'All.csv');
     }
 
+    /**
+     * 下载选中内容
+     */
+    downSelected(){
+        const PIDs = [];
+        this.data.forEach(item => {
+            if(item.checked){
+                PIDs.push(item.PID);
+            }
+        });
+        const filePath = 'healthexamination/exportcsv/';
+        this.fileDownloader.downloadFile(filePath, {'PID_list': PIDs}, '已选.csv');
+    }
+
     sort(title, value) {
         console.log(value);
         if (value === 'ascend')
@@ -172,6 +186,15 @@ export class SurveyOverviewComponent implements OnInit {
         this.getTableData(true);
     }
 
+    _checkAll() {
+        this.data.forEach(item => item.checked = this._allChecked);
+        this.refChecked();
+    }
+    refChecked() {
+        const checkedCount = this.data.filter(w => w.checked).length;
+        this._allChecked = checkedCount === this.data.length;
+        this._indeterminate = this._allChecked ? false : checkedCount > 0;
+    }
 
 }
 
