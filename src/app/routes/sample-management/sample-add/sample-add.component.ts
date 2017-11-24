@@ -364,7 +364,12 @@ export class SampleAddComponent implements OnInit {
             const data = {
                 'Records': this.transfer(this.validateForm.value)
             };
-            this.service.putRecord(data).subscribe(res => {console.log(res);});
+            console.log(this.validateForm.valid);
+            if (this.validateForm.valid) {
+                this.service.putRecord(data).subscribe(res => {
+                    console.log(res);
+                });
+            }
         }else {
             console.log('修改记录！');
             this.modify();
