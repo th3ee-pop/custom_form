@@ -1,16 +1,16 @@
-<div class="content__title">
-    <h1>
-        生物样本库
-    </h1>
-</div>
-<nz-card>
-    <ng-template #body>
-        <form nz-form>
-            <div nz-row nz-form-item [nzGutter]="16">
-                <div nz-form-label nz-col [nzSm]="2">
-                    <label>编号</label>
-                </div>
-                <div nz-form-control nz-col [nzSm]="5">
+<div nz-row [nzGutter]="24" class="py-lg">
+    <div nz-col [nzSpan]="24">
+        <nz-card [nzNoHovering]="true">
+            <ng-template #title>生物样本库</ng-template>
+            <ng-template #body>
+                <nz-card>
+                    <ng-template #body>
+                        <form nz-form>
+                            <div nz-row nz-form-item [nzGutter]="16">
+                                <div nz-form-label nz-col [nzSm]="2">
+                                    <label>编号</label>
+                                </div>
+                                <div nz-form-control nz-col [nzSm]="5">
                     <nz-input [(ngModel)]="conditions.filter.number" name="number" [nzId]="'number'" [nzPlaceHolder]="'样本编号'"></nz-input>
                 </div>
                 <div nz-form-label nz-col [nzSm]="2">
@@ -87,15 +87,15 @@
                 </div>
             </div>
         </form>
-    </ng-template>
-</nz-card>
-<div nz-row [nzGutter]="16">
-    <div nz-col [nzMd]="24">
-        <nz-card>
-            <ng-template #body>
-                <div class="mb-sm text-right">
-                    <nz-dropdown>
-                        <button nz-button nz-dropdown (click)="goAdd()">
+                    </ng-template>
+                </nz-card>
+                <div nz-row [nzGutter]="16">
+                    <div nz-col [nzMd]="24">
+                        <nz-card>
+                            <ng-template #body>
+                                <div class="mb-sm text-right">
+                                    <nz-dropdown>
+                                        <button nz-button nz-dropdown (click)="goAdd()">
                             <span>添加记录</span>
                         </button>
                         <button nz-button nz-dropdown [disabled]="!_allChecked && !_indeterminate" (click)="download()">
@@ -165,6 +165,10 @@
                         </tr>
                     </tbody>
                 </nz-table>
+            </ng-template>
+        </nz-card>
+    </div>
+                </div>
             </ng-template>
         </nz-card>
     </div>

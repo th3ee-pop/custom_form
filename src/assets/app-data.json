@@ -21,25 +21,25 @@
             "link":"/user/detail",
             "icon": "icon-user"
         }, {
-            "text":"Trace",
-            "translate":"随访跟踪",
-            "link":"/trace/detail",
-            "icon":"icon-note"
-        },{
             "text":"Sample Bank",
             "translate":"生物样本库",
             "link":"/sample/detail",
             "icon":"icon-layers"
         },{
-            "text":"Property Management",
-            "translate":"项目资产管理",
-            "link":"/property/detail",
-            "icon":"anticon anticon-bars"
-        },{
             "text":"File Management",
             "translate":"文件同步分享",
             "link":"/file/detail",
             "icon":"anticon anticon-folder-open"
+        },{
+            "text":"Trace",
+            "translate":"随访跟踪",
+            "link":"/trace/detail",
+            "icon":"icon-note"
+        },{
+            "text":"Property Management",
+            "translate":"项目资产管理",
+            "link":"/property/detail",
+            "icon":"anticon anticon-bars"
         }]
         }]
 }
