@@ -1,7 +1,7 @@
 /**
  *  input radio
  */
-import { Component, OnInit, ViewChildren, QueryList, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList, ElementRef, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router, PreloadingStrategy, Params} from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd';
 import { HttpService } from '@core/services/http.service';
@@ -40,13 +40,15 @@ export class FifthStepComponent implements OnInit, AfterViewInit {
     buttondisable = false;
     questionSave = [];
     questionList = [];
+    sex = false;
     localInfo = JSON.parse(localStorage.getItem('_user'));
 
     constructor(
         private router: Router,
         private route: ActivatedRoute,
         private service: HttpService,
-        private confirmServ: NzModalService
+        private confirmServ: NzModalService,
+        private ref: ChangeDetectorRef
     ) {
         this.PID = this.route.params['value']['PID'];
         if ( this.PID) {
@@ -71,7 +73,24 @@ export class FifthStepComponent implements OnInit, AfterViewInit {
 
     }
     ngAfterViewInit() {
-        this.fillingAllanswer();
+        const getRecord = {
+            'PID': this.PID,
+            'RecordID': 'ID1'
+        };
+        this.service.getRecord(getRecord).subscribe( (res) => {
+            res.Records.forEach( it => {
+                if (it['ID1_3_1'] === 'True' ) { this.sex  = true; }
+
+            });
+        });
+        if ( this.PID ) {
+            this.ref.detach();
+            setInterval(() => {
+                this.fillingAllanswer();
+                this.ref.detectChanges();
+            }, 500);
+
+        }
     }
     onVoted (showAndhidden: any) {
         for ( let i = 0; i <  showAndhidden.hiddenshowlist.length; i++) {
@@ -156,7 +175,39 @@ export class FifthStepComponent implements OnInit, AfterViewInit {
         const numWords = ['first', 'second', 'third', 'forth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth'];
         if (this.PID) { // 如果有病人编号，则跳跃
             console.log(step_index);
-            this.router.navigate(['/survey/' + numWords[step_index] + '_step/' + this.PID]);  // 拼接跳转链接
+            if ( numWords[step_index] === 'ninth' && this.sex === true) {
+                this.confirmServ.error({
+                    title: '提示',
+                    content: '男性无此记录'
+                });
+            }else {
+                if ( this.confirm().confirms ) {
+                    this.collectAllanswer();
+                    let  putRecord = {};
+                    if (!this.PID)  putRecord = { 'Records' : this.resultList };
+                    else putRecord = { 'PID': this.PID, 'Records' : this.resultList };
+                    this.service.putRecord(putRecord).subscribe( (res) => {
+                        this.PID = res.PID;
+                        if ( res.Return === 0)
+                            this.router.navigate(['/survey/' + numWords[step_index] + '_step/' + this.PID]);  // 拼接跳转链接
+                        else this.confirmServ.error( {
+                            title: '未知错误',
+                            content: '请联系开发人员'
+                        });
+                    }, err => {
+                        console.log(err);
+                    });
+                }else {
+                    let str = '';
+                    for ( let i = 0; i < this.confirm().confirmList.length; i++) {
+                        str = str + this.confirm().confirmList[i] + '、';
+                    }
+                    this.confirmServ.error({
+                        title: '您还有以下必填项没有完成： ',
+                        content: str
+                    });
+                }
+            }
         }
 
     }

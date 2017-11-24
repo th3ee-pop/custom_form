@@ -99,9 +99,9 @@
                                           [nzLoading]="loading"
                                           [nzTotal]="total"
                                           [(nzPageIndex)]="pi"
-                                          (nzPageIndexChange)="getTableData()"
+                                          (nzPageIndexChange)="getTableData(true)"
                                           [(nzPageSize)]="ps"
-                                          (nzPageSizeChange)="getTableData()">
+                                          (nzPageSizeChange)="getTableData(true)">
                                     <thead nz-thead>
                                     <tr>
                                         <th nz-th><span>PID</span></th>

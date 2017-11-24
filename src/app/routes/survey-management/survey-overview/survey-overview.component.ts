@@ -29,8 +29,8 @@ export class SurveyOverviewComponent implements OnInit {
     args = {};
     _indeterminate = false;
     _allChecked = false;
-    start_time = ''; // 开始时间
-    end_time = '';   // 结束时间
+    start_time = null; // 开始时间
+    end_time = null;   // 结束时间
     data = [];
     sortMap = {
        Name: null,
@@ -48,7 +48,7 @@ export class SurveyOverviewComponent implements OnInit {
     };
 
     ngOnInit() {
-        this.getTableData();
+        this.getTableData(true);
     }
 
     // 改变分页和页数
@@ -58,7 +58,9 @@ export class SurveyOverviewComponent implements OnInit {
     }
 
     showConditions() {
-        this.getTableData();
+        this.pi = 1;
+        this.conditions.start = 0;
+        this.getTableData(true);
     }
 
     clear() {
@@ -66,16 +68,18 @@ export class SurveyOverviewComponent implements OnInit {
             if (this.conditions.filter_dict[key])
                 delete this.conditions.filter_dict[key];
         }
-        this.start_time = '';
-        this.end_time = '';
-        this.getTableData();
+        this.start_time = null;
+        this.end_time = null;
+        this.pi = 1;
+        this.conditions.start = 0;
+        this.getTableData(true);
     }
 
-    getTableData() {
-        // 先设置时间
+    getTableData(pageChange: boolean) {
         this.setTime();
-        // 再检查分页和第几页
-        this.changePage();
+        if (pageChange) {
+            this.changePage();
+        }
         this.loading = true;
         this._allChecked = false;
         this._indeterminate = false;
@@ -103,7 +107,7 @@ export class SurveyOverviewComponent implements OnInit {
 
     // 时间设置
     setTime() {
-        if (this.start_time === '' || this.end_time === '') {
+        if (this.start_time === null || this.end_time === null) {
             delete this.conditions.filter_dict.Updated_time;
         } else {
             this.conditions.filter_dict.Updated_time = [];
@@ -117,7 +121,7 @@ export class SurveyOverviewComponent implements OnInit {
         if (pid && pid !== '') {
             const deleteId = { 'PID': pid };
             this.service.deleteRecord(deleteId).subscribe((res) => {
-                this.getTableData();
+                this.getTableData(true);
             });
         }
     }
@@ -165,7 +169,7 @@ export class SurveyOverviewComponent implements OnInit {
                 this.sortMap[ key ] = value;
             }
         });
-        this.getTableData();
+        this.getTableData(true);
     }
 
 
