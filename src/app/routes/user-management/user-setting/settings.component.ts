@@ -61,13 +61,12 @@ export class UserSettingsComponent implements OnInit {
     // 所有的过滤条件在这个对象里添加
     conditions = {
         'filter': {
-            'date_joined': []
+            'date_joined': [],
         },
         'sorted_key': 'username',
         'start': (this.pi - 1) * this.ps,
         'offset': this.ps,
     };
-
     authority = {
         '1': '总管理员',
         '2': '省内管理员',
@@ -80,7 +79,6 @@ export class UserSettingsComponent implements OnInit {
         '高级用户': '3',
         '普通用户': '4'
     };
-
     options = {};
     active = 1;
     profileForm: FormGroup;

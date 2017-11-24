@@ -23,7 +23,7 @@ export class SurveyOverviewComponent implements OnInit {
     ) { }
 
     pi = 1;
-    ps = 5;
+    ps = 10;
     total = 200; // mock total
     loading = false;
     args = {};
