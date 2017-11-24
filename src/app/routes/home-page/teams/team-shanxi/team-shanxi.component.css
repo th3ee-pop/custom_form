@@ -1,0 +1,248 @@
+*{margin: 0;padding: 0;}
+li{list-style: none;}
+a{
+    text-decoration: none;
+}
+.top_box{
+    width:100%;
+    border-bottom:2px solid #f4f4f4;
+}
+
+.top_01{
+    width:1226px;
+    margin:0 auto;
+}
+.top_01 .info_01{
+    float:left;
+    padding-top:10px;
+}
+.top_01 .info_01 li{
+    float:left;
+    padding-top:15px;
+    padding-bottom:5px;
+}
+.top_01 .info_01 li .tip_pic01{
+    width:150px;
+    margin-right:70px;
+
+}
+.top_01 .info_01 li .tip_pic02{
+    width:140px;
+}
+.top_01 .info_02{
+    float:right;
+}
+.top_01 .info_02 li{
+    float:left;
+}
+.top_01 .info_02 li img{
+    width:100px;
+}
+.top_01 .info_02 span{
+    font-family:"微软雅黑";
+    font-size:15px;
+    padding-right:10px;
+    padding-left:10px;
+    color:#f4a001;
+}
+.info_02{
+    padding-top:20px;
+    padding-bottom:5px;}
+.info_02 a .eng{
+    color:#7d7d7d;}
+.info_02 li img{ margin-top:-5px; padding-left:40px;}
+.top_box02{
+    width:100%;
+    margin-bottom:13px;
+}
+.top_box02 .top_02{
+    width:1226px;
+    margin:0 auto;}
+.top_box02 .top_02 .logo{
+    width:500px;
+    padding-top:20px;
+    float:left;}
+.top_box02 .top_02 .nav{
+    float:right;
+}
+.top_02 .nav li{
+    float:left;
+    padding-top:36px;
+}
+.top_02 .nav li a{
+    font-size:16px;
+    padding-left:10px;
+    padding-right:10px;
+    padding-bottom:28px;
+}
+.top_02 .nav li a:hover{
+    color:#f4a001;
+    border-bottom:1px solid #f4a001;
+}
+.auto{
+    margin: 0 auto;
+    width: 1226px;
+}
+.myteam{
+    width: 100%;
+    background: #f5f5f5;
+}
+.myteam-intro{
+    padding: 50px 0;
+}
+.myteam-intro>h3{
+    text-align: center;
+    padding-bottom:20px;
+    width:160px;
+    margin:0 auto 28px;
+    border-bottom:4px solid orange;
+}
+.myteam-intro>div{
+    text-indent: 2em;
+    text-align: justify;
+    line-height: 24px;
+    letter-spacing: 1px;
+}
+.team-member{
+    padding: 40px 0 10px;
+}
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
+.clearfix:after{
+    content: '';
+    display:block;
+    clear: both;
+}
+.team-member ul{margin-right: -30px;}
+.team-member ul li{
+    float: left;
+    width: 284px;
+    height: 360px;
+    margin: 0 30px 30px 0;
+    position: relative;
+}
+.team-member ul li>img{
+    width: 100%;
+}
+.team-member .info{
+    display: none;
+    position: absolute;
+    top:0;
+    left:0;
+    background: rgba(243,161,1,0.9);
+    width: 100%;
+    height: 210px;
+    text-align: center;
+    padding-top: 150px;
+}
+.team-member .info>p{
+    margin-bottom: 10px;
+    color:#fff;
+}
+.team-member .info>p:first-child{
+    font-weight: bold;
+}
+.proSearch{
+    width: 100%;
+}
+.project-content{
+    padding: 50px 0 0;
+}
+.project-content>p{text-indent: 2em;text-align: justify;line-height: 24px;
+    letter-spacing: 1px;}
+.pro-img-box{margin: 50px 0;}
+.proview{
+    margin: 23px 0 40px;
+}
+.icon-list{
+    width: 100%;
+    background: #F5F5F5;
+    padding: 70px 0;
+}
+.icon-list ul{
+    width: 900px;
+    margin: 0 auto;
+}
+
+.icon-list li{
+    float: left;
+    text-align: center;
+    margin-right: 60px;
+}
+.icon-list li:last-child{margin-right: 0;}
+.icon-list ul li img{width: 100px;display: block;margin-bottom: 20px;}
+.myteam-intro2{
+    padding-bottom: 30px;
+}
+.about_box{
+    background-color:#e5e5e5;
+}
+.about{
+    width:1226px;
+    margin:0 auto;
+}
+.us{
+    width:60%;
+    padding-top:60px;
+    float:left;
+    margin-right:40px;
+    padding-bottom:60px;
+}
+.link{
+    width:15%;
+    padding-top:60px;
+    float:left;
+    padding-bottom:60px;
+    padding-left:20px;
+}
+.qr{
+    width:20%;
+    padding-top:60px;
+    float:right;
+    padding-bottom:60px;
+}
+.us h3,.link h3{
+    font-size:20px;
+    color:#324756;
+    padding-bottom:26px;
+    font-weight:normal;
+}
+.us p{
+    font-size:14px;
+    color:#324756;
+    line-height:26px;
+}
+.link li{
+    height:24px;
+}
+.link li a{
+    font-size:14px;
+    color:#324756;
+}
+
+.qr img{
+    width:130px;
+    float:left;
+    margin-right:20px;
+}
+.qr p{font-size:14px;
+    color:#324756;
+    padding-top:45px;}
+.foot{
+    background-color:#f4a001;
+}
+.foot div{
+    width:1226px;
+    margin:0 auto;
+}
+.foot img{
+    width:480px;
+    padding-top:10px;
+    padding-bottom:10px;
+    margin:0 auto;
+    display:block;
+}

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-base-equipment',
   templateUrl: './base-equipment.component.html',
-  styleUrls: ['./base-equipment.component.css']
+    styleUrls: ['../../sub-page-css.css']
 })
 export class BaseEquipmentComponent implements OnInit {
 
