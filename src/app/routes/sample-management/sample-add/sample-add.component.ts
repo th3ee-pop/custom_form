@@ -155,6 +155,8 @@ export class SampleAddComponent implements OnInit {
 
     load(id?: number) {
         console.log(id);
+        this.tempEditObject = {};
+        this.tempAccEditObject = {};
                 if( id ){
                 const api = '/biology/recordop/',
                     params = {'PID':id};
@@ -171,21 +173,22 @@ export class SampleAddComponent implements OnInit {
                     }
                     this.data = this.Sample.user_info.Record_Value;
                     this.Accdata = this.Sample.accident_info.Record_Value;
-                    this.tempEditObject = {};
-                    this.tempAccEditObject = {};
                     this.data.forEach(item => {
                         this.tempEditObject[ item.key] = {};
                     });
                     this.Accdata.forEach(item => {
                         this.tempAccEditObject[ item.key] = {};
                     });
-                    this.editRow = null;
-                    this.editRow1 = null;
-                    // this.Sample = res.Records;
-                    console.log(this.Sample);
-                    this.loading = false;
                 })
-            }
+            }else {
+                    this.data = this.Sample.user_info.Record_Value;
+                    this.Accdata = this.Sample.accident_info.Record_Value;
+                }
+        this.editRow = null;
+        this.editRow1 = null;
+        // this.Sample = res.Records;
+        console.log(this.Sample);
+        this.loading = false;
         }
 
     updateConfirmValidator(key) {
@@ -367,7 +370,7 @@ export class SampleAddComponent implements OnInit {
             this.modify();
         }
         // this.resetForm();
-        this.goBack();
+        // this.goBack();
     }
 
     transfer(formData){

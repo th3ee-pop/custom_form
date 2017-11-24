@@ -8,15 +8,16 @@
                         <div nz-form-label nz-col [nzSm]="4">
                             <label nz-form-item-required>编号</label>
                         </div>
-                        <div nz-form-control nz-col [nzSm]="5">
+                        <div nz-form-control nz-col [nzSm]="5" [nzValidateStatus]="getFormControl('number')">
                             <nz-input formControlName="number" [nzType]="number" [(ngModel)] = 'Sample.number.Record_Value' [nzReadonly]="read" [nzDisabled]="read" ></nz-input>
+                            <div nz-form-explain *ngIf="getFormControl('number').dirty&&getFormControl('number').hasError('required')">请输入样本编号</div>
                         </div>
                     </div>
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col [nzSpan]="4">
                             <label nz-form-item-required>分库（省份）</label>
                         </div>
-                        <div nz-form-control nz-col [nzSpan]="3">
+                        <div nz-form-control nz-col [nzSpan]="3"  [nzValidateStatus]="getFormControl('repository')">
                             <nz-select formControlName="repository" [nzSize]="'large'" [(ngModel)] = 'Sample.repository.Record_Value' [nzDisabled]="read" >
                                 <nz-option [nzLabel]="'陕西'" [nzValue]="'1'"></nz-option>
                                 <nz-option [nzLabel]="'甘肃'" [nzValue]="'2'"></nz-option>
@@ -24,19 +25,21 @@
                                 <nz-option [nzLabel]="'青海'" [nzValue]="'4'"></nz-option>
                                 <nz-option [nzLabel]="'新疆'" [nzValue]="'5'"></nz-option>
                             </nz-select>
+                            <div nz-form-explain *ngIf="getFormControl('repository').dirty&&getFormControl('repository').hasError('required')">请输入样本分库</div>
                         </div>
                     </div>
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col [nzSm]="4">
                             <label nz-form-item-required>类别</label>
                         </div>
-                        <div nz-form-control nz-col [nzSm]="3" >
+                        <div nz-form-control nz-col [nzSm]="3" [nzValidateStatus]="getFormControl('type')" >
                             <nz-select formControlName="type" [nzSize]="'large'" [(ngModel)] = 'Sample.type.Record_Value' [nzDisabled]="read"  >
                                 <nz-option [nzLabel]="'血样'" [nzValue]="'1'"></nz-option>
                                 <nz-option [nzLabel]="'尿液'" [nzValue]="'2'"></nz-option>
                                 <nz-option [nzLabel]="'粪'" [nzValue]="'3'"></nz-option>
                                 <nz-option [nzLabel]="'毛发'" [nzValue]="'4'"></nz-option>
                             </nz-select>
+                            <div nz-form-explain *ngIf="getFormControl('type').dirty&&getFormControl('type').hasError('required')">请输入样本类型</div>
                         </div>
                     </div>
                     <div nz-form-item nz-row *ngIf="getTypeValue() == 1">
@@ -56,14 +59,14 @@
                         <div nz-form-label nz-col [nzSm]="4">
                             <label nz-form-item-required>来源人</label>
                         </div>
-                        <div nz-form-control nz-col [nzSm]="5">
+                        <div nz-form-control nz-col [nzSm]="5" [nzValidateStatus]="getFormControl('owner')" >
                             <!--<nz-input formControlName="owner" [(ngModel)] = 'Sample.owner.Record_Value' [nzReadonly]="read"  ></nz-input>-->
                             <nz-select
                                 formControlName="owner"
                                 [nzDisabled]="read"
                                 style="width: 200px;"
                                 nzAllowClear
-                                [nzPlaceHolder]="'输入来源人编号'"
+                                [nzPlaceHolder]="'请输入来源人编号'"
                                 [nzFilter]="false"
                                 [(ngModel)]="Sample.owner.Record_Value"
                                 (nzSearchChange)="searchChange($event)"
@@ -75,14 +78,16 @@
                                     [nzValue]="option">
                                 </nz-option>
                             </nz-select>
+                            <div nz-form-explain *ngIf="getFormControl('owner').dirty&&getFormControl('owner').hasError('required')">请输入来源人编号</div>
                         </div>
                     </div>
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col [nzSm]="4">
                             <label nz-form-item-required>采集数量</label>
                         </div>
-                        <div nz-form-control nz-col [nzSm]="5">
+                        <div nz-form-control nz-col [nzSm]="5" [nzValidateStatus]="getFormControl('collect_count')" >
                             <nz-input formControlName="collect_count" [nzType]="number" [(ngModel)] = 'Sample.collect_count.Record_Value' [nzReadonly]="read" [nzDisabled]="read"  ></nz-input>
+                            <div nz-form-explain *ngIf="getFormControl('collect_count').dirty&&getFormControl('collect_count').hasError('required')">请输入采集数量</div>
                         </div>
                         <div nz-col [nzSm]="2">
                             <span nz-form-text>ml/ul</span>
@@ -92,25 +97,29 @@
                         <div nz-form-label nz-col [nzSm]="4">
                             <label nz-form-item-required >采集时间</label>
                         </div>
-                        <div nz-form-control nz-col [nzSm]="5">
+                        <div nz-form-control nz-col [nzSm]="5" [nzValidateStatus]="getFormControl('collect_time')">
                             <nz-datepicker formControlName="collect_time" [(ngModel)] = 'Sample.collect_time.Record_Value' [nzDisabled]="read" ></nz-datepicker>
+                            <div nz-form-explain *ngIf="getFormControl('collect_time').dirty&&getFormControl('collect_time').hasError('required')">请输入采集时间</div>
                         </div>
                     </div>
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col [nzSm]="4">
                             <label nz-form-item-required>采集人</label>
                         </div>
-                        <div nz-form-control nz-col [nzSm]="5">
+                        <div nz-form-control nz-col [nzSm]="5" [nzValidateStatus]="getFormControl('collecter')">
                             <nz-input formControlName="collecter" [(ngModel)] = 'Sample.collecter.Record_Value' [nzReadonly]="read" [nzDisabled]="read" ></nz-input>
+                            <div nz-form-explain *ngIf="getFormControl('collecter').dirty&&getFormControl('collecter').hasError('required')">请输入采集人</div>
                         </div>
                     </div>
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col [nzSm]="4">
                             <label nz-form-item-required>分管数量</label>
                         </div>
-                        <!--<div nz-form-control nz-col [nzSm]="10">-->
+                        <div nz-form-control nz-col [nzSm]="10" [nzValidateStatus]="getFormControl('branch')">
                             <nz-input-number formControlName="branch"  [(ngModel)] = 'Sample.branch.Record_Value' (ngModelChange)="updateConfirmValidator('branch')" [nzMin]="0" [nzDisabled]="read" [nzDisabled]="read" ></nz-input-number>
                         <!--</div>-->
+                        <div nz-form-explain *ngIf="getFormControl('branch').dirty&&getFormControl('branch').hasError('required')" >请输入分管数量</div>
+                        </div>
                     </div>
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col [nzSm]="4">
@@ -124,26 +133,28 @@
                         <div nz-form-label nz-col [nzSm]="4">
                             <label nz-form-item-required>存放管条码</label>
                         </div>
-                        <div nz-form-control nz-col [nzSm]="5">
+                        <div nz-form-control nz-col [nzSm]="5" [nzValidateStatus]="getFormControl('pipe_Num')">
                             <nz-input formControlName="pipe_Num"  (ngModelChange)="updateConfirmValidator('pipe_Num')" [nzType]="number" [(ngModel)] = 'Sample.pipe_Num.Record_Value' [nzReadonly]="read" [nzDisabled]="read" ></nz-input>
-                            <div nz-form-explain *ngIf="getFormControl('pipe_Num').dirty&&getFormControl('pipe_Num').hasError('required')">请检查您的输入</div>
-                            <div nz-form-explain *ngIf="getFormControl('pipe_Num').dirty&&getFormControl('pipe_Num').hasError('error')">请参照省份填写编号</div>
+                            <div nz-form-explain *ngIf="getFormControl('pipe_Num').dirty&&getFormControl('pipe_Num').hasError('required')">请输入存放管条码</div>
+                            <div nz-form-explain *ngIf="getFormControl('pipe_Num').dirty&&getFormControl('pipe_Num').hasError('error')">请参照省份填写条码</div>
                         </div>
                     </div>
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col [nzSm]="4">
                             <label nz-form-item-required>存放日期</label>
                         </div>
-                        <div nz-form-control nz-col [nzSm]="5">
+                        <div nz-form-control nz-col [nzSm]="5" [nzValidateStatus]="getFormControl('store_time')">
                             <nz-datepicker formControlName="store_time" [(ngModel)] = 'Sample.store_time.Record_Value' [nzDisabled]="read" ></nz-datepicker>
                         </div>
+                        <div nz-form-explain *ngIf="getFormControl('store_time').dirty&&getFormControl('store_time').hasError('required')">请输入存放时间</div>
                     </div>
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col [nzSm]="4">
                             <label nz-form-item-required>存放人</label>
                         </div>
-                        <div nz-form-control nz-col [nzSm]="5">
+                        <div nz-form-control nz-col [nzSm]="5" [nzValidateStatus]="getFormControl('placer')">
                             <nz-input formControlName="placer" [(ngModel)] = 'Sample.placer.Record_Value' [nzReadonly]="read" [nzDisabled]="read" ></nz-input>
+                            <div nz-form-explain *ngIf="getFormControl('placer').dirty&&getFormControl('placer').hasError('required')">请输入存放人</div>
                         </div>
                     </div>
                     <div nz-form-item nz-row>
@@ -181,9 +192,9 @@
                         <div nz-form-label nz-col [nzSm]="4">
                             <label nz-form-item-required>存放地点</label>
                         </div>
-                        <div nz-form-control nz-col [nzSm]="10">
+                        <div nz-form-control nz-col [nzSm]="10" [nzValidateStatus]="getFormControl('building')">
                             <nz-input formControlName="building" (ngModelChange)="updateConfirmValidator('building')"  [(ngModel)] = 'Sample.building.Record_Value' [nzReadonly]="read" [nzDisabled]="read" ></nz-input>
-                            <div nz-form-explain *ngIf="getFormControl('building').dirty&&getFormControl('building').hasError('required')">请检查您的输入</div>
+                            <div nz-form-explain *ngIf="getFormControl('building').dirty&&getFormControl('building').hasError('required')">请输入存放地点</div>
                         </div>
                     </div>
                     <div nz-form-item nz-row>

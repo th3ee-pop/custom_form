@@ -44,7 +44,7 @@
                 <div nz-form-control nz-col [nzSm]="5">
                     <nz-dropdown>
                         <a class="ant-dropdown-link" nz-dropdown>
-                            {{conditions.filter.repository ? conditions.filter.repository : '不限'}} <i class="anticon anticon-down"></i>
+                            {{conditions.filter.repository ? province[conditions.filter.repository]: '不限'}} <i class="anticon anticon-down"></i>
                         </a>
                         <ul nz-menu>
                             <li nz-menu-item (click)="conditions.filter.repository=''">不限</li>
@@ -69,7 +69,7 @@
                 <div nz-form-control nz-col [nzSm]="5">
                     <nz-dropdown>
                         <a class="ant-dropdown-link" nz-dropdown>
-                            {{conditions.filter.type ? conditions.filter.type : '不限'}} <i class="anticon anticon-down"></i>
+                            {{conditions.filter.type ? type[conditions.filter.type] : '不限'}} <i class="anticon anticon-down"></i>
                         </a>
                         <ul nz-menu>
                             <li nz-menu-item (click)="conditions.filter.type=''">不限</li>

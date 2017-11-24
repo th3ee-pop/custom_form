@@ -34,6 +34,14 @@ export class SampleFormComponent implements OnInit {
         '5':'新疆'
     };
 
+    provinceToNum = {
+        '陕西':'1',
+        '甘肃':'2',
+        '宁夏':'3',
+        '青海':'4',
+        '新疆':'5'
+    };
+
     type = {
         '1':'血样',
         '2':'尿液',
@@ -148,9 +156,9 @@ export class SampleFormComponent implements OnInit {
     deleteRecord(id){
         this.service.deleteRecord(id).subscribe(res =>{
             console.log(res);
+            this.load();
             this.showMsg("已删除！");
         });
-        this.load();
     }
     goAdd(id?){
         if(id) {
