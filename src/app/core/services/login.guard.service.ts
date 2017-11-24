@@ -18,8 +18,10 @@ export class LoginAuthGuard implements CanActivate, CanActivateChild {
     }
     checkLogin(url: string): boolean {
         if (localStorage.getItem('_user')) {
+            console.log('already login');
             return true;
         }
+        console.log('not login');
         this.authService.redirectUrl = url;
         this.router.navigate(['/login']);
         return false;

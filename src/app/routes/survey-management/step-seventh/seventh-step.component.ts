@@ -77,10 +77,6 @@ export class SeventhStepComponent implements OnInit, AfterViewInit {
             });
         });
         if ( this.PID ) {
-           // this.ref.detach();
-            setInterval(() => {
-                this.ref.detectChanges();
-            }, 500);
             this.fillingAllanswer();
         }
     }
@@ -112,12 +108,7 @@ export class SeventhStepComponent implements OnInit, AfterViewInit {
             this.collectAllanswer();
             const putRecord = { 'Records': this.resultList, 'PID': this.PID};
             this.service.putRecord(putRecord).subscribe( (res) => {
-                if ( res.Return === 0)
-                    this.router.navigate(['/survey/eighth_step/' + this.PID]);
-                else this.confirmServ.error( {
-                    title: '未知错误',
-                    content: '请联系开发人员'
-                });
+                this.router.navigate(['/survey/eighth_step/' + this.PID]);
             }, error => {
                 console.log(error);
             });
@@ -176,12 +167,7 @@ export class SeventhStepComponent implements OnInit, AfterViewInit {
                     else putRecord = { 'PID': this.PID, 'Records' : this.resultList };
                     this.service.putRecord(putRecord).subscribe( (res) => {
                         this.PID = res.PID;
-                        if ( res.Return === 0)
-                            this.router.navigate(['/survey/' + numWords[step_index] + '_step/' + this.PID]);  // 拼接跳转链接
-                        else this.confirmServ.error( {
-                            title: '未知错误',
-                            content: '请联系开发人员'
-                        });
+                        this.router.navigate(['/survey/' + numWords[step_index] + '_step/' + this.PID]);  // 拼接跳转链接
                     }, err => {
                         console.log(err);
                     });
@@ -374,6 +360,7 @@ export class SeventhStepComponent implements OnInit, AfterViewInit {
                     }
                 }
             );
+            this.ref.detectChanges();
 
         }, error => {
             console.log(error);
