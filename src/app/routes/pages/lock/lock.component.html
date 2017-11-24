@@ -19,7 +19,6 @@
                     </div>
                     <div nz-row nzType="flex" nzAlign="middle">
                         <div nz-col [nzSpan]="12">
-                            <a [routerLink]="['/forget']">忘记密码？</a>
                         </div>
                         <div nz-col [nzSpan]="12" style="text-align:right;">
                             <button nz-button [disabled]="!valForm.valid" [nzType]="'primary'" [nzSize]="'large'">
@@ -31,8 +30,7 @@
             </ng-template>
         </nz-card>
         <div class="p-lg text-center text-sm">
-            &copy; {{ settings.app.year }} - {{ settings.app.name }}
-            <br> {{ settings.app.description }}
+            &copy; {{ settings.app.year }} - {{ settings.app.description }}
         </div>
     </div>
 </div>

@@ -8,7 +8,7 @@ import { ThemesService } from '@core/services/themes.service';
 import { MenuService } from '@core/services/menu.service';
 import { ThemeType } from '@core/services/themes.service';
 import { TranslatorService } from '@core/translator/translator.service';
-
+import { ActivatedRoute, Router} from '@angular/router';
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html'
@@ -43,11 +43,17 @@ export class HeaderComponent {
         private themeServ: ThemesService,
         private confirmServ: NzModalService,
         private storageServ: LocalStorageService,
-        private messageServ: NzMessageService
+        private messageServ: NzMessageService,
+        private route: ActivatedRoute,
+        private router: Router,
     ) {
     }
     removeLocalInfo() {
+        console.log(this.route.url);
+        console.log(this.router.url);
+        sessionStorage.setItem('back_url', this.router.url);
         localStorage.removeItem('_user');
+        this.router.navigate(['/lock']);
     }
 
     toggleCollapsedSideabar() {

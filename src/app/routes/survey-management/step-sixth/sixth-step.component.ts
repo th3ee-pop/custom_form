@@ -75,12 +75,11 @@ export class SixthStepComponent implements OnInit, AfterViewInit {
             });
         });
         if ( this.PID ) {
-            this.ref.detach();
+          //  this.ref.detach();
             setInterval(() => {
-                this.fillingAllanswer();
                 this.ref.detectChanges();
             }, 500);
-
+            this.fillingAllanswer();
         }
     }
     pre() {
@@ -139,7 +138,7 @@ export class SixthStepComponent implements OnInit, AfterViewInit {
      */
     jumpTo(step_index) {
         const numWords = ['first', 'second', 'third', 'forth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth'];
-        if (this.PID) { // 如果有病人编号，则跳跃
+        if (this.PID && step_index !== this.current) { // 如果有病人编号，则跳跃
             console.log(step_index);
             if ( numWords[step_index] === 'ninth' && this.sex === true) {
                 this.confirmServ.error({
