@@ -217,6 +217,7 @@ export class SampleAddComponent implements OnInit {
             blood_type:[null, [ ]],
             owner:[null, [ Validators.required]],
             collect_count:[null, [ Validators.required]],
+            capacity:[null, [ Validators.required]],
             collect_time:[null, [ Validators.required]],
             collecter:[null, [ Validators.required]],
             branch:[null, [ Validators.required]],
@@ -387,12 +388,12 @@ export class SampleAddComponent implements OnInit {
                         'Updated_time': ''
                     };
         }}
-        data['capacity'] ={
-            'Record_Value': formData['collect_count'] || '0',
-            'Updated_time':''
-        };
         data['user_info'] = this.Sample.user_info;
         data['accident_info'] = this.Sample.accident_info;
+        // data['capacity'] ={
+        //     'Record_Value': formData['collect_count'] || '0',
+        //     'Updated_time':''
+        // };
         console.log(data);
         return data;
     }

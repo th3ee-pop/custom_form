@@ -224,6 +224,18 @@
                     </div>
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col [nzSm]="4">
+                            <label nz-form-item-required>保存量</label>
+                        </div>
+                        <div nz-form-control nz-col [nzSm]="5" [nzValidateStatus]="getFormControl('capacity')" >
+                            <nz-input formControlName="capacity" [nzType]="number" [(ngModel)] = 'Sample.capacity.Record_Value' [nzReadonly]="read" [nzDisabled]="read"  ></nz-input>
+                            <div nz-form-explain *ngIf="getFormControl('capacity').dirty&&getFormControl('capacity').hasError('required')">请输入保存量</div>
+                        </div>
+                        <div nz-col [nzSm]="2">
+                            <span nz-form-text>ml/ul</span>
+                        </div>
+                    </div>
+                    <div nz-form-item nz-row>
+                        <div nz-form-label nz-col [nzSm]="4">
                             <label>保管人</label>
                         </div>
                         <div nz-form-control nz-col [nzSm]="5">
