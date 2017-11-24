@@ -158,7 +158,7 @@ export class NinthStepComponent implements OnInit, AfterViewInit {
      */
     jumpTo(step_index) {
         const numWords = ['first', 'second', 'third', 'forth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth'];
-        if (this.PID) { // 如果有病人编号，则跳跃
+        if (this.PID && step_index !== this.current) { // 如果有病人编号，则跳跃
             console.log(step_index);
             this.router.navigate(['/survey/' + numWords[step_index] + '_step/' + this.PID]);  // 拼接跳转链接
         }
