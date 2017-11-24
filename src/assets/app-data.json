@@ -13,32 +13,32 @@
         "children": [{
             "text": "Health Survey",
             "translate": "健康体检调查",
-            "link": "/survey/detail",
+            "link": "survey/detail",
             "icon": "icon-grid"
         }, {
             "text":"User Management",
             "translate":"人员管理",
-            "link":"/user/detail",
+            "link":"user/detail",
             "icon": "icon-user"
         }, {
             "text":"Sample Bank",
             "translate":"生物样本库",
-            "link":"/sample/detail",
+            "link":"sample/detail",
             "icon":"icon-layers"
         },{
             "text":"File Management",
             "translate":"文件同步分享",
-            "link":"/file/detail",
+            "link":"file/detail",
             "icon":"anticon anticon-folder-open"
         },{
             "text":"Trace",
             "translate":"随访跟踪",
-            "link":"/trace/detail",
+            "link":"trace/detail",
             "icon":"icon-note"
         },{
             "text":"Property Management",
             "translate":"项目资产管理",
-            "link":"/property/detail",
+            "link":"property/detail",
             "icon":"anticon anticon-bars"
         }]
         }]

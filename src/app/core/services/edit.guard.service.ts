@@ -31,7 +31,7 @@ resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<R
                 console.log(res.Complete_by);
                 console.log(this.localInfo.user_name);
                 console.log(this.router);
-                this.router.navigate(['/survey/detail']);
+                this.router.navigate(['system/survey/detail']);
                 console.log('redirect');
                 return null;
             }

@@ -169,9 +169,9 @@ export class SampleFormComponent implements OnInit {
     }
     goAdd(id?){
         if(id) {
-            this.router.navigate(['sample/add/' + id]);
+            this.router.navigate(['system/sample/add/' + id]);
         }else {
-            this.router.navigate(['sample/add']);
+            this.router.navigate(['system/sample/add']);
         }
     }
 

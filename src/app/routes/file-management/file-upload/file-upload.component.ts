@@ -79,7 +79,7 @@ export class FileUploadComponent implements OnInit, AfterViewInit {
 
     // 退出，直接跳转回原页面
     exit() {
-        this.router.navigate( ['/file/detail/']);
+        this.router.navigate( ['system/file/detail/']);
     }
 
 }

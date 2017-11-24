@@ -372,7 +372,7 @@ export class SampleAddComponent implements OnInit {
     }
 
     goBack() {
-        this.router.navigate(['sample/detail']);
+        this.router.navigate(['system/sample/detail']);
     }
 
     _submitForm() {
