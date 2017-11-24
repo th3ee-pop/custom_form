@@ -77,12 +77,11 @@ export class SeventhStepComponent implements OnInit, AfterViewInit {
             });
         });
         if ( this.PID ) {
-            this.ref.detach();
+           // this.ref.detach();
             setInterval(() => {
-                this.fillingAllanswer();
                 this.ref.detectChanges();
             }, 500);
-
+            this.fillingAllanswer();
         }
     }
     onVoted (showAndhidden: any) {

@@ -74,12 +74,11 @@ export class ThirdStepComponent implements OnInit, AfterViewInit {
             });
         });
         if ( this.PID ) {
-            this.ref.detach();
+            // this.ref.detach();
             setInterval(() => {
-                this.fillingAllanswer();
                 this.ref.detectChanges();
             }, 300);
-
+            this.fillingAllanswer();
         }
     }
     onVoted (showAndhidden: any) {
