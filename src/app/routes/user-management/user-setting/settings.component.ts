@@ -56,6 +56,11 @@ export class UserSettingsComponent implements OnInit {
     _allChecked = false;
     start_time = '';
     end_time = '';
+    sortMap = {
+        'username': null,
+        'group': null,
+        'date_joined': null
+    };
     nowuser = JSON.parse(localStorage.getItem('_user'));
 
     // 所有的过滤条件在这个对象里添加
@@ -254,6 +259,13 @@ export class UserSettingsComponent implements OnInit {
         if (value === 'ascend')
         this.conditions.sorted_key = title;
         else this.conditions.sorted_key = '-' + title;
+        Object.keys(this.sortMap).forEach(key => {
+            if (key !== title) {
+                this.sortMap[ key ] = null;
+            } else {
+                this.sortMap[ key ] = value;
+            }
+        });
         this.load();
     }
 

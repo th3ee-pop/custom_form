@@ -266,6 +266,7 @@ export class HttpService {
                     user_province: res.province,
                     name: res.name
                 };
+                sessionStorage.setItem('User_name', user.username);
                 console.log(localuser);
             })
             .catch((res) => {

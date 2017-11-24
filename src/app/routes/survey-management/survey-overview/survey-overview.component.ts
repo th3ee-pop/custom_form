@@ -32,8 +32,11 @@ export class SurveyOverviewComponent implements OnInit {
     start_time = ''; // 开始时间
     end_time = '';   // 结束时间
     data = [];
-    nowuser = JSON.parse(localStorage.getItem('_user'));
-
+    sortMap = {
+       Name: null,
+        No: null,
+        Updated_time: null
+    };
     // 所有的过滤条件在这个对象里添加
     conditions = {
         'filter_dict': {
@@ -47,13 +50,15 @@ export class SurveyOverviewComponent implements OnInit {
     ngOnInit() {
         this.getTableData();
     }
+
+    // 改变分页和页数
     changePage() {
         this.conditions.start = (this.pi - 1) * this.ps;
         this.conditions.offset = this.ps;
     }
 
     showConditions() {
-        this.load();
+        this.getTableData();
     }
 
     clear() {
@@ -63,35 +68,22 @@ export class SurveyOverviewComponent implements OnInit {
         }
         this.start_time = '';
         this.end_time = '';
-        this.load();
+        this.getTableData();
     }
-    load(pi?: number) {
-        if (typeof pi !== 'undefined') {
-            this.pi = pi || 1;
-        }
+
+    getTableData() {
+        // 先设置时间
         this.setTime();
+        // 再检查分页和第几页
         this.changePage();
         this.loading = true;
         this._allChecked = false;
         this._indeterminate = false;
+        // 进行对应的数据的查找
         this.service.getPatientList(this.conditions).subscribe( (res) => {
             this.data = res.PID_info;
-            this.loading = false;
-        });
-    }
-    getTableData() {
-        const conditions = {
-            'sorted_key' : 'PID',
-            'start' : this.pi - 1,
-            'offset' : this.ps,
-            'filter_dict' : { 'PID': [0, 30] }
-
-        };
-        this.loading = true;
-        this._allChecked = false;
-        this._indeterminate = false;
-        this.service.getPatientList(conditions).subscribe( (res) => {
-            this.data = res.PID_info;
+            console.log(res);
+            this.total = res.Count_total;
             this.loading = false;
         });
     }
@@ -161,8 +153,19 @@ export class SurveyOverviewComponent implements OnInit {
         this.fileDownloader.downloadFile(filePath, {'PID_list': PIDs}, 'All.csv');
     }
 
-    filterData() {
-        console.log('filtering');
+    sort(title, value) {
+        console.log(value);
+        if (value === 'ascend')
+            this.conditions.sorted_key = title;
+        else this.conditions.sorted_key = '-' + title;
+        Object.keys(this.sortMap).forEach(key => {
+            if (key !== title) {
+                this.sortMap[ key ] = null;
+            } else {
+                this.sortMap[ key ] = value;
+            }
+        });
+        this.getTableData();
     }
 
 

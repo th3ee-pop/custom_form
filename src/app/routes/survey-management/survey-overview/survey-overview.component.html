@@ -99,16 +99,16 @@
                                           [nzLoading]="loading"
                                           [nzTotal]="total"
                                           [(nzPageIndex)]="pi"
-                                          (nzPageIndexChange)="load()"
+                                          (nzPageIndexChange)="getTableData()"
                                           [(nzPageSize)]="ps"
-                                          (nzPageSizeChange)="load()">
+                                          (nzPageSizeChange)="getTableData()">
                                     <thead nz-thead>
                                     <tr>
                                         <th nz-th><span>PID</span></th>
-                                        <th nz-th><span>姓名</span></th>
-                                        <th nz-th><span>体检编号</span></th>
+                                        <th nz-th><span>姓名</span><nz-table-sort [(nzValue)]="sortMap['Name']" (nzValueChange)="sort('Name',$event)"></nz-table-sort></th>
+                                        <th nz-th><span>体检编号</span><nz-table-sort [(nzValue)]="sortMap['No']" (nzValueChange)="sort('No',$event)"></nz-table-sort></th>
                                         <th nz-th><span>状态</span></th>
-                                        <th nz-th><span>上次修改时间</span></th>
+                                        <th nz-th><span>上次修改时间</span><nz-table-sort [(nzValue)]="sortMap['Updated_time']" (nzValueChange)="sort('Updated_time',$event)"></nz-table-sort></th>
                                         <th nz-th><span>所属省份</span></th>
                                         <th nz-th><span>录入者</span></th>
                                         <th nz-th><span>操作</span></th>
