@@ -109,13 +109,13 @@
                                         </label>
                                     </th>
                                     <!--<th nz-th><span></span></th>-->
-                                    <th nz-th><span>姓名</span><nz-table-sort  (nzValueChange)="sort('username',$event)"></nz-table-sort></th>
+                                    <th nz-th><span>姓名</span><nz-table-sort [(nzValue)]="sortMap['username']" (nzValueChange)="sort('username',$event)"></nz-table-sort></th>
                                     <!--<th nz-th><span>年龄</span></th>-->
                                     <th nz-th><span>邮箱</span></th>
                                     <th nz-th><span>省份</span></th>
-                                    <th nz-th><span>权限</span><nz-table-sort  (nzValueChange)="sort('group',$event)"></nz-table-sort></th>
-                                    <th nz-th><span>注册日期</span><nz-table-sort  (nzValueChange)="sort('date_joined',$event)"></nz-table-sort></th>
-                                    <th nz-th><span>操作</span></th>
+                                    <th nz-th><span>权限</span><nz-table-sort [(nzValue)]="sortMap['group']" (nzValueChange)="sort('group',$event)"></nz-table-sort></th>
+                                    <th nz-th><span>注册日期</span><nz-table-sort [(nzValue)]="sortMap['date_joined']" (nzValueChange)="sort('date_joined',$event)"></nz-table-sort></th>
+                                    <th nz-th *ngIf="nowuser.user_group < '3'"><span>操作</span></th>
                                 </tr>
                                 </thead>
                                 <tbody nz-tbody>
@@ -138,7 +138,7 @@
                                     </td>
                                     <td nz-td>{{data.group}}</td>
                                     <td nz-td>{{data.date_joined}}</td>
-                                    <td nz-td>
+                                    <td nz-td >
                                         <a *ngIf="nowuser.user_group < authorityToNum[data.group]" (click)="showMsg('Edit');customCompModel('', data, data.group)">管理</a>
                                         <span nz-table-divider *ngIf="nowuser.user_group < authorityToNum[data.group]"></span>
                                         <em *ngIf="nowuser.user_name === data.username">当前用户</em>

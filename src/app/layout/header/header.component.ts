@@ -46,6 +46,9 @@ export class HeaderComponent {
         private messageServ: NzMessageService
     ) {
     }
+    removeLocalInfo() {
+        localStorage.removeItem('_user');
+    }
 
     toggleCollapsedSideabar() {
         this.settings.setLayout('collapsed', !this.settings.layout.collapsed);

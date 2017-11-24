@@ -23,23 +23,26 @@ export class SurveyOverviewComponent implements OnInit {
     ) { }
 
     pi = 1;
-    ps = 5;
+    ps = 10;
     total = 200; // mock total
     loading = false;
     args = {};
     _indeterminate = false;
     _allChecked = false;
-    start_time = '';
-    end_time = '';
+    start_time = ''; // 开始时间
+    end_time = '';   // 结束时间
     data = [];
-    nowuser = JSON.parse(localStorage.getItem('_user'));
-
+    sortMap = {
+       Name: null,
+        No: null,
+        Updated_time: null
+    };
     // 所有的过滤条件在这个对象里添加
     conditions = {
-        'filter': {
-            'date_joined': []
+        'filter_dict': {
+            'Updated_time': []
         },
-        'sorted_key': 'username',
+        'sorted_key': 'PID',
         'start': (this.pi - 1) * this.ps,
         'offset': this.ps,
     };
@@ -48,29 +51,72 @@ export class SurveyOverviewComponent implements OnInit {
         this.getTableData();
     }
 
-    getTableData() {
-        const conditions = {
-            'sorted_key' : 'Province',
-            'start' : '0',
-            'offset' : '20',
-            'filter_dict' : { 'PID': [0, 30] }
+    // 改变分页和页数
+    changePage() {
+        this.conditions.start = (this.pi - 1) * this.ps;
+        this.conditions.offset = this.ps;
+    }
 
-        };
+    showConditions() {
+        this.getTableData();
+    }
+
+    clear() {
+        for (const key in this.conditions.filter_dict) {
+            if (this.conditions.filter_dict[key])
+                delete this.conditions.filter_dict[key];
+        }
+        this.start_time = '';
+        this.end_time = '';
+        this.getTableData();
+    }
+
+    getTableData() {
+        // 先设置时间
+        this.setTime();
+        // 再检查分页和第几页
+        this.changePage();
         this.loading = true;
         this._allChecked = false;
         this._indeterminate = false;
-        this.service.getPatientList(conditions).subscribe( (res) => {
+        // 进行对应的数据的查找
+        this.service.getPatientList(this.conditions).subscribe( (res) => {
             this.data = res.PID_info;
-            console.log(this.data);
+            console.log(res);
+            this.total = res.Count_total;
             this.loading = false;
-           // this.total = res.Count_total;
         });
     }
+
+
+    // 时间格式转换
+    GMTToStr(time) {
+        const date = new Date(time);
+        const Str = date.getFullYear() + '-' +
+            (date.getMonth() + 1) + '-' +
+            date.getDate() + ' ' +
+            date.getHours() + ':' +
+            date.getMinutes() + ':' +
+            date.getSeconds();
+        return Str;
+    }
+
+    // 时间设置
+    setTime() {
+        if (this.start_time === '' || this.end_time === '') {
+            delete this.conditions.filter_dict.Updated_time;
+        } else {
+            this.conditions.filter_dict.Updated_time = [];
+            this.conditions.filter_dict.Updated_time.push(this.GMTToStr(this.start_time));
+            this.conditions.filter_dict.Updated_time.push(this.GMTToStr(this.end_time));
+        }
+    }
+
+
     deleteRecord(pid: string) {
         if (pid && pid !== '') {
             const deleteId = { 'PID': pid };
             this.service.deleteRecord(deleteId).subscribe((res) => {
-
                 this.getTableData();
             });
         }
@@ -107,8 +153,19 @@ export class SurveyOverviewComponent implements OnInit {
         this.fileDownloader.downloadFile(filePath, {'PID_list': PIDs}, 'All.csv');
     }
 
-    filterData() {
-        console.log('filtering');
+    sort(title, value) {
+        console.log(value);
+        if (value === 'ascend')
+            this.conditions.sorted_key = title;
+        else this.conditions.sorted_key = '-' + title;
+        Object.keys(this.sortMap).forEach(key => {
+            if (key !== title) {
+                this.sortMap[ key ] = null;
+            } else {
+                this.sortMap[ key ] = value;
+            }
+        });
+        this.getTableData();
     }
 
 

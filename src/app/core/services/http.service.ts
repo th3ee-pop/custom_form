@@ -142,7 +142,7 @@ export class HttpService {
     getPatientList(conditions): Observable<any> {
 
         const body = {
-            'filter_dict': conditions.filter,
+            'filter_dict': conditions.filter_dict,
             'sorted_key': conditions.sorted_key,
             'start': conditions.start,
             'offset': conditions.offset
@@ -266,6 +266,7 @@ export class HttpService {
                     user_province: res.province,
                     name: res.name
                 };
+                sessionStorage.setItem('User_name', user.username);
                 console.log(localuser);
             })
             .catch((res) => {

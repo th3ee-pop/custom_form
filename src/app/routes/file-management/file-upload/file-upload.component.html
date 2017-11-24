@@ -83,16 +83,14 @@
                                 <i class="anticon anticon-delete"></i><span>删除全部</span>
                             </button>
                         </nz-button-group>
+                        <div class="steps-action">
+                            <button nz-button [nzType]="'default'" [nzSize]="'large'" (click)="exit()">
+                                <span>退出</span>
+                            </button>
+                        </div>
                     </ng-template>
                 </nz-card>
-                <div class="steps-action">
-                    <button nz-button [nzType]="'default'" [nzSize]="'large'" (click)="exit()">
-                        <span>退出</span>
-                    </button>
-                    <!--<button nz-button [nzType]="'default'" (click)="submit()">-->
-                        <!--<span>完成</span>-->
-                    <!--</button>-->
-                </div>
+
             </div>
         </div>
     </div>

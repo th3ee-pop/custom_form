@@ -56,18 +56,22 @@ export class UserSettingsComponent implements OnInit {
     _allChecked = false;
     start_time = '';
     end_time = '';
+    sortMap = {
+        'username': null,
+        'group': null,
+        'date_joined': null
+    };
     nowuser = JSON.parse(localStorage.getItem('_user'));
 
     // 所有的过滤条件在这个对象里添加
     conditions = {
         'filter': {
-            'date_joined': []
+            'date_joined': [],
         },
         'sorted_key': 'username',
         'start': (this.pi - 1) * this.ps,
         'offset': this.ps,
     };
-
     authority = {
         '1': '总管理员',
         '2': '省内管理员',
@@ -80,7 +84,6 @@ export class UserSettingsComponent implements OnInit {
         '高级用户': '3',
         '普通用户': '4'
     };
-
     options = {};
     active = 1;
     profileForm: FormGroup;
@@ -256,6 +259,13 @@ export class UserSettingsComponent implements OnInit {
         if (value === 'ascend')
         this.conditions.sorted_key = title;
         else this.conditions.sorted_key = '-' + title;
+        Object.keys(this.sortMap).forEach(key => {
+            if (key !== title) {
+                this.sortMap[ key ] = null;
+            } else {
+                this.sortMap[ key ] = value;
+            }
+        });
         this.load();
     }
 
