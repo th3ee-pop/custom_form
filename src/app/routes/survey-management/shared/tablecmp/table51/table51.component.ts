@@ -10,13 +10,15 @@ import { PACKAGE_ROOT_URL } from '@angular/core/src/application_tokens';
 })
 export class Table51Component  extends Question implements AnswerInterface, OnInit {
 
-    localAnswer = new Array(23);
-    amount = new Array(23);
+    localAnswer = new Array(30);
+    amount = new Array(30);
     foodNames = [
         '大米',
         '面食',
         '杂粮（玉米、高粱、小米、青稞等）',
-        '大肉，牛羊肉等',
+        '大肉',
+        '羊肉',
+        '牛肉',
         '家禽及制品',
         '水产/海鲜品',
         '蛋类及制品',
@@ -28,13 +30,18 @@ export class Table51Component  extends Question implements AnswerInterface, OnIn
         '牛、羊奶',
         '酸奶',
         '其他奶制品',
+        '酥油茶',
+        '奶茶',
         '咸菜泡菜',
         '干菜',
         '坚果',
-        '果干',
+        '红枣',
+        '枸杞',
+        '葡萄干',
+        '杏干/无花果干/其它果干',
         '豆浆',
-        '纯果汁',
-        '碳酸饮料',
+        '纯果汁/蔬菜汁（无加糖）',
+        '碳酸饮料（可乐、汽水）',
         '其他饮品'
     ];
 
@@ -51,7 +58,7 @@ export class Table51Component  extends Question implements AnswerInterface, OnIn
 
     }
     ngOnInit() {
-        for (let i = 0; i < 23; i++) {
+        for (let i = 0; i < 30; i++) {
             this.localAnswer[i] = new Array(5);
         }
     }
@@ -89,27 +96,30 @@ export class Table51Component  extends Question implements AnswerInterface, OnIn
                 }
             }
         }
+
         this.answer = res;
+        console.log(this.answer);
     }
 
     answerCheck() {
         this.answerChange();
-        for (let row = 0; row < 23; row++) {
-            let flag2 = false;
+        let flag2 = false;
+        for (let row = 0; row < 30; row++) {
             for (let col = 0; col < 5; col++) {
                 if (this.localAnswer[row][col] === true)
                     flag2 = true;
             }
             if ( flag2 === false) return false;
         }
+        console.log('验证通过！');
         return true;
     }
     answertextCheck() {
-        for ( let i = 0; i < 23; i++) {
-            if ( !this.amount[i] || this.amount[i] === '') {
-                return false;
-            }
-        }
+        // for ( let i = 0; i < 30; i++) {
+        //     if ( !this.amount[i] || this.amount[i] === '') {
+        //         return false;
+        //     }
+        // }
         return true;
     }
     getAnswer() {

@@ -30,7 +30,7 @@ export class Table613Component extends  Question implements AnswerInterface, OnI
     }
     answerChange() {
 
-        const questionID = 'ID6_13';
+        const questionID = 'ID6_14';
         const res = [];
         for (let row = 0; row < 4; row++) {
             if ( this.selected [row] === true )

@@ -28,7 +28,6 @@ export class FifthStepComponent implements OnInit, AfterViewInit {
     @ViewChildren(Table51Component) Table51Item: QueryList<Table51Component>;
     @ViewChildren(Table53Component) Table53Item: QueryList<Table53Component>;
     @ViewChildren(Table54Component) Table54Item: QueryList<Table54Component>;
-    @ViewChildren(Table58Component) Table58Item: QueryList<Table58Component>;
 
     current = 4;                                        // 当前步骤
     // questionList = new QuestionList().questions[this.current];     // 问题总列表
@@ -75,7 +74,7 @@ export class FifthStepComponent implements OnInit, AfterViewInit {
     ngAfterViewInit() {
         const getRecord = {
             'PID': this.PID,
-            'RecordID': 'ID1'
+            'RecordID': 'ID5'
         };
         this.service.getRecord(getRecord).subscribe( (res) => {
             res.Records.forEach( it => {
@@ -113,9 +112,11 @@ export class FifthStepComponent implements OnInit, AfterViewInit {
     next() {                                            // 下一步
         if ( this.confirm().confirms) {
             this.collectAllanswer();
+            console.log(this.resultList);
             const putRecord = { 'Records': this.resultList, 'PID': this.PID};
             this.service.putRecord(putRecord).subscribe( (res) => {
                 this.router.navigate(['system/survey/sixth_step/' + this.PID]);
+                console.log('这是res', res);
             }, error => {
                 console.log(error);
             });
@@ -151,9 +152,6 @@ export class FifthStepComponent implements OnInit, AfterViewInit {
             item.editdisabled = true;
         });
         this.Table54Item.forEach(item => {
-            item.editdisabled = true;
-        });
-        this.Table58Item.forEach(item => {
             item.editdisabled = true;
         });
     }
@@ -225,9 +223,6 @@ export class FifthStepComponent implements OnInit, AfterViewInit {
         this.Table54Item.forEach( item => { if ( item.question.hidden === false && item.answerCheck() === false) {
             confirms = false; confirmlist.push(item.question.id);
         }});
-        this.Table58Item.forEach( item => { if ( item.question.hidden === false && item.answerCheck() === false) {
-            confirms = false; confirmlist.push( item.question.id);
-        }});
         const confirmAll = {
             confirms: confirms,
             confirmList: confirmlist
@@ -248,9 +243,6 @@ export class FifthStepComponent implements OnInit, AfterViewInit {
             if ( item.answerCheck() === true ) { item.getAnswer().forEach( it => { this.resultList.push(it); }); }
         });
         this.Table54Item.forEach( item => {
-            if ( item.answerCheck() === true ) { item.getAnswer().forEach( it => { this.resultList.push(it); }); }
-        });
-        this.Table58Item.forEach( item => {
             if ( item.answerCheck() === true ) { item.getAnswer().forEach( it => { this.resultList.push(it); }); }
         });
         if (this.confirm().confirms) {
@@ -379,26 +371,6 @@ export class FifthStepComponent implements OnInit, AfterViewInit {
                         }
                     });
                 }
-            });
-            this.Table58Item.forEach( item => {
-                for ( let i = 0; i < 3; i++) {
-                    const y = i + 1;
-                    const id = 'ID5_8_' + y;
-                    fillingList.forEach(  it => {
-                        if ( it[id] && it[id] !== '') {
-                            const col = Number.parseInt(it[id]);
-                            item.localAnswer[i][col] = true;
-                        }
-                    });
-                }
-            });
-            this.Table58Item.forEach( item => {
-                const id = 'ID5_8_a';
-                fillingList.forEach( it => {
-                    if ( it[id] && it [id] !== '') {
-                        item.text = it[id];
-                    }
-                });
             });
             this.ref.detectChanges();
 

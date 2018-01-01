@@ -8,12 +8,6 @@
                         <form nz-form>
                             <div nz-row nz-form-item [nzGutter]="16">
                                 <div nz-form-label nz-col [nzSm]="2">
-                                    <label>姓名</label>
-                                </div>
-                                <div nz-form-control nz-col [nzSm]="5">
-                                    <nz-input [(ngModel)]="conditions.filter_dict.Name" name="name" [nzId]="'name'"></nz-input>
-                                </div>
-                                <div nz-form-label nz-col [nzSm]="2">
                                     <label>体检编号</label>
                                 </div>
                                 <div nz-form-control nz-col [nzSm]="5">
@@ -110,7 +104,6 @@
                                             </label>
                                         </th>
                                         <th nz-th><span>PID</span></th>
-                                        <th nz-th><span>姓名</span><nz-table-sort [(nzValue)]="sortMap['Name']" (nzValueChange)="sort('Name',$event)"></nz-table-sort></th>
                                         <th nz-th><span>体检编号</span><nz-table-sort [(nzValue)]="sortMap['No']" (nzValueChange)="sort('No',$event)"></nz-table-sort></th>
                                         <th nz-th><span>状态</span></th>
                                         <th nz-th><span>上次修改时间</span><nz-table-sort [(nzValue)]="sortMap['Updated_time']" (nzValueChange)="sort('Updated_time',$event)"></nz-table-sort></th>
@@ -128,7 +121,6 @@
                                             </label>
                                         </td>
                                         <td nz-td>{{data.PID}}</td>
-                                        <td nz-td>{{data.Name}}</td>
                                         <td nz-td>{{data.No}}</td>
                                         <td nz-td>{{data.Status}}</td>
                                         <td nz-td>{{data.Updated_time}}</td>

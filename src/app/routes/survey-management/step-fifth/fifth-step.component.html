@@ -12,6 +12,7 @@
                         <div [ngSwitch]="question.type">
                             <app-inputcmp     *ngSwitchCase="'input'"     [question]="question" (onVoted)="onVoted($event)" ></app-inputcmp>
                             <app-radiocmp     *ngSwitchCase="'radio'"     [question]="question" (onVoted)="onVoted($event)" ></app-radiocmp>
+                            <app-checkboxcmp  *ngSwitchCase="'checkbox'"  [question]="question" (onVoted)="onVoted($event)" ></app-checkboxcmp>
                             <app-table51      *ngSwitchCase="'table51'"   [question]="question" (onVoted)="onVoted($event)" ></app-table51>
                             <app-table53      *ngSwitchCase="'table53'"   [question]="question" (onVoted)="onVoted($event)" ></app-table53>
                             <app-table54      *ngSwitchCase="'table54'"   [question]="question" (onVoted)="onVoted($event)" ></app-table54>

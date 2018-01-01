@@ -63,7 +63,7 @@ export class Table74Component extends Question implements AnswerInterface, OnIni
         this.lastTimeInHospital = new Array(this.illnessNames.length);
     }
     answerChange() {
-        const questionID = 'ID7_4';
+        const questionID = 'ID7_8';
         const res = []; // 结果暂存
         for (let i = 0; i < this.illnessNames.length; i++) {
             if ( this.other[i] && this.other[i] !== '' ) {
@@ -116,6 +116,7 @@ export class Table74Component extends Question implements AnswerInterface, OnIni
             }
 
         }
+        console.log(res)
         this.answer = res;
     }
     answerCheck() {

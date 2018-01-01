@@ -12,7 +12,7 @@ export class Table813Component extends Question implements AnswerInterface, OnIn
     localAnswer = new Array(5);
     time = new Array(5);
     activityNames = [
-        '看电视/碟片', '读书/看报', '吃饭/聚餐/闲聊', '下棋/打牌/打麻将', '上网/写作/文件整理'
+        '看电视/碟片', '看手机/pad', '读书/看报', '下棋/打牌/打麻将', '看电脑/写作/文件整理'
     ];
     answerChanged = false;
     editdisabled = false;

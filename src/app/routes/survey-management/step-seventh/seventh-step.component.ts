@@ -51,6 +51,7 @@ export class SeventhStepComponent implements OnInit, AfterViewInit {
             this.service.getRecord(getRecord).subscribe( (res) => {
                 const list = res.Records;
                 this.answerList = list;
+                console.log(this.answerList);
                 for ( let i = 0; i < list.length; i++) {
                     if ( list[i]['ID0_0'] && list[i]['ID0_0'] !== '') {
                         this.questionList = list[i]['ID0_0'][6];
@@ -324,12 +325,12 @@ export class SeventhStepComponent implements OnInit, AfterViewInit {
             }});
             this.Table74Item.forEach( item => {
                     for ( let i = 0; i < item.illnessNames.length; i++ ) {
-                        const id1 = 'ID7_4' + '_h_' + ( i + 1 );
-                        const id2 = 'ID7_4' + '_a_' + ( i + 1 );
-                        const id3 = 'ID7_4' + '_b_' + ( i + 1 );
-                        const id4 = 'ID7_4' + '_c_' + ( i + 1 );
-                        const id5 = 'ID7_4' + '_d_' + ( i + 1 );
-                        const id6 = 'ID7_4' + '_e_' + ( i + 1 );
+                        const id1 = 'ID7_8' + '_h_' + ( i + 1 );
+                        const id2 = 'ID7_8' + '_a_' + ( i + 1 );
+                        const id3 = 'ID7_8' + '_b_' + ( i + 1 );
+                        const id4 = 'ID7_8' + '_c_' + ( i + 1 );
+                        const id5 = 'ID7_8' + '_d_' + ( i + 1 );
+                        const id6 = 'ID7_8' + '_e_' + ( i + 1 );
                         fillingList.forEach( it => {
                                 if ( it[id1] ) { item.other[i] = it[id1]; }
                                 if ( it[id2] ) { item.hasThisIllness[i] = true; }

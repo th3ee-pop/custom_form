@@ -13,7 +13,7 @@ export class Table53Component extends Question implements AnswerInterface, OnIni
 
     days = [];
     flavoringNames = [
-        '一袋盐（500克）', '一瓶酱油（500毫升）', '一瓶醋(500毫升)', '一瓶食用油（1000毫升）'
+        '一袋盐（重量见上题）', '一瓶酱油（500毫升）', '一瓶醋(500毫升)', '一瓶食用油（1000毫升）'
     ];
     answerChanged = false;
 
@@ -47,9 +47,9 @@ export class Table53Component extends Question implements AnswerInterface, OnIni
         this.answer = res;
     }
     answerCheck() {
-        for ( let i = 0; i < 4 ; i++) {
-            if ( !this.days[i] || this.days[i] === '' ) return false;
-        }
+        // for ( let i = 0; i < 4 ; i++) {
+        //     if ( !this.days[i] || this.days[i] === '' ) return false;
+        // }
         return true;
     }
     getAnswer() {

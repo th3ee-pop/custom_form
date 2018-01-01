@@ -9,10 +9,32 @@ import { AnswerInterface } from 'app/routes/survey-management/shared/answerInter
     styleUrls: ['./table54.component.less']
 })
 export class Table54Component extends Question implements AnswerInterface, OnInit {
-    localAnswer = new Array(5);
+    localAnswer = new Array(23);
     selected = [];
     actionNames = [
-        '吃零食/小吃', '不吃早餐', '在餐馆或小吃店吃饭', '吃深度油炸烧烤类食物', '吃西式快餐（如披萨饼、汉堡等）'
+        '馕',
+        '八宝茶',
+        '药茶',
+        '动物油',
+        '菜籽油',
+        '花生油',
+        '豆油',
+        '胡麻油',
+        '调和油',
+        '葵花籽油',
+        '玉米油',
+        '橄榄油',
+        '茶籽油',
+        '吃零食',
+        '吃方便面/方便米线等方便食品',
+        '吃夜宵',
+        '吃熏肉/腊肉',
+        '吃火腿肠/香肠等加工肉食',
+        '不吃早餐',
+        '吃油炸食品',
+        '吃烧烤类食物',
+        '吃西式快餐(如披萨饼、汉堡等)',
+        '在餐馆或小吃店吃饭'
     ];
 
     answerChanged = false;
@@ -28,7 +50,7 @@ export class Table54Component extends Question implements AnswerInterface, OnIni
 
     }
     ngOnInit () {
-        for (let i =  0; i < 5; i++) {
+        for (let i =  0; i < 23; i++) {
             this.localAnswer[i] =  new Array(5);
         }
     }
@@ -59,8 +81,8 @@ export class Table54Component extends Question implements AnswerInterface, OnIni
     }
     answerCheck() {
         this.answerChange();
-        for (let row = 0; row < 5; row++) {
-            let flag2 = false;
+        let flag2 = false;
+        for (let row = 0; row < this.actionNames.length; row++) {
             for (let col = 0; col < 5; col++) {
                 if (this.localAnswer[row][col] === true)
                     flag2 = true;

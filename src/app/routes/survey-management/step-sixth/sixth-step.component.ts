@@ -92,6 +92,7 @@ export class SixthStepComponent implements OnInit, AfterViewInit {
     next() {                                            // 下一步
         if ( this.confirm().confirms ) {
             this.collectAllanswer();
+            console.log(this.resultList);
             const putRecord = { 'Records': this.resultList, 'PID': this.PID};
             this.service.putRecord(putRecord).subscribe( (res) => {
                 this.router.navigate(['system/survey/seventh_step/' + this.PID]);
