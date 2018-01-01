@@ -2,19 +2,6 @@ export class QuestionList {
     questions = [
         [
             {
-                'id': '1.0',
-                'content': [
-                    {
-                        'dataType': 'text',
-                        'inform': '',
-                        'validType': 'other'
-                    }
-                ],
-                'hidden': false,
-                'type': 'input',
-                'tittle': '姓名'
-            },
-            {
                 'id': '1.1',
                 'content': [
                     {
@@ -70,6 +57,55 @@ export class QuestionList {
                 'tittle': '身份证号码（必填）：'
             },
             {
+                'id': '1.5.1',
+                'content': [
+                    {
+                        'dataType': 'text',
+                        'inform': '',
+                        'validType': 'other'
+                    }
+                ],
+                'hidden': false,
+                'type': 'input',
+                'tittle': '医保编号（必填）：'
+            },
+            {
+                'id': '1.5.2',
+                'content': [
+                    '城镇职工医疗保险',
+                    '商业医疗保险',
+                    '城镇居民医疗保险',
+                    '公费医疗',
+                    '新型农村合作医疗保险',
+                    '其他 ->转至问题1.5.2.a'
+                ],
+                'hiddenlist': [
+                    ['1.5.2.a'],
+                    ['1.5.2.a'],
+                    ['1.5.2.a'],
+                    ['1.5.2.a'],
+                    ['1.5.2.a'],
+                    [],
+                ],
+                'hidden': false,
+                'type': 'radio',
+                'tittle': '医保类型'
+
+            },
+            {
+                'id': '1.5.2.a',
+                'content': [
+                    {
+                        'dataType': 'text',
+                        'inform': '',
+                        'validType': 'other'
+                    }
+                ],
+                'hidden': false,
+                'type': 'input',
+                'tittle': '如果选择其他医疗保险，那么是？'
+            },
+            {
                 'id': '1.6',
                 'content': [
                     {
@@ -81,6 +117,19 @@ export class QuestionList {
                 'hidden': false,
                 'type': 'input',
                 'tittle': '家庭住址（为便于今后长期随访，请详细填写）：'
+            },
+            {
+                'id': '1.6.1',
+                'content': [
+                    {
+                        'dataType': 'text',
+                        'inform': '',
+                        'validType': 'other'
+                    }
+                ],
+                'hidden': false,
+                'type': 'input',
+                'tittle': '居委会/村委会/村医电话'
             },
             {
                 'id': '1.7.1',
@@ -116,9 +165,11 @@ export class QuestionList {
                     '维族',
                     '哈萨克',
                     '蒙古',
+                    '藏族',
                     '其他 ->转至问题1.8.a'
                 ],
                 'hiddenlist': [
+                    ['1.8.a'],
                     ['1.8.a'],
                     ['1.8.a'],
                     ['1.8.a'],
@@ -152,8 +203,8 @@ export class QuestionList {
                 ],
                 'hiddenlist': [
                     [],
-                    ['1.9.a', '1.9.b'],
-                    ['1.9.a', '1.9.b']
+                    ['1.9.a', '1.9.b', '1.9.c', '1.9.c.1.a', '1.9.c.1.b'],
+                    ['1.9.a', '1.9.b', '1.9.c', '1.9.c.1.a', '1.9.c.1.b']
                 ],
                 'hidden': false,
                 'type': 'radio',
@@ -169,9 +220,9 @@ export class QuestionList {
                 ],
                 'hiddenlist': [
                     ['1.9.b'],
-                    ['1.9.b'],
-                    ['1.9.b'],
-                    [],
+                    ['1.9.b', '1.9.c', '1.9.c.1.a', '1.9.c.1.b'],
+                    ['1.9.b', '1.9.c', '1.9.c.1.a', '1.9.c.1.b'],
+                    ['1.9.c', '1.9.c.1.a', '1.9.c.1.b'],
                 ],
                 'hidden': false,
                 'type': 'radio',
@@ -189,6 +240,46 @@ export class QuestionList {
                 'hidden': false,
                 'type': 'input',
                 'tittle': '如果信仰其他宗教，具体是？'
+            },
+            {
+                'id': '1.9.c',
+                'content': [
+                    '是',
+                    '否'
+                ],
+                'hiddenlist': [
+                    [],
+                    ['1.9.c.1.a', '1.9.c.1.b']
+                ],
+                'hidden': false,
+                'type': 'radio',
+                'tittle': '你是否封斋？'
+            },
+            {
+                'id': '1.9.c.1.a',
+                'content': [
+                    {
+                        'dataType': 'text',
+                        'inform': '',
+                        'validType': 'twonum'
+                    }
+                ],
+                'hidden': false,
+                'type': 'input',
+                'tittle': '你从几岁开始封斋？'
+            },
+            {
+                'id': '1.9.c.1.b',
+                'content': [
+                    {
+                        'dataType': 'text',
+                        'inform': '',
+                        'validType': 'twonum'
+                    }
+                ],
+                'hidden': false,
+                'type': 'input',
+                'tittle': '封斋多少年？'
             },
             {
                 'id': '1.10',
@@ -259,7 +350,8 @@ export class QuestionList {
                     '50,000-74,999元',
                     '75,000-99,999元',
                     '100,000-200,000元',
-                    '≥200,000元'
+                    '≥200,000元',
+                    '不清楚'
                 ],
                 'hidden': false,
                 'type': 'radio',
@@ -281,9 +373,44 @@ export class QuestionList {
             {
                 'id': '1.16',
                 'content': [
-                    '医疗保险（公费、医保、商业保险及合作医疗）（针对调查对象本人）',
+                    '自来水',
+                    '井水',
+                    '江河水',
+                    '塘堰水',
+                    '窑水',
+                    '桶装纯净水',
+                    '其它'
+                ],
+                'hiddenlist': [
+                    ['1.16.a'],
+                    ['1.16.a'],
+                    ['1.16.a'],
+                    ['1.16.a'],
+                    ['1.16.a'],
+                    ['1.16.a'],
+                    []
+                ],
+                'hidden': false,
+                'type': 'radio',
+                'tittle': '去年你全家一年的总收入（包含各种来源）约为多少？'
+            },
+            {
+                'id': '1.16.a',
+                'content': [
+                    {
+                        'dataType': 'text',
+                        'inform': '',
+                        'validType': 'other'
+                    }
+                ],
+                'hidden': false,
+                'type': 'input',
+                'tittle': '如果你选择了其它，那么是什么类型的水：'
+            },
+            {
+                'id': '1.17',
+                'content': [
                     '自家楼房（农村）/五年内新装修单元房（城市）',
-                    '自家有自来水',
                     '带抽水马桶的家庭独立卫生间',
                     '汽车',
                     '摩托车/其他机动车（如电动车、拖拉机）',
@@ -312,7 +439,7 @@ export class QuestionList {
                     [ ],
                     [ ],
                     [ ],
-                    ['2.2'],
+                    ['2.2', '2.2.a'],
                 ],
                 'hidden': false,
                 'type': 'radio',
@@ -325,8 +452,8 @@ export class QuestionList {
                     '无'
                 ],
                 'hiddenlist': [
-                    [],
-                    ['2.2.a'],
+                    ['2.3', '2.4', '2.5', '2.5.a', '2.6', '2.7'],
+                    ['2.2.a', '2.3', '2.4', '2.5', '2.5.a', '2.6', '2.7'],
                 ],
                 'hidden': false,
                 'type': 'radio',
@@ -372,7 +499,7 @@ export class QuestionList {
             {
                 'id': '2.5',
                 'content': [
-                    '绿茶（包括以绿茶味茶坯的花茶、白茶）',
+                    '绿茶（包括花茶）',
                     '乌龙茶/铁观音',
                     '红茶（如滇红、祁红）',
                     '其它（如普洱、砖茶）'
@@ -463,7 +590,7 @@ export class QuestionList {
             {
                 'id': '2.11',
                 'content': [
-                    '纯牛奶',
+                    '纯咖啡',
                     '速溶咖啡（含糖、植脂末）',
                     '咖啡加牛奶',
                     '咖啡加糖'
@@ -643,7 +770,7 @@ export class QuestionList {
                     {
                         'dataType': 'text',
                         'inform': '',
-                        'validType': 'twonum'
+                        'validType': 'threenum'
                     }
                 ],
                 'hidden': false,
@@ -713,7 +840,7 @@ export class QuestionList {
                     {
                         'dataType': 'text',
                         'inform': '月',
-                        'validType': 'twonum'
+                        'validType': 'threenum'
                     }
                 ],
                 'hidden': false,
@@ -726,7 +853,7 @@ export class QuestionList {
                     {
                         'dataType': 'text',
                         'inform': '月',
-                        'validType': 'twonum'
+                        'validType': 'threenum'
                     }
                 ],
                 'hidden': false,
@@ -750,6 +877,19 @@ export class QuestionList {
                 'hidden': false,
                 'type': 'radio',
                 'tittle': '与你的朋友或者同事相比，你所喜欢的口味如何？'
+            },
+            {
+                'id': '5.3.1.a',
+                'content': [
+                    '500克',
+                    '400克',
+                    '250克',
+                    '200克',
+                    '100克'
+                ],
+                'hidden': false,
+                'type': 'radio',
+                'tittle': '最常用的一包盐的重量是？'
             },
             {
                 'id': '5.3',
@@ -777,49 +917,6 @@ export class QuestionList {
             {
                 'id': '5.6',
                 'content': [
-                    '是',
-                    '否->请转至问题5.9'
-                ],
-                'hiddenlist': [
-                    [],
-                    ['5.7', '5.8', '5.8.a']
-                ],
-                'hidden': false,
-                'type': 'radio',
-                'tittle': '你是否经历过严重的食物短缺？'
-            },
-            {
-                'id': '5.7',
-                'content': [
-                    {
-                        'dataType': 'text',
-                        'inform': '',
-                        'validType': 'fivenum'
-                    }
-                ],
-                'hidden': false,
-                'type': 'input',
-                'tittle': '你所经历的食物短缺，最为严重的是在哪一年？（公历纪年）'
-            },
-            {
-                'id': '5.8',
-                'type': 'table58',
-                'hidden': false
-            },
-            {
-                'id': '5.9',
-                'content': [
-                    '是',
-                    '否',
-                    '不清楚'
-                ],
-                'hidden': false,
-                'type': 'radio',
-                'tittle': '据你所知，你母亲在怀你时是否经历了严重的食物短缺？'
-            },
-            {
-                'id': '5.10',
-                'content': [
                     {
                         'dataType': 'text',
                         'inform': '',
@@ -831,27 +928,27 @@ export class QuestionList {
                 'tittle': '到目前为止你使用冰箱一共有多少年了（单位：年，若无则请填写0）？'
             },
             {
-                'id': '5.11',
+                'id': '5.7',
                 'content': [
-                    '从未/几乎从未吃过辣 ->转至问卷第六部分',
-                    '偶尔吃，但不到每周一次 ->转至问卷第六部分',
+                    '从不/几乎从不吃辣',
+                    '偶尔吃，但不到每周一次',
                     '每周1-2次',
                     '每周3-5次',
-                    '每天或者几乎每天都吃'
+                    '每天或几乎每天都吃'
                 ],
                 'hiddenlist': [
-                    ['5.12', '5.13'],
-                    ['5.12', '5.13'],
+                    ['5.8', '5.9'],
+                    ['5.8', '5.9'],
                     [],
                     [],
-                    [],
+                    []
                 ],
                 'hidden': false,
                 'type': 'radio',
-                'tittle': '在过去的一个月里，你大概多久吃一次辣食？'
+                'tittle': '在过去一年里，你大概多久吃一次辣食？'
             },
             {
-                'id': '5.12',
+                'id': '5.8',
                 'content': [
                     {
                         'dataType': 'text',
@@ -864,7 +961,7 @@ export class QuestionList {
                 'tittle': '你大约从几岁开始养成每周吃辣食的习惯？（单位：岁）'
             },
             {
-                'id': '5.13',
+                'id': '5.9',
                 'content': [
                     '微辣',
                     '较辣',
@@ -873,6 +970,57 @@ export class QuestionList {
                 'hidden': false,
                 'type': 'radio',
                 'tittle': '你通常喜欢吃多辣的食物？'
+            },
+            {
+                'id': '5.10',
+                'content': [
+                    '从不/几乎从不吃醋',
+                    '偶尔吃，但不到每周一次',
+                    '每周1-2次',
+                    '每周3-5次',
+                    '每天或几乎每天都吃'
+                ],
+                'hidden': false,
+                'type': 'radio',
+                'tittle': '在过去一年里，你吃饭时食醋的频率大概是多久一次？'
+            },
+            {
+                'id': '5.11',
+                'content': [
+                    {
+                        'dataType': 'text',
+                        'inform': '',
+                        'validType': 'twonum'
+                    }
+                ],
+                'hidden': false,
+                'type': 'input',
+                'tittle': '你的食醋习惯大约是从几岁开始养成的？（单位：岁）'
+            },
+            {
+                'id': '5.12',
+                'content': [
+                    '特别喜欢，量大',
+                    '比较喜欢，量中等',
+                    '一般，量少',
+                    '反感，不吃'
+                ],
+                'hidden': false,
+                'type': 'radio',
+                'tittle': '你认为自己对醋的偏好程度是怎样的？'
+            },
+            {
+                'id': '5.13',
+                'content': [
+                    {
+                        'dataType': 'text',
+                        'inform': '',
+                        'validType': 'twonum'
+                    }
+                ],
+                'hidden': false,
+                'type': 'input',
+                'tittle': '你家一瓶醋(500毫升)大约可以使用多久？（单位:天）'
             }
         ],
         [
@@ -946,18 +1094,6 @@ export class QuestionList {
             {
                 'id': '6.5',
                 'content': [
-                    '不足50米',
-                    '50-100米',
-                    '100-200米',
-                    '大于200米'
-                ],
-                'hidden': false,
-                'type': 'radio',
-                'tittle': '你的居所距离交通主干道大约有多远的距离？'
-            },
-            {
-                'id': '6.6',
-                'content': [
                     '是',
                     '否'
                 ],
@@ -966,27 +1102,27 @@ export class QuestionList {
                 'tittle': '在你所居住的10公里范围内，是否有空气污染严重（如烟雾、煤气、粉尘）的工厂？'
             },
             {
-                'id': '6.7',
+                'id': '6.6',
                 'content': [
                     '每天/几乎每天都做',
                     '平均每周做几次',
                     '平均每月做几次',
-                    '不做/极少做 ->转至问题6.11',
-                    '无厨房设施 ->转至问题6.11'
+                    '不做/极少做 ->转至问题6.10',
+                    '无厨房设施 ->转至问题6.10'
                 ],
                 'hiddenlist': [
                     [],
                     [],
                     [],
-                    ['6.8', '6.8.1', '6.8.2', '6.9', '6.9.a', '6.10', '6.10.a', '6.10.b'],
-                    ['6.8', '6.8.1', '6.8.2', '6.9', '6.9.a', '6.10', '6.10.a', '6.10.b'],
+                    ['6.7', '6.8', '6.8.1', '6.8.1.a', '6.9', '6.9.a', '6.9.b', '6.9.c', '6.9.d'],
+                    ['6.7', '6.8', '6.8.1', '6.8.1.a', '6.9', '6.9.a', '6.9.b', '6.9.c', '6.9.d'],
                 ],
                 'hidden': false,
                 'type': 'radio',
                 'tittle': '在过去一年里，你多久在家做一次饭？'
             },
             {
-                'id': '6.8',
+                'id': '6.7',
                 'content': [
                     {
                         'dataType': 'text',
@@ -999,46 +1135,20 @@ export class QuestionList {
                 'tittle': '你每周做饭时，大概累积有多长时间花在炉灶前？（单位：小时/周）'
             },
             {
-                'id': '6.8.1',
-                'content': [
-                    {
-                        'dataType': 'text',
-                        'inform': '',
-                        'validType': 'twonum'
-                    }
-                ],
-                'hidden': false,
-                'type': 'input',
-                'tittle': '你大概从几岁开始，经常在家做饭？（单位：岁）'
-            },
-            {
-                'id': '6.8.2',
-                'content': [
-                    '菜籽油',
-                    '花生油',
-                    '豆油',
-                    '猪油',
-                    '其它油'
-                ],
-                'hidden': false,
-                'type': 'radio',
-                'tittle': '你现在做饭炒菜时最常用的食用油是什么？'
-            },
-            {
-                'id': '6.9',
+                'id': '6.8',
                 'content': [
                     '煤气/天然气',
-                    '煤（请回答问题6.9.a）',
+                    '煤（请回答问题6.8.a）',
                     '柴/炭',
                     '电（包括微波炉/电磁炉）',
                     '其他油'
                 ],
                 'hiddenlist': [
-                    ['6.9.a'],
+                    ['6.8.a', '6.8.1.a'],
                     [],
-                    ['6.9.a'],
-                    ['6.9.a'],
-                    ['6.9.a'],
+                    ['6.8.a', '6.8.1.a'],
+                    ['6.8.a', '6.8.1.a'],
+                    ['6.8.a', '6.8.1.a'],
 
                 ],
                 'hidden': false,
@@ -1046,47 +1156,93 @@ export class QuestionList {
                 'tittle': '现在你家里做饭或烧水时，通常用哪一种燃料？'
             },
             {
-                'id': '6.9.a',
+                'id': '6.8.a',
                 'content': [
                     '无烟煤',
                     '有烟煤',
                     '煤球/煤饼（无烟）',
-                    '其它'
+                    '其它（6.8.1.a）'
+                ],
+                'hiddenlist': [
+                    ['6.8.1.a'],
+                    ['6.8.1.a'],
+                    ['6.8.1.a'],
+                    [],
                 ],
                 'hidden': false,
                 'type': 'radio',
                 'tittle': '请说明具体所使用煤制品的种类？'
             },
             {
-                'id': '6.10',
+                'id': '6.8.1.a',
                 'content': [
-                    '全有',
-                    '不是全有',
-                    '全无'
+                    {
+                        'dataType': 'text',
+                        'inform': '',
+                        'validType': 'other'
+                    }
                 ],
                 'hidden': false,
-                'type': 'radio',
-                'tittle': '在你家里，是否所有的炉灶都有烟囱或排烟装置？'
+                'type': 'input',
+                'tittle': '如果是其它类型的煤制品，那么是什么？（单位：岁）'
             },
             {
-                'id': '6.10.a',
+                'id': '6.9',
                 'content': [
-                    '是，一直有',
-                    '是，有时有',
-                    '从无 ->转至问题6.11'
+                    '排气扇',
+                    '抽油烟机',
+                    '烟囱-->转至6.9.c',
+                    '无任何设备或措施-->转至6.9.c'
                 ],
                 'hiddenlist': [
                     [],
                     [],
-                    ['6.10.b'],
-
+                    ['6.9.a', '6.9.b'],
+                    ['6.9.a', '6.9.b'],
                 ],
                 'hidden': false,
                 'type': 'radio',
-                'tittle': '除了做饭和烧水时，你家平时（尤其在冬天）是否有炉子全天不熄火？'
+                'tittle': '在你家里厨房的排烟设备是？'
             },
             {
-                'id': '6.10.b',
+                'id': '6.9.a',
+                'content': [
+                    '是',
+                    '否'
+                ],
+                'hidden': false,
+                'type': 'radio',
+                'tittle': '做饭时是否使用这些排烟设备？'
+            },
+            {
+                'id': '6.9.b',
+                'content': [
+                    '点炉前启用',
+                    '点炉后启用',
+                    '油烟重时启用'
+                ],
+                'hidden': false,
+                'type': 'radio',
+                'tittle': '使用方式：'
+            },
+            {
+                'id': '6.9.c',
+                'content': [
+                    '是，一直有',
+                    '是，有时有',
+                    '从无 -->转到问题6.10'
+                ],
+                'hiddenlist': [
+                    [],
+                    [],
+                    ['6.9.d'],
+                ],
+                'hidden': false,
+                'type': 'radio',
+                'tittle': '除了做饭和烧水外，你家平时（尤其在冬天）是否有炉子全天不熄火？'
+            },
+            {
+                'id': '6.9.d',
                 'content': [
                     '屋内',
                     '屋外（如公共厨房，门外等）'
@@ -1096,56 +1252,80 @@ export class QuestionList {
                 'tittle': '平时家里不熄火的炉子，一般放在什么地方？'
             },
             {
-                'id': '6.11',
+                'id': '6.10',
                 'content': [
                     '是',
-                    '否 ->转至问题6.12'
+                    '否-->转至问题6.11'
                 ],
                 'hiddenlist': [
                     [],
-                    ['6.11.a', '6.11.b']
+                    ['6.10.a', '6.10.b']
                 ],
                 'hidden': false,
                 'type': 'radio',
                 'tittle': '在你现居所，冬天屋内是否取暖？'
             },
             {
-                'id': '6.11.a',
+                'id': '6.10.a',
                 'content': [
-                    '集中供暖',
-                    '煤气/天然气',
+                    '集中供暖-->转至问题6.11',
+                    '煤气/天然气-->转至问题6.11',
                     '无烟煤',
                     '有烟煤',
                     '煤球/煤饼（无烟）',
-                    '柴/炭',
-                    '电',
-                    '其它燃料（如沼气等）'
+                    '柴/炭-->转至问题6.11',
+                    '电-->转至问题6.11',
+                    '其它燃料（如沼气等）-->转至问题6.11'
+                ],
+                'hiddenlist': [
+                    ['6.10.b'],
+                    ['6.10.b'],
+                    [],
+                    [],
+                    [],
+                    ['6.10.b'],
+                    ['6.10.b'],
+                    ['6.10.b']
                 ],
                 'hidden': false,
                 'type': 'radio',
                 'tittle': '你家冬天取暖一般用什么燃料？'
             },
             {
-                'id': '6.11.b',
+                'id': '6.10.b',
                 'content': [
-                    '是',
-                    '否'
+                    '有',
+                    '无'
                 ],
                 'hidden': false,
                 'type': 'radio',
-                'tittle': '冬天家里取暖后，在屋里你是否仍需要穿很多衣服才会觉得暖和？'
+                'tittle': '你家的取暖设施有无连接到室外的烟囱/烟管？'
+            },
+            {
+                'id': '6.11',
+                'content': [
+                    '<=半年',
+                    '半年-1年',
+                    '1-3年',
+                    '3-5年',
+                    '5-10年',
+                    '10年以上'
+                ],
+                'hidden': false,
+                'type': 'radio',
+                'tittle': '你现在所住房子最近一次装修距现在有多长时间了？'
             },
             {
                 'id': '6.12',
                 'content': [
-                    '从未有过 ->转至6.13',
-                    '自从儿童期开始',
-                    '从_______年开始出现 ->转至6.12.a填写具体时间'
+                    '从未有过-->请转至问题6.14',
+                    '从儿童时期开始',
+                    '从其它时期开始-->6.12.a'
                 ],
                 'hiddenlist': [
-                    ['6.12.a', '6.12.b', '6.12.c'],
+                    ['6.12.a', '6.13', '6.13.a'],
                     ['6.12.a'],
-                    ['']
+                    []
                 ],
                 'hidden': false,
                 'type': 'radio',
@@ -1160,26 +1340,27 @@ export class QuestionList {
                         'validType': 'other'
                     }
                 ],
+
                 'hidden': false,
                 'type': 'input',
-                'tittle': '燃煤污染出现时间'
+                'tittle': '从哪一年开始出现？'
             },
             {
-                'id': '6.12.b',
+                'id': '6.13',
                 'content': [
-                    '从______年起，不再出现 ->转至6.12.c填写具体时间',
+                    '从______年起，不再出现 ->转至6.13.c填写具体时间',
                     '目前仍有'
                 ],
                 'hiddenlist': [
                     [],
-                    ['6.12.c']
+                    ['6.13.a']
                 ],
                 'hidden': false,
                 'type': 'radio',
                 'tittle': '从哪一年开始，你家屋内（尤其在冬天）不再出现燃煤污染？'
             },
             {
-                'id': '6.12.c',
+                'id': '6.13.a',
                 'content': [
                     {
                         'dataType': 'text',
@@ -1192,22 +1373,24 @@ export class QuestionList {
                 'tittle': '燃煤污染不再出现时间'
             },
             {
-                'id': '6.13',
+                'id': '6.14',
                 'type': 'table613',
                 'hidden': false
             },
             {
-                'id': '6.14',
+                'id': '6.15',
                 'content': [
                     '减少外出',
                     '佩戴口罩',
+                    '紧闭门窗',
                     '室内开启空气净化器等设备',
                     '其他 ->转至6.14.a填写'
                 ],
                 'hiddenlist': [
-                    ['6.14.a'],
-                    ['6.14.a'],
-                    ['6.14.a'],
+                    ['6.15.a'],
+                    ['6.15.a'],
+                    ['6.15.a'],
+                    ['6.15.a'],
                     []
                 ],
                 'hidden': false,
@@ -1215,7 +1398,7 @@ export class QuestionList {
                 'tittle': '请你回忆一下，雾霾天气时，你是否采取过防护措施（可多选）'
             },
             {
-                'id': '6.14.a',
+                'id': '6.15.a',
                 'content': [
                     {
                         'dataType': 'text',
@@ -1326,54 +1509,9 @@ export class QuestionList {
                 'type': 'radio',
                 'tittle': '在过去一年里，你是否胸部有口哨音或喘气音'
             },
+
             {
                 'id': '7.4',
-                'type': 'table74',
-                'hidden': false
-            },
-            {
-                'id': '7.4.f',
-                'content': [
-                    '肺',
-                    '食道',
-                    '胃',
-                    '肝',
-                    '肠',
-                    '乳腺',
-                    '前列腺',
-                    '宫颈',
-                    '其他 ->转至问题7.4.g'
-                ],
-                'hiddenlist': [
-                    ['7.4.g'],
-                    ['7.4.g'],
-                    ['7.4.g'],
-                    ['7.4.g'],
-                    ['7.4.g'],
-                    ['7.4.g'],
-                    ['7.4.g'],
-                    ['7.4.g'],
-                    []
-                ],
-                'hidden': false,
-                'type': 'checkbox',
-                'tittle': '如果有肿瘤，是以下哪个部位？'
-            },
-            {
-                'id': '7.4.g',
-                'content': [
-                    {
-                        'dataType': 'text',
-                        'inform': '',
-                        'validType': 'other'
-                    }
-                ],
-                'hidden': false,
-                'type': 'input',
-                'tittle': '上题中如果肿瘤发生在其它位置，是在哪？'
-            },
-            {
-                'id': '7.5',
                 'content': [
                     {
                         'dataType': 'text',
@@ -1386,7 +1524,7 @@ export class QuestionList {
                 'tittle': '在过去一年里，你一共因病去医院看过几次门诊？（单位：次 ，如无请填0）'
             },
             {
-                'id': '7.6',
+                'id': '7.5',
                 'content': [
                     {
                         'dataType': 'text',
@@ -1399,7 +1537,7 @@ export class QuestionList {
                 'tittle': '在过去一年里，你一共因病住过几次院？（单位：次 ，如无请填0）'
             },
             {
-                'id': '7.7',
+                'id': '7.6',
                 'content': [
                     {
                         'dataType': 'text',
@@ -1412,7 +1550,7 @@ export class QuestionList {
                 'tittle': '到目前为止，你一共因患病等接受过多少次输血？（单位：次，如无请填0）'
             },
             {
-                'id': '7.8',
+                'id': '7.7',
                 'content': [
                     {
                         'dataType': 'text',
@@ -1424,6 +1562,53 @@ export class QuestionList {
                 'type': 'input',
                 'tittle': '到目前为止，你一共献过几次血？（单位：次  ，如无请填0）'
             },
+            {
+                'id': '7.8',
+                'type': 'table74',
+                'hidden': false
+            },
+            {
+                'id': '7.8.f',
+                'content': [
+                    '肺',
+                    '食道',
+                    '胃',
+                    '肝',
+                    '肠',
+                    '乳腺',
+                    '前列腺',
+                    '宫颈',
+                    '其他 ->转至问题7.4.g'
+                ],
+                'hiddenlist': [
+                    ['7.8.g'],
+                    ['7.8.g'],
+                    ['7.8.g'],
+                    ['7.8.g'],
+                    ['7.8.g'],
+                    ['7.8.g'],
+                    ['7.8.g'],
+                    ['7.8.g'],
+                    []
+                ],
+                'hidden': false,
+                'type': 'checkbox',
+                'tittle': '如果有肿瘤，是以下哪个部位？'
+            },
+            {
+                'id': '7.8.g',
+                'content': [
+                    {
+                        'dataType': 'text',
+                        'inform': '',
+                        'validType': 'other'
+                    }
+                ],
+                'hidden': false,
+                'type': 'input',
+                'tittle': '上题中如果肿瘤发生在其它位置，是在哪？'
+            },
+
             {
                 'id': '7.9',
                 'content': [
@@ -1612,17 +1797,6 @@ export class QuestionList {
                 'hidden': false,
                 'type': 'radio',
                 'tittle': '你出生时是经过剖腹产的吗？'
-            },
-            {
-                'id': '7.19',
-                'content': [
-                    '是',
-                    '否',
-                    '不确定'
-                ],
-                'hidden': false,
-                'type': 'radio',
-                'tittle': '你出生时是否受过与生育有关的产伤？'
             }
         ],
         [
@@ -1962,7 +2136,16 @@ export class QuestionList {
                 'id': '8.15',
                 'content': [
                     '是',
-                    '否'
+                    '否-->转到最后一题'
+                ],
+                'hiddenlist': [
+                    [],
+                    [
+                        '8.16',
+                        '8.16.a',
+                        '8.17',
+                        '8.18'
+                    ]
                 ],
                 'hidden': false,
                 'type': 'radio',
@@ -1970,6 +2153,85 @@ export class QuestionList {
             },
             {
                 'id': '8.16',
+                'content': [
+                    '不吃早餐',
+                    '不吃午餐',
+                    '不吃晚餐',
+                    '早餐时不吃/少吃主食',
+                    '午餐时不吃/少吃主食',
+                    '晚餐时不吃/少吃主食',
+                    '减少食量',
+                    '调节饮食结构',
+                    '不吃肉',
+                    '运动',
+                    '减肥药/减肥茶',
+                    '中医减肥（如针灸、按摩等）',
+                    '仪器减肥',
+                    '其它'
+                ],
+                'hiddenlist': [
+                    ['8.16.a'],
+                    ['8.16.a'],
+                    ['8.16.a'],
+                    ['8.16.a'],
+                    ['8.16.a'],
+                    ['8.16.a'],
+                    ['8.16.a'],
+                    ['8.16.a'],
+                    ['8.16.a'],
+                    ['8.16.a'],
+                    ['8.16.a'],
+                    ['8.16.a'],
+                    ['8.16.a'],
+                    []
+                ],
+                'hidden': false,
+                'type': 'checkbox',
+                'tittle': '如果是，你具体采取什么方式来减轻/控制体重'
+            },
+            {
+                'id': '8.16.a',
+                'content': [
+                    {
+                        'dataType': 'text',
+                        'inform': '',
+                        'validType': 'other'
+                    }
+                ],
+                'hidden': false,
+                'type': 'input',
+                'tittle': '其它减轻体重的方式'
+            },
+            {
+
+                'id': '8.17',
+                'content': [
+                    {
+                        'dataType': 'text',
+                        'inform': '',
+                        'validType': 'other'
+                    }
+                ],
+                'hidden': false,
+                'type': 'input',
+                'tittle': '采取以上措施，几年前开始的？'
+            },
+            {
+
+                'id': '8.18',
+                'content': [
+                    {
+                        'dataType': 'text',
+                        'inform': '',
+                        'validType': 'other'
+                    }
+                ],
+                'hidden': false,
+                'type': 'input',
+                'tittle': '到目前为止，采取以上措施累计持续多长时间了？'
+            },
+            {
+                'id': '8.19',
                 'content': [
                     {
                         'dataType': 'text',
@@ -2320,9 +2582,16 @@ export class QuestionList {
             {
                 'id': '10.5',
                 'content': [
-                    '一年四季均有',
+                    '一年四季,经常',
                     '有，但只在某些季节',
+                    '有，但不经常',
                     '没有'
+                ],
+                'hiddenlist': [
+                    [],
+                    [],
+                    [],
+                    ['10.6']
                 ],
                 'hidden': false,
                 'type': 'radio',
@@ -2330,6 +2599,18 @@ export class QuestionList {
             },
             {
                 'id': '10.6',
+                'content': [
+                    '半小时以内',
+                    '半小时到一小时',
+                    '一小时到两小时',
+                    '两小时以上'
+                ],
+                'hidden': false,
+                'type': 'radio',
+                'tittle': '如果有午睡的习惯，你通常午睡多长时间？'
+            },
+            {
+                'id': '10.7',
                 'content': [
                     '是，经常有',
                     '是，有时有',
@@ -2339,44 +2620,7 @@ export class QuestionList {
                 'type': 'radio',
                 'tittle': '你睡觉时是否有打呼噜的习惯？'
             },
-            {
-                'id': '10.7',
-                'content': [
-                    '否',
-                    '是  ->转至问题10.7.a'
-                ],
-                'hiddenlist': [
-                    ['10.7.a' , '10.7.b'],
-                    []
-                ],
-                'hidden': false,
-                'type': 'radio',
-                'tittle': '在你现在或前一份工作中，是否需要上夜班？'
-            },
-            {
-                'id': '10.7.a',
-                'content': [
-                    '每天',
-                    '每周',
-                    '每月'
-                ],
-                'hidden': false,
-                'type': 'radio',
-                'tittle': '多久一次夜班？ ->转至问题10.7.b'
-            },
-            {
-                'id': '10.7.b',
-                'content': [
-                    {
-                        'dataType': 'text',
-                        'inform': '',
-                        'validType': 'twonum'
-                    }
-                ],
-                'hidden': false,
-                'type': 'input',
-                'tittle': '这种情况持续了多少年？'
-            },
+
             {
                 'id': '10.8',
                 'content': [
@@ -2393,6 +2637,59 @@ export class QuestionList {
             {
                 'id': '10.9',
                 'content': [
+                    '每天',
+                    '每周4-6次',
+                    '每周1-3次',
+                    '每月1-3次',
+                    '从不或极少'
+                ],
+                'hidden': false,
+                'type': 'radio',
+                'tittle': '在过去一年里，你平均多久熬一次夜（24:00以后上床睡觉）'
+            },
+            {
+                'id': '10.10',
+                'content': [
+                    '否',
+                    '是  ->转至问题10.10.a'
+                ],
+                'hiddenlist': [
+                    ['10.10.a' , '10.10.b'],
+                    []
+                ],
+                'hidden': false,
+                'type': 'radio',
+                'tittle': '在你现在或前一份工作中，是否需要上夜班？'
+            },
+            {
+                'id': '10.10.a',
+                'content': [
+                    {
+                        'dataType': 'text',
+                        'inform': '',
+                        'validType': 'twonum'
+                    }
+                ],
+                'hidden': false,
+                'type': 'input',
+                'tittle': '隔几天上一次夜班？ （单位：天）->转至问题10.10.b'
+            },
+            {
+                'id': '10.10.b',
+                'content': [
+                    {
+                        'dataType': 'text',
+                        'inform': '',
+                        'validType': 'twonum'
+                    }
+                ],
+                'hidden': false,
+                'type': 'input',
+                'tittle': '这种情况持续了多少年？'
+            },
+            {
+                'id': '10.11',
+                'content': [
                     '总感觉心情很压抑，活得很痛苦，无论做什么事和活动都不能让自己高兴起来',
                     '对平时自己非常喜欢做的事情或者活动完全失去兴趣',
                     '因感到绝望，对平时所喜爱吃的食物完全失去食欲',
@@ -2403,7 +2700,7 @@ export class QuestionList {
                 'tittle': '在你整个一生中，你是否经历过下述情况，并且持续时间至少有两周？'
             },
             {
-                'id': '10.10',
+                'id': '10.12',
                 'content': [
                     '总感觉紧张不安和恐慌，整天提心吊胆害怕出事，持续时间至少有一个月，严重影响日常生活和工作',
                     '身体某部位常感到有原因不明的隐痛或不适，持续时间至少达3个月，并且影响日常生活',
@@ -2415,7 +2712,7 @@ export class QuestionList {
                 'tittle': '在你整个一生中，你是否出现过下述情况？'
             },
             {
-                'id': '10.11',
+                'id': '10.13',
                 'content': [
                     '非常好',
                     '很好',
@@ -2428,10 +2725,10 @@ export class QuestionList {
                 'tittle': '总的来说，您认为您的健康状况：'
             },
             {
-                'id': '10.12',
+                'id': '10.14',
                 'content': [
-                    '有 ->转至问题10.13',
-                    '没有 ->转至问题10.16'
+                    '有 ->转至问题10.15',
+                    '没有 ->转至问题10.17'
                 ],
                 'hidden': false,
                 'hiddenlist': [
@@ -2441,21 +2738,30 @@ export class QuestionList {
                 'tittle': '在过去一年里，您是否患上一些长期疾病？（注：长期疾病是指某一疾病已影响您已有一段很长的时间或您因某一疾病而有一段很长的时间已受到困扰）'
             },
             {
-                'id': '10.13',
+
+                'id': '10.15',
                 'content': [
-                    '有 ->转至问题10.14',
-                    '没有 ->转至问题10.16'
+                    '<=1年',
+                    '1-5年',
+                    '5-10年',
+                    '>10年'
                 ],
                 'hidden': false,
-                'hiddenlist': [
-                    [ ],
-                    [ '10.14', '10.15' ]
+                'type': 'radio',
+                'tittle': '您患这些长期疾病多长时间了？'
+            },
+            {
+                'id': '10.16',
+                'content': [
+                    '有 ',
+                    '没有 '
                 ],
+                'hidden': false,
                 'type': 'radio',
                 'tittle': '如有，您有否因这些疾病而限制了您的日常活动？'
             },
             {
-                'id': '10.14',
+                'id': '10.17',
                 'content': [
                     '有很大限制',
                     '有一点限制',
@@ -2466,7 +2772,7 @@ export class QuestionList {
                 'tittle': '因疾病影响中等强度的活动，如搬桌子、打太极拳、扫地、做操等：'
             },
             {
-                'id': '10.15',
+                'id': '10.18',
                 'content': [
                     '有很大限制',
                     '有一点限制',
@@ -2477,7 +2783,7 @@ export class QuestionList {
                 'tittle': '因疾病影响步行上楼梯：'
             },
             {
-                'id': '10.16',
+                'id': '10.19',
                 'content': [
                     '会',
                     '不会'
@@ -2487,7 +2793,7 @@ export class QuestionList {
                 'tittle': '因为身体健康的原因，在工作或日常活动中感到力不从心？'
             },
             {
-                'id': '10.17',
+                'id': '10.20',
                 'content': [
                     '会',
                     '不会'
@@ -2497,7 +2803,7 @@ export class QuestionList {
                 'tittle': '因为身体健康的原因而令您的工作或活动受到限制？'
             },
             {
-                'id': '10.18',
+                'id': '10.21',
                 'content': [
                     '会',
                     '不会'
@@ -2507,7 +2813,7 @@ export class QuestionList {
                 'tittle': '因为情绪方面的原因（比如感到沮丧或者焦虑）而令您的工作或日常活动中感到力不从心？'
             },
             {
-                'id': '10.19',
+                'id': '10.22',
                 'content': [
                     '会',
                     '不会'
@@ -2517,7 +2823,7 @@ export class QuestionList {
                 'tittle': '因为情绪方面的原因（比如感到沮丧或者焦虑）而令您的工作或活动受到限制？'
             },
             {
-                'id': '10.20',
+                'id': '10.23',
                 'content': [
                     '毫无影响',
                     '有很少影响',
@@ -2527,46 +2833,7 @@ export class QuestionList {
                 ],
                 'hidden': false,
                 'type': 'radio',
-                'tittle': '在过去1月，您身体上的疼痛影响您的日常工作吗（包括上班和家务劳动）？'
-            },
-            {
-                'id': '10.21',
-                'content': [
-                    '常常如此',
-                    '大部分时间',
-                    '有时',
-                    '偶尔',
-                    '从来没有'
-                ],
-                'hidden': false,
-                'type': 'radio',
-                'tittle': '过去一个月，您觉得心平气和'
-            },
-            {
-                'id': '10.22',
-                'content': [
-                    '常常如此',
-                    '大部分时间',
-                    '有时',
-                    '偶尔',
-                    '从来没有'
-                ],
-                'hidden': false,
-                'type': 'radio',
-                'tittle': '过去一个月，您觉得精力充沛'
-            },
-            {
-                'id': '10.23',
-                'content': [
-                    '常常如此',
-                    '大部分时间',
-                    '有时',
-                    '偶尔',
-                    '从来没有'
-                ],
-                'hidden': false,
-                'type': 'radio',
-                'tittle': '过去一个月，您觉得心情不好，闷闷不乐'
+                'tittle': '因身体上的疼痛影响您的日常工作吗（包括上班和家务劳动）？'
             },
             {
                 'id': '10.24',
@@ -2579,7 +2846,46 @@ export class QuestionList {
                 ],
                 'hidden': false,
                 'type': 'radio',
-                'tittle': '过去一个月，您觉得有多少时间您的身体或者情绪问题妨碍了您的社交活动（比如探亲、访友等）？'
+                'tittle': '您有多少时间感到心平气和'
+            },
+            {
+                'id': '10.25',
+                'content': [
+                    '常常如此',
+                    '大部分时间',
+                    '有时',
+                    '偶尔',
+                    '从来没有'
+                ],
+                'hidden': false,
+                'type': 'radio',
+                'tittle': '您有多少时间感到精力充沛'
+            },
+            {
+                'id': '10.26',
+                'content': [
+                    '常常如此',
+                    '大部分时间',
+                    '有时',
+                    '偶尔',
+                    '从来没有'
+                ],
+                'hidden': false,
+                'type': 'radio',
+                'tittle': '您有多少时间感到心情不好，闷闷不乐'
+            },
+            {
+                'id': '10.27',
+                'content': [
+                    '常常如此',
+                    '大部分时间',
+                    '有时',
+                    '偶尔',
+                    '从来没有'
+                ],
+                'hidden': false,
+                'type': 'radio',
+                'tittle': '您觉得有多少时间您的身体或者情绪问题妨碍了您的社交活动（比如探亲、访友等）？'
             }
         ]
     ];
