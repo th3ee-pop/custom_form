@@ -12,11 +12,11 @@ import { LoginAuthGuard } from '@core/services/login.guard.service';
 import { UserAuthGuard } from '@core/services/user.guard.service';
 
 export const routes = [
-    { path: '', redirectTo: 'home-page', pathMatch: 'full' },
+    { path: '', redirectTo: 'system', pathMatch: 'full' },
     {
         path: 'system',
         component: LayoutComponent,
-        canActivateChild: [LoginAuthGuard],
+       // canActivateChild: [LoginAuthGuard],
         children: [
             { path: '', redirectTo: 'survey/detail', pathMatch: 'full' },
             { path: 'dashboard', redirectTo: 'dashboard/v1', pathMatch: 'full' },
@@ -32,9 +32,6 @@ export const routes = [
             { path: 'survey', loadChildren: './survey-management/survey-management.module#SurveyManagementModule',
                 data: { title: 'survey'}},
             { path: 'user', loadChildren: './user-management/user-management.module#UserManagementModule' },
-            { path: 'trace', loadChildren: './trace-management/trace-management.module#TraceManagementModule' },
-            { path: 'sample', loadChildren: './sample-management/sample-management.module#SampleManagementModule' },
-            { path: 'property', loadChildren: './property-management/property-management.module#PropertyManagementModule' },
             { path: 'file', loadChildren: './file-management/file-management.module#FileManagementModule' }
         ]
     },
@@ -47,7 +44,6 @@ export const routes = [
         ]
     },
     // 单页不包裹Layout
-    { path: 'home-page', loadChildren: './home-page/home-page.module#HomePageModule' },
     { path: 'login', component: LoginComponent, data: { title: 'login' } },
     { path: 'forget', component: ForgetComponent, data: { translate: 'forget' } },
     { path: 'lock', component: LockComponent, data: { translate: 'lock' } },

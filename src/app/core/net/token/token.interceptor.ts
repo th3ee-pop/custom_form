@@ -64,9 +64,9 @@ export class TokenInterceptor implements HttpInterceptor {
                         console.log( event);
                         this.goLogin();
                     }
-                    if(event instanceof HttpResponse && event.body.Return === 0  ){
+                    if (event instanceof HttpResponse && event.body.Return === 0  ){
                         // console.log(event);
-                        if( event.body.Result ){
+                        if ( event.body.Result ) {
                             const msg = this.injector.get(NzMessageService);
                             msg.info(event.body.Result);
                         }
