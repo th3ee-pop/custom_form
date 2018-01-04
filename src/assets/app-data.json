@@ -15,7 +15,14 @@
             "translate": "健康体检调查",
             "link": "survey/detail",
             "icon": "icon-grid"
-        }]
+        },
+            {
+                "text": "Useful Table",
+                "translate": "表单样例",
+                "link": "useful_tables/example",
+                "icon": "icon-grid"
+            }
+        ]
         }]
 }
 
