@@ -3,7 +3,27 @@
         <nz-card [nzNoHovering]="true">
             <ng-template #title>样例表单</ng-template>
             <ng-template #body>
-
+                <nz-table #nzTable >
+                    <thead nz-thead>
+                    <tr>
+                        <th nz-th><span>Name</span></th>
+                        <th nz-th><span>Age</span></th>
+                        <th nz-th><span>Address</span></th>
+                        <th nz-th><span>Action</span></th>
+                    </tr>
+                    </thead>
+                    <tbody nz-tbody>
+                    <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+                        <td nz-td>
+                            <a>{{data.name}}</a>
+                        </td>
+                        <td nz-td>{{data.age}}</td>
+                        <td nz-td>{{data.address}}</td>
+                        <td nz-td>
+                        </td>
+                    </tr>
+                    </tbody>
+                </nz-table>
             </ng-template>
         </nz-card>
     </div>
