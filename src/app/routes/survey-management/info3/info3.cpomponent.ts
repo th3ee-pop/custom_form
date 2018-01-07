@@ -13,16 +13,16 @@ import {QuestionList} from '../shared/ql';
 import {ScheduleList} from '../shared/scheduleList';
 
 @Component({
-    selector: 'app-infor1-step',
-    templateUrl: './infor-1.component.html',
-    styleUrls: ['./infor-1.component.css']
+    selector: 'app-info3-step',
+    templateUrl: './info3.component.html',
+    styleUrls: ['./info3.component.css']
 })
-export class Infor1Component implements OnInit, AfterViewInit {
+export class Info3Component implements OnInit, AfterViewInit {
 
     @ViewChildren(InputcmpComponent) InputItems: QueryList<InputcmpComponent>
     @ViewChildren(RadiocmpComponent) RadioItems: QueryList<RadiocmpComponent>
 
-    current = 1;
+    current = 3;
     questions = new QuestionList().questions;
     questionSave = this.questions; // 用来传到后端
     questionList = []
@@ -131,9 +131,9 @@ export class Infor1Component implements OnInit, AfterViewInit {
         this.InputItems.forEach(item => {
             if (item.answerChanged === true) {
                 console.log( item.answer );
-                // for (let i = 0; i < item.answer.length; i++) {
-                //     this.resultList.push(item.answer[i]);
-                // }
+                for (let i = 0; i < item.answer.length; i++) {
+                    this.resultList.push(item.answer[i]);
+                }
             }
         });
     }
