@@ -58,6 +58,5 @@ export class InputcmpComponent extends Question implements OnInit {
         res.push(tem);
         console.log(res);
         this.answer = res;
-
-    }
+        }
 }

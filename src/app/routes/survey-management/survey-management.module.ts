@@ -11,7 +11,6 @@ import { IdccmpComponent} from './shared/idccmp/idccmp.component';
 import { PhoneComponent} from './shared/phonecmp/phonecmp.component';
 import { CheckboxcmpComponent } from './shared/checkboxcmp/checkboxcmp.component';
 import { SurveyOverviewComponent } from './survey-overview/survey-overview.component';
-import { SurveyDetailComponent } from './survey-detail/survey-detail.component';
 import { Table51Component } from './shared/tablecmp/table51/table51.component';
 import { Table35Component } from './shared/tablecmp/table35/table35.component';
 import { Table46Component } from './shared/tablecmp/table46/table46.component';
@@ -27,10 +26,14 @@ import { Table913Component } from './shared/tablecmp/table913/table913.component
 import { DatecmpComponent } from './shared/datecmp/datecmp.component';
 
 import { Infor1Component } from './info_1/infor-1.cpomponent';
+import { Info0Component } from './info0/info0.component';
+import { Info2Component } from './info2/info2.component';
+
 const routes: Routes = [
     { path: 'detail', component: SurveyOverviewComponent  },
+    { path: 'info0', component: Info0Component  },
     { path: 'first_step', component: Infor1Component },
-
+    { path: 'info2', component: Info2Component  }
 ];
 
 @NgModule({
@@ -62,9 +65,9 @@ const routes: Routes = [
         Table96Component,
         Table913Component,
         DatecmpComponent,
-        SurveyDetailComponent,
         Infor1Component,
-
+        Info0Component,
+        Info2Component
     ],
     providers: [
         RecordResolverGuard
