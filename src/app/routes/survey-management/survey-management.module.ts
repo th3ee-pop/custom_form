@@ -26,10 +26,10 @@ import { Table96Component } from './shared/tablecmp/table96/table96.component';
 import { Table913Component } from './shared/tablecmp/table913/table913.component';
 import { DatecmpComponent } from './shared/datecmp/datecmp.component';
 
-
+import { Infor1Component } from './info_1/infor-1.cpomponent';
 const routes: Routes = [
     { path: 'detail', component: SurveyOverviewComponent  },
-    // { path: 'first_step', component: FirstStepComponent },
+    { path: 'first_step', component: Infor1Component },
 
 ];
 
@@ -63,6 +63,7 @@ const routes: Routes = [
         Table913Component,
         DatecmpComponent,
         SurveyDetailComponent,
+        Infor1Component,
 
     ],
     providers: [

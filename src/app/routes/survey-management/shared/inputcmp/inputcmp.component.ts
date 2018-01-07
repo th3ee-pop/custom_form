@@ -11,14 +11,13 @@ import { Observable } from 'rxjs/Observable';
     styleUrls: ['./inputcmp.component.css']
 })
 export class InputcmpComponent extends Question implements OnInit {
-    localAnswer = []; // 存储数据
+    localAnswer = ''; // 存储数据
     answerChanged = false;
     validateForm: FormGroup;
     editdisabled = false;
     @Output() onVoted = new EventEmitter < any >();
 
     ngOnInit() {
-        this.localAnswer = new Array(this.question.content.length);
     }
     vote ( hiddenList: any [], hiddenshowList: any[] ) {
         const showAndhidden = {
@@ -34,7 +33,7 @@ export class InputcmpComponent extends Question implements OnInit {
         }else {
             this.answerChanged = true;
         }
-    };
+    }
     getFormControl(name) {
         return this.validateForm.controls[ name ];
     }
@@ -49,43 +48,16 @@ export class InputcmpComponent extends Question implements OnInit {
 
     answerChange() {
         const res = [];
-        // if ( this.question.id === '9.1' || this.question.id === '9.4' || this.question.id === '9.5.a') {
-        //     if ( this.localAnswer[0] === '#' ) {
-        //         this.vote( this.question.hiddenlist[0], []);
-        //     } else {
-        //         this.vote([], this.question.hiddenlist[0]);
-        //     }
-        // }
+        const tem = {
+            Record_ID: '',
+            Record_Value: ''
+        };
+        const questionID = this.question.id2;
+        tem.Record_ID = questionID;
+        tem.Record_Value = this.localAnswer;
+        res.push(tem);
+        console.log(res);
+        this.answer = res;
 
-        if (this.question.content.length !== 1) {
-            for ( let index = 1; index <= this.question.content.length; index++) {
-                const tem = {
-                    Record_ID: '',
-                    Record_Value: ''
-                };
-                // const questionID = 'ID' + this.question.id.replace(/\./g , '_') + '_' + index;
-                const questionID = this.question.id1;
-                tem.Record_ID = questionID;
-                tem.Record_Value = this.localAnswer[index - 1];
-                res.push(tem);
-            }
-
-        }  else {
-            const tem = {
-                Record_ID: '',
-                Record_Value: ''
-            };
-            // if (this.question.id === '1.0' ) {
-            //     const questionID = 'ID0_1';
-            //     tem.Record_ID = questionID;
-            // } else {
-            //     const questionID = 'ID' + this.question.id.replace(/\./g, '_');
-                const questionID = this.question.id1;
-                tem.Record_ID = questionID;
-            // }
-            tem.Record_Value = this.localAnswer[0];
-            res.push(tem);
-            this.answer = res;
-        }
     }
 }
