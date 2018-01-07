@@ -39,13 +39,14 @@ export class RadiocmpComponent extends Question {
         const res = [];
         const tem = {
             Record_ID: '',
-            Record_Value: false
+            Record_Value: -1
         };
         if (this.localAnswer !== -1) {
+            console.log(this.localAnswer);
             // const questionID = 'ID' + this.question.id.replace(/\./g , '_') + '_' + (this.localAnswer + 1);
             const questionID = this.question.id2;
             tem.Record_ID = questionID;
-            tem.Record_Value = true;
+            tem.Record_Value = this.localAnswer;
             res.push(tem);
             this.answer = res;
         }

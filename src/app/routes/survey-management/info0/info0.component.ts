@@ -5,6 +5,7 @@ import {NzModalService} from 'ng-zorro-antd';
 
 import {InputcmpComponent} from '../shared/inputcmp/inputcmp.component';
 import {RadiocmpComponent} from '../shared/radiocmp/radiocmp.component';
+import {IdccmpComponent} from '../shared/idccmp/idccmp.component';
 import {QuestionList} from '../shared/questionList';
 
 @Component({
@@ -15,6 +16,7 @@ import {QuestionList} from '../shared/questionList';
 export class Info0Component implements OnInit, AfterViewInit  {
     @ViewChildren(InputcmpComponent) InputItems: QueryList<InputcmpComponent>;
     @ViewChildren(RadiocmpComponent) RadioItems: QueryList<RadiocmpComponent>;
+    @ViewChildren(IdccmpComponent) IdcItems: QueryList<IdccmpComponent>;
 
     current = 0; // 当前步骤
     questions = new QuestionList().questions;
@@ -63,6 +65,7 @@ export class Info0Component implements OnInit, AfterViewInit  {
         if (this.confirm().confirms) {
             this.collectAllanswer();
             let putRecord = {};
+            this.router.navigate(['system/survey/info2']);
         }else {
             let str = '';
             for ( let i = 0; i < this.confirm().confirmList.length; i++) {
@@ -84,6 +87,9 @@ export class Info0Component implements OnInit, AfterViewInit  {
         this.RadioItems.forEach(item => { if ( item.question.hidden === false && item.localAnswer === -1) {
             confirms = false; confirmlist.push(item.question.id1);
         }});
+        this.IdcItems.forEach( item => { if ( item.question.hidden === false && item.answerChanged === false) {
+            confirms = false; confirmlist.push(item.question.id);
+        }});
         const confirmAll = {
             confirms: confirms,
             confirmList: confirmlist
@@ -100,11 +106,15 @@ export class Info0Component implements OnInit, AfterViewInit  {
             }
         });
         this.InputItems.forEach(item => {
+            console.log(item);
             if (item.answerChanged === true) {
                 for (let i = 0; i < item.answer.length; i++) {
                     this.resultList.push(item.answer[i]);
                 }
             }
+        });
+        this.IdcItems.forEach(item => {
+            if (item.answerChanged === true) { for ( let i = 0; i < item.answer.length; i++) { this.resultList.push(item.answer[i]); } }
         });
         for (let i = 0; i < this.answerList.length; i++) {
             for (let j = 0; j < this.resultList.length; j++) {
@@ -114,6 +124,7 @@ export class Info0Component implements OnInit, AfterViewInit  {
                 }
             }
         }
+        console.log(this.resultList);
     }
 
     disabledAll() {
@@ -130,5 +141,8 @@ export class Info0Component implements OnInit, AfterViewInit  {
       console.log("fill in");
     }
 
+    temporary_deposit(){
+
+    }
 
 }

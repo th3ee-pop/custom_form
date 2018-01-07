@@ -28,10 +28,10 @@ export class QuestionList {
             {
                 "id2": "Idnumber",
                 "id1": "0.3",
-                "type": "input",
+                "type": "idc",
                 "content": {
                     "datatype": "text",
-                    "validtype": "",
+                    "validtype": "idc",
                     "information": ""
                 },
                 "title": "身份证号",

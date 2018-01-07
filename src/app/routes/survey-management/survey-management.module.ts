@@ -11,7 +11,6 @@ import { IdccmpComponent} from './shared/idccmp/idccmp.component';
 import { PhoneComponent} from './shared/phonecmp/phonecmp.component';
 import { CheckboxcmpComponent } from './shared/checkboxcmp/checkboxcmp.component';
 import { SurveyOverviewComponent } from './survey-overview/survey-overview.component';
-import { SurveyDetailComponent } from './survey-detail/survey-detail.component';
 import { Table51Component } from './shared/tablecmp/table51/table51.component';
 import { Table35Component } from './shared/tablecmp/table35/table35.component';
 import { Table46Component } from './shared/tablecmp/table46/table46.component';
@@ -29,8 +28,7 @@ import { Info0Component } from './info0/info0.component';
 
 const routes: Routes = [
     { path: 'detail', component: SurveyOverviewComponent  },
-    // { path: 'info0', component: Info0Component  },
-    { path: 'first_step', component: FirstStepComponent },
+    { path: 'info0', component: Info0Component  }
 ];
 
 @NgModule({
@@ -62,7 +60,6 @@ const routes: Routes = [
         Table96Component,
         Table913Component,
         DatecmpComponent,
-        SurveyDetailComponent,
         Info0Component
     ],
     providers: [
