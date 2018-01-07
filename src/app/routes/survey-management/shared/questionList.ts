@@ -489,7 +489,7 @@ export class QuestionList {
                     "information": ""
                 },
                 "title": "婚姻时间(年)",
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "ba8",
@@ -516,7 +516,7 @@ export class QuestionList {
                 "title": "主食",
                 "content": ["3两及以下", "4-6两", "7-9两", "1斤以上"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bb2",
@@ -525,7 +525,7 @@ export class QuestionList {
                 "title": "食盐",
                 "content": ["口重（13克以上）", "居中（7-12克）", "口轻（6克以下）"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bb3",
@@ -534,7 +534,7 @@ export class QuestionList {
                 "title": "食用油",
                 "content": ["纯植物油", "主要植物油", "主要动物油", "纯动物油"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bb4",
@@ -543,7 +543,7 @@ export class QuestionList {
                 "title": "平均每月进食食用油量",
                 "content": ["2斤以下", "2-5斤", "5-10斤", "10斤及以上"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bb5",
@@ -552,7 +552,7 @@ export class QuestionList {
                 "title": "食用肉",
                 "content": ["每周5次及以上", "每周3-5次", "每周1-2次", "不吃"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bb6",
@@ -561,7 +561,7 @@ export class QuestionList {
                 "title": "食用鱼或虾",
                 "content": ["经常吃", "有时吃", "基本不吃"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bb7",
@@ -570,7 +570,7 @@ export class QuestionList {
                 "title": "食用蛋",
                 "content": ["7个/周及以上", "5个/周", "1-3个/周", "不吃"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bb8",
@@ -579,7 +579,7 @@ export class QuestionList {
                 "title": "乳制品",
                 "content": ["经常喝", "有时喝", "基本不喝"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bb9",
@@ -588,7 +588,7 @@ export class QuestionList {
                 "title": "食用豆制品",
                 "content": ["几乎每天吃", "1-2次/周", "1-2次/月", "偶尔吃"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bb10",
@@ -597,7 +597,7 @@ export class QuestionList {
                 "title": "食用蔬菜",
                 "content": ["1斤/天及以上", "半斤/天", "<半斤/天", "不吃"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bb11",
@@ -606,7 +606,7 @@ export class QuestionList {
                 "title": "食用新鲜水果",
                 "content": ["经常吃", "有时吃", "基本不吃"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bb12",
@@ -615,7 +615,7 @@ export class QuestionList {
                 "title": "在餐馆进食",
                 "content": ["经常≥5次/周", "3-5次/周", "1-3次/周", "偶尔", "无"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bcyw",
@@ -633,7 +633,7 @@ export class QuestionList {
                 "title": "活动",
                 "content": ["否", "是"],
                 "hiddenlist": [["2.9.1.1", "2.9.1.2", "2.9.1.3", "2.9.1.4", "2.9.1.5", "2.9.1.6", "2.9.1.7", "2.9.1.8", "2.9.1.9", "2.9.1.10", "2.9.1.11", "2.9.1.12"], []],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bc1",
@@ -642,7 +642,7 @@ export class QuestionList {
                 "title": "散步",
                 "content": ["否", "是"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bc2",
@@ -651,7 +651,7 @@ export class QuestionList {
                 "title": "做操",
                 "content": ["否", "是"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bc3",
@@ -660,7 +660,7 @@ export class QuestionList {
                 "title": "太极拳",
                 "content": ["否", "是"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bc4",
@@ -669,7 +669,7 @@ export class QuestionList {
                 "title": "气功",
                 "content": ["否", "是"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bc5",
@@ -678,7 +678,7 @@ export class QuestionList {
                 "title": "跑步",
                 "content": ["否", "是"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bc6",
@@ -687,7 +687,7 @@ export class QuestionList {
                 "title": "跳舞",
                 "content": ["否", "是"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bc7",
@@ -696,7 +696,7 @@ export class QuestionList {
                 "title": "球类",
                 "content": ["否", "是"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bc8",
@@ -705,7 +705,7 @@ export class QuestionList {
                 "title": "瑜伽",
                 "content": ["否", "是"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bc9",
@@ -714,7 +714,7 @@ export class QuestionList {
                 "title": "田间劳作",
                 "content": ["否", "是"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bc10",
@@ -723,7 +723,7 @@ export class QuestionList {
                 "title": "重体力劳动",
                 "content": ["否", "是"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bc11",
@@ -732,7 +732,7 @@ export class QuestionList {
                 "title": "活动频率",
                 "content": ["每天活动", "5次/周", "3-5次/周", "<3次/周", "无"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bc12",
@@ -741,7 +741,7 @@ export class QuestionList {
                 "title": "每次活动时间",
                 "content": ["30分钟以下", "30-60分钟", "60分钟以上"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bd1",
@@ -762,7 +762,7 @@ export class QuestionList {
                     "information": ""
                 },
                 "title": "开始吸烟年龄",
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bd3",
@@ -774,7 +774,7 @@ export class QuestionList {
                     "information": ""
                 },
                 "title": "累计吸烟（年）",
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bd4",
@@ -786,7 +786,7 @@ export class QuestionList {
                     "information": ""
                 },
                 "title": "累积吸烟（支/日）",
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bd5",
@@ -795,7 +795,7 @@ export class QuestionList {
                 "title": "戒烟",
                 "content": ["否", "是"],
                 "hiddenlist": [["2.10.3.1"], []],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bd6",
@@ -807,7 +807,7 @@ export class QuestionList {
                     "information": ""
                 },
                 "title": "戒烟（年）",
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "be1",
@@ -828,7 +828,7 @@ export class QuestionList {
                     "information": ""
                 },
                 "title": "累计饮酒年数",
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "be3",
@@ -840,7 +840,7 @@ export class QuestionList {
                     "information": ""
                 },
                 "title": "累计饮酒（两/天）",
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "be4",
@@ -852,7 +852,7 @@ export class QuestionList {
                     "information": ""
                 },
                 "title": "最大每周饮酒量（次/周）",
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "be5",
@@ -864,7 +864,7 @@ export class QuestionList {
                     "information": ""
                 },
                 "title": "最大每周饮酒量（两/次）",
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "be6",
@@ -873,7 +873,7 @@ export class QuestionList {
                 "title": "饮酒品种",
                 "content": ["白酒", "红酒", "啤酒", "不详"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "be7",
@@ -882,7 +882,7 @@ export class QuestionList {
                 "title": "戒酒",
                 "content": ["否", "是"],
                 "hiddenlist": [["2.11.6.1"], []],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "be8",
@@ -894,7 +894,7 @@ export class QuestionList {
                     "information": ""
                 },
                 "title": "戒酒时间",
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bf1",
@@ -912,7 +912,7 @@ export class QuestionList {
                 "title": "安眠药",
                 "content": ["经常", "有时", "不服"],
                 "hiddenlist": [[], [], ["2.12.1.1"]],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bf3",
@@ -924,7 +924,7 @@ export class QuestionList {
                     "information": ""
                 },
                 "title": "安眠药名",
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bf4",
@@ -933,7 +933,7 @@ export class QuestionList {
                 "title": "睡眠差表现",
                 "content": ["入睡困难", "早醒", "间断睡眠", "睡不实，多梦"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bf5",
@@ -945,7 +945,7 @@ export class QuestionList {
                     "information": ""
                 },
                 "title": "睡眠时间（小时/天）",
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bf6",
@@ -954,7 +954,7 @@ export class QuestionList {
                 "title": "睡眠差的原因",
                 "content": ["环境影响", "工作太忙、睡眠时间不多", "有烦恼的事情"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bg1",
@@ -975,7 +975,7 @@ export class QuestionList {
                     "information": ""
                 },
                 "title": "变化体重（斤）",
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bha1",
@@ -993,7 +993,7 @@ export class QuestionList {
                 "title": "小便症状",
                 "content": ["尿频", "少尿", "血尿", "蛋白尿", "其他"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bhb1",
@@ -1011,7 +1011,7 @@ export class QuestionList {
                 "title": "大便症状",
                 "content": ["腹泻", "便秘", "黑便", "其他"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bi",
@@ -1029,7 +1029,7 @@ export class QuestionList {
                 "title": "冠心病",
                 "content": ["否", "是"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bi2",
@@ -1038,7 +1038,7 @@ export class QuestionList {
                 "title": "高血压",
                 "content": ["否", "是"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bi3",
@@ -1047,7 +1047,7 @@ export class QuestionList {
                 "title": "糖尿病",
                 "content": ["否", "是"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bi4",
@@ -1056,7 +1056,7 @@ export class QuestionList {
                 "title": "脑血管病",
                 "content": ["否", "是"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bi5",
@@ -1065,7 +1065,7 @@ export class QuestionList {
                 "title": "癌症",
                 "content": ["否", "是"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bi6",
@@ -1074,7 +1074,7 @@ export class QuestionList {
                 "title": "静脉血栓性疾病",
                 "content": ["否", "是"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bi7",
@@ -1083,7 +1083,7 @@ export class QuestionList {
                 "title": "动脉血栓性疾病",
                 "content": ["否", "是"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bi8",
@@ -1092,7 +1092,7 @@ export class QuestionList {
                 "title": "结缔组织疾病",
                 "content": ["否", "是"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bi9",
@@ -1101,7 +1101,7 @@ export class QuestionList {
                 "title": "风湿免疫性疾病",
                 "content": ["否", "是"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bi10",
@@ -1110,7 +1110,7 @@ export class QuestionList {
                 "title": "猝死家族史",
                 "content": ["否", "是"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
             {
                 "id2": "bi11",
@@ -1119,7 +1119,7 @@ export class QuestionList {
                 "title": "长寿",
                 "content": ["否", "是"],
                 "hiddenlist": [],
-                "hidden": false
+                "hidden": true
             },
         ],
         [

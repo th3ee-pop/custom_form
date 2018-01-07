@@ -25,10 +25,12 @@ import { Table96Component } from './shared/tablecmp/table96/table96.component';
 import { Table913Component } from './shared/tablecmp/table913/table913.component';
 import { DatecmpComponent } from './shared/datecmp/datecmp.component';
 import { Info0Component } from './info0/info0.component';
+import { Info2Component } from './info2/info2.component';
 
 const routes: Routes = [
     { path: 'detail', component: SurveyOverviewComponent  },
-    { path: 'info0', component: Info0Component  }
+    { path: 'info0', component: Info0Component  },
+    { path: 'info2', component: Info2Component  },
 ];
 
 @NgModule({
@@ -60,7 +62,8 @@ const routes: Routes = [
         Table96Component,
         Table913Component,
         DatecmpComponent,
-        Info0Component
+        Info0Component,
+        Info2Component
     ],
     providers: [
         RecordResolverGuard

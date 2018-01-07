@@ -42,7 +42,7 @@ export class RadiocmpComponent extends Question {
             Record_Value: -1
         };
         if (this.localAnswer !== -1) {
-            console.log(this.localAnswer);
+            // console.log(this.localAnswer);
             // const questionID = 'ID' + this.question.id.replace(/\./g , '_') + '_' + (this.localAnswer + 1);
             const questionID = this.question.id2;
             tem.Record_ID = questionID;
