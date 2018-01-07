@@ -29,6 +29,14 @@
                                 <nz-input [(ngModel)]="initialArray[row][column]"></nz-input>
                         </td>
                     </tr>
+                    <tr nz-tbody-tr *ngIf="overallId.length > 0">
+                        <td nz-td colspan="2">
+                            <a>总体评价</a>
+                        </td>
+                        <td nz-td colspan="4" *ngFor="let item of overallId,index as column">
+                            <nz-input [(ngModel)]="overallContent[column]"></nz-input>
+                        </td>
+                    </tr>
                     </tbody>
                 </nz-table>
             </ng-template>

@@ -18,6 +18,8 @@ export class ExampleComponent implements OnInit {
     columnTitle_2 = ['左', '右'];
     secondLevelTitle = [];
     changedAnswer = [];
+    overallId = ['ea7a1', 'ea7a2', 'ea7a3', 'ea7a4'];
+    overallContent = ['', '', '', ''];
 
   constructor() { }
 
@@ -62,7 +64,7 @@ export class ExampleComponent implements OnInit {
 
   getAnswer() {
       this.changedAnswer = [];
-      for (let row = 0; row < this.row; row++) {
+  /*    for (let row = 0; row < this.row; row++) {
           for (let column = 0; column < this.column; column++) {
               if (this.initialArray[row][column] !== '') {
                  this.changedAnswer.push({
@@ -71,7 +73,33 @@ export class ExampleComponent implements OnInit {
                  });
               }
           }
-      }
+      }*/
+      this.setAnswer(this.initialArray, this.idArray, this.row, this.column);
+      this.setAnswer(this.overallContent, this.overallId, 1, 4);
       console.log(this.changedAnswer);
+  }
+
+  setAnswer(blank: any, idArray: any, row: number, column: number) {
+      if (row > 1) {
+          for (let i = 0; i < row; i++) {
+          for (let j = 0; j < column; j++) {
+              if (blank[i][j] !== '') {
+                  this.changedAnswer.push({
+                      id2: idArray[i][j],
+                      value: blank[i][j]
+                  });
+              }
+          }
+      }
+     } else {
+          for (let i = 0; i < column; i++) {
+              if (blank[i] !== '') {
+                  this.changedAnswer.push({
+                      id2: idArray[i],
+                      value: blank[i]
+                  });
+              }
+          }
+      }
   }
 }
