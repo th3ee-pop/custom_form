@@ -35,9 +35,11 @@ import { SeventhStepComponent } from './step-seventh/seventh-step.component';
 import { EighthStepComponent} from './step-eighth/eighth-step.component';
 import { NinthStepComponent} from './step-ninth/ninth-step.component';
 import { TenthStepComponent} from './step-tenth/tenth-step.component';
+import { Info0Component } from './info0/info0.component';
 
 const routes: Routes = [
     { path: 'detail', component: SurveyOverviewComponent  },
+    { path: 'info0', component: Info0Component  },
     { path: 'first_step', component: FirstStepComponent },
     { path: 'first_step/:PID', component: FirstStepComponent},
     { path: 'second_step/:PID', component: SecondStepComponent },
@@ -90,7 +92,8 @@ const routes: Routes = [
         SeventhStepComponent,
         EighthStepComponent,
         NinthStepComponent,
-        TenthStepComponent
+        TenthStepComponent,
+        Info0Component
     ],
     providers: [
         RecordResolverGuard

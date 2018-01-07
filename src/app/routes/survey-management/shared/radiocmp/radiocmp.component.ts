@@ -54,7 +54,6 @@ export class RadiocmpComponent extends Question {
         const hiddenshowlist = [];
         for (let i = 0; i < this.question.content.length; i++) {
             if ( this.localAnswer !== i) {
-                console.log(this.question);
                 if (this.question.hiddenlist.length !== 0)
                     if ( this.question.hiddenlist[i].length !== 0) {
                         for ( let j = 0; j < this.question.hiddenlist[i].length; j++) {
