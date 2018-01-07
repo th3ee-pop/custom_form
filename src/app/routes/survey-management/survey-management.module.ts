@@ -3,11 +3,6 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
 import { SharedModule } from '@shared/shared.module';
-import { FirstStepComponent} from './step-first/first-step.component';
-import { SecondStepComponent} from './step-second/second-step.component';
-import { ThirdStepComponent} from './step-third/third-step.component';
-import { ForthStepComponent} from './step-forth/forth-step.component';
-import { FifthStepComponent} from './step-fifth/fifth-step.component';
 import { RecordResolverGuard } from '@core/services/edit.guard.service';
 
 import { InputcmpComponent } from './shared/inputcmp/inputcmp.component';
@@ -30,27 +25,12 @@ import { Table813Component } from './shared/tablecmp/table813/table813.component
 import { Table96Component } from './shared/tablecmp/table96/table96.component';
 import { Table913Component } from './shared/tablecmp/table913/table913.component';
 import { DatecmpComponent } from './shared/datecmp/datecmp.component';
-import { SixthStepComponent } from './step-sixth/sixth-step.component';
-import { SeventhStepComponent } from './step-seventh/seventh-step.component';
-import { EighthStepComponent} from './step-eighth/eighth-step.component';
-import { NinthStepComponent} from './step-ninth/ninth-step.component';
-import { TenthStepComponent} from './step-tenth/tenth-step.component';
 import { Info0Component } from './info0/info0.component';
 
 const routes: Routes = [
     { path: 'detail', component: SurveyOverviewComponent  },
-    { path: 'info0', component: Info0Component  },
+    // { path: 'info0', component: Info0Component  },
     { path: 'first_step', component: FirstStepComponent },
-    { path: 'first_step/:PID', component: FirstStepComponent},
-    { path: 'second_step/:PID', component: SecondStepComponent },
-    { path: 'third_step/:PID', component: ThirdStepComponent},
-    { path: 'forth_step/:PID', component: ForthStepComponent},
-    { path: 'fifth_step/:PID', component: FifthStepComponent},
-    { path: 'sixth_step/:PID', component: SixthStepComponent},
-    { path: 'seventh_step/:PID', component: SeventhStepComponent},
-    { path: 'eighth_step/:PID', component: EighthStepComponent},
-    { path: 'ninth_step/:PID', component: NinthStepComponent},
-    { path: 'tenth_step/:PID', component: TenthStepComponent}
 ];
 
 @NgModule({
@@ -83,16 +63,6 @@ const routes: Routes = [
         Table913Component,
         DatecmpComponent,
         SurveyDetailComponent,
-        FirstStepComponent,
-        SecondStepComponent,
-        ThirdStepComponent,
-        ForthStepComponent,
-        FifthStepComponent,
-        SixthStepComponent,
-        SeventhStepComponent,
-        EighthStepComponent,
-        NinthStepComponent,
-        TenthStepComponent,
         Info0Component
     ],
     providers: [
