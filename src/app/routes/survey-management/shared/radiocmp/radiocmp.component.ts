@@ -42,7 +42,8 @@ export class RadiocmpComponent extends Question {
             Record_Value: false
         };
         if (this.localAnswer !== -1) {
-            const questionID = 'ID' + this.question.id.replace(/\./g , '_') + '_' + (this.localAnswer + 1);
+            // const questionID = 'ID' + this.question.id.replace(/\./g , '_') + '_' + (this.localAnswer + 1);
+            const questionID = this.question.id2;
             tem.Record_ID = questionID;
             tem.Record_Value = true;
             res.push(tem);
@@ -53,7 +54,8 @@ export class RadiocmpComponent extends Question {
         const hiddenshowlist = [];
         for (let i = 0; i < this.question.content.length; i++) {
             if ( this.localAnswer !== i) {
-                if (this.question.hiddenlist)
+                console.log(this.question);
+                if (this.question.hiddenlist.length !== 0)
                     if ( this.question.hiddenlist[i].length !== 0) {
                         for ( let j = 0; j < this.question.hiddenlist[i].length; j++) {
                             hiddenshowlist.push(this.question.hiddenlist[i][j]);
@@ -61,7 +63,7 @@ export class RadiocmpComponent extends Question {
                     }
             }
         }
-        if ( this.question.hiddenlist)
+        if ( this.question.hiddenlist.length !== 0)
             if (this.question.hiddenlist[this.localAnswer].length !== 0 || hiddenshowlist.length !== 0) {
                 this.vote(this.question.hiddenlist[this.localAnswer], hiddenshowlist);
             }
