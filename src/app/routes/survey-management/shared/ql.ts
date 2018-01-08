@@ -4672,7 +4672,704 @@ export class QuestionList {
             }
         ],
         [
-
+            {
+                'id2': 'da1',
+                'id1': '4.1.1',
+                'type': 'input',
+                'content': {
+                    'datatype': 'text',
+                    'validtype': 'number',
+                    'information': ''
+                },
+                'title': '症状出现时间',
+                'hidden': false
+            },
+            {
+                'id2': 'da2',
+                'id1': '4.1.2',
+                'type': 'radio',
+                'title': '发病时间',
+                'content': ['首次发生', '复发'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'da3',
+                'id1': '4.1.3',
+                'type': 'radio',
+                'title': '症状肢体',
+                'content': ['双侧肢体', '单侧肢体'],
+                'hiddenlist': [['4.1.3.1'], []],
+                'hidden': false
+            },
+            {
+                'id2': 'd31',
+                'id1': '4.1.3.1',
+                'type': 'radio',
+                'title': '单侧肢体 ',
+                'content': ['左', '右'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'da4a',
+                'id1': '4.1.4',
+                'type': 'radio',
+                'title': '下肢肿胀',
+                'content': ['轻度', '中度', '重度'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'da4b',
+                'id1': '4.1.4.1',
+                'type': 'radio',
+                'title': '张力',
+                'content': ['1+','2+','3+','4+'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'da5',
+                'id1': '4.1.5',
+                'type': 'radio',
+                'title': '下肢疼痛',
+                'content': ['轻微疼痛','疼痛明显，尚能忍受','不能忍受','无疼痛'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'da6',
+                'id1': '4.1.6',
+                'type': 'radio',
+                'title': '上肢疼痛',
+                'content': ['是','否'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'da7',
+                'id1': '4.1.7',
+                'type': 'radio',
+                'title': '腹痛、腹胀',
+                'content': ['是','否'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'da8',
+                'id1': '4.1.8',
+                'type': 'radio',
+                'title': '发热',
+                'content': ['是','否'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'da9',
+                'id1': '4.1.9',
+                'type': 'radio',
+                'title': '呼吸困难',
+                'content': ['是','否'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'da10',
+                'id1': '4.1.10',
+                'type': 'radio',
+                'title': '胸闷气短',
+                'content': ['是','否'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'da11a',
+                'id1': '4.1.11',
+                'type': 'radio',
+                'title': '咳血',
+                'content': ['是','否'],
+                'hiddenlist': [[], ['4.1.11.1']],
+                'hidden': false
+            },
+            {
+                'id2': 'da11b',
+                'id1': '4.1.11.1',
+                'type': 'input',
+                'content': {
+                    'datatype': 'text',
+                    'validtype': 'number',
+                    'information': ''
+                },
+                'title': '咳血量',
+                'hidden': false
+            },
+            {
+                'id2': 'da12',
+                'id1': '4.1.12',
+                'type': 'radio',
+                'title': '胸痛',
+                'content': ['是', '否'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'da13a',
+                'id1': '4.1.13',
+                'type': 'radio',
+                'title': '晕厥',
+                'content': ['是', '否'],
+                'hiddenlist': [[], ['4.1.13.1']],
+                'hidden': false
+            },
+            {
+                'id2': 'da13b',
+                'id1': '4.1.13.1',
+                'type': 'input',
+                'content': {
+                    'datatype': 'text',
+                    'validtype': 'number',
+                    'information': ''
+                },
+                'title': '发作次数',
+                'hidden': false
+            },
+            {
+                'id2': 'da14a',
+                'id1': '4.1.14',
+                'type': 'radio',
+                'title': '咳嗽咳痰',
+                'content': ['是', '否'],
+                'hiddenlist': [[], ['4.1.14.1']],
+                'hidden': false
+            },
+            {
+                'id2': 'da14b',
+                'id1': '4.1.14.1',
+                'type': 'radio',
+                'title': '咳痰症状',
+                'content': ['痰白色','黑色','干咳','黄疸','其它'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'da15',
+                'id1': '4.1.15',
+                'type': 'radio',
+                'title': '腹痛',
+                'content': ['是', '否'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'da16',
+                'id1': '4.1.16',
+                'type': 'radio',
+                'title': '发热大汗',
+                'content': ['是', '否'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'da17',
+                'id1': '4.1.17',
+                'type': 'radio',
+                'title': '面色苍白',
+                'content': ['是', '否'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'da18',
+                'id1': '4.1.18',
+                'type': 'radio',
+                'title': '恶心呕吐',
+                'content': ['是', '否'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'db1a',
+                'id1': '4.2.1.1',
+                'type': 'input',
+                'content': {
+                    'datatype': 'text',
+                    'validtype': 'number',
+                    'information': ''
+                },
+                'title': '生命体征 T（℃）',
+                'hidden': false
+            },
+            {
+                'id2': 'db1b',
+                'id1': '4.2.1.2',
+                'type': 'input',
+                'content': {
+                    'datatype': 'text',
+                    'validtype': 'number',
+                    'information': ''
+                },
+                'title': 'P 次/分',
+                'hidden': false
+            },
+            {
+                'id2': 'db1c',
+                'id1': '4.2.1.3',
+                'type': 'input',
+                'content': {
+                    'datatype': 'text',
+                    'validtype': 'number',
+                    'information': ''
+                },
+                'title': 'R 次/分',
+                'hidden': false
+            },
+            {
+                'id2': 'db2a',
+                'id1': '4.2.2.1',
+                'type': 'input',
+                'content': {
+                    'datatype': 'text',
+                    'validtype': 'number',
+                    'information': ''
+                },
+                'title': '血压1',
+                'hidden': false
+            },
+            {
+                'id2': 'db2b',
+                'id1': '4.2.2.2',
+                'type': 'input',
+                'content': {
+                    'datatype': 'text',
+                    'validtype': 'number',
+                    'information': ''
+                },
+                'title': '血压2',
+                'hidden': false
+            },
+            {
+                'id2': 'db3a',
+                'id1': '4.2.3.1',
+                'type': 'radio',
+                'title': '听诊 正常',
+                'content': ['是', '否'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'db3b',
+                'id1': '4.2.3.2',
+                'type': 'radio',
+                'title': '听诊 湿啰音',
+                'content': ['是', '否'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'db3c',
+                'id1': '4.2.3.3',
+                'type': 'radio',
+                'title': '听诊哮鸣音',
+                'content': ['是', '否'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'db3d',
+                'id1': '4.2.3.4',
+                'type': 'radio',
+                'title': '听诊肺血管杂音',
+                'content': ['是', '否'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'db3e',
+                'id1': '4.2.3.5',
+                'type': 'radio',
+                'title': 'P2亢进',
+                'content': ['是', '否'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'db3f',
+                'id1': '4.2.3.6',
+                'type': 'radio',
+                'title': '呼吸音减弱',
+                'content': ['是', '否'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'db4',
+                'id1': '4.2.4',
+                'type': 'input',
+                'content': {
+                    'datatype': 'text',
+                    'validtype': 'number',
+                    'information': ''
+                },
+                'title': '运动耐量',
+                'hidden': false
+            },
+            {
+                'id2': 'db5',
+                'id1': '4.2.5',
+                'type': 'radio',
+                'title': '口唇青紫',
+                'content': ['是', '否'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'db6',
+                'id1': '4.2.6',
+                'type': 'input',
+                'content': {
+                    'datatype': 'text',
+                    'validtype': 'number',
+                    'information': ''
+                },
+                'title': '6分钟步行实验',
+                'hidden': false
+            },
+            {
+                'id2': 'db7',
+                'id1': '4.2.7',
+                'type': 'radio',
+                'title': '呼吸困难评级',
+                'content': ['1', '2', '3', '4'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'db8a',
+                'id1': '4.2.8.1',
+                'type': 'input',
+                'content': {
+                    'datatype': 'text',
+                    'validtype': 'number',
+                    'information': ''
+                },
+                'title': '下肢周径差值 上(cm)',
+                'hidden': false
+            },
+            {
+                'id2': 'db8b',
+                'id1': '4.2.8.2',
+                'type': 'input',
+                'content': {
+                    'datatype': 'text',
+                    'validtype': 'number',
+                    'information': ''
+                },
+                'title': '下肢周径差值 下(cm)',
+                'hidden': false
+            },
+            {
+                'id2': 'db9',
+                'id1': '4.2.9',
+                'type': 'radio',
+                'title': '皮肤色泽改变',
+                'content': ['发红','青紫','发白','色素沉着','发黑','无改变'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'db10',
+                'id1': '4.2.10',
+                'type': 'radio',
+                'title': '下肢浅表静脉隆起',
+                'content': ['是', '否'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'db11',
+                'id1': '4.2.11',
+                'type': 'radio',
+                'title': '患肢是否肤色发青',
+                'content': ['是', '否'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'db12',
+                'id1': '4.2.12',
+                'type': 'radio',
+                'title': '患肢动脉搏动',
+                'content': ['减弱', '正常', '消失'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'db13',
+                'id1': '4.2.13',
+                'type': 'radio',
+                'title': '腹壁静脉曲张',
+                'content': ['是', '否'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'db14',
+                'id1': '4.2.14',
+                'type': 'radio',
+                'title': '胸壁静脉曲张',
+                'content': ['是', '否'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'db15',
+                'id1': '4.2.15',
+                'type': 'radio',
+                'title': '其余部位水肿',
+                'content': ['臀部', '趾骨区', '外阴部肿胀', '无'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'db16a',
+                'id1': '4.2.16',
+                'type': 'radio',
+                'title': '静脉性跛行',
+                'content': ['是','否'],
+                'hiddenlist': [[], ['4.2.16.1']],
+                'hidden': false
+            },
+            {
+                'id2': 'db16b',
+                'id1': '4.2.16.1',
+                'type': 'input',
+                'content': {
+                    'datatype': 'text',
+                    'validtype': 'number',
+                    'information': ''
+                },
+                'title': '静脉性跛行 m',
+                'hidden': false
+            },
+            {
+                'id2': 'db17',
+                'id1': '4.2.17.1',
+                'type': 'radio',
+                'title': '患肢皮温升高',
+                'content': ['是','否'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'db17a',
+                'id1': '4.2.17.2',
+                'type': 'radio',
+                'title': '患肢皮温降低',
+                'content': ['是','否'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'db18',
+                'id1': '4.2.18',
+                'type': 'radio',
+                'title': '沿深静脉症状',
+                'content': ['压痛','红斑','发绀','无'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'db19a',
+                'id1': '4.2.19',
+                'type': 'radio',
+                'title': '局部疼痛',
+                'content': ['是','否'],
+                'hiddenlist': [[], ['4.2.19.1']],
+                'hidden': false
+            },
+            {
+                'id2': 'db19b',
+                'id1': '4.2.19.1',
+                'type': 'radio',
+                'title': '压痛部位',
+                'content': ['小腿肌肉','腘窝','内收肌肉','腹股沟下方'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'db20',
+                'id1': '4.2.20',
+                'type': 'radio',
+                'title': 'homans征',
+                'content': ['+','-'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'db21',
+                'id1': '4.2.21',
+                'type': 'radio',
+                'title': 'neuhof征',
+                'content': ['+', '-'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'db22',
+                'id1': '4.2.22',
+                'type': 'radio',
+                'title': '肠鸣音',
+                'content': ['正常', '活跃', '亢进', '减弱', '消失'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': ['dc1', 'dc2', 'dc3', 'dc4', 'dc5', 'dc6', 'dc7', 'dc8', 'dc9', 'dc9a', 'dc10'],
+                'id1': '4.3',
+                'type': 'singletable',
+                'title': '发生深静脉(血栓形成)可能性的临床评估模型 Wels评分（①1分 ②2分）',
+                'coltitle': ['危险因素', '临床评分'],
+                'rawname': [
+                    '合并癌症（治疗中或治疗后前6个月内或姑息治疗）',
+                    '瘫痪、局部麻痹或近期下肢石膏固定史',
+                    '近期卧床>3d或手术后四周内',
+                    '炎深静脉走行的局限性压痛',
+                    '整条腿肿',
+                    '小腿周径肿胀侧较正常侧>3cm（胫骨结节下10cm处测量）',
+                    '限于患肢的凹陷性水肿',
+                    '浅静脉显现（除外静脉曲张）',
+                    '有可替换的其他诊断,或可能性大于DVT的诊断',
+                    '下肢静脉血栓病史',
+                    '总分'
+                ],
+                'bottomTitle': '这是一条测试',
+                'hidden': false
+            },
+            {
+                'id2': ['dea1', 'deb1', 'dec1', 'ded1', 'dee1', 'def1', 'deg1', 'deh1', 'dei1', 'dej1', 'dek1', 'del1', 'dem1'],
+                'id1': '4.4.1',
+                'type': 'singletable',
+                'title': 'PESI评分表原始版',
+                'coltitle': ['内容', ' '],
+                'rawname': [
+                    '年龄',
+                    '性别',
+                    '心率',
+                    '肿瘤或正在接受化疗',
+                    '心衰',
+                    '慢性肺部疾病',
+                    '收缩压',
+                    '呼吸频率',
+                    '体温',
+                    '神志',
+                    '动脉血氧饱和度',
+                    'PESI得分',
+                    'PESI分级'
+                ],
+                'bottomTitle': '注： PESI分级标准： <= 65分为1级； 66-85分为2级； 86-105分为3级； 106-125分为4级， >125分为5级' +
+                '0分 = 30天死亡率1%； >=1 分 = 30天死亡率10.9%',
+                'hidden': false
+            },
+            {
+                'id2': ['dea2', 'dec2', 'ded2', 'dee2', 'deg2', 'dek2', 'del2', 'dem2'],
+                'id1': '4.4.2',
+                'type': 'singletable',
+                'title': 'PESI评分表简化版',
+                'coltitle': ['内容', ' '],
+                'rawname': [
+                    '年龄',
+                    '心率',
+                    '肿瘤或正在接受化疗',
+                    '心衰',
+                    '收缩压',
+                    '动脉血氧饱和度',
+                    'PESI得分',
+                    'PESI分级'
+                ],
+                'bottomTitle': '',
+                'hidden': false
+            },
+            {
+                'id2': ['dd1', 'dd2', 'dd3', 'dd4', 'dd5', 'dd6', 'dd7', 'dd8'],
+                'id1': '4.5.1',
+                'type': 'singletable',
+                'title': 'Wells评分表原始版',
+                'coltitle': ['危险因素', '临床评分'],
+                'rawname': [
+                    'DVT的临床症状和体征（水肿和疼痛）',
+                    '心率>100次/min',
+                    '连续卧床3d以上，或4周内曾行外科手术',
+                    '曾患DVT或PE',
+                    '与其它诊断相比，PE是可能或更可能的诊断',
+                    '咯血',
+                    '癌症活动期（正在治疗或6个月前治疗过，或姑息治疗）',
+                    '总分'
+                ],
+                'bottomTitle': '',
+                'hidden': false
+            },
+            {
+                'id2': ['dd1a', 'dd2a', 'dd3a', 'dd4a', 'dd5a', 'dd6a', 'dd7a', 'dd8a'],
+                'id1': '4.5.2',
+                'type': 'singletable',
+                'title': 'Wells评分表简化版',
+                'coltitle': ['危险因素', '临床评分'],
+                'rawname': [
+                    'DVT的临床症状和体征（水肿和疼痛）',
+                    '心率>100次/min',
+                    '连续卧床3d以上，或4周内曾行外科手术',
+                    '曾患DVT或PE',
+                    '与其它诊断相比，PE是可能或更可能的诊断',
+                    '咯血',
+                    '癌症活动期（正在治疗或6个月前治疗过，或姑息治疗）',
+                    '总分'
+                ],
+                'bottomTitle': '',
+                'hidden': false
+            },
+            {
+                'id2': ['dd9', 'dd10', 'dd11', 'dd12', 'dd13', 'dd14', 'dd15', 'dd16', 'dd17', 'dd18'],
+                'id1': '4.6.1',
+                'type': 'singletable',
+                'title': 'Geneva评分表原始版',
+                'coltitle': ['危险因素', '临床评分'],
+                'rawname': [
+                    '单侧下肢疼痛',
+                    '下肢深静脉触痛及单侧水肿',
+                    '年龄>65岁',
+                    '心率75-94',
+                    '心率>95',
+                    '一个月内手术（全麻）骨折（下肢）',
+                    '曾患DVT或PE',
+                    '咯血',
+                    '恶性肿瘤（实体或血液， 目前活动或者1年内治愈）',
+                    '总分'
+                ],
+                'bottomTitle': '',
+                'hidden': false
+            },
+            {
+                'id2': ['dd9a', 'dd10a', 'dd11a', 'dd12a', 'dd13a', 'dd14a', 'dd15a', 'dd16a', 'dd17a', 'dd18a'],
+                'id1': '4.6.2',
+                'type': 'table462',
+                'title': 'Geneva评分表简化版',
+                'coltitle': ['危险因素', '临床评分'],
+                'rawname': [
+                    '单侧下肢疼痛',
+                    '下肢深静脉触痛及单侧水肿',
+                    '年龄>65岁',
+                    '心率75-94',
+                    '心率>95',
+                    '一个月内手术（全麻）骨折（下肢）',
+                    '曾患DVT或PE',
+                    '咯血',
+                    '恶性肿瘤（实体或血液， 目前活动或者1年内治愈）',
+                    '总分'
+                ],
+                'bottomTitle': '',
+                'hidden': false
+            }
         ],
         [
             {

@@ -51,6 +51,7 @@ export class Table46Component extends Question implements AnswerInterface {
 
   constructor() {
       super();
+
       this.localAnswer = new Array(5);
       this.selected = new Array(5);
   }
