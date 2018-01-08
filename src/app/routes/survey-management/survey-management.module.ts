@@ -11,8 +11,6 @@ import { IdccmpComponent} from './shared/idccmp/idccmp.component';
 import { PhoneComponent} from './shared/phonecmp/phonecmp.component';
 import { CheckboxcmpComponent } from './shared/checkboxcmp/checkboxcmp.component';
 import { SurveyOverviewComponent } from './survey-overview/survey-overview.component';
-import { Table35Component } from './shared/tablecmp/table35/table35.component';
-import { Table46Component } from './shared/tablecmp/table46/table46.component';
 import { SingletableComponent} from './shared/tablecmp/singleTable/singletable.component';
 import { DatecmpComponent } from './shared/datecmp/datecmp.component';
 
@@ -47,8 +45,6 @@ const routes: Routes = [
         IdccmpComponent,
         CheckboxcmpComponent,
         SurveyOverviewComponent,
-        Table35Component,
-        Table46Component,
         DatecmpComponent,
         SingletableComponent,
         Infor1Component,

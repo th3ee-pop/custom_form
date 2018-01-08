@@ -9,7 +9,6 @@ import {NzModalService} from 'ng-zorro-antd';
 import {InputcmpComponent} from '../shared/inputcmp/inputcmp.component';
 import {RadiocmpComponent} from '../shared/radiocmp/radiocmp.component';
 import {SingletableComponent} from '../shared/tablecmp/singleTable/singletable.component';
-import {Table46Component} from '../shared/tablecmp/table46/table46.component';
 import {QuestionList} from '../shared/ql';
 import {ScheduleList} from '../shared/scheduleList';
 
@@ -23,7 +22,6 @@ export class Info4Component implements OnInit, AfterViewInit {
     @ViewChildren(InputcmpComponent) InputItems: QueryList<InputcmpComponent>
     @ViewChildren(RadiocmpComponent) RadioItems: QueryList<RadiocmpComponent>
     @ViewChildren(SingletableComponent) SingletabItem: QueryList<SingletableComponent>
-    @ViewChildren(Table46Component) Table46: QueryList<Table46Component>
     current = 4;
     questions = new QuestionList().questions;
     questionSave = this.questions; // 用来传到后端
