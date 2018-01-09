@@ -64,16 +64,6 @@ export class ExampleComponent implements OnInit {
 
   getAnswer() {
       this.changedAnswer = [];
-  /*    for (let row = 0; row < this.row; row++) {
-          for (let column = 0; column < this.column; column++) {
-              if (this.initialArray[row][column] !== '') {
-                 this.changedAnswer.push({
-                     id2: this.idArray[row][column],
-                     value: this.initialArray[row][column]
-                 });
-              }
-          }
-      }*/
       this.setAnswer(this.initialArray, this.idArray, this.row, this.column);
       this.setAnswer(this.overallContent, this.overallId, 1, 4);
       console.log(this.changedAnswer);
