@@ -6,8 +6,12 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '@shared/shared.module';
 import { Routes, RouterModule } from '@angular/router';
 import { ExampleComponent } from './example/example.component';
+import { MultiTableComponent } from './multi-table/multi-table.component';
+import { SelectableTableComponent } from './selectable-table/selectable-table.component';
 const routes: Routes = [
-    {path: 'example', component: ExampleComponent}
+    {path: 'example', component: ExampleComponent},
+    {path: 'multi-table', component: MultiTableComponent},
+    {path: 'selectable-table', component: SelectableTableComponent}
 ];
 
 @NgModule({
@@ -21,7 +25,9 @@ const routes: Routes = [
         RouterModule
     ],
     declarations: [
-    ExampleComponent
+    ExampleComponent,
+    MultiTableComponent,
+    SelectableTableComponent
     ],
     providers: [
     ],
