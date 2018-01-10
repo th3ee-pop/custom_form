@@ -1,34 +1,36 @@
 /**
- * Created by th3ee on 1/9/18.
+ * Created by th3ee on 1/10/18.
  */
 /**
- * Created by th3ee on 1/9/18.
+ * Created by th3ee on 1/10/18.
  */
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'app-selectable-table',
-    templateUrl: './selectable-table.component.html'
+    selector: 'app-table53',
+    templateUrl: './table53.component.html'
 })
-export class SelectableTableComponent implements OnInit {
+export class Table53Component implements OnInit {
 
-    radioStr = 'eei';
+    startStr = 'ec';
     column: number;
     row: number;
     letterArray = [];
     initialArray = [];
     idArray = [];
-    rowTitle = ['ESR', 'hsCRP', 'pro-BNP', 'ACA', 'ANC', 'HCY(mmol/l)'];
-    columnTitle = ['入院时', '第二次检查'];
+    rowLength = 4;
+    rowTitle = ['胸部CT', '肺灌注显像', '肺动脉CAT'];
+    secondLevelTitle = [];
     changedAnswer = [];
+    overallId = ['ea7a1', 'ea7a2', 'ea7a3', 'ea7a4'];
+    overallContent = ['', '', '', ''];
 
     constructor() { }
 
     ngOnInit() {
-
-        this.column = this.columnTitle.length;
+        this.column = this.rowLength;
         this.row = this.rowTitle.length;
-        for (let i = 97; i < 97 + this.row; i++) {
+        for (let i = 97; i < 97 + this.column; i++) {
             this.letterArray.push(String.fromCharCode(i));
         }
         this.initArray();
@@ -41,7 +43,6 @@ export class SelectableTableComponent implements OnInit {
     initArray() {
         for (let row = 0; row < this.row; row++) {
             this.initialArray.push([]);
-            this.initialArray[row].push(-1);
             for (let column = 0; column < this.column; column++) {
                 this.initialArray[row].push('');
             }
@@ -51,10 +52,9 @@ export class SelectableTableComponent implements OnInit {
     initId() {
         for (let row = 0; row < this.row; row++) {
             this.idArray.push([]);
-            this.idArray[row].push(this.radioStr + this.letterArray[row]);
-            for (let column = 1; column < this.column + 1; column++) {
-                this.idArray[row].push(this.radioStr + this.letterArray[row] + column);
-            }
+            this.letterArray.forEach(l => {
+                    this.idArray[row].push(this.startStr + (row + 1) + l);
+            });
         }
     }
 
@@ -66,18 +66,26 @@ export class SelectableTableComponent implements OnInit {
     }
 
     setAnswer(blank: any, idArray: any, row: number, column: number) {
+        if (row > 1) {
             for (let i = 0; i < row; i++) {
-                if (blank[i][0] === false) {
-                } else {
-                    for (let j = 0; j < column + 1; j++) {
-                        if (blank[i][j] !== '') {
-                            this.changedAnswer.push({
-                                id2: idArray[i][j],
-                                value: blank[i][j]
-                            });
-                        }
+                for (let j = 0; j < column; j++) {
+                    if (blank[i][j] !== '') {
+                        this.changedAnswer.push({
+                            id2: idArray[i][j],
+                            value: blank[i][j]
+                        });
                     }
                 }
             }
+        } else {
+            for (let i = 0; i < column; i++) {
+                if (blank[i] !== '') {
+                    this.changedAnswer.push({
+                        id2: idArray[i],
+                        value: blank[i]
+                    });
+                }
+            }
+        }
     }
 }
