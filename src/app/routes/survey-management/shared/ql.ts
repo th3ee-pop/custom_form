@@ -5836,9 +5836,17 @@ export class QuestionList {
         ],
         [
             {
-                'id2': 'gha',
+                'id2': [
+                    ['ghaa1', 'ghaa2', 'ghaa3', 'ghaa4', 'ghaa5', 'ghaa6a', 'ghaa6b'],
+                    ['ghab1', 'ghab2', 'ghab3', 'ghab4', 'ghab5', 'ghab6a', 'ghab6b'],
+                    ['ghac1', 'ghac2', 'ghac3', 'ghac4', 'ghac5', 'ghac6a', 'ghac6b'],
+                    ['ghad1', 'ghad2', 'ghad3', 'ghad4', 'ghad5', 'ghad6a', 'ghad6b'],
+                    ['ghae1', 'ghae2', 'ghae3', 'ghae4', 'ghae5', 'ghae6a', 'ghae6b'],
+                    ['ghaf1', 'ghaf2', 'ghaf3', 'ghaf4', 'ghaf5', 'ghaf6a', 'ghaf6b']
+                ],
                 'id1': '7.1',
                 'type': 'table71',
+                'rawname': [ '入院第1天', '入院第3天', '入院第5天', '入院第7天', '入院第9天', '出院'],
                 'title': '疗效观察',
                 'hidden': false
             },

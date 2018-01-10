@@ -31,10 +31,6 @@ export class ScheduleList {
         {
             status: '第七部分',
             descript: '第七部分'
-        },
-        {
-            status: '第八部分',
-            descript: '第八部分'
         }
     ];
 }
