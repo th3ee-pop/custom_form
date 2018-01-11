@@ -13,6 +13,7 @@ import { Question } from '../../survey-management/shared/question';
 })
 export class SelectableTableComponent extends Question implements OnInit {
 
+    title: string;
     radioStr: string;
     column: number;
     row: number;
@@ -28,6 +29,7 @@ export class SelectableTableComponent extends Question implements OnInit {
     }
 
     ngOnInit() {
+        this.title = this.question.title;
         this.radioStr = this.question.startStr;
         this.rowTitle = this.question.rowTitle;
         this.columnTitle = this.question.columnTitle;

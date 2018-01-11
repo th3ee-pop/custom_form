@@ -11,6 +11,7 @@ import { Question } from '../../survey-management/shared/question';
 export class MultiTableComponent extends Question implements OnInit {
 
     startStr: string;
+    title: string;
     column: number;
     row: number;
     letterArray = [];
@@ -26,6 +27,7 @@ export class MultiTableComponent extends Question implements OnInit {
     }
 
     ngOnInit() {
+        this.title = this.question.title;
         this.startStr = this.question.startStr;
         this.rowTitle = this.question.rowTitle;
         this.columnTitle = this.question.columnTitle;
