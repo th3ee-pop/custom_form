@@ -112,6 +112,7 @@ export class HttpService {
      * {
      */
     putRecord(params: any): Observable<any> {
+        console.log(params);
         return this.http.put(this.baseUrl + '/vascular/recordop/', params, this.options)
             .do(() => {})
             .catch((res) => {

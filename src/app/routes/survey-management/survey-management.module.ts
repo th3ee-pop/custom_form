@@ -27,11 +27,11 @@ const routes: Routes = [
     { path: 'detail', component: SurveyOverviewComponent  },
     { path: 'info0', component: Info0Component  },
     { path: 'info0/:PID', component: Info0Component  },
-    { path: 'first_step', component: Infor1Component },
+    { path: 'info1', component: Infor1Component },
     { path: 'info2', component: Info2Component  },
     { path: 'info3', component: Info3Component },
     { path: 'info4', component: Info4Component },
-    { path: 'info6', component: Info6Component }
+    { path: 'info6', component: Info6Component },
     { path: 'info7', component: Info7Component }
 ];
 
