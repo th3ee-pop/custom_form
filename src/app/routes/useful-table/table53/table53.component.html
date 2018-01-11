@@ -1,7 +1,7 @@
 <div nz-row [nzGutter]="24" class="py-lg">
     <div nz-col [nzSpan]="24">
         <nz-card [nzNoHovering]="true">
-            <ng-template #title>样例表单</ng-template>
+            <ng-template #title>其他检查</ng-template>
             <ng-template #body>
                 <nz-table [nzDataSource]="rowTitle" [nzIsPagination]="false">
                     <thead nz-thead>
@@ -23,8 +23,5 @@
             </ng-template>
         </nz-card>
     </div>
-    <button nz-button [nzType]="'primary'" (click)="getAnswer()">
-        <span>Primary</span>
-    </button>
 </div>
 
