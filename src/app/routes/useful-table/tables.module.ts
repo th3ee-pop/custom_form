@@ -11,13 +11,15 @@ import { SelectableTableComponent } from './selectable-table/selectable-table.co
 import { Table52Component } from './table52/table52.component';
 import { Table53Component } from './table53/table53.component';
 import { Table54Component } from './table54/table54.component';
+import { Table55Component } from './table55/table55.component';
 const routes: Routes = [
     {path: 'example', component: ExampleComponent},
     {path: 'multi-table', component: MultiTableComponent},
     {path: 'selectable-table', component: SelectableTableComponent},
     {path: 'table52', component: Table52Component},
     {path: 'table53', component: Table53Component},
-    {path: 'table54', component: Table54Component}
+    {path: 'table54', component: Table54Component},
+    {path: 'table55', component: Table55Component}
 ];
 
 @NgModule({
@@ -36,7 +38,8 @@ const routes: Routes = [
     SelectableTableComponent,
     Table52Component,
     Table53Component,
-    Table54Component
+    Table54Component,
+    Table55Component
     ],
     providers: [
     ],
