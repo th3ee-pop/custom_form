@@ -28,6 +28,7 @@ export class MultiTableComponent extends Question implements OnInit {
 
     ngOnInit() {
         this.title = this.question.title;
+        console.log(this.question.title);
         this.startStr = this.question.startStr;
         this.rowTitle = this.question.rowTitle;
         this.columnTitle = this.question.columnTitle;

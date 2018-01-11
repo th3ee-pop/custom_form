@@ -1,7 +1,7 @@
-<div nz-row [nzGutter]="24" class="py-lg">
+<div [hidden]="question.hidden" nz-row [nzGutter]="24" class="py-lg">
     <div nz-col [nzSpan]="24">
         <nz-card [nzNoHovering]="true">
-            <ng-template #title>{{title}}</ng-template>
+            <ng-template #title>{{question.title}}</ng-template>
             <ng-template #body>
                 <nz-table [nzDataSource]="rowTitle" [nzIsPagination]="false">
                     <thead nz-thead>
