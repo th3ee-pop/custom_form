@@ -86,7 +86,7 @@ export class HttpService {
      */
     getRecord(params: any): Observable<any> {
         return this.http
-            .get(this.baseUrl + '/healthexamination/recordop/', {
+            .get(this.baseUrl + '/vascular/recordop/', {
                 headers: new HttpHeaders({'X-CSRFToken': this.injector.get(TokenService).data.access_token}),
                 params: this.getParams(params) })
             .do(() => {})
@@ -112,7 +112,7 @@ export class HttpService {
      * {
      */
     putRecord(params: any): Observable<any> {
-        return this.http.put(this.baseUrl + '/healthexamination/recordop/', params, this.options)
+        return this.http.put(this.baseUrl + '/vascular/recordop/', params, this.options)
             .do(() => {})
             .catch((res) => {
                 console.log(res);
@@ -142,12 +142,12 @@ export class HttpService {
     getPatientList(conditions): Observable<any> {
 
         const body = {
-            'filter_dict': conditions.filter_dict,
-            'sorted_key': conditions.sorted_key,
-            'start': conditions.start,
-            'offset': conditions.offset
+            'filter_dict': '',
+            'sorted_key': '',
+            'start': conditions.start || 0,
+            'offset': conditions.offset || 20
         };
-        return this.http.post(this.baseUrl + '/healthexamination/recordlist/', JSON.stringify(body))
+        return this.http.post(this.baseUrl + '/vascular/recordlist/', JSON.stringify(body))
             .do(() => {} )
             .catch((res) => {
                 console.log(res);
@@ -156,7 +156,7 @@ export class HttpService {
     }
     // deleteId = { 'PID': '1'};
     deleteRecord(deleteId): Observable<any> {
-        return this.Http.delete(this.baseUrl + '/healthexamination/recordop/', {
+        return this.Http.delete(this.baseUrl + '/vascular/recordop/', {
             body: deleteId,
             headers: new Headers({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
         })

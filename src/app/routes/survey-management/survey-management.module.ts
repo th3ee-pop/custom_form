@@ -19,14 +19,17 @@ import { Info0Component } from './info0/info0.component';
 import { Info2Component } from './info2/info2.component';
 import { Info3Component } from './info3/info3.cpomponent';
 import { Info4Component } from './info4/info4.cpomponent';
+import { Info6Component } from './info6/info6.component';
 
 const routes: Routes = [
     { path: 'detail', component: SurveyOverviewComponent  },
     { path: 'info0', component: Info0Component  },
+    { path: 'info0/:PID', component: Info0Component  },
     { path: 'first_step', component: Infor1Component },
     { path: 'info2', component: Info2Component  },
     { path: 'info3', component: Info3Component },
-    { path: 'info4', component: Info4Component }
+    { path: 'info4', component: Info4Component },
+    { path: 'info6', component: Info6Component }
 ];
 
 @NgModule({
@@ -51,7 +54,8 @@ const routes: Routes = [
         Info0Component,
         Info2Component,
         Info3Component,
-        Info4Component
+        Info4Component,
+        Info6Component
     ],
     providers: [
         RecordResolverGuard

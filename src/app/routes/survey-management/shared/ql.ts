@@ -5611,13 +5611,13 @@ export class QuestionList {
                     '否',
                     '是'
                 ],
-                'hiddenlist': [],
+                'hiddenlist': [["6.2"],[]],
                 'hidden': false
             },
             {
                 'id2': 'ga',
                 'id1': '6.2',
-                'type': 'table62',
+                'type': 'table62',//selectable-table
                 'title': '入院前治疗情况',
             },
             {
@@ -5637,7 +5637,7 @@ export class QuestionList {
             {
                 'id2': 'gd',
                 'id1': '6.5',
-                'type': 'table65',
+                'type': 'table64',//selectable-table + gdf
                 'title': '术后用药',
                 'hidden': false
             },
@@ -5760,7 +5760,7 @@ export class QuestionList {
                     'validtype': '',
                     'information': ''
                 },
-                'title': '迈之灵/威利坦',
+                'title': '出院医嘱：迈之灵/威利坦',
                 'hidden': false
             },
             {
@@ -5772,7 +5772,7 @@ export class QuestionList {
                     'validtype': '',
                     'information': ''
                 },
-                'title': '着弹力袜',
+                'title': '出院医嘱：着弹力袜',
                 'hidden': false
             },
             {
@@ -5784,7 +5784,7 @@ export class QuestionList {
                     'validtype': '',
                     'information': ''
                 },
-                'title': '其他',
+                'title': '出院医嘱：其他',
                 'hidden': false
             },
             {
@@ -5796,7 +5796,7 @@ export class QuestionList {
                     'validtype': '',
                     'information': ''
                 },
-                'title': '监测PT-INR',
+                'title': '出院医嘱：监测PT-INR',
                 'hidden': false
             }
         ],

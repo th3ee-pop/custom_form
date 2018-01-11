@@ -56,7 +56,6 @@ export class InputcmpComponent extends Question implements OnInit {
         tem.Record_ID = questionID;
         tem.Record_Value = this.localAnswer;
         res.push(tem);
-        console.log(res);
         this.answer = res;
         }
 }
