@@ -14,21 +14,29 @@ import { SurveyOverviewComponent } from './survey-overview/survey-overview.compo
 import { SingletableComponent} from './shared/tablecmp/singleTable/singletable.component';
 import { Table71Component } from './shared/tablecmp/Table71/Table71.component';
 import { DatecmpComponent } from './shared/datecmp/datecmp.component';
-
-import { Infor1Component } from './info1/info1.cpomponent';
+import { ExampleComponent } from '../useful-table/example/example.component';
+import { MultiTableComponent } from '../useful-table/multi-table/multi-table.component';
+import { SelectableTableComponent } from '../useful-table/selectable-table/selectable-table.component';
+import { Table52Component } from '../useful-table/table52/table52.component';
+import { Table53Component } from '../useful-table/table53/table53.component';
+import { Table54Component } from '../useful-table/table54/table54.component';
+import { Table55Component } from '../useful-table/table55/table55.component';
+import { Info1Component } from './info1/info1.cpomponent';
 import { Info0Component } from './info0/info0.component';
 import { Info2Component } from './info2/info2.component';
 import { Info3Component } from './info3/info3.cpomponent';
 import { Info4Component } from './info4/info4.cpomponent';
+import { Info5Component } from './info5/info5.component';
 import { Info7Component} from './info7/info7.cpomponent';
 
 const routes: Routes = [
     { path: 'detail', component: SurveyOverviewComponent  },
     { path: 'info0', component: Info0Component  },
-    { path: 'first_step', component: Infor1Component },
+    { path: 'info1', component: Info1Component },
     { path: 'info2', component: Info2Component  },
     { path: 'info3', component: Info3Component },
     { path: 'info4', component: Info4Component },
+    { path: 'info5', component: Info5Component },
     { path: 'info7', component: Info7Component }
 ];
 
@@ -50,12 +58,20 @@ const routes: Routes = [
         SurveyOverviewComponent,
         DatecmpComponent,
         SingletableComponent,
+        ExampleComponent,
+        SelectableTableComponent,
+        Table52Component,
+        MultiTableComponent,
+        Table53Component,
+        Table54Component,
+        Table55Component,
         Table71Component,
-        Infor1Component,
+        Info1Component,
         Info0Component,
         Info2Component,
         Info3Component,
         Info4Component,
+        Info5Component,
         Info7Component
     ],
     providers: [

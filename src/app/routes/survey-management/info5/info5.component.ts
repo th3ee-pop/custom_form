@@ -1,4 +1,7 @@
 /**
+ * Created by th3ee on 1/11/18.
+ */
+/**
  *  input radio idc phone checkbox date
  */
 import {AfterViewInit, Component, OnInit, QueryList, ViewChildren, ChangeDetectorRef} from '@angular/core';
@@ -8,21 +11,33 @@ import {NzModalService} from 'ng-zorro-antd';
 
 import {InputcmpComponent} from '../shared/inputcmp/inputcmp.component';
 import {RadiocmpComponent} from '../shared/radiocmp/radiocmp.component';
-
+import { ExampleComponent } from '../../useful-table/example/example.component';
+import { MultiTableComponent } from '../../useful-table/multi-table/multi-table.component';
+import { SelectableTableComponent } from '../../useful-table/selectable-table/selectable-table.component';
+import { Table52Component } from '../../useful-table/table52/table52.component';
+import { Table53Component } from '../../useful-table/table53/table53.component';
+import { Table54Component } from '../../useful-table/table54/table54.component';
+import { Table55Component } from '../../useful-table/table55/table55.component';
 import {QuestionList} from '../shared/ql';
 import {ScheduleList} from '../shared/scheduleList';
 
 @Component({
-    selector: 'app-infor1-step',
-    templateUrl: './info1.component.html',
-    styleUrls: ['./info1.component.css']
+    selector: 'app-info5-step',
+    templateUrl: './info5.component.html',
+    styleUrls: ['./info5.component.css']
 })
-export class Info1Component implements OnInit, AfterViewInit {
+export class Info5Component implements OnInit, AfterViewInit {
 
     @ViewChildren(InputcmpComponent) InputItems: QueryList<InputcmpComponent>
     @ViewChildren(RadiocmpComponent) RadioItems: QueryList<RadiocmpComponent>
-
-    current = 1;
+    @ViewChildren(ExampleComponent) ExampleItems: QueryList<ExampleComponent>
+    @ViewChildren(MultiTableComponent) MultiTableItems: QueryList<MultiTableComponent>
+    @ViewChildren(SelectableTableComponent) SelectableTableItems: QueryList<SelectableTableComponent>
+    @ViewChildren(Table52Component) Table52Items: QueryList<Table52Component>
+    @ViewChildren(Table53Component) Table53Items: QueryList<Table53Component>
+    @ViewChildren(Table54Component) Table54Items: QueryList<Table54Component>
+    @ViewChildren(Table55Component) Table55Items: QueryList<Table55Component>
+    current = 5;
     questions = new QuestionList().questions;
     questionSave = this.questions; // 用来传到后端
     questionList = []
@@ -66,8 +81,8 @@ export class Info1Component implements OnInit, AfterViewInit {
             this.initPutRecord()
             console.log(this.putRecord);
             /*
-            * 在此处调用API 发送请求
-            * */
+             * 在此处调用API 发送请求
+             * */
         } else {
             let str = '';
             this.confirm().confirmsList.forEach( item => {
@@ -83,8 +98,8 @@ export class Info1Component implements OnInit, AfterViewInit {
         this.initPutRecord();
         console.log(this.putRecord);
         /*
-        * 在此处调用API 发送请求
-        * */
+         * 在此处调用API 发送请求
+         * */
     }
     exit () {
         this.router.navigate( ['system/survey/detail/']);

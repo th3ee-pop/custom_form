@@ -33,13 +33,13 @@ const routes: Routes = [
         RouterModule
     ],
     declarations: [
-    ExampleComponent,
+    /*ExampleComponent,
     MultiTableComponent,
     SelectableTableComponent,
     Table52Component,
     Table53Component,
     Table54Component,
-    Table55Component
+    Table55Component*/
     ],
     providers: [
     ],

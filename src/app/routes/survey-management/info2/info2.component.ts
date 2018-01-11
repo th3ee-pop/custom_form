@@ -18,7 +18,7 @@ export class Info2Component implements OnInit, AfterViewInit  {
     @ViewChildren(RadiocmpComponent) RadioItems: QueryList<RadiocmpComponent>;
     @ViewChildren(IdccmpComponent) IdcItems: QueryList<IdccmpComponent>;
 
-    current = 0; // 当前步骤
+    current = 2; // 当前步骤
     questions = new QuestionList().questions;
     questionList = [];     // 问题总列表
     resultList = [];                                    // 填写结果
@@ -141,7 +141,7 @@ export class Info2Component implements OnInit, AfterViewInit  {
         console.log("fill in");
     }
 
-    temporary_deposit(){
+    temporary_deposit() {
 
     }
 

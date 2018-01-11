@@ -5,12 +5,13 @@
  * Created by th3ee on 1/10/18.
  */
 import { Component, OnInit } from '@angular/core';
+import { Question } from '../../survey-management/shared/question';
 
 @Component({
     selector: 'app-table53',
     templateUrl: './table53.component.html'
 })
-export class Table53Component implements OnInit {
+export class Table53Component extends Question implements OnInit {
 
     startStr = 'ec';
     column: number;
@@ -25,7 +26,9 @@ export class Table53Component implements OnInit {
     overallId = ['ea7a1', 'ea7a2', 'ea7a3', 'ea7a4'];
     overallContent = ['', '', '', ''];
 
-    constructor() { }
+    constructor() {
+        super();
+    }
 
     ngOnInit() {
         this.column = this.rowLength;

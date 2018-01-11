@@ -5,12 +5,13 @@
  * Created by th3ee on 1/9/18.
  */
 import { Component, OnInit } from '@angular/core';
+import { Question } from '../../survey-management/shared/question';
 
 @Component({
     selector: 'app-table55',
     templateUrl: './table55.component.html'
 })
-export class Table55Component implements OnInit {
+export class Table55Component extends Question implements OnInit {
 
     startStr = 'ef';
     column: number;
@@ -24,7 +25,9 @@ export class Table55Component implements OnInit {
     columnTitle = ['比重', 'PH值', '尿蛋白质', '尿葡萄糖', '尿酮体', '尿白细胞', '尿隐血', '大便隐血'];
     changedAnswer = [];
 
-    constructor() { }
+    constructor() {
+        super();
+    }
 
     ngOnInit() {
 

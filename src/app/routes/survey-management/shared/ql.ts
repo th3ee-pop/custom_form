@@ -5418,7 +5418,7 @@ export class QuestionList {
             {
                 'id2': '',
                 'id1': '5.1.1',
-                'type': 'table51',
+                'type': 'example',
                 'hidden': false
             },
             {
@@ -5471,42 +5471,62 @@ export class QuestionList {
                 'id1': '5.5.1',
                 'title': '血常规',
                 'hidden': false,
-                'type': 'table551'
+                'type': 'multi-table',
+                'rowTitle': ['第一次', '第二次', '第三次', '第四次', '第五次', '第六次', '第七次', '第八次', '第九次', '第十次'],
+                'columnTitle': ['RBC', 'WBC', 'Hb', 'PLT109/', 'NEUT', 'NEUT%', 'LYMPH', 'LYMPH%', 'MONO', 'MONO%'],
+                'startStr': 'ee',
+                'idStyle': 1
             },
             {
                 'id2': '',
                 'id1': '5.5.2',
                 'title': '尿、粪常规(1.+- 2.+ 3.++ 4.+++或以上)',
                 'hidden': false,
-                'type': 'table552'
+                'type': 'table55'
             },
             {
                 'id2': '',
                 'id1': '5.5.3',
                 'title': '凝血项目',
                 'hidden': false,
-                'type': 'table553'
+                'type': 'multi-table',
+                'rowTitle': ['第一次', '第二次', '第三次', '第四次', '第五次', '第六次', '第七次'],
+                'columnTitle': ['PT', 'APTT', 'TT', 'INR', 'FIB', 'FDP', 'D-D'],
+                'startStr': 'eg',
+                'idStyle': 1
             },
             {
                 'id2': '',
                 'id1': '5.5.4',
                 'title': '肝功',
                 'hidden': false,
-                'type': 'table554'
+                'type': 'multi-table',
+                'rowTitle': ['第一次', '第二次', '第三次'],
+                'columnTitle': ['ALT', 'AST', 'ALP', 'TBIL', 'DBIL', 'TP', 'ALB', 'PA', 'GGT', 'TBA'],
+                'startStr': 'eh',
+                'idStyle': 1
             },
             {
                 'id2': '',
                 'id1': '5.5.5',
                 'title': '肾功、电解质',
                 'hidden': false,
-                'type': 'table555'
+                'type': 'multi-table',
+                'rowTitle': ['第一次', '第二次', '第三次'],
+                'columnTitle': ['BUN', 'CRE', 'UA', '随机血糖', 'Na+', 'K+', 'Ca2+', 'Cl-'],
+                'startStr': 'ei',
+                'idStyle': 1
             },
             {
                 'id2': '',
                 'id1': '5.5.6',
                 'title': '血脂',
                 'hidden': false,
-                'type': 'table556'
+                'type': 'multi-table',
+                'rowTitle': ['第一次', '第二次', '第三次'],
+                'columnTitle': ['CHOL', 'TG', 'HDL-C', 'LDL-C', 'APOA', 'APOB', 'APOE', 'Lp(a)'],
+                'startStr': 'eef',
+                'idStyle': 2
             },
             {
                 'id2': 'eeg',
@@ -5521,7 +5541,11 @@ export class QuestionList {
                 'id2': '',
                 'id1': '5.5.7.1',
                 'hidden': false,
-                'type': 'table557'
+                'type': 'multi-table',
+                'rowTitle': ['第一次', '第二次', '第三次', '第四次'],
+                'columnTitle': ['PH值', 'p02', 'pCO2', 'SaO2', 'BE'],
+                'startStr': 'eeg',
+                'idStyle': 2
             },
             {
                 'id2': 'eeh',
@@ -5536,13 +5560,20 @@ export class QuestionList {
                 'id2': '',
                 'id1': '5.5.8.1',
                 'hidden': false,
-                'type': 'table558'
+                'type': 'multi-table',
+                'rowTitle': ['第一次', '第二次', '第三次'],
+                'columnTitle': ['总T细胞(CD3+)', '辅助性T细胞(CD3+CD4+)', '杀伤性T细胞(CD3+CD8+)', 'CD4/CD8比值'],
+                'startStr': 'eeh',
+                'idStyle': 2
             },
             {
                 'id2': '',
                 'id1': '5.5.9',
                 'hidden': false,
-                'type': 'table559'
+                'type': 'selectable-table',
+                'rowTitle': ['ESR', 'hsCRP', 'pro-BNP', 'ACA', 'ANCA', 'HCY(mmol/l)'],
+                'columnTitle': ['入院时', '第二次检查'],
+                'radioStr': 'eei'
             },
             {
                 'id2': 'eeig',
@@ -5557,7 +5588,10 @@ export class QuestionList {
                 'id2': '',
                 'id1': '5.5.10.1',
                 'hidden': false,
-                'type': 'table5510'
+                'type': 'selectable-table',
+                'rowTitle': ['心肌酶谱', 'CK', 'CKMB(u/L)', 'CtnT(ng/ml)', 'MYO(ng/ml)'],
+                'columnTitle': ['入院时', '第二次检查'],
+                'radioStr': 'eeig'
             },
             {
                 'id2': 'eeih',
@@ -5572,7 +5606,10 @@ export class QuestionList {
                 'id2': '',
                 'id1': '5.5.11.1',
                 'hidden': false,
-                'type': 'table5511'
+                'type': 'selectable-table',
+                'rowTitle': ['抗O(IU/mL)', '类风湿因子(IU/mL)', 'C反应蛋白(mg/L)'],
+                'columnTitle': ['入院时', '第二次检查'],
+                'radioStr': 'eeih'
             },
             {
                 'id2': 'eeii',
@@ -5587,7 +5624,11 @@ export class QuestionList {
                 'id2': '',
                 'id1': '5.5.12.1',
                 'hidden': false,
-                'type': 'table5512'
+                'type': 'multi-table',
+                'rowTitle': ['免疫球蛋白A', '免疫球蛋白G', '免疫球蛋白M', '免疫球蛋白Ige', '补体C3', '补体C4', 'K-轻链', 'λ-轻链'],
+                'columnTitle': ['入院时', '第二次检查'],
+                'startStr': 'eeii',
+                'idStyle': 2
             },
             {
                 'id2': 'eeij',
@@ -5602,7 +5643,12 @@ export class QuestionList {
                 'id2': '',
                 'id1': '5.5.13.1',
                 'hidden': false,
-                'type': 'table5513'
+                'type': 'multi-table',
+                'rowTitle': ['AFP(甲胎蛋白)', 'CEA(癌胚抗原)', 'CA-125(唐抗原125)', 'CA-199(唐抗原199)',
+                'NSE(神经元特异性烯醇化酶)', 'PSA-Free(游离前列腺抗体)', 'CYFRA21-1(细胞角蛋白19片段)', '铁蛋白'],
+                'columnTitle': ['入院时', '第二次检查'],
+                'startStr': 'eeij',
+                'idStyle': 2
             },
             {
                 'id2': 'eeik',
@@ -5617,7 +5663,13 @@ export class QuestionList {
                 'id2': '',
                 'id1': '5.5.14.1',
                 'hidden': false,
-                'type': 'table5514'
+                'type': 'multi-table',
+                'rowTitle': ['抗Sm抗体', '抗U1RNP抗体', '抗SSA抗体', '抗SSB抗体',
+                    '抗Scl-70抗体', '抗Jo-1抗体', '抗rRNP抗体', '抗DE抗体', '抗DE抗体',
+                    '抗RA-54抗体', '抗DM-53抗体', '抗核抗体(1:100)', '抗DNA抗体'],
+                'columnTitle': ['入院时', '第二次检查'],
+                'startStr': 'eeik',
+                'idStyle': 2
             },
             {
                 'id2': 'eeil',
@@ -5632,7 +5684,12 @@ export class QuestionList {
                 'id2': '',
                 'id1': '5.5.15.1',
                 'hidden': false,
-                'type': 'table5515'
+                'type': 'multi-table',
+                'rowTitle': ['TPO过氧化物酶自身抗体(U/Ml)', 'T4甲状腺素(ug/dL)', 'T3三碘甲腺原氨酸(ng/ml)', 'FT4游离甲状腺素',
+                    'FT3游离三碘甲腺原氨酸(pmol/L)', 'h-TSH促甲状腺激素(uIU/ml)', 'TGAB甲状腺球蛋白抗体(%)', 'TMAB甲状腺微粒体抗体(%)'],
+                'columnTitle': ['入院时', '第二次检查'],
+                'startStr': 'eeil',
+                'idStyle': 2
             }
         ],
         [

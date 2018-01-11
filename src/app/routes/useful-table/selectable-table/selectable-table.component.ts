@@ -5,27 +5,32 @@
  * Created by th3ee on 1/9/18.
  */
 import { Component, OnInit } from '@angular/core';
+import { Question } from '../../survey-management/shared/question';
 
 @Component({
     selector: 'app-selectable-table',
     templateUrl: './selectable-table.component.html'
 })
-export class SelectableTableComponent implements OnInit {
+export class SelectableTableComponent extends Question implements OnInit {
 
-    radioStr = 'eei';
+    radioStr: string;
     column: number;
     row: number;
     letterArray = [];
     initialArray = [];
     idArray = [];
-    rowTitle = ['ESR', 'hsCRP', 'pro-BNP', 'ACA', 'ANC', 'HCY(mmol/l)'];
-    columnTitle = ['入院时', '第二次检查'];
+    rowTitle: Array<any>;
+    columnTitle: Array<any>;
     changedAnswer = [];
 
-    constructor() { }
+    constructor() {
+        super();
+    }
 
     ngOnInit() {
-
+        this.radioStr = this.question.startStr;
+        this.rowTitle = this.question.rowTitle;
+        this.columnTitle = this.question.columnTitle;
         this.column = this.columnTitle.length;
         this.row = this.rowTitle.length;
         for (let i = 97; i < 97 + this.row; i++) {

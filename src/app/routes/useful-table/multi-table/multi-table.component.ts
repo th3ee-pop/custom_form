@@ -2,34 +2,41 @@
  * Created by th3ee on 1/9/18.
  */
 import { Component, OnInit } from '@angular/core';
+import { Question } from '../../survey-management/shared/question';
 
 @Component({
     selector: 'app-multi-table',
     templateUrl: './multi-table.component.html'
 })
-export class MultiTableComponent implements OnInit {
+export class MultiTableComponent extends Question implements OnInit {
 
-    startStr = 'ee';
+    startStr: string;
     column: number;
     row: number;
     letterArray = [];
     initialArray = [];
     idArray = [];
-    rowTitle = ['第一次', '第二次', '第三次', '第四次', '第五次', '第六次', '第七次', '第八次', '第九次', '第十次'];
-    columnTitle = ['RBC', 'WBC', 'Hb', 'PLT109/', 'NEUT', 'NEUT%', 'LYMPH', 'LYMPH%', 'MONO', 'MONO%'];
+    rowTitle: Array<any>;
+    columnTitle: Array<any>;
     changedAnswer = [];
+    idStyle = 1;
 
-    constructor() { }
+    constructor() {
+        super();
+    }
 
     ngOnInit() {
-
+        this.startStr = this.question.startStr;
+        this.rowTitle = this.question.rowTitle;
+        this.columnTitle = this.question.columnTitle;
+        this.idStyle = this.question.idStyle;
         this.column = this.columnTitle.length;
         this.row = this.rowTitle.length;
         for (let i = 97; i < 97 + this.column; i++) {
             this.letterArray.push(String.fromCharCode(i));
         }
         this.initArray();
-        this.initId();
+        this.initId(this.idStyle);
         console.log(this.letterArray);
         console.log(this.initialArray);
         console.log(this.idArray);
@@ -44,12 +51,21 @@ export class MultiTableComponent implements OnInit {
         }
     }
 
-    initId() {
-        for (let row = 0; row < this.row; row++) {
-            this.idArray.push([]);
-            this.letterArray.forEach(l => {
-                this.idArray[row].push(this.startStr + (row + 1) + l);
-            });
+    initId(idStyle: number) {
+        if (idStyle === 1) {
+            for (let row = 0; row < this.row; row++) {
+                this.idArray.push([]);
+                this.letterArray.forEach(l => {
+                    this.idArray[row].push(this.startStr + (row + 1) + l);
+                });
+            }
+        } else if (idStyle === 2) {
+            for (let row = 0; row < this.row; row++) {
+                this.idArray.push([]);
+                for (let column = 0; column < this.column; column++) {
+                    this.idArray[row].push(this.startStr + this.letterArray[row] + column);
+                }
+            }
         }
     }
 

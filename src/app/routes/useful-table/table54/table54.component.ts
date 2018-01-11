@@ -1,22 +1,14 @@
-/**
- * Created by th3ee on 1/10/18.
- */
-/**
- * Created by th3ee on 1/10/18.
- */
-/**
- * Created by th3ee on 1/10/18.
- */
 import { Component, OnInit } from '@angular/core';
+import { Question } from '../../survey-management/shared/question';
 
 @Component({
     selector: 'app-table54',
     templateUrl: './table54.component.html'
 })
-export class Table54Component implements OnInit {
+export class Table54Component extends Question implements OnInit {
 
     changedAnswer = [];
-    answerArray = ['', '', '', '', '', '', '', '', '', '',
+    initialArray = ['', '', '', '', '', '', '', '', '', '',
         '', '',
         '',
         '', '', '',
@@ -42,7 +34,9 @@ export class Table54Component implements OnInit {
         'ed11a', 'ed11b'
     ];
 
-    constructor() { }
+    constructor() {
+        super();
+    }
 
     ngOnInit() {
     }
@@ -57,11 +51,11 @@ export class Table54Component implements OnInit {
     }
 
     setAnswer() {
-      for (let i = 0; i < this.answerArray.length; i++) {
-          if (this.answerArray[i] !== '') {
+      for (let i = 0; i < this.initialArray.length; i++) {
+          if (this.initialArray[i] !== '') {
               this.changedAnswer.push({
                   id: this.idArray[i],
-                  value: this.answerArray[i]
+                  value: this.initialArray[i]
               });
           }
       }

@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Question } from '../../survey-management/shared/question';
 
 @Component({
   selector: 'app-example',
   templateUrl: './example.component.html',
   styleUrls: ['./example.component.less']
 })
-export class ExampleComponent implements OnInit {
+export class ExampleComponent extends Question implements OnInit {
 
     startStr = 'ea';
     column = 20;
@@ -21,7 +22,9 @@ export class ExampleComponent implements OnInit {
     overallId = ['ea7a1', 'ea7a2', 'ea7a3', 'ea7a4'];
     overallContent = ['', '', '', ''];
 
-  constructor() { }
+  constructor() {
+      super();
+  }
 
   ngOnInit() {
 
