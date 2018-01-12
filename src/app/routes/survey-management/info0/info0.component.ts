@@ -22,6 +22,7 @@ export class Info0Component implements OnInit, AfterViewInit  {
     questions = new QuestionList().questions;
     questionList = [];     // 问题总列表
     resultList = [];                                    // 填写结果
+    PID = '';                                           // PID
     finished = false;
     answerList = [];
     buttondisable = false;
@@ -33,14 +34,19 @@ export class Info0Component implements OnInit, AfterViewInit  {
       private service: HttpService,
       private confirmServ: NzModalService,
       private ref: ChangeDetectorRef
-  ) { }
+  ) {
+      this.PID = this.route.params['value']['PID'];
+  }
 
   ngOnInit() {
-      this.questionList = this.questions[0];
-      console.log(this.questionList);
+          this.questionList = this.questions[0];
+          console.log(this.questionList);
   }
 
     ngAfterViewInit() {
+        if ( this.PID ) {
+            this.fillingAllanswer();
+        }
     }
 
     onVoted (showAndhidden: any) {
@@ -65,7 +71,16 @@ export class Info0Component implements OnInit, AfterViewInit  {
         if (this.confirm().confirms) {
             this.collectAllanswer();
             let putRecord = {};
-            this.router.navigate(['system/survey/info2']);
+            if (!this.PID)  putRecord = { 'PID': '','Records' : this.resultList };
+            else putRecord = { 'PID': this.PID, 'Records' : this.resultList };
+            console.log(this.resultList);
+            this.service.putRecord(putRecord).subscribe( (res) => {
+                this.PID = res.PID;
+                console.log(res);
+            // this.router.navigate(['system/survey/info1']); // 添加跳转
+            }, err => {
+                console.log(err);
+            });
         }else {
             let str = '';
             for ( let i = 0; i < this.confirm().confirmList.length; i++) {
@@ -88,7 +103,7 @@ export class Info0Component implements OnInit, AfterViewInit  {
             confirms = false; confirmlist.push(item.question.id1);
         }});
         this.IdcItems.forEach( item => { if ( item.question.hidden === false && item.answerChanged === false) {
-            confirms = false; confirmlist.push(item.question.id);
+            confirms = false; confirmlist.push(item.question.id1);
         }});
         const confirmAll = {
             confirms: confirms,
@@ -135,14 +150,72 @@ export class Info0Component implements OnInit, AfterViewInit  {
         this.RadioItems.forEach(item => {
             item.editdisabled = true;
         });
+        this.IdcItems.forEach(item => {
+            item.editdisabled = true;
+        });
     }
 
     fillingAllanswer() {
-      console.log("fill in");
+        console.log("fill in");
+        const getRecord = {
+            'PID': this.PID
+        };
+        this.service.getRecord(getRecord).subscribe((res) => {
+            this.fillingList = res.Records;
+            this.InputItems.forEach(item => {
+                for (let i = 0; i < this.fillingList.length; i++) {
+                    let id = item.question.id2;
+                    if (this.fillingList[i][id] && this.fillingList[i][id] !== '') {
+                        item.localAnswer = this.fillingList[i][id];
+                    }
+                    if (this.fillingList[i][id] === 0) {
+                        item.localAnswer = '0';
+                    }
+                }
+            });
+            this.IdcItems.forEach( item => { for (let i = 0; i < this.fillingList.length; i++) {
+                if (this.fillingList[i]['Idnumber'] && this.fillingList[i]['Idnumber'] !== '') {
+                    item.localAnswer = this.fillingList[i]['Idnumber']; }
+            }});
+            this.RadioItems.forEach(item => {
+                for (let i = 0; i < this.fillingList.length; i++) {
+                    for (let j = 1; j <= item.question.content.length; j++) {
+                        const id = item.question.id2;
+                        if (this.fillingList[i][id] && this.fillingList[i][id] !== '') {
+                            item.localAnswer = this.fillingList[i][id]-1;
+                        }
+                    }
+                }
+            });
+        }, error => {
+            console.log(error);
+        });
     }
 
     temporary_deposit(){
+        let allow = true;
+        if (allow) {
+            this.collectAllanswer();
+            let putRecord = {};
+            if (this.PID ) {
+                putRecord = { 'Records' : this.resultList, 'PID' : this.PID };
+            }else {
+                putRecord = { 'Records' : this.resultList, 'PID' : '' };
+            }
+            this.service.putRecord(putRecord).subscribe( (res) => {
+                // this.router.navigate(['system/survey/detail/']);
+            }, err => { });
+        }else {
+            this.confirmServ.error({
+                title: '保存出错！',
+                content: '如果您想退出，请点击退出按钮！'
+            });
+        }
+    }
 
+    exit() {                                            // 退出
+        console.log("exit!");
+        // this.router.navigate( ['system/survey/detail/']);
     }
 
 }

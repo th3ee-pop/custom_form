@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
     styleUrls: ['./idccmp.component.css']
 })
 export class IdccmpComponent extends Question {
-    localAnswer = ''; // 存储数据
+    localAnswer; // 存储数据
     answerChanged = false;
     validateForm: FormGroup;
     editdisabled = false;
@@ -50,7 +50,7 @@ export class IdccmpComponent extends Question {
             Record_ID: '',
             Record_Value: ''
         }
-        const questionID = this.question.id1 ;
+        const questionID = this.question.id2 ;
         tem.Record_ID = questionID;
         tem.Record_Value = this.localAnswer;
         res.push(tem);
