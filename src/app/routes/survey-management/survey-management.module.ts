@@ -76,7 +76,7 @@ const routes: Routes = [
         Info3Component,
         Info4Component,
         Info5Component,
-        Info7Component
+        Info7Component,
         Info6Component,
         Table64Component
     ],
