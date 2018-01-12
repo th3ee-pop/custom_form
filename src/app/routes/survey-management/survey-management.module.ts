@@ -34,14 +34,14 @@ import { Table64Component } from './shared/tablecmp/table64/table64.component';
 const routes: Routes = [
     { path: 'detail', component: SurveyOverviewComponent  },
     { path: 'info0', component: Info0Component  },
-    { path: 'info1', component: Info1Component },
+    { path: 'info1/:PID', component: Info1Component },
     { path: 'info0/:PID', component: Info0Component  },
-    { path: 'info2', component: Info2Component  },
-    { path: 'info3', component: Info3Component },
-    { path: 'info4', component: Info4Component },
-    { path: 'info5', component: Info5Component },
-    { path: 'info6', component: Info6Component },
-    { path: 'info7', component: Info7Component }
+    { path: 'info2/:PID', component: Info2Component  },
+    { path: 'info3/:PID', component: Info3Component },
+    { path: 'info4/:PID', component: Info4Component },
+    { path: 'info5/:PID', component: Info5Component },
+    { path: 'info6/:PID', component: Info6Component },
+    { path: 'info7/:PID', component: Info7Component }
 ];
 
 @NgModule({

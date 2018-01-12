@@ -9,7 +9,6 @@ import {NzModalService} from 'ng-zorro-antd';
 import {InputcmpComponent} from '../shared/inputcmp/inputcmp.component';
 import {RadiocmpComponent} from '../shared/radiocmp/radiocmp.component';
 
-import {QuestionList} from '../shared/ql';
 import {ScheduleList} from '../shared/scheduleList';
 
 @Component({
@@ -23,13 +22,13 @@ export class Info1Component implements OnInit, AfterViewInit {
     @ViewChildren(RadiocmpComponent) RadioItems: QueryList<RadiocmpComponent>
 
     current = 1;
-    questions = new QuestionList().questions;
-    questionSave = this.questions; // 用来传到后端
+    questionSave = []; // 用来传到后端
     questionList = []
     schedule_list = new ScheduleList().schedule_list; // 步骤条的list
     resultList = [];                                  // 用于封装答案
     PID = '';
     fillingList = [];                                 // 用于从后端获取答案
+    answerList = [];
     putRecord = {};
     constructor(
         private router: Router,
@@ -38,13 +37,35 @@ export class Info1Component implements OnInit, AfterViewInit {
         private confirmServ: NzModalService,
         private ref: ChangeDetectorRef
     ) {
+        this.PID = this.route.params['value']['PID'];
+        if (this.PID) {
+            const getRecord = {
+                'PID': this.PID
+            };
+            this.service.getRecord(getRecord).subscribe( (res) => {
+                const list = res.Records;
+                this.answerList = list;
+                for ( let i = 0; i < list.length; i++) {
+                    if ( list[i]['questionlist'] && list[i]['questionlist'] !== '') {
+                        this.questionList = list[i]['questionlist'][this.current];
+                        this.questionSave = list[i]['questionlist'];
+                        break;
+                    }
+                }
+            });
+        }
+    }
 
-    }
     ngOnInit() {
-        this.questionList = this.questionSave[this.current];
     }
+
     ngAfterViewInit() {
+        if (this.PID) {
+            this.fillingAllanswer();
+        }
     }
+
+    /** 事件处理 **/
     onVoted (showAndhidden: any) {
         for ( let i = 0; i <  showAndhidden.hiddenshowlist.length; i++) {
             for ( let j = 0; j < this.questionList.length; j++) {
@@ -61,13 +82,14 @@ export class Info1Component implements OnInit, AfterViewInit {
             }
         }
     }
+
+    /** 下一步 **/
     next() {
         if (this.confirm().confrims) {
             this.initPutRecord()
-            console.log(this.putRecord);
-            /*
-            * 在此处调用API 发送请求
-            * */
+            this.service.putRecord(this.putRecord).subscribe( (res) => {
+                this.router.navigate(['system/survey/info2/' + this.PID]);
+            });
         } else {
             let str = '';
             this.confirm().confirmsList.forEach( item => {
@@ -79,21 +101,29 @@ export class Info1Component implements OnInit, AfterViewInit {
             });
         }
     }
+
+    /** 暂存 **/
     temporary_deposit() {
         this.initPutRecord();
-        console.log(this.putRecord);
-        /*
-        * 在此处调用API 发送请求
-        * */
+        this.service.putRecord(this.putRecord).subscribe( (res) => {
+            this.router.navigate( ['system/survey/detail/']);
+        }, error => { });
     }
+
+    /** 退出 **/
     exit () {
         this.router.navigate( ['system/survey/detail/']);
     }
+
+    /** 返回上一步 **/
     pre() {
         this.initPutRecord();
-        console.log(this.putRecord);
+        this.service.putRecord(this.putRecord).subscribe( (res) => {
+        }, error => { });
+        this.router.navigate( ['system/survey/info0/' + this.PID]);
     }
 
+    /** 封装答案和请求参数 **/
     initPutRecord() {
         this.collecAllanswer()
         if (this.PID) {
@@ -102,6 +132,8 @@ export class Info1Component implements OnInit, AfterViewInit {
             this.putRecord = { 'Records': this.resultList };
         }
     }
+
+    /** 表单验证 **/
     confirm() {
         const confirmlist = [];
         let confirms = true;
@@ -120,6 +152,7 @@ export class Info1Component implements OnInit, AfterViewInit {
         return confirmAll;
     }
 
+    /** 收集答案 **/
     collecAllanswer() {
         this.RadioItems.forEach(item => {
             if (item.answerChanged === true) {
@@ -136,9 +169,52 @@ export class Info1Component implements OnInit, AfterViewInit {
                 }
             }
         });
+        this.resultList.push(
+            {'Record_ID': 'questionlist', 'Record_Value': this.questionSave }
+        );
+        for (let i = 0; i < this.fillingList.length; i++) {
+            for (let j = 0; j < this.resultList.length; j++) {
+                const id = this.resultList[j].Record_ID;
+                if (this.fillingList[i][id] || this.fillingList[i][id] === 0) {
+                    this.resultList[j]['Updated_time'] = this.fillingList[i]['Updated_time'];
+                }
+            }
+        }
     }
+
+    /** 回填答案 **/
     fillingAllanswer() {
-
+        const getRecord = {
+            'PID': this.PID
+        };
+        this.service.getRecord(getRecord).subscribe(
+            (res) => {
+                this.fillingList = res.Records;
+                if (this.fillingList && this.fillingList.length !== 0) {
+                    this.InputItems.forEach(item => {
+                        this.fillingList.forEach( fl => {
+                            const id = item.question.id2;
+                            console.log(fl[id])
+                            if (fl[id] && fl[id] !== '') {
+                                item.localAnswer = fl[id];
+                            }
+                            if (fl[id] === 0) {
+                                item.localAnswer = '0';
+                            }
+                        });
+                    });
+                }
+                this.RadioItems.forEach(item => {
+                    this.fillingList.forEach( fl => {
+                        const id = item.question.id2;
+                        if (fl[id] && fl[id] !== '') {
+                            item.localAnswer = fl[id] - 1;
+                        }
+                    });
+                });
+            }, error => {
+                console.log(error);
+            }
+        );
     }
-
 }
