@@ -22,6 +22,7 @@ import { Info3Component } from './info3/info3.cpomponent';
 import { Info4Component } from './info4/info4.cpomponent';
 import { Info6Component } from './info6/info6.component';
 import { Info7Component} from './info7/info7.cpomponent';
+import { Table64Component } from './shared/tablecmp/table64/table64.component';
 
 const routes: Routes = [
     { path: 'detail', component: SurveyOverviewComponent  },
@@ -60,7 +61,8 @@ const routes: Routes = [
         Info3Component,
         Info4Component,
         Info6Component,
-        Info7Component
+        Info7Component,
+        Table64Component
     ],
     providers: [
         RecordResolverGuard

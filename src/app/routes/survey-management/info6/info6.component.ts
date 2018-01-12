@@ -8,6 +8,7 @@ import {RadiocmpComponent} from '../shared/radiocmp/radiocmp.component';
 
 import {QuestionList} from '../shared/ql';
 import {ScheduleList} from '../shared/scheduleList';
+import {Table64Component} from "../shared/tablecmp/table64/table64.component";
 
 @Component({
   selector: 'app-info6',
@@ -18,6 +19,8 @@ export class Info6Component implements OnInit {
 
     @ViewChildren(InputcmpComponent) InputItems: QueryList<InputcmpComponent>;
     @ViewChildren(RadiocmpComponent) RadioItems: QueryList<RadiocmpComponent>;
+    @ViewChildren(Table64Component) Table64Item: QueryList<Table64Component>;
+
     current = 6;
     questions = new QuestionList().questions;
     questionSave = this.questions; // 用来传到后端
@@ -88,7 +91,7 @@ export class Info6Component implements OnInit {
         console.log(this.putRecord);
     }
     initPutRecord() {
-        this.collecAllanswer()
+        this.collecAllanswer();
         if (this.PID) {
             this.putRecord = { 'Records': this.resultList, 'PID': this.PID };
         }else {
@@ -103,6 +106,10 @@ export class Info6Component implements OnInit {
             confirmlist.push(item.question.id1);
         }});
         this.RadioItems.forEach(item => { if (item.question.hidden === false && item.answerChanged === false) {
+            confirms = false;
+            confirmlist.push(item.question.id1);
+        }});
+        this.Table64Item.forEach(item => { if (item.question.hidden === false && item.answerChanged === false) {
             confirms = false;
             confirmlist.push(item.question.id1);
         }});
@@ -128,7 +135,15 @@ export class Info6Component implements OnInit {
                 }
             }
         });
+        this.Table64Item.forEach(item => {
+            if (item.answerChanged === true) {
+                for (let i = 0; i < item.answer.length; i++) {
+                    this.resultList.push(item.answer[i]);
+                }
+            }
+        })
     }
+
     fillingAllanswer() {
       // this.service.getRecord()
     }

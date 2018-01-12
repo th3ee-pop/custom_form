@@ -36,28 +36,11 @@ export class Info0Component implements OnInit, AfterViewInit  {
       private ref: ChangeDetectorRef
   ) {
       this.PID = this.route.params['value']['PID'];
-      // if( this.PID ){
-      //     const  getRecord = {
-      //         'PID': this.PID
-      //     };
-      //     this.service.getRecord(getRecord).subscribe((res) => {
-      //         const list = res.Records;
-      //         console.log('this is answerlist',list);
-      //         this.answerList = list;
-      //         for ( let i = 0; i < list.length; i++) {
-      //             if (list[i]['ID0_0'] && list[i]['ID0_0'] !== '') {
-      //                 this.questionList = list[i]['ID0_0'][0];
-      //             }
-      //     }
-      //     })
-      // }
   }
 
   ngOnInit() {
-      // if ( !this.PID ) {
           this.questionList = this.questions[0];
           console.log(this.questionList);
-      // }
   }
 
     ngAfterViewInit() {

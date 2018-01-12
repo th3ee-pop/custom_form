@@ -5657,7 +5657,7 @@ export class QuestionList {
             {
                 'id2': 'gb',
                 'id1': '6.3',
-                'type': 'table63',
+                'type': 'table63',//selectable-table
                 'title': '术前用药',
                 'hidden': false
             },
@@ -5671,7 +5671,7 @@ export class QuestionList {
             {
                 'id2': 'gd',
                 'id1': '6.5',
-                'type': 'table64',//selectable-table + gdf
+                'type': 'table65',//selectable-table + gdf
                 'title': '术后用药',
                 'hidden': false
             },
