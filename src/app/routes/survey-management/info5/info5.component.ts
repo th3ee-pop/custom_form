@@ -42,43 +42,64 @@ export class Info5Component implements OnInit, AfterViewInit {
     questionSave = this.questions; // 用来传到后端
     questionList = []
     schedule_list = new ScheduleList().schedule_list; // 步骤条的list
-    resultList = [];                                  // 用于封装答案
+    resultList = [];
+    answerList = [];
     PID = '';
     fillingList = [];                                 // 用于从后端获取答案
     putRecord = {};
-    constructor(
-        private router: Router,
-        private route: ActivatedRoute,
-        private service: HttpService,
-        private confirmServ: NzModalService,
-        private ref: ChangeDetectorRef
-    ) {
 
+    constructor(private router: Router,
+                private route: ActivatedRoute,
+                private service: HttpService,
+                private confirmServ: NzModalService,
+                private ref: ChangeDetectorRef) {
+
+        this.PID = this.route.params['value']['PID'];
+        if (this.PID) {
+            const getRecord = {
+                'PID': this.PID
+            };
+        this.service.getRecord(getRecord).subscribe((res) => {
+            const list = res.Records;
+            console.log(res);
+            this.answerList = list;
+            for (let i = 0; i < list.length; i++) {
+                if (list[i]['questionlist'] && list[i]['questionlist'] !== '') {
+                    this.questionList = list[i]['questionlist'][this.current];
+                    this.questionSave = list[i]['questionlist'];
+                    break;
+                }
+            }
+        });
     }
+}
     ngOnInit() {
         this.questionList = this.questionSave[this.current];
     }
     ngAfterViewInit() {
     }
     onVoted (showAndhidden: any) {
+        console.log(showAndhidden);
         for ( let i = 0; i <  showAndhidden.hiddenshowlist.length; i++) {
             for ( let j = 0; j < this.questionList.length; j++) {
                 if ( this.questionList[j].id1 === showAndhidden.hiddenshowlist[i] ) {
-                    this.questionList[j]['hidden'] = false;
+                    this.questionList[j].hidden = false;
                 }
             }
         }
         for (let i = 0; i < showAndhidden.hiddenlist.length; i++) {
             for ( let j = 0; j < this.questionList.length; j++) {
                 if ( this.questionList[j].id1 === showAndhidden.hiddenlist[i] ) {
-                    this.questionList[j]['hidden'] = true;
+                    console.log(this.questionList[j]);
+                    this.questionList[j].hidden = true;
+                    console.log(this.questionList[j]);
                 }
             }
         }
     }
     next() {
         if (this.confirm().confrims) {
-            this.initPutRecord()
+            this.initPutRecord();
             console.log(this.putRecord);
             /*
              * 在此处调用API 发送请求
@@ -136,21 +157,65 @@ export class Info5Component implements OnInit, AfterViewInit {
     }
 
     collecAllanswer() {
+        this.resultList = [];
         this.RadioItems.forEach(item => {
             if (item.answerChanged === true) {
                 for (let i = 0; i < item.answer.length; i++) {
+                    console.log(item.answer);
                     this.resultList.push(item.answer[i]);
                 }
             }
         });
         this.InputItems.forEach(item => {
             if (item.answerChanged === true) {
-                console.log( item.answer );
                 for (let i = 0; i < item.answer.length; i++) {
                     this.resultList.push(item.answer[i]);
                 }
             }
         });
+        this.ExampleItems.forEach(item => {
+            item.getAnswer();
+            item.changedAnswer.forEach(d => {
+                this.resultList.push(d);
+            });
+        });
+        this.MultiTableItems.forEach(item => {
+            item.getAnswer();
+            item.changedAnswer.forEach(d => {
+                this.resultList.push(d);
+            });
+        });
+        this.SelectableTableItems.forEach(item => {
+            item.getAnswer();
+            item.changedAnswer.forEach(d => {
+                this.resultList.push(d);
+            });
+        });
+        this.Table52Items.forEach(item => {
+            item.getAnswer();
+            item.changedAnswer.forEach(d => {
+                this.resultList.push(d);
+            });
+        });
+        this.Table53Items.forEach(item => {
+            item.getAnswer();
+            item.changedAnswer.forEach(d => {
+                this.resultList.push(d);
+            });
+        });
+        this.Table54Items.forEach(item => {
+            item.getAnswer();
+            item.changedAnswer.forEach(d => {
+                this.resultList.push(d);
+            });
+        });
+        this.Table55Items.forEach(item => {
+            item.getAnswer();
+            item.changedAnswer.forEach(d => {
+                this.resultList.push(d);
+            });
+        });
+        console.log(this.resultList);
     }
     fillingAllanswer() {
 

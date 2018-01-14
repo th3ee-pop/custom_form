@@ -31,7 +31,7 @@ export class SelectableTableComponent extends Question implements OnInit {
     ngOnInit() {
         console.log(this.question.hidden);
         this.title = this.question.title;
-        this.radioStr = this.question.startStr;
+        this.radioStr = this.question.radioStr;
         this.rowTitle = this.question.rowTitle;
         this.columnTitle = this.question.columnTitle;
         this.column = this.columnTitle.length;
@@ -64,6 +64,7 @@ export class SelectableTableComponent extends Question implements OnInit {
                 this.idArray[row].push(this.radioStr + this.letterArray[row] + column);
             }
         }
+        console.log(this.idArray);
     }
 
 
@@ -75,8 +76,22 @@ export class SelectableTableComponent extends Question implements OnInit {
 
     setAnswer(blank: any, idArray: any, row: number, column: number) {
             for (let i = 0; i < row; i++) {
-                if (blank[i][0] === false) {
-                } else {
+                if (blank[i][0] === -1) {
+                } else if (blank[i][0] === 1) {
+                    for (let j = 0; j < column + 1; j++) {
+                        if (j === 0) {
+                            this.changedAnswer.push({
+                                id2: idArray[i][j],
+                                value: blank[i][j]
+                            });
+                        } else {
+                                this.changedAnswer.push({
+                                    id2: idArray[i][j],
+                                    value: ''
+                                });
+                            }
+                        }
+                    } else {
                     for (let j = 0; j < column + 1; j++) {
                         if (blank[i][j] !== '') {
                             this.changedAnswer.push({
