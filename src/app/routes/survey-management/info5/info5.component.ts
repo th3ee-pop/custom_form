@@ -63,14 +63,14 @@ export class Info5Component implements OnInit, AfterViewInit {
     onVoted (showAndhidden: any) {
         for ( let i = 0; i <  showAndhidden.hiddenshowlist.length; i++) {
             for ( let j = 0; j < this.questionList.length; j++) {
-                if ( this.questionList[j].id === showAndhidden.hiddenshowlist[i] ) {
+                if ( this.questionList[j].id1 === showAndhidden.hiddenshowlist[i] ) {
                     this.questionList[j]['hidden'] = false;
                 }
             }
         }
         for (let i = 0; i < showAndhidden.hiddenlist.length; i++) {
             for ( let j = 0; j < this.questionList.length; j++) {
-                if ( this.questionList[j].id === showAndhidden.hiddenlist[i] ) {
+                if ( this.questionList[j].id1 === showAndhidden.hiddenlist[i] ) {
                     this.questionList[j]['hidden'] = true;
                 }
             }
