@@ -15,7 +15,7 @@ export class RadiocmpComponent extends Question {
      */
     localAnswer = -1;
     @Output() onVoted = new EventEmitter< any >();
-    // @Output() onVotedShow = new EventEmitter<any [] >();
+
     /**
      * 存储问题是否填写的变量,默认false
      */
@@ -42,20 +42,15 @@ export class RadiocmpComponent extends Question {
             Record_Value: -1
         };
         if (this.localAnswer !== -1) {
-            // console.log(this.localAnswer);
-            // const questionID = 'ID' + this.question.id.replace(/\./g , '_') + '_' + (this.localAnswer + 1);
             const questionID = this.question.id2;
             tem.Record_ID = questionID;
-            tem.Record_Value = this.localAnswer+1;
+            tem.Record_Value = this.localAnswer + 1;
             res.push(tem);
             this.answer = res;
         }
-
-
         const hiddenshowlist = [];
         for (let i = 0; i < this.question.content.length; i++) {
             if ( this.localAnswer !== i) {
-                console.log(this.question);
                 if (this.question.hiddenlist.length !== 0)
                     if ( this.question.hiddenlist[i].length !== 0) {
                         for ( let j = 0; j < this.question.hiddenlist[i].length; j++) {
@@ -65,9 +60,10 @@ export class RadiocmpComponent extends Question {
             }
         }
         if ( this.question.hiddenlist.length !== 0)
-            if (this.question.hiddenlist[this.localAnswer].length !== 0 || hiddenshowlist.length !== 0) {
-                this.vote(this.question.hiddenlist[this.localAnswer], hiddenshowlist);
-            }
+            if ( this.localAnswer !== -1)
+                if (this.question.hiddenlist[this.localAnswer].length !== 0 || hiddenshowlist.length !== 0) {
+                    this.vote(this.question.hiddenlist[this.localAnswer], hiddenshowlist);
+                }
         if ( this.localAnswer !== -1 )  this.answerChanged =  true;
     }
 }

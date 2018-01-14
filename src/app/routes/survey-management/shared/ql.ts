@@ -28,10 +28,10 @@ export class QuestionList {
             {
                 'id2': 'Idnumber',
                 'id1': '0.3',
-                'type': 'input',
+                'type': 'idc',
                 'content': {
                     'datatype': 'text',
-                    'validtype': '',
+                    'validtype': 'idc',
                     'information': ''
                 },
                 'title': '身份证号',
@@ -997,7 +997,7 @@ export class QuestionList {
                 'type': 'radio',
                 'title': '大小便：小便',
                 'content': ['正常', '异常'],
-                'hiddenlist': [['2.14.1']],
+                'hiddenlist': [ ['2.14.1'], []],
                 'hidden': false
             },
             {
@@ -5652,7 +5652,7 @@ export class QuestionList {
                 'type': 'multi-table',
                 'title': '肿瘤系列',
                 'rowTitle': ['AFP(甲胎蛋白)', 'CEA(癌胚抗原)', 'CA-125(唐抗原125)', 'CA-199(唐抗原199)',
-                'NSE(神经元特异性烯醇化酶)', 'PSA-Free(游离前列腺抗体)', 'CYFRA21-1(细胞角蛋白19片段)', '铁蛋白'],
+                    'NSE(神经元特异性烯醇化酶)', 'PSA-Free(游离前列腺抗体)', 'CYFRA21-1(细胞角蛋白19片段)', '铁蛋白'],
                 'columnTitle': ['入院时', '第二次检查'],
                 'startStr': 'eeij',
                 'idStyle': 2
@@ -5711,19 +5711,19 @@ export class QuestionList {
                     '否',
                     '是'
                 ],
-                'hiddenlist': [["6.2"],[]],
+                'hiddenlist': [['6.2'], []],
                 'hidden': false
             },
             {
                 'id2': 'ga',
                 'id1': '6.2',
-                'type': 'table62',//selectable-table
+                'type': 'table62', // selectable-table
                 'title': '入院前治疗情况',
             },
             {
                 'id2': 'gb',
                 'id1': '6.3',
-                'type': 'table63',//selectable-table
+                'type': 'table63', // selectable-table
                 'title': '术前用药',
                 'hidden': false
             },
@@ -5737,7 +5737,7 @@ export class QuestionList {
             {
                 'id2': 'gd',
                 'id1': '6.5',
-                'type': 'table65',//selectable-table + gdf
+                'type': 'table65', // selectable-table + gdf
                 'title': '术后用药',
                 'hidden': false
             },

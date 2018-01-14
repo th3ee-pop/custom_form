@@ -6,7 +6,7 @@ import {NzModalService} from 'ng-zorro-antd';
 import {InputcmpComponent} from '../shared/inputcmp/inputcmp.component';
 import {RadiocmpComponent} from '../shared/radiocmp/radiocmp.component';
 import {IdccmpComponent} from '../shared/idccmp/idccmp.component';
-import {QuestionList} from '../shared/questionList';
+import {QuestionList} from '../shared/ql';
 
 @Component({
     selector: 'app-info0',
@@ -52,13 +52,12 @@ export class Info0Component implements OnInit, AfterViewInit  {
                     }
                 }
             });
+        } else {
+            this.questionList = this.questions[this.current];
         }
     }
-
     ngOnInit() {
-        if (!this.PID)
-            this.questionList = this.questions[this.current];
-        console.log(this.questionList);
+
     }
 
     ngAfterViewInit() {
@@ -146,6 +145,7 @@ export class Info0Component implements OnInit, AfterViewInit  {
             if (item.answerChanged === true) { for ( let i = 0; i < item.answer.length; i++) { this.resultList.push(item.answer[i]); } }
         });
 
+        this.questionSave[this.current] = this.questionList;
         this.resultList.push(
             {'Record_ID': 'questionlist', 'Record_Value': this.questionSave}
         );
@@ -181,7 +181,6 @@ export class Info0Component implements OnInit, AfterViewInit  {
         this.service.getRecord(getRecord).subscribe((res) => {
 
             this.fillingList = res.Records;
-
             this.InputItems.forEach(item => {
                 for (let i = 0; i < this.fillingList.length; i++) {
                     const id = item.question.id2;
