@@ -14,16 +14,30 @@ export class Table64Component extends Question implements OnInit {
 
     mazui = ["局麻+心电血压监护", "全麻+心电血压监护"];
     gca = -1;
-    gcd;
+    gcb;
+    gcd;gcq;
     chuanci = ["足背静脉", "股静脉", "股动脉"];
-    rawname = ["胫后静脉","胫前静脉","腓静脉","腘静脉","股浅静脉","股静脉","髂静脉","髂外静脉","髂总静脉","大隐静脉","下腔静脉"];
-    shenjm = ["否", "是"];
+    rawname1 = ["胫后静脉","胫前静脉","腓静脉","腘静脉","股浅静脉","股静脉","髂静脉","髂外静脉","髂总静脉","大隐静脉","下腔静脉"];
+    rawname2 = ["肺动脉主干压力","右肺动脉","左肺动脉","肺楔压","右室压力","右房压力"];
+    tf = ["否", "是"];
+    gcp;
+    gcpa1;gcpa2;gcpa3;gcpa4;
+    gcpb1;gcpb2;gcpb3;gcpb4;
+    jmpart = ["腰1", "腰2"];
+    gcw;
+    gcwa;
+    gcx = ["Trapease", "Tulip", "Optease"];
+    gcy = ["股静脉置管","腘静脉置管","股动脉置管","肺动脉置管"];
+    gcz = ["过敏反应","呼吸困难","出血、穿刺意外","其他"];
+    gcz4;
 
   constructor() { super(); }
 
   ngOnInit() {
-      this.gcd = new Array(this.rawname.length);
-      for (let i = 0; i < this.gcd.length; i++) { this.gcd[i] = new Array(this.question.id2[0].length); }
+      this.gcd = new Array(this.rawname1.length);
+      for (let i = 0; i < this.gcd.length; i++) { this.gcd[i] = new Array(2); }
+      this.gcq = new Array(this.rawname2.length);
+      for (let i = 0; i < this.gcq.length; i++) { this.gcq[i] = new Array(2); }
   }
 
     answerChange() {

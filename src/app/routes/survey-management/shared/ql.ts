@@ -5711,111 +5711,368 @@ export class QuestionList {
                     '否',
                     '是'
                 ],
-                'hiddenlist': [["6.2"],[]],
+                'hiddenlist': [["6.1.2","6.1.1"],[]],
                 'hidden': false
             },
             {
                 'id2': 'ga',
-                'id1': '6.2',
-                'type': 'table62',//selectable-table
-                'title': '入院前治疗情况',
+                'id1': '6.1.1',
+                'type': 'selectable-table',
+                'rowTitle': ['低分子肝素', '华法林', '尿激酶'],
+                'columnTitle': ['剂量', '用法', '频次', '用药时间'],
+                'radioStr': 'gaaa',
+                'title': '6.1.1入院前治疗情况',
             },
             {
-                'id2': 'gb',
-                'id1': '6.3',
-                'type': 'table63',//selectable-table
-                'title': '术前用药',
+                'id2': 'gac',
+                'id1': '6.1.2',
+                'type': 'radio',
+                'title': '其他特殊药物',
+                'hiddenlist':[["6.1.2.1"],[]],
+                'content':[
+                    '无',
+                    '有'
+                ],
+                'hidden': false
+            },
+            {
+                'id2': ['gaca','gaca1','gaca2','gaca3','gaca4'],
+                'id1': '6.1.2.1',
+                'type': 'multi-input',
+                'title': '药物种类',
+                'content':[
+                    '药物种类',
+                    '剂量',
+                    '用法',
+                    '频次',
+                    '用药时间'
+                ],
+                'hidden': false
+            },
+            {
+                'id2': 'gba',
+                'id1': '6.2.1',
+                'type': 'selectable-table',
+                'rowTitle': ['气压泵治疗', '硫酸镁冷敷', '看医用弹力袜'],
+                'columnTitle': ['剂量', '用法', '频次', '用药时间'],
+                'radioStr': 'gbaa',
+                'title': '6.2.1 术前用药：物理治疗',
+            }, {
+                'id2': 'gbb',
+                'id1': '6.2.2',
+                'type': 'selectable-table',
+                'rowTitle': ['威利坦', '迈之灵', '爱脉朗', '七叶皂苷钠', '其他'],
+                'columnTitle': ['剂量', '用法', '频次', '用药时间'],
+                'radioStr': 'gbba',
+                'title': '6.2.2 术前用药：消肿药物',
+            }, {
+                'id2': 'gbc',
+                'id1': '6.2.3',
+                'type': 'selectable-table',
+                'rowTitle': ['丹参注射液', '疏血通', '丹参川穹嗪', '其他'],
+                'columnTitle': ['剂量', '用法', '频次', '用药时间'],
+                'radioStr': 'gbca',
+                'title': '6.2.3 术前用药：扩展改善循环药',
+            }, {
+                'id2': 'gdb',
+                'id1': '6.2.4',
+                'type': 'selectable-table',
+                'rowTitle': ['低分子肝素', '磺达肝奎钠', '华法林', '阿加曲班', '利伐沙班'],
+                'columnTitle': ['剂量', '用法', '频次', '用药时间'],
+                'radioStr': 'gbda',
+                'title': '6.2.4 术前用药：抗凝药',
+            },{
+                'id2': 'gbe',
+                'id1': '6.2.5',
+                'type': 'selectable-table',
+                'rowTitle': ['尿激酶'],
+                'columnTitle': ['剂量', '用法', '频次', '用药时间'],
+                'radioStr': 'gbea',
+                'title': '6.2.5 术前用药：溶栓药',
+            },
+            {
+                'id2': 'gbf',
+                'id1': '6.2.6',
+                'type': 'radio',
+                'title': '其他特殊药物',
+                'hiddenlist':[['6.2.6.1'],[]],
+                'content':[
+                    '无',
+                    '有'
+                ],
+                'hidden': false
+            },
+            {
+                'id2': ['gbfa','gbfa1','gbfa2','gbfa3','gbfa4'],
+                'id1': '6.2.6.1',
+                'type': 'multi-input',
+                'title': '药物种类',
+                'content':[
+                    '药物种类',
+                    '剂量',
+                    '用法',
+                    '频次',
+                    '用药时间'
+                ],
                 'hidden': false
             },
             {
                 'id2': 'gc',
-                'id1': '6.4',
+                'id1': '6.3',
                 'type': 'table64',
                 'title': '介入治疗',
                 'hidden': false
             },
             {
-                'id2': 'gd',
+                'id2': 'gcw',
+                'id1': '6.3.1',
+                'type': 'radio',
+                'content': [
+                    '否',
+                    '是'
+                ],
+                'title': '术中是否行血栓吸取术',
+                'hiddenlist': [['6.3.1.1'],[]],
+                'hidden': false
+            },
+            {
+                'id2': 'gcwa',
+                'id1': '6.3.1.1',
+                'type': 'input',
+                'content': {
+                    'datatype': 'text',
+                    'validtype': 'number',
+                    'information': ''
+                },
+                'title': '抽出血栓量',
+                'hidden': false
+            },
+            {
+                'id2': 'gcx',
+                'id1': '6.3.2',
+                'type': 'radio',
+                'content': [
+                    '否',
+                    '是'
+                ],
+                'title': '术中是否置入滤器',
+                'hiddenlist': [['6.3.2.1'],[]],
+                'hidden': false
+            },
+            {
+                'id2': ['gcx1', 'gcx2', 'gcx3'],
+                'id1': '6.3.2.1',
+                'type': 'multi-radio',
+                'title': '置入滤器',
+                'content': ["Trapease", "Tulip", "Optease"],
+                'hidden': false
+            }, {
+            'id2': 'gcy',
+            'id1': '6.3.3',
+            'type': 'radio',
+            'content': [
+                '否',
+                '是'
+            ],
+            'title': '术中是否置管',
+            'hiddenlist': [['6.3.3.1'],[]],
+            'hidden': false
+        },
+            {
+                'id2': ['gcy1', 'gcy2', 'gcy3', 'gcy4'],
+                'id1': '6.3.3.1',
+                'type': 'multi-radio',
+                'title': '置管',
+                'content': ["股静脉置管", "腘静脉置管", "股动脉置管", "肺动脉置管"],
+                'hidden': false
+            },
+            {
+                'id2': 'gcy',
+                'id1': '6.3.4',
+                'type': 'radio',
+                'content': [
+                    '否',
+                    '是'
+                ],
+                'title': '术中是否有不良反应',
+                'hiddenlist': [['6.3.4.1'],[]],
+                'hidden': false
+            },
+            {
+                'id2': ['gcz1', 'gcz2', 'gcz3', 'gcz4'],
+                'id1': '6.3.4.1',
+                'type': 'multi-radio',
+                'title': '术中不良反应',
+                'content': ["过敏反应", "呼吸困难、心率失常", "出血、穿刺意外", "其他"],
+                'hidden': false
+            },
+            {
+                'id2': 'gcz4a',
+                'id1': '6.3.4.1',
+                'type': 'input',
+                'content': {
+                    'datatype': 'text',
+                    'validtype': 'number',
+                    'information': ''
+                },
+                'title': '其他术中不良反应',
+                'hidden': false
+            },
+            {
+                'id2': 'gda',
+                'id1': '6.4.1',
+                'type': 'selectable-table',
+                'rowTitle': ['气压泵', '硫酸镁'],
+                'columnTitle': ['剂量', '用法', '频次', '用药时间'],
+                'radioStr': 'gdaa',
+                'title': '6.4.1 术后用药：物理治疗',
+            },  {
+                'id2': 'gdb',
+                'id1': '6.4.2',
+                'type': 'selectable-table',
+                'rowTitle': ['威利坦', '迈之灵', '爱脉朗', '七叶皂苷钠', '其他'],
+                'columnTitle': ['剂量', '用法', '频次', '用药时间'],
+                'radioStr': 'gdba',
+                'title': '6.4.2 术后用药：消肿药物',
+            }, {
+                'id2': 'gdc',
+                'id1': '6.4.3',
+                'type': 'selectable-table',
+                'rowTitle': ['丹参注射液', '疏血通', '丹参川穹嗪', '其他'],
+                'columnTitle': ['剂量', '用法', '频次', '用药时间'],
+                'radioStr': 'gdca',
+                'title': '6.4.3 术后用药：扩展改善循环药',
+            },{
+                'id2': 'gdd',
+                'id1': '6.4.4',
+                'type': 'selectable-table',
+                'rowTitle': ['低分子肝素', '磺达肝奎钠', '华法林', '阿加曲班', '利伐沙班'],
+                'columnTitle': ['剂量', '用法', '频次', '用药时间'],
+                'radioStr': 'gdca',
+                'title': '6.4.4 术后用药：抗凝药',
+            },{
+                'id2': 'gde',
+                'id1': '6.4.5',
+                'type': 'selectable-table',
+                'rowTitle': ['尿激酶'],
+                'columnTitle': ['剂量', '用法', '频次', '用药时间'],
+                'radioStr': 'gdea',
+                'title': '6.4.5 术后用药：溶栓药',
+            },
+            {
+                'id2': 'gdfa',
+                'id1': '6.4.6',
+                'type': 'radio',
+                'title': '术后用药：经导管用',
+                'hiddenlist':[["6.4.6.1", '6.4.6.2', '6.4.6.3', '6.4.6.4'],[]],
+                'content':[
+                    '否',
+                    '是'
+                ],
+                'hidden': false
+            },
+            {
+                'id2': ['gdfa1a','gdfa1b','gdfa1c','gdfa1d'],
+                'id1': '6.4.6.1',
+                'type': 'multi-input',
+                'title': '术后用药（经导管用）：尿激酶',
+                'content':[
+                    '剂量',
+                    '用法',
+                    '频次',
+                    '用药时间'
+                ],
+                'hidden': false
+            },{
+                'id2': ['gdfa2a','gdfa2b','gdfa2c','gdfa2d'],
+                'id1': '6.4.6.2',
+                'type': 'multi-input',
+                'title': '术后用药（经导管用）：阿加曲班',
+                'content':[
+                    '剂量',
+                    '用法',
+                    '频次',
+                    '用药时间'
+                ],
+                'hidden': false
+            },{
+                'id2': ['gdfa3a','gdfa3b','gdfa3c','gdfa3d'],
+                'id1': '6.4.6.3',
+                'type': 'multi-input',
+                'title': '术后用药（经导管用）：其他',
+                'content':[
+                    '剂量',
+                    '用法',
+                    '频次',
+                    '用药时间'
+                ],
+                'hidden': false
+            },{
+                'id2': ['gdfa4a','gdfa4b','gdfa4c','gdfa4d','gdfa5'],
+                'id1': '6.4.6.4',
+                'type': 'multi-input',
+                'title': '术后用药（其他特殊药物）',
+                'content':[
+                    '剂量',
+                    '用法',
+                    '频次',
+                    '用药时间',
+                    '具体解释'
+                ],
+                'hidden': false
+            },
+            {
+                'id2': 'gdg',
                 'id1': '6.5',
-                'type': 'table65',//selectable-table + gdf
-                'title': '术后用药',
+                'type': 'radio',
+                'title': '术后用药：其他药物',
+                'hiddenlist':[["6.5.1", '6.5.2', '6.5.3'],[]],
+                'content':[
+                    '无',
+                    '是'
+                ],
                 'hidden': false
             },
             {
-                'id2': 'geaa1',
+                'id2': ['gdga1', 'gdga2'],
                 'id1': '6.5.1',
-                'type': 'input',
-                'content': {
-                    'datatype': 'text',
-                    'validtype': 'number',
-                    'information': ''
-                },
-                'title': '所用华法林剂量',
+                'type': 'multi-radio',
+                'title': '降脂药物',
+                'content': ['他汀类','贝特类'],
                 'hidden': false
-            },
-            {
-                'id2': 'geaa2',
-                'id1': '6.5.1.1',
-                'type': 'input',
-                'content': {
-                    'datatype': 'text',
-                    'validtype': 'number',
-                    'information': ''
-                },
-                'title': 'PT-INR',
-                'hidden': false
-            },
-            {
-                'id2': 'geab',
+            }, {
+                'id2': ['gdgb1', 'gdgb2', 'gdgb3', 'gdgb4', 'gdgb5'],
                 'id1': '6.5.2',
-                'type': 'input',
-                'content': {
-                    'datatype': 'text',
-                    'validtype': 'number',
-                    'information': ''
-                },
-                'title': '起始剂量',
+                'type': 'multi-radio',
+                'title': '降糖药物',
+                'content': ['噻唑烷酮类','磺酰脲类','双胍类', 'a-葡萄糖苷酶抑制剂', '胰岛素'],
                 'hidden': false
-            },
-            {
-                'id2': 'geac1',
+            },{
+                'id2': ['gdgc1', 'gdgc2', 'gdgc3', 'gdgc4', 'gdgc5', 'gdgc6', 'gdgc7', 'gdgc8'],
                 'id1': '6.5.3',
-                'type': 'input',
-                'content': {
-                    'datatype': 'text',
-                    'validtype': 'number',
-                    'information': ''
-                },
-                'title': '达标剂量',
+                'type': 'multi-radio',
+                'title': '降压药物',
+                'content': ['利尿剂', '钙拮抗剂', '血管紧张素转换酶抑制剂','ATI受体阻断药', '中枢性降压药', '血管平滑肌扩张药', 'a1受体阻断药', '其他'],
                 'hidden': false
             },
             {
-                'id2': 'geac2',
-                'id1': '6.5.3.1',
-                'type': 'input',
-                'content': {
-                    'datatype': 'text',
-                    'validtype': 'number',
-                    'information': ''
-                },
-                'title': 'PT-INR',
-                'hidden': false
-            },
-            {
-                'id2': 'gead',
-                'id1': '6.5.4',
-                'type': 'input',
-                'content': {
-                    'datatype': 'text',
-                    'validtype': 'number',
-                    'information': ''
-                },
-                'title': '达标时间',
+                'id2': ['geaa1','geaa2','geab','geac1','geac2','gead'],
+                'id1': '6.6',
+                'type': 'multi-input',
+                'title': '华法林用药情况统计',
+                'content':[
+                    '未达标：华法林',
+                    '未达标：PT-INR',
+                    '起始剂量',
+                    '达标剂量',
+                    '达标剂量：PT-INR',
+                    '达标时间'
+                ],
                 'hidden': false
             },
             {
                 'id2': 'geae',
-                'id1': '6.5.5',
+                'id1': '6.6.1',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -5827,7 +6084,7 @@ export class QuestionList {
             },
             {
                 'id2': 'geaf',
-                'id1': '6.5.6',
+                'id1': '6.6.2',
                 'type': 'radio',
                 'content': [
                     '法安明',
@@ -5840,65 +6097,19 @@ export class QuestionList {
                 'hidden': false
             },
             {
-                'id2': 'gfa',
-                'id1': '6.6.1',
-                'type': 'input',
-                'content': {
-                    'datatype': 'text',
-                    'validtype': '',
-                    'information': ''
-                },
-                'title': '出院医嘱：华法林',
+                'id2': 'gf',
+                'id1': '6.7',
+                'type': 'multi-input',
+                'title': '出院医嘱',
+                'content':[
+                    '华法林',
+                    '迈之灵/威利坦',
+                    '着弹力袜',
+                    '其他',
+                    '检测PT-INR'
+                ],
                 'hidden': false
             },
-            {
-                'id2': 'gfb',
-                'id1': '6.6.2',
-                'type': 'input',
-                'content': {
-                    'datatype': 'text',
-                    'validtype': '',
-                    'information': ''
-                },
-                'title': '出院医嘱：迈之灵/威利坦',
-                'hidden': false
-            },
-            {
-                'id2': 'gfc',
-                'id1': '6.6.3',
-                'type': 'input',
-                'content': {
-                    'datatype': 'text',
-                    'validtype': '',
-                    'information': ''
-                },
-                'title': '出院医嘱：着弹力袜',
-                'hidden': false
-            },
-            {
-                'id2': 'gfd',
-                'id1': '6.6.4',
-                'type': 'input',
-                'content': {
-                    'datatype': 'text',
-                    'validtype': '',
-                    'information': ''
-                },
-                'title': '出院医嘱：其他',
-                'hidden': false
-            },
-            {
-                'id2': 'gfe',
-                'id1': '6.6.5',
-                'type': 'input',
-                'content': {
-                    'datatype': 'text',
-                    'validtype': '',
-                    'information': ''
-                },
-                'title': '出院医嘱：监测PT-INR',
-                'hidden': false
-            }
         ],
         [
             {

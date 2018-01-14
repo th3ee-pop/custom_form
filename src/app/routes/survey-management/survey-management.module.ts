@@ -30,6 +30,9 @@ import { Info5Component } from './info5/info5.component';
 import { Info6Component } from './info6/info6.component';
 import { Info7Component} from './info7/info7.cpomponent';
 import { Table64Component } from './shared/tablecmp/table64/table64.component';
+import { TfForTable64Component } from './shared/tablecmp/tf-for-table64/tf-for-table64.component';
+import { SelectableInputComponent } from './shared/tablecmp/selectable-input/selectable-input.component';
+import { MultiRadioComponent } from './shared/tablecmp/multi-radio/multi-radio.component';
 
 const routes: Routes = [
     { path: 'detail', component: SurveyOverviewComponent  },
@@ -78,7 +81,10 @@ const routes: Routes = [
         Info5Component,
         Info7Component,
         Info6Component,
-        Table64Component
+        Table64Component,
+        TfForTable64Component,
+        SelectableInputComponent,
+        MultiRadioComponent
     ],
     providers: [
         RecordResolverGuard

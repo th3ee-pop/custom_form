@@ -9,6 +9,10 @@ import {RadiocmpComponent} from '../shared/radiocmp/radiocmp.component';
 import {QuestionList} from '../shared/ql';
 import {ScheduleList} from '../shared/scheduleList';
 import {Table64Component} from "../shared/tablecmp/table64/table64.component";
+import { MultiTableComponent } from '../../useful-table/multi-table/multi-table.component';
+import {TfForTable64Component} from "../shared/tablecmp/tf-for-table64/tf-for-table64.component";
+import {SelectableInputComponent} from "../shared/tablecmp/selectable-input/selectable-input.component";
+import {MultiRadioComponent} from "../shared/tablecmp/multi-radio/multi-radio.component";
 
 @Component({
   selector: 'app-info6',
@@ -20,6 +24,9 @@ export class Info6Component implements OnInit {
     @ViewChildren(InputcmpComponent) InputItems: QueryList<InputcmpComponent>;
     @ViewChildren(RadiocmpComponent) RadioItems: QueryList<RadiocmpComponent>;
     @ViewChildren(Table64Component) Table64Item: QueryList<Table64Component>;
+    @ViewChildren(MultiRadioComponent) MultiRadioItems: QueryList<MultiRadioComponent>;
+    @ViewChildren(TfForTable64Component) TfForTable64Component: QueryList<TfForTable64Component>;
+    @ViewChildren(SelectableInputComponent) SelectableInputItems: QueryList<SelectableInputComponent>;
 
     current = 6;
     questions = new QuestionList().questions;
@@ -113,6 +120,18 @@ export class Info6Component implements OnInit {
             confirms = false;
             confirmlist.push(item.question.id1);
         }});
+        this.TfForTable64Component.forEach(item => { if (item.question.hidden === false && item.answerChanged === false) {
+            confirms = false;
+            confirmlist.push(item.question.id1);
+        }});
+        this.SelectableInputItems.forEach(item => { if (item.question.hidden === false && item.answerChanged === false) {
+            confirms = false;
+            confirmlist.push(item.question.id1);
+        }});
+        this.MultiRadioItems.forEach(item => { if (item.question.hidden === false && item.answerChanged === false) {
+            confirms = false;
+            confirmlist.push(item.question.id1);
+        }});
         const confirmAll = {
             confrims: confirms,
             confirmsList: confirmlist
@@ -136,6 +155,27 @@ export class Info6Component implements OnInit {
             }
         });
         this.Table64Item.forEach(item => {
+            if (item.answerChanged === true) {
+                for (let i = 0; i < item.answer.length; i++) {
+                    this.resultList.push(item.answer[i]);
+                }
+            }
+        });
+        this.TfForTable64Component.forEach(item => {
+            if (item.answerChanged === true) {
+                for (let i = 0; i < item.answer.length; i++) {
+                    this.resultList.push(item.answer[i]);
+                }
+            }
+        });
+        this.SelectableInputItems.forEach(item => {
+            if (item.answerChanged === true) {
+                for (let i = 0; i < item.answer.length; i++) {
+                    this.resultList.push(item.answer[i]);
+                }
+            }
+        });
+        this.MultiRadioItems.forEach(item => {
             if (item.answerChanged === true) {
                 for (let i = 0; i < item.answer.length; i++) {
                     this.resultList.push(item.answer[i]);
