@@ -233,7 +233,6 @@ export class Info0Component implements OnInit, AfterViewInit  {
     }
 
     exit() {                                            // 退出
-        console.log('exit!');
         this.router.navigate( ['system/survey/detail/']);
     }
 
