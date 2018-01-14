@@ -116,9 +116,7 @@ export class Info7Component implements OnInit, AfterViewInit {
         this.Table71Items.forEach(item => { if (item.question.hidden === false && item.answerChanged === false) {
             confirms = false;
             confirmlist.push(item.question.id1);
-        }
-
-        });
+        }});
         const confirmAll = {
             confrims: confirms,
             confirmsList: confirmlist

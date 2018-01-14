@@ -13,6 +13,10 @@
                             <app-inputcmp     *ngSwitchCase="'input'"     [question]="question" (onVoted)="onVoted($event)" ></app-inputcmp>
                             <app-radiocmp     *ngSwitchCase="'radio'"     [question]="question" (onVoted)="onVoted($event)" ></app-radiocmp>
                             <app-table64     *ngSwitchCase="'table64'"     [question]="question" (onVoted)="onVoted($event)" ></app-table64>
+                            <app-tf-for-table64     *ngSwitchCase="'multi-radio'"     [question]="question" (onVoted)="onVoted($event)" ></app-tf-for-table64>
+                            <app-multi-table *ngSwitchCase="'multi-table'" [question]="question" (onVoted)="onVoted($event)"></app-multi-table>
+                            <app-selectable-table *ngSwitchCase="'selectable-table'" [question]="question" (onVoted)="onVoted($event)"></app-selectable-table>
+                            <app-selectable-input *ngSwitchCase="'multi-input'" [question]="question" (onVoted)="onVoted($event)"></app-selectable-input>
                         </div>
                     </div>
                     <div class="steps-action">
