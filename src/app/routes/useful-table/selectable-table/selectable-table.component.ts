@@ -29,6 +29,7 @@ export class SelectableTableComponent extends Question implements OnInit {
     }
 
     ngOnInit() {
+        console.log(this.question.hidden);
         this.title = this.question.title;
         this.radioStr = this.question.startStr;
         this.rowTitle = this.question.rowTitle;
