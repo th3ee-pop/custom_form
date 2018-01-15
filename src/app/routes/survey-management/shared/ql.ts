@@ -5673,7 +5673,7 @@ export class QuestionList {
                 'type': 'multi-table',
                 'title': '结缔组织全套',
                 'rowTitle': ['抗Sm抗体', '抗U1RNP抗体', '抗SSA抗体', '抗SSB抗体',
-                    '抗Scl-70抗体', '抗Jo-1抗体', '抗rRNP抗体', '抗DE抗体', '抗DE抗体',
+                    '抗Scl-70抗体', '抗Jo-1抗体', '抗rRNP抗体', '抗DE抗体',
                     '抗RA-54抗体', '抗DM-53抗体', '抗核抗体(1:100)', '抗DNA抗体'],
                 'columnTitle': ['入院时', '第二次检查'],
                 'startStr': 'eeik',

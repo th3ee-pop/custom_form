@@ -19,7 +19,7 @@
                             <td nz-td colspan="2">
                                 <a>{{title}}</a>
                             </td>
-                            <td colspan="1" nz-td *ngFor="let item of letterArray,index as column">
+                            <td colspan="1" nz-td *ngFor="let item of columnTitle,index as column">
                                 <nz-input [(ngModel)]="initialArray[row][column]"></nz-input>
                             </td>
                         </tr>

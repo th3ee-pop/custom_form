@@ -35,8 +35,14 @@ export class MultiTableComponent extends Question implements OnInit {
         this.idStyle = this.question.idStyle;
         this.column = this.columnTitle.length;
         this.row = this.rowTitle.length;
-        for (let i = 97; i < 97 + this.column; i++) {
-            this.letterArray.push(String.fromCharCode(i));
+        if (this.idStyle === 1) {
+            for (let i = 97; i < 97 + this.column; i++) {
+                this.letterArray.push(String.fromCharCode(i));
+            }
+        } else {
+            for (let i = 97; i < 97 + this.row; i++) {
+                this.letterArray.push(String.fromCharCode(i));
+            }
         }
         this.initArray();
         this.initId(this.idStyle);
