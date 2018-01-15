@@ -16,28 +16,28 @@ export class SelectableInputComponent extends Question implements OnInit {
     constructor() { super(); }
 
     ngOnInit() {
-        console.log(this.question);
+        // console.log(this.question);
         this.localAnswer= new Array(this.question.content.length);
     }
 
     answerChange() {
         const res = [];
-        const item = {
-            Record_ID : '',
-            Record_Value: ''
-        }
         for (let row = 0; row < this.question.content.length; row ++) {  // 行
             if ( this.localAnswer[row] && this.localAnswer[row] !== '') {
+                const item = {
+                    Record_ID : '',
+                    Record_Value: ''
+                };
                 item.Record_ID = this.question.id2[row];
                 item.Record_Value = this.localAnswer[row];
                 res.push(item);
             }
         }
         this.answer = res;
-        if ( this.answerCheck() === true)
-            this.answerChanged = true;
-        else
-            this.answerChanged = false;
+        // if ( this.answerCheck() === true)
+        //     this.answerChanged = true;
+        // else
+        //     this.answerChanged = false;
     }
 
     answerCheck() {

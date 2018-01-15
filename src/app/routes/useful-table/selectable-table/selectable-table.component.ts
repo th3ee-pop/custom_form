@@ -41,9 +41,9 @@ export class SelectableTableComponent extends Question implements OnInit {
         }
         this.initArray();
         this.initId();
-        console.log(this.letterArray);
-        console.log(this.initialArray);
-        console.log(this.idArray);
+        // console.log(this.letterArray);
+        // console.log(this.initialArray);
+        // console.log(this.idArray);
     }
 
     initArray() {
@@ -71,7 +71,7 @@ export class SelectableTableComponent extends Question implements OnInit {
     getAnswer() {
         this.changedAnswer = [];
         this.setAnswer(this.initialArray, this.idArray, this.row, this.column);
-        console.log(this.changedAnswer);
+        // console.log(this.changedAnswer);
     }
 
     setAnswer(blank: any, idArray: any, row: number, column: number) {
