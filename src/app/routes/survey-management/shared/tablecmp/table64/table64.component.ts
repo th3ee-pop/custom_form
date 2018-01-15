@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Question} from "../../question";
+import {ngWalkerFactoryUtils} from "codelyzer/angular/ngWalkerFactoryUtils";
 
 @Component({
   selector: 'app-table64',
@@ -23,23 +24,23 @@ export class Table64Component extends Question implements OnInit {
     gcpa = new Array(4);
     gcpb = new Array(4);
     jmpart = ["腰1", "腰2"];
-
-    initialArray = [
-        '', '', '',
-        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
-        '', '', '', '', '',
-        '', '', '', '', '', '', '  ',
-        '', '', '', '', '', '', '',
-        '', '', '', '', '', '', '', '', '', '', '', ''
-
-    ];
+    initialArray = new Array(55);
+    // initialArray = [
+    //     '', '', '',
+    //     '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
+    //     '', '', '', '', '',
+    //     '', '', '', '', '', '', '  ',
+    //     '', '', '', '', '', '', '',
+    //     '', '', '', '', '', '', '', '', '', '', '', ''
+    //
+    // ];
     idArray = [
         'gca', 'gcb', 'gcc',
         'gcd1', 'gce1', 'gcf1', 'gcg1', 'gch1', 'gci1', 'gcj1', 'gck1', 'gcl1', 'gcm1', 'gcd2', 'gce2', 'gcf2', 'gcg2',  'gch2', 'gci2', 'gcj2', 'gck2', 'gcl2', 'gcm2',
         'gcn', 'gco1', 'gco2', 'gco3', 'gco4', 'gcp',
         'gcpa1', 'gcpa2', 'gcpa3', 'gcpa4', 'gcpa5', 'gcpa6', 'gcpa7',
         'gcpb1', 'gcpb2', 'gcpb3', 'gcpb4', 'gcpb5', 'gcpb6', 'gcpa7',
-        'gcq1', 'gcq2', 'gcr1', 'gcr2', 'gcs1', 'gcs2', 'gct1', 'gct2', 'gcu1', 'gcu2', 'gcv1', 'gcv2'
+        'gcq1', 'gcr1', 'gcs1', 'gct1', 'gcu1', 'gcv1', 'gcq2', 'gcr2', 'gcs2', 'gct2', 'gcu2', 'gcv2'
     ];
 
   constructor() { super(); }
@@ -49,13 +50,17 @@ export class Table64Component extends Question implements OnInit {
       for (let i = 0; i < this.array1.length; i++) { this.array1[i] = new Array(this.rawname1.length); }
       this.array2 = new Array(2);
       for (let i = 0; i < this.array2.length; i++) { this.array2[i] = new Array(this.rawname2.length); }
-      // console.log(this.array1);
+      // this.array0 = this.initialArray.slice(0,3);
+      // this.array1[0] = this.initialArray.slice(3,13);
+      // this.array1[1] = this.initialArray.slice(13,23);
+      // this.array3 = this.initialArray.slice(23,29);
+      // // console.log(this.array1);
       // this.answerChange();
   }
 
     getAnswer() {
         this.changedAnswer = [];
-        this.getInitArray();
+        // this.getInitArray();
         this.setAnswer();
         console.log(this.changedAnswer);
     }

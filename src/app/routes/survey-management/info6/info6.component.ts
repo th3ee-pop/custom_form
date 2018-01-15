@@ -275,10 +275,17 @@ export class Info6Component implements OnInit, AfterViewInit {
                 this.Table64Item.forEach(item => {
                     console.log(item);
                     const id = item.idArray;
+                    const radioId = ['gca','gcc', ''];
                     this.fillingList.forEach(d => {
                         for (let j = 0; j < item.initialArray.length; j++) {
                             if (d[id[j]] && d[id[j]] !== '') {
-                                item.initialArray[j] = d[id[j]];
+                                if(j == 0 || j==2 || (27<j&&j<43)){
+                                    // console.log(d[id[j]]);
+                                    // // console.log(d[id[j]]);
+                                    item.initialArray[j] = d[id[j]]-1;
+                                }else {
+                                    item.initialArray[j] = d[id[j]];
+                                }
                             }
                         }
                     });
