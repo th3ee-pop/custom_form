@@ -2,11 +2,10 @@ import {AfterViewInit, Component, OnInit, QueryList, ViewChildren, ChangeDetecto
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpService} from '@core/services/http.service';
 import {NzModalService} from 'ng-zorro-antd';
+import {ScheduleList} from '../shared/scheduleList';
 
 import {InputcmpComponent} from '../shared/inputcmp/inputcmp.component';
 import {RadiocmpComponent} from '../shared/radiocmp/radiocmp.component';
-import {IdccmpComponent} from '../shared/idccmp/idccmp.component';
-import {QuestionList} from '../shared/questionList';
 
 @Component({
     selector: 'app-info2',
@@ -16,16 +15,19 @@ import {QuestionList} from '../shared/questionList';
 export class Info2Component implements OnInit, AfterViewInit  {
     @ViewChildren(InputcmpComponent) InputItems: QueryList<InputcmpComponent>;
     @ViewChildren(RadiocmpComponent) RadioItems: QueryList<RadiocmpComponent>;
-    @ViewChildren(IdccmpComponent) IdcItems: QueryList<IdccmpComponent>;
 
     current = 2; // 当前步骤
-    questions = new QuestionList().questions;
+    questionSave = [];
     questionList = [];     // 问题总列表
-    resultList = [];                                    // 填写结果
-    finished = false;
-    answerList = [];
-    buttondisable = false;
+    schedule_list = new ScheduleList().schedule_list; // 步骤条的list
+    resultList = [];       // 填写结果
+    PID = '';
     fillingList = [];
+    answerList = [];
+    putRecord = {};
+
+    buttondisable = false;
+    finished = '';
 
     constructor(
         private router: Router,
@@ -33,16 +35,37 @@ export class Info2Component implements OnInit, AfterViewInit  {
         private service: HttpService,
         private confirmServ: NzModalService,
         private ref: ChangeDetectorRef
-    ) { }
+    ) {
+        this.PID = this.route.params['value']['PID'];
+        if (this.PID) {
+            const getRecord = {
+                'PID': this.PID
+            };
+            this.service.getRecord(getRecord).subscribe( (res) => {
+                const list = res.Records;
+                this.answerList = list;
+                for ( let i = 0; i < list.length; i++) {
+                    if ( list[i]['questionlist'] && list[i]['questionlist'] !== '') {
+                        this.questionList = list[i]['questionlist'][this.current];
+                        this.questionSave = list[i]['questionlist'];
+                        break;
+                    }
+                }
+            });
+        }
+    }
+
 
     ngOnInit() {
-        this.questionList = this.questions[2];
-        console.log(this.questionList);
     }
 
     ngAfterViewInit() {
+        if (this.PID) {
+            this.fillingAllanswer();
+        }
     }
 
+    /** 事件处理 **/
     onVoted (showAndhidden: any) {
         for ( let i = 0; i <  showAndhidden.hiddenshowlist.length; i++) {
             for ( let j = 0; j < this.questionList.length; j++) {
@@ -60,12 +83,13 @@ export class Info2Component implements OnInit, AfterViewInit  {
         }
     }
 
+    /** 下一步 **/
     next() {
-
         if (this.confirm().confirms) {
-            this.collectAllanswer();
-            let putRecord = {};
-            this.router.navigate(['system/survey/info2']);
+            this.initPutRecord();
+            this.service.putRecord(this.putRecord).subscribe( (res) => {
+                this.router.navigate(['system/survey/info3/' + this.PID]);
+            });
         }else {
             let str = '';
             for ( let i = 0; i < this.confirm().confirmList.length; i++) {
@@ -78,6 +102,39 @@ export class Info2Component implements OnInit, AfterViewInit  {
         }
     }
 
+    /** 暂存 **/
+    temporary_deposit() {
+        this.initPutRecord();
+        this.service.putRecord(this.putRecord).subscribe( (res) => {
+            this.router.navigate( ['system/survey/detail/']);
+        }, error => { });
+    }
+
+
+    /** 退出 **/
+    exit () {
+        this.router.navigate( ['system/survey/detail/']);
+    }
+
+    /** 返回上一步 **/
+    pre() {
+        this.initPutRecord();
+        this.service.putRecord(this.putRecord).subscribe( (res) => {
+        }, error => { });
+        this.router.navigate( ['system/survey/info1/' + this.PID]);
+    }
+
+    /** 封装答案和请求参数 **/
+    initPutRecord() {
+        this.collectAllanswer()
+        if (this.PID) {
+            this.putRecord = { 'Records': this.resultList, 'PID': this.PID };
+        }else {
+            this.putRecord = { 'Records': this.resultList };
+        }
+    }
+
+    /** 表单验证 **/
     confirm() {
         const confirmlist = [];                                   // 验证列表
         let confirms = true;
@@ -87,9 +144,6 @@ export class Info2Component implements OnInit, AfterViewInit  {
         this.RadioItems.forEach(item => { if ( item.question.hidden === false && item.localAnswer === -1) {
             confirms = false; confirmlist.push(item.question.id1);
         }});
-        this.IdcItems.forEach( item => { if ( item.question.hidden === false && item.answerChanged === false) {
-            confirms = false; confirmlist.push(item.question.id);
-        }});
         const confirmAll = {
             confirms: confirms,
             confirmList: confirmlist
@@ -97,6 +151,7 @@ export class Info2Component implements OnInit, AfterViewInit  {
         return confirmAll;
     }
 
+    /** 收集答案 **/
     collectAllanswer() {
         this.RadioItems.forEach(item => {
             if (item.answerChanged === true) {
@@ -106,16 +161,16 @@ export class Info2Component implements OnInit, AfterViewInit  {
             }
         });
         this.InputItems.forEach(item => {
-            console.log(item);
             if (item.answerChanged === true) {
                 for (let i = 0; i < item.answer.length; i++) {
                     this.resultList.push(item.answer[i]);
                 }
             }
         });
-        this.IdcItems.forEach(item => {
-            if (item.answerChanged === true) { for ( let i = 0; i < item.answer.length; i++) { this.resultList.push(item.answer[i]); } }
-        });
+        this.questionSave[this.current] = this.questionList;
+        this.resultList.push(
+            {'Record_ID': 'questionlist', 'Record_Value': this.questionSave }
+        );
         for (let i = 0; i < this.answerList.length; i++) {
             for (let j = 0; j < this.resultList.length; j++) {
                 const id = this.resultList[j].Record_ID;
@@ -124,25 +179,40 @@ export class Info2Component implements OnInit, AfterViewInit  {
                 }
             }
         }
-        console.log(this.resultList);
     }
 
-    disabledAll() {
-        this.buttondisable = true;
-        this.InputItems.forEach(item => {
-            item.editdisabled = true;
-        });
-        this.RadioItems.forEach(item => {
-            item.editdisabled = true;
-        });
-    }
-
+    /** 回填答案 **/
     fillingAllanswer() {
-        console.log("fill in");
+        const getRecord = {
+            'PID': this.PID
+        };
+        this.service.getRecord(getRecord).subscribe(
+            (res) => {
+                this.fillingList = res.Records;
+                if (this.fillingList && this.fillingList.length !== 0) {
+                    this.InputItems.forEach(item => {
+                        this.fillingList.forEach( fl => {
+                            const id = item.question.id2;
+                            if (fl[id] && fl[id] !== '') {
+                                item.localAnswer = fl[id];
+                            }
+                            if (fl[id] === 0) {
+                                item.localAnswer = '0';
+                            }
+                        });
+                    });
+                }
+                this.RadioItems.forEach(item => {
+                    this.fillingList.forEach( fl => {
+                        const id = item.question.id2;
+                        if (fl[id] && fl[id] !== '') {
+                            item.localAnswer = fl[id] - 1;
+                        }
+                    });
+                });
+            }, error => {
+                console.log(error);
+            }
+        );
     }
-
-    temporary_deposit() {
-
-    }
-
 }

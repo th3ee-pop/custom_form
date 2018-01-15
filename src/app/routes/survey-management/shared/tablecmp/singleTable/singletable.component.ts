@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Question} from '../../question';
-import { AnswerInterface } from 'app/routes/survey-management/shared/answerInterface';
 @Component({
     selector: 'app-single',
     templateUrl: './singletable.component.html',
@@ -8,7 +7,7 @@ import { AnswerInterface } from 'app/routes/survey-management/shared/answerInter
 })
 
 
-export class SingletableComponent extends Question implements AnswerInterface, OnInit {
+export class SingletableComponent extends Question implements OnInit {
     localAnswer = [];
     answerChanged = false;
     editdisabled = false;
@@ -18,9 +17,6 @@ export class SingletableComponent extends Question implements AnswerInterface, O
 
     }
     ngOnInit() {
-        console.log(this.question);
-        console.log(this.question.title);
-        console.log(this.question.rawname);
         this.localAnswer = new Array(this.question.rawname.length);
     }
     answerChange() {
@@ -30,7 +26,7 @@ export class SingletableComponent extends Question implements AnswerInterface, O
             Record_Value: ''
         }
         for (let row = 0; row < this.question.rawname.length; row ++) {  // 行
-            if ( this.localAnswer[row] && this.localAnswer[row] !== '') {
+            if ( this.localAnswer[row] && this.localAnswer[row] !== 0) {
                 item.Record_ID = this.question.id2[row];
                 item.Record_Value = this.localAnswer[row];
                 res.push(item);
@@ -44,11 +40,11 @@ export class SingletableComponent extends Question implements AnswerInterface, O
     }
 
     answerCheck() {
-        this.localAnswer.forEach(item => {
-            if ( item !== '')
-                return true;
-        });
+        for ( let i = 0; i < this.localAnswer.length; i++) {
+            if (this.localAnswer[i] && this.localAnswer[i] !== '' ) {
+                   return true;
+            }
+        }
         return false;
     }
-    getAnswer() {}
 }

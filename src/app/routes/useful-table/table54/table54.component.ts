@@ -54,8 +54,8 @@ export class Table54Component extends Question implements OnInit {
       for (let i = 0; i < this.initialArray.length; i++) {
           if (this.initialArray[i] !== '') {
               this.changedAnswer.push({
-                  id: this.idArray[i],
-                  value: this.initialArray[i]
+                  Record_ID: this.idArray[i],
+                  Record_Value: this.initialArray[i]
               });
           }
       }

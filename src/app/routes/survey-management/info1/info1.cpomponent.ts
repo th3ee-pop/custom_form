@@ -30,6 +30,11 @@ export class Info1Component implements OnInit, AfterViewInit {
     fillingList = [];                                 // 用于从后端获取答案
     answerList = [];
     putRecord = {};
+
+    /** 备用变量 **/
+    buttondisable = false;
+    finished = '';
+
     constructor(
         private router: Router,
         private route: ActivatedRoute,
@@ -55,6 +60,7 @@ export class Info1Component implements OnInit, AfterViewInit {
             });
         }
     }
+
 
     ngOnInit() {
     }
@@ -141,7 +147,7 @@ export class Info1Component implements OnInit, AfterViewInit {
             confirms = false;
             confirmlist.push(item.question.id1);
         }});
-        this.RadioItems.forEach(item => { if (item.question.hidden === false && item.answerChanged === false) {
+        this.RadioItems.forEach(item => { if (item.question.hidden === false && item.localAnswer === -1) {
             confirms = false;
             confirmlist.push(item.question.id1);
         }});
@@ -163,12 +169,12 @@ export class Info1Component implements OnInit, AfterViewInit {
         });
         this.InputItems.forEach(item => {
             if (item.answerChanged === true) {
-                console.log( item.answer );
                 for (let i = 0; i < item.answer.length; i++) {
                     this.resultList.push(item.answer[i]);
                 }
             }
         });
+        this.questionSave[this.current] = this.questionList;
         this.resultList.push(
             {'Record_ID': 'questionlist', 'Record_Value': this.questionSave }
         );
@@ -194,7 +200,6 @@ export class Info1Component implements OnInit, AfterViewInit {
                     this.InputItems.forEach(item => {
                         this.fillingList.forEach( fl => {
                             const id = item.question.id2;
-                            console.log(fl[id])
                             if (fl[id] && fl[id] !== '') {
                                 item.localAnswer = fl[id];
                             }
@@ -205,12 +210,12 @@ export class Info1Component implements OnInit, AfterViewInit {
                     });
                 }
                 this.RadioItems.forEach(item => {
-                    this.fillingList.forEach( fl => {
+                    for (let i = 0; i < this.fillingList.length; i++) {
                         const id = item.question.id2;
-                        if (fl[id] && fl[id] !== '') {
-                            item.localAnswer = fl[id] - 1;
+                        if (this.fillingList[i][id] && this.fillingList[i][id] !== '') {
+                            item.localAnswer = this.fillingList[i][id] - 1;
                         }
-                    });
+                    }
                 });
             }, error => {
                 console.log(error);

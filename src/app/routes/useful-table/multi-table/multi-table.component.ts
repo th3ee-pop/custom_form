@@ -66,7 +66,7 @@ export class MultiTableComponent extends Question implements OnInit {
             for (let row = 0; row < this.row; row++) {
                 this.idArray.push([]);
                 for (let column = 0; column < this.column; column++) {
-                    this.idArray[row].push(this.startStr + this.letterArray[row] + column);
+                    this.idArray[row].push(this.startStr + this.letterArray[row] + (column + 1));
                 }
             }
         }
@@ -85,8 +85,8 @@ export class MultiTableComponent extends Question implements OnInit {
                 for (let j = 0; j < column; j++) {
                     if (blank[i][j] !== '') {
                         this.changedAnswer.push({
-                            id2: idArray[i][j],
-                            value: blank[i][j]
+                            Record_ID: idArray[i][j],
+                            Record_Value: blank[i][j]
                         });
                     }
                 }
@@ -95,8 +95,8 @@ export class MultiTableComponent extends Question implements OnInit {
             for (let i = 0; i < column; i++) {
                 if (blank[i] !== '') {
                     this.changedAnswer.push({
-                        id2: idArray[i],
-                        value: blank[i]
+                        Record_ID: idArray[i],
+                        Record_Value: blank[i]
                     });
                 }
             }

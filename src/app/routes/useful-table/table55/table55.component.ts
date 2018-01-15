@@ -76,11 +76,11 @@ export class Table55Component extends Question implements OnInit {
     setAnswer(blank: any, idArray: any, row: number, column: number) {
         if (row > 1) {
             for (let i = 0; i < row; i++) {
-                for (let j = 0; j < column; j++) {
+                for (let j = 0; j < column + column - this.selectableCol + 1; j++) {
                     if (blank[i][j] !== '') {
                         this.changedAnswer.push({
-                            id2: idArray[i][j],
-                            value: blank[i][j]
+                            Record_ID: idArray[i][j],
+                            Record_Value: blank[i][j]
                         });
                     }
                 }
@@ -89,8 +89,8 @@ export class Table55Component extends Question implements OnInit {
             for (let i = 0; i < column; i++) {
                 if (blank[i] !== '') {
                     this.changedAnswer.push({
-                        id2: idArray[i],
-                        value: blank[i]
+                        Record_ID: idArray[i],
+                        Record_Value: blank[i]
                     });
                 }
             }

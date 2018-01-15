@@ -6,7 +6,7 @@
                 <ng-template #title>健康体检调查表<span id="red">&nbsp;( *为必填项 )</span></ng-template>
                 <ng-template #body>
                     <nz-steps [(nzCurrent)]="current" [nzSize]="'small'" >
-                        <nz-step *ngFor="let step of b ,index as i" [nzTitle]="step.status" [nzDescription]="step.descript" (click)="jumpTo(i)"></nz-step>
+                        <nz-step *ngFor="let step of b ,index as i" [nzTitle]="step.status" [nzDescription]="step.descript" ></nz-step>
                     </nz-steps>
                     <div *ngFor="let question of questionList">
                         <div [ngSwitch]="question.type">
@@ -15,6 +15,9 @@
                         </div>
                     </div>
                     <div class="steps-action">
+                        <button *ngIf="!buttondisable"  nz-button [nzType]="'default'" (click)="pre()">
+                            <span>上一步</span>
+                        </button>
                         <button *ngIf="!buttondisable"  nz-button [nzType]="'default'" (click)="next()">
                             <span>下一步</span>
                         </button>

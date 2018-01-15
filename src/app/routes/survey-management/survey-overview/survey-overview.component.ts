@@ -84,9 +84,10 @@ export class SurveyOverviewComponent implements OnInit {
         this._allChecked = false;
         this._indeterminate = false;
         // 进行对应的数据的查找
-        this.service.getPatientList(this.conditions).subscribe( (res) => {
+        this.service.getList(this.conditions).subscribe( (res) => {
             this.data = res.PID_info;
-            console.log(res);
+            this.data.map(d => d + 1);
+            console.log(this.data);
             this.total = res.Count_total;
             this.loading = false;
         });
