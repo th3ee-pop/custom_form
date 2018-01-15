@@ -21,12 +21,13 @@ export class SingletableComponent extends Question implements OnInit {
     }
     answerChange() {
         const res = [];
-        const item = {
-            Record_ID : '',
-            Record_Value: ''
-        }
+
         for (let row = 0; row < this.question.rawname.length; row ++) {  // 行
             if ( this.localAnswer[row] && this.localAnswer[row] !== 0) {
+                const item = {
+                    Record_ID : '',
+                    Record_Value: ''
+                }
                 item.Record_ID = this.question.id2[row];
                 item.Record_Value = this.localAnswer[row];
                 res.push(item);
