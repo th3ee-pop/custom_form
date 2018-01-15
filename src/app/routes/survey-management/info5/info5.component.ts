@@ -250,6 +250,7 @@ export class Info5Component implements OnInit, AfterViewInit {
         this.service.getRecord(getRecord).subscribe(
             (res) => {
                 this.fillingList = res.Records;
+                console.log(this.fillingList);
                 const pageFive = [];
                 this.fillingList.forEach(d => {
                     for (const key in d) {
@@ -364,7 +365,7 @@ export class Info5Component implements OnInit, AfterViewInit {
                     console.log(id);
                     pageFive.forEach(d => {
                         for (let i = 0; i < item.row; i++) {
-                            for (let j = 0; j < item.column; j++) {
+                            for (let j = 0; j < item.column * 2 - item.selectableCol + 1; j++) {
                                 if (d[id[i][j]] && d[id[i][j]] !== '') {
                                     item.initialArray[i][j] = d[id[i][j]];
                                 }
