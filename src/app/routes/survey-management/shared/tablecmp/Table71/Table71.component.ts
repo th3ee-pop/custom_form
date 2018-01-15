@@ -21,37 +21,36 @@ export class Table71Component extends Question implements OnInit {
     ngOnInit() {
         this.localAnswer = new Array(this.question.rawname.length);
         for (let i = 0; i < this.localAnswer.length; i++) { this.localAnswer[i] = new Array(this.question.id2[0].length); }
+        this.answerChange();
     }
 
     answerChange() {
         const res = [];
-        const item = {
-            Record_ID : '',
-            Record_Value: ''
-        }
+
         for (let row = 0; row < this.question.rawname.length; row ++) {  // raw
-            for (let col = 0; col < this.question.question.id2[0].length; col++ ) {
+            for (let col = 0; col < this.question.id2[0].length; col++ ) {
                 if ( this.localAnswer[row][col] && this.localAnswer[row][col] !== '' ) {
+                    const item = {
+                        Record_ID : '',
+                        Record_Value: ''
+                    }
                     item.Record_ID = this.question.id2[row][col];
                     item.Record_Value = this.localAnswer[row][col];
                     res.push(item);
+
                 }
             }
         }
         this.answer = res;
-        if ( this.answerCheck() === true)
-            this.answerChanged = true;
-        else
-            this.answerChanged = false;
     }
-
     answerCheck() {
-        this.localAnswer.forEach(item => {
-            item.forEach( colitem => {
-                if ( item !== '')
+        for (let i = 0; i < this.localAnswer.length; i++) {
+            for (let j = 0; j < this.localAnswer[0].length; j++) {
+                if (this.localAnswer[i][j] && this.localAnswer[i][j] !== '') {
                     return true;
-            });
-        });
+                }
+            }
+        }
         return false;
     }
 }
