@@ -44,6 +44,7 @@ const routes: Routes = [
     { path: 'info4/:PID', component: Info4Component },
     { path: 'info5/:PID', component: Info5Component },
     { path: 'info6/:PID', component: Info6Component },
+    { path: 'info6', component: Info6Component },
     { path: 'info7/:PID', component: Info7Component }
 ];
 

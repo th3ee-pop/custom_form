@@ -9,7 +9,6 @@ import {RadiocmpComponent} from '../shared/radiocmp/radiocmp.component';
 import {QuestionList} from '../shared/ql';
 import {ScheduleList} from '../shared/scheduleList';
 import {Table64Component} from "../shared/tablecmp/table64/table64.component";
-import { MultiTableComponent } from '../../useful-table/multi-table/multi-table.component';
 import {TfForTable64Component} from "../shared/tablecmp/tf-for-table64/tf-for-table64.component";
 import {SelectableInputComponent} from "../shared/tablecmp/selectable-input/selectable-input.component";
 import {MultiRadioComponent} from "../shared/tablecmp/multi-radio/multi-radio.component";
@@ -50,14 +49,14 @@ export class Info6Component implements OnInit {
     onVoted (showAndhidden: any) {
         for ( let i = 0; i <  showAndhidden.hiddenshowlist.length; i++) {
             for ( let j = 0; j < this.questionList.length; j++) {
-                if ( this.questionList[j].id === showAndhidden.hiddenshowlist[i] ) {
+                if ( this.questionList[j].id1 === showAndhidden.hiddenshowlist[i] ) {
                     this.questionList[j]['hidden'] = false;
                 }
             }
         }
         for (let i = 0; i < showAndhidden.hiddenlist.length; i++) {
             for ( let j = 0; j < this.questionList.length; j++) {
-                if ( this.questionList[j].id === showAndhidden.hiddenlist[i] ) {
+                if ( this.questionList[j].id1 === showAndhidden.hiddenlist[i] ) {
                     this.questionList[j]['hidden'] = true;
                 }
             }

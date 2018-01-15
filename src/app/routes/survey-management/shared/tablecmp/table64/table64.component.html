@@ -12,7 +12,7 @@
                                 <label >麻醉方式</label>
                             </div>
                         <div nz-form-control nz-col [nzSm]="20">
-                            <nz-radio-group [(ngModel)]="gca" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}" >
+                            <nz-radio-group [(ngModel)]="initialArray[0]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}" >
                                 <ng-container *ngFor="let item of mazui,index as i">
                                     <label  nz-radio [nzValue]="i"  [nzDisabled]="editdisabled">
                                         <span>{{item}}</span>
@@ -26,7 +26,7 @@
                             <label >造影剂使用剂量</label>
                         </div>
                         <div nz-form-control nz-col [nzSm]="8">
-                            <nz-input [(ngModel)]="gcb" (ngModelChange)="answerChange()" [nzDisabled]="editdisabled" [ngModelOptions]="{standalone: true}" ></nz-input>
+                            <nz-input [(ngModel)]="initialArray[1]" (ngModelChange)="answerChange()" [nzDisabled]="editdisabled" [ngModelOptions]="{standalone: true}" ></nz-input>
                         </div>
                         </div>
                         <div nz-form-item  nz-row >
@@ -34,7 +34,7 @@
                                 <label >穿刺部位</label>
                             </div>
                             <div nz-form-control nz-col [nzSm]="20">
-                                <nz-radio-group [(ngModel)]="gcc" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}" >
+                                <nz-radio-group [(ngModel)]="initialArray[2]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}" >
                                     <ng-container *ngFor="let item of chuanci,index as i">
                                         <label  nz-radio [nzValue]="i"  [nzDisabled]="editdisabled">
                                             <span>{{item}}</span>
@@ -63,12 +63,12 @@
                                         <td nz-td>{{Name}}</td>
                                         <td nz-td>
                                     <span>
-                                    <nz-input-number  [nzMin]="1" [nzMax]="10" [(ngModel)]="gcd[i][0]" [nzDisabled]="editdisabled" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
+                                    <nz-input-number  [nzMin]="1" [nzMax]="10" [(ngModel)]="array1[i][0]" [nzDisabled]="editdisabled" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
                                     </span>
                                         </td>
                                         <td nz-td>
                                     <span>
-                                        <nz-input-number  [nzMin]="1" [nzMax]="10"  [(ngModel)]="gcd[i][1]" [nzDisabled]="editdisabled" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
+                                        <nz-input-number  [nzMin]="1" [nzMax]="10"  [(ngModel)]="array1[i][1]" [nzDisabled]="editdisabled" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
                                     </span>
                                         </td>
                                     </tr>
@@ -78,15 +78,23 @@
                         </div>
                         <div nz-form-item  nz-row>
                             <div nz-form-label nz-col [nzSm]="2">
+                                <label >下腔静脉</label>
+                            </div>
+                            <div nz-form-control nz-col [nzSm]="8">
+                                <nz-input [(ngModel)]="initialArray[24]" (ngModelChange)="answerChange()" [nzDisabled]="editdisabled" [ngModelOptions]="{standalone: true}" ></nz-input>
+                            </div>
+                        </div>
+                        <div nz-form-item  nz-row>
+                            <div nz-form-label nz-col [nzSm]="2">
                                 <label >肺动脉左</label>
                             </div>
                             <div nz-form-control nz-col [nzSm]="8">
                                 <nz-input-group [nzSize]="'large'">
                                     <div nz-col [nzSpan]="4">
-                                        <nz-input-number  [nzMin]="1" [nzMax]="10" [(ngModel)]="gco1" [nzDisabled]="editdisabled" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
+                                        <nz-input-number  [nzMin]="1" [nzMax]="10" [(ngModel)]="initialArray[25]" [nzDisabled]="editdisabled" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
                                     </div>
                                     <div nz-col [nzSpan]="8">
-                                        <input [(ngModel)]="gco2" [ngModelOptions]="{standalone: true}" nz-input>
+                                        <input [(ngModel)]="initialArray[26]" [ngModelOptions]="{standalone: true}" nz-input>
                                     </div>
                                 </nz-input-group>
                             </div>
@@ -98,10 +106,10 @@
                             <div nz-form-control nz-col [nzSm]="8">
                                 <nz-input-group [nzSize]="'large'">
                                     <div nz-col [nzSpan]="4">
-                                        <nz-input-number  [nzMin]="1" [nzMax]="10" [(ngModel)]="gco3" [nzDisabled]="editdisabled" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
+                                        <nz-input-number  [nzMin]="1" [nzMax]="10" [(ngModel)]="initialArray[27]" [nzDisabled]="editdisabled" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
                                     </div>
                                     <div nz-col [nzSpan]="8">
-                                        <input [(ngModel)]="gco4" nz-input [ngModelOptions]="{standalone: true}">
+                                        <input [(ngModel)]="initialArray[28]" nz-input [ngModelOptions]="{standalone: true}">
                                     </div>
                                 </nz-input-group>
                             </div>
@@ -111,7 +119,7 @@
                                 <label >肾静脉</label>
                             </div>
                             <div nz-form-control nz-col [nzSm]="20">
-                                <nz-radio-group [(ngModel)]="gcp" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}" >
+                                <nz-radio-group [(ngModel)]="initialArray[29]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}" >
                                     <ng-container *ngFor="let item of tf,index as i">
                                         <label  nz-radio [nzValue]="i"  [nzDisabled]="editdisabled">
                                             <span>{{item}}</span>
@@ -120,7 +128,7 @@
                                 </nz-radio-group>
                             </div>
                         </div>
-                        <div nz-row *ngIf="gcp === 1">
+                        <div nz-row *ngIf="initialArray[29] === 1">
                             <div nz-col [nzSm]="12">
                                 <div nz-form-item  nz-row>
                                     <div nz-form-label nz-col [nzSm]="4">
@@ -178,7 +186,7 @@
                             <div nz-col [nzSm]="12">
                                 <div nz-form-item  nz-row >
                                     <div nz-form-label nz-col [nzSm]="4">
-                                        <label >左肾静脉开口部位</label>
+                                        <label >右肾静脉开口部位</label>
                                     </div>
                                     <div nz-form-control nz-col [nzSm]="8">
                                         <nz-radio-group [(ngModel)]="gcpb1" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}" >
@@ -245,9 +253,9 @@
                                         <td nz-td>{{Name}}</td>
                                         <td nz-td>
                                       <span>
-                                        <nz-input-number [nzMin]="0" [nzMax]="300" [(ngModel)]="gcq[i][0]" [nzDisabled]="editdisabled" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
+                                        <nz-input-number [nzMin]="0" [nzMax]="300" [(ngModel)]="array2[i][0]" [nzDisabled]="editdisabled" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
                                         /
-                                        <nz-input-number [nzMin]="0" [nzMax]="300" [(ngModel)]="gcq[i][1]" [nzDisabled]="editdisabled" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
+                                        <nz-input-number [nzMin]="0" [nzMax]="300" [(ngModel)]="array2[i][1]" [nzDisabled]="editdisabled" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
                                     </span>
                                             mmHg
                                         </td>

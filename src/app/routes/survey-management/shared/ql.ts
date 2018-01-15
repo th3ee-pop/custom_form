@@ -5711,7 +5711,7 @@ export class QuestionList {
                     '否',
                     '是'
                 ],
-                'hiddenlist': [["6.1.2","6.1.1"],[]],
+                'hiddenlist': [["6.1.2","6.1.1","6.1.2.1"],[]],
                 'hidden': false
             },
             {
