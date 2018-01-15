@@ -12,16 +12,10 @@
         "group": true,
         "children": [{
             "text": "Health Survey",
-            "translate": "健康体检调查",
+            "translate": "信息录入",
             "link": "survey/detail",
             "icon": "icon-grid"
-        },
-            {
-                "text": "Useful Table",
-                "translate": "表单样例",
-                "link": "useful_tables/example",
-                "icon": "icon-grid"
-            }
+        }
         ]
         }]
 }
