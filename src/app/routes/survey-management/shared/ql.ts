@@ -5720,7 +5720,7 @@ export class QuestionList {
                 'type': 'selectable-table',
                 'rowTitle': ['低分子肝素', '华法林', '尿激酶'],
                 'columnTitle': ['剂量', '用法', '频次', '用药时间'],
-                'radioStr': 'gaaa',
+                'radioStr': 'gaa',
                 'title': '6.1.1入院前治疗情况',
             },
             {
@@ -5755,7 +5755,7 @@ export class QuestionList {
                 'type': 'selectable-table',
                 'rowTitle': ['气压泵治疗', '硫酸镁冷敷', '看医用弹力袜'],
                 'columnTitle': ['剂量', '用法', '频次', '用药时间'],
-                'radioStr': 'gbaa',
+                'radioStr': 'gba',
                 'title': '6.2.1 术前用药：物理治疗',
             }, {
                 'id2': 'gbb',
@@ -5763,7 +5763,7 @@ export class QuestionList {
                 'type': 'selectable-table',
                 'rowTitle': ['威利坦', '迈之灵', '爱脉朗', '七叶皂苷钠', '其他'],
                 'columnTitle': ['剂量', '用法', '频次', '用药时间'],
-                'radioStr': 'gbba',
+                'radioStr': 'gbb',
                 'title': '6.2.2 术前用药：消肿药物',
             }, {
                 'id2': 'gbc',
@@ -5771,7 +5771,7 @@ export class QuestionList {
                 'type': 'selectable-table',
                 'rowTitle': ['丹参注射液', '疏血通', '丹参川穹嗪', '其他'],
                 'columnTitle': ['剂量', '用法', '频次', '用药时间'],
-                'radioStr': 'gbca',
+                'radioStr': 'gbc',
                 'title': '6.2.3 术前用药：扩展改善循环药',
             }, {
                 'id2': 'gdb',
@@ -5779,7 +5779,7 @@ export class QuestionList {
                 'type': 'selectable-table',
                 'rowTitle': ['低分子肝素', '磺达肝奎钠', '华法林', '阿加曲班', '利伐沙班'],
                 'columnTitle': ['剂量', '用法', '频次', '用药时间'],
-                'radioStr': 'gbda',
+                'radioStr': 'gbd',
                 'title': '6.2.4 术前用药：抗凝药',
             },{
                 'id2': 'gbe',
@@ -5787,7 +5787,7 @@ export class QuestionList {
                 'type': 'selectable-table',
                 'rowTitle': ['尿激酶'],
                 'columnTitle': ['剂量', '用法', '频次', '用药时间'],
-                'radioStr': 'gbea',
+                'radioStr': 'gbe',
                 'title': '6.2.5 术前用药：溶栓药',
             },
             {
@@ -5895,7 +5895,7 @@ export class QuestionList {
                     '是'
                 ],
                 'title': '术中是否有不良反应',
-                'hiddenlist': [['6.3.4.1'],[]],
+                'hiddenlist': [['6.3.4.1', '6.3.4.2', '6.3.4.2.1'],[]],
                 'hidden': false
             },
             {
@@ -5903,12 +5903,24 @@ export class QuestionList {
                 'id1': '6.3.4.1',
                 'type': 'multi-radio',
                 'title': '术中不良反应',
-                'content': ["过敏反应", "呼吸困难、心率失常", "出血、穿刺意外", "其他"],
+                'content': ["过敏反应", "呼吸困难、心率失常", "出血、穿刺意外"],
+                'hidden': false
+            },
+            {
+                'id2': 'gcy',
+                'id1': '6.3.4.2',
+                'type': 'radio',
+                'content': [
+                    '否',
+                    '是'
+                ],
+                'title': '术中是否有其他不良反应',
+                'hiddenlist': [['6.3.4.2.1'],[]],
                 'hidden': false
             },
             {
                 'id2': 'gcz4a',
-                'id1': '6.3.4.1',
+                'id1': '6.3.4.2.1',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -5924,7 +5936,7 @@ export class QuestionList {
                 'type': 'selectable-table',
                 'rowTitle': ['气压泵', '硫酸镁'],
                 'columnTitle': ['剂量', '用法', '频次', '用药时间'],
-                'radioStr': 'gdaa',
+                'radioStr': 'gda',
                 'title': '6.4.1 术后用药：物理治疗',
             },  {
                 'id2': 'gdb',
@@ -5932,7 +5944,7 @@ export class QuestionList {
                 'type': 'selectable-table',
                 'rowTitle': ['威利坦', '迈之灵', '爱脉朗', '七叶皂苷钠', '其他'],
                 'columnTitle': ['剂量', '用法', '频次', '用药时间'],
-                'radioStr': 'gdba',
+                'radioStr': 'gdb',
                 'title': '6.4.2 术后用药：消肿药物',
             }, {
                 'id2': 'gdc',
@@ -5940,7 +5952,7 @@ export class QuestionList {
                 'type': 'selectable-table',
                 'rowTitle': ['丹参注射液', '疏血通', '丹参川穹嗪', '其他'],
                 'columnTitle': ['剂量', '用法', '频次', '用药时间'],
-                'radioStr': 'gdca',
+                'radioStr': 'gdc',
                 'title': '6.4.3 术后用药：扩展改善循环药',
             },{
                 'id2': 'gdd',
@@ -5948,7 +5960,7 @@ export class QuestionList {
                 'type': 'selectable-table',
                 'rowTitle': ['低分子肝素', '磺达肝奎钠', '华法林', '阿加曲班', '利伐沙班'],
                 'columnTitle': ['剂量', '用法', '频次', '用药时间'],
-                'radioStr': 'gdca',
+                'radioStr': 'gdc',
                 'title': '6.4.4 术后用药：抗凝药',
             },{
                 'id2': 'gde',
@@ -5956,7 +5968,7 @@ export class QuestionList {
                 'type': 'selectable-table',
                 'rowTitle': ['尿激酶'],
                 'columnTitle': ['剂量', '用法', '频次', '用药时间'],
-                'radioStr': 'gdea',
+                'radioStr': 'gde',
                 'title': '6.4.5 术后用药：溶栓药',
             },
             {

@@ -11,9 +11,9 @@
                             <label >{{item}} </label>
                         </div>
                         <div nz-form-control nz-col [nzSm]="4">
-                            <nz-radio-group [(ngModel)]="localAnswer[i]" [ngModelOptions]="{standalone: true}" >
+                            <nz-radio-group [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}" >
                                 <ng-container *ngFor="let op of tf,index as j">
-                                    <label  nz-radio [nzValue]="j"  [nzDisabled]="editdisabled">
+                                    <label  nz-radio [nzValue]="j+1"  [nzDisabled]="editdisabled">
                                         <span>{{op}}</span>
                                     </label>
                                 </ng-container>
