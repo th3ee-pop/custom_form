@@ -39,8 +39,8 @@ export class Info5Component implements OnInit, AfterViewInit {
     @ViewChildren(Table55Component) Table55Items: QueryList<Table55Component>
     current = 5;
     questions = new QuestionList().questions;
-    questionSave = this.questions; // 用来传到后端
-    questionList = []
+    questionSave = []; // 用来传到后端
+    questionList = [];
     schedule_list = new ScheduleList().schedule_list; // 步骤条的list
     resultList = [];
     answerList = [];
@@ -53,30 +53,38 @@ export class Info5Component implements OnInit, AfterViewInit {
                 private service: HttpService,
                 private confirmServ: NzModalService,
                 private ref: ChangeDetectorRef) {
-
         this.PID = this.route.params['value']['PID'];
         if (this.PID) {
             const getRecord = {
                 'PID': this.PID
             };
-        this.service.getRecord(getRecord).subscribe((res) => {
-            const list = res.Records;
-            console.log(res);
-            this.answerList = list;
-            for (let i = 0; i < list.length; i++) {
-                if (list[i]['questionlist'] && list[i]['questionlist'] !== '') {
-                    this.questionList = list[i]['questionlist'][this.current];
-                    this.questionSave = list[i]['questionlist'];
-                    break;
+            this.service.getRecord(getRecord).subscribe((res) => {
+                const list = res.Records;
+                console.log(res);
+                this.answerList = list;
+                for (let i = 0; i < list.length; i++) {
+                    if (list[i]['questionlist'] && list[i]['questionlist'] !== '') {
+                        this.questionList = list[i]['questionlist'][this.current];
+                        this.questionSave = list[i]['questionlist'];
+                        break;
+                    }
                 }
-            }
-        });
+            });
+
+        }
     }
-}
     ngOnInit() {
-        this.questionList = this.questionSave[this.current];
+
+       // this.fillingAllanswer();
+       // this.questionList = this.questionSave[this.current];
     }
     ngAfterViewInit() {
+        if (this.PID) {
+            console.log(this.PID);
+            console.log('found');
+            this.fillingAllanswer();
+        }
+        console.log('not found');
     }
     onVoted (showAndhidden: any) {
         console.log(showAndhidden);
@@ -101,9 +109,9 @@ export class Info5Component implements OnInit, AfterViewInit {
         if (this.confirm().confrims) {
             this.initPutRecord();
             console.log(this.putRecord);
-            /*
-             * 在此处调用API 发送请求
-             * */
+            this.service.putRecord(this.putRecord).subscribe((res) => {
+                this.router.navigate(['system/survey/info6/' + this.PID]);
+            });
         } else {
             let str = '';
             this.confirm().confirmsList.forEach( item => {
@@ -118,20 +126,25 @@ export class Info5Component implements OnInit, AfterViewInit {
     temporary_deposit() {
         this.initPutRecord();
         console.log(this.putRecord);
-        /*
-         * 在此处调用API 发送请求
-         * */
+        this.service.putRecord(this.putRecord).subscribe((res) => {
+            this.router.navigate(['system/survey/detail/']);
+        }, error => {
+        });
     }
     exit () {
         this.router.navigate( ['system/survey/detail/']);
     }
     pre() {
         this.initPutRecord();
+        this.service.putRecord(this.putRecord).subscribe((res) => {
+        }, error => {
+        });
+        this.router.navigate(['system/survey/info4/' + this.PID]);
         console.log(this.putRecord);
     }
 
     initPutRecord() {
-        this.collecAllanswer()
+        this.collecAllanswer();
         if (this.PID) {
             this.putRecord = { 'Records': this.resultList, 'PID': this.PID };
         }else {
@@ -155,6 +168,7 @@ export class Info5Component implements OnInit, AfterViewInit {
         };
         return confirmAll;
     }
+
 
     collecAllanswer() {
         this.resultList = [];
@@ -215,10 +229,154 @@ export class Info5Component implements OnInit, AfterViewInit {
                 this.resultList.push(d);
             });
         });
+        this.questionSave[this.current] = this.questionList;
+        this.resultList.push(
+            {'Record_ID': 'questionlist', 'Record_Value': this.questionSave}
+        );
+        for (let i = 0; i < this.answerList.length; i++) {
+            for (let j = 0; j < this.resultList.length; j++) {
+                const id = this.resultList[j].Record_ID;
+                if (this.answerList[i][id] || this.answerList[i][id] === 0) {
+                    this.resultList[j]['Updated_time'] = this.answerList[i]['Updated_time'];
+                }
+            }
+        }
         console.log(this.resultList);
     }
     fillingAllanswer() {
-
+        const getRecord = {
+            'PID': this.PID
+        };
+        this.service.getRecord(getRecord).subscribe(
+            (res) => {
+                this.fillingList = res.Records;
+                const pageFive = [];
+                this.fillingList.forEach(d => {
+                    for (const key in d) {
+                       if (key.substr(0, 1) === 'e') {
+                          pageFive.push(d);
+                       }
+                    }
+                });
+                console.log(pageFive);
+                if (this.fillingList && this.fillingList.length !== 0) {
+                    this.InputItems.forEach(item => {
+                        this.fillingList.forEach(fl => {
+                            const id = item.question.id2;
+                            if (fl[id] && fl[id] !== '') {
+                                item.localAnswer = fl[id];
+                            }
+                            if (fl[id] === 0) {
+                                item.localAnswer = '0';
+                            }
+                        });
+                    });
+                }
+                this.RadioItems.forEach(item => {
+                    this.fillingList.forEach(fl => {
+                        const id = item.question.id2;
+                        if (fl[id] && fl[id] !== '') {
+                            item.localAnswer = fl[id] - 1;
+                        }
+                    });
+                });
+                this.MultiTableItems.forEach(item => {
+                    const id = item.idArray;
+                    console.log(id);
+                    pageFive.forEach(d => {
+                        for (let i = 0; i < item.row; i++) {
+                            for (let j = 0; j < item.column; j++) {
+                                if (d[id[i][j]] && d[id[i][j]] !== '') {
+                                    item.initialArray[i][j] = d[id[i][j]];
+                                }
+                            }
+                        }
+                    });
+                });
+                this.ExampleItems.forEach(item => {
+                    const id = item.idArray;
+                    console.log(id);
+                    pageFive.forEach(d => {
+                        for (let i = 0; i < item.row; i++) {
+                            for (let j = 0; j < item.column; j++) {
+                                if (d[id[i][j]] && d[id[i][j]] !== '') {
+                                    item.initialArray[i][j] = d[id[i][j]];
+                                }
+                            }
+                        }
+                    });
+                });
+                this.SelectableTableItems.forEach(item => {
+                    const id = item.idArray;
+                    console.log(id);
+                    pageFive.forEach(d => {
+                        for (let i = 0; i < item.row; i++) {
+                            for (let j = 0; j < item.column + 1; j++) {
+                                if (d[id[i][j]] && d[id[i][j]] !== '') {
+                                    item.initialArray[i][j] = d[id[i][j]];
+                                    if (item.initialArray[i][j] === '1' || item.initialArray[i][j] === '2') {
+                                        item.initialArray[i][j] = parseInt(item.initialArray[i][j]);
+                                    }
+                                }
+                            }
+                        }
+                    });
+                });
+                this.Table52Items.forEach(item => {
+                    const id = item.idArray;
+                    console.log(id);
+                    pageFive.forEach(d => {
+                        for (let i = 0; i < item.row + item.overallItem - 1 ; i++) {
+                            for (let j = 0; j < item.column ; j++) {
+                                if (d[id[i][j]] && d[id[i][j]] !== '') {
+                                    item.initialArray[i][j] = d[id[i][j]];
+                                }
+                            }
+                        }
+                    });
+                });
+                this.Table53Items.forEach(item => {
+                    const id = item.idArray;
+                    console.log(id);
+                    pageFive.forEach(d => {
+                        for (let i = 0; i < item.row; i++) {
+                            for (let j = 0; j < item.column; j++) {
+                                if (d[id[i][j]] && d[id[i][j]] !== '') {
+                                    item.initialArray[i][j] = d[id[i][j]];
+                                }
+                            }
+                        }
+                    });
+                });
+                this.Table54Items.forEach(item => {
+                    const id = item.idArray;
+                    console.log(id);
+                    pageFive.forEach(d => {
+                            for (let j = 0; j < item.initialArray.length; j++) {
+                                if (d[id[j]] && d[id[j]] !== '') {
+                                    item.initialArray[j] = d[id[j]];
+                                }
+                            }
+                    });
+                });
+                this.Table55Items.forEach(item => {
+                    const id = item.idArray;
+                    console.log(id);
+                    pageFive.forEach(d => {
+                        for (let i = 0; i < item.row; i++) {
+                            for (let j = 0; j < item.column; j++) {
+                                if (d[id[i][j]] && d[id[i][j]] !== '') {
+                                    item.initialArray[i][j] = d[id[i][j]];
+                                }
+                            }
+                        }
+                    });
+                });
+                console.log(res);
+            }, error => {
+                console.log(error);
+            }
+        );
     }
 
 }

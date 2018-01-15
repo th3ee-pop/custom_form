@@ -81,13 +81,13 @@ export class SelectableTableComponent extends Question implements OnInit {
                     for (let j = 0; j < column + 1; j++) {
                         if (j === 0) {
                             this.changedAnswer.push({
-                                id2: idArray[i][j],
-                                value: blank[i][j]
+                                Record_ID: idArray[i][j],
+                                Record_Value: blank[i][j]
                             });
                         } else {
                                 this.changedAnswer.push({
-                                    id2: idArray[i][j],
-                                    value: ''
+                                    Record_ID: idArray[i][j],
+                                    Record_Value: ''
                                 });
                             }
                         }
@@ -95,8 +95,8 @@ export class SelectableTableComponent extends Question implements OnInit {
                     for (let j = 0; j < column + 1; j++) {
                         if (blank[i][j] !== '') {
                             this.changedAnswer.push({
-                                id2: idArray[i][j],
-                                value: blank[i][j]
+                                Record_ID: idArray[i][j],
+                                Record_Value: blank[i][j]
                             });
                         }
                     }

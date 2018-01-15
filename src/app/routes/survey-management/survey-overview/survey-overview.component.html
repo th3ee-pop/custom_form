@@ -120,7 +120,7 @@
                                                    (ngModelChange)="refChecked()">
                                             </label>
                                         </td>
-                                        <td nz-td>{{data.PID}}</td>
+                                        <td nz-td>{{data}}</td>
                                         <td nz-td>{{data.No}}</td>
                                         <td nz-td>{{data.Status}}</td>
                                         <td nz-td>{{data.Updated_time}}</td>
@@ -128,7 +128,7 @@
                                         <td nz-td>{{data.Complete_by}}</td>
                                         <td nz-td>
                                             <span >
-                                                <a [routerLink]="'../info0/'+ data.PID">查看</a>
+                                                <a [routerLink]="'../info0/'+ data">查看</a>
                                                 <span nz-table-divider></span>
                                             </span>
                                             <span *ngIf="userGroup < 4">

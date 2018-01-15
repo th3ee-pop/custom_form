@@ -54,6 +54,8 @@ export class Info4Component implements OnInit, AfterViewInit {
                         break;
                     }
                 }
+                console.log(this.questionList);
+                console.log(this.questionSave);
             });
         }
     }
