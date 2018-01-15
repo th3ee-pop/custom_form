@@ -28,8 +28,8 @@ export class Info6Component implements OnInit, AfterViewInit {
     @ViewChildren(SelectableTableComponent) SelectableTableItems: QueryList<SelectableTableComponent>;
 
     current = 6;
-    questions = new QuestionList().questions;
-    questionSave = this.questions; // 用来传到后端
+    //questions = new QuestionList().questions;
+    questionSave = [] // 用来传到后端
     questionList = [];
     schedule_list = new ScheduleList().schedule_list; // 步骤条的list
     resultList = [];                                  // 用于封装答案
@@ -66,7 +66,7 @@ export class Info6Component implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-      this.questionList = this.questionSave[this.current];
+      // this.questionList = this.questionSave[this.current];
   }
 
     ngAfterViewInit() {
@@ -217,6 +217,7 @@ export class Info6Component implements OnInit, AfterViewInit {
                 }
             }
         }
+        console.log(this.resultList);
     }
 
     fillingAllanswer() {
@@ -249,12 +250,51 @@ export class Info6Component implements OnInit, AfterViewInit {
                     });
                 });
 
+                this.MultiRadioItems.forEach(item => {
+                    this.fillingList.forEach(fl => {
+                        const id = item.question.id2;
+                        for(let i=0;i<id.length;i++){
+                            if (fl[id[i]] && fl[id[i]] !== '') {
+                                item.localAnswer[i] = fl[id[i]]-1;
+                            }
+                        }
+                    });
+                });
+
+                this.SelectableInputItems.forEach(item => {
+                    this.fillingList.forEach(fl => {
+                        const id = item.question.id2;
+                        for(let i=0;i<id.length;i++){
+                            if (fl[id[i]] && fl[id[i]] !== '') {
+                                item.localAnswer[i] = fl[id[i]];
+                            }
+                        }
+                    });
+                });
+
                 this.Table64Item.forEach(item => {
+                    console.log(item);
                     const id = item.idArray;
                     this.fillingList.forEach(d => {
                         for (let j = 0; j < item.initialArray.length; j++) {
                             if (d[id[j]] && d[id[j]] !== '') {
                                 item.initialArray[j] = d[id[j]];
+                            }
+                        }
+                    });
+                });
+                this.SelectableTableItems.forEach(item => {
+                    const id = item.idArray;
+                    // console.log(id);
+                    this.fillingList.forEach(d => {
+                        for (let i = 0; i < item.row; i++) {
+                            for (let j = 0; j < item.column + 1; j++) {
+                                if (d[id[i][j]] && d[id[i][j]] !== '') {
+                                    item.initialArray[i][j] = d[id[i][j]];
+                                    if (item.initialArray[i][j] === '1' || item.initialArray[i][j] === '2') {
+                                        item.initialArray[i][j] = parseInt(item.initialArray[i][j]);
+                                    }
+                                }
                             }
                         }
                     });

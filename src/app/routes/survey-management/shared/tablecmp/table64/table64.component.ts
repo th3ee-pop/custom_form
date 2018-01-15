@@ -13,9 +13,6 @@ export class Table64Component extends Question implements OnInit {
     editdisabled = false;
 
     mazui = ["局麻+心电血压监护", "全麻+心电血压监护"];
-    gca = -1;
-    gcb;gcc;
-
     chuanci = ["足背静脉", "股静脉", "股动脉"];
     rawname1 = ["胫后静脉","胫前静脉","腓静脉","腘静脉","股浅静脉","股静脉","髂静脉","髂外静脉","髂总静脉","大隐静脉"];
     rawname2 = ["肺动脉主干压力","右肺动脉","左肺动脉","肺楔压","右室压力","右房压力"];
@@ -58,20 +55,14 @@ export class Table64Component extends Question implements OnInit {
 
     getAnswer() {
         this.changedAnswer = [];
+        this.getInitArray();
         this.setAnswer();
         console.log(this.changedAnswer);
     }
 
     setAnswer() {
-      let  gcp = new Array(14);
-      if( this.array3[5] === 1){
-          gcp = [...this.getJmparts(this.gcpa),
-              ...this.getJmparts(this.gcpb)];
-          // console.log(gcp);
-      }
-      this.initialArray = [...this.array0,...this.array1[0] ,...this.array1[1],...this.array3,...gcp,...this.array2[0],...this.array2[1]];
       for (let i = 0; i < this.initialArray.length; i++) {
-            if (this.initialArray[i] !== '') {
+            if (this.initialArray[i] && this.initialArray[i] !== '') {
                 this.changedAnswer.push({
                     Record_ID: this.idArray[i],
                     Record_Value: this.initialArray[i]
@@ -91,6 +82,14 @@ export class Table64Component extends Question implements OnInit {
       return gcp;
     }
 
+    getInitArray(){
+        let  gcp = new Array(14);
+        if( this.array3[5] === 1){
+            gcp = [...this.getJmparts(this.gcpa),
+                ...this.getJmparts(this.gcpb)];
+        }
+        this.initialArray = [...this.array0,...this.array1[0] ,...this.array1[1],...this.array3,...gcp,...this.array2[0],...this.array2[1]];
+    }
     answerChange(){
 
     }

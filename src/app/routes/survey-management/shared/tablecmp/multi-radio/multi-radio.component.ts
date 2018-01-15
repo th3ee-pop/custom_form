@@ -16,7 +16,7 @@ export class MultiRadioComponent extends Question  implements OnInit {
     constructor() { super(); }
 
     ngOnInit() {
-        console.log(this.question);
+        // console.log(this.question);
         this.localAnswer= new Array(this.question.content.length);
     }
 
