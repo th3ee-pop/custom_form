@@ -132,15 +132,15 @@
                                                 <span nz-table-divider></span>
                                             </span>
                                             <span *ngIf="userGroup < 4">
-                                                <a (click)="deleteRecord(data.PID)" >删除</a>
+                                                <a (click)="deleteRecord(data)" >删除</a>
                                                 <span nz-table-divider></span>
                                             </span>
                                             <span *ngIf="userGroup === 4 && loggedUser === data.Complete_by">
-                                                <a (click)="deleteRecord(data.PID)">删除</a>
+                                                <a (click)="deleteRecord(data)">删除</a>
                                                 <span nz-table-divider></span>
                                             </span>
                                             <span>
-                                                <a (click)="downloadByPID(data.PID)">导出</a>
+                                                <a (click)="downloadByPID(data)">导出</a>
                                                 <span nz-table-divider></span>
                                             </span>
                                         </td>

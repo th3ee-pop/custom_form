@@ -5593,7 +5593,7 @@ export class QuestionList {
                 'hidden': false,
                 'type': 'selectable-table',
                 'title': '心肌酶谱',
-                'rowTitle': ['心肌酶谱', 'CK', 'CKMB(u/L)', 'CtnT(ng/ml)', 'MYO(ng/ml)'],
+                'rowTitle': ['CK', 'CKMB(u/L)', 'CtnT(ng/ml)', 'MYO(ng/ml)'],
                 'columnTitle': ['入院时', '第二次检查'],
                 'radioStr': 'eeig'
             },
