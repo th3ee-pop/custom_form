@@ -54,9 +54,9 @@ export class Table64Component extends Question implements OnInit {
       for (let i = 0; i < this.initialArray.length; i++) {
             if (this.initialArray[i] && this.initialArray[i] !== '') {
                 if(i == 0 || i==2 || (27<i&&i<43)){
-                    console.log(i);
-                    console.log( this.question.id2[i]);
-                    console.log( this.initialArray[i]);
+                    // console.log(i);
+                    // console.log( this.question.id2[i]);
+                    // console.log( this.initialArray[i]);
                 this.changedAnswer.push({
                     Record_ID: this.idArray[i],
                     Record_Value: this.initialArray[i]+1
