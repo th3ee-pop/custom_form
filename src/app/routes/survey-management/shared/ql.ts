@@ -6109,7 +6109,7 @@ export class QuestionList {
                 'hidden': false
             },
             {
-                'id2': 'gf',
+                'id2': ['gfa','gfb','gfc','gfd','gfe'],
                 'id1': '6.7',
                 'type': 'multi-input',
                 'title': '出院医嘱',
