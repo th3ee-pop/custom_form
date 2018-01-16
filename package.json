@@ -68,7 +68,7 @@
     "ngx-color-picker": "4.3.1",
     "ngx-echarts": "1.2.4",
     "ngx-perfect-scrollbar": "4.5.3",
-    "rxjs": "5.4.3",
+    "rxjs": "^5.5.2",
     "screenfull": "3.3.1",
     "simple-line-icons": "2.4.1",
     "sweetalert": "2.0.3",
