@@ -181,28 +181,41 @@ export class Info0Component implements OnInit, AfterViewInit  {
         this.service.getRecord(getRecord).subscribe((res) => {
 
             this.fillingList = res.Records;
-            this.InputItems.forEach(item => {
-                for (let i = 0; i < this.fillingList.length; i++) {
-                    const id = item.question.id2;
-                    if (this.fillingList[i][id] && this.fillingList[i][id] !== '') {
-                        item.localAnswer = this.fillingList[i][id];
+            const pageZero = [];
+            this.fillingList.forEach(d => {
+                for (const key in d) {
+                    if (key.substr(0, 1) === 'n'
+                        || key === 'IDnumber'
+                        || key === 'doctor'
+                        || key.substr(0, 4) === 'type'
+                        || key.substr(0, 4) === 'diag'
+                    ) {
+                        pageZero.push(d);
                     }
-                    if (this.fillingList[i][id] === 0) {
+                }
+            });
+            this.InputItems.forEach(item => {
+                for (let i = 0; i < pageZero.length; i++) {
+                    const id = item.question.id2;
+                    if (pageZero[i][id] && pageZero[i][id] !== '') {
+                        item.localAnswer = pageZero[i][id];
+                    }
+                    if (pageZero[i][id] === 0) {
                         item.localAnswer = '0';
                     }
                 }
             });
 
-            this.IdcItems.forEach( item => { for (let i = 0; i < this.fillingList.length; i++) {
-                if (this.fillingList[i]['Idnumber'] && this.fillingList[i]['Idnumber'] !== '') {
-                    item.localAnswer = this.fillingList[i]['Idnumber']; }
+            this.IdcItems.forEach( item => { for (let i = 0; i < pageZero.length; i++) {
+                if (pageZero[i]['Idnumber'] && pageZero[i]['Idnumber'] !== '') {
+                    item.localAnswer = pageZero[i]['Idnumber']; }
             }});
 
             this.RadioItems.forEach(item => {
-                for (let i = 0; i < this.fillingList.length; i++) {
+                for (let i = 0; i < pageZero.length; i++) {
                     const id = item.question.id2;
-                    if (this.fillingList[i][id] && this.fillingList[i][id] !== '') {
-                        item.localAnswer = this.fillingList[i][id] - 1;
+                    if (pageZero[i][id] && pageZero[i][id] !== '') {
+                        item.localAnswer = pageZero[i][id] - 1;
                     }
                 }
             });
