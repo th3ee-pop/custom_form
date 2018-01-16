@@ -216,9 +216,17 @@ export class Info4Component implements OnInit, AfterViewInit {
         this.service.getRecord(getRecord).subscribe(
             (res) => {
                 this.fillingList = res.Records;
+                const pageFour = [];
+                this.fillingList.forEach(d => {
+                    for (const key in d) {
+                        if (key.substr(0, 1) === 'd') {
+                            pageFour.push(d);
+                        }
+                    }
+                });
                 if (this.fillingList && this.fillingList.length !== 0) {
                     this.InputItems.forEach(item => {
-                        this.fillingList.forEach(fl => {
+                        pageFour.forEach(fl => {
                             const id = item.question.id2;
                             if (fl[id] && fl[id] !== '') {
                                 item.localAnswer = fl[id];
@@ -231,7 +239,7 @@ export class Info4Component implements OnInit, AfterViewInit {
                 }
 
                 this.RadioItems.forEach(item => {
-                    this.fillingList.forEach(fl => {
+                    pageFour.forEach(fl => {
                         const id = item.question.id2;
                         if (fl[id] && fl[id] !== '') {
                             item.localAnswer = fl[id] - 1;
@@ -240,7 +248,7 @@ export class Info4Component implements OnInit, AfterViewInit {
                 });
 
                 this.SingletabItem.forEach(item => {
-                    this.fillingList.forEach( fl => {
+                    pageFour.forEach( fl => {
                         for (let i = 0; i < item.question.id2.length; i++) {
                             const id = item.question.id2[i];
                             if ( fl[id] && fl[id] !== '') {
