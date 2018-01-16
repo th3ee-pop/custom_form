@@ -3,7 +3,7 @@
     <div nz-row >
         <div nz-col>
             <nz-card>
-                <ng-template #title>周围血管科数据录入系统<span id="red">&nbsp;( *为必填项 )</span></ng-template>
+                <ng-template #title>周围血管科数据录入系统<span id="red"></span></ng-template>
                 <ng-template #body>
                     <nz-steps [(nzCurrent)]="current" [nzSize]="'small'" >
                         <nz-step *ngFor="let step of schedule_list,index as i" [nzTitle]="step.status" [nzDescription]="step.descript" ></nz-step>

@@ -11,9 +11,9 @@ import {ScheduleList} from '../shared/scheduleList';
 import {Table64Component} from "../shared/tablecmp/table64/table64.component";
 
 @Component({
-  selector: 'app-info6',
-  templateUrl: './info6.component.html',
-  styleUrls: ['./info6.component.less']
+    selector: 'app-info6',
+    templateUrl: './info6.component.html',
+    styleUrls: ['./info6.component.less']
 })
 export class Info6Component implements OnInit {
 
@@ -31,15 +31,15 @@ export class Info6Component implements OnInit {
     fillingList = [];                                 // 用于从后端获取答案
     putRecord = {};
 
-  constructor(
-      private router: Router,
-      private confirmServ: NzModalService,
-      private service: HttpService
-  ) { }
+    constructor(
+        private router: Router,
+        private confirmServ: NzModalService,
+        private service: HttpService
+    ) { }
 
-  ngOnInit() {
-      this.questionList = this.questionSave[this.current];
-  }
+    ngOnInit() {
+        this.questionList = this.questionSave[this.current];
+    }
     onVoted (showAndhidden: any) {
         for ( let i = 0; i <  showAndhidden.hiddenshowlist.length; i++) {
             for ( let j = 0; j < this.questionList.length; j++) {
@@ -145,6 +145,6 @@ export class Info6Component implements OnInit {
     }
 
     fillingAllanswer() {
-      // this.service.getRecord()
+        // this.service.getRecord()
     }
 }

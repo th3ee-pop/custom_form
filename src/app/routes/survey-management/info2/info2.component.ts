@@ -85,21 +85,21 @@ export class Info2Component implements OnInit, AfterViewInit  {
 
     /** 下一步 **/
     next() {
-        if (this.confirm().confirms) {
-            this.initPutRecord();
-            this.service.putRecord(this.putRecord).subscribe( (res) => {
-                this.router.navigate(['system/survey/info3/' + this.PID]);
-            });
-        }else {
-            let str = '';
-            for ( let i = 0; i < this.confirm().confirmList.length; i++) {
-                str = str + this.confirm().confirmList[i] + '、';
-            }
-            this.confirmServ.error({
-                title: '您还有以下必填项没有完成： ',
-                content: str
-            });
-        }
+        // if (this.confirm().confirms) {
+        this.initPutRecord();
+        this.service.putRecord(this.putRecord).subscribe( (res) => {
+            this.router.navigate(['system/survey/info3/' + this.PID]);
+        });
+        // }else {
+        //     let str = '';
+        //     for ( let i = 0; i < this.confirm().confirmList.length; i++) {
+        //         str = str + this.confirm().confirmList[i] + '、';
+        //     }
+        //     this.confirmServ.error({
+        //         title: '您还有以下必填项没有完成： ',
+        //         content: str
+        //     });
+        // }
     }
 
     /** 暂存 **/

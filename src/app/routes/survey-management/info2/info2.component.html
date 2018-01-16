@@ -3,7 +3,7 @@
     <div nz-row >
         <div nz-col>
             <nz-card>
-                <ng-template #title>健康体检调查表<span id="red">&nbsp;( *为必填项 )</span></ng-template>
+                <ng-template #title>健康体检调查表<span id="red"></span></ng-template>
                 <ng-template #body>
                     <nz-steps [(nzCurrent)]="current" [nzSize]="'small'" >
                         <nz-step *ngFor="let step of b ,index as i" [nzTitle]="step.status" [nzDescription]="step.descript" ></nz-step>
