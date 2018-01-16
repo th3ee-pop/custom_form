@@ -8,15 +8,15 @@ import {RadiocmpComponent} from '../shared/radiocmp/radiocmp.component';
 
 import {QuestionList} from '../shared/ql';
 import {ScheduleList} from '../shared/scheduleList';
-import {Table64Component} from "../shared/tablecmp/table64/table64.component";
-import {SelectableInputComponent} from "../shared/tablecmp/selectable-input/selectable-input.component";
-import {MultiRadioComponent} from "../shared/tablecmp/multi-radio/multi-radio.component";
-import {SelectableTableComponent} from "../../useful-table/selectable-table/selectable-table.component";
+import {Table64Component} from '../shared/tablecmp/table64/table64.component';
+import {SelectableInputComponent} from '../shared/tablecmp/selectable-input/selectable-input.component';
+import {MultiRadioComponent} from '../shared/tablecmp/multi-radio/multi-radio.component';
+import {SelectableTableComponent} from '../../useful-table/selectable-table/selectable-table.component';
 
 @Component({
-  selector: 'app-info6',
-  templateUrl: './info6.component.html',
-  styleUrls: ['./info6.component.less']
+    selector: 'app-info6',
+    templateUrl: './info6.component.html',
+    styleUrls: ['./info6.component.less']
 })
 export class Info6Component implements OnInit, AfterViewInit {
 
@@ -28,8 +28,7 @@ export class Info6Component implements OnInit, AfterViewInit {
     @ViewChildren(SelectableTableComponent) SelectableTableItems: QueryList<SelectableTableComponent>;
 
     current = 6;
-    //questions = new QuestionList().questions;
-    questionSave = [] // 用来传到后端
+    questionSave = []; // 用来传到后端
     questionList = [];
     schedule_list = new ScheduleList().schedule_list; // 步骤条的list
     resultList = [];                                  // 用于封装答案
@@ -221,6 +220,7 @@ export class Info6Component implements OnInit, AfterViewInit {
     }
 
     fillingAllanswer() {
+
         const getRecord = {
             'PID': this.PID
         };
@@ -262,9 +262,9 @@ export class Info6Component implements OnInit, AfterViewInit {
                 this.MultiRadioItems.forEach(item => {
                     pageSix.forEach(fl => {
                         const id = item.question.id2;
-                        for(let i=0;i<id.length;i++){
+                        for (let i = 0 ; i < id.length; i++) {
                             if (fl[id[i]] && fl[id[i]] !== '') {
-                                item.localAnswer[i] = fl[id[i]]-1;
+                                item.localAnswer[i] = fl[id[i]] - 1;
                             }
                         }
                     });
@@ -273,7 +273,7 @@ export class Info6Component implements OnInit, AfterViewInit {
                 this.SelectableInputItems.forEach(item => {
                     pageSix.forEach(fl => {
                         const id = item.question.id2;
-                        for(let i=0;i<id.length;i++){
+                        for (let i = 0; i < id.length; i++) {
                             if (fl[id[i]] && fl[id[i]] !== '') {
                                 item.localAnswer[i] = fl[id[i]];
                             }
@@ -287,8 +287,8 @@ export class Info6Component implements OnInit, AfterViewInit {
                     pageSix.forEach(d => {
                         for (let j = 0; j < item.initialArray.length; j++) {
                             if (d[id[j]] && d[id[j]] !== '') {
-                                if(j == 0 || j==2 || (27<j&&j<43)){
-                                    item.initialArray[j] = d[id[j]]-1;
+                                if (j === 0 || j === 2 || (27 < j && j < 43)) {
+                                    item.initialArray[j] = d[id[j]] - 1;
                                 }else {
                                     item.initialArray[j] = d[id[j]];
                                 }

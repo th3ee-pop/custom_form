@@ -84,27 +84,27 @@ export class Info0Component implements OnInit, AfterViewInit  {
     }
 
     next() {
-        if (this.confirm().confirms) {
-            this.collectAllanswer();
-            let putRecord = {};
-            if (!this.PID)  putRecord = { 'Records' : this.resultList };
-            else putRecord = { 'PID': this.PID, 'Records' : this.resultList };
-            this.service.putRecord(putRecord).subscribe( (res) => {
-                this.PID = res.PID;
-                this.router.navigate(['system/survey/info1/' + this.PID]); // 添加跳转
-            }, err => {
-                console.log(err);
-            });
-        }else {
-            let str = '';
-            for ( let i = 0; i < this.confirm().confirmList.length; i++) {
-                str = str + this.confirm().confirmList[i] + '、';
-            }
-            this.confirmServ.error({
-                title: '您还有以下必填项没有完成： ',
-                content: str
-            });
-        }
+        // if (this.confirm().confirms) {
+        this.collectAllanswer();
+        let putRecord = {};
+        if (!this.PID)  putRecord = { 'Records' : this.resultList };
+        else putRecord = { 'PID': this.PID, 'Records' : this.resultList };
+        this.service.putRecord(putRecord).subscribe( (res) => {
+            this.PID = res.PID;
+            this.router.navigate(['system/survey/info1/' + this.PID]); // 添加跳转
+        }, err => {
+            console.log(err);
+        });
+        // }else {
+        //     let str = '';
+        //     for ( let i = 0; i < this.confirm().confirmList.length; i++) {
+        //         str = str + this.confirm().confirmList[i] + '、';
+        //     }
+        //     this.confirmServ.error({
+        //         title: '您还有以下必填项没有完成： ',
+        //         content: str
+        //     });
+        // }
     }
 
     confirm() {
@@ -200,10 +200,10 @@ export class Info0Component implements OnInit, AfterViewInit  {
 
             this.RadioItems.forEach(item => {
                 for (let i = 0; i < this.fillingList.length; i++) {
-                        const id = item.question.id2;
-                        if (this.fillingList[i][id] && this.fillingList[i][id] !== '') {
-                            item.localAnswer = this.fillingList[i][id] - 1;
-                        }
+                    const id = item.question.id2;
+                    if (this.fillingList[i][id] && this.fillingList[i][id] !== '') {
+                        item.localAnswer = this.fillingList[i][id] - 1;
+                    }
                 }
             });
         }, error => {

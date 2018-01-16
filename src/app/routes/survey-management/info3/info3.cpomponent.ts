@@ -89,21 +89,21 @@ export class Info3Component implements OnInit, AfterViewInit {
 
     /** 下一步 **/
     next() {
-        if (this.confirm().confirms) {
-            this.initPutRecord();
-            this.service.putRecord(this.putRecord).subscribe((res) => {
-                this.router.navigate(['system/survey/info4/' + this.PID]);
-            });
-        } else {
-            let str = '';
-            for (let i = 0; i < this.confirm().confirmList.length; i++) {
-                str = str + this.confirm().confirmList[i] + '、';
-            }
-            this.confirmServ.error({
-                title: '您还有以下必填项没有完成： ',
-                content: str
-            });
-        }
+        // if (this.confirm().confirms) {
+        this.initPutRecord();
+        this.service.putRecord(this.putRecord).subscribe((res) => {
+            this.router.navigate(['system/survey/info4/' + this.PID]);
+        });
+        // } else {
+        //     let str = '';
+        //     for (let i = 0; i < this.confirm().confirmList.length; i++) {
+        //         str = str + this.confirm().confirmList[i] + '、';
+        //     }
+        //     this.confirmServ.error({
+        //         title: '您还有以下必填项没有完成： ',
+        //         content: str
+        //     });
+        // }
     }
 
     /** 暂存 **/
@@ -202,9 +202,17 @@ export class Info3Component implements OnInit, AfterViewInit {
         this.service.getRecord(getRecord).subscribe(
             (res) => {
                 this.fillingList = res.Records;
+                const pageThree = [];
+                this.fillingList.forEach(d => {
+                    for (const key in d) {
+                        if (key.substr(0, 1) === 'c') {
+                            pageThree.push(d);
+                        }
+                    }
+                });
                 if (this.fillingList && this.fillingList.length !== 0) {
                     this.InputItems.forEach(item => {
-                        this.fillingList.forEach(fl => {
+                        pageThree.forEach(fl => {
                             const id = item.question.id2;
                             if (fl[id] && fl[id] !== '') {
                                 item.localAnswer = fl[id];
@@ -216,7 +224,7 @@ export class Info3Component implements OnInit, AfterViewInit {
                     });
                 }
                 this.RadioItems.forEach(item => {
-                    this.fillingList.forEach(fl => {
+                    pageThree.forEach(fl => {
                         const id = item.question.id2;
                         if (fl[id] && fl[id] !== '') {
                             item.localAnswer = fl[id] - 1;
