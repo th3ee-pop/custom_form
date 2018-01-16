@@ -274,7 +274,7 @@ export class Info5Component implements OnInit, AfterViewInit {
                     });
                 }
                 this.RadioItems.forEach(item => {
-                    this.fillingList.forEach(fl => {
+                    pageFive.forEach(fl => {
                         const id = item.question.id2;
                         if (fl[id] && fl[id] !== '') {
                             item.localAnswer = fl[id] - 1;
