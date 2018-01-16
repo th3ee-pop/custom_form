@@ -91,21 +91,21 @@ export class Info1Component implements OnInit, AfterViewInit {
 
     /** 下一步 **/
     next() {
-        if (this.confirm().confrims) {
-            this.initPutRecord()
-            this.service.putRecord(this.putRecord).subscribe( (res) => {
-                this.router.navigate(['system/survey/info2/' + this.PID]);
-            });
-        } else {
-            let str = '';
-            this.confirm().confirmsList.forEach( item => {
-                str = str + item + '、';
-            });
-            this.confirmServ.error({
-                title: '您还有以下必填项未完成：',
-                content: str
-            });
-        }
+        // if (this.confirm().confrims) {
+        this.initPutRecord()
+        this.service.putRecord(this.putRecord).subscribe( (res) => {
+            this.router.navigate(['system/survey/info2/' + this.PID]);
+        });
+        // } else {
+        //     let str = '';
+        //     this.confirm().confirmsList.forEach( item => {
+        //         str = str + item + '、';
+        //     });
+        //     this.confirmServ.error({
+        //         title: '您还有以下必填项未完成：',
+        //         content: str
+        //     });
+        // }
     }
 
     /** 暂存 **/

@@ -90,21 +90,21 @@ export class Info4Component implements OnInit, AfterViewInit {
 
     /** 下一步 **/
     next() {
-        if (this.confirm().confirms) {
-            this.initPutRecord();
-            this.service.putRecord(this.putRecord).subscribe((res) => {
-                this.router.navigate(['system/survey/info5/' + this.PID]);
-            });
-        } else {
-            let str = '';
-            for (let i = 0; i < this.confirm().confirmList.length; i++) {
-                str = str + this.confirm().confirmList[i] + '、';
-            }
-            this.confirmServ.error({
-                title: '您还有以下必填项没有完成： ',
-                content: str
-            });
-        }
+        // if (this.confirm().confirms) {
+        this.initPutRecord();
+        this.service.putRecord(this.putRecord).subscribe((res) => {
+            this.router.navigate(['system/survey/info5/' + this.PID]);
+        });
+        // } else {
+        //     let str = '';
+        //     for (let i = 0; i < this.confirm().confirmList.length; i++) {
+        //         str = str + this.confirm().confirmList[i] + '、';
+        //     }
+        //     this.confirmServ.error({
+        //         title: '您还有以下必填项没有完成： ',
+        //         content: str
+        //     });
+        // }
     }
 
     /** 暂存 **/
@@ -240,14 +240,14 @@ export class Info4Component implements OnInit, AfterViewInit {
                 });
 
                 this.SingletabItem.forEach(item => {
-                   this.fillingList.forEach( fl => {
-                      for (let i = 0; i < item.question.id2.length; i++) {
-                          const id = item.question.id2[i];
-                          if ( fl[id] && fl[id] !== '') {
-                              item.localAnswer[i] = fl[id];
-                          }
-                      }
-                   });
+                    this.fillingList.forEach( fl => {
+                        for (let i = 0; i < item.question.id2.length; i++) {
+                            const id = item.question.id2[i];
+                            if ( fl[id] && fl[id] !== '') {
+                                item.localAnswer[i] = fl[id];
+                            }
+                        }
+                    });
                 });
             }, error => {
                 console.log(error);

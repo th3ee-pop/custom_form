@@ -154,7 +154,7 @@ export class QuestionList {
                 'type': 'radio',
                 'title': '最终诊断：肺动脉栓塞',
                 'content': ['否', '是'],
-                'hiddenlist': [['1.12.1'], []],
+                'hiddenlist': [['0.12.1'], []],
                 'hidden': false
             },
             {
@@ -5733,7 +5733,7 @@ export class QuestionList {
                     '无',
                     '有'
                 ],
-                'hidden': false
+                'hidden': true
             },
             {
                 'id2': ['gaca','gaca1','gaca2','gaca3','gaca4'],
@@ -5747,7 +5747,7 @@ export class QuestionList {
                     '频次',
                     '用药时间'
                 ],
-                'hidden': false
+                'hidden': true
             },
             {
                 'id2': 'gba',
@@ -6109,7 +6109,7 @@ export class QuestionList {
                 'hidden': false
             },
             {
-                'id2': 'gf',
+                'id2': ['gfa','gfb','gfc','gfd','gfe'],
                 'id1': '6.7',
                 'type': 'multi-input',
                 'title': '出院医嘱',

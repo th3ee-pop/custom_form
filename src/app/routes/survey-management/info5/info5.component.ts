@@ -75,8 +75,8 @@ export class Info5Component implements OnInit, AfterViewInit {
     }
     ngOnInit() {
 
-       // this.fillingAllanswer();
-       // this.questionList = this.questionSave[this.current];
+        // this.fillingAllanswer();
+        // this.questionList = this.questionSave[this.current];
     }
     ngAfterViewInit() {
         if (this.PID) {
@@ -106,22 +106,22 @@ export class Info5Component implements OnInit, AfterViewInit {
         }
     }
     next() {
-        if (this.confirm().confrims) {
-            this.initPutRecord();
-            console.log(this.putRecord);
-            this.service.putRecord(this.putRecord).subscribe((res) => {
-                this.router.navigate(['system/survey/info6/' + this.PID]);
-            });
-        } else {
-            let str = '';
-            this.confirm().confirmsList.forEach( item => {
-                str = str + item + '、';
-            });
-            this.confirmServ.error({
-                title: '您还有以下必填项未完成：',
-                content: str
-            });
-        }
+        // if (this.confirm().confrims) {
+        this.initPutRecord();
+        console.log(this.putRecord);
+        this.service.putRecord(this.putRecord).subscribe((res) => {
+            this.router.navigate(['system/survey/info6/' + this.PID]);
+        });
+        // } else {
+        //     let str = '';
+        //     this.confirm().confirmsList.forEach( item => {
+        //         str = str + item + '、';
+        //     });
+        //     this.confirmServ.error({
+        //         title: '您还有以下必填项未完成：',
+        //         content: str
+        //     });
+        // }
     }
     temporary_deposit() {
         this.initPutRecord();
@@ -254,9 +254,9 @@ export class Info5Component implements OnInit, AfterViewInit {
                 const pageFive = [];
                 this.fillingList.forEach(d => {
                     for (const key in d) {
-                       if (key.substr(0, 1) === 'e') {
-                          pageFive.push(d);
-                       }
+                        if (key.substr(0, 1) === 'e') {
+                            pageFive.push(d);
+                        }
                     }
                 });
                 console.log(pageFive);
@@ -353,11 +353,11 @@ export class Info5Component implements OnInit, AfterViewInit {
                     const id = item.idArray;
                     console.log(id);
                     pageFive.forEach(d => {
-                            for (let j = 0; j < item.initialArray.length; j++) {
-                                if (d[id[j]] && d[id[j]] !== '') {
-                                    item.initialArray[j] = d[id[j]];
-                                }
+                        for (let j = 0; j < item.initialArray.length; j++) {
+                            if (d[id[j]] && d[id[j]] !== '') {
+                                item.initialArray[j] = d[id[j]];
                             }
+                        }
                     });
                 });
                 this.Table55Items.forEach(item => {
