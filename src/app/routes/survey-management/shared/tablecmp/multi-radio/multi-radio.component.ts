@@ -29,7 +29,7 @@ export class MultiRadioComponent extends Question  implements OnInit {
                     Record_Value: ''
                 };
                 item.Record_ID = this.question.id2[row];
-                item.Record_Value = this.localAnswer[row];
+                item.Record_Value = this.localAnswer[row]+1;
                 res.push(item);
             }
         }

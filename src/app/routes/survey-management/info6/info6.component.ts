@@ -280,8 +280,6 @@ export class Info6Component implements OnInit, AfterViewInit {
                         for (let j = 0; j < item.initialArray.length; j++) {
                             if (d[id[j]] && d[id[j]] !== '') {
                                 if(j == 0 || j==2 || (27<j&&j<43)){
-                                    // console.log(d[id[j]]);
-                                    // // console.log(d[id[j]]);
                                     item.initialArray[j] = d[id[j]]-1;
                                 }else {
                                     item.initialArray[j] = d[id[j]];
