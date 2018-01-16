@@ -227,9 +227,18 @@ export class Info6Component implements OnInit, AfterViewInit {
         this.service.getRecord(getRecord).subscribe(
             (res) => {
                 this.fillingList = res.Records;
+                const pageSix = [];
+                this.fillingList.forEach(d => {
+                    for (const key in d) {
+                        if (key.substr(0, 1) === 'g') {
+                            pageSix.push(d);
+                        }
+                    }
+                });
+
                 if (this.fillingList && this.fillingList.length !== 0) {
                     this.InputItems.forEach(item => {
-                        this.fillingList.forEach(fl => {
+                        pageSix.forEach(fl => {
                             const id = item.question.id2;
                             if (fl[id] && fl[id] !== '') {
                                 item.localAnswer = fl[id];
@@ -242,7 +251,7 @@ export class Info6Component implements OnInit, AfterViewInit {
                 }
 
                 this.RadioItems.forEach(item => {
-                    this.fillingList.forEach(fl => {
+                    pageSix.forEach(fl => {
                         const id = item.question.id2;
                         if (fl[id] && fl[id] !== '') {
                             item.localAnswer = fl[id] - 1;
@@ -251,7 +260,7 @@ export class Info6Component implements OnInit, AfterViewInit {
                 });
 
                 this.MultiRadioItems.forEach(item => {
-                    this.fillingList.forEach(fl => {
+                    pageSix.forEach(fl => {
                         const id = item.question.id2;
                         for(let i=0;i<id.length;i++){
                             if (fl[id[i]] && fl[id[i]] !== '') {
@@ -262,7 +271,7 @@ export class Info6Component implements OnInit, AfterViewInit {
                 });
 
                 this.SelectableInputItems.forEach(item => {
-                    this.fillingList.forEach(fl => {
+                    pageSix.forEach(fl => {
                         const id = item.question.id2;
                         for(let i=0;i<id.length;i++){
                             if (fl[id[i]] && fl[id[i]] !== '') {
@@ -275,8 +284,7 @@ export class Info6Component implements OnInit, AfterViewInit {
                 this.Table64Item.forEach(item => {
                     console.log(item);
                     const id = item.idArray;
-                    const radioId = ['gca','gcc', ''];
-                    this.fillingList.forEach(d => {
+                    pageSix.forEach(d => {
                         for (let j = 0; j < item.initialArray.length; j++) {
                             if (d[id[j]] && d[id[j]] !== '') {
                                 if(j == 0 || j==2 || (27<j&&j<43)){
@@ -291,7 +299,7 @@ export class Info6Component implements OnInit, AfterViewInit {
                 this.SelectableTableItems.forEach(item => {
                     const id = item.idArray;
                     // console.log(id);
-                    this.fillingList.forEach(d => {
+                    pageSix.forEach(d => {
                         for (let i = 0; i < item.row; i++) {
                             for (let j = 0; j < item.column + 1; j++) {
                                 if (d[id[i][j]] && d[id[i][j]] !== '') {
