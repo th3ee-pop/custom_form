@@ -42,12 +42,19 @@ export class Table64Component extends Question implements OnInit {
       for (let i = 0; i < this.array1.length; i++) { this.array1[i] = new Array(this.rawname1.length); }
       this.array2 = new Array(2);
       for (let i = 0; i < this.array2.length; i++) { this.array2[i] = new Array(this.rawname2.length); }
+      for(let i=0;i<this.initialArray.length;i++){
+          if(i == 0 || i==2 || (27<i&&i<43)){
+              this.initialArray[i] = -1;
+          }
+      }
+      // console.log('his.initialArray');
+      // console.log(this.initialArray);
   }
 
     getAnswer() {
         this.changedAnswer = [];
         this.setAnswer();
-        console.log(this.changedAnswer);
+        // console.log(this.changedAnswer);
     }
 
     setAnswer() {
@@ -59,7 +66,7 @@ export class Table64Component extends Question implements OnInit {
                     // console.log( this.initialArray[i]);
                 this.changedAnswer.push({
                     Record_ID: this.idArray[i],
-                    Record_Value: this.initialArray[i]+1
+                    Record_Value: this.initialArray[i]
                 });
             }else {
                     this.changedAnswer.push({

@@ -16,8 +16,10 @@ export class MultiRadioComponent extends Question  implements OnInit {
     constructor() { super(); }
 
     ngOnInit() {
-        // console.log(this.question);
-        this.localAnswer= new Array(this.question.content.length);
+        for(let i=0;i<this.question.content.length;i++){
+            this.localAnswer.push(-1);
+        }
+        // this.localAnswer= new Array(this.question.content.length);
     }
 
     answerChange() {
@@ -26,10 +28,10 @@ export class MultiRadioComponent extends Question  implements OnInit {
             if ( this.localAnswer[row] && this.localAnswer[row] !== '') {
                 const item = {
                     Record_ID : '',
-                    Record_Value: ''
+                    Record_Value: -1
                 };
                 item.Record_ID = this.question.id2[row];
-                item.Record_Value = this.localAnswer[row]+1;
+                item.Record_Value = this.localAnswer[row];
                 res.push(item);
             }
         }
