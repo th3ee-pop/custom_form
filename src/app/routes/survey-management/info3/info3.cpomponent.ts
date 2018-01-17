@@ -55,6 +55,7 @@ export class Info3Component implements OnInit, AfterViewInit {
                         break;
                     }
                 }
+                this.fillingAllanswer();
             });
         }
     }

@@ -54,6 +54,7 @@ export class Info4Component implements OnInit, AfterViewInit {
                         break;
                     }
                 }
+                this.fillingAllanswer();
                 console.log(this.questionList);
                 console.log(this.questionSave);
             });
@@ -115,7 +116,6 @@ export class Info4Component implements OnInit, AfterViewInit {
         }, error => {
         });
     }
-
 
     /** 退出 **/
     exit() {

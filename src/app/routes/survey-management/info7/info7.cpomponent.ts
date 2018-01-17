@@ -56,6 +56,7 @@ export class Info7Component implements OnInit, AfterViewInit {
                         break;
                     }
                 }
+                this.fillingAllanswer();
             });
         }
     }

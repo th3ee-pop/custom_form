@@ -69,6 +69,7 @@ export class Info5Component implements OnInit, AfterViewInit {
                         break;
                     }
                 }
+                this.fillingAllanswer();
             });
 
         }
