@@ -6,7 +6,6 @@ import {NzModalService} from 'ng-zorro-antd';
 import {InputcmpComponent} from '../shared/inputcmp/inputcmp.component';
 import {RadiocmpComponent} from '../shared/radiocmp/radiocmp.component';
 
-import {QuestionList} from '../shared/ql';
 import {ScheduleList} from '../shared/scheduleList';
 import {Table64Component} from '../shared/tablecmp/table64/table64.component';
 import {SelectableInputComponent} from '../shared/tablecmp/selectable-input/selectable-input.component';
@@ -30,7 +29,7 @@ export class Info6Component implements OnInit, AfterViewInit {
     current = 6;
     questionSave = []; // 用来传到后端
     questionList = [];
-    schedule_list = new ScheduleList().schedule_list; // 步骤条的list
+    b = new ScheduleList().schedule_list; // 步骤条的list
     resultList = [];                                  // 用于封装答案
     answerList = [];
     PID = '';
@@ -91,22 +90,22 @@ export class Info6Component implements OnInit, AfterViewInit {
     }
 
     next() {
-        if (this.confirm().confrims) {
+        // if (this.confirm().confrims) {
             this.initPutRecord();
             console.log(this.putRecord);
             this.service.putRecord(this.putRecord).subscribe((res) => {
                 this.router.navigate(['system/survey/info7/' + this.PID]);
             });
-        } else {
-            let str = '';
-            this.confirm().confirmsList.forEach( item => {
-                str = str + item + '、';
-            });
-            this.confirmServ.error({
-                title: '您还有以下必填项未完成：',
-                content: str
-            });
-        }
+        // } else {
+        //     let str = '';
+        //     this.confirm().confirmsList.forEach( item => {
+        //         str = str + item + '、';
+        //     });
+        //     this.confirmServ.error({
+        //         title: '您还有以下必填项未完成：',
+        //         content: str
+        //     });
+        // }
     }
 
     temporary_deposit() {
@@ -260,11 +259,12 @@ export class Info6Component implements OnInit, AfterViewInit {
                 });
 
                 this.MultiRadioItems.forEach(item => {
+                    console.log(item);
                     pageSix.forEach(fl => {
                         const id = item.question.id2;
                         for (let i = 0 ; i < id.length; i++) {
                             if (fl[id[i]] && fl[id[i]] !== '') {
-                                item.localAnswer[i] = fl[id[i]] - 1;
+                                item.localAnswer[i] = parseInt(fl[id[i]]);
                             }
                         }
                     });
@@ -282,13 +282,13 @@ export class Info6Component implements OnInit, AfterViewInit {
                 });
 
                 this.Table64Item.forEach(item => {
-                    console.log(item);
                     const id = item.idArray;
                     pageSix.forEach(d => {
                         for (let j = 0; j < item.initialArray.length; j++) {
                             if (d[id[j]] && d[id[j]] !== '') {
+                                // if (j === 2 || (27 < j && j < 43)) {
                                 if (j === 0 || j === 2 || (27 < j && j < 43)) {
-                                    item.initialArray[j] = d[id[j]] - 1;
+                                    item.initialArray[j] =parseInt(d[id[j]]);
                                 }else {
                                     item.initialArray[j] = d[id[j]];
                                 }

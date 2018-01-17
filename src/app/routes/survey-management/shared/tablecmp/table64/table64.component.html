@@ -14,7 +14,7 @@
                         <div nz-form-control nz-col [nzSm]="20">
                             <nz-radio-group [(ngModel)]="initialArray[0]" [ngModelOptions]="{standalone: true}" >
                                 <ng-container *ngFor="let item of mazui,index as i">
-                                    <label  nz-radio [nzValue]="i"  [nzDisabled]="editdisabled">
+                                    <label  nz-radio [nzValue]="i+1"  [nzDisabled]="editdisabled">
                                         <span>{{item}}</span>
                                     </label>
                                 </ng-container>
@@ -121,7 +121,7 @@
                             <div nz-form-control nz-col [nzSm]="20">
                                 <nz-radio-group [(ngModel)]="initialArray[28]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}" >
                                     <ng-container *ngFor="let item of tf,index as i">
-                                        <label  nz-radio [nzValue]="i"  [nzDisabled]="editdisabled">
+                                        <label  nz-radio [nzValue]="i+1"  [nzDisabled]="editdisabled">
                                             <span>{{item}}</span>
                                         </label>
                                     </ng-container>
@@ -137,51 +137,91 @@
                                     <div nz-form-control nz-col [nzSm]="8">
                                         <nz-radio-group [(ngModel)]="initialArray[29]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}" >
                                             <ng-container *ngFor="let item of jmpart,index as i">
-                                                <label  nz-radio [nzValue]="i"  [nzDisabled]="(initialArray[28] == 0)">
+                                                <label  nz-radio [nzValue]="i+1"  [nzDisabled]="(initialArray[28] == 1)">
                                                     <span>{{item}}</span>
                                                 </label>
                                             </ng-container>
                                         </nz-radio-group>  </div>
                                 </div>
-                                <div nz-form-item  nz-row >
+                                <div nz-form-item  nz-row *ngIf="initialArray[29]==1">
                                     <div nz-form-label nz-col [nzSm]="4">
                                         <label >上</label>
                                     </div>
                                     <div nz-form-control nz-col [nzSm]="8">
-                                        <nz-radio-group [(ngModel)]="(initialArray[29]==0)?initialArray[30]:initialArray[33]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}" >
+                                        <nz-radio-group [(ngModel)]="initialArray[30]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}" >
                                             <ng-container *ngFor="let item of tf,index as i">
-                                                <label  nz-radio [nzValue]="i"  [nzDisabled]="(initialArray[28] == 0)">
+                                                <label  nz-radio [nzValue]="i+1"  [nzDisabled]="(initialArray[28] == 1)">
                                                     <span>{{item}}</span>
                                                 </label>
                                             </ng-container>
                                         </nz-radio-group>  </div>
                                 </div>
-                                <div nz-form-item  nz-row >
+                                <div nz-form-item  nz-row *ngIf="initialArray[29]==1">
                                     <div nz-form-label nz-col [nzSm]="4">
                                         <label >中</label>
                                     </div>
                                     <div nz-form-control nz-col [nzSm]="8">
-                                        <nz-radio-group [(ngModel)]="(initialArray[29]==0)?initialArray[31]:initialArray[34]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}" >
+                                        <nz-radio-group [(ngModel)]="initialArray[31]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}" >
                                             <ng-container *ngFor="let item of tf,index as i">
-                                                <label  nz-radio [nzValue]="i"  [nzDisabled]="(initialArray[28] == 0)">
+                                                <label  nz-radio [nzValue]="i+1"  [nzDisabled]="(initialArray[28] == 1)">
                                                     <span>{{item}}</span>
                                                 </label>
                                             </ng-container>
                                         </nz-radio-group>  </div>
                                 </div>
-                                <div nz-form-item  nz-row >
+                                <div nz-form-item  nz-row *ngIf="initialArray[29]==1">
                                     <div nz-form-label nz-col [nzSm]="4">
                                         <label >下</label>
                                     </div>
                                     <div nz-form-control nz-col [nzSm]="8">
-                                        <nz-radio-group [(ngModel)]="(initialArray[29]==0)?initialArray[32]:initialArray[35]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}" >
+                                        <nz-radio-group [(ngModel)]="initialArray[32]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}" >
                                             <ng-container *ngFor="let item of tf,index as i">
-                                                <label  nz-radio [nzValue]="i"  [nzDisabled]="(initialArray[28] == 0)">
+                                                <label  nz-radio [nzValue]="i+1"  [nzDisabled]="(initialArray[28] == 1)">
                                                     <span>{{item}}</span>
                                                 </label>
                                             </ng-container>
                                         </nz-radio-group>  </div>
                                 </div>
+                                <div nz-form-item  nz-row *ngIf="initialArray[29]==2">
+                                    <div nz-form-label nz-col [nzSm]="4">
+                                        <label >上</label>
+                                    </div>
+                                    <div nz-form-control nz-col [nzSm]="8">
+                                        <nz-radio-group [(ngModel)]="initialArray[33]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}" >
+                                            <ng-container *ngFor="let item of tf,index as i">
+                                                <label  nz-radio [nzValue]="i+1"  [nzDisabled]="(initialArray[28] == 1)">
+                                                    <span>{{item}}</span>
+                                                </label>
+                                            </ng-container>
+                                        </nz-radio-group>  </div>
+                                </div>
+                                <div nz-form-item  nz-row *ngIf="initialArray[29]==2" >
+                                    <div nz-form-label nz-col [nzSm]="4">
+                                        <label >中</label>
+                                    </div>
+                                    <div nz-form-control nz-col [nzSm]="8">
+                                        <nz-radio-group [(ngModel)]="initialArray[34]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}" >
+                                            <ng-container *ngFor="let item of tf,index as i">
+                                                <label  nz-radio [nzValue]="i+1"  [nzDisabled]="(initialArray[28] == 1)">
+                                                    <span>{{item}}</span>
+                                                </label>
+                                            </ng-container>
+                                        </nz-radio-group>  </div>
+                                </div>
+                                <div nz-form-item  nz-row *ngIf="initialArray[29]==2">
+                                    <div nz-form-label nz-col [nzSm]="4">
+                                        <label >下</label>
+                                    </div>
+                                    <div nz-form-control nz-col [nzSm]="8">
+                                        <nz-radio-group [(ngModel)]="initialArray[35]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}" >
+                                            <ng-container *ngFor="let item of tf,index as i">
+                                                <label  nz-radio [nzValue]="i+1"  [nzDisabled]="(initialArray[28] == 1)">
+                                                    <span>{{item}}</span>
+                                                </label>
+                                            </ng-container>
+                                        </nz-radio-group>  </div>
+                                </div>
+
                             </div>
                             <div nz-col [nzSm]="12">
                                 <div nz-form-item  nz-row >
@@ -191,46 +231,85 @@
                                     <div nz-form-control nz-col [nzSm]="8">
                                         <nz-radio-group [(ngModel)]="initialArray[36]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}" >
                                             <ng-container *ngFor="let item of jmpart,index as i">
-                                                <label  nz-radio [nzValue]="i"  [nzDisabled]="(initialArray[28] == 0)">
+                                                <label  nz-radio [nzValue]="i+1"  [nzDisabled]="(initialArray[28] == 1)">
                                                     <span>{{item}}</span>
                                                 </label>
                                             </ng-container>
                                         </nz-radio-group>  </div>
                                 </div>
-                                <div nz-form-item  nz-row >
+                                <div nz-form-item  nz-row *ngIf="initialArray[36]==1">
                                     <div nz-form-label nz-col [nzSm]="4">
                                         <label >上</label>
                                     </div>
                                     <div nz-form-control nz-col [nzSm]="8">
-                                        <nz-radio-group [(ngModel)]="(initialArray[36]==0)?initialArray[37]:initialArray[40]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}" >
+                                        <nz-radio-group [(ngModel)]="initialArray[37]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}" >
                                             <ng-container *ngFor="let item of tf,index as i">
-                                                <label  nz-radio [nzValue]="i"  [nzDisabled]="(initialArray[28] == 0)">
+                                                <label  nz-radio [nzValue]="i+1"  [nzDisabled]="(initialArray[28] == 1)">
                                                     <span>{{item}}</span>
                                                 </label>
                                             </ng-container>
                                         </nz-radio-group>  </div>
                                 </div>
-                                <div nz-form-item  nz-row >
+                                <div nz-form-item  nz-row *ngIf="initialArray[36]==1">
                                     <div nz-form-label nz-col [nzSm]="4">
                                         <label >中</label>
                                     </div>
                                     <div nz-form-control nz-col [nzSm]="8">
-                                        <nz-radio-group [(ngModel)]="(initialArray[36] == 0)?initialArray[38]:initialArray[41]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}" >
+                                        <nz-radio-group [(ngModel)]="initialArray[38]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}" >
                                             <ng-container *ngFor="let item of tf,index as i">
-                                                <label  nz-radio [nzValue]="i"  [nzDisabled]="(initialArray[28] == 0)">
+                                                <label  nz-radio [nzValue]="i+1"  [nzDisabled]="(initialArray[28] == 1)">
                                                     <span>{{item}}</span>
                                                 </label>
                                             </ng-container>
                                         </nz-radio-group>  </div>
                                 </div>
-                                <div nz-form-item  nz-row >
+                                <div nz-form-item  nz-row *ngIf="initialArray[36]==1" >
                                     <div nz-form-label nz-col [nzSm]="4">
                                         <label >下</label>
                                     </div>
                                     <div nz-form-control nz-col [nzSm]="8">
-                                        <nz-radio-group [(ngModel)]="(initialArray[36]==0)?initialArray[39]:initialArray[42]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}" >
+                                        <nz-radio-group [(ngModel)]="initialArray[39]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}" >
                                             <ng-container *ngFor="let item of tf,index as i">
-                                                <label  nz-radio [nzValue]="i"  [nzDisabled]="(initialArray[28] == 0)">
+                                                <label  nz-radio [nzValue]="i+1"  [nzDisabled]="(initialArray[28] == 1)">
+                                                    <span>{{item}}</span>
+                                                </label>
+                                            </ng-container>
+                                        </nz-radio-group>  </div>
+                                </div>
+                                <div nz-form-item  nz-row *ngIf="initialArray[36]==2">
+                                    <div nz-form-label nz-col [nzSm]="4">
+                                        <label >上</label>
+                                    </div>
+                                    <div nz-form-control nz-col [nzSm]="8">
+                                        <nz-radio-group [(ngModel)]="initialArray[40]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}" >
+                                            <ng-container *ngFor="let item of tf,index as i">
+                                                <label  nz-radio [nzValue]="i+1"  [nzDisabled]="(initialArray[28] == 1)">
+                                                    <span>{{item}}</span>
+                                                </label>
+                                            </ng-container>
+                                        </nz-radio-group>  </div>
+                                </div>
+                                <div nz-form-item  nz-row *ngIf="initialArray[36]==2">
+                                    <div nz-form-label nz-col [nzSm]="4">
+                                        <label >中</label>
+                                    </div>
+                                    <div nz-form-control nz-col [nzSm]="8">
+                                        <nz-radio-group [(ngModel)]="initialArray[41]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}" >
+                                            <ng-container *ngFor="let item of tf,index as i">
+                                                <label  nz-radio [nzValue]="i+1"  [nzDisabled]="(initialArray[28] == 1)">
+                                                    <span>{{item}}</span>
+                                                </label>
+                                            </ng-container>
+                                        </nz-radio-group>  </div>
+                                </div>
+                                <div nz-form-item  nz-row *ngIf="initialArray[36]==2">
+                                    <div nz-form-label nz-col [nzSm]="4">
+                                        <label >下</label>
+                                    </div>
+                                    <div nz-form-control nz-col [nzSm]="8">
+                                        <nz-radio-group [(ngModel)]="initialArray[42]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}" >
+                                            <ng-container *ngFor="let item of tf,index as i">
+                                                <label  nz-radio [nzValue]="i+1"  [nzDisabled]="(initialArray[28] == 1)">
                                                     <span>{{item}}</span>
                                                 </label>
                                             </ng-container>

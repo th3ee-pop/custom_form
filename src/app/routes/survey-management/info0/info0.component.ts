@@ -7,6 +7,7 @@ import {InputcmpComponent} from '../shared/inputcmp/inputcmp.component';
 import {RadiocmpComponent} from '../shared/radiocmp/radiocmp.component';
 import {IdccmpComponent} from '../shared/idccmp/idccmp.component';
 import {QuestionList} from '../shared/ql';
+import {ScheduleList} from "../shared/scheduleList";
 
 @Component({
     selector: 'app-info0',
@@ -22,6 +23,7 @@ export class Info0Component implements OnInit, AfterViewInit  {
     questions = new QuestionList().questions;
     questionSave = this.questions
     questionList = [];     // 问题总列表
+    b = new ScheduleList().schedule_list; // 步骤条的list
     resultList = [];                                    // 填写结果
     PID = '';                                           // PID
     finished = false;

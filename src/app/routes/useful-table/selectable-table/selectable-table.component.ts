@@ -29,7 +29,7 @@ export class SelectableTableComponent extends Question implements OnInit {
     }
 
     ngOnInit() {
-        console.log(this.question.hidden);
+        // console.log(this.question.hidden);
         this.title = this.question.title;
         this.radioStr = this.question.radioStr;
         this.rowTitle = this.question.rowTitle;
@@ -64,7 +64,7 @@ export class SelectableTableComponent extends Question implements OnInit {
                 this.idArray[row].push(this.radioStr + this.letterArray[row] + column);
             }
         }
-        console.log(this.idArray);
+        // console.log(this.idArray);
     }
 
 
