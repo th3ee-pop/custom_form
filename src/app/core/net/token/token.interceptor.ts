@@ -90,7 +90,7 @@ export class TokenInterceptor implements HttpInterceptor {
                             break;
                     }
                     // 以错误的形式结束本次请求
-                    return Observable.of(res);
+                    return Observable.throw(res);
                 })
                 ;
     }
