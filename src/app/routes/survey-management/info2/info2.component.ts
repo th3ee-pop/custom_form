@@ -51,6 +51,7 @@ export class Info2Component implements OnInit, AfterViewInit  {
                         break;
                     }
                 }
+                this.fillingAllanswer();
             });
         }
     }

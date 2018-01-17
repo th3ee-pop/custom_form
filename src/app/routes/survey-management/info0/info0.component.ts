@@ -53,6 +53,7 @@ export class Info0Component implements OnInit, AfterViewInit  {
                         break;
                     }
                 }
+                this.fillingAllanswer();
             });
         } else {
             this.questionList = this.questions[this.current];

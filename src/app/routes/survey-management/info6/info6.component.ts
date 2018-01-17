@@ -58,6 +58,7 @@ export class Info6Component implements OnInit, AfterViewInit {
                       break;
                   }
               }
+              this.fillingAllanswer();
           });
 
       }
@@ -259,7 +260,7 @@ export class Info6Component implements OnInit, AfterViewInit {
                 });
 
                 this.MultiRadioItems.forEach(item => {
-                    console.log(item);
+                    // console.log(item);
                     pageSix.forEach(fl => {
                         const id = item.question.id2;
                         for (let i = 0 ; i < id.length; i++) {
@@ -282,6 +283,7 @@ export class Info6Component implements OnInit, AfterViewInit {
                 });
 
                 this.Table64Item.forEach(item => {
+                    // console.log(item);
                     const id = item.idArray;
                     pageSix.forEach(d => {
                         for (let j = 0; j < item.initialArray.length; j++) {
