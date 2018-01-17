@@ -110,6 +110,7 @@ export class Info5Component implements OnInit, AfterViewInit {
         this.initPutRecord();
         console.log(this.putRecord);
         this.service.putRecord(this.putRecord).subscribe((res) => {
+            console.log(res);
             this.router.navigate(['system/survey/info6/' + this.PID]);
         });
         // } else {
@@ -127,6 +128,7 @@ export class Info5Component implements OnInit, AfterViewInit {
         this.initPutRecord();
         console.log(this.putRecord);
         this.service.putRecord(this.putRecord).subscribe((res) => {
+            console.log(res);
             this.router.navigate(['system/survey/detail/']);
         }, error => {
         });

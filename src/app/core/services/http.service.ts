@@ -91,7 +91,7 @@ export class HttpService {
                 params: this.getParams(params) })
             .do(() => {})
             .catch((res) => {
-                // console.log(res);
+                console.log(res);
                 return res;
             });
     }
@@ -113,11 +113,16 @@ export class HttpService {
      */
     putRecord(params: any): Observable<any> {
         console.log(params);
-        return this.http.put(this.baseUrl + '/vascular/recordop/', params, this.options)
-            .do(() => {})
-            .catch((res) => {
-                console.log(res);
-                return res;
+        return this.http.put(this.baseUrl + '/vascular/recordop/', params, {
+            headers: new HttpHeaders({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
+        })
+            .map((res) => {
+            console.log(res);
+            return res;
+        })
+            .catch(err => {
+                console.log(err);
+                return Observable.throw(err);
             });
     }
 
