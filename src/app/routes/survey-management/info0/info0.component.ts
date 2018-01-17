@@ -57,7 +57,7 @@ export class Info0Component implements OnInit, AfterViewInit  {
         }
     }
     ngOnInit() {
-
+        console.log(this.PID);
     }
 
     ngAfterViewInit() {
@@ -89,7 +89,9 @@ export class Info0Component implements OnInit, AfterViewInit  {
         let putRecord = {};
         if (!this.PID)  putRecord = { 'Records' : this.resultList };
         else putRecord = { 'PID': this.PID, 'Records' : this.resultList };
+        console.log(putRecord);
         this.service.putRecord(putRecord).subscribe( (res) => {
+            console.log(res);
             this.PID = res.PID;
             this.router.navigate(['system/survey/info1/' + this.PID]); // 添加跳转
         }, err => {
