@@ -73,16 +73,7 @@ export class QuestionList {
                 'type': 'radio',
                 'title': '介入手术类型：肺动脉造影',
                 'content': ['否', '是'],
-                'hiddenlist': [['0.7.1'], []],
-                'hidden': false
-            },
-            {
-                'id2': 'type3a',
-                'id1': '0.7.1',
-                'type': 'radio',
-                'title': '肺动脉造影',
-                'content': ['小面积', '次大面积', '大面积'],
-                'hiddenlist': [],
+                'hiddenlist': [ ],
                 'hidden': false
             },
             {
@@ -95,8 +86,17 @@ export class QuestionList {
                 'hidden': false
             },
             {
-                'id2': 'type5',
+                'id2': 'type6',
                 'id1': '0.9',
+                'type': 'radio',
+                'title': '介入手术类型: 滤器植入',
+                'content': ['否', '是'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'type5',
+                'id1': '0.10',
                 'type': 'radio',
                 'title': '介入手术类型: 置管术',
                 'content': ['否', '是'],
@@ -105,16 +105,16 @@ export class QuestionList {
             },
             {
                 'id2': 'diag',
-                'id1': '0.10',
+                'id1': '0.11',
                 'type': 'radio',
-                'title': '最终诊断:左/右下肢静脉血栓形成',
-                'content': ['否', '是'],
-                'hiddenlist': [['0.10.1', '0.10.2', '0.10.3'], []],
+                'title': '最终诊断:下肢深静脉血栓形成',
+                'content': ['否', '左', '右', '双'],
+                'hiddenlist': [['0.11.1', '0.11.2', '0.11.3'], [], [], []],
                 'hidden': false
             },
             {
                 'id2': 'diaga1',
-                'id1': '0.10.1',
+                'id1': '0.11.1',
                 'type': 'radio',
                 'title': '周围型',
                 'content': ['否', '是'],
@@ -123,7 +123,7 @@ export class QuestionList {
             },
             {
                 'id2': 'diaga2',
-                'id1': '0.10.2',
+                'id1': '0.11.2',
                 'type': 'radio',
                 'title': '中央型',
                 'content': ['否', '是'],
@@ -132,7 +132,7 @@ export class QuestionList {
             },
             {
                 'id2': 'diaga3',
-                'id1': '0.10.3',
+                'id1': '0.11.3',
                 'type': 'radio',
                 'title': '混合型',
                 'content': ['否', '是'],
@@ -141,34 +141,70 @@ export class QuestionList {
             },
             {
                 'id2': 'diagb',
-                'id1': '0.11',
+                'id1': '0.12',
                 'type': 'radio',
-                'title': '最终诊断：下腔静脉血栓形成',
+                'title': '最终诊断：下腔静脉血栓',
+                'content': ['否', '低位肾静脉以下', '高位肾静脉以下', '低位肝静脉以下', '高位肝静脉以下', '右房口以下'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'diagt',
+                'id1': '0.13',
+                'type': 'radio',
+                'title': '最终诊断：肾静脉血栓',
+                'content': ['否', '左肾静脉', '右肾静脉', '双肾静脉'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'diagt1',
+                'id1': '0.14',
+                'type': 'radio',
+                'title': '最终诊断：右心房血栓',
+                'content': ['否', '是'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'diagt2',
+                'id1': '0.15',
+                'type': 'radio',
+                'title': '最终诊断：左心房血栓',
                 'content': ['否', '是'],
                 'hiddenlist': [],
                 'hidden': false
             },
             {
                 'id2': 'diagc',
-                'id1': '0.12',
+                'id1': '0.16',
                 'type': 'radio',
                 'title': '最终诊断：肺动脉栓塞',
                 'content': ['否', '是'],
-                'hiddenlist': [['0.12.1'], []],
+                'hiddenlist': [['0.16.1'], []],
                 'hidden': false
             },
             {
                 'id2': 'diagc1',
-                'id1': '0.12.1',
+                'id1': '0.16.1',
                 'type': 'radio',
                 'title': '肺动脉栓塞面积',
-                'content': ['小面积', '次大面积', '大面积'],
+                'content': ['中低危', '中高危', '高危'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'diage',
+                'id1': '0.17',
+                'type': 'radio',
+                'title': '心功能',
+                'content': ['I级', 'II级', 'III级', 'IV级'],
                 'hiddenlist': [],
                 'hidden': false
             },
             {
                 'id2': 'diagd1',
-                'id1': '0.13',
+                'id1': '0.18',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -180,7 +216,7 @@ export class QuestionList {
             },
             {
                 'id2': 'diagd2',
-                'id1': '0.14',
+                'id1': '0.19',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -192,7 +228,7 @@ export class QuestionList {
             },
             {
                 'id2': 'diagd3',
-                'id1': '0.15',
+                'id1': '0.20',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -250,20 +286,8 @@ export class QuestionList {
                 'hidden': false
             },
             {
-                'id2': 'ab2',
-                'id1': '1.4',
-                'type': 'input',
-                'content': {
-                    'datatype': 'text',
-                    'validtype': '',
-                    'information': ''
-                },
-                'title': '籍贯',
-                'hidden': false
-            },
-            {
                 'id2': 'ab3',
-                'id1': '1.5',
+                'id1': '1.4',
                 'type': 'radio',
                 'title': '民族',
                 'content': ['汉', '其他'],
@@ -272,7 +296,7 @@ export class QuestionList {
             },
             {
                 'id2': 'ac1',
-                'id1': '1.6',
+                'id1': '1.5',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -283,20 +307,8 @@ export class QuestionList {
                 'hidden': false
             },
             {
-                'id2': 'ac2',
-                'id1': '1.7',
-                'type': 'input',
-                'content': {
-                    'datatype': 'text',
-                    'validtype': '',
-                    'information': ''
-                },
-                'title': '邮编',
-                'hidden': false
-            },
-            {
                 'id2': 'ac3',
-                'id1': '1.8',
+                'id1': '1.6',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -308,7 +320,7 @@ export class QuestionList {
             },
             {
                 'id2': 'ac4',
-                'id1': '1.9',
+                'id1': '1.7',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -320,7 +332,7 @@ export class QuestionList {
             },
             {
                 'id2': 'ad1',
-                'id1': '1.10',
+                'id1': '1.8',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -332,19 +344,16 @@ export class QuestionList {
             },
             {
                 'id2': 'ad2',
-                'id1': '1.11',
-                'type': 'input',
-                'content': {
-                    'datatype': 'text',
-                    'validtype': '',
-                    'information': ''
-                },
+                'id1': '1.9',
+                'type': 'radio',
                 'title': '与患者关系',
+                'content': ['配偶', '子女', '父母', '孙子女', '兄弟姐妹', '其他'],
+                'hiddenlist': [],
                 'hidden': false
             },
             {
                 'id2': 'ad3',
-                'id1': '1.12',
+                'id1': '1.10',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -356,7 +365,7 @@ export class QuestionList {
             },
             {
                 'id2': 'ad4',
-                'id1': '1.13',
+                'id1': '1.11',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -368,7 +377,7 @@ export class QuestionList {
             },
             {
                 'id2': 'ae1',
-                'id1': '1.14',
+                'id1': '1.12',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -380,7 +389,7 @@ export class QuestionList {
             },
             {
                 'id2': 'ae2',
-                'id1': '1.15',
+                'id1': '1.13',
                 'type': 'date',
                 'content': {
                     'datatype': 'text',
@@ -392,7 +401,7 @@ export class QuestionList {
             },
             {
                 'id2': 'ae3',
-                'id1': '1.16',
+                'id1': '1.14',
                 'type': 'date',
                 'content': {
                     'datatype': 'text',
@@ -404,7 +413,7 @@ export class QuestionList {
             },
             {
                 'id2': 'ae4',
-                'id1': '1.17',
+                'id1': '1.15',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -492,158 +501,28 @@ export class QuestionList {
                 'hidden': false
             },
             {
-                'id2': 'ba8',
-                'id1': '2.7',
-                'type': 'radio',
-                'title': '家庭收入',
-                'content': ['2万以下', '2-5万', '5-10万', '10万以上'],
-                'hiddenlist': [],
-                'hidden': false
-            },
-            {
-                'id2': 'bb',
-                'id1': '2.8',
-                'type': 'radio',
-                'title': '膳食',
-                'content': ['无', '有'],
-                'hiddenlist': [
-                    [
-                        '2.8.1', '2.8.2', '2.8.3', '2.8.4', '2.8.5', '2.8.6', '2.8.7',
-                        '2.8.8', '2.8.9', '2.8.10', '2.8.11', '2.8.12'
-                    ], []],
-                'hidden': false
-            },
-            {
-                'id2': 'bb1',
-                'id1': '2.8.1',
-                'type': 'radio',
-                'title': '主食',
-                'content': ['3两及以下', '4-6两', '7-9两', '1斤以上'],
-                'hiddenlist': [],
-                'hidden': false
-            },
-            {
-                'id2': 'bb2',
-                'id1': '2.8.2',
-                'type': 'radio',
-                'title': '食盐',
-                'content': ['口重（13克以上）', '居中（7-12克）', '口轻（6克以下）'],
-                'hiddenlist': [],
-                'hidden': false
-            },
-            {
-                'id2': 'bb3',
-                'id1': '2.8.3',
-                'type': 'radio',
-                'title': '食用油',
-                'content': ['纯植物油', '主要植物油', '主要动物油', '纯动物油'],
-                'hiddenlist': [],
-                'hidden': false
-            },
-            {
-                'id2': 'bb4',
-                'id1': '2.8.4',
-                'type': 'radio',
-                'title': '平均每月进食食用油量',
-                'content': ['2斤以下', '2-5斤', '5-10斤', '10斤及以上'],
-                'hiddenlist': [],
-                'hidden': false
-            },
-            {
-                'id2': 'bb5',
-                'id1': '2.8.5',
-                'type': 'radio',
-                'title': '食用肉',
-                'content': ['每周5次及以上', '每周3-5次', '每周1-2次', '不吃'],
-                'hiddenlist': [],
-                'hidden': false
-            },
-            {
-                'id2': 'bb6',
-                'id1': '2.8.6',
-                'type': 'radio',
-                'title': '食用鱼或虾',
-                'content': ['经常吃', '有时吃', '基本不吃'],
-                'hiddenlist': [],
-                'hidden': false
-            },
-            {
-                'id2': 'bb7',
-                'id1': '2.8.7',
-                'type': 'radio',
-                'title': '食用蛋',
-                'content': ['7个/周及以上', '5个/周', '1-3个/周', '不吃'],
-                'hiddenlist': [],
-                'hidden': false
-            },
-            {
-                'id2': 'bb8',
-                'id1': '2.8.8',
-                'type': 'radio',
-                'title': '乳制品',
-                'content': ['经常喝', '有时喝', '基本不喝'],
-                'hiddenlist': [],
-                'hidden': false
-            },
-            {
-                'id2': 'bb9',
-                'id1': '2.8.9',
-                'type': 'radio',
-                'title': '食用豆制品',
-                'content': ['几乎每天吃', '1-2次/周', '1-2次/月', '偶尔吃'],
-                'hiddenlist': [],
-                'hidden': false
-            },
-            {
-                'id2': 'bb10',
-                'id1': '2.8.10',
-                'type': 'radio',
-                'title': '食用蔬菜',
-                'content': ['1斤/天及以上', '半斤/天', '<半斤/天', '不吃'],
-                'hiddenlist': [],
-                'hidden': false
-            },
-            {
-                'id2': 'bb11',
-                'id1': '2.8.11',
-                'type': 'radio',
-                'title': '食用新鲜水果',
-                'content': ['经常吃', '有时吃', '基本不吃'],
-                'hiddenlist': [],
-                'hidden': false
-            },
-            {
-                'id2': 'bb12',
-                'id1': '2.8.12',
-                'type': 'radio',
-                'title': '在餐馆进食',
-                'content': ['经常≥5次/周', '3-5次/周', '1-3次/周', '偶尔', '无'],
-                'hiddenlist': [],
-                'hidden': false
-            },
-            {
                 'id2': 'bcyw',
-                'id1': '2.9',
+                'id1': '2.7',
                 'type': 'radio',
                 'title': '体育锻炼',
                 'content': ['无', '有'],
                 'hiddenlist': [
                     [
-                        '2.9.1', '2.9.1.1', '2.9.1.2', '2.9.1.3', '2.9.1.4', '2.9.1.5', '2.9.1.6', '2.9.1.7',
-                        '2.9.1.8', '2.9.1.9', '2.9.1.10', '2.9.1.11', '2.9.1.12'
+                        '2.7.1', '2.7.1.1', '2.7.1.2', '2.7.1.3', '2.7.1.4', '2.7.1.5', '2.7.1.6', '2.7.1.7',
+                        '2.7.1.8', '2.7.1.9', '2.7.1.10', '2.7.1.11', '2.7.1.12'
                     ], []],
                 'hidden': false
             },
             {
                 'id2': 'bc2',
-                'id1': '2.9.1',
+                'id1': '2.7.1',
                 'type': 'radio',
                 'title': '活动',
                 'content': ['否', '是'],
                 'hiddenlist': [
                     [
-                        '2.9.1.1', '2.9.1.2', '2.9.1.3', '2.9.1.4', '2.9.1.5', '2.9.1.6', '2.9.1.7', '2.9.1.8',
-                        '2.9.1.9', '2.9.1.10', '2.9.1.11', '2.9.1.12'
+                        '2.7.1.1', '2.7.1.2', '2.7.1.3', '2.7.1.4', '2.7.1.5', '2.7.1.6', '2.7.1.7', '2.7.1.8',
+                        '2.7.1.9', '2.7.1.10', '2.7.1.11', '2.7.1.12'
                     ],
                     []
                 ],
@@ -651,7 +530,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bc1',
-                'id1': '2.9.1.1',
+                'id1': '2.7.1.1',
                 'type': 'radio',
                 'title': '散步',
                 'content': ['否', '是'],
@@ -660,7 +539,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bc2',
-                'id1': '2.9.1.2',
+                'id1': '2.7.1.2',
                 'type': 'radio',
                 'title': '做操',
                 'content': ['否', '是'],
@@ -669,7 +548,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bc3',
-                'id1': '2.9.1.3',
+                'id1': '2.7.1.3',
                 'type': 'radio',
                 'title': '太极拳',
                 'content': ['否', '是'],
@@ -678,7 +557,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bc4',
-                'id1': '2.9.1.4',
+                'id1': '2.7.1.4',
                 'type': 'radio',
                 'title': '气功',
                 'content': ['否', '是'],
@@ -687,7 +566,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bc5',
-                'id1': '2.9.1.5',
+                'id1': '2.7.1.5',
                 'type': 'radio',
                 'title': '跑步',
                 'content': ['否', '是'],
@@ -696,7 +575,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bc6',
-                'id1': '2.9.1.6',
+                'id1': '2.7.1.6',
                 'type': 'radio',
                 'title': '跳舞',
                 'content': ['否', '是'],
@@ -705,7 +584,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bc7',
-                'id1': '2.9.1.7',
+                'id1': '2.7.1.7',
                 'type': 'radio',
                 'title': '球类',
                 'content': ['否', '是'],
@@ -714,7 +593,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bc8',
-                'id1': '2.9.1.8',
+                'id1': '2.7.1.8',
                 'type': 'radio',
                 'title': '瑜伽',
                 'content': ['否', '是'],
@@ -723,7 +602,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bc9',
-                'id1': '2.9.1.9',
+                'id1': '2.7.1.9',
                 'type': 'radio',
                 'title': '田间劳作',
                 'content': ['否', '是'],
@@ -732,7 +611,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bc10',
-                'id1': '2.9.1.10',
+                'id1': '2.7.1.10',
                 'type': 'radio',
                 'title': '重体力劳动',
                 'content': ['否', '是'],
@@ -741,7 +620,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bc11',
-                'id1': '2.9.1.11',
+                'id1': '2.7.1.11',
                 'type': 'radio',
                 'title': '活动频率',
                 'content': ['每天活动', '5次/周', '3-5次/周', '<3次/周', '无'],
@@ -750,7 +629,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bc12',
-                'id1': '2.9.1.12',
+                'id1': '2.7.1.12',
                 'type': 'radio',
                 'title': '每次活动时间',
                 'content': ['30分钟以下', '30-60分钟', '60分钟以上'],
@@ -759,16 +638,16 @@ export class QuestionList {
             },
             {
                 'id2': 'bd1',
-                'id1': '2.10',
+                'id1': '2.8',
                 'type': 'radio',
                 'title': '吸烟',
                 'content': ['否', '是'],
-                'hiddenlist': [['2.10.1', '2.10.2', '2.10.3', '2.10.3.1'], []],
+                'hiddenlist': [['2.8.1', '2.8.2', '2.8.3', '2.8.3.1'], []],
                 'hidden': false
             },
             {
                 'id2': 'bd2',
-                'id1': '2.10.1',
+                'id1': '2.8.1',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -780,7 +659,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bd3',
-                'id1': '2.10.2',
+                'id1': '2.8.2',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -792,7 +671,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bd4',
-                'id1': '2.10.3',
+                'id1': '2.8.3',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -804,16 +683,16 @@ export class QuestionList {
             },
             {
                 'id2': 'bd5',
-                'id1': '2.10.3',
+                'id1': '2.8.3',
                 'type': 'radio',
                 'title': '戒烟',
                 'content': ['否', '是'],
-                'hiddenlist': [['2.10.3.1'], []],
+                'hiddenlist': [['2.8.3.1'], []],
                 'hidden': false
             },
             {
                 'id2': 'bd6',
-                'id1': '2.10.3.1',
+                'id1': '2.8.3.1',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -825,16 +704,16 @@ export class QuestionList {
             },
             {
                 'id2': 'be1',
-                'id1': '2.11',
+                'id1': '2.9',
                 'type': 'radio',
                 'title': '饮酒',
                 'content': ['否', '是'],
-                'hiddenlist': [['2.11.1', '2.11.2', '2.11.3', '2.11.4', '2.11.5', '2.11.6', '2.11.6.1'], []],
+                'hiddenlist': [['2.9.1', '2.9.2', '2.9.3', '2.9.4', '2.9.5', '2.9.6', '2.9.6.1'], []],
                 'hidden': false
             },
             {
                 'id2': 'be2',
-                'id1': '2.11.1',
+                'id1': '2.9.1',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -846,7 +725,7 @@ export class QuestionList {
             },
             {
                 'id2': 'be3',
-                'id1': '2.11.2',
+                'id1': '2.9.2',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -858,7 +737,7 @@ export class QuestionList {
             },
             {
                 'id2': 'be4',
-                'id1': '2.11.3',
+                'id1': '2.9.3',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -870,7 +749,7 @@ export class QuestionList {
             },
             {
                 'id2': 'be5',
-                'id1': '2.11.4',
+                'id1': '2.9.4',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -882,7 +761,7 @@ export class QuestionList {
             },
             {
                 'id2': 'be6',
-                'id1': '2.11.5',
+                'id1': '2.9.5',
                 'type': 'radio',
                 'title': '饮酒品种',
                 'content': ['白酒', '红酒', '啤酒', '不详'],
@@ -891,16 +770,16 @@ export class QuestionList {
             },
             {
                 'id2': 'be7',
-                'id1': '2.11.6',
+                'id1': '2.9.6',
                 'type': 'radio',
                 'title': '戒酒',
                 'content': ['否', '是'],
-                'hiddenlist': [['2.11.6.1'], []],
+                'hiddenlist': [['2.9.6.1'], []],
                 'hidden': false
             },
             {
                 'id2': 'be8',
-                'id1': '2.11.6.1',
+                'id1': '2.9.6.1',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -912,25 +791,25 @@ export class QuestionList {
             },
             {
                 'id2': 'bf1',
-                'id1': '2.12',
+                'id1': '2.10',
                 'type': 'radio',
                 'title': '近来睡眠',
                 'content': ['好', '坏', '中等'],
-                'hiddenlist': [['2.12.1', '2.12.1.1', '2.12.2', '2.12.3', '2.12.4'], [], []],
+                'hiddenlist': [['2.10.1', '2.10.1.1', '2.10.2', '2.10.3', '2.10.4'], [], []],
                 'hidden': false
             },
             {
                 'id2': 'bf2',
-                'id1': '2.12.1',
+                'id1': '2.10.1',
                 'type': 'radio',
                 'title': '安眠药',
                 'content': ['经常', '有时', '不服'],
-                'hiddenlist': [[], [], ['2.12.1.1']],
+                'hiddenlist': [[], [], ['2.10.1.1']],
                 'hidden': false
             },
             {
                 'id2': 'bf3',
-                'id1': '2.12.1.1',
+                'id1': '2.10.1.1',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -942,7 +821,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bf4',
-                'id1': '2.12.2',
+                'id1': '2.10.2',
                 'type': 'radio',
                 'title': '睡眠差表现',
                 'content': ['入睡困难', '早醒', '间断睡眠', '睡不实，多梦'],
@@ -951,7 +830,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bf5',
-                'id1': '2.12.3',
+                'id1': '2.10.3',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -963,7 +842,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bf6',
-                'id1': '2.12.4',
+                'id1': '2.10.4',
                 'type': 'radio',
                 'title': '睡眠差的原因',
                 'content': ['环境影响', '工作太忙、睡眠时间不多', '有烦恼的事情'],
@@ -972,16 +851,16 @@ export class QuestionList {
             },
             {
                 'id2': 'bg1',
-                'id1': '2.13',
+                'id1': '2.11',
                 'type': 'radio',
                 'title': '近来体重变化',
                 'content': ['增高', '下降', '无明显变化'],
-                'hiddenlist': [[], [], ['2.13.1']],
+                'hiddenlist': [[], [], ['2.11.1']],
                 'hidden': false
             },
             {
                 'id2': 'bg2',
-                'id1': '2.13.1',
+                'id1': '2.11.1',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -993,16 +872,16 @@ export class QuestionList {
             },
             {
                 'id2': 'bha1',
-                'id1': '2.14',
+                'id1': '2.12',
                 'type': 'radio',
                 'title': '大小便：小便',
                 'content': ['正常', '异常'],
-                'hiddenlist': [ ['2.14.1'], []],
+                'hiddenlist': [ ['2.12.1'], []],
                 'hidden': false
             },
             {
                 'id2': 'bha2',
-                'id1': '2.14.1',
+                'id1': '2.12.1',
                 'type': 'radio',
                 'title': '小便症状',
                 'content': ['尿频', '少尿', '血尿', '蛋白尿', '其他'],
@@ -1011,7 +890,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bhb1',
-                'id1': '2.15',
+                'id1': '2.13',
                 'type': 'radio',
                 'title': '大小便：大便',
                 'content': ['正常', '异常'],
@@ -1020,7 +899,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bhb2',
-                'id1': '2.15.1',
+                'id1': '2.13.1',
                 'type': 'radio',
                 'title': '大便症状',
                 'content': ['腹泻', '便秘', '黑便', '其他'],
@@ -1029,14 +908,14 @@ export class QuestionList {
             },
             {
                 'id2': 'bi',
-                'id1': '2.16',
+                'id1': '2.14',
                 'type': 'radio',
                 'title': '家族史',
                 'content': ['无', '有'],
                 'hiddenlist': [
                     [
-                        '2.16.1', '2.16.2', '2.16.3', '2.16.4', '2.16.5', '2.16.6', '2.16.7', '2.16.8',
-                        '2.16.9', '2.16.10', '2.16.11'
+                        '2.14.1', '2.14.2', '2.14.3', '2.14.4', '2.14.5', '2.14.6', '2.14.7', '2.14.8',
+                        '2.14.9', '2.14.10', '2.14.11'
                     ],
                     []
                 ],
@@ -1044,7 +923,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bi1',
-                'id1': '2.16.1',
+                'id1': '2.14.1',
                 'type': 'radio',
                 'title': '冠心病',
                 'content': ['否', '是'],
@@ -1053,7 +932,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bi2',
-                'id1': '2.16.2',
+                'id1': '2.14.2',
                 'type': 'radio',
                 'title': '高血压',
                 'content': ['否', '是'],
@@ -1062,7 +941,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bi3',
-                'id1': '2.16.3',
+                'id1': '2.14.3',
                 'type': 'radio',
                 'title': '糖尿病',
                 'content': ['否', '是'],
@@ -1071,7 +950,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bi4',
-                'id1': '2.16.4',
+                'id1': '2.14.4',
                 'type': 'radio',
                 'title': '脑血管病',
                 'content': ['否', '是'],
@@ -1080,7 +959,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bi5',
-                'id1': '2.16.5',
+                'id1': '2.14.5',
                 'type': 'radio',
                 'title': '癌症',
                 'content': ['否', '是'],
@@ -1089,7 +968,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bi6',
-                'id1': '2.16.6',
+                'id1': '2.14.6',
                 'type': 'radio',
                 'title': '静脉血栓性疾病',
                 'content': ['否', '是'],
@@ -1098,7 +977,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bi7',
-                'id1': '2.16.7',
+                'id1': '2.14.7',
                 'type': 'radio',
                 'title': '动脉血栓性疾病',
                 'content': ['否', '是'],
@@ -1107,7 +986,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bi8',
-                'id1': '2.16.8',
+                'id1': '2.14.8',
                 'type': 'radio',
                 'title': '结缔组织疾病',
                 'content': ['否', '是'],
@@ -1116,7 +995,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bi9',
-                'id1': '2.16.9',
+                'id1': '2.14.9',
                 'type': 'radio',
                 'title': '风湿免疫性疾病',
                 'content': ['否', '是'],
@@ -1125,7 +1004,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bi10',
-                'id1': '2.16.10',
+                'id1': '2.14.10',
                 'type': 'radio',
                 'title': '猝死家族史',
                 'content': ['否', '是'],
@@ -1134,7 +1013,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bi11',
-                'id1': '2.16.11',
+                'id1': '2.14.11',
                 'type': 'radio',
                 'title': '长寿',
                 'content': ['否', '是'],
@@ -1237,7 +1116,7 @@ export class QuestionList {
                     'validtype': 'number',
                     'information': ''
                 },
-                'title': '平素血压1',
+                'title': '最高收缩压',
                 'hidden': false
             },
             {
@@ -1249,7 +1128,7 @@ export class QuestionList {
                     'validtype': 'number',
                     'information': ''
                 },
-                'title': '平素血压2',
+                'title': '最高舒张压',
                 'hidden': false
             },
             {
@@ -1261,7 +1140,7 @@ export class QuestionList {
                     'validtype': 'number',
                     'information': ''
                 },
-                'title': '最高血压1',
+                'title': '平素收缩压',
                 'hidden': false
             },
             {
@@ -1273,7 +1152,7 @@ export class QuestionList {
                     'validtype': 'number',
                     'information': ''
                 },
-                'title': '最高血压2',
+                'title': '平素舒张压',
                 'hidden': false
             },
             {
@@ -1410,9 +1289,9 @@ export class QuestionList {
                 'title': '类型',
                 'content': [
                     '高甘油三脂血症',
-                    '低密度脂蛋白血症',
+                    '高低密度脂蛋白血症',
                     '低高密度脂蛋白血症',
-                    '高胆固醇'
+                    '高胆固醇血症'
                 ],
                 'hiddenlist': [],
                 'hidden': false
@@ -4967,7 +4846,7 @@ export class QuestionList {
                     'validtype': 'number',
                     'information': ''
                 },
-                'title': '血压1',
+                'title': '收缩压',
                 'hidden': false
             },
             {
@@ -4979,7 +4858,7 @@ export class QuestionList {
                     'validtype': 'number',
                     'information': ''
                 },
-                'title': '血压2',
+                'title': '舒张压',
                 'hidden': false
             },
             {
