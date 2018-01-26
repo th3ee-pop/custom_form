@@ -7,6 +7,7 @@ import {InputcmpComponent} from '../shared/inputcmp/inputcmp.component';
 import {RadiocmpComponent} from '../shared/radiocmp/radiocmp.component';
 import {IdccmpComponent} from '../shared/idccmp/idccmp.component';
 import {QuestionList} from '../shared/ql';
+import {ScheduleList} from "../shared/scheduleList";
 
 @Component({
     selector: 'app-info0',
@@ -22,6 +23,7 @@ export class Info0Component implements OnInit, AfterViewInit  {
     questions = new QuestionList().questions;
     questionSave = this.questions
     questionList = [];     // 问题总列表
+    b = new ScheduleList().schedule_list; // 步骤条的list
     resultList = [];                                    // 填写结果
     PID = '';                                           // PID
     finished = false;
@@ -51,13 +53,14 @@ export class Info0Component implements OnInit, AfterViewInit  {
                         break;
                     }
                 }
+                this.fillingAllanswer();
             });
         } else {
             this.questionList = this.questions[this.current];
         }
     }
     ngOnInit() {
-
+        console.log(this.PID);
     }
 
     ngAfterViewInit() {
@@ -89,7 +92,9 @@ export class Info0Component implements OnInit, AfterViewInit  {
         let putRecord = {};
         if (!this.PID)  putRecord = { 'Records' : this.resultList };
         else putRecord = { 'PID': this.PID, 'Records' : this.resultList };
+        console.log(putRecord);
         this.service.putRecord(putRecord).subscribe( (res) => {
+            console.log(res);
             this.PID = res.PID;
             this.router.navigate(['system/survey/info1/' + this.PID]); // 添加跳转
         }, err => {
@@ -181,28 +186,41 @@ export class Info0Component implements OnInit, AfterViewInit  {
         this.service.getRecord(getRecord).subscribe((res) => {
 
             this.fillingList = res.Records;
-            this.InputItems.forEach(item => {
-                for (let i = 0; i < this.fillingList.length; i++) {
-                    const id = item.question.id2;
-                    if (this.fillingList[i][id] && this.fillingList[i][id] !== '') {
-                        item.localAnswer = this.fillingList[i][id];
+            const pageZero = [];
+            this.fillingList.forEach(d => {
+                for (const key in d) {
+                    if (key.substr(0, 1) === 'n'
+                        || key === 'IDnumber'
+                        || key === 'doctor'
+                        || key.substr(0, 4) === 'type'
+                        || key.substr(0, 4) === 'diag'
+                    ) {
+                        pageZero.push(d);
                     }
-                    if (this.fillingList[i][id] === 0) {
+                }
+            });
+            this.InputItems.forEach(item => {
+                for (let i = 0; i < pageZero.length; i++) {
+                    const id = item.question.id2;
+                    if (pageZero[i][id] && pageZero[i][id] !== '') {
+                        item.localAnswer = pageZero[i][id];
+                    }
+                    if (pageZero[i][id] === 0) {
                         item.localAnswer = '0';
                     }
                 }
             });
 
-            this.IdcItems.forEach( item => { for (let i = 0; i < this.fillingList.length; i++) {
-                if (this.fillingList[i]['Idnumber'] && this.fillingList[i]['Idnumber'] !== '') {
-                    item.localAnswer = this.fillingList[i]['Idnumber']; }
+            this.IdcItems.forEach( item => { for (let i = 0; i < pageZero.length; i++) {
+                if (pageZero[i]['Idnumber'] && pageZero[i]['Idnumber'] !== '') {
+                    item.localAnswer = pageZero[i]['Idnumber']; }
             }});
 
             this.RadioItems.forEach(item => {
-                for (let i = 0; i < this.fillingList.length; i++) {
+                for (let i = 0; i < pageZero.length; i++) {
                     const id = item.question.id2;
-                    if (this.fillingList[i][id] && this.fillingList[i][id] !== '') {
-                        item.localAnswer = this.fillingList[i][id] - 1;
+                    if (pageZero[i][id] && pageZero[i][id] !== '') {
+                        item.localAnswer = pageZero[i][id] - 1;
                     }
                 }
             });

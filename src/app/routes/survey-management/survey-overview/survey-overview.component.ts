@@ -141,7 +141,7 @@ export class SurveyOverviewComponent implements OnInit {
      * @param PID 根据pid下载单个数据
      */
     downloadByPID(PID) {
-        const filePath = 'healthexamination/exportcsv/';
+        const filePath = 'vascular/exportcsv/';
         const fileName = 'PID' + PID + '.csv';
         const PIDs = [PID];  // 单个元素
         this.fileDownloader.downloadFile(filePath, {'PID_list': [PID]}, fileName);
@@ -154,7 +154,7 @@ export class SurveyOverviewComponent implements OnInit {
         const PIDs = this.data.map(item => {  // 遍历读取表格中的pid，并合成list
             return item.PID;
         });
-        const filePath = 'healthexamination/exportcsv/';
+        const filePath = 'vascular/exportcsv/';
         this.fileDownloader.downloadFile(filePath, {'PID_list': PIDs}, 'All.csv');
     }
 
@@ -168,7 +168,7 @@ export class SurveyOverviewComponent implements OnInit {
                 PIDs.push(item.PID);
             }
         });
-        const filePath = 'healthexamination/exportcsv/';
+        const filePath = 'vascular/exportcsv/';
         this.fileDownloader.downloadFile(filePath, {'PID_list': PIDs}, '已选.csv');
     }
 

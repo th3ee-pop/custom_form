@@ -56,6 +56,7 @@ export class Info7Component implements OnInit, AfterViewInit {
                         break;
                     }
                 }
+                this.fillingAllanswer();
             });
         }
     }
@@ -204,9 +205,17 @@ export class Info7Component implements OnInit, AfterViewInit {
         this.service.getRecord(getRecord).subscribe(
             (res) => {
                 this.fillingList = res.Records;
+                const pageSeven = [];
+                this.fillingList.forEach(d => {
+                    for (const key in d) {
+                        if (key.substr(0, 2) === 'gh') {
+                            pageSeven.push(d);
+                        }
+                    }
+                });
                 if (this.fillingList && this.fillingList.length !== 0) {
                     this.InputItems.forEach(item => {
-                        this.fillingList.forEach( fl => {
+                        pageSeven.forEach( fl => {
                             const id = item.question.id2;
                             if (fl[id] && fl[id] !== '') {
                                 item.localAnswer = fl[id];
@@ -218,7 +227,7 @@ export class Info7Component implements OnInit, AfterViewInit {
                     });
                 }
                 this.RadioItems.forEach(item => {
-                    this.fillingList.forEach( fl => {
+                    pageSeven.forEach( fl => {
                         const id = item.question.id2;
                         if (fl[id] && fl[id] !== '') {
                             item.localAnswer = fl[id] - 1;
@@ -226,7 +235,7 @@ export class Info7Component implements OnInit, AfterViewInit {
                     });
                 });
                 this.Table71Items.forEach(item => {
-                    this.fillingList.forEach( fl => {
+                    pageSeven.forEach( fl => {
                         for (let i = 0; i < item.question.id2.length; i++) {
                             for (let j = 0; j < item.question.id2[0].length; j++) {
                                 const id = item.question.id2[i][j];

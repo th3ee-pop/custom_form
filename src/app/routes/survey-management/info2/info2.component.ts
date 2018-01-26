@@ -51,6 +51,7 @@ export class Info2Component implements OnInit, AfterViewInit  {
                         break;
                     }
                 }
+                this.fillingAllanswer();
             });
         }
     }
@@ -189,9 +190,17 @@ export class Info2Component implements OnInit, AfterViewInit  {
         this.service.getRecord(getRecord).subscribe(
             (res) => {
                 this.fillingList = res.Records;
+                const pageTwo = [];
+                this.fillingList.forEach(d => {
+                    for (const key in d) {
+                        if (key.substr(0, 1) === 'b') {
+                            pageTwo.push(d);
+                        }
+                    }
+                });
                 if (this.fillingList && this.fillingList.length !== 0) {
                     this.InputItems.forEach(item => {
-                        this.fillingList.forEach( fl => {
+                        pageTwo.forEach( fl => {
                             const id = item.question.id2;
                             if (fl[id] && fl[id] !== '') {
                                 item.localAnswer = fl[id];
@@ -203,7 +212,7 @@ export class Info2Component implements OnInit, AfterViewInit  {
                     });
                 }
                 this.RadioItems.forEach(item => {
-                    this.fillingList.forEach( fl => {
+                    pageTwo.forEach( fl => {
                         const id = item.question.id2;
                         if (fl[id] && fl[id] !== '') {
                             item.localAnswer = fl[id] - 1;

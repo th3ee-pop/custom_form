@@ -5156,7 +5156,7 @@ export class QuestionList {
                     '下肢静脉血栓病史',
                     '总分'
                 ],
-                'bottomTitle': '这是一条测试',
+                'bottomTitle': '',
                 'hidden': false
             },
             {

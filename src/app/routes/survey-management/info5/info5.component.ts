@@ -69,6 +69,7 @@ export class Info5Component implements OnInit, AfterViewInit {
                         break;
                     }
                 }
+                this.fillingAllanswer();
             });
 
         }
@@ -110,6 +111,7 @@ export class Info5Component implements OnInit, AfterViewInit {
         this.initPutRecord();
         console.log(this.putRecord);
         this.service.putRecord(this.putRecord).subscribe((res) => {
+            console.log(res);
             this.router.navigate(['system/survey/info6/' + this.PID]);
         });
         // } else {
@@ -127,6 +129,7 @@ export class Info5Component implements OnInit, AfterViewInit {
         this.initPutRecord();
         console.log(this.putRecord);
         this.service.putRecord(this.putRecord).subscribe((res) => {
+            console.log(res);
             this.router.navigate(['system/survey/detail/']);
         }, error => {
         });
@@ -274,7 +277,7 @@ export class Info5Component implements OnInit, AfterViewInit {
                     });
                 }
                 this.RadioItems.forEach(item => {
-                    this.fillingList.forEach(fl => {
+                    pageFive.forEach(fl => {
                         const id = item.question.id2;
                         if (fl[id] && fl[id] !== '') {
                             item.localAnswer = fl[id] - 1;

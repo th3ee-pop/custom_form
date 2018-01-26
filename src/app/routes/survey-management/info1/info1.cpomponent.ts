@@ -57,6 +57,7 @@ export class Info1Component implements OnInit, AfterViewInit {
                         break;
                     }
                 }
+                this.fillingAllanswer();
             });
         }
     }
@@ -196,9 +197,17 @@ export class Info1Component implements OnInit, AfterViewInit {
         this.service.getRecord(getRecord).subscribe(
             (res) => {
                 this.fillingList = res.Records;
+                const pageOne = [];
+                this.fillingList.forEach(d => {
+                    for (const key in d) {
+                        if (key.substr(0, 1) === 'a') {
+                            pageOne.push(d);
+                        }
+                    }
+                });
                 if (this.fillingList && this.fillingList.length !== 0) {
                     this.InputItems.forEach(item => {
-                        this.fillingList.forEach( fl => {
+                        pageOne.forEach( fl => {
                             const id = item.question.id2;
                             if (fl[id] && fl[id] !== '') {
                                 item.localAnswer = fl[id];
@@ -210,10 +219,10 @@ export class Info1Component implements OnInit, AfterViewInit {
                     });
                 }
                 this.RadioItems.forEach(item => {
-                    for (let i = 0; i < this.fillingList.length; i++) {
+                    for (let i = 0; i < pageOne.length; i++) {
                         const id = item.question.id2;
-                        if (this.fillingList[i][id] && this.fillingList[i][id] !== '') {
-                            item.localAnswer = this.fillingList[i][id] - 1;
+                        if (pageOne[i][id] && pageOne[i][id] !== '') {
+                            item.localAnswer = pageOne[i][id] - 1;
                         }
                     }
                 });
