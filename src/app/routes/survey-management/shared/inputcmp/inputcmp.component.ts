@@ -15,16 +15,10 @@ export class InputcmpComponent extends Question implements OnInit {
     answerChanged = false;
     validateForm: FormGroup;
     editdisabled = false;
-    @Output() onVoted = new EventEmitter < any >();
+    @Output() onVoted = new EventEmitter< any >();
+    // @Output() onwVoted = new EventEmitter < any >();
 
     ngOnInit() {
-    }
-    vote ( hiddenList: any [], hiddenshowList: any[] ) {
-        const showAndhidden = {
-            'hiddenlist': hiddenList,
-            'hiddenshowlist' : hiddenshowList
-        };
-        this.onVoted.emit(showAndhidden);
     }
     otherValidator = ( control: FormControl): { [s: string]: boolean } => {
         if (!control.value) {
@@ -57,5 +51,18 @@ export class InputcmpComponent extends Question implements OnInit {
         tem.Record_Value = this.localAnswer;
         res.push(tem);
         this.answer = res;
+        if (this.question.id1 === '2.1') {
+            const votedata = {
+                'height': this.localAnswer
+            };
+            this.onVoted.emit(votedata);
+        }else if (this.question.id1 === '2.2') {
+            const votedata = {
+                'weight': this.localAnswer
+            };
+            this.onVoted.emit(votedata);
         }
+
+
+    }
 }
