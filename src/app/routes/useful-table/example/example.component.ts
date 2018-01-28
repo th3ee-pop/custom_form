@@ -14,8 +14,8 @@ export class ExampleComponent extends Question implements OnInit {
     letterArray = [];
     initialArray = [];
     idArray = [];
-    rowTitle = [ '走行', '内径', '宫腔', '静脉压缩性', '侧枝', '静脉瓣功能'];
-    columnTitle = ['髂外静脉', '股总静脉', '股浅静脉', '股深静脉', '腘静脉', '胫后静脉', '颈前静脉', '大隐静脉', '腓静脉', '肌间静脉'];
+    rowTitle = [ '走行(1:正常,2:异常)', '内径(1:正常,2:变宽,3:变窄)', '宫腔(1:清晰,2:不清晰，可见暗淡回声填充,3:完全闭塞)', '静脉压缩性(1:好,2:差)', '侧枝(1:可见侧枝形成,2:无侧枝形成)', '静脉瓣功能(1:良好,2:关闭不全)'];
+    columnTitle = ['髂外静脉', '股总静脉', '股浅静脉', '股深静脉', '腘静脉', '胫后静脉', '胫前静脉', '大隐静脉', '腓静脉', '肌间静脉'];
     columnTitle_2 = ['左', '右'];
     secondLevelTitle = [];
     changedAnswer = [];
