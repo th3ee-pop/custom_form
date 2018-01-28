@@ -10,7 +10,7 @@
                     <form nz-form [formGroup]="validateForm" [nzLayout]="'inline'">
                         <div nz-form-item>
                             <div nz-form-control [nzValidateStatus]="getFormControl(question.content.validtype)" *ngIf="question.content.datatype == 'text'" >
-                                    <nz-input [(ngModel)]="localAnswer" (ngModelChange)="answerChange()" [nzDisabled]="question.id1==='2.3'" formControlName="input"></nz-input>
+                                    <nz-input [(ngModel)]="localAnswer" (ngModelChange)="answerChange()" [nzDisabled]="question.id1==='2.3' || question.id1 == '1.15'" formControlName="input"></nz-input>
                                 <div nz-form-explain *ngIf="(question.id1==='2.1'||question.id1==='2.2')&&(getFormControl('input').dirty||getFormControl('input').touched)&&getFormControl('input').hasError('required')">
                                     <span id="explan">必填项</span>
                                 </div>

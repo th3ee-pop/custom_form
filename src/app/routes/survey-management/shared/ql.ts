@@ -89,7 +89,7 @@ export class QuestionList {
                 'id2': 'type6',
                 'id1': '0.9',
                 'type': 'radio',
-                'title': '介入手术类型: 滤器植入',
+                'title': '介入手术类型: 药械耦联',
                 'content': ['否', '是'],
                 'hiddenlist': [],
                 'hidden': false
@@ -203,65 +203,24 @@ export class QuestionList {
                 'hidden': false
             },
             {
-                'id2': 'diagd1',
+                'id2': 'diagd',
                 'id1': '0.18',
-                'type': 'input',
+                'type': 'auto-input',
                 'content': {
                     'datatype': 'text',
                     'validtype': '',
-                    'information': ''
+                    'information': '增加诊断'
                 },
-                'title': '其它诊断1',
+                'title': '其它诊断',
                 'hidden': false
-            },
-            {
-                'id2': 'diagd2',
-                'id1': '0.19',
-                'type': 'input',
-                'content': {
-                    'datatype': 'text',
-                    'validtype': '',
-                    'information': ''
-                },
-                'title': '其它诊断2',
-                'hidden': false
-            },
-            {
-                'id2': 'diagd3',
-                'id1': '0.20',
-                'type': 'input',
-                'content': {
-                    'datatype': 'text',
-                    'validtype': '',
-                    'information': ''
-                },
-                'title': '其它诊断3',
-                'hidden': false
-            },
+            }
         ],
         [
             {
                 'id2': 'aa2',
                 'id1': '1.1',
-                'type': 'input',
-                'content': {
-                    'datatype': 'text',
-                    'validtype': '',
-                    'information': ''
-                },
-                'title': '出生年份',
-                'hidden': false
-            },
-            {
-                'id2': 'aa3',
-                'id1': '1.1',
-                'type': 'input',
-                'content': {
-                    'datatype': 'text',
-                    'validtype': '',
-                    'information': ''
-                },
-                'title': '出生月份',
+                'type': 'date',
+                'title': '出生年月日',
                 'hidden': false
             },
             {

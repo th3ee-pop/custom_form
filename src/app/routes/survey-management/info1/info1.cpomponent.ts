@@ -8,6 +8,7 @@ import {NzModalService} from 'ng-zorro-antd';
 
 import {InputcmpComponent} from '../shared/inputcmp/inputcmp.component';
 import {RadiocmpComponent} from '../shared/radiocmp/radiocmp.component';
+import {DatecmpComponent} from '../shared/datecmp/datecmp.component';
 
 import {ScheduleList} from '../shared/scheduleList';
 
@@ -18,8 +19,9 @@ import {ScheduleList} from '../shared/scheduleList';
 })
 export class Info1Component implements OnInit, AfterViewInit {
 
-    @ViewChildren(InputcmpComponent) InputItems: QueryList<InputcmpComponent>
-    @ViewChildren(RadiocmpComponent) RadioItems: QueryList<RadiocmpComponent>
+    @ViewChildren(InputcmpComponent) InputItems: QueryList<InputcmpComponent>;
+    @ViewChildren(RadiocmpComponent) RadioItems: QueryList<RadiocmpComponent>;
+    @ViewChildren(DatecmpComponent) DateItem: QueryList<DatecmpComponent>;
 
     current = 1;
     questionSave = []; // 用来传到后端
@@ -87,6 +89,35 @@ export class Info1Component implements OnInit, AfterViewInit {
                     this.questionList[j]['hidden'] = true;
                 }
             }
+        }
+    }
+    onDateVoted(votedata:any){
+        const inDate = votedata.in_date;
+        const outDate = votedata.out_date;
+        if( inDate && inDate !== null ){
+            this.DateItem.forEach( item => {
+                if( item.question.id1 === '1.14' && item.date !== null ){
+                    const answer = Date.parse((item.date).toString()) - Date.parse(inDate);
+                    this.InputItems.forEach( aitem => {
+                        if( aitem.question.id1 === '1.15'){
+                            console.log(answer);
+                            aitem.localAnswer =  (answer/60/60/24/1000).toFixed(0)+'天';
+                        }
+                    })
+                }
+            })
+        } else if( outDate && outDate !== null ){
+            this.DateItem.forEach( item => {
+                if( item.question.id1 === '1.13' && item.date !== null ){
+                    const answer = Date.parse(outDate) - Date.parse((item.date).toString());
+                    this.InputItems.forEach( aitem => {
+                        if( aitem.question.id1 === '1.15'){
+                            console.log(answer);
+                            aitem.localAnswer =  (answer/60/60/24/1000).toFixed(0)+'天';
+                        }
+                    })
+                }
+            })
         }
     }
 
@@ -175,6 +206,9 @@ export class Info1Component implements OnInit, AfterViewInit {
                 }
             }
         });
+        this.DateItem.forEach(item => {
+            if (item.answerChanged === true) { this.resultList.push(item.answer[0]); }
+        });
         this.questionSave[this.current] = this.questionList;
         this.resultList.push(
             {'Record_ID': 'questionlist', 'Record_Value': this.questionSave }
@@ -224,6 +258,12 @@ export class Info1Component implements OnInit, AfterViewInit {
                         if (pageOne[i][id] && pageOne[i][id] !== '') {
                             item.localAnswer = pageOne[i][id] - 1;
                         }
+                    }
+                });
+                this.DateItem.forEach( item => {
+                    const id = item.question.id2;
+                    for (let i = 0; i < this.fillingList.length; i++) {
+                        if (this.fillingList[i][id] && this.fillingList[i][id] !== '') { item.date = new Date(this.fillingList[i][id]); }
                     }
                 });
             }, error => {

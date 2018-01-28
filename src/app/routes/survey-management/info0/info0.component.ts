@@ -8,6 +8,7 @@ import {RadiocmpComponent} from '../shared/radiocmp/radiocmp.component';
 import {IdccmpComponent} from '../shared/idccmp/idccmp.component';
 import {QuestionList} from '../shared/ql';
 import {ScheduleList} from "../shared/scheduleList";
+import {AutoIncInputComponent} from "../shared/tablecmp/auto-inc-input/auto-inc-input.component";
 
 @Component({
     selector: 'app-info0',
@@ -18,6 +19,7 @@ export class Info0Component implements OnInit, AfterViewInit  {
     @ViewChildren(InputcmpComponent) InputItems: QueryList<InputcmpComponent>;
     @ViewChildren(RadiocmpComponent) RadioItems: QueryList<RadiocmpComponent>;
     @ViewChildren(IdccmpComponent) IdcItems: QueryList<IdccmpComponent>;
+    @ViewChildren(AutoIncInputComponent) AutoIncInputItems: QueryList<AutoIncInputComponent>;
 
     current = 0; // 当前步骤
     questions = new QuestionList().questions;
@@ -139,7 +141,7 @@ export class Info0Component implements OnInit, AfterViewInit  {
             }
         });
         this.InputItems.forEach(item => {
-            console.log(item);
+            // console.log(item);
             if (item.answerChanged === true) {
                 for (let i = 0; i < item.answer.length; i++) {
                     this.resultList.push(item.answer[i]);
@@ -149,7 +151,11 @@ export class Info0Component implements OnInit, AfterViewInit  {
         this.IdcItems.forEach(item => {
             if (item.answerChanged === true) { for ( let i = 0; i < item.answer.length; i++) { this.resultList.push(item.answer[i]); } }
         });
-
+        this.AutoIncInputItems.forEach(item =>{
+            for (let i = 0; i < item.answer.length; i++) {
+                this.resultList.push(item.answer[i]);
+            }
+        });
         this.questionSave[this.current] = this.questionList;
         this.resultList.push(
             {'Record_ID': 'questionlist', 'Record_Value': this.questionSave}
@@ -199,6 +205,7 @@ export class Info0Component implements OnInit, AfterViewInit  {
                     }
                 }
             });
+            console.log(pageZero);
             this.InputItems.forEach(item => {
                 for (let i = 0; i < pageZero.length; i++) {
                     const id = item.question.id2;
@@ -215,7 +222,25 @@ export class Info0Component implements OnInit, AfterViewInit  {
                 if (pageZero[i]['Idnumber'] && pageZero[i]['Idnumber'] !== '') {
                     item.localAnswer = pageZero[i]['Idnumber']; }
             }});
-
+            this.AutoIncInputItems.forEach(item => {
+                console.log("AutoIncInputItems!");
+                console.log(item.question);
+                // const iid = item.question.id2;
+                // let j=1;
+                // for (let i = 0; i < pageZero.length; i++) {
+                //     if( pageZero[i].hasOwnProperty(iid + j)){
+                //         console.log(iid);
+                //         const  control = {
+                //             id: j,
+                //             controlInstance: `${iid+j}`
+                //         };
+                //         item.localAnswer.push(control);
+                //         // console.log(pageZero[i][id + j]);
+                //         j++;
+                //     }
+                // }
+                // console.log(item.localAnswer);
+            });
             this.RadioItems.forEach(item => {
                 for (let i = 0; i < pageZero.length; i++) {
                     const id = item.question.id2;

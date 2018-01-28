@@ -13,6 +13,7 @@
                             <app-inputcmp     *ngSwitchCase="'input'"     [question]="question" (onVoted)="onVoted($event)" ></app-inputcmp>
                             <app-idccmp       *ngSwitchCase="'idc'"       [question]="question" (onVoted)="onVoted($event)" ></app-idccmp>
                             <app-radiocmp     *ngSwitchCase="'radio'"     [question]="question" (onVoted)="onVoted($event)" ></app-radiocmp>
+                            <app-auto-inc-input *ngSwitchCase="'auto-input'"  [question]="question" (onVoted)="onVoted($event)" ></app-auto-inc-input>
                         </div>
                     </div>
                     <div class="steps-action">
