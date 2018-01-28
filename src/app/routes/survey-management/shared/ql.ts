@@ -5975,7 +5975,7 @@ export class QuestionList {
                 'id2': 'gdd',
                 'id1': '6.4.4',
                 'type': 'selectable-table',
-                'rowTitle': ['低分子肝素', '磺达肝奎钠', '华法林', '阿加曲班', '利伐沙班'],
+                'rowTitle': ['低分子肝素', '磺达肝癸钠', '华法林', '阿加曲班', '利伐沙班'],
                 'columnTitle': ['剂量', '用法', '频次', '用药时间'],
                 'radioStr': 'gdc',
                 'title': '6.4.4 术后用药：抗凝药',
