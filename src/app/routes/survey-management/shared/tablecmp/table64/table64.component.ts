@@ -14,7 +14,7 @@ export class Table64Component extends Question implements OnInit {
     editdisabled = false;
 
     mazui = ["局麻+心电血压监护", "全麻+心电血压监护"];
-    chuanci = ["足背静脉", "股静脉", "股动脉"];
+    chuanci = ["足背静脉", "股静脉", "股动脉", "其它"];
     rawname1 = ["胫后静脉","胫前静脉","腓静脉","腘静脉","股浅静脉","股静脉","髂静脉","髂外静脉","髂总静脉","大隐静脉"];
     rawname2 = ["肺动脉主干压力","右肺动脉","左肺动脉","肺楔压","右室压力","右房压力"];
     tf = ["否", "是"];
@@ -27,7 +27,7 @@ export class Table64Component extends Question implements OnInit {
     initialArray = new Array(55);
 
     idArray = [
-        'gca', 'gcb', 'gcc',
+        'gca', 'gcb', 'gcc', 'gcc1', 'gcc2',
         'gcd1', 'gce1', 'gcf1', 'gcg1', 'gch1', 'gci1', 'gcj1', 'gck1', 'gcl1', 'gcm1', 'gcd2', 'gce2', 'gcf2', 'gcg2',  'gch2', 'gci2', 'gcj2', 'gck2', 'gcl2', 'gcm2',
         'gcn', 'gco1', 'gco2', 'gco3', 'gco4', 'gcp',
         'gcpa1', 'gcpa2', 'gcpa3', 'gcpa4', 'gcpa5', 'gcpa6', 'gcpa7',

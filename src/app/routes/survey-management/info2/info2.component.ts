@@ -67,6 +67,34 @@ export class Info2Component implements OnInit, AfterViewInit  {
     }
 
     /** 事件处理 **/
+    onhVoted ( votedata: any) {
+        console.log(votedata);
+        console.log(votedata.height);
+        console.log(votedata.weight);
+        if (votedata.height && votedata.height !== '') {
+           this.InputItems.forEach( item => {
+               if (item.question.id1 === '2.2' && item.localAnswer !== '') {
+                   const answer = parseFloat(item.localAnswer) / parseFloat(votedata.height);
+                   this.InputItems.forEach( sitem => {
+                      if ( sitem.question.id1 === '2.3') {
+                          sitem.localAnswer = answer.toFixed(2) + '';
+                      }
+                   });
+               }
+           });
+        }else if (votedata.weight && votedata.weight !== '') {
+            this.InputItems.forEach( item => {
+               if (item.question.id1 === '2.1' && item.localAnswer !== '') {
+                   const answer = parseFloat(votedata.weight) / parseFloat(item.localAnswer);
+                   this.InputItems.forEach( sitem => {
+                       if ( sitem.question.id1 === '2.3') {
+                           sitem.localAnswer = answer.toFixed(2) + '';
+                       }
+                   });
+               }
+            });
+        }
+    }
     onVoted (showAndhidden: any) {
         for ( let i = 0; i <  showAndhidden.hiddenshowlist.length; i++) {
             for ( let j = 0; j < this.questionList.length; j++) {
@@ -75,6 +103,7 @@ export class Info2Component implements OnInit, AfterViewInit  {
                 }
             }
         }
+        console.log('hello');
         for (let i = 0; i < showAndhidden.hiddenlist.length; i++) {
             for ( let j = 0; j < this.questionList.length; j++) {
                 if ( this.questionList[j].id1 === showAndhidden.hiddenlist[i] ) {
@@ -84,6 +113,8 @@ export class Info2Component implements OnInit, AfterViewInit  {
         }
     }
 
+
+
     /** 下一步 **/
     next() {
         // if (this.confirm().confirms) {
@@ -91,16 +122,6 @@ export class Info2Component implements OnInit, AfterViewInit  {
         this.service.putRecord(this.putRecord).subscribe( (res) => {
             this.router.navigate(['system/survey/info3/' + this.PID]);
         });
-        // }else {
-        //     let str = '';
-        //     for ( let i = 0; i < this.confirm().confirmList.length; i++) {
-        //         str = str + this.confirm().confirmList[i] + '、';
-        //     }
-        //     this.confirmServ.error({
-        //         title: '您还有以下必填项没有完成： ',
-        //         content: str
-        //     });
-        // }
     }
 
     /** 暂存 **/

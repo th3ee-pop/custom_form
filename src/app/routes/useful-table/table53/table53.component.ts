@@ -20,7 +20,7 @@ export class Table53Component extends Question implements OnInit {
     initialArray = [];
     idArray = [];
     rowLength = 4;
-    rowTitle = ['胸部CT', '肺灌注显像', '肺动脉CAT'];
+    rowTitle = ['胸部CT', '肺灌注显像', '肺动脉CTA'];
     secondLevelTitle = [];
     changedAnswer = [];
     overallId = ['ea7a1', 'ea7a2', 'ea7a3', 'ea7a4'];
