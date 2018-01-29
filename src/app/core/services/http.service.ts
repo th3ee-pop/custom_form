@@ -333,5 +333,14 @@ export class HttpService {
             });
     }
 
+    /**
+     * 获取本地文件
+     * @param file 文件名
+     * @returns {Observable<Response>}
+     */
+    getChinaDivision(file){
+        return this.Http.get("assets/jsonData/"+file +".json")
+    }
+
 
 }
