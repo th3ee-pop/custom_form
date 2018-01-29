@@ -5648,7 +5648,7 @@ export class QuestionList {
                 'id2': 'ga',
                 'id1': '6.1.1',
                 'type': 'selectable-table',
-                'rowTitle': ['低分子肝素', '华法林', '尿激酶'],
+                'rowTitle': ['低分子肝素', '华法林', '尿激酶', '其它'],
                 'columnTitle': ['剂量', '用法', '频次', '用药时间'],
                 'radioStr': 'gaa',
                 'title': '6.1.1入院前治疗情况',
