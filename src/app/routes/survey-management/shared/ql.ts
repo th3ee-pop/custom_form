@@ -5714,7 +5714,7 @@ export class QuestionList {
                     '是'
                 ],
                 'title': '药械耦连',
-                'hiddenlist': [['6.3.1.1', '6.4.1.1.1', '6.4.1.1.2', '6.4.1.1.3'
+                'hiddenlist': [['6.3.1.1', '6.3.1.1.1', '6.3.1.1.2', '6.3.1.1.3'
                 , '6.3.1.2', '6.3.1.2.1', '6.3.1.2.2'
                 ], []],
                 'hidden': false
@@ -5864,19 +5864,19 @@ export class QuestionList {
             },
              {
             'id2': 'gcy',
-            'id1': '6.3.3',
+            'id1': '6.3.4',
             'type': 'radio',
             'content': [
                 '否',
                 '是'
             ],
             'title': '术中是否置管',
-            'hiddenlist': [['6.3.3.1', '6.3.3.2', '6.3.3.3'], []],
+            'hiddenlist': [['6.3.4.1', '6.3.4.2', '6.3.4.3'], []],
             'hidden': false
         },
             {
                 'id2': ['gcy1', 'gcy2', 'gcy3', 'gcy4', 'gcy5'],
-                'id1': '6.3.3.1',
+                'id1': '6.3.4.1',
                 'type': 'multi-radio',
                 'title': '置管',
                 'content': ["股静脉置管", "腘静脉置管", "股动脉置管", "肺动脉置管", '下腔静脉置管'],
@@ -5884,7 +5884,7 @@ export class QuestionList {
             },
             {
                 'id2': 'gcy6',
-                'id1': '6.3.3.2',
+                'id1': '6.3.4.2',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -5896,7 +5896,7 @@ export class QuestionList {
             },
             {
                 'id2': 'gcy7',
-                'id1': '6.3.3.3',
+                'id1': '6.3.4.3',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -5908,19 +5908,19 @@ export class QuestionList {
             },
             {
                 'id2': 'gcz',
-                'id1': '6.3.4',
+                'id1': '6.3.5',
                 'type': 'radio',
                 'content': [
                     '否',
                     '是'
                 ],
                 'title': '术中是否有不良反应',
-                'hiddenlist': [['6.3.4.1', '6.3.4.2', '6.3.4.2.1'],[]],
+                'hiddenlist': [['6.3.5.1', '6.3.5.2', '6.3.5.2.1'],[]],
                 'hidden': false
             },
             {
                 'id2': ['gcz1', 'gcz2', 'gcz3', 'gcz4'],
-                'id1': '6.3.4.1',
+                'id1': '6.3.5.1',
                 'type': 'multi-radio',
                 'title': '术中不良反应',
                 'content': ["过敏反应", "呼吸困难、心率失常", "出血、穿刺意外"],
@@ -5928,19 +5928,19 @@ export class QuestionList {
             },
             {
                 'id2': 'gcz4',
-                'id1': '6.3.4.2',
+                'id1': '6.3.5.2',
                 'type': 'radio',
                 'content': [
                     '否',
                     '是'
                 ],
                 'title': '术中是否有其他不良反应',
-                'hiddenlist': [['6.3.4.2.1'],[]],
+                'hiddenlist': [['6.3.5.2.1'],[]],
                 'hidden': false
             },
             {
                 'id2': 'gcz4a',
-                'id1': '6.3.4.2.1',
+                'id1': '6.3.5.2.1',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
