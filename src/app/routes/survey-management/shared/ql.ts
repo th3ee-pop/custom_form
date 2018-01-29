@@ -5718,42 +5718,156 @@ export class QuestionList {
                     '否',
                     '是'
                 ],
-                'title': '术中是否行血栓吸取术',
-                'hiddenlist': [['6.3.1.1'],[]],
+                'title': '药械耦连',
+                'hiddenlist': [['6.3.1.1', '6.4.1.1.1', '6.4.1.1.2', '6.4.1.1.3'
+                , '6.3.1.2', '6.3.1.2.1', '6.3.1.2.2'
+                ], []],
                 'hidden': false
             },
             {
                 'id2': 'gcwa',
                 'id1': '6.3.1.1',
-                'type': 'input',
-                'content': {
-                    'datatype': 'text',
-                    'validtype': 'number',
-                    'information': ''
-                },
-                'title': '抽出血栓量',
+                'type': 'radio',
+                'content': [
+                    '尿激酶',
+                    '阿替普酶',
+                    '其它'
+                ],
+                'title': '药',
+                'hiddenlist': [['6.3.1.1.1'], ['6.3.1.1.1'], []],
                 'hidden': false
             },
             {
-                'id2': 'gcx',
+                'id2': 'gcwa1',
+                'id1': '6.3.1.1.1',
+                'type': 'input',
+                'content': {
+                    'datatype': 'text',
+                    'validtype': '',
+                    'information': ''
+                },
+                'title': '药名',
+                'hidden': true
+            },
+            {
+                'id2': 'gcwa2',
+                'id1': '6.3.1.1.2',
+                'type': 'input',
+                'content': {
+                    'datatype': 'text',
+                    'validtype': '',
+                    'information': ''
+                },
+                'title': '术中用量',
+                'hidden': false
+            },
+            {
+                'id2': 'gcwa3',
+                'id1': '6.3.1.1.3',
+                'type': 'radio',
+                'content': [
+                    '下肢深静脉',
+                    '下腔静脉',
+                    '肺动脉'
+                ],
+                'title': '药部位',
+                'hiddenlist': [[], [], []],
+                'hidden': false
+            },
+            {
+                'id2': 'gcwb',
+                'id1': '6.3.1.2',
+                'type': 'radio',
+                'content': [
+                    'Angiojet',
+                    'Foutain',
+                    '抽栓导管'
+                ],
+                'title': '械',
+                'hiddenlist': [['6.3.1.2.1'], ['6.3.1.2.1'], []],
+                'hidden': false
+            },
+            {
+                'id2': 'gcwb1',
+                'id1': '6.3.1.2.1',
+                'type': 'input',
+                'content': {
+                    'datatype': 'text',
+                    'validtype': '',
+                    'information': ''
+                },
+                'title': '抽栓导管',
+                'hidden': true
+            },
+            {
+                'id2': 'gcwb2',
+                'id1': '6.3.1.2.2',
+                'type': 'radio',
+                'content': [
+                    '下肢深静脉',
+                    '下腔静脉',
+                    '肺动脉'
+                ],
+                'title': '械部位',
+                'hiddenlist': [[], [], []],
+                'hidden': false
+            },
+            {
+                'id2': 'gcwc',
                 'id1': '6.3.2',
                 'type': 'radio',
                 'content': [
                     '否',
                     '是'
                 ],
-                'title': '术中是否置入滤器',
-                'hiddenlist': [['6.3.2.1'],[]],
+                'title': '肺动脉捣栓碎栓',
+                'hiddenlist': [['6.3.2.1'], []],
                 'hidden': false
             },
             {
-                'id2': ['gcx1', 'gcx2', 'gcx3'],
+                'id2': 'gcwc1',
                 'id1': '6.3.2.1',
-                'type': 'multi-radio',
-                'title': '置入滤器',
-                'content': ["Trapease", "Tulip", "Optease"],
+                'type': 'input',
+                'content': {
+                    'datatype': 'text',
+                    'validtype': '',
+                    'information': ''
+                },
+                'title': '导管型号',
+                'hidden': true
+            },
+            {
+                'id2': 'gcwd',
+                'id1': '6.3.3',
+                'type': 'radio',
+                'content': [
+                    '否',
+                    'Tulip',
+                    'Celect',
+                    'Trapease',
+                    'Optease',
+                    'Aegisy',
+                    'VenaTech',
+                    'VenaTach可转换',
+                    '其他'
+                ],
+                'title': '是否植入滤器',
+                'hiddenlist': [['6.3.3.1'], ['6.3.3.1'], ['6.3.3.1'], ['6.3.3.1'], ['6.3.3.1'], ['6.3.3.1'], ['6.3.3.1'], ['6.3.3.1'], []],
                 'hidden': false
-            }, {
+            },
+            {
+                'id2': 'gcwd1',
+                'id1': '6.3.3.1',
+                'type': 'input',
+                'content': {
+                    'datatype': 'text',
+                    'validtype': '',
+                    'information': ''
+                },
+                'title': '其它滤器名称',
+                'hidden': true
+            },
+             {
             'id2': 'gcy',
             'id1': '6.3.3',
             'type': 'radio',
@@ -5762,19 +5876,43 @@ export class QuestionList {
                 '是'
             ],
             'title': '术中是否置管',
-            'hiddenlist': [['6.3.3.1'],[]],
+            'hiddenlist': [['6.3.3.1', '6.3.3.2', '6.3.3.3'], []],
             'hidden': false
         },
             {
-                'id2': ['gcy1', 'gcy2', 'gcy3', 'gcy4'],
+                'id2': ['gcy1', 'gcy2', 'gcy3', 'gcy4', 'gcy5'],
                 'id1': '6.3.3.1',
                 'type': 'multi-radio',
                 'title': '置管',
-                'content': ["股静脉置管", "腘静脉置管", "股动脉置管", "肺动脉置管"],
+                'content': ["股静脉置管", "腘静脉置管", "股动脉置管", "肺动脉置管", '下腔静脉置管'],
                 'hidden': false
             },
             {
-                'id2': 'gcy',
+                'id2': 'gcy6',
+                'id1': '6.3.3.2',
+                'type': 'input',
+                'content': {
+                    'datatype': 'text',
+                    'validtype': '',
+                    'information': ''
+                },
+                'title': '置管型号',
+                'hidden': false
+            },
+            {
+                'id2': 'gcy7',
+                'id1': '6.3.3.3',
+                'type': 'input',
+                'content': {
+                    'datatype': 'text',
+                    'validtype': 'number',
+                    'information': ''
+                },
+                'title': '置管持续时间(天)',
+                'hidden': false
+            },
+            {
+                'id2': 'gcz',
                 'id1': '6.3.4',
                 'type': 'radio',
                 'content': [
@@ -5794,7 +5932,7 @@ export class QuestionList {
                 'hidden': false
             },
             {
-                'id2': 'gcy',
+                'id2': 'gcz4',
                 'id1': '6.3.4.2',
                 'type': 'radio',
                 'content': [
@@ -5845,7 +5983,7 @@ export class QuestionList {
                 'id2': 'gdd',
                 'id1': '6.4.4',
                 'type': 'selectable-table',
-                'rowTitle': ['低分子肝素', '磺达肝奎钠', '华法林', '阿加曲班', '利伐沙班'],
+                'rowTitle': ['低分子肝素', '磺达肝癸钠', '华法林', '阿加曲班', '利伐沙班'],
                 'columnTitle': ['剂量', '用法', '频次', '用药时间'],
                 'radioStr': 'gdc',
                 'title': '6.4.4 术后用药：抗凝药',
