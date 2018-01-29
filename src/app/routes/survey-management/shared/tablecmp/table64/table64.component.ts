@@ -24,7 +24,7 @@ export class Table64Component extends Question implements OnInit {
     // gcpa = new Array(4);
     // gcpb = new Array(4);
     jmpart = ["腰1", "腰2"];
-    initialArray = new Array(55);
+    initialArray = new Array(57);
 
     idArray = [
         'gca', 'gcb', 'gcc', 'gcc1', 'gcc2',
