@@ -145,12 +145,39 @@ export class QuestionList {
                 'type': 'radio',
                 'title': '最终诊断：下腔静脉血栓',
                 'content': ['否', '低位肾静脉以下', '高位肾静脉以下', '低位肝静脉以下', '高位肝静脉以下', '右房口以下'],
+                'hiddenlist': [['0.12.1'], [], [], [], [], []],
+                'hidden': false
+            },
+            {
+                'id2': 'diagb1',
+                'id1': '0.12.1',
+                'type': 'radio',
+                'title': '是否为滤器相关',
+                'content': ['否', '是'],
                 'hiddenlist': [],
                 'hidden': false
             },
             {
-                'id2': 'diagt',
+                'id2': 'diagf',
                 'id1': '0.13',
+                'type': 'radio',
+                'title': '髂静脉狭窄/压迫',
+                'content': ['否', '是'],
+                'hiddenlist': [['0.13.1'], []],
+                'hidden': false
+            },
+            {
+                'id2': 'diagf1',
+                'id1': '0.13.1',
+                'type': 'radio',
+                'title': '左/右',
+                'content': ['左', '右'],
+                'hiddenlist': [],
+                'hidden': true
+            },
+            {
+                'id2': 'diagt',
+                'id1': '0.14',
                 'type': 'radio',
                 'title': '最终诊断：肾静脉血栓',
                 'content': ['否', '左肾静脉', '右肾静脉', '双肾静脉'],
@@ -159,7 +186,7 @@ export class QuestionList {
             },
             {
                 'id2': 'diagt1',
-                'id1': '0.14',
+                'id1': '0.15',
                 'type': 'radio',
                 'title': '最终诊断：右心房血栓',
                 'content': ['否', '是'],
@@ -168,7 +195,7 @@ export class QuestionList {
             },
             {
                 'id2': 'diagt2',
-                'id1': '0.15',
+                'id1': '0.16',
                 'type': 'radio',
                 'title': '最终诊断：右心室血栓',
                 'content': ['否', '是'],
@@ -177,7 +204,7 @@ export class QuestionList {
             },
             {
                 'id2': 'diagc',
-                'id1': '0.16',
+                'id1': '0.17',
                 'type': 'radio',
                 'title': '最终诊断：肺动脉栓塞',
                 'content': ['否', '是'],
@@ -186,7 +213,7 @@ export class QuestionList {
             },
             {
                 'id2': 'diagc1',
-                'id1': '0.16.1',
+                'id1': '0.17.1',
                 'type': 'radio',
                 'title': '肺动脉危险分层',
                 'content': ['低危', '中低危', '中高危', '高危'],
@@ -195,7 +222,7 @@ export class QuestionList {
             },
             {
                 'id2': 'diage',
-                'id1': '0.17',
+                'id1': '0.18',
                 'type': 'radio',
                 'title': '心功能',
                 'content': ['I级', 'II级', 'III级', 'IV级'],
@@ -204,7 +231,7 @@ export class QuestionList {
             },
             {
                 'id2': 'diagd1',
-                'id1': '0.18',
+                'id1': '0.19',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -216,7 +243,7 @@ export class QuestionList {
             },
             {
                 'id2': 'diagd2',
-                'id1': '0.19',
+                'id1': '0.20',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -228,7 +255,7 @@ export class QuestionList {
             },
             {
                 'id2': 'diagd3',
-                'id1': '0.20',
+                'id1': '0.21',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
