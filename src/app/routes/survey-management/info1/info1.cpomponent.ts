@@ -144,7 +144,7 @@ export class Info1Component implements OnInit, AfterViewInit {
     temporary_deposit() {
         this.initPutRecord();
         this.service.putRecord(this.putRecord).subscribe( (res) => {
-            this.router.navigate( ['system/survey/detail/']);
+            // this.router.navigate( ['system/survey/detail/']);
         }, error => { });
     }
 
@@ -207,12 +207,14 @@ export class Info1Component implements OnInit, AfterViewInit {
             }
         });
         this.DateItem.forEach(item => {
+            console.log(item);
             if (item.answerChanged === true) { this.resultList.push(item.answer[0]); }
         });
         this.questionSave[this.current] = this.questionList;
         this.resultList.push(
             {'Record_ID': 'questionlist', 'Record_Value': this.questionSave }
         );
+        console.log(this.resultList);
         for (let i = 0; i < this.fillingList.length; i++) {
             for (let j = 0; j < this.resultList.length; j++) {
                 const id = this.resultList[j].Record_ID;
@@ -239,6 +241,7 @@ export class Info1Component implements OnInit, AfterViewInit {
                         }
                     }
                 });
+                // console.log(pageOne);
                 if (this.fillingList && this.fillingList.length !== 0) {
                     this.InputItems.forEach(item => {
                         pageOne.forEach( fl => {
@@ -261,9 +264,10 @@ export class Info1Component implements OnInit, AfterViewInit {
                     }
                 });
                 this.DateItem.forEach( item => {
+                    // console.log(item);
                     const id = item.question.id2;
-                    for (let i = 0; i < this.fillingList.length; i++) {
-                        if (this.fillingList[i][id] && this.fillingList[i][id] !== '') { item.date = new Date(this.fillingList[i][id]); }
+                    for (let i = 0; i < pageOne.length; i++) {
+                        if (pageOne[i][id] && pageOne[i][id] !== '') { item.date = new Date(pageOne[i][id]); }
                     }
                 });
             }, error => {

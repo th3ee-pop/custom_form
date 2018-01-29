@@ -22,7 +22,7 @@ export class DatecmpComponent extends Question {
             Record_ID: '',
             Record_Value: {}
         };
-        const questionID = this.question.id1;
+        const questionID = this.question.id2;
         tem.Record_ID = questionID;
         tem.Record_Value = this.date;
         res.push(tem);

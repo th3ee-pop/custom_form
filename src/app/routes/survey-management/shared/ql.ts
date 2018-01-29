@@ -5571,7 +5571,7 @@ export class QuestionList {
                     '无',
                     '有'
                 ],
-                'hidden': true
+                'hidden': false
             },
             {
                 'id2': ['gaca','gaca1','gaca2','gaca3','gaca4'],
@@ -5585,7 +5585,7 @@ export class QuestionList {
                     '频次',
                     '用药时间'
                 ],
-                'hidden': true
+                'hidden': false
             },
             {
                 'id2': 'gba',

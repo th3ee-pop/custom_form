@@ -151,11 +151,11 @@ export class Info0Component implements OnInit, AfterViewInit  {
         this.IdcItems.forEach(item => {
             if (item.answerChanged === true) { for ( let i = 0; i < item.answer.length; i++) { this.resultList.push(item.answer[i]); } }
         });
-        this.AutoIncInputItems.forEach(item =>{
-            for (let i = 0; i < item.answer.length; i++) {
-                this.resultList.push(item.answer[i]);
-            }
-        });
+        // this.AutoIncInputItems.forEach(item =>{
+        //     for (let i = 0; i < item.answer.length; i++) {
+        //         this.resultList.push(item.answer[i]);
+        //     }
+        // });
         this.questionSave[this.current] = this.questionList;
         this.resultList.push(
             {'Record_ID': 'questionlist', 'Record_Value': this.questionSave}
@@ -205,7 +205,7 @@ export class Info0Component implements OnInit, AfterViewInit  {
                     }
                 }
             });
-            console.log(pageZero);
+            // console.log(pageZero);
             this.InputItems.forEach(item => {
                 for (let i = 0; i < pageZero.length; i++) {
                     const id = item.question.id2;
@@ -223,8 +223,8 @@ export class Info0Component implements OnInit, AfterViewInit  {
                     item.localAnswer = pageZero[i]['Idnumber']; }
             }});
             this.AutoIncInputItems.forEach(item => {
-                console.log("AutoIncInputItems!");
-                console.log(item.question);
+                // console.log("AutoIncInputItems!");
+                // console.log(item.question);
                 // const iid = item.question.id2;
                 // let j=1;
                 // for (let i = 0; i < pageZero.length; i++) {
