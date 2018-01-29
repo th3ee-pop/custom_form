@@ -5299,83 +5299,228 @@ export class QuestionList {
                 'hidden': false
             },
             {
+
                 'id2': ['dd1', 'dd2', 'dd3', 'dd4', 'dd5', 'dd6', 'dd7', 'dd8'],
                 'id1': '4.5.1',
                 'type': 'singletable',
-                'title': 'Wells评分表原始版',
+                'title': '临床PE可能性评估 Wells评分（原始版）',
                 'coltitle': ['危险因素', '临床评分'],
                 'rawname': [
-                    'DVT的临床症状和体征（水肿和疼痛）',
-                    '心率>100次/min',
-                    '连续卧床3d以上，或4周内曾行外科手术',
-                    '曾患DVT或PE',
-                    '与其它诊断相比，PE是可能或更可能的诊断',
-                    '咯血',
-                    '癌症活动期（正在治疗或6个月前治疗过，或姑息治疗）',
-                    '总分'
+                    {
+                        type: 'radio',
+                        title: 'DVT的临床症状和体征（水肿和疼痛）',
+                        value: [{lable: '3', score: '3'}, {lable: '0', score: '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '心率>100次/min',
+                        value: [{lable: '1.5', score: '1.5'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '卧床连续3d以上，或4周内曾行外科手术',
+                        value: [{lable: '1.5', score: '1.5'}, {lable: '0', score: '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '曾患DVT或PE',
+                        value: [{lable: '1.5', score: '1.5'}, {lable: '0', score: '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '与其它诊断相比，PE是可能或更可能的诊断',
+                        value: [{lable: '3', score: '3'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '咯血',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '癌症活动期（正在治疗或6个月前治疗过，或姑息治疗）',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'input',
+                        title: '总分',
+                    }
                 ],
-                'bottomTitle': '',
+                'totalRow': 7,
+                'bottomTitle': '注：Wells评分：0-2分：PE可能性低（发病率4%）；3-6分：PE可能性中度（发病率21%）；＞6分：PE可能性较高（发病率67%）',
                 'hidden': false
             },
             {
                 'id2': ['dd1a', 'dd2a', 'dd3a', 'dd4a', 'dd5a', 'dd6a', 'dd7a', 'dd8a'],
                 'id1': '4.5.2',
                 'type': 'singletable',
-                'title': 'Wells评分表简化版',
+                'title': '临床PE可能性评估 Wells评分（简化版）',
                 'coltitle': ['危险因素', '临床评分'],
                 'rawname': [
-                    'DVT的临床症状和体征（水肿和疼痛）',
-                    '心率>100次/min',
-                    '连续卧床3d以上，或4周内曾行外科手术',
-                    '曾患DVT或PE',
-                    '与其它诊断相比，PE是可能或更可能的诊断',
-                    '咯血',
-                    '癌症活动期（正在治疗或6个月前治疗过，或姑息治疗）',
-                    '总分'
+                    {
+                        type: 'radio',
+                        title: 'DVT的临床症状和体征（水肿和疼痛）',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score: '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '心率>100次/min',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '卧床连续3d以上，或4周内曾行外科手术',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score: '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '曾患DVT或PE',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score: '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '与其它诊断相比，PE是可能或更可能的诊断',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '咯血',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '癌症活动期（正在治疗或6个月前治疗过，或姑息治疗）',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'input',
+                        title: '总分',
+                    }
                 ],
-                'bottomTitle': '',
+                'totalRow': 7,
+                'bottomTitle': '注：Wells评分：0-2分：PE可能性低（发病率4%）；3-6分：PE可能性中度（发病率21%）；＞6分：PE可能性较高（发病率67%）',
                 'hidden': false
             },
             {
                 'id2': ['dd9', 'dd10', 'dd11', 'dd12', 'dd13', 'dd14', 'dd15', 'dd16', 'dd17', 'dd18'],
                 'id1': '4.6.1',
                 'type': 'singletable',
-                'title': 'Geneva评分表原始版',
+                'title': 'Geneva评分表（原始版）',
                 'coltitle': ['危险因素', '临床评分'],
                 'rawname': [
-                    '单侧下肢疼痛',
-                    '下肢深静脉触痛及单侧水肿',
-                    '年龄>65岁',
-                    '心率75-94',
-                    '心率>95',
-                    '一个月内手术（全麻）骨折（下肢）',
-                    '曾患DVT或PE',
-                    '咯血',
-                    '恶性肿瘤（实体或血液， 目前活动或者1年内治愈）',
-                    '总分'
+                    {
+                        type: 'radio',
+                        title: '单侧下肢疼痛',
+                        value: [{lable: '3', score: '3'}, {lable: '0', score: '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '下肢深静脉触痛及单侧水肿',
+                        value: [{lable: '4', score: '4'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '年龄>65岁',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score: '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '心率75-94',
+                        value: [{lable: '3', score: '3'}, {lable: '0', score: '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '心率>95',
+                        value: [{lable: '5', score: '5'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '1月内手术（全麻）骨折（下肢）',
+                        value: [{lable: '2', score: '2'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '曾患DVT或PE',
+                        value: [{lable: '3', score: '3'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '咯血',
+                        value: [{lable: '2', score: '2'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '恶性肿瘤（实体或血液，目前活动或者1年内治愈）',
+                        value: [{lable: '2', score: '2'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'input',
+                        title: '总分',
+                    }
                 ],
-                'bottomTitle': '',
+                'totalRow': 9,
+                'bottomTitle': '修正Geneva评分：肺栓塞可能性，低度 0 ～ 3 分，中度 4 ～ 10 分，高度≥11 分。',
                 'hidden': false
             },
             {
                 'id2': ['dd9a', 'dd10a', 'dd11a', 'dd12a', 'dd13a', 'dd14a', 'dd15a', 'dd16a', 'dd17a', 'dd18a'],
                 'id1': '4.6.2',
-                'type': 'table462',
-                'title': 'Geneva评分表简化版',
+                'type': 'singletable',
+                'title': 'Geneva评分表(简化版)',
                 'coltitle': ['危险因素', '临床评分'],
                 'rawname': [
-                    '单侧下肢疼痛',
-                    '下肢深静脉触痛及单侧水肿',
-                    '年龄>65岁',
-                    '心率75-94',
-                    '心率>95',
-                    '一个月内手术（全麻）骨折（下肢）',
-                    '曾患DVT或PE',
-                    '咯血',
-                    '恶性肿瘤（实体或血液， 目前活动或者1年内治愈）',
-                    '总分'
+                    {
+                        type: 'radio',
+                        title: '单侧下肢疼痛',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score: '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '下肢深静脉触痛及单侧水肿',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '年龄>65岁',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score: '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '心率75-94',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score: '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '心率>95',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '1月内手术（全麻）骨折（下肢）',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '曾患DVT或PE',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '咯血',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '恶性肿瘤（实体或血液，目前活动或者1年内治愈）',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'input',
+                        title: '总分',
+                    }
                 ],
-                'bottomTitle': '',
+                'totalRow': 9,
+                'bottomTitle': '修正Geneva评分：肺栓塞可能性，低度 0 ～ 3 分，中度 4 ～ 10 分，高度≥11 分。',
                 'hidden': false
             }
         ],
