@@ -5627,7 +5627,7 @@ export class QuestionList {
                 'id2': 'gba',
                 'id1': '6.2.1',
                 'type': 'selectable-table',
-                'rowTitle': ['气压泵治疗', '硫酸镁冷敷', '看医用弹力袜'],
+                'rowTitle': ['气压泵治疗', '硫酸镁冷敷', '着医用弹力袜'],
                 'columnTitle': ['剂量', '用法', '频次', '用药时间'],
                 'radioStr': 'gba',
                 'title': '6.2.1 术前用药：物理治疗',
@@ -5646,7 +5646,7 @@ export class QuestionList {
                 'rowTitle': ['丹参注射液', '疏血通', '丹参川穹嗪', '其他'],
                 'columnTitle': ['剂量', '用法', '频次', '用药时间'],
                 'radioStr': 'gbc',
-                'title': '6.2.3 术前用药：扩展改善循环药',
+                'title': '6.2.3 术前用药：扩管改善循环药',
             }, {
                 'id2': 'gdb',
                 'id1': '6.2.4',
@@ -5965,7 +5965,7 @@ export class QuestionList {
                 'rowTitle': ['丹参注射液', '疏血通', '丹参川穹嗪', '其他'],
                 'columnTitle': ['剂量', '用法', '频次', '用药时间'],
                 'radioStr': 'gdc',
-                'title': '6.4.3 术后用药：扩展改善循环药',
+                'title': '6.4.3 术后用药：扩管改善循环药',
             },{
                 'id2': 'gdd',
                 'id1': '6.4.4',
@@ -6166,44 +6166,44 @@ export class QuestionList {
                 ],
                 'hidden': false
             },
-            {
-                'id2': 'ghba',
-                'id1': '7.2.1',
-                'type': 'radio',
-                'title': '性别',
-                'content': [
-                    '男',
-                    '女'
-                ],
-                'hiddenlist': [
-
-                ],
-                'hidden': false
-            },
-            {
-                'id2': 'ghbb',
-                'id1': '7.2.2',
-                'type': 'input',
-                'content': {
-                    'datatype': 'text',
-                    'validtype': 'number',
-                    'information': ''
-                },
-                'title': '年龄',
-                'hidden': false
-            },
-            {
-                'id2': 'ghbc',
-                'id1': '7.2.3',
-                'type': 'input',
-                'content': {
-                    'datatype': 'text',
-                    'validtype': 'number',
-                    'information': ''
-                },
-                'title': '体重',
-                'hidden': false
-            },
+            // {
+            //     'id2': 'ghba',
+            //     'id1': '7.2.1',
+            //     'type': 'radio',
+            //     'title': '性别',
+            //     'content': [
+            //         '男',
+            //         '女'
+            //     ],
+            //     'hiddenlist': [
+            //
+            //     ],
+            //     'hidden': false
+            // },
+            // {
+            //     'id2': 'ghbb',
+            //     'id1': '7.2.2',
+            //     'type': 'input',
+            //     'content': {
+            //         'datatype': 'text',
+            //         'validtype': 'number',
+            //         'information': ''
+            //     },
+            //     'title': '年龄',
+            //     'hidden': false
+            // },
+            // {
+            //     'id2': 'ghbc',
+            //     'id1': '7.2.3',
+            //     'type': 'input',
+            //     'content': {
+            //         'datatype': 'text',
+            //         'validtype': 'number',
+            //         'information': ''
+            //     },
+            //     'title': '体重',
+            //     'hidden': false
+            // },
             {
                 'id2': 'ghbd',
                 'id1': '7.2.4',
