@@ -11,6 +11,7 @@ import {RadiocmpComponent} from '../shared/radiocmp/radiocmp.component';
 import {DatecmpComponent} from '../shared/datecmp/datecmp.component';
 
 import {ScheduleList} from '../shared/scheduleList';
+import {AddrcmpComponent} from "../shared/addrcmp/addrcmp.component";
 
 @Component({
     selector: 'app-infor1-step',
@@ -22,6 +23,7 @@ export class Info1Component implements OnInit, AfterViewInit {
     @ViewChildren(InputcmpComponent) InputItems: QueryList<InputcmpComponent>;
     @ViewChildren(RadiocmpComponent) RadioItems: QueryList<RadiocmpComponent>;
     @ViewChildren(DatecmpComponent) DateItem: QueryList<DatecmpComponent>;
+    @ViewChildren(AddrcmpComponent) AddrItem: QueryList<AddrcmpComponent>;
 
     current = 1;
     questionSave = []; // 用来传到后端
@@ -124,7 +126,7 @@ export class Info1Component implements OnInit, AfterViewInit {
     /** 下一步 **/
     next() {
         // if (this.confirm().confrims) {
-        this.initPutRecord()
+        this.initPutRecord();
         this.service.putRecord(this.putRecord).subscribe( (res) => {
             this.router.navigate(['system/survey/info2/' + this.PID]);
         });
@@ -144,7 +146,7 @@ export class Info1Component implements OnInit, AfterViewInit {
     temporary_deposit() {
         this.initPutRecord();
         this.service.putRecord(this.putRecord).subscribe( (res) => {
-            // this.router.navigate( ['system/survey/detail/']);
+            this.router.navigate( ['system/survey/detail/']);
         }, error => { });
     }
 
@@ -206,15 +208,19 @@ export class Info1Component implements OnInit, AfterViewInit {
                 }
             }
         });
+        this.AddrItem.forEach(item => {
+            for (let i = 0; i < item.answer.length; i++) {
+                    this.resultList.push(item.answer[i]);
+            }
+        });
         this.DateItem.forEach(item => {
-            console.log(item);
             if (item.answerChanged === true) { this.resultList.push(item.answer[0]); }
         });
         this.questionSave[this.current] = this.questionList;
         this.resultList.push(
             {'Record_ID': 'questionlist', 'Record_Value': this.questionSave }
         );
-        console.log(this.resultList);
+        // console.log(this.resultList);
         for (let i = 0; i < this.fillingList.length; i++) {
             for (let j = 0; j < this.resultList.length; j++) {
                 const id = this.resultList[j].Record_ID;
@@ -262,6 +268,16 @@ export class Info1Component implements OnInit, AfterViewInit {
                             item.localAnswer = pageOne[i][id] - 1;
                         }
                     }
+                });
+                this.AddrItem.forEach(item => {
+                    // console.log(item);
+                    pageOne.forEach( fl => {
+                        const id = item.question.id2;
+                        if (fl[id] && fl[id] !== '') {
+                            // console.log(fl[id]);
+                            item.initArray = fl[id].split('/');
+                        }
+                    });
                 });
                 this.DateItem.forEach( item => {
                     // console.log(item);

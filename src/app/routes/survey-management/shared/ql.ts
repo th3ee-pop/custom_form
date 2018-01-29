@@ -319,7 +319,7 @@ export class QuestionList {
             {
                 'id2': 'ac1',
                 'id1': '1.5',
-                'type': 'input',
+                'type': 'addr',
                 'content': {
                     'datatype': 'text',
                     'validtype': '',
@@ -376,7 +376,7 @@ export class QuestionList {
             {
                 'id2': 'ad3',
                 'id1': '1.10',
-                'type': 'input',
+                'type': 'addr',
                 'content': {
                     'datatype': 'text',
                     'validtype': '',

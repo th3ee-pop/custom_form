@@ -33,6 +33,7 @@ import { Table64Component } from './shared/tablecmp/table64/table64.component';
 import { SelectableInputComponent } from './shared/tablecmp/selectable-input/selectable-input.component';
 import { MultiRadioComponent } from './shared/tablecmp/multi-radio/multi-radio.component';
 import { AutoIncInputComponent } from './shared/tablecmp/auto-inc-input/auto-inc-input.component';
+import { AddrcmpComponent } from './shared/addrcmp/addrcmp.component';
 
 const routes: Routes = [
     { path: 'detail', component: SurveyOverviewComponent  },
@@ -85,7 +86,8 @@ const routes: Routes = [
         Table64Component,
         SelectableInputComponent,
         MultiRadioComponent,
-        AutoIncInputComponent
+        AutoIncInputComponent,
+        AddrcmpComponent
     ],
     providers: [
         RecordResolverGuard
