@@ -203,17 +203,53 @@ export class QuestionList {
                 'hidden': false
             },
             {
-                'id2': 'diagd',
+                'id2': 'diagd1',
                 'id1': '0.18',
-                'type': 'auto-input',
+                'type': 'input',
                 'content': {
                     'datatype': 'text',
                     'validtype': '',
-                    'information': '增加诊断'
+                    'information': ''
                 },
-                'title': '其它诊断',
+                'title': '其它诊断1',
                 'hidden': false
-            }
+            },
+            {
+                'id2': 'diagd2',
+                'id1': '0.19',
+                'type': 'input',
+                'content': {
+                    'datatype': 'text',
+                    'validtype': '',
+                    'information': ''
+                },
+                'title': '其它诊断2',
+                'hidden': false
+            },
+            {
+                'id2': 'diagd3',
+                'id1': '0.20',
+                'type': 'input',
+                'content': {
+                    'datatype': 'text',
+                    'validtype': '',
+                    'information': ''
+                },
+                'title': '其它诊断3',
+                'hidden': false
+            },
+            // {
+            //     'id2': 'diagd',
+            //     'id1': '0.18',
+            //     'type': 'auto-input',
+            //     'content': {
+            //         'datatype': 'text',
+            //         'validtype': '',
+            //         'information': '增加诊断'
+            //     },
+            //     'title': '其它诊断',
+            //     'hidden': false
+            // }
         ],
         [
             {
