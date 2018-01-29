@@ -12,6 +12,8 @@
                         <div [ngSwitch]="question.type">
                             <app-inputcmp     *ngSwitchCase="'input'"     [question]="question" (onVoted)="onVoted($event)" ></app-inputcmp>
                             <app-radiocmp     *ngSwitchCase="'radio'"     [question]="question" (onVoted)="onVoted($event)" ></app-radiocmp>
+                            <app-datecmp      *ngSwitchCase="'date'"      [question]="question" (onVoted)="onDateVoted($event)" ></app-datecmp>
+                            <app-addrcmp      *ngSwitchCase="'addr'"      [question]="question" (onVoted)="onDateVoted($event)" ></app-addrcmp>
                         </div>
                     </div>
                     <div class="steps-action">

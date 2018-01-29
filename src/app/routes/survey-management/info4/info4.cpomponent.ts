@@ -111,6 +111,7 @@ export class Info4Component implements OnInit, AfterViewInit {
     /** 暂存 **/
     temporary_deposit() {
         this.initPutRecord();
+        console.log(this.putRecord);
         this.service.putRecord(this.putRecord).subscribe((res) => {
             this.router.navigate(['system/survey/detail/']);
         }, error => {

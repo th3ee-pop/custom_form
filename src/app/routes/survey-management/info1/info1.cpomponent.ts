@@ -8,8 +8,10 @@ import {NzModalService} from 'ng-zorro-antd';
 
 import {InputcmpComponent} from '../shared/inputcmp/inputcmp.component';
 import {RadiocmpComponent} from '../shared/radiocmp/radiocmp.component';
+import {DatecmpComponent} from '../shared/datecmp/datecmp.component';
 
 import {ScheduleList} from '../shared/scheduleList';
+import {AddrcmpComponent} from "../shared/addrcmp/addrcmp.component";
 
 @Component({
     selector: 'app-infor1-step',
@@ -18,8 +20,10 @@ import {ScheduleList} from '../shared/scheduleList';
 })
 export class Info1Component implements OnInit, AfterViewInit {
 
-    @ViewChildren(InputcmpComponent) InputItems: QueryList<InputcmpComponent>
-    @ViewChildren(RadiocmpComponent) RadioItems: QueryList<RadiocmpComponent>
+    @ViewChildren(InputcmpComponent) InputItems: QueryList<InputcmpComponent>;
+    @ViewChildren(RadiocmpComponent) RadioItems: QueryList<RadiocmpComponent>;
+    @ViewChildren(DatecmpComponent) DateItem: QueryList<DatecmpComponent>;
+    @ViewChildren(AddrcmpComponent) AddrItem: QueryList<AddrcmpComponent>;
 
     current = 1;
     questionSave = []; // 用来传到后端
@@ -89,11 +93,40 @@ export class Info1Component implements OnInit, AfterViewInit {
             }
         }
     }
+    onDateVoted(votedata:any){
+        const inDate = votedata.in_date;
+        const outDate = votedata.out_date;
+        if( inDate && inDate !== null ){
+            this.DateItem.forEach( item => {
+                if( item.question.id1 === '1.14' && item.date !== null ){
+                    const answer = Date.parse((item.date).toString()) - Date.parse(inDate);
+                    this.InputItems.forEach( aitem => {
+                        if( aitem.question.id1 === '1.15'){
+                            console.log(answer);
+                            aitem.localAnswer =  (answer/60/60/24/1000).toFixed(0)+'天';
+                        }
+                    })
+                }
+            })
+        } else if( outDate && outDate !== null ){
+            this.DateItem.forEach( item => {
+                if( item.question.id1 === '1.13' && item.date !== null ){
+                    const answer = Date.parse(outDate) - Date.parse((item.date).toString());
+                    this.InputItems.forEach( aitem => {
+                        if( aitem.question.id1 === '1.15'){
+                            console.log(answer);
+                            aitem.localAnswer =  (answer/60/60/24/1000).toFixed(0)+'天';
+                        }
+                    })
+                }
+            })
+        }
+    }
 
     /** 下一步 **/
     next() {
         // if (this.confirm().confrims) {
-        this.initPutRecord()
+        this.initPutRecord();
         this.service.putRecord(this.putRecord).subscribe( (res) => {
             this.router.navigate(['system/survey/info2/' + this.PID]);
         });
@@ -175,10 +208,19 @@ export class Info1Component implements OnInit, AfterViewInit {
                 }
             }
         });
+        this.AddrItem.forEach(item => {
+            for (let i = 0; i < item.answer.length; i++) {
+                    this.resultList.push(item.answer[i]);
+            }
+        });
+        this.DateItem.forEach(item => {
+            if (item.answerChanged === true) { this.resultList.push(item.answer[0]); }
+        });
         this.questionSave[this.current] = this.questionList;
         this.resultList.push(
             {'Record_ID': 'questionlist', 'Record_Value': this.questionSave }
         );
+        // console.log(this.resultList);
         for (let i = 0; i < this.fillingList.length; i++) {
             for (let j = 0; j < this.resultList.length; j++) {
                 const id = this.resultList[j].Record_ID;
@@ -205,6 +247,7 @@ export class Info1Component implements OnInit, AfterViewInit {
                         }
                     }
                 });
+                // console.log(pageOne);
                 if (this.fillingList && this.fillingList.length !== 0) {
                     this.InputItems.forEach(item => {
                         pageOne.forEach( fl => {
@@ -224,6 +267,23 @@ export class Info1Component implements OnInit, AfterViewInit {
                         if (pageOne[i][id] && pageOne[i][id] !== '') {
                             item.localAnswer = pageOne[i][id] - 1;
                         }
+                    }
+                });
+                this.AddrItem.forEach(item => {
+                    // console.log(item);
+                    pageOne.forEach( fl => {
+                        const id = item.question.id2;
+                        if (fl[id] && fl[id] !== '') {
+                            // console.log(fl[id]);
+                            item.initArray = fl[id].split('/');
+                        }
+                    });
+                });
+                this.DateItem.forEach( item => {
+                    // console.log(item);
+                    const id = item.question.id2;
+                    for (let i = 0; i < pageOne.length; i++) {
+                        if (pageOne[i][id] && pageOne[i][id] !== '') { item.date = new Date(pageOne[i][id]); }
                     }
                 });
             }, error => {

@@ -73,16 +73,7 @@ export class QuestionList {
                 'type': 'radio',
                 'title': '介入手术类型：肺动脉造影',
                 'content': ['否', '是'],
-                'hiddenlist': [['0.7.1'], []],
-                'hidden': false
-            },
-            {
-                'id2': 'type3a',
-                'id1': '0.7.1',
-                'type': 'radio',
-                'title': '肺动脉造影',
-                'content': ['小面积', '次大面积', '大面积'],
-                'hiddenlist': [],
+                'hiddenlist': [ ],
                 'hidden': false
             },
             {
@@ -95,8 +86,17 @@ export class QuestionList {
                 'hidden': false
             },
             {
-                'id2': 'type5',
+                'id2': 'type6',
                 'id1': '0.9',
+                'type': 'radio',
+                'title': '介入手术类型: 药械耦联',
+                'content': ['否', '是'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'type5',
+                'id1': '0.10',
                 'type': 'radio',
                 'title': '介入手术类型: 置管术',
                 'content': ['否', '是'],
@@ -105,16 +105,16 @@ export class QuestionList {
             },
             {
                 'id2': 'diag',
-                'id1': '0.10',
+                'id1': '0.11',
                 'type': 'radio',
-                'title': '最终诊断:左/右下肢静脉血栓形成',
-                'content': ['否', '是'],
-                'hiddenlist': [['0.10.1', '0.10.2', '0.10.3'], []],
+                'title': '最终诊断:下肢深静脉血栓形成',
+                'content': ['否', '左', '右', '双'],
+                'hiddenlist': [['0.11.1', '0.11.2', '0.11.3'], [], [], []],
                 'hidden': false
             },
             {
                 'id2': 'diaga1',
-                'id1': '0.10.1',
+                'id1': '0.11.1',
                 'type': 'radio',
                 'title': '周围型',
                 'content': ['否', '是'],
@@ -123,7 +123,7 @@ export class QuestionList {
             },
             {
                 'id2': 'diaga2',
-                'id1': '0.10.2',
+                'id1': '0.11.2',
                 'type': 'radio',
                 'title': '中央型',
                 'content': ['否', '是'],
@@ -132,7 +132,7 @@ export class QuestionList {
             },
             {
                 'id2': 'diaga3',
-                'id1': '0.10.3',
+                'id1': '0.11.3',
                 'type': 'radio',
                 'title': '混合型',
                 'content': ['否', '是'],
@@ -141,34 +141,97 @@ export class QuestionList {
             },
             {
                 'id2': 'diagb',
-                'id1': '0.11',
+                'id1': '0.12',
                 'type': 'radio',
-                'title': '最终诊断：下腔静脉血栓形成',
+                'title': '最终诊断：下腔静脉血栓',
+                'content': ['否', '低位肾静脉以下', '高位肾静脉以下', '低位肝静脉以下', '高位肝静脉以下', '右房口以下'],
+                'hiddenlist': [['0.12.1'], [], [], [], [], []],
+                'hidden': false
+            },
+            {
+                'id2': 'diagb1',
+                'id1': '0.12.1',
+                'type': 'radio',
+                'title': '是否为滤器相关',
+                'content': ['否', '是'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'diagf',
+                'id1': '0.13',
+                'type': 'radio',
+                'title': '髂静脉狭窄/压迫',
+                'content': ['否', '是'],
+                'hiddenlist': [['0.13.1'], []],
+                'hidden': false
+            },
+            {
+                'id2': 'diagf1',
+                'id1': '0.13.1',
+                'type': 'radio',
+                'title': '左/右',
+                'content': ['左', '右'],
+                'hiddenlist': [],
+                'hidden': true
+            },
+            {
+                'id2': 'diagt',
+                'id1': '0.14',
+                'type': 'radio',
+                'title': '最终诊断：肾静脉血栓',
+                'content': ['否', '左肾静脉', '右肾静脉', '双肾静脉'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'diagt1',
+                'id1': '0.15',
+                'type': 'radio',
+                'title': '最终诊断：右心房血栓',
+                'content': ['否', '是'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'diagt2',
+                'id1': '0.16',
+                'type': 'radio',
+                'title': '最终诊断：右心室血栓',
                 'content': ['否', '是'],
                 'hiddenlist': [],
                 'hidden': false
             },
             {
                 'id2': 'diagc',
-                'id1': '0.12',
+                'id1': '0.17',
                 'type': 'radio',
                 'title': '最终诊断：肺动脉栓塞',
                 'content': ['否', '是'],
-                'hiddenlist': [['0.12.1'], []],
+                'hiddenlist': [['0.16.1'], []],
                 'hidden': false
             },
             {
                 'id2': 'diagc1',
-                'id1': '0.12.1',
+                'id1': '0.17.1',
                 'type': 'radio',
-                'title': '肺动脉栓塞面积',
-                'content': ['小面积', '次大面积', '大面积'],
+                'title': '肺动脉危险分层',
+                'content': ['低危', '中低危', '中高危', '高危'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'diage',
+                'id1': '0.18',
+                'type': 'radio',
+                'title': '心功能',
+                'content': ['I级', 'II级', 'III级', 'IV级'],
                 'hiddenlist': [],
                 'hidden': false
             },
             {
                 'id2': 'diagd1',
-                'id1': '0.13',
+                'id1': '0.19',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -180,7 +243,7 @@ export class QuestionList {
             },
             {
                 'id2': 'diagd2',
-                'id1': '0.14',
+                'id1': '0.20',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -192,7 +255,7 @@ export class QuestionList {
             },
             {
                 'id2': 'diagd3',
-                'id1': '0.15',
+                'id1': '0.21',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -202,30 +265,25 @@ export class QuestionList {
                 'title': '其它诊断3',
                 'hidden': false
             },
+            // {
+            //     'id2': 'diagd',
+            //     'id1': '0.18',
+            //     'type': 'auto-input',
+            //     'content': {
+            //         'datatype': 'text',
+            //         'validtype': '',
+            //         'information': '增加诊断'
+            //     },
+            //     'title': '其它诊断',
+            //     'hidden': false
+            // }
         ],
         [
             {
                 'id2': 'aa2',
                 'id1': '1.1',
-                'type': 'input',
-                'content': {
-                    'datatype': 'text',
-                    'validtype': '',
-                    'information': ''
-                },
-                'title': '出生年份',
-                'hidden': false
-            },
-            {
-                'id2': 'aa3',
-                'id1': '1.1',
-                'type': 'input',
-                'content': {
-                    'datatype': 'text',
-                    'validtype': '',
-                    'information': ''
-                },
-                'title': '出生月份',
+                'type': 'date',
+                'title': '出生年月日',
                 'hidden': false
             },
             {
@@ -250,20 +308,8 @@ export class QuestionList {
                 'hidden': false
             },
             {
-                'id2': 'ab2',
-                'id1': '1.4',
-                'type': 'input',
-                'content': {
-                    'datatype': 'text',
-                    'validtype': '',
-                    'information': ''
-                },
-                'title': '籍贯',
-                'hidden': false
-            },
-            {
                 'id2': 'ab3',
-                'id1': '1.5',
+                'id1': '1.4',
                 'type': 'radio',
                 'title': '民族',
                 'content': ['汉', '其他'],
@@ -272,8 +318,8 @@ export class QuestionList {
             },
             {
                 'id2': 'ac1',
-                'id1': '1.6',
-                'type': 'input',
+                'id1': '1.5',
+                'type': 'addr',
                 'content': {
                     'datatype': 'text',
                     'validtype': '',
@@ -283,20 +329,8 @@ export class QuestionList {
                 'hidden': false
             },
             {
-                'id2': 'ac2',
-                'id1': '1.7',
-                'type': 'input',
-                'content': {
-                    'datatype': 'text',
-                    'validtype': '',
-                    'information': ''
-                },
-                'title': '邮编',
-                'hidden': false
-            },
-            {
                 'id2': 'ac3',
-                'id1': '1.8',
+                'id1': '1.6',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -308,7 +342,7 @@ export class QuestionList {
             },
             {
                 'id2': 'ac4',
-                'id1': '1.9',
+                'id1': '1.7',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -320,7 +354,7 @@ export class QuestionList {
             },
             {
                 'id2': 'ad1',
-                'id1': '1.10',
+                'id1': '1.8',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -332,20 +366,17 @@ export class QuestionList {
             },
             {
                 'id2': 'ad2',
-                'id1': '1.11',
-                'type': 'input',
-                'content': {
-                    'datatype': 'text',
-                    'validtype': '',
-                    'information': ''
-                },
+                'id1': '1.9',
+                'type': 'radio',
                 'title': '与患者关系',
+                'content': ['配偶', '子女', '父母', '孙子女', '兄弟姐妹', '其他'],
+                'hiddenlist': [],
                 'hidden': false
             },
             {
                 'id2': 'ad3',
-                'id1': '1.12',
-                'type': 'input',
+                'id1': '1.10',
+                'type': 'addr',
                 'content': {
                     'datatype': 'text',
                     'validtype': '',
@@ -356,7 +387,7 @@ export class QuestionList {
             },
             {
                 'id2': 'ad4',
-                'id1': '1.13',
+                'id1': '1.11',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -368,7 +399,7 @@ export class QuestionList {
             },
             {
                 'id2': 'ae1',
-                'id1': '1.14',
+                'id1': '1.12',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -380,7 +411,7 @@ export class QuestionList {
             },
             {
                 'id2': 'ae2',
-                'id1': '1.15',
+                'id1': '1.13',
                 'type': 'date',
                 'content': {
                     'datatype': 'text',
@@ -391,8 +422,17 @@ export class QuestionList {
                 'hidden': false
             },
             {
+                'id2': 'ae5',
+                'id1': '1.14',
+                'type': 'radio',
+                'title': '患者来源',
+                'content': ['门诊', '急诊', '其他'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
                 'id2': 'ae3',
-                'id1': '1.16',
+                'id1': '1.15',
                 'type': 'date',
                 'content': {
                     'datatype': 'text',
@@ -404,7 +444,7 @@ export class QuestionList {
             },
             {
                 'id2': 'ae4',
-                'id1': '1.17',
+                'id1': '1.16',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -492,158 +532,28 @@ export class QuestionList {
                 'hidden': false
             },
             {
-                'id2': 'ba8',
-                'id1': '2.7',
-                'type': 'radio',
-                'title': '家庭收入',
-                'content': ['2万以下', '2-5万', '5-10万', '10万以上'],
-                'hiddenlist': [],
-                'hidden': false
-            },
-            {
-                'id2': 'bb',
-                'id1': '2.8',
-                'type': 'radio',
-                'title': '膳食',
-                'content': ['无', '有'],
-                'hiddenlist': [
-                    [
-                        '2.8.1', '2.8.2', '2.8.3', '2.8.4', '2.8.5', '2.8.6', '2.8.7',
-                        '2.8.8', '2.8.9', '2.8.10', '2.8.11', '2.8.12'
-                    ], []],
-                'hidden': false
-            },
-            {
-                'id2': 'bb1',
-                'id1': '2.8.1',
-                'type': 'radio',
-                'title': '主食',
-                'content': ['3两及以下', '4-6两', '7-9两', '1斤以上'],
-                'hiddenlist': [],
-                'hidden': false
-            },
-            {
-                'id2': 'bb2',
-                'id1': '2.8.2',
-                'type': 'radio',
-                'title': '食盐',
-                'content': ['口重（13克以上）', '居中（7-12克）', '口轻（6克以下）'],
-                'hiddenlist': [],
-                'hidden': false
-            },
-            {
-                'id2': 'bb3',
-                'id1': '2.8.3',
-                'type': 'radio',
-                'title': '食用油',
-                'content': ['纯植物油', '主要植物油', '主要动物油', '纯动物油'],
-                'hiddenlist': [],
-                'hidden': false
-            },
-            {
-                'id2': 'bb4',
-                'id1': '2.8.4',
-                'type': 'radio',
-                'title': '平均每月进食食用油量',
-                'content': ['2斤以下', '2-5斤', '5-10斤', '10斤及以上'],
-                'hiddenlist': [],
-                'hidden': false
-            },
-            {
-                'id2': 'bb5',
-                'id1': '2.8.5',
-                'type': 'radio',
-                'title': '食用肉',
-                'content': ['每周5次及以上', '每周3-5次', '每周1-2次', '不吃'],
-                'hiddenlist': [],
-                'hidden': false
-            },
-            {
-                'id2': 'bb6',
-                'id1': '2.8.6',
-                'type': 'radio',
-                'title': '食用鱼或虾',
-                'content': ['经常吃', '有时吃', '基本不吃'],
-                'hiddenlist': [],
-                'hidden': false
-            },
-            {
-                'id2': 'bb7',
-                'id1': '2.8.7',
-                'type': 'radio',
-                'title': '食用蛋',
-                'content': ['7个/周及以上', '5个/周', '1-3个/周', '不吃'],
-                'hiddenlist': [],
-                'hidden': false
-            },
-            {
-                'id2': 'bb8',
-                'id1': '2.8.8',
-                'type': 'radio',
-                'title': '乳制品',
-                'content': ['经常喝', '有时喝', '基本不喝'],
-                'hiddenlist': [],
-                'hidden': false
-            },
-            {
-                'id2': 'bb9',
-                'id1': '2.8.9',
-                'type': 'radio',
-                'title': '食用豆制品',
-                'content': ['几乎每天吃', '1-2次/周', '1-2次/月', '偶尔吃'],
-                'hiddenlist': [],
-                'hidden': false
-            },
-            {
-                'id2': 'bb10',
-                'id1': '2.8.10',
-                'type': 'radio',
-                'title': '食用蔬菜',
-                'content': ['1斤/天及以上', '半斤/天', '<半斤/天', '不吃'],
-                'hiddenlist': [],
-                'hidden': false
-            },
-            {
-                'id2': 'bb11',
-                'id1': '2.8.11',
-                'type': 'radio',
-                'title': '食用新鲜水果',
-                'content': ['经常吃', '有时吃', '基本不吃'],
-                'hiddenlist': [],
-                'hidden': false
-            },
-            {
-                'id2': 'bb12',
-                'id1': '2.8.12',
-                'type': 'radio',
-                'title': '在餐馆进食',
-                'content': ['经常≥5次/周', '3-5次/周', '1-3次/周', '偶尔', '无'],
-                'hiddenlist': [],
-                'hidden': false
-            },
-            {
                 'id2': 'bcyw',
-                'id1': '2.9',
+                'id1': '2.7',
                 'type': 'radio',
                 'title': '体育锻炼',
                 'content': ['无', '有'],
                 'hiddenlist': [
                     [
-                        '2.9.1', '2.9.1.1', '2.9.1.2', '2.9.1.3', '2.9.1.4', '2.9.1.5', '2.9.1.6', '2.9.1.7',
-                        '2.9.1.8', '2.9.1.9', '2.9.1.10', '2.9.1.11', '2.9.1.12'
+                        '2.7.1', '2.7.1.1', '2.7.1.2', '2.7.1.3', '2.7.1.4', '2.7.1.5', '2.7.1.6', '2.7.1.7',
+                        '2.7.1.8', '2.7.1.9', '2.7.1.10', '2.7.1.11', '2.7.1.12'
                     ], []],
                 'hidden': false
             },
             {
                 'id2': 'bc2',
-                'id1': '2.9.1',
+                'id1': '2.7.1',
                 'type': 'radio',
                 'title': '活动',
                 'content': ['否', '是'],
                 'hiddenlist': [
                     [
-                        '2.9.1.1', '2.9.1.2', '2.9.1.3', '2.9.1.4', '2.9.1.5', '2.9.1.6', '2.9.1.7', '2.9.1.8',
-                        '2.9.1.9', '2.9.1.10', '2.9.1.11', '2.9.1.12'
+                        '2.7.1.1', '2.7.1.2', '2.7.1.3', '2.7.1.4', '2.7.1.5', '2.7.1.6', '2.7.1.7', '2.7.1.8',
+                        '2.7.1.9', '2.7.1.10', '2.7.1.11', '2.7.1.12'
                     ],
                     []
                 ],
@@ -651,7 +561,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bc1',
-                'id1': '2.9.1.1',
+                'id1': '2.7.1.1',
                 'type': 'radio',
                 'title': '散步',
                 'content': ['否', '是'],
@@ -660,7 +570,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bc2',
-                'id1': '2.9.1.2',
+                'id1': '2.7.1.2',
                 'type': 'radio',
                 'title': '做操',
                 'content': ['否', '是'],
@@ -669,7 +579,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bc3',
-                'id1': '2.9.1.3',
+                'id1': '2.7.1.3',
                 'type': 'radio',
                 'title': '太极拳',
                 'content': ['否', '是'],
@@ -678,7 +588,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bc4',
-                'id1': '2.9.1.4',
+                'id1': '2.7.1.4',
                 'type': 'radio',
                 'title': '气功',
                 'content': ['否', '是'],
@@ -687,7 +597,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bc5',
-                'id1': '2.9.1.5',
+                'id1': '2.7.1.5',
                 'type': 'radio',
                 'title': '跑步',
                 'content': ['否', '是'],
@@ -696,7 +606,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bc6',
-                'id1': '2.9.1.6',
+                'id1': '2.7.1.6',
                 'type': 'radio',
                 'title': '跳舞',
                 'content': ['否', '是'],
@@ -705,7 +615,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bc7',
-                'id1': '2.9.1.7',
+                'id1': '2.7.1.7',
                 'type': 'radio',
                 'title': '球类',
                 'content': ['否', '是'],
@@ -714,7 +624,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bc8',
-                'id1': '2.9.1.8',
+                'id1': '2.7.1.8',
                 'type': 'radio',
                 'title': '瑜伽',
                 'content': ['否', '是'],
@@ -723,7 +633,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bc9',
-                'id1': '2.9.1.9',
+                'id1': '2.7.1.9',
                 'type': 'radio',
                 'title': '田间劳作',
                 'content': ['否', '是'],
@@ -732,7 +642,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bc10',
-                'id1': '2.9.1.10',
+                'id1': '2.7.1.10',
                 'type': 'radio',
                 'title': '重体力劳动',
                 'content': ['否', '是'],
@@ -741,7 +651,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bc11',
-                'id1': '2.9.1.11',
+                'id1': '2.7.1.11',
                 'type': 'radio',
                 'title': '活动频率',
                 'content': ['每天活动', '5次/周', '3-5次/周', '<3次/周', '无'],
@@ -750,7 +660,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bc12',
-                'id1': '2.9.1.12',
+                'id1': '2.7.1.12',
                 'type': 'radio',
                 'title': '每次活动时间',
                 'content': ['30分钟以下', '30-60分钟', '60分钟以上'],
@@ -759,16 +669,16 @@ export class QuestionList {
             },
             {
                 'id2': 'bd1',
-                'id1': '2.10',
+                'id1': '2.8',
                 'type': 'radio',
                 'title': '吸烟',
                 'content': ['否', '是'],
-                'hiddenlist': [['2.10.1', '2.10.2', '2.10.3', '2.10.3.1'], []],
+                'hiddenlist': [['2.8.1', '2.8.2', '2.8.3', '2.8.3.1'], []],
                 'hidden': false
             },
             {
                 'id2': 'bd2',
-                'id1': '2.10.1',
+                'id1': '2.8.1',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -780,7 +690,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bd3',
-                'id1': '2.10.2',
+                'id1': '2.8.2',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -792,7 +702,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bd4',
-                'id1': '2.10.3',
+                'id1': '2.8.3',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -804,16 +714,16 @@ export class QuestionList {
             },
             {
                 'id2': 'bd5',
-                'id1': '2.10.3',
+                'id1': '2.8.3',
                 'type': 'radio',
                 'title': '戒烟',
                 'content': ['否', '是'],
-                'hiddenlist': [['2.10.3.1'], []],
+                'hiddenlist': [['2.8.3.1'], []],
                 'hidden': false
             },
             {
                 'id2': 'bd6',
-                'id1': '2.10.3.1',
+                'id1': '2.8.3.1',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -825,16 +735,16 @@ export class QuestionList {
             },
             {
                 'id2': 'be1',
-                'id1': '2.11',
+                'id1': '2.9',
                 'type': 'radio',
                 'title': '饮酒',
                 'content': ['否', '是'],
-                'hiddenlist': [['2.11.1', '2.11.2', '2.11.3', '2.11.4', '2.11.5', '2.11.6', '2.11.6.1'], []],
+                'hiddenlist': [['2.9.1', '2.9.2', '2.9.3', '2.9.4', '2.9.5', '2.9.6', '2.9.6.1'], []],
                 'hidden': false
             },
             {
                 'id2': 'be2',
-                'id1': '2.11.1',
+                'id1': '2.9.1',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -846,7 +756,7 @@ export class QuestionList {
             },
             {
                 'id2': 'be3',
-                'id1': '2.11.2',
+                'id1': '2.9.2',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -858,7 +768,7 @@ export class QuestionList {
             },
             {
                 'id2': 'be4',
-                'id1': '2.11.3',
+                'id1': '2.9.3',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -870,7 +780,7 @@ export class QuestionList {
             },
             {
                 'id2': 'be5',
-                'id1': '2.11.4',
+                'id1': '2.9.4',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -882,7 +792,7 @@ export class QuestionList {
             },
             {
                 'id2': 'be6',
-                'id1': '2.11.5',
+                'id1': '2.9.5',
                 'type': 'radio',
                 'title': '饮酒品种',
                 'content': ['白酒', '红酒', '啤酒', '不详'],
@@ -891,16 +801,16 @@ export class QuestionList {
             },
             {
                 'id2': 'be7',
-                'id1': '2.11.6',
+                'id1': '2.9.6',
                 'type': 'radio',
                 'title': '戒酒',
                 'content': ['否', '是'],
-                'hiddenlist': [['2.11.6.1'], []],
+                'hiddenlist': [['2.9.6.1'], []],
                 'hidden': false
             },
             {
                 'id2': 'be8',
-                'id1': '2.11.6.1',
+                'id1': '2.9.6.1',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -912,25 +822,25 @@ export class QuestionList {
             },
             {
                 'id2': 'bf1',
-                'id1': '2.12',
+                'id1': '2.10',
                 'type': 'radio',
                 'title': '近来睡眠',
                 'content': ['好', '坏', '中等'],
-                'hiddenlist': [['2.12.1', '2.12.1.1', '2.12.2', '2.12.3', '2.12.4'], [], []],
+                'hiddenlist': [['2.10.1', '2.10.1.1', '2.10.2', '2.10.3', '2.10.4'], [], []],
                 'hidden': false
             },
             {
                 'id2': 'bf2',
-                'id1': '2.12.1',
+                'id1': '2.10.1',
                 'type': 'radio',
                 'title': '安眠药',
                 'content': ['经常', '有时', '不服'],
-                'hiddenlist': [[], [], ['2.12.1.1']],
+                'hiddenlist': [[], [], ['2.10.1.1']],
                 'hidden': false
             },
             {
                 'id2': 'bf3',
-                'id1': '2.12.1.1',
+                'id1': '2.10.1.1',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -942,7 +852,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bf4',
-                'id1': '2.12.2',
+                'id1': '2.10.2',
                 'type': 'radio',
                 'title': '睡眠差表现',
                 'content': ['入睡困难', '早醒', '间断睡眠', '睡不实，多梦'],
@@ -951,7 +861,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bf5',
-                'id1': '2.12.3',
+                'id1': '2.10.3',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -963,7 +873,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bf6',
-                'id1': '2.12.4',
+                'id1': '2.10.4',
                 'type': 'radio',
                 'title': '睡眠差的原因',
                 'content': ['环境影响', '工作太忙、睡眠时间不多', '有烦恼的事情'],
@@ -972,16 +882,16 @@ export class QuestionList {
             },
             {
                 'id2': 'bg1',
-                'id1': '2.13',
+                'id1': '2.11',
                 'type': 'radio',
                 'title': '近来体重变化',
                 'content': ['增高', '下降', '无明显变化'],
-                'hiddenlist': [[], [], ['2.13.1']],
+                'hiddenlist': [[], [], ['2.11.1']],
                 'hidden': false
             },
             {
                 'id2': 'bg2',
-                'id1': '2.13.1',
+                'id1': '2.11.1',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -993,16 +903,16 @@ export class QuestionList {
             },
             {
                 'id2': 'bha1',
-                'id1': '2.14',
+                'id1': '2.12',
                 'type': 'radio',
                 'title': '大小便：小便',
                 'content': ['正常', '异常'],
-                'hiddenlist': [ ['2.14.1'], []],
+                'hiddenlist': [ ['2.12.1'], []],
                 'hidden': false
             },
             {
                 'id2': 'bha2',
-                'id1': '2.14.1',
+                'id1': '2.12.1',
                 'type': 'radio',
                 'title': '小便症状',
                 'content': ['尿频', '少尿', '血尿', '蛋白尿', '其他'],
@@ -1011,7 +921,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bhb1',
-                'id1': '2.15',
+                'id1': '2.13',
                 'type': 'radio',
                 'title': '大小便：大便',
                 'content': ['正常', '异常'],
@@ -1020,7 +930,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bhb2',
-                'id1': '2.15.1',
+                'id1': '2.13.1',
                 'type': 'radio',
                 'title': '大便症状',
                 'content': ['腹泻', '便秘', '黑便', '其他'],
@@ -1029,14 +939,14 @@ export class QuestionList {
             },
             {
                 'id2': 'bi',
-                'id1': '2.16',
+                'id1': '2.14',
                 'type': 'radio',
                 'title': '家族史',
                 'content': ['无', '有'],
                 'hiddenlist': [
                     [
-                        '2.16.1', '2.16.2', '2.16.3', '2.16.4', '2.16.5', '2.16.6', '2.16.7', '2.16.8',
-                        '2.16.9', '2.16.10', '2.16.11'
+                        '2.14.1', '2.14.2', '2.14.3', '2.14.4', '2.14.5', '2.14.6', '2.14.7', '2.14.8',
+                        '2.14.9', '2.14.10', '2.14.11'
                     ],
                     []
                 ],
@@ -1044,7 +954,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bi1',
-                'id1': '2.16.1',
+                'id1': '2.14.1',
                 'type': 'radio',
                 'title': '冠心病',
                 'content': ['否', '是'],
@@ -1053,7 +963,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bi2',
-                'id1': '2.16.2',
+                'id1': '2.14.2',
                 'type': 'radio',
                 'title': '高血压',
                 'content': ['否', '是'],
@@ -1062,7 +972,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bi3',
-                'id1': '2.16.3',
+                'id1': '2.14.3',
                 'type': 'radio',
                 'title': '糖尿病',
                 'content': ['否', '是'],
@@ -1071,7 +981,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bi4',
-                'id1': '2.16.4',
+                'id1': '2.14.4',
                 'type': 'radio',
                 'title': '脑血管病',
                 'content': ['否', '是'],
@@ -1080,7 +990,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bi5',
-                'id1': '2.16.5',
+                'id1': '2.14.5',
                 'type': 'radio',
                 'title': '癌症',
                 'content': ['否', '是'],
@@ -1089,7 +999,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bi6',
-                'id1': '2.16.6',
+                'id1': '2.14.6',
                 'type': 'radio',
                 'title': '静脉血栓性疾病',
                 'content': ['否', '是'],
@@ -1098,7 +1008,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bi7',
-                'id1': '2.16.7',
+                'id1': '2.14.7',
                 'type': 'radio',
                 'title': '动脉血栓性疾病',
                 'content': ['否', '是'],
@@ -1107,7 +1017,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bi8',
-                'id1': '2.16.8',
+                'id1': '2.14.8',
                 'type': 'radio',
                 'title': '结缔组织疾病',
                 'content': ['否', '是'],
@@ -1116,7 +1026,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bi9',
-                'id1': '2.16.9',
+                'id1': '2.14.9',
                 'type': 'radio',
                 'title': '风湿免疫性疾病',
                 'content': ['否', '是'],
@@ -1125,7 +1035,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bi10',
-                'id1': '2.16.10',
+                'id1': '2.14.10',
                 'type': 'radio',
                 'title': '猝死家族史',
                 'content': ['否', '是'],
@@ -1134,7 +1044,7 @@ export class QuestionList {
             },
             {
                 'id2': 'bi11',
-                'id1': '2.16.11',
+                'id1': '2.14.11',
                 'type': 'radio',
                 'title': '长寿',
                 'content': ['否', '是'],
@@ -1237,7 +1147,7 @@ export class QuestionList {
                     'validtype': 'number',
                     'information': ''
                 },
-                'title': '平素血压1',
+                'title': '最高收缩压',
                 'hidden': false
             },
             {
@@ -1249,7 +1159,7 @@ export class QuestionList {
                     'validtype': 'number',
                     'information': ''
                 },
-                'title': '平素血压2',
+                'title': '最高舒张压',
                 'hidden': false
             },
             {
@@ -1261,7 +1171,7 @@ export class QuestionList {
                     'validtype': 'number',
                     'information': ''
                 },
-                'title': '最高血压1',
+                'title': '平素收缩压',
                 'hidden': false
             },
             {
@@ -1273,7 +1183,7 @@ export class QuestionList {
                     'validtype': 'number',
                     'information': ''
                 },
-                'title': '最高血压2',
+                'title': '平素舒张压',
                 'hidden': false
             },
             {
@@ -1410,9 +1320,9 @@ export class QuestionList {
                 'title': '类型',
                 'content': [
                     '高甘油三脂血症',
-                    '低密度脂蛋白血症',
+                    '高低密度脂蛋白血症',
                     '低高密度脂蛋白血症',
-                    '高胆固醇'
+                    '高胆固醇血症'
                 ],
                 'hiddenlist': [],
                 'hidden': false
@@ -2682,7 +2592,7 @@ export class QuestionList {
                 'id1': '3.10.3',
                 'type': 'radio',
                 'title': '飞机',
-                'content': [],
+                'content': ['否', '是'],
                 'hiddenlist': [
                     ['3.10.3.1'],
                     []
@@ -2733,7 +2643,10 @@ export class QuestionList {
                 'id1': '3.11.2',
                 'type': 'radio',
                 'title': '长时间电脑操作',
-                'content': [],
+                'content': [
+                    '否',
+                    '是'
+                ],
                 'hiddenlist': [],
                 'hidden': false
             },
@@ -2773,8 +2686,8 @@ export class QuestionList {
                 'hiddenlist': [
                     [
                         '3.12.1', '3.12.2', '3.12.3', '3.12.4', '3.12.5', '3.12.6', '3.12.7', '3.12.8', '3.12.9',
-                        '3.12.10', '3.12.11', '3.12.12',  '3.12.13', '3.12.14', '3.12.15', '3.12.16', '3.12.17', '3.13',
-                        '3.13.1', '3.13.2', '3.13.3', '3.13.4', '3.13.5', '3.13.6', '3.13.7', '3.13.8'
+                        '3.12.10', '3.12.11', '3.12.12',  '3.12.13', '3.12.14', '3.12.15', '3.12.16', '3.12.17', '3.12',
+                        '3.12.1', '3.12.2', '3.12.3', '3.12.4', '3.12.5', '3.12.6', '3.12.7', '3.12.8'
                     ],
                     []
                 ],
@@ -2818,7 +2731,7 @@ export class QuestionList {
             },
             {
                 'id2': 'caj4',
-                'id1': '3.14.4',
+                'id1': '3.12.4',
                 'type': 'radio',
                 'title': '结肠癌',
                 'content': [
@@ -3004,7 +2917,12 @@ export class QuestionList {
                 'id1': '3.13.1',
                 'type': 'radio',
                 'title': '具体哪一期',
-                'content': [],
+                'content': [
+                    'I期',
+                    'II期',
+                    'III期',
+                    'IV期'
+                ],
                 'hiddenlist': [],
                 'hidden': false
             },
@@ -4342,6 +4260,45 @@ export class QuestionList {
                 'hidden': false
             },
             {
+                'id2': 'cat9',
+                'id1': '3.23.3',
+                'type': 'radio',
+                'title': '过敏史',
+                'content': [
+                    '否',
+                    '是'
+                ],
+                'hiddenlist': [
+                    ['3.23.3.a', '3.23.3.b'],
+                    []
+                ],
+                'hidden': false
+            },
+            {
+                'id2': 'cat8b',
+                'id1': '3.23.3.a',
+                'type': 'input',
+                'content': {
+                    'datatype': 'text',
+                    'validtype': 'other',
+                    'information': ''
+                },
+                'title': '过敏药物',
+                'hidden': false
+            },
+            {
+                'id2': 'cat8b',
+                'id1': '3.23.3.b',
+                'type': 'input',
+                'content': {
+                    'datatype': 'text',
+                    'validtype': 'other',
+                    'information': ''
+                },
+                'title': '过敏食物',
+                'hidden': false
+            },
+            {
                 'id2': 'cau',
                 'id1': '3.24',
                 'type': 'radio',
@@ -4967,7 +4924,7 @@ export class QuestionList {
                     'validtype': 'number',
                     'information': ''
                 },
-                'title': '血压1',
+                'title': '收缩压',
                 'hidden': false
             },
             {
@@ -4979,7 +4936,7 @@ export class QuestionList {
                     'validtype': 'number',
                     'information': ''
                 },
-                'title': '血压2',
+                'title': '舒张压',
                 'hidden': false
             },
             {
@@ -5259,23 +5216,77 @@ export class QuestionList {
                 'hidden': false
             },
             {
-                'id2': ['dc1', 'dc2', 'dc3', 'dc4', 'dc5', 'dc6', 'dc7', 'dc8', 'dc9', 'dc9a', 'dc10'],
+                'id2': ['dc1', 'dc2', 'dc3', 'dc4', 'dc5', 'dc6', 'dc7', 'dc8', 'dc9', 'dc9a', 'dc10', 'dc11'],
                 'id1': '4.3',
                 'type': 'singletable',
-                'title': '发生深静脉(血栓形成)可能性的临床评估模型 Wels评分（①1分 ②2分）',
+                'title': '发生深静脉(血栓形成)可能性的临床评估模型 Wells评分（①1分 ②-2分 ③0分）',
                 'coltitle': ['危险因素', '临床评分'],
                 'rawname': [
-                    '合并癌症（治疗中或治疗后前6个月内或姑息治疗）',
-                    '瘫痪、局部麻痹或近期下肢石膏固定史',
-                    '近期卧床>3d或手术后四周内',
-                    '炎深静脉走行的局限性压痛',
-                    '整条腿肿',
-                    '小腿周径肿胀侧较正常侧>3cm（胫骨结节下10cm处测量）',
-                    '限于患肢的凹陷性水肿',
-                    '浅静脉显现（除外静脉曲张）',
-                    '有可替换的其他诊断,或可能性大于DVT的诊断',
-                    '下肢静脉血栓病史',
-                    '总分'
+                    {
+                        type: 'radio',
+                        title: '合并癌症（治疗中或治疗后前6个月内或姑息治疗）',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score: '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '瘫痪、局部麻痹或近期下肢石膏固定史',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '近期卧床>3d或手术后四周内',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score: '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '沿深静脉走行的局限性压痛',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score: '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '整条腿肿',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '小腿周径肿胀侧较正常侧>3cm（胫骨结节下10cm处测量）',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '限于患肢的凹陷性水肿',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '浅静脉显现（除外静脉曲张）',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '有可替换的其他诊断,或可能性大于DVT的诊断',
+                        value: [{lable: '-2', score: '-2'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '下肢静脉血栓病史',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'input',
+                        title: '总分',
+                    },
+                    {
+                        type: 'input',
+                        title: '分级',
+                    }
+                ],
+                'totalRow': 10,
+                'levelRow': 11,
+                'levelDetail': [
+                    {'min': '-3', 'max': '0', 'level': '低危'},
+                    {'min': '0', 'max': '2', 'level': '中危'},
+                    {'min': '2', 'max': '15', 'level': '高危'},
                 ],
                 'bottomTitle': '',
                 'hidden': false
@@ -5285,24 +5296,82 @@ export class QuestionList {
                 'id1': '4.4.1',
                 'type': 'singletable',
                 'title': 'PESI评分表原始版',
-                'coltitle': ['内容', ' '],
+                'coltitle': ['内容', '评分'],
                 'rawname': [
-                    '年龄',
-                    '性别',
-                    '心率',
-                    '肿瘤或正在接受化疗',
-                    '心衰',
-                    '慢性肺部疾病',
-                    '收缩压',
-                    '呼吸频率',
-                    '体温',
-                    '神志',
-                    '动脉血氧饱和度',
-                    'PESI得分',
-                    'PESI分级'
+                    {
+                        type: 'input',
+                        title: '年龄',
+                    },
+                    {
+                        type: 'radio',
+                        title: '性别',
+                        value: [{lable: '男性(10分)', score: '10'}, {lable: '女性(0分)', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '心率',
+                        value: [{lable: '≥110次/分(20分)', score: '20'}, {lable: '否(0分)', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '肿瘤或正在接受化疗',
+                        value: [{lable: '是(30分)', score: '30'}, {lable: '否(0分)', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '心衰',
+                        value: [{lable: '是(10分)', score: '10'}, {lable: '否(0分)', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '慢性肺部疾病',
+                        value: [{lable: '是(10分)', score: '10'}, {lable: '否(0分)', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '收缩压',
+                        value: [{lable: '<100mmHg(30分)', score: '30'}, {lable: '其余(0分)', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '呼吸频率',
+                        value: [{lable: '>30次/min 是(20分)', score: '20'}, {lable: '其余(0分)', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '体温',
+                        value: [{lable: '<36℃(20分)', score: '20'}, {lable: '其余(0分)', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '神志',
+                        value: [{lable: '改变(60分)', score: '60'}, {lable: '否(0分)', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '动脉血氧饱和度',
+                        value: [{lable: '<90%(20分)', score: '20'}, {lable: '否(0分)', score:  '0'}]
+                    },
+                    {
+                        type: 'input',
+                        title: 'PESI得分',
+                    },
+                    {
+                        type: 'input',
+                        title: 'PESI分级',
+                    }
                 ],
-                'bottomTitle': '注： PESI分级标准： <= 65分为1级； 66-85分为2级； 86-105分为3级； 106-125分为4级， >125分为5级' +
+                'bottomTitle': '注： PESI分级标准： <= 65分为1级； 66-85分为2级； 86-105分为3级； 106-125分为4级， >125分为5级; ' +
                 '0分 = 30天死亡率1%； >=1 分 = 30天死亡率10.9%',
+                'totalRow': 11,
+                'levelRow': 12,
+                'levelDetail': [
+                    {'min': '-1', 'max': '65', 'level': '1级'},
+                    {'min': '65', 'max': '85', 'level': '2级'},
+                    {'min': '85', 'max': '105', 'level': '3级'},
+                    {'min': '105', 'max': '125', 'level': '4级'},
+                    {'min': '125', 'max': '500', 'level': '5级'}
+                ],
                 'hidden': false
             },
             {
@@ -5310,98 +5379,361 @@ export class QuestionList {
                 'id1': '4.4.2',
                 'type': 'singletable',
                 'title': 'PESI评分表简化版',
-                'coltitle': ['内容', ' '],
+                'coltitle': ['内容', '评分'],
                 'rawname': [
-                    '年龄',
-                    '心率',
-                    '肿瘤或正在接受化疗',
-                    '心衰',
-                    '收缩压',
-                    '动脉血氧饱和度',
-                    'PESI得分',
-                    'PESI分级'
+                    {
+                        type: 'radio',
+                        title: '年龄',
+                        value: [{lable: '>80岁(1分)', score: '1'}, {lable: '否(0分)', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '心率',
+                        value: [{lable: '≥110次/分(1分)', score: '1'}, {lable: '否(0分)', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '肿瘤或正在接受化疗',
+                        value: [{lable: '是(1分)', score: '1'}, {lable: '否(0分)', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '心衰/慢性肺部疾病',
+                        value: [{lable: '有心衰或慢性肺部疾病(1分)', score: '1'}, {lable: '否(0分)', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '收缩压',
+                        value: [{lable: '<100mmHg(1分)', score: '1'}, {lable: '其余(0分)', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '动脉血氧饱和度',
+                        value: [{lable: '<90%(1分)', score: '1'}, {lable: '否(0分)', score:  '0'}]
+                    },
+                    {
+                        type: 'input',
+                        title: 'PESI得分',
+                    },
+                    {
+                        type: 'input',
+                        title: 'PESI分级',
+                    }
                 ],
                 'bottomTitle': '',
+                'totalRow': 6,
                 'hidden': false
             },
             {
+
                 'id2': ['dd1', 'dd2', 'dd3', 'dd4', 'dd5', 'dd6', 'dd7', 'dd8'],
                 'id1': '4.5.1',
                 'type': 'singletable',
-                'title': 'Wells评分表原始版',
+                'title': '临床PE可能性评估 Wells评分（原始版）',
                 'coltitle': ['危险因素', '临床评分'],
                 'rawname': [
-                    'DVT的临床症状和体征（水肿和疼痛）',
-                    '心率>100次/min',
-                    '连续卧床3d以上，或4周内曾行外科手术',
-                    '曾患DVT或PE',
-                    '与其它诊断相比，PE是可能或更可能的诊断',
-                    '咯血',
-                    '癌症活动期（正在治疗或6个月前治疗过，或姑息治疗）',
-                    '总分'
+                    {
+                        type: 'radio',
+                        title: 'DVT的临床症状和体征（水肿和疼痛）',
+                        value: [{lable: '3', score: '3'}, {lable: '0', score: '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '心率>100次/min',
+                        value: [{lable: '1.5', score: '1.5'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '卧床连续3d以上，或4周内曾行外科手术',
+                        value: [{lable: '1.5', score: '1.5'}, {lable: '0', score: '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '曾患DVT或PE',
+                        value: [{lable: '1.5', score: '1.5'}, {lable: '0', score: '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '与其它诊断相比，PE是可能或更可能的诊断',
+                        value: [{lable: '3', score: '3'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '咯血',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '癌症活动期（正在治疗或6个月前治疗过，或姑息治疗）',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'input',
+                        title: '总分',
+                    }
                 ],
-                'bottomTitle': '',
+                'totalRow': 7,
+                'bottomTitle': '注：Wells评分：0-2分：PE可能性低（发病率4%）；3-6分：PE可能性中度（发病率21%）；＞6分：PE可能性较高（发病率67%）',
                 'hidden': false
             },
             {
                 'id2': ['dd1a', 'dd2a', 'dd3a', 'dd4a', 'dd5a', 'dd6a', 'dd7a', 'dd8a'],
                 'id1': '4.5.2',
                 'type': 'singletable',
-                'title': 'Wells评分表简化版',
+                'title': '临床PE可能性评估 Wells评分（简化版）',
                 'coltitle': ['危险因素', '临床评分'],
                 'rawname': [
-                    'DVT的临床症状和体征（水肿和疼痛）',
-                    '心率>100次/min',
-                    '连续卧床3d以上，或4周内曾行外科手术',
-                    '曾患DVT或PE',
-                    '与其它诊断相比，PE是可能或更可能的诊断',
-                    '咯血',
-                    '癌症活动期（正在治疗或6个月前治疗过，或姑息治疗）',
-                    '总分'
+                    {
+                        type: 'radio',
+                        title: 'DVT的临床症状和体征（水肿和疼痛）',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score: '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '心率>100次/min',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '卧床连续3d以上，或4周内曾行外科手术',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score: '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '曾患DVT或PE',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score: '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '与其它诊断相比，PE是可能或更可能的诊断',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '咯血',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '癌症活动期（正在治疗或6个月前治疗过，或姑息治疗）',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'input',
+                        title: '总分',
+                    }
                 ],
-                'bottomTitle': '',
+                'totalRow': 7,
+                'bottomTitle': '注：Wells评分：0-2分：PE可能性低（发病率4%）；3-6分：PE可能性中度（发病率21%）；＞6分：PE可能性较高（发病率67%）',
                 'hidden': false
             },
             {
                 'id2': ['dd9', 'dd10', 'dd11', 'dd12', 'dd13', 'dd14', 'dd15', 'dd16', 'dd17', 'dd18'],
                 'id1': '4.6.1',
                 'type': 'singletable',
-                'title': 'Geneva评分表原始版',
+                'title': 'Geneva评分表（原始版）',
                 'coltitle': ['危险因素', '临床评分'],
                 'rawname': [
-                    '单侧下肢疼痛',
-                    '下肢深静脉触痛及单侧水肿',
-                    '年龄>65岁',
-                    '心率75-94',
-                    '心率>95',
-                    '一个月内手术（全麻）骨折（下肢）',
-                    '曾患DVT或PE',
-                    '咯血',
-                    '恶性肿瘤（实体或血液， 目前活动或者1年内治愈）',
-                    '总分'
+                    {
+                        type: 'radio',
+                        title: '单侧下肢疼痛',
+                        value: [{lable: '3', score: '3'}, {lable: '0', score: '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '下肢深静脉触痛及单侧水肿',
+                        value: [{lable: '4', score: '4'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '年龄>65岁',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score: '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '心率75-94',
+                        value: [{lable: '3', score: '3'}, {lable: '0', score: '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '心率>95',
+                        value: [{lable: '5', score: '5'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '1月内手术（全麻）骨折（下肢）',
+                        value: [{lable: '2', score: '2'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '曾患DVT或PE',
+                        value: [{lable: '3', score: '3'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '咯血',
+                        value: [{lable: '2', score: '2'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '恶性肿瘤（实体或血液，目前活动或者1年内治愈）',
+                        value: [{lable: '2', score: '2'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'input',
+                        title: '总分',
+                    }
                 ],
-                'bottomTitle': '',
+                'totalRow': 9,
+                'bottomTitle': '修正Geneva评分：肺栓塞可能性，低度 0 ～ 3 分，中度 4 ～ 10 分，高度≥11 分。',
                 'hidden': false
             },
             {
                 'id2': ['dd9a', 'dd10a', 'dd11a', 'dd12a', 'dd13a', 'dd14a', 'dd15a', 'dd16a', 'dd17a', 'dd18a'],
                 'id1': '4.6.2',
-                'type': 'table462',
-                'title': 'Geneva评分表简化版',
+                'type': 'singletable',
+                'title': 'Geneva评分表(简化版)',
                 'coltitle': ['危险因素', '临床评分'],
                 'rawname': [
-                    '单侧下肢疼痛',
-                    '下肢深静脉触痛及单侧水肿',
-                    '年龄>65岁',
-                    '心率75-94',
-                    '心率>95',
-                    '一个月内手术（全麻）骨折（下肢）',
-                    '曾患DVT或PE',
-                    '咯血',
-                    '恶性肿瘤（实体或血液， 目前活动或者1年内治愈）',
-                    '总分'
+                    {
+                        type: 'radio',
+                        title: '单侧下肢疼痛',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score: '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '下肢深静脉触痛及单侧水肿',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '年龄>65岁',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score: '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '心率75-94',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score: '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '心率>95',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '1月内手术（全麻）骨折（下肢）',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '曾患DVT或PE',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '咯血',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '恶性肿瘤（实体或血液，目前活动或者1年内治愈）',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'input',
+                        title: '总分',
+                    }
                 ],
-                'bottomTitle': '',
+                'totalRow': 9,
+                'bottomTitle': '修正Geneva评分：肺栓塞可能性，低度 0 ～ 3 分，中度 4 ～ 10 分，高度≥11 分。',
+                'hidden': false
+            },
+            {
+                'id2': ['df1', 'df2', 'df3', 'df4', 'df5', 'df6', 'df7', 'df8', 'df9', 'df10', 'df11', 'df12', 'df13', 'df14'],
+                'id1': '4.6.2',
+                'type': 'singletable',
+                'title': 'Villalta评分表',
+                'coltitle': ['症状与体征', '临床评分'],
+                'rawname': [
+                    {
+                        type: 'radio',
+                        title: '疼痛',
+                        value: [{lable: '无', score: '0'}, {lable: '轻度', score: '1'}, {lable: '中度', score: '2'}, {lable: '重度', score: '3'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '痉挛',
+                        value: [{lable: '无', score: '0'}, {lable: '轻度', score: '1'}, {lable: '中度', score: '2'}, {lable: '重度', score: '3'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '沉重感',
+                        value: [{lable: '无', score: '0'}, {lable: '轻度', score: '1'}, {lable: '中度', score: '2'}, {lable: '重度', score: '3'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '感觉异常',
+                        value: [{lable: '无', score: '0'}, {lable: '轻度', score: '1'}, {lable: '中度', score: '2'}, {lable: '重度', score: '3'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '瘙痒',
+                        value: [{lable: '无', score: '0'}, {lable: '轻度', score: '1'}, {lable: '中度', score: '2'}, {lable: '重度', score: '3'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '胫骨前水肿',
+                        value: [{lable: '无', score: '0'}, {lable: '轻度', score: '1'}, {lable: '中度', score: '2'}, {lable: '重度', score: '3'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '色素沉着',
+                        value: [{lable: '无', score: '0'}, {lable: '轻度', score: '1'}, {lable: '中度', score: '2'}, {lable: '重度', score: '3'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '静脉扩张',
+                        value: [{lable: '无', score: '0'}, {lable: '轻度', score: '1'}, {lable: '中度', score: '2'}, {lable: '重度', score: '3'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '发红',
+                        value: [{lable: '无', score: '0'}, {lable: '轻度', score: '1'}, {lable: '中度', score: '2'}, {lable: '重度', score: '3'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '皮肤硬化',
+                        value: [{lable: '无', score: '0'}, {lable: '轻度', score: '1'}, {lable: '中度', score: '2'}, {lable: '重度', score: '3'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '小腿按压疼痛',
+                        value: [{lable: '无', score: '0'}, {lable: '轻度', score: '1'}, {lable: '中度', score: '2'}, {lable: '重度', score: '3'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '溃疡',
+                        value: [{lable: '无', score: '0'}, {lable: '有', score: '15'}]
+                    },
+                    {
+                        type: 'input',
+                        title: '总分',
+                    },
+                    {
+                        type: 'input',
+                        title: '分级',
+                    }
+                ],
+                'totalRow': 12,
+                'levelRow': 13,
+                'levelDetail': [
+                    {'min': '-1', 'max': '4', 'level': '正常(无PTS)'},
+                    {'min': '4', 'max': '9', 'level': '轻度'},
+                    {'min': '9', 'max': '14', 'level': '中度'},
+                    {'min': '14', 'max': '50', 'level': '重度'},
+                ],
+                'bottomTitle': 'Villalta评分标准由两部分组成，一是患者下肢症状，主要包括部分即肢体疼痛，下肢静脉性肌肉疫挛，下肢沉重感，下肢皮肤感觉异常及下肢皮肤瘙痒；二是患者下肢体征，主要包括部分，即下肢腔前水肿，下肢皮肤硬结，皮肤色素沉着，皮肤皮色发红，下肢静脉曲张、腓肠肌压痛、下肢皮肤渍窃等。每一项指标，根据其严重度，可分为0分，1分，2分，3分。根据评分的髙低，将PTS分为四级，正常（0-4）分（无PTS），轻度（5-9）分，中度（10-14）分，重度（≥15分）；凡出现溃疡者，无论评分是否>14分,均为重度PTS性静脉溃疡。',
                 'hidden': false
             }
         ],
@@ -5718,7 +6050,7 @@ export class QuestionList {
                 'id2': 'ga',
                 'id1': '6.1.1',
                 'type': 'selectable-table',
-                'rowTitle': ['低分子肝素', '华法林', '尿激酶'],
+                'rowTitle': ['低分子肝素', '华法林', '尿激酶', '其它'],
                 'columnTitle': ['剂量', '用法', '频次', '用药时间'],
                 'radioStr': 'gaa',
                 'title': '6.1.1入院前治疗情况',
@@ -5733,7 +6065,7 @@ export class QuestionList {
                     '无',
                     '有'
                 ],
-                'hidden': true
+                'hidden': false
             },
             {
                 'id2': ['gaca','gaca1','gaca2','gaca3','gaca4'],
@@ -5747,13 +6079,13 @@ export class QuestionList {
                     '频次',
                     '用药时间'
                 ],
-                'hidden': true
+                'hidden': false
             },
             {
                 'id2': 'gba',
                 'id1': '6.2.1',
                 'type': 'selectable-table',
-                'rowTitle': ['气压泵治疗', '硫酸镁冷敷', '看医用弹力袜'],
+                'rowTitle': ['气压泵治疗', '硫酸镁冷敷', '着医用弹力袜'],
                 'columnTitle': ['剂量', '用法', '频次', '用药时间'],
                 'radioStr': 'gba',
                 'title': '6.2.1 术前用药：物理治疗',
@@ -5772,7 +6104,7 @@ export class QuestionList {
                 'rowTitle': ['丹参注射液', '疏血通', '丹参川穹嗪', '其他'],
                 'columnTitle': ['剂量', '用法', '频次', '用药时间'],
                 'radioStr': 'gbc',
-                'title': '6.2.3 术前用药：扩展改善循环药',
+                'title': '6.2.3 术前用药：扩管改善循环药',
             }, {
                 'id2': 'gdb',
                 'id1': '6.2.4',
@@ -5803,7 +6135,7 @@ export class QuestionList {
                 'hidden': false
             },
             {
-                'id2': ['gbfa','gbfa1','gbfa2','gbfa3','gbfa4'],
+                'id2': ['gbfa', 'gbfa1', 'gbfa2', 'gbfa3', 'gbfa4'],
                 'id1': '6.2.6.1',
                 'type': 'multi-input',
                 'title': '药物种类',
@@ -5831,96 +6163,234 @@ export class QuestionList {
                     '否',
                     '是'
                 ],
-                'title': '术中是否行血栓吸取术',
-                'hiddenlist': [['6.3.1.1'],[]],
+                'title': '药械耦连',
+                'hiddenlist': [['6.3.1.1', '6.3.1.1.1', '6.3.1.1.2', '6.3.1.1.3'
+                , '6.3.1.2', '6.3.1.2.1', '6.3.1.2.2'
+                ], []],
                 'hidden': false
             },
             {
                 'id2': 'gcwa',
                 'id1': '6.3.1.1',
-                'type': 'input',
-                'content': {
-                    'datatype': 'text',
-                    'validtype': 'number',
-                    'information': ''
-                },
-                'title': '抽出血栓量',
+                'type': 'radio',
+                'content': [
+                    '尿激酶',
+                    '阿替普酶',
+                    '其它'
+                ],
+                'title': '药',
+                'hiddenlist': [['6.3.1.1.1'], ['6.3.1.1.1'], []],
                 'hidden': false
             },
             {
-                'id2': 'gcx',
+                'id2': 'gcwa1',
+                'id1': '6.3.1.1.1',
+                'type': 'input',
+                'content': {
+                    'datatype': 'text',
+                    'validtype': '',
+                    'information': ''
+                },
+                'title': '药名',
+                'hidden': true
+            },
+            {
+                'id2': 'gcwa2',
+                'id1': '6.3.1.1.2',
+                'type': 'input',
+                'content': {
+                    'datatype': 'text',
+                    'validtype': '',
+                    'information': ''
+                },
+                'title': '术中用量',
+                'hidden': false
+            },
+            {
+                'id2': 'gcwa3',
+                'id1': '6.3.1.1.3',
+                'type': 'radio',
+                'content': [
+                    '下肢深静脉',
+                    '下腔静脉',
+                    '肺动脉'
+                ],
+                'title': '药部位',
+                'hiddenlist': [[], [], []],
+                'hidden': false
+            },
+            {
+                'id2': 'gcwb',
+                'id1': '6.3.1.2',
+                'type': 'radio',
+                'content': [
+                    'Angiojet',
+                    'Foutain',
+                    '抽栓导管'
+                ],
+                'title': '械',
+                'hiddenlist': [['6.3.1.2.1'], ['6.3.1.2.1'], []],
+                'hidden': false
+            },
+            {
+                'id2': 'gcwb1',
+                'id1': '6.3.1.2.1',
+                'type': 'input',
+                'content': {
+                    'datatype': 'text',
+                    'validtype': '',
+                    'information': ''
+                },
+                'title': '抽栓导管',
+                'hidden': true
+            },
+            {
+                'id2': 'gcwb2',
+                'id1': '6.3.1.2.2',
+                'type': 'radio',
+                'content': [
+                    '下肢深静脉',
+                    '下腔静脉',
+                    '肺动脉'
+                ],
+                'title': '械部位',
+                'hiddenlist': [[], [], []],
+                'hidden': false
+            },
+            {
+                'id2': 'gcwc',
                 'id1': '6.3.2',
                 'type': 'radio',
                 'content': [
                     '否',
                     '是'
                 ],
-                'title': '术中是否置入滤器',
-                'hiddenlist': [['6.3.2.1'],[]],
+                'title': '肺动脉捣栓碎栓',
+                'hiddenlist': [['6.3.2.1'], []],
                 'hidden': false
             },
             {
-                'id2': ['gcx1', 'gcx2', 'gcx3'],
+                'id2': 'gcwc1',
                 'id1': '6.3.2.1',
-                'type': 'multi-radio',
-                'title': '置入滤器',
-                'content': ["Trapease", "Tulip", "Optease"],
+                'type': 'input',
+                'content': {
+                    'datatype': 'text',
+                    'validtype': '',
+                    'information': ''
+                },
+                'title': '导管型号',
+                'hidden': true
+            },
+            {
+                'id2': 'gcwd',
+                'id1': '6.3.3',
+                'type': 'radio',
+                'content': [
+                    '否',
+                    'Tulip',
+                    'Celect',
+                    'Trapease',
+                    'Optease',
+                    'Aegisy',
+                    'VenaTech',
+                    'VenaTach可转换',
+                    '其他'
+                ],
+                'title': '是否植入滤器',
+                'hiddenlist': [['6.3.3.1'], ['6.3.3.1'], ['6.3.3.1'], ['6.3.3.1'], ['6.3.3.1'], ['6.3.3.1'], ['6.3.3.1'], ['6.3.3.1'], []],
                 'hidden': false
-            }, {
+            },
+            {
+                'id2': 'gcwd1',
+                'id1': '6.3.3.1',
+                'type': 'input',
+                'content': {
+                    'datatype': 'text',
+                    'validtype': '',
+                    'information': ''
+                },
+                'title': '其它滤器名称',
+                'hidden': true
+            },
+             {
             'id2': 'gcy',
-            'id1': '6.3.3',
+            'id1': '6.3.4',
             'type': 'radio',
             'content': [
                 '否',
                 '是'
             ],
             'title': '术中是否置管',
-            'hiddenlist': [['6.3.3.1'],[]],
+            'hiddenlist': [['6.3.4.1', '6.3.4.2', '6.3.4.3'], []],
             'hidden': false
         },
             {
-                'id2': ['gcy1', 'gcy2', 'gcy3', 'gcy4'],
-                'id1': '6.3.3.1',
+                'id2': ['gcy1', 'gcy2', 'gcy3', 'gcy4', 'gcy5'],
+                'id1': '6.3.4.1',
                 'type': 'multi-radio',
                 'title': '置管',
-                'content': ["股静脉置管", "腘静脉置管", "股动脉置管", "肺动脉置管"],
+                'content': ["股静脉置管", "腘静脉置管", "股动脉置管", "肺动脉置管", '下腔静脉置管'],
                 'hidden': false
             },
             {
-                'id2': 'gcy',
-                'id1': '6.3.4',
+                'id2': 'gcy6',
+                'id1': '6.3.4.2',
+                'type': 'input',
+                'content': {
+                    'datatype': 'text',
+                    'validtype': '',
+                    'information': ''
+                },
+                'title': '置管型号',
+                'hidden': false
+            },
+            {
+                'id2': 'gcy7',
+                'id1': '6.3.4.3',
+                'type': 'input',
+                'content': {
+                    'datatype': 'text',
+                    'validtype': 'number',
+                    'information': ''
+                },
+                'title': '置管持续时间(天)',
+                'hidden': false
+            },
+            {
+                'id2': 'gcz',
+                'id1': '6.3.5',
                 'type': 'radio',
                 'content': [
                     '否',
                     '是'
                 ],
                 'title': '术中是否有不良反应',
-                'hiddenlist': [['6.3.4.1', '6.3.4.2', '6.3.4.2.1'],[]],
+                'hiddenlist': [['6.3.5.1', '6.3.5.2', '6.3.5.2.1'],[]],
                 'hidden': false
             },
             {
                 'id2': ['gcz1', 'gcz2', 'gcz3', 'gcz4'],
-                'id1': '6.3.4.1',
+                'id1': '6.3.5.1',
                 'type': 'multi-radio',
                 'title': '术中不良反应',
                 'content': ["过敏反应", "呼吸困难、心率失常", "出血、穿刺意外"],
                 'hidden': false
             },
             {
-                'id2': 'gcy',
-                'id1': '6.3.4.2',
+                'id2': 'gcz4',
+                'id1': '6.3.5.2',
                 'type': 'radio',
                 'content': [
                     '否',
                     '是'
                 ],
                 'title': '术中是否有其他不良反应',
-                'hiddenlist': [['6.3.4.2.1'],[]],
+                'hiddenlist': [['6.3.5.2.1'],[]],
                 'hidden': false
             },
             {
                 'id2': 'gcz4a',
-                'id1': '6.3.4.2.1',
+                'id1': '6.3.5.2.1',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -5953,12 +6423,12 @@ export class QuestionList {
                 'rowTitle': ['丹参注射液', '疏血通', '丹参川穹嗪', '其他'],
                 'columnTitle': ['剂量', '用法', '频次', '用药时间'],
                 'radioStr': 'gdc',
-                'title': '6.4.3 术后用药：扩展改善循环药',
+                'title': '6.4.3 术后用药：扩管改善循环药',
             },{
                 'id2': 'gdd',
                 'id1': '6.4.4',
                 'type': 'selectable-table',
-                'rowTitle': ['低分子肝素', '磺达肝奎钠', '华法林', '阿加曲班', '利伐沙班'],
+                'rowTitle': ['低分子肝素', '磺达肝癸钠', '华法林', '阿加曲班', '利伐沙班'],
                 'columnTitle': ['剂量', '用法', '频次', '用药时间'],
                 'radioStr': 'gdc',
                 'title': '6.4.4 术后用药：抗凝药',
@@ -6154,47 +6624,47 @@ export class QuestionList {
                 ],
                 'hidden': false
             },
-            {
-                'id2': 'ghba',
-                'id1': '7.2.1',
-                'type': 'radio',
-                'title': '性别',
-                'content': [
-                    '男',
-                    '女'
-                ],
-                'hiddenlist': [
-
-                ],
-                'hidden': false
-            },
-            {
-                'id2': 'ghbb',
-                'id1': '7.2.2',
-                'type': 'input',
-                'content': {
-                    'datatype': 'text',
-                    'validtype': 'number',
-                    'information': ''
-                },
-                'title': '年龄',
-                'hidden': false
-            },
-            {
-                'id2': 'ghbc',
-                'id1': '7.2.3',
-                'type': 'input',
-                'content': {
-                    'datatype': 'text',
-                    'validtype': 'number',
-                    'information': ''
-                },
-                'title': '体重',
-                'hidden': false
-            },
+            // {
+            //     'id2': 'ghba',
+            //     'id1': '7.2.1',
+            //     'type': 'radio',
+            //     'title': '性别',
+            //     'content': [
+            //         '男',
+            //         '女'
+            //     ],
+            //     'hiddenlist': [
+            //
+            //     ],
+            //     'hidden': false
+            // },
+            // {
+            //     'id2': 'ghbb',
+            //     'id1': '7.2.2',
+            //     'type': 'input',
+            //     'content': {
+            //         'datatype': 'text',
+            //         'validtype': 'number',
+            //         'information': ''
+            //     },
+            //     'title': '年龄',
+            //     'hidden': false
+            // },
+            // {
+            //     'id2': 'ghbc',
+            //     'id1': '7.2.3',
+            //     'type': 'input',
+            //     'content': {
+            //         'datatype': 'text',
+            //         'validtype': 'number',
+            //         'information': ''
+            //     },
+            //     'title': '体重',
+            //     'hidden': false
+            // },
             {
                 'id2': 'ghbd',
-                'id1': '7.2.4',
+                'id1': '7.2.1',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -6206,7 +6676,7 @@ export class QuestionList {
             },
             {
                 'id2': 'ghbe',
-                'id1': '7.2.5',
+                'id1': '7.2.2',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -6218,7 +6688,7 @@ export class QuestionList {
             },
             {
                 'id2': 'ghbf',
-                'id1': '7.2.6',
+                'id1': '7.2.3',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -6230,7 +6700,7 @@ export class QuestionList {
             },
             {
                 'id2': 'ghbg',
-                'id1': '7.2.7',
+                'id1': '7.2.4',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -6242,7 +6712,7 @@ export class QuestionList {
             },
             {
                 'id2': 'ghbh',
-                'id1': '7.2.8',
+                'id1': '7.2.5',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -6254,7 +6724,7 @@ export class QuestionList {
             },
             {
                 'id2': 'ghbi',
-                'id1': '7.2.9',
+                'id1': '7.2.6',
                 'type': 'radio',
                 'content': [
                     '皮肤、粘膜',
@@ -6269,7 +6739,7 @@ export class QuestionList {
             },
             {
                 'id2': 'ghbg',
-                'id1': '7.2.10',
+                'id1': '7.2.7',
                 'type': 'radio',
                 'content': [
                     '轻度',
@@ -6281,7 +6751,7 @@ export class QuestionList {
             },
             {
                 'id2': 'ghbk',
-                'id1': '7.2.11',
+                'id1': '7.2.8',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -6293,7 +6763,7 @@ export class QuestionList {
             },
             {
                 'id2': 'ghbl',
-                'id1': '7.2.12',
+                'id1': '7.2.9',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',

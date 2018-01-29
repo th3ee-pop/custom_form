@@ -132,6 +132,7 @@ export class HttpService {
      * {
      * "Count": 2,
      * "PIDs": [{
+     *
        "PID": 3,
       "体检编号": "1000000001",
       "表格是否完成": "",
@@ -330,6 +331,15 @@ export class HttpService {
             .catch((res) => {
                 return res;
             });
+    }
+
+    /**
+     * 获取本地文件
+     * @param file 文件名
+     * @returns {Observable<Response>}
+     */
+    getChinaDivision(file){
+        return this.Http.get("assets/jsonData/"+file +".json")
     }
 
 

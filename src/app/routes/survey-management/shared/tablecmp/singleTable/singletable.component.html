@@ -6,7 +6,6 @@
                     <label>{{question.id1}}{{question.title}}</label>
                 </ng-template>
                 <ng-template #body>
-                    <form nz-form [nzLayout]="'inline'" >
                         <div nz-form-control nz-col [nzSm]="20">
                             <nz-table [nzDataSource]="question.rawname" [nzIsPagination]="false">
                                 <thead nz-thead>
@@ -16,11 +15,18 @@
                                 </tr>
                                 </thead>
                                 <tbody nz-tbody>
-                                <tr nz-tbody-tr *ngFor="let Name of question.rawname,index as i">
-                                    <td nz-td>{{Name}}</td>
-                                    <td nz-td>
+                                <tr nz-tbody-tr *ngFor="let item of question.rawname,index as i">
+                                    <td nz-td>{{item.title}}</td>
+                                    <td nz-td [ngSwitch]="item.type">
                                         <span>
-                                            <nz-input-number [nzMin]="0" [nzMax]="100" [(ngModel)]="localAnswer[i]" [nzDisabled]="editdisabled" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
+                                            <nz-radio-group *ngSwitchCase="'radio'" [(ngModel)]="localAnswer[i]" (ngModelChange)="getTotal($event); getLevel(); answerChange()">
+                                                <label nz-radio *ngFor="let choice of item.value" [nzValue]="choice.score">
+                                                    <span>{{choice.lable}}</span>
+                                                </label>
+                                            </nz-radio-group>
+                                        </span>
+                                        <span>
+                                            <nz-input *ngSwitchCase="'input'" [(ngModel)]="localAnswer[i]" [nzDisabled]="editdisabled" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input>
                                         </span>
                                     </td>
                                 </tr>
@@ -31,12 +37,9 @@
                                 <span nz-tooltip>{{question.bottomTitle}}</span>
                             </nz-tooltip>
                         </div>
-                    </form>
-
                 </ng-template>
-
             </nz-card>
         </div>
     </div>
-
 </div>
+

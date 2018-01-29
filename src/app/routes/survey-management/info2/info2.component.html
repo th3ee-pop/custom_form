@@ -10,7 +10,7 @@
                     </nz-steps>
                     <div *ngFor="let question of questionList">
                         <div [ngSwitch]="question.type">
-                            <app-inputcmp     *ngSwitchCase="'input'"     [question]="question" (onVoted)="onVoted($event)" ></app-inputcmp>
+                            <app-inputcmp     *ngSwitchCase="'input'"     [question]="question" (onVoted)="onhVoted($event)" ></app-inputcmp>
                             <app-radiocmp     *ngSwitchCase="'radio'"     [question]="question" (onVoted)="onVoted($event)" ></app-radiocmp>
                         </div>
                     </div>
