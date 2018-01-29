@@ -170,7 +170,7 @@ export class QuestionList {
                 'id2': 'diagt2',
                 'id1': '0.15',
                 'type': 'radio',
-                'title': '最终诊断：左心房血栓',
+                'title': '最终诊断：右心室血栓',
                 'content': ['否', '是'],
                 'hiddenlist': [],
                 'hidden': false
@@ -188,8 +188,8 @@ export class QuestionList {
                 'id2': 'diagc1',
                 'id1': '0.16.1',
                 'type': 'radio',
-                'title': '肺动脉栓塞面积',
-                'content': ['中低危', '中高危', '高危'],
+                'title': '肺动脉危险分层',
+                'content': ['低危', '中低危', '中高危', '高危'],
                 'hiddenlist': [],
                 'hidden': false
             },
@@ -395,8 +395,17 @@ export class QuestionList {
                 'hidden': false
             },
             {
-                'id2': 'ae3',
+                'id2': 'ae5',
                 'id1': '1.14',
+                'type': 'radio',
+                'title': '患者来源',
+                'content': ['门诊', '急诊', '其他'],
+                'hiddenlist': [],
+                'hidden': false
+            },
+            {
+                'id2': 'ae3',
+                'id1': '1.15',
                 'type': 'date',
                 'content': {
                     'datatype': 'text',
@@ -408,7 +417,7 @@ export class QuestionList {
             },
             {
                 'id2': 'ae4',
-                'id1': '1.15',
+                'id1': '1.16',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -4224,6 +4233,45 @@ export class QuestionList {
                 'hidden': false
             },
             {
+                'id2': 'cat9',
+                'id1': '3.23.3',
+                'type': 'radio',
+                'title': '过敏史',
+                'content': [
+                    '否',
+                    '是'
+                ],
+                'hiddenlist': [
+                    ['3.23.3.a', '3.23.3.b'],
+                    []
+                ],
+                'hidden': false
+            },
+            {
+                'id2': 'cat8b',
+                'id1': '3.23.3.a',
+                'type': 'input',
+                'content': {
+                    'datatype': 'text',
+                    'validtype': 'other',
+                    'information': ''
+                },
+                'title': '过敏药物',
+                'hidden': false
+            },
+            {
+                'id2': 'cat8b',
+                'id1': '3.23.3.b',
+                'type': 'input',
+                'content': {
+                    'datatype': 'text',
+                    'validtype': 'other',
+                    'information': ''
+                },
+                'title': '过敏食物',
+                'hidden': false
+            },
+            {
                 'id2': 'cau',
                 'id1': '3.24',
                 'type': 'radio',
@@ -5144,7 +5192,7 @@ export class QuestionList {
                 'id2': ['dc1', 'dc2', 'dc3', 'dc4', 'dc5', 'dc6', 'dc7', 'dc8', 'dc9', 'dc9a', 'dc10'],
                 'id1': '4.3',
                 'type': 'singletable',
-                'title': '发生深静脉(血栓形成)可能性的临床评估模型 Wels评分（①1分 ②2分）',
+                'title': '发生深静脉(血栓形成)可能性的临床评估模型 Wells评分（①1分 ②0分）',
                 'coltitle': ['危险因素', '临床评分'],
                 'rawname': [
                     '合并癌症（治疗中或治疗后前6个月内或姑息治疗）',
@@ -6214,7 +6262,7 @@ export class QuestionList {
             // },
             {
                 'id2': 'ghbd',
-                'id1': '7.2.4',
+                'id1': '7.2.1',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -6226,7 +6274,7 @@ export class QuestionList {
             },
             {
                 'id2': 'ghbe',
-                'id1': '7.2.5',
+                'id1': '7.2.2',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -6238,7 +6286,7 @@ export class QuestionList {
             },
             {
                 'id2': 'ghbf',
-                'id1': '7.2.6',
+                'id1': '7.2.3',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -6250,7 +6298,7 @@ export class QuestionList {
             },
             {
                 'id2': 'ghbg',
-                'id1': '7.2.7',
+                'id1': '7.2.4',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -6262,7 +6310,7 @@ export class QuestionList {
             },
             {
                 'id2': 'ghbh',
-                'id1': '7.2.8',
+                'id1': '7.2.5',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -6274,7 +6322,7 @@ export class QuestionList {
             },
             {
                 'id2': 'ghbi',
-                'id1': '7.2.9',
+                'id1': '7.2.6',
                 'type': 'radio',
                 'content': [
                     '皮肤、粘膜',
@@ -6289,7 +6337,7 @@ export class QuestionList {
             },
             {
                 'id2': 'ghbg',
-                'id1': '7.2.10',
+                'id1': '7.2.7',
                 'type': 'radio',
                 'content': [
                     '轻度',
@@ -6301,7 +6349,7 @@ export class QuestionList {
             },
             {
                 'id2': 'ghbk',
-                'id1': '7.2.11',
+                'id1': '7.2.8',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -6313,7 +6361,7 @@ export class QuestionList {
             },
             {
                 'id2': 'ghbl',
-                'id1': '7.2.12',
+                'id1': '7.2.9',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
