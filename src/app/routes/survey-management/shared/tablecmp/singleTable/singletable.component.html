@@ -19,14 +19,14 @@
                                     <td nz-td>{{item.title}}</td>
                                     <td nz-td [ngSwitch]="item.type">
                                         <span>
-                                            <nz-radio-group *ngSwitchCase="'radio'" [(ngModel)]="localAnswer[i]" (ngModelChange)="getTotal($event); answerChange()">
+                                            <nz-radio-group *ngSwitchCase="'radio'" [(ngModel)]="localAnswer[i]" (ngModelChange)="getTotal($event); getLevel(); answerChange()">
                                                 <label nz-radio *ngFor="let choice of item.value" [nzValue]="choice.score">
                                                     <span>{{choice.lable}}</span>
                                                 </label>
                                             </nz-radio-group>
                                         </span>
                                         <span>
-                                            <nz-input-number *ngSwitchCase="'input'" [nzMin]="0" [nzMax]="100" [(ngModel)]="localAnswer[i]" [nzDisabled]="editdisabled" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
+                                            <nz-input *ngSwitchCase="'input'" [(ngModel)]="localAnswer[i]" [nzDisabled]="editdisabled" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input>
                                         </span>
                                     </td>
                                 </tr>
@@ -38,10 +38,8 @@
                             </nz-tooltip>
                         </div>
                 </ng-template>
-
             </nz-card>
         </div>
     </div>
-    <button (click)="check()">测试</button>
 </div>
 

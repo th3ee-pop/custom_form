@@ -5189,7 +5189,7 @@ export class QuestionList {
                 'hidden': false
             },
             {
-                'id2': ['dc1', 'dc2', 'dc3', 'dc4', 'dc5', 'dc6', 'dc7', 'dc8', 'dc9', 'dc9a', 'dc10'],
+                'id2': ['dc1', 'dc2', 'dc3', 'dc4', 'dc5', 'dc6', 'dc7', 'dc8', 'dc9', 'dc9a', 'dc10', 'dc11'],
                 'id1': '4.3',
                 'type': 'singletable',
                 'title': '发生深静脉(血栓形成)可能性的临床评估模型 Wells评分（①1分 ②-2分 ③0分）',
@@ -5248,9 +5248,19 @@ export class QuestionList {
                     {
                         type: 'input',
                         title: '总分',
+                    },
+                    {
+                        type: 'input',
+                        title: '分级',
                     }
                 ],
                 'totalRow': 10,
+                'levelRow': 11,
+                'levelDetail': [
+                    {'min': '-3', 'max': '0', 'level': '低危'},
+                    {'min': '0', 'max': '2', 'level': '中危'},
+                    {'min': '2', 'max': '15', 'level': '高危'},
+                ],
                 'bottomTitle': '',
                 'hidden': false
             },
@@ -5261,22 +5271,80 @@ export class QuestionList {
                 'title': 'PESI评分表原始版',
                 'coltitle': ['内容', '评分'],
                 'rawname': [
-                    '年龄',
-                    '性别',
-                    '心率',
-                    '肿瘤或正在接受化疗',
-                    '心衰',
-                    '慢性肺部疾病',
-                    '收缩压',
-                    '呼吸频率',
-                    '体温',
-                    '神志',
-                    '动脉血氧饱和度',
-                    'PESI得分',
-                    'PESI分级'
+                    {
+                        type: 'input',
+                        title: '年龄',
+                    },
+                    {
+                        type: 'radio',
+                        title: '性别',
+                        value: [{lable: '男性(10分)', score: '10'}, {lable: '女性(0分)', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '心率',
+                        value: [{lable: '≥110次/分(20分)', score: '20'}, {lable: '否(0分)', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '肿瘤或正在接受化疗',
+                        value: [{lable: '是(30分)', score: '30'}, {lable: '否(0分)', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '心衰',
+                        value: [{lable: '是(10分)', score: '10'}, {lable: '否(0分)', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '慢性肺部疾病',
+                        value: [{lable: '是(10分)', score: '10'}, {lable: '否(0分)', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '收缩压',
+                        value: [{lable: '<100mmHg(30分)', score: '30'}, {lable: '其余(0分)', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '呼吸频率',
+                        value: [{lable: '>30次/min 是(20分)', score: '20'}, {lable: '其余(0分)', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '体温',
+                        value: [{lable: '<36℃(20分)', score: '20'}, {lable: '其余(0分)', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '神志',
+                        value: [{lable: '改变(60分)', score: '60'}, {lable: '否(0分)', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '动脉血氧饱和度',
+                        value: [{lable: '<90%(20分)', score: '20'}, {lable: '否(0分)', score:  '0'}]
+                    },
+                    {
+                        type: 'input',
+                        title: 'PESI得分',
+                    },
+                    {
+                        type: 'input',
+                        title: 'PESI分级',
+                    }
                 ],
-                'bottomTitle': '注： PESI分级标准： <= 65分为1级； 66-85分为2级； 86-105分为3级； 106-125分为4级， >125分为5级' +
+                'bottomTitle': '注： PESI分级标准： <= 65分为1级； 66-85分为2级； 86-105分为3级； 106-125分为4级， >125分为5级; ' +
                 '0分 = 30天死亡率1%； >=1 分 = 30天死亡率10.9%',
+                'totalRow': 11,
+                'levelRow': 12,
+                'levelDetail': [
+                    {'min': '-1', 'max': '65', 'level': '1级'},
+                    {'min': '65', 'max': '85', 'level': '2级'},
+                    {'min': '85', 'max': '105', 'level': '3级'},
+                    {'min': '105', 'max': '125', 'level': '4级'},
+                    {'min': '125', 'max': '500', 'level': '5级'}
+                ],
                 'hidden': false
             },
             {
@@ -5284,18 +5352,49 @@ export class QuestionList {
                 'id1': '4.4.2',
                 'type': 'singletable',
                 'title': 'PESI评分表简化版',
-                'coltitle': ['内容', ' '],
+                'coltitle': ['内容', '评分'],
                 'rawname': [
-                    '年龄',
-                    '心率',
-                    '肿瘤或正在接受化疗',
-                    '心衰',
-                    '收缩压',
-                    '动脉血氧饱和度',
-                    'PESI得分',
-                    'PESI分级'
+                    {
+                        type: 'radio',
+                        title: '年龄',
+                        value: [{lable: '>80岁(1分)', score: '1'}, {lable: '否(0分)', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '心率',
+                        value: [{lable: '≥110次/分(1分)', score: '1'}, {lable: '否(0分)', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '肿瘤或正在接受化疗',
+                        value: [{lable: '是(1分)', score: '1'}, {lable: '否(0分)', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '心衰/慢性肺部疾病',
+                        value: [{lable: '有心衰或慢性肺部疾病(1分)', score: '1'}, {lable: '否(0分)', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '收缩压',
+                        value: [{lable: '<100mmHg(1分)', score: '1'}, {lable: '其余(0分)', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '动脉血氧饱和度',
+                        value: [{lable: '<90%(1分)', score: '1'}, {lable: '否(0分)', score:  '0'}]
+                    },
+                    {
+                        type: 'input',
+                        title: 'PESI得分',
+                    },
+                    {
+                        type: 'input',
+                        title: 'PESI分级',
+                    }
                 ],
                 'bottomTitle': '',
+                'totalRow': 6,
                 'hidden': false
             },
             {
@@ -5521,6 +5620,93 @@ export class QuestionList {
                 ],
                 'totalRow': 9,
                 'bottomTitle': '修正Geneva评分：肺栓塞可能性，低度 0 ～ 3 分，中度 4 ～ 10 分，高度≥11 分。',
+                'hidden': false
+            },
+            {
+                'id2': ['df1', 'df2', 'df3', 'df4', 'df5', 'df6', 'df7', 'df8', 'df9', 'df10', 'df11', 'df12', 'df13', 'df14'],
+                'id1': '4.6.2',
+                'type': 'singletable',
+                'title': 'Villalta评分表',
+                'coltitle': ['症状与体征', '临床评分'],
+                'rawname': [
+                    {
+                        type: 'radio',
+                        title: '疼痛',
+                        value: [{lable: '无', score: '0'}, {lable: '轻度', score: '1'}, {lable: '中度', score: '2'}, {lable: '重度', score: '3'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '痉挛',
+                        value: [{lable: '无', score: '0'}, {lable: '轻度', score: '1'}, {lable: '中度', score: '2'}, {lable: '重度', score: '3'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '沉重感',
+                        value: [{lable: '无', score: '0'}, {lable: '轻度', score: '1'}, {lable: '中度', score: '2'}, {lable: '重度', score: '3'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '感觉异常',
+                        value: [{lable: '无', score: '0'}, {lable: '轻度', score: '1'}, {lable: '中度', score: '2'}, {lable: '重度', score: '3'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '瘙痒',
+                        value: [{lable: '无', score: '0'}, {lable: '轻度', score: '1'}, {lable: '中度', score: '2'}, {lable: '重度', score: '3'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '胫骨前水肿',
+                        value: [{lable: '无', score: '0'}, {lable: '轻度', score: '1'}, {lable: '中度', score: '2'}, {lable: '重度', score: '3'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '色素沉着',
+                        value: [{lable: '无', score: '0'}, {lable: '轻度', score: '1'}, {lable: '中度', score: '2'}, {lable: '重度', score: '3'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '静脉扩张',
+                        value: [{lable: '无', score: '0'}, {lable: '轻度', score: '1'}, {lable: '中度', score: '2'}, {lable: '重度', score: '3'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '发红',
+                        value: [{lable: '无', score: '0'}, {lable: '轻度', score: '1'}, {lable: '中度', score: '2'}, {lable: '重度', score: '3'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '皮肤硬化',
+                        value: [{lable: '无', score: '0'}, {lable: '轻度', score: '1'}, {lable: '中度', score: '2'}, {lable: '重度', score: '3'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '小腿按压疼痛',
+                        value: [{lable: '无', score: '0'}, {lable: '轻度', score: '1'}, {lable: '中度', score: '2'}, {lable: '重度', score: '3'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '溃疡',
+                        value: [{lable: '无', score: '0'}, {lable: '有', score: '15'}]
+                    },
+                    {
+                        type: 'input',
+                        title: '总分',
+                    },
+                    {
+                        type: 'input',
+                        title: '分级',
+                    }
+                ],
+                'totalRow': 12,
+                'levelRow': 13,
+                'levelDetail': [
+                    {'min': '-1', 'max': '4', 'level': '正常(无PTS)'},
+                    {'min': '4', 'max': '9', 'level': '轻度'},
+                    {'min': '9', 'max': '14', 'level': '中度'},
+                    {'min': '14', 'max': '50', 'level': '重度'},
+                ],
+                'bottomTitle': 'Villalta评分标准由两部分组成，一是患者下肢症状，主要包括部分即肢体疼痛，下肢静脉性肌肉疫挛，下肢沉重感，下肢皮肤感觉异常及下肢皮肤瘙痒；二是患者下肢体征，主要包括部分，即下肢腔前水肿，下肢皮肤硬结，皮肤色素沉着，皮肤皮色发红，下肢静脉曲张、腓肠肌压痛、下肢皮肤渍窃等。每一项指标，根据其严重度，可分为0分，1分，2分，3分。根据评分的髙低，将PTS分为四级，正常（0-4）分（无PTS），轻度（5-9）分，中度（10-14）分，重度（≥15分）；凡出现溃疡者，无论评分是否>14分,均为重度PTS性静脉溃疡。',
                 'hidden': false
             }
         ],

@@ -12,6 +12,7 @@ export class SingletableComponent extends Question implements OnInit {
     answerChanged = false;
     editdisabled = false;
     totalRow: number;
+    levelRow: number;
 
     constructor() {
         super();
@@ -20,12 +21,15 @@ export class SingletableComponent extends Question implements OnInit {
     ngOnInit() {
         this.localAnswer = new Array(this.question.rawname.length);
         this.totalRow = this.question.totalRow;
+        if (this.question.levelRow) {
+            this.levelRow = this.question.levelRow;
+        }
     }
     answerChange() {
         const res = [];
 
         for (let row = 0; row < this.question.rawname.length; row ++) {  // 行
-            if ( this.localAnswer[row] !== '') {
+            if ( this.localAnswer[row] !== '' && this.localAnswer[row]) {
                 const item = {
                     Record_ID : '',
                     Record_Value: ''
@@ -62,10 +66,20 @@ export class SingletableComponent extends Question implements OnInit {
         for (let i = 0; i < this.totalRow; i++) {
             if (!this.localAnswer[i]) {
             } else {
-                total = total + parseInt(this.localAnswer[i]);
+                total = total + parseFloat(this.localAnswer[i]);
             }
         }
         console.log(total);
         this.localAnswer[this.totalRow] = total;
+    }
+
+    getLevel() {
+        if (this.levelRow) {
+            this.question.levelDetail.forEach(d => {
+                if (this.localAnswer[this.totalRow] > d.min && this.localAnswer[this.totalRow] <= d.max) {
+                    this.localAnswer[this.levelRow] = d.level;
+                }
+            });
+        }
     }
 }
