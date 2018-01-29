@@ -5144,21 +5144,65 @@ export class QuestionList {
                 'id2': ['dc1', 'dc2', 'dc3', 'dc4', 'dc5', 'dc6', 'dc7', 'dc8', 'dc9', 'dc9a', 'dc10'],
                 'id1': '4.3',
                 'type': 'singletable',
-                'title': '发生深静脉(血栓形成)可能性的临床评估模型 Wels评分（①1分 ②2分）',
+                'title': '发生深静脉(血栓形成)可能性的临床评估模型 Wells评分（①1分 ②-2分 ③0分）',
                 'coltitle': ['危险因素', '临床评分'],
                 'rawname': [
-                    '合并癌症（治疗中或治疗后前6个月内或姑息治疗）',
-                    '瘫痪、局部麻痹或近期下肢石膏固定史',
-                    '近期卧床>3d或手术后四周内',
-                    '炎深静脉走行的局限性压痛',
-                    '整条腿肿',
-                    '小腿周径肿胀侧较正常侧>3cm（胫骨结节下10cm处测量）',
-                    '限于患肢的凹陷性水肿',
-                    '浅静脉显现（除外静脉曲张）',
-                    '有可替换的其他诊断,或可能性大于DVT的诊断',
-                    '下肢静脉血栓病史',
-                    '总分'
+                    {
+                        type: 'radio',
+                        title: '合并癌症（治疗中或治疗后前6个月内或姑息治疗）',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score: '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '瘫痪、局部麻痹或近期下肢石膏固定史',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '近期卧床>3d或手术后四周内',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score: '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '沿深静脉走行的局限性压痛',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score: '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '整条腿肿',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '小腿周径肿胀侧较正常侧>3cm（胫骨结节下10cm处测量）',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '限于患肢的凹陷性水肿',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '浅静脉显现（除外静脉曲张）',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '有可替换的其他诊断,或可能性大于DVT的诊断',
+                        value: [{lable: '-2', score: '-2'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'radio',
+                        title: '下肢静脉血栓病史',
+                        value: [{lable: '1', score: '1'}, {lable: '0', score:  '0'}]
+                    },
+                    {
+                        type: 'input',
+                        title: '总分',
+                    }
                 ],
+                'totalRow': 10,
                 'bottomTitle': '',
                 'hidden': false
             },
@@ -5167,7 +5211,7 @@ export class QuestionList {
                 'id1': '4.4.1',
                 'type': 'singletable',
                 'title': 'PESI评分表原始版',
-                'coltitle': ['内容', ' '],
+                'coltitle': ['内容', '评分'],
                 'rawname': [
                     '年龄',
                     '性别',
