@@ -37,7 +37,7 @@ export class DatecmpComponent extends Question {
                 'in_date': this.date
             };
             this.onVoted.emit(votedata);
-        }else if (this.question.id1 === '1.14') {
+        }else if (this.question.id1 === '1.15') {
             const votedata = {
                 'out_date': this.date
             };

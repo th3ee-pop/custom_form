@@ -27,7 +27,7 @@ export class Info1Component implements OnInit, AfterViewInit {
 
     current = 1;
     questionSave = []; // 用来传到后端
-    questionList = []
+    questionList = [];
     schedule_list = new ScheduleList().schedule_list; // 步骤条的list
     resultList = [];                                  // 用于封装答案
     PID = '';
@@ -98,10 +98,10 @@ export class Info1Component implements OnInit, AfterViewInit {
         const outDate = votedata.out_date;
         if( inDate && inDate !== null ){
             this.DateItem.forEach( item => {
-                if( item.question.id1 === '1.14' && item.date !== null ){
+                if( item.question.id1 === '1.15' && item.date !== null ){
                     const answer = Date.parse((item.date).toString()) - Date.parse(inDate);
                     this.InputItems.forEach( aitem => {
-                        if( aitem.question.id1 === '1.15'){
+                        if( aitem.question.id1 === '1.16'){
                             console.log(answer);
                             aitem.localAnswer =  (answer/60/60/24/1000).toFixed(0)+'天';
                         }
@@ -113,7 +113,7 @@ export class Info1Component implements OnInit, AfterViewInit {
                 if( item.question.id1 === '1.13' && item.date !== null ){
                     const answer = Date.parse(outDate) - Date.parse((item.date).toString());
                     this.InputItems.forEach( aitem => {
-                        if( aitem.question.id1 === '1.15'){
+                        if( aitem.question.id1 === '1.16'){
                             console.log(answer);
                             aitem.localAnswer =  (answer/60/60/24/1000).toFixed(0)+'天';
                         }
@@ -280,7 +280,6 @@ export class Info1Component implements OnInit, AfterViewInit {
                     });
                 });
                 this.DateItem.forEach( item => {
-                    // console.log(item);
                     const id = item.question.id2;
                     for (let i = 0; i < pageOne.length; i++) {
                         if (pageOne[i][id] && pageOne[i][id] !== '') { item.date = new Date(pageOne[i][id]); }
