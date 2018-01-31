@@ -209,8 +209,10 @@ export class Info1Component implements OnInit, AfterViewInit {
             }
         });
         this.AddrItem.forEach(item => {
-            for (let i = 0; i < item.answer.length; i++) {
+            if(item.answer){
+                for (let i = 0; i < item.answer.length; i++) {
                     this.resultList.push(item.answer[i]);
+                }
             }
         });
         this.DateItem.forEach(item => {
@@ -247,7 +249,7 @@ export class Info1Component implements OnInit, AfterViewInit {
                         }
                     }
                 });
-                // console.log(pageOne);
+                console.log(pageOne);
                 if (this.fillingList && this.fillingList.length !== 0) {
                     this.InputItems.forEach(item => {
                         pageOne.forEach( fl => {
@@ -270,12 +272,13 @@ export class Info1Component implements OnInit, AfterViewInit {
                     }
                 });
                 this.AddrItem.forEach(item => {
-                    // console.log(item);
+                    console.log(item);
                     pageOne.forEach( fl => {
                         const id = item.question.id2;
                         if (fl[id] && fl[id] !== '') {
                             // console.log(fl[id]);
-                            item.initArray = fl[id].split('/');
+                            // item.transfer(fl[id]);
+                            item.initArray = fl[id].split(' ')[4].split(",");
                         }
                     });
                 });
