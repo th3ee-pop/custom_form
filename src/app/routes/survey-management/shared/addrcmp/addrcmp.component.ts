@@ -44,13 +44,6 @@ export class AddrcmpComponent extends Question implements OnInit {
         this.cities = [];
         this.service.getChinaDivision("cities").subscribe(res => {
             const cities = res.json();
-            console.log(this.initArray[0]);
-            console.log(cities);
-            // const matchProvince = this.provinces.filter((province) => {
-            //     console.log(province);
-            //     return province.name === this.initArry[0];
-            // });
-            // console.log(matchProvince);
             cities.forEach((city)=>{
                 if( city.parent_code === this.initArray[0]){
                     this.cities.push({
@@ -59,15 +52,20 @@ export class AddrcmpComponent extends Question implements OnInit {
                     })
                 }
             });
-            console.log(this.cities);
-        })
+        });
+        if( this.provinces) {
+            this.provinces.map(province => {
+                if( province.value == this.initArray[0]){
+                    this.nameArray[0]=province.label;
+                    console.log(this.nameArray);
+                }
+            });
+        }
     }
     getArea(){
         this.areas = [];
         this.service.getChinaDivision("areas").subscribe(res => {
             const areas = res.json();
-            console.log(this.initArray[1]);
-            console.log(areas);
             areas.forEach((area)=>{
                 if( area.parent_code === this.initArray[1]){
                     this.areas.push({
@@ -76,15 +74,21 @@ export class AddrcmpComponent extends Question implements OnInit {
                     })
                 }
             });
-            console.log(this.areas);
-        })
+        });
+        if( this.cities){
+            this.cities.map(city => {
+                if( city.value == this.initArray[1]){
+                    this.nameArray[1]=city.label;
+                }
+            });
+        }
     }
     getStreet(){
         this.streets = [];
         this.service.getChinaDivision("streets").subscribe(res => {
             const streets = res.json();
             console.log(this.initArray[2]);
-            console.log(streets);
+            // console.log(streets);
             streets.forEach((street)=>{
                 if( street.parent_code === this.initArray[2]){
                     this.streets.push({
@@ -93,10 +97,21 @@ export class AddrcmpComponent extends Question implements OnInit {
                     })
                 }
             });
-            console.log(this.streets);
-        })
+        });
+        if( this.areas){
+            this.areas.map(area => {
+                if( area.value == this.initArray[2]){
+                    this.nameArray[2]=area.label;
+                }
+            });
+        }
     }
     answerChange(){
+        this.streets.map(street => {
+            if( street.value == this.initArray[3]){
+                this.nameArray[3]=street.label;
+            }
+        });
         const res = [];
         const tem = {
             Record_ID: '',
@@ -104,9 +119,8 @@ export class AddrcmpComponent extends Question implements OnInit {
         };
         const questionID = this.question.id2;
         tem.Record_ID = questionID;
-        tem.Record_Value = this.initArray.join('/');
+        tem.Record_Value = this.nameArray.join(' ') + this.initArray;
         res.push(tem);
-        console.log(res);
         this.answer = res;
     }
 }
