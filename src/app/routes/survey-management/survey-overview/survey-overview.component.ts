@@ -141,10 +141,19 @@ export class SurveyOverviewComponent implements OnInit {
      * @param PID 根据pid下载单个数据
      */
     downloadByPID(PID) {
+        console.log(PID);
         const filePath = 'vascular/exportcsv/';
         const fileName = 'PID' + PID + '.csv';
         const PIDs = [PID];  // 单个元素
         this.fileDownloader.downloadFile(filePath, {'PID_list': [PID]}, fileName);
+    }
+
+    generateByPID(PID) {
+        console.log(PID);
+        const filePath = 'vascular/exportdocx/';
+        const fileName = 'PID' + PID + '.docx';
+        const PIDs = [PID];  // 单个元素
+        this.fileDownloader.downloadFile(filePath, {'PID': PID}, fileName);
     }
 
     /**
