@@ -118,9 +118,14 @@ export class AddrcmpComponent extends Question implements OnInit {
             Record_Value: ''
         };
         const questionID = this.question.id2;
-        tem.Record_ID = questionID;
-        tem.Record_Value = this.nameArray.join(' ') + this.initArray;
+        tem.Record_ID = questionID + 'a';
+        tem.Record_Value = this.nameArray.join(' ') + this.initArray[4];
+        const addrCode = {
+            Record_ID: this.question.id2,
+            Record_Value: this.initArray.join(' ')
+        };
         res.push(tem);
+        res.push(addrCode);
         this.answer = res;
     }
 }

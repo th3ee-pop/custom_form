@@ -278,7 +278,7 @@ export class Info1Component implements OnInit, AfterViewInit {
                         if (fl[id] && fl[id] !== '') {
                             // console.log(fl[id]);
                             // item.transfer(fl[id]);
-                            item.initArray = fl[id].split(' ')[4].split(",");
+                            item.initArray = fl[id].split(' ');
                         }
                     });
                 });
