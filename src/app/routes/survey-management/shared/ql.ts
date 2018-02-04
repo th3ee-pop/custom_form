@@ -4275,7 +4275,7 @@ export class QuestionList {
                 'hidden': false
             },
             {
-                'id2': 'cat8b',
+                'id2': 'cat9a',
                 'id1': '3.23.3.a',
                 'type': 'input',
                 'content': {
@@ -4287,7 +4287,7 @@ export class QuestionList {
                 'hidden': false
             },
             {
-                'id2': 'cat8b',
+                'id2': 'cat9b',
                 'id1': '3.23.3.b',
                 'type': 'input',
                 'content': {

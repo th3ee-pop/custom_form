@@ -196,7 +196,7 @@ export class Info0Component implements OnInit, AfterViewInit  {
             this.fillingList.forEach(d => {
                 for (const key in d) {
                     if (key.substr(0, 1) === 'n'
-                        || key === 'IDnumber'
+                        || key === 'Idnumber'
                         || key === 'doctor'
                         || key.substr(0, 4) === 'type'
                         || key.substr(0, 4) === 'diag'
