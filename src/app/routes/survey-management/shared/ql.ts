@@ -215,7 +215,7 @@ export class QuestionList {
                 'id2': 'diagc1',
                 'id1': '0.17.1',
                 'type': 'radio',
-                'title': '肺动脉危险分层',
+                'title': '肺栓塞危险分层',
                 'content': ['低危', '中低危', '中高危', '高危'],
                 'hiddenlist': [],
                 'hidden': false
@@ -1079,7 +1079,7 @@ export class QuestionList {
                     'validtype': 'number',
                     'information': ''
                 },
-                'title': '病程',
+                'title': '病程 单位：年',
                 'hidden': false
             },
             {
@@ -1147,7 +1147,7 @@ export class QuestionList {
                     'validtype': 'number',
                     'information': ''
                 },
-                'title': '最高收缩压',
+                'title': '最高收缩压（mmHg）',
                 'hidden': false
             },
             {
@@ -1159,7 +1159,7 @@ export class QuestionList {
                     'validtype': 'number',
                     'information': ''
                 },
-                'title': '最高舒张压',
+                'title': '最高舒张压（mmHg）',
                 'hidden': false
             },
             {
@@ -1171,7 +1171,7 @@ export class QuestionList {
                     'validtype': 'number',
                     'information': ''
                 },
-                'title': '平素收缩压',
+                'title': '平素收缩压（mmHg）',
                 'hidden': false
             },
             {
@@ -1183,7 +1183,7 @@ export class QuestionList {
                     'validtype': 'number',
                     'information': ''
                 },
-                'title': '平素舒张压',
+                'title': '平素舒张压（mmHg）',
                 'hidden': false
             },
             {
@@ -1212,7 +1212,7 @@ export class QuestionList {
                     'validtype': 'number',
                     'information': ''
                 },
-                'title': '病程',
+                'title': '病程 单位：年',
                 'hidden': false
             },
             {
@@ -1487,7 +1487,7 @@ export class QuestionList {
                     'validtype': 'number',
                     'information': ''
                 },
-                'title': '病程',
+                'title': '病程 单位：年',
                 'hidden': false
             },
             {
@@ -1792,7 +1792,7 @@ export class QuestionList {
                 'id2': 'caeb1',
                 'id1': '3.5.2',
                 'type': 'radio',
-                'title': 'TTA',
+                'title': '脑梗死',
                 'content': [
                     '否',
                     '是'
@@ -1824,7 +1824,7 @@ export class QuestionList {
                     'validtype': 'number',
                     'information': ''
                 },
-                'title': '每次发作时间',
+                'title': '每次发作时间（小时/分）',
                 'hidden': false
             },
             {
@@ -1851,7 +1851,7 @@ export class QuestionList {
                     'validtype': 'number',
                     'information': ''
                 },
-                'title': '病程',
+                'title': '病程 单位：年',
                 'hidden': false
             },
             {
@@ -2072,7 +2072,7 @@ export class QuestionList {
                     'validtype': 'number',
                     'information': ''
                 },
-                'title': '手术持续时间',
+                'title': '手术持续时间 单位：小时',
                 'hidden': false
             },
             {
@@ -4001,7 +4001,7 @@ export class QuestionList {
                     'validtype': 'number',
                     'information': ''
                 },
-                'title': '绝经年龄',
+                'title': '绝经年龄 单位：岁',
                 'hidden': false
             },
             {
@@ -4672,14 +4672,14 @@ export class QuestionList {
                     'validtype': 'number',
                     'information': ''
                 },
-                'title': '症状出现时间',
+                'title': '症状出现时间（月/日）',
                 'hidden': false
             },
             {
                 'id2': 'da2',
                 'id1': '4.1.2',
                 'type': 'radio',
-                'title': '发病时间',
+                'title': '发病情况',
                 'content': ['首次发生', '复发'],
                 'hiddenlist': [],
                 'hidden': false
@@ -4924,7 +4924,7 @@ export class QuestionList {
                     'validtype': 'number',
                     'information': ''
                 },
-                'title': '收缩压',
+                'title': '收缩压(mmHg)',
                 'hidden': false
             },
             {
@@ -4936,7 +4936,7 @@ export class QuestionList {
                     'validtype': 'number',
                     'information': ''
                 },
-                'title': '舒张压',
+                'title': '舒张压(mmHg)',
                 'hidden': false
             },
             {
@@ -5002,7 +5002,7 @@ export class QuestionList {
                     'validtype': 'number',
                     'information': ''
                 },
-                'title': '运动耐量',
+                'title': '运动耐量 单位：米',
                 'hidden': false
             },
             {
@@ -5023,7 +5023,7 @@ export class QuestionList {
                     'validtype': 'number',
                     'information': ''
                 },
-                'title': '6分钟步行实验',
+                'title': '6分钟步行试验 单位：米',
                 'hidden': false
             },
             {
@@ -6168,6 +6168,19 @@ export class QuestionList {
                 , '6.3.1.2', '6.3.1.2.1', '6.3.1.2.2'
                 ], []],
                 'hidden': false
+            },{
+                'id2': 'gcw',
+                'id1': '6.3.1',
+                'type': 'radio',
+                'content': [
+                    '否',
+                    '是'
+                ],
+                'title': '药械耦连',
+                'hiddenlist': [['6.3.1.1', '6.3.1.1.1', '6.3.1.1.2', '6.3.1.1.3'
+                , '6.3.1.2', '6.3.1.2.1', '6.3.1.2.2'
+                ], []],
+                'hidden': false
             },
             {
                 'id2': 'gcwa',
@@ -6297,12 +6310,25 @@ export class QuestionList {
                     '其他'
                 ],
                 'title': '是否植入滤器',
-                'hiddenlist': [['6.3.3.1'], ['6.3.3.1'], ['6.3.3.1'], ['6.3.3.1'], ['6.3.3.1'], ['6.3.3.1'], ['6.3.3.1'], ['6.3.3.1'], []],
+                'hiddenlist': [['6.3.3.1','6.3.3.2'], ['6.3.3.2'], ['6.3.3.2'], ['6.3.3.2'], ['6.3.3.2'], ['6.3.3.2'], ['6.3.3.2'], ['6.3.3.2'], []],
                 'hidden': false
             },
             {
                 'id2': 'gcwd1',
                 'id1': '6.3.3.1',
+                'type': 'radio',
+                'content': [
+                    '肾上',
+                    '肾下',
+                    '肝下'
+                ],
+                'title': '滤器位置',
+                'hiddenlist':[],
+                'hidden': false
+            },
+            {
+                'id2': 'gcwd2',
+                'id1': '6.3.3.2',
                 'type': 'input',
                 'content': {
                     'datatype': 'text',
@@ -6310,7 +6336,7 @@ export class QuestionList {
                     'information': ''
                 },
                 'title': '其它滤器名称',
-                'hidden': true
+                'hidden': false
             },
              {
             'id2': 'gcy',
@@ -6361,6 +6387,44 @@ export class QuestionList {
                 'id1': '6.3.5',
                 'type': 'radio',
                 'content': [
+                    'I',
+                    'II',
+                    'III',
+                    'IV',
+                ],
+                'title': '下腔静脉血栓',
+                'hiddenlist': [],
+                'hidden': false
+            }, {
+                'id2': 'gcza',
+                'id1': '6.3.6',
+                'type': 'radio',
+                'content': [
+                    '否',
+                    '球扩',
+                    '支架'
+                ],
+                'title': '髂静脉成型',
+                'hiddenlist': [['6.3.6.1'],[],[]],
+                'hidden': false
+            },
+            {
+                'id2': 'gcza1',
+                'id1': '6.3.6.1',
+                'type': 'input',
+                'content': {
+                    'datatype': 'text',
+                    'validtype': '',
+                    'information': ''
+                },
+                'title': '支架型号',
+                'hidden': false
+            },
+            {
+                'id2': 'gczb',
+                'id1': '6.3.5',
+                'type': 'radio',
+                'content': [
                     '否',
                     '是'
                 ],
@@ -6369,7 +6433,7 @@ export class QuestionList {
                 'hidden': false
             },
             {
-                'id2': ['gcz1', 'gcz2', 'gcz3', 'gcz4'],
+                'id2': ['gczb1', 'gczb2', 'gczb3'],
                 'id1': '6.3.5.1',
                 'type': 'multi-radio',
                 'title': '术中不良反应',
@@ -6377,7 +6441,7 @@ export class QuestionList {
                 'hidden': false
             },
             {
-                'id2': 'gcz4',
+                'id2': 'gczb4',
                 'id1': '6.3.5.2',
                 'type': 'radio',
                 'content': [
@@ -6389,7 +6453,7 @@ export class QuestionList {
                 'hidden': false
             },
             {
-                'id2': 'gcz4a',
+                'id2': 'gczb4a',
                 'id1': '6.3.5.2.1',
                 'type': 'input',
                 'content': {
