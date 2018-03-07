@@ -66,6 +66,20 @@ export class Info8Component extends Question implements OnInit {
 
     rowTitle_9 = ['C反应蛋白(mg/L)'];
     columnTitle_9 = ['入院时', '第二次检查'];
+
+    data_10 = [
+        {category: '物理治疗', children: ['气压泵治疗', '硫酸镁冷敷', '着医用弹力袜']},
+        {category: '消肿药物', children: ['草木犀流浸液片', '羟苯磺酸钙', '马栗种子提取物片', '地奥司明', '七叶皂苷钠', '其他']},
+        {category: '扩管改善循环药', children: ['丹参注射液', '疏血通', '丹参多酚酸盐', '丹参川芎嗪', '其他']},
+        {category: '抗凝药', children: ['普通肝素', '低分子肝素', '磺达肝癸钠', '阿加曲班', '比伐卢定', '华法林', '利伐沙班', '达比加群酯']},
+        {category: '溶栓药', children: ['尿激酶', 'rtPA']},
+        {category: '降肺压药', children: ['西地那非', '曲前列尼尔', '波生坦', '安立生坦', '贝前列素钠']},
+        {category: '心血管药物', children: ['氢氯噻嗪', '安体舒通', '呋塞米', '地高辛']},
+        {category: '其他特殊用药', children: ['']}
+    ];
+    columnTitle_10 = ['项目', '内容', '种类', '剂量', '用法', '频次', '用药时间'];
+    rowTitle_10 = [];
+
     constructor(private router: Router,
                 private route: ActivatedRoute) {
 
@@ -85,5 +99,22 @@ export class Info8Component extends Question implements OnInit {
             });
         }
 
+
+        this.data_10.forEach(d => {
+            for (let i = 0; i < d.children.length; i++) {
+                const sets = {
+                    category: d.category,
+                    value: d.children[i],
+                    length: d.children.length,
+                    start: i === 0
+                };
+                this.rowTitle_10.push(sets);
+            }
+            });
+        console.log(this.rowTitle_10);
+    }
+
+    initAnswerBox(row: number, column: number, id: string) {
+        
     }
 }
