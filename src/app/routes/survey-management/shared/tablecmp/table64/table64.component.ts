@@ -61,9 +61,6 @@ export class Table64Component extends Question implements OnInit {
       for (let i = 0; i < this.initialArray.length; i++) {
             if (this.initialArray[i] && this.initialArray[i] !== '') {
                 if(i == 0 || i==2 || (27<i&&i<43)){
-                    // console.log(i);
-                    // console.log( this.question.id2[i]);
-                    // console.log( this.initialArray[i]);
                 this.changedAnswer.push({
                     Record_ID: this.idArray[i],
                     Record_Value: this.initialArray[i]
@@ -76,9 +73,18 @@ export class Table64Component extends Question implements OnInit {
                 }
             }
         }
+        if ( this.answerCheck() === true)
+            this.answerChanged = true;
+        else
+            this.answerChanged = false;
     }
 
-    answerChange(){
-
+    answerCheck() {
+        for ( let i = 0; i < this.changedAnswer.length; i++) {
+            if (this.changedAnswer[i] && this.changedAnswer[i].Record_Value !== '' && this.changedAnswer[i].Record_Value !== -1) {
+                return true;
+            }
+        }
+        return false;
     }
 }

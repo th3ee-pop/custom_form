@@ -47,6 +47,8 @@ export class Info5Component implements OnInit, AfterViewInit {
     PID = '';
     fillingList = [];                                 // 用于从后端获取答案
     putRecord = {};
+    buttondisable = false;
+    currentModal; // 模态框
 
     constructor(private router: Router,
                 private route: ActivatedRoute,
@@ -106,25 +108,16 @@ export class Info5Component implements OnInit, AfterViewInit {
             }
         }
     }
-    next() {
-        // if (this.confirm().confrims) {
+
+    /** 下一步 **/
+    next(step_index? : any) {
+        const numWords = ['info0', 'info1', 'info2', 'info3', 'info4', 'info5', 'info6', 'info7', 'info8'];
         this.initPutRecord();
-        console.log(this.putRecord);
-        this.service.putRecord(this.putRecord).subscribe((res) => {
-            console.log(res);
-            this.router.navigate(['system/survey/info6/' + this.PID]);
+        this.service.putRecord(this.putRecord).subscribe( (res) => {
+            this.router.navigate(['system/survey/' + numWords[step_index] + '/' + this.PID]);  // 拼接跳转链接
         });
-        // } else {
-        //     let str = '';
-        //     this.confirm().confirmsList.forEach( item => {
-        //         str = str + item + '、';
-        //     });
-        //     this.confirmServ.error({
-        //         title: '您还有以下必填项未完成：',
-        //         content: str
-        //     });
-        // }
     }
+
     temporary_deposit() {
         this.initPutRecord();
         console.log(this.putRecord);
@@ -154,20 +147,121 @@ export class Info5Component implements OnInit, AfterViewInit {
             this.putRecord = { 'Records': this.resultList };
         }
     }
+    /**
+     *  页面跳转，弹窗检验是否填完，若选择确定则继续跳转，否则留在当前页面
+     */
+    jumpTo(step_index , footer) {
+        const numWords = ['info0', 'info1', 'info2', 'info3', 'info4', 'info5', 'info6', 'info7', 'info8'];
+        if (this.PID && step_index !== this.current) { // 如果有病人编号，则跳跃
+            if (this.buttondisable === true) {
+                this.router.navigate(['system/survey/' + numWords[step_index] + '/' + this.PID]);  // 拼接跳转链接
+            } else {
+                if (this.confirm().confirms) {
+                    this.next(step_index);
+                }else {
+                    let rest = '（本页剩余：' + (this.confirm().confirmP*100).toFixed(3) + '%）';
+                    let str = '';
+                    for ( let i = 0; i < this.confirm().confirmsList.length; i++) {
+                        str = str + this.confirm().confirmsList[i] + '、';
+                    }
+                    this.currentModal = this.confirmServ.open({
+                        title: '您还有以下必填项没有完成' + rest ,
+                        content: str,
+                        footer: footer,
+                        onOk() {},
+                        onCancel() {}
+                    });
+                }
+            }
+        }
+    }
+
+    /**
+     * 取消跳转
+     */
+    handleCancel() {
+        this.currentModal.destroy('onCancel');
+    }
+
+    /**
+     * 选择确定，则跳转到指定页面
+     * @param step_index
+     */
+    handleOk(step_index) {
+        /* destroy方法可以传入onOk或者onCancel。默认是onCancel */
+        this.currentModal.destroy('onOk');
+        this.currentModal = null;
+        this.next(step_index);
+    }
+
     confirm() {
         const confirmlist = [];
+        let confirmnum = 0;
         let confirms = true;
-        this.InputItems.forEach(item => { if (item.question.hidden === false && item.answerChanged === false) {
+        this.InputItems.forEach(item => {
+            confirmnum ++;
+            if (item.question.hidden === false && item.answerChanged === false) {
             confirms = false;
             confirmlist.push(item.question.id1);
         }});
-        this.RadioItems.forEach(item => { if (item.question.hidden === false && item.answerChanged === false) {
+        this.RadioItems.forEach(item => {
+            confirmnum ++;
+            if (item.question.hidden === false && item.answerChanged === false) {
             confirms = false;
             confirmlist.push(item.question.id1);
         }});
+        this.MultiTableItems.forEach(item => {
+            confirmnum ++;
+            if (item.question.hidden === false && item.answerChanged === false) {
+            confirms = false;
+            confirmlist.push(item.question.id1);
+        }});
+        this.ExampleItems.forEach(item => {
+            item.getAnswer();
+            confirmnum ++;
+            if (item.question.hidden === false && item.answerChanged === false) {
+            confirms = false;
+            confirmlist.push(item.question.id1);
+        }});
+        this.SelectableTableItems.forEach(item => {
+            item.getAnswer();
+            confirmnum ++;
+            if (item.question.hidden === false && item.answerChanged === false) {
+            confirms = false;
+            confirmlist.push(item.question.id1);
+        }});
+        this.Table52Items.forEach(item => {
+            item.getAnswer();
+            confirmnum ++;
+            if (item.question.hidden === false && item.answerChanged === false) {
+                confirms = false;
+                confirmlist.push(item.question.id1);
+            }});
+        this.Table53Items.forEach(item => {
+            item.getAnswer();
+            confirmnum ++;
+            if (item.question.hidden === false && item.answerChanged === false) {
+                confirms = false;
+                confirmlist.push(item.question.id1);
+            }});
+        this.Table54Items.forEach(item => {
+            item.getAnswer();
+            confirmnum ++;
+            if (item.question.hidden === false && item.answerChanged === false) {
+                confirms = false;
+                confirmlist.push(item.question.id1);
+            }});
+        this.Table55Items.forEach(item => {
+            item.getAnswer();
+            confirmnum ++;
+            if (item.question.hidden === false && item.answerChanged === false) {
+                confirms = false;
+                confirmlist.push(item.question.id1);
+            }});
         const confirmAll = {
-            confrims: confirms,
-            confirmsList: confirmlist
+            confirms: confirms,
+            confirmsList: confirmlist,
+            confirmP: confirmlist.length/confirmnum
         };
         return confirmAll;
     }
@@ -286,7 +380,7 @@ export class Info5Component implements OnInit, AfterViewInit {
                 });
                 this.MultiTableItems.forEach(item => {
                     const id = item.idArray;
-                    console.log(id);
+                    // console.log(id);
                     pageFive.forEach(d => {
                         for (let i = 0; i < item.row; i++) {
                             for (let j = 0; j < item.column; j++) {
@@ -299,7 +393,7 @@ export class Info5Component implements OnInit, AfterViewInit {
                 });
                 this.ExampleItems.forEach(item => {
                     const id = item.idArray;
-                    console.log(id);
+                    // console.log(id);
                     pageFive.forEach(d => {
                         for (let i = 0; i < item.row; i++) {
                             for (let j = 0; j < item.column; j++) {
@@ -312,7 +406,7 @@ export class Info5Component implements OnInit, AfterViewInit {
                 });
                 this.SelectableTableItems.forEach(item => {
                     const id = item.idArray;
-                    console.log(id);
+                    // console.log(id);
                     pageFive.forEach(d => {
                         for (let i = 0; i < item.row; i++) {
                             for (let j = 0; j < item.column + 1; j++) {
@@ -328,7 +422,7 @@ export class Info5Component implements OnInit, AfterViewInit {
                 });
                 this.Table52Items.forEach(item => {
                     const id = item.idArray;
-                    console.log(id);
+                    // console.log(id);
                     pageFive.forEach(d => {
                         for (let i = 0; i < item.row + item.overallItem - 1 ; i++) {
                             for (let j = 0; j < item.column ; j++) {
@@ -341,7 +435,7 @@ export class Info5Component implements OnInit, AfterViewInit {
                 });
                 this.Table53Items.forEach(item => {
                     const id = item.idArray;
-                    console.log(id);
+                    // console.log(id);
                     pageFive.forEach(d => {
                         for (let i = 0; i < item.row; i++) {
                             for (let j = 0; j < item.column; j++) {
@@ -354,7 +448,7 @@ export class Info5Component implements OnInit, AfterViewInit {
                 });
                 this.Table54Items.forEach(item => {
                     const id = item.idArray;
-                    console.log(id);
+                    // console.log(id);
                     pageFive.forEach(d => {
                         for (let j = 0; j < item.initialArray.length; j++) {
                             if (d[id[j]] && d[id[j]] !== '') {
@@ -365,7 +459,7 @@ export class Info5Component implements OnInit, AfterViewInit {
                 });
                 this.Table55Items.forEach(item => {
                     const id = item.idArray;
-                    console.log(id);
+                    // console.log(id);
                     pageFive.forEach(d => {
                         for (let i = 0; i < item.row; i++) {
                             for (let j = 0; j < item.column * 2 - item.selectableCol + 1; j++) {

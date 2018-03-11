@@ -36,10 +36,10 @@ export class MultiRadioComponent extends Question  implements OnInit {
             }
         }
         this.answer = res;
-        // if ( this.answerCheck() === true)
-        //     this.answerChanged = true;
-        // else
-        //     this.answerChanged = false;
+        if ( this.answerCheck() === true)
+            this.answerChanged = true;
+        else
+            this.answerChanged = false;
     }
 
     answerCheck() {
@@ -49,5 +49,8 @@ export class MultiRadioComponent extends Question  implements OnInit {
         });
         return false;
     }
-    getAnswer() {}
+    getAnswer() {
+        this.localAnswer = [];
+        this.answerChange();
+    }
 }

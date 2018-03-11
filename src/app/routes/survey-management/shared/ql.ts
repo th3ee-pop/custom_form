@@ -173,7 +173,7 @@ export class QuestionList {
                 'title': '左/右',
                 'content': ['左', '右'],
                 'hiddenlist': [],
-                'hidden': true
+                'hidden': false
             },
             {
                 'id2': 'diagt',
@@ -1819,10 +1819,10 @@ export class QuestionList {
                 'id2': 'caeb3',
                 'id1': '3.5.2.2',
                 'type': 'input',
-                'content': {
-                    'datatype': 'text',
-                    'validtype': 'number',
-                    'information': ''
+                'content':     {
+                    'datatype': 'unit',
+                    'validtype': '',
+                    'information': ['小时' , '分']
                 },
                 'title': '每次发作时间（小时/分）',
                 'hidden': false
@@ -4668,9 +4668,9 @@ export class QuestionList {
                 'id1': '4.1.1',
                 'type': 'input',
                 'content': {
-                    'datatype': 'text',
+                    'datatype': 'unit',
                     'validtype': 'number',
-                    'information': ''
+                    'information': ['月','日']
                 },
                 'title': '症状出现时间（月/日）',
                 'hidden': false
@@ -5651,7 +5651,7 @@ export class QuestionList {
             },
             {
                 'id2': ['df1', 'df2', 'df3', 'df4', 'df5', 'df6', 'df7', 'df8', 'df9', 'df10', 'df11', 'df12', 'df13', 'df14'],
-                'id1': '4.6.2',
+                'id1': '4.6.3',
                 'type': 'singletable',
                 'title': 'Villalta评分表',
                 'coltitle': ['症状与体征', '临床评分'],
@@ -6049,11 +6049,12 @@ export class QuestionList {
             {
                 'id2': 'ga',
                 'id1': '6.1.1',
+                'hidden': false,
                 'type': 'selectable-table',
                 'rowTitle': ['低分子肝素', '华法林', '尿激酶', '其它'],
                 'columnTitle': ['剂量', '用法', '频次', '用药时间'],
                 'radioStr': 'gaa',
-                'title': '6.1.1入院前治疗情况',
+                'title': '入院前治疗情况',
             },
             {
                 'id2': 'gac',
@@ -6085,42 +6086,47 @@ export class QuestionList {
                 'id2': 'gba',
                 'id1': '6.2.1',
                 'type': 'selectable-table',
+                'hidden': false,
                 'rowTitle': ['气压泵治疗', '硫酸镁冷敷', '着医用弹力袜'],
                 'columnTitle': ['剂量', '用法', '频次', '用药时间'],
                 'radioStr': 'gba',
-                'title': '6.2.1 术前用药：物理治疗',
+                'title': '术前用药：物理治疗',
             }, {
                 'id2': 'gbb',
                 'id1': '6.2.2',
                 'type': 'selectable-table',
+                'hidden': false,
                 'rowTitle': ['威利坦', '迈之灵', '爱脉朗', '七叶皂苷钠', '其他'],
                 'columnTitle': ['剂量', '用法', '频次', '用药时间'],
                 'radioStr': 'gbb',
-                'title': '6.2.2 术前用药：消肿药物',
+                'title': '术前用药：消肿药物',
             }, {
                 'id2': 'gbc',
                 'id1': '6.2.3',
                 'type': 'selectable-table',
+                'hidden': false,
                 'rowTitle': ['丹参注射液', '疏血通', '丹参川穹嗪', '其他'],
                 'columnTitle': ['剂量', '用法', '频次', '用药时间'],
                 'radioStr': 'gbc',
-                'title': '6.2.3 术前用药：扩管改善循环药',
+                'title': '术前用药：扩管改善循环药',
             }, {
                 'id2': 'gdb',
                 'id1': '6.2.4',
                 'type': 'selectable-table',
+                'hidden': false,
                 'rowTitle': ['低分子肝素', '磺达肝奎钠', '华法林', '阿加曲班', '利伐沙班'],
                 'columnTitle': ['剂量', '用法', '频次', '用药时间'],
                 'radioStr': 'gbd',
-                'title': '6.2.4 术前用药：抗凝药',
+                'title': '术前用药：抗凝药',
             },{
                 'id2': 'gbe',
                 'id1': '6.2.5',
                 'type': 'selectable-table',
+                'hidden': false,
                 'rowTitle': ['尿激酶'],
                 'columnTitle': ['剂量', '用法', '频次', '用药时间'],
                 'radioStr': 'gbe',
-                'title': '6.2.5 术前用药：溶栓药',
+                'title': '术前用药：溶栓药',
             },
             {
                 'id2': 'gbf',
@@ -6168,19 +6174,6 @@ export class QuestionList {
                 , '6.3.1.2', '6.3.1.2.1', '6.3.1.2.2'
                 ], []],
                 'hidden': false
-            },{
-                'id2': 'gcw',
-                'id1': '6.3.1',
-                'type': 'radio',
-                'content': [
-                    '否',
-                    '是'
-                ],
-                'title': '药械耦连',
-                'hiddenlist': [['6.3.1.1', '6.3.1.1.1', '6.3.1.1.2', '6.3.1.1.3'
-                , '6.3.1.2', '6.3.1.2.1', '6.3.1.2.2'
-                ], []],
-                'hidden': false
             },
             {
                 'id2': 'gcwa',
@@ -6205,7 +6198,7 @@ export class QuestionList {
                     'information': ''
                 },
                 'title': '药名',
-                'hidden': true
+                'hidden': false
             },
             {
                 'id2': 'gcwa2',
@@ -6255,7 +6248,7 @@ export class QuestionList {
                     'information': ''
                 },
                 'title': '抽栓导管',
-                'hidden': true
+                'hidden': false
             },
             {
                 'id2': 'gcwb2',
@@ -6292,7 +6285,7 @@ export class QuestionList {
                     'information': ''
                 },
                 'title': '导管型号',
-                'hidden': true
+                'hidden': false
             },
             {
                 'id2': 'gcwd',
@@ -6468,38 +6461,43 @@ export class QuestionList {
                 'id2': 'gda',
                 'id1': '6.4.1',
                 'type': 'selectable-table',
+                'hidden': false,
                 'rowTitle': ['气压泵', '硫酸镁'],
                 'columnTitle': ['剂量', '用法', '频次', '用药时间'],
                 'radioStr': 'gda',
-                'title': '6.4.1 术后用药：物理治疗',
+                'title': '术后用药：物理治疗',
             },  {
                 'id2': 'gdb',
                 'id1': '6.4.2',
                 'type': 'selectable-table',
+                'hidden': false,
                 'rowTitle': ['威利坦', '迈之灵', '爱脉朗', '七叶皂苷钠', '其他'],
                 'columnTitle': ['剂量', '用法', '频次', '用药时间'],
                 'radioStr': 'gdb',
-                'title': '6.4.2 术后用药：消肿药物',
+                'title': '术后用药：消肿药物',
             }, {
                 'id2': 'gdc',
                 'id1': '6.4.3',
                 'type': 'selectable-table',
+                'hidden': false,
                 'rowTitle': ['丹参注射液', '疏血通', '丹参川穹嗪', '其他'],
                 'columnTitle': ['剂量', '用法', '频次', '用药时间'],
                 'radioStr': 'gdc',
-                'title': '6.4.3 术后用药：扩管改善循环药',
+                'title': '术后用药：扩管改善循环药',
             },{
                 'id2': 'gdd',
                 'id1': '6.4.4',
                 'type': 'selectable-table',
+                'hidden': false,
                 'rowTitle': ['低分子肝素', '磺达肝癸钠', '华法林', '阿加曲班', '利伐沙班'],
                 'columnTitle': ['剂量', '用法', '频次', '用药时间'],
                 'radioStr': 'gdc',
-                'title': '6.4.4 术后用药：抗凝药',
+                'title': '术后用药：抗凝药',
             },{
                 'id2': 'gde',
                 'id1': '6.4.5',
                 'type': 'selectable-table',
+                'hidden': false,
                 'rowTitle': ['尿激酶'],
                 'columnTitle': ['剂量', '用法', '频次', '用药时间'],
                 'radioStr': 'gde',
@@ -6688,44 +6686,6 @@ export class QuestionList {
                 ],
                 'hidden': false
             },
-            // {
-            //     'id2': 'ghba',
-            //     'id1': '7.2.1',
-            //     'type': 'radio',
-            //     'title': '性别',
-            //     'content': [
-            //         '男',
-            //         '女'
-            //     ],
-            //     'hiddenlist': [
-            //
-            //     ],
-            //     'hidden': false
-            // },
-            // {
-            //     'id2': 'ghbb',
-            //     'id1': '7.2.2',
-            //     'type': 'input',
-            //     'content': {
-            //         'datatype': 'text',
-            //         'validtype': 'number',
-            //         'information': ''
-            //     },
-            //     'title': '年龄',
-            //     'hidden': false
-            // },
-            // {
-            //     'id2': 'ghbc',
-            //     'id1': '7.2.3',
-            //     'type': 'input',
-            //     'content': {
-            //         'datatype': 'text',
-            //         'validtype': 'number',
-            //         'information': ''
-            //     },
-            //     'title': '体重',
-            //     'hidden': false
-            // },
             {
                 'id2': 'ghbd',
                 'id1': '7.2.1',

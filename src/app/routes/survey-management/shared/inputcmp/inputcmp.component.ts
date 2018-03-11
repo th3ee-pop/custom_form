@@ -15,6 +15,9 @@ export class InputcmpComponent extends Question implements OnInit {
     answerChanged = false;
     validateForm: FormGroup;
     editdisabled = false;
+
+    selectedOption;
+
     @Output() onVoted = new EventEmitter< any >();
     // @Output() onwVoted = new EventEmitter < any >();
 
@@ -27,7 +30,7 @@ export class InputcmpComponent extends Question implements OnInit {
         }else {
             this.answerChanged = true;
         }
-    }
+    };
     getFormControl(name) {
         return this.validateForm.controls[ name ];
     }
@@ -35,7 +38,8 @@ export class InputcmpComponent extends Question implements OnInit {
         super();
         this.validateForm = this.fb.group(
             {
-                input: ['', [this.otherValidator]]
+                input: ['', [this.otherValidator]],
+                unit: ['', [this.otherValidator]]
             }
         );
     }
@@ -48,7 +52,12 @@ export class InputcmpComponent extends Question implements OnInit {
         };
         const questionID = this.question.id2;
         tem.Record_ID = questionID;
-        tem.Record_Value = this.localAnswer;
+        console.log(this.selectedOption);
+        if( this.question.content.datatype == 'unit'){
+            tem.Record_Value = this.localAnswer + this.selectedOption;
+        }else {
+            tem.Record_Value = this.localAnswer;
+        }
         res.push(tem);
         this.answer = res;
         if (this.question.id1 === '2.1') {

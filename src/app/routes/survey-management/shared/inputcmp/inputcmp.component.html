@@ -1,5 +1,5 @@
 <div [hidden]="question.hidden">
-    <div nz-row >
+    <div nz-row>
         <div nz-col>
             <nz-card>
                 <ng-template #title>
@@ -9,14 +9,39 @@
                 <ng-template #body>
                     <form nz-form [formGroup]="validateForm" [nzLayout]="'inline'">
                         <div nz-form-item>
-                            <div nz-form-control [nzValidateStatus]="getFormControl(question.content.validtype)" *ngIf="question.content.datatype == 'text'" >
-                                    <nz-input [(ngModel)]="localAnswer" (ngModelChange)="answerChange()" [nzDisabled]="question.id1==='2.3' || question.id1 == '1.16'" formControlName="input"></nz-input>
-                                <div nz-form-explain *ngIf="(question.id1==='2.1'||question.id1==='2.2')&&(getFormControl('input').dirty||getFormControl('input').touched)&&getFormControl('input').hasError('required')">
+                            <div nz-form-control [nzValidateStatus]="getFormControl(question.content.validtype)"
+                                 *ngIf="question.content.datatype == 'text'">
+                                <nz-input [(ngModel)]="localAnswer" (ngModelChange)="answerChange()"
+                                          [nzDisabled]="question.id1==='2.3' || question.id1 == '1.16'"
+                                          formControlName="input"></nz-input>
+                                <div nz-form-explain
+                                     *ngIf="(question.id1==='2.1'||question.id1==='2.2')&&(getFormControl('input').dirty||getFormControl('input').touched)&&getFormControl('input').hasError('required')">
                                     <span id="explan">必填项</span>
                                 </div>
                             </div>
-                            <div nz-form-control>
-                                <label >{{question.content.information}}</label>
+                            <div nz-form-control [nzValidateStatus]="getFormControl(question.content.validtype)"
+                                 *ngIf="question.content.datatype == 'unit'">
+                                <nz-input-group>
+                                    <nz-input [(ngModel)]="localAnswer" (ngModelChange)="answerChange()"
+                                              formControlName="input"></nz-input>
+                                    <nz-select style="width: 120px;" [(ngModel)]="selectedOption"
+                                               (ngModelChange)="answerChange()" formControlName="unit"
+                                               [nzPlaceHolder]="'选择单位'" nzAllowClear>
+                                        <nz-option
+                                            *ngFor="let option of question.content.information"
+                                            [nzLabel]="option"
+                                            [nzValue]="option"
+                                            [nzDisabled]="option.disabled">
+                                        </nz-option>
+                                    </nz-select>
+                                </nz-input-group>
+                                <!--<div nz-form-explain *ngIf="(question.id1==='2.1'||question.id1==='2.2')&&(getFormControl('input').dirty||getFormControl('input').touched)&&getFormControl('input').hasError('required')">-->
+                                <!--<span id="explan">必填项</span>-->
+                                <!--</div>-->
+                            </div>
+
+                            <div nz-form-control *ngIf="question.content.datatype == 'text'">
+                                <label>{{question.content.information}}</label>
                             </div>
                         </div>
                     </form>

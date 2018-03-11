@@ -24,6 +24,10 @@ export class Table55Component extends Question implements OnInit {
     rowTitle = ['第一次', '第二次', '第三次'];
     columnTitle = ['比重', 'PH值', '尿蛋白质', '尿葡萄糖', '尿酮体', '尿白细胞', '尿隐血', '大便隐血'];
     changedAnswer = [];
+    /**
+     * 存储问题是否填写的变量,默认false
+     */
+    answerChanged = false;
 
     constructor() {
         super();
@@ -70,7 +74,7 @@ export class Table55Component extends Question implements OnInit {
     getAnswer() {
         this.changedAnswer = [];
         this.setAnswer(this.initialArray, this.idArray, this.row, this.column);
-        console.log(this.changedAnswer);
+        // console.log(this.changedAnswer);
     }
 
     setAnswer(blank: any, idArray: any, row: number, column: number) {
@@ -95,5 +99,18 @@ export class Table55Component extends Question implements OnInit {
                 }
             }
         }
+        if ( this.answerCheck() === true)
+            this.answerChanged = true;
+        else
+            this.answerChanged = false;
+    }
+
+    answerCheck() {
+        for ( let i = 0; i < this.changedAnswer.length; i++) {
+            if (this.changedAnswer[i] && this.changedAnswer[i] !== '' ) {
+                return true;
+            }
+        }
+        return false;
     }
 }

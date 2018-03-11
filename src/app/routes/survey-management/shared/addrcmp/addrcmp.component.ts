@@ -127,5 +127,8 @@ export class AddrcmpComponent extends Question implements OnInit {
         res.push(tem);
         res.push(addrCode);
         this.answer = res;
+        if( res ){
+            this.answerChanged = true;
+        }
     }
 }

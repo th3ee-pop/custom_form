@@ -34,6 +34,11 @@ export class Table54Component extends Question implements OnInit {
         'ed11a', 'ed11b'
     ];
 
+    /**
+     * 存储问题是否填写的变量,默认false
+     */
+    answerChanged = false;
+
     constructor() {
         super();
     }
@@ -47,7 +52,7 @@ export class Table54Component extends Question implements OnInit {
     getAnswer() {
         this.changedAnswer = [];
         this.setAnswer();
-        console.log(this.changedAnswer);
+        // console.log(this.changedAnswer);
     }
 
     setAnswer() {
@@ -59,5 +64,18 @@ export class Table54Component extends Question implements OnInit {
               });
           }
       }
+        if ( this.answerCheck() === true)
+            this.answerChanged = true;
+        else
+            this.answerChanged = false;
+    }
+
+    answerCheck() {
+        for ( let i = 0; i < this.changedAnswer.length; i++) {
+            if (this.changedAnswer[i] && this.changedAnswer[i] !== '' ) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -23,6 +23,7 @@ export class SelectableTableComponent extends Question implements OnInit {
     rowTitle: Array<any>;
     columnTitle: Array<any>;
     changedAnswer = [];
+    answerChanged = false;
 
     constructor() {
         super();
@@ -102,5 +103,18 @@ export class SelectableTableComponent extends Question implements OnInit {
                     }
                 }
             }
+        if ( this.answerCheck() === true)
+            this.answerChanged = true;
+        else
+            this.answerChanged = false;
+    }
+
+    answerCheck() {
+        for ( let i = 0; i < this.changedAnswer.length; i++) {
+            if (this.changedAnswer[i] && this.changedAnswer[i] !== '' ) {
+                return true;
+            }
+        }
+        return false;
     }
 }

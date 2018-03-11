@@ -8,7 +8,6 @@ import {RadiocmpComponent} from '../shared/radiocmp/radiocmp.component';
 import {IdccmpComponent} from '../shared/idccmp/idccmp.component';
 import {QuestionList} from '../shared/ql';
 import {ScheduleList} from "../shared/scheduleList";
-import {AutoIncInputComponent} from "../shared/tablecmp/auto-inc-input/auto-inc-input.component";
 
 @Component({
     selector: 'app-info0',
@@ -19,7 +18,6 @@ export class Info0Component implements OnInit, AfterViewInit  {
     @ViewChildren(InputcmpComponent) InputItems: QueryList<InputcmpComponent>;
     @ViewChildren(RadiocmpComponent) RadioItems: QueryList<RadiocmpComponent>;
     @ViewChildren(IdccmpComponent) IdcItems: QueryList<IdccmpComponent>;
-    @ViewChildren(AutoIncInputComponent) AutoIncInputItems: QueryList<AutoIncInputComponent>;
 
     current = 0; // 当前步骤
     questions = new QuestionList().questions;
@@ -32,6 +30,7 @@ export class Info0Component implements OnInit, AfterViewInit  {
     answerList = [];
     buttondisable = false;
     fillingList = [];
+    currentModal;
 
     constructor(
         private router: Router,
@@ -88,47 +87,104 @@ export class Info0Component implements OnInit, AfterViewInit  {
         }
     }
 
-    next() {
-        // if (this.confirm().confirms) {
+    /**
+     * 保存修改并跳转到指定页面
+     * @param step_index
+     */
+    save(step_index) {
+        const numWords = ['info0', 'info1', 'info2', 'info3', 'info4', 'info5', 'info6', 'info7', 'info8'];
         this.collectAllanswer();
         let putRecord = {};
-        if (!this.PID)  putRecord = { 'Records' : this.resultList };
-        else putRecord = { 'PID': this.PID, 'Records' : this.resultList };
+        if (!this.PID) putRecord = {'Records': this.resultList};
+        else putRecord = {'PID': this.PID, 'Records': this.resultList};
         console.log(putRecord);
-        this.service.putRecord(putRecord).subscribe( (res) => {
+        this.service.putRecord(putRecord).subscribe((res) => {
             console.log(res);
             this.PID = res.PID;
-            this.router.navigate(['system/survey/info1/' + this.PID]); // 添加跳转
+            this.router.navigate(['system/survey/' + numWords[step_index] + '/' + this.PID]);  // 拼接跳转链接
         }, err => {
             console.log(err);
         });
-        // }else {
-        //     let str = '';
-        //     for ( let i = 0; i < this.confirm().confirmList.length; i++) {
-        //         str = str + this.confirm().confirmList[i] + '、';
-        //     }
-        //     this.confirmServ.error({
-        //         title: '您还有以下必填项没有完成： ',
-        //         content: str
-        //     });
-        // }
+    }
+
+    /**
+     *  页面跳转，弹窗检验是否填完，若选择确定则继续跳转，否则留在当前页面
+     */
+    jumpTo(step_index , footer) {
+        const numWords = ['info0', 'info1', 'info2', 'info3', 'info4', 'info5', 'info6', 'info7', 'info8'];
+        if (this.PID && step_index !== this.current) { // 如果有病人编号，则跳跃
+                if (this.buttondisable === true) {
+                    this.router.navigate(['system/survey/' + numWords[step_index] + '/' + this.PID]);  // 拼接跳转链接
+                } else {
+                    if (this.confirm().confirms) {
+                        this.save(step_index);
+                    }else {
+                        console.log('test and model show!');
+                        let rest = '（本页剩余：' + (this.confirm().confirmP*100).toFixed(3) + '%）';
+                        let str = '';
+                        for ( let i = 0; i < this.confirm().confirmList.length; i++) {
+                            str = str + this.confirm().confirmList[i] + '、';
+                        }
+                        this.currentModal = this.confirmServ.open({
+                            title: '您还有以下必填项没有完成' + rest ,
+                            content: str,
+                            footer: footer,
+                            onOk() {
+                                console.log('Click ok');
+                            },
+                            onCancel() {
+                                console.log('Click cancel');
+                            }
+                        });
+                    }
+                }
+            }else {
+            this.temporary_deposit();
+        }
+    }
+
+    /**
+     * 取消跳转
+     */
+    handleCancel() {
+        this.currentModal.destroy('onCancel');
+    }
+
+    /**
+     * 选择确定，则跳转到指定页面
+     * @param step_index
+     */
+    handleOk(step_index) {
+        console.log("step_index");
+            /* destroy方法可以传入onOk或者onCancel。默认是onCancel */
+            this.currentModal.destroy('onOk');
+            this.currentModal = null;
+            this.save(step_index);
     }
 
     confirm() {
-        const confirmlist = [];                                   // 验证列表
+        const confirmlist = [];// 验证列表
+        let confirmnum = 0;
         let confirms = true;
-        this.InputItems.forEach(item => { if ( item.question.hidden === false && item.answerChanged === false) {
+        this.InputItems.forEach(item => {
+            confirmnum ++;
+            if ( item.question.hidden === false && item.answerChanged === false) {
             confirms = false; confirmlist.push(item.question.id1);
         }});
-        this.RadioItems.forEach(item => { if ( item.question.hidden === false && item.localAnswer === -1) {
+        this.RadioItems.forEach(item => {
+            confirmnum ++;
+            if ( item.question.hidden === false && item.localAnswer === -1) {
             confirms = false; confirmlist.push(item.question.id1);
         }});
-        this.IdcItems.forEach( item => { if ( item.question.hidden === false && item.answerChanged === false) {
+        this.IdcItems.forEach( item => {
+            confirmnum ++;
+            if ( item.question.hidden === false && item.answerChanged === false) {
             confirms = false; confirmlist.push(item.question.id1);
         }});
         const confirmAll = {
             confirms: confirms,
-            confirmList: confirmlist
+            confirmList: confirmlist,
+            confirmP: confirmlist.length/confirmnum,
         } ;
         return confirmAll;
     }
@@ -151,11 +207,6 @@ export class Info0Component implements OnInit, AfterViewInit  {
         this.IdcItems.forEach(item => {
             if (item.answerChanged === true) { for ( let i = 0; i < item.answer.length; i++) { this.resultList.push(item.answer[i]); } }
         });
-        // this.AutoIncInputItems.forEach(item =>{
-        //     for (let i = 0; i < item.answer.length; i++) {
-        //         this.resultList.push(item.answer[i]);
-        //     }
-        // });
         this.questionSave[this.current] = this.questionList;
         this.resultList.push(
             {'Record_ID': 'questionlist', 'Record_Value': this.questionSave}
@@ -222,25 +273,6 @@ export class Info0Component implements OnInit, AfterViewInit  {
                 if (pageZero[i]['Idnumber'] && pageZero[i]['Idnumber'] !== '') {
                     item.localAnswer = pageZero[i]['Idnumber']; }
             }});
-            this.AutoIncInputItems.forEach(item => {
-                // console.log("AutoIncInputItems!");
-                // console.log(item.question);
-                // const iid = item.question.id2;
-                // let j=1;
-                // for (let i = 0; i < pageZero.length; i++) {
-                //     if( pageZero[i].hasOwnProperty(iid + j)){
-                //         console.log(iid);
-                //         const  control = {
-                //             id: j,
-                //             controlInstance: `${iid+j}`
-                //         };
-                //         item.localAnswer.push(control);
-                //         // console.log(pageZero[i][id + j]);
-                //         j++;
-                //     }
-                // }
-                // console.log(item.localAnswer);
-            });
             this.RadioItems.forEach(item => {
                 for (let i = 0; i < pageZero.length; i++) {
                     const id = item.question.id2;

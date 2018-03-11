@@ -25,6 +25,10 @@ export class Table53Component extends Question implements OnInit {
     changedAnswer = [];
     overallId = ['ea7a1', 'ea7a2', 'ea7a3', 'ea7a4'];
     overallContent = ['', '', '', ''];
+    /**
+     * 存储问题是否填写的变量,默认false
+     */
+    answerChanged = false;
 
     constructor() {
         super();
@@ -38,9 +42,9 @@ export class Table53Component extends Question implements OnInit {
         }
         this.initArray();
         this.initId();
-        console.log(this.letterArray);
-        console.log(this.initialArray);
-        console.log(this.idArray);
+        // console.log(this.letterArray);
+        // console.log(this.initialArray);
+        // console.log(this.idArray);
     }
 
     initArray() {
@@ -65,7 +69,7 @@ export class Table53Component extends Question implements OnInit {
     getAnswer() {
         this.changedAnswer = [];
         this.setAnswer(this.initialArray, this.idArray, this.row, this.column);
-        console.log(this.changedAnswer);
+        // console.log(this.changedAnswer);
     }
 
     setAnswer(blank: any, idArray: any, row: number, column: number) {
@@ -90,5 +94,18 @@ export class Table53Component extends Question implements OnInit {
                 }
             }
         }
+        if ( this.answerCheck() === true)
+            this.answerChanged = true;
+        else
+            this.answerChanged = false;
+    }
+
+    answerCheck() {
+        for ( let i = 0; i < this.changedAnswer.length; i++) {
+            if (this.changedAnswer[i] && this.changedAnswer[i] !== '' ) {
+                return true;
+            }
+        }
+        return false;
     }
 }

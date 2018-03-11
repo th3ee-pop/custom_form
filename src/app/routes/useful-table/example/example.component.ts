@@ -21,6 +21,10 @@ export class ExampleComponent extends Question implements OnInit {
     changedAnswer = [];
     overallId = ['ea7a1', 'ea7a2', 'ea7a3', 'ea7a4'];
     overallContent = ['', '', '', ''];
+    /**
+     * 存储问题是否填写的变量,默认false
+     */
+    answerChanged = false;
 
   constructor() {
       super();
@@ -34,10 +38,6 @@ export class ExampleComponent extends Question implements OnInit {
       this.initArray();
       this.initId();
       this.initTitle2();
-      console.log(this.letterArray);
-      console.log(this.initialArray);
-      console.log(this.idArray);
-      console.log(this.columnTitle_2);
   }
 
   initArray() {
@@ -62,14 +62,14 @@ export class ExampleComponent extends Question implements OnInit {
     for (let i = 0; i < this.column / 2; i++) {
        this.secondLevelTitle = this.secondLevelTitle.concat(this.columnTitle_2);
     }
-    console.log(this.columnTitle_2);
+    // console.log(this.columnTitle_2);
   }
 
   getAnswer() {
       this.changedAnswer = [];
       this.setAnswer(this.initialArray, this.idArray, this.row, this.column);
       this.setAnswer(this.overallContent, this.overallId, 1, 4);
-      console.log(this.changedAnswer);
+      // console.log(this.changedAnswer);
   }
 
   setAnswer(blank: any, idArray: any, row: number, column: number) {
@@ -94,5 +94,18 @@ export class ExampleComponent extends Question implements OnInit {
               }
           }
       }
+      if ( this.answerCheck() === true)
+          this.answerChanged = true;
+      else
+          this.answerChanged = false;
   }
+
+    answerCheck() {
+        for ( let i = 0; i < this.changedAnswer.length; i++) {
+            if (this.changedAnswer[i] && this.changedAnswer[i] !== '' ) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
