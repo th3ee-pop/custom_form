@@ -94,7 +94,7 @@ export class Info7Component implements OnInit, AfterViewInit {
         // if (this.confirm().confirms) {
         this.initPutRecord();
         this.service.putRecord(this.putRecord).subscribe( (res) => {
-            this.router.navigate(['system/survey/detail/']);
+            this.router.navigate(['system/survey/info8/' + this.PID]);
         });
         // }else {
         //     let str = '';

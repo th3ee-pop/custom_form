@@ -34,6 +34,7 @@ import { SelectableInputComponent } from './shared/tablecmp/selectable-input/sel
 import { MultiRadioComponent } from './shared/tablecmp/multi-radio/multi-radio.component';
 import { AutoIncInputComponent } from './shared/tablecmp/auto-inc-input/auto-inc-input.component';
 import { AddrcmpComponent } from './shared/addrcmp/addrcmp.component';
+import { Info8Component } from './info8/info8.component';
 
 const routes: Routes = [
     { path: 'detail', component: SurveyOverviewComponent  },
@@ -46,7 +47,8 @@ const routes: Routes = [
     { path: 'info5/:PID', component: Info5Component },
     { path: 'info6/:PID', component: Info6Component },
     { path: 'info6', component: Info6Component },
-    { path: 'info7/:PID', component: Info7Component }
+    { path: 'info7/:PID', component: Info7Component },
+    { path: 'info8/:PID', component: Info8Component}
 ];
 
 @NgModule({
@@ -83,6 +85,7 @@ const routes: Routes = [
         Info5Component,
         Info7Component,
         Info6Component,
+        Info8Component,
         Table64Component,
         SelectableInputComponent,
         MultiRadioComponent,
