@@ -109,7 +109,16 @@ export class QuestionList {
                 'type': 'radio',
                 'title': '最终诊断:下肢深静脉血栓形成',
                 'content': ['否', '左', '右', '双'],
-                'hiddenlist': [['0.11.1', '0.11.2', '0.11.3'], [], [], []],
+                'hiddenlist': [['0.11.0', '0.11.1', '0.11.2', '0.11.3'], [], [], []],
+                'hidden': false
+            },
+            {
+                'id2': 'diag0',
+                'id1': '0.11.0',
+                'type': 'radio',
+                'title': '上肢/下肢',
+                'content': ['单侧下肢', '双侧下肢', '单侧上肢', '双侧上肢'],
+                'hiddenlist': [],
                 'hidden': false
             },
             {
@@ -4689,8 +4698,8 @@ export class QuestionList {
                 'id1': '4.1.3',
                 'type': 'radio',
                 'title': '症状肢体',
-                'content': ['双侧肢体', '单侧肢体'],
-                'hiddenlist': [['4.1.3.1'], []],
+                'content': ['单侧下肢', '双侧下肢', '单侧上肢', '双侧上肢'],
+                'hiddenlist': [[], ['4.1.3.1'], [], ['4.1.3.1']],
                 'hidden': false
             },
             {
