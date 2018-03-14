@@ -35,6 +35,7 @@ import { MultiRadioComponent } from './shared/tablecmp/multi-radio/multi-radio.c
 import { AutoIncInputComponent } from './shared/tablecmp/auto-inc-input/auto-inc-input.component';
 import { AddrcmpComponent } from './shared/addrcmp/addrcmp.component';
 import { Info8Component } from './info8/info8.component';
+import { NzModalInfo8Component } from './info8/info8.modal.component';
 
 const routes: Routes = [
     { path: 'detail', component: SurveyOverviewComponent  },
@@ -90,10 +91,14 @@ const routes: Routes = [
         SelectableInputComponent,
         MultiRadioComponent,
         AutoIncInputComponent,
-        AddrcmpComponent
+        AddrcmpComponent,
+        NzModalInfo8Component
     ],
     providers: [
         RecordResolverGuard
+    ],
+    entryComponents: [
+        NzModalInfo8Component
     ]
 })
 export class SurveyManagementModule { }

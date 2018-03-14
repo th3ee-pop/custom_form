@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import { Question } from '../../survey-management/shared/question';
 import {ScheduleList} from '../shared/scheduleList';
+import { NzModalInfo8Component } from './info8.modal.component';
+import { NzModalService } from 'ng-zorro-antd';
 
 @Component({
     selector: 'app-info8-step',
@@ -11,20 +13,16 @@ import {ScheduleList} from '../shared/scheduleList';
 export class Info8Component extends Question implements OnInit {
 
     PID = '';
-    tabs = [
-
-    ];
-    tableCollection = ['5.1', '5.2', '5.3', '5.4', '5.5.10', '4.2.6', '5.5.1', '5.5.3', '5.5.9', '5.5.11.1']
     nzTabPosition = 'left';
     selectedIndex = 0;
     schedule_list = new ScheduleList().schedule_list;
 
-    answerSet = {
-        Id: '',
-        Time: 0,
-        answers: []
-    }
-    rowTitle_1 = [ '走行(1:正常,2:异常)', '内径(1:正常,2:变宽,3:变窄)', '宫腔(1:清晰,2:不清晰，可见暗淡回声填充,3:完全闭塞)', '静脉压缩性(1:好,2:差)', '侧枝(1:可见侧枝形成,2:无侧枝形成)', '静脉瓣功能(1:良好,2:关闭不全)'];
+    answerSet: any;
+
+    followUp: any;
+
+    rowTitle_1 = [ '走行(1:正常,2:异常)',
+        '内径(1:正常,2:变宽,3:变窄)', '宫腔(1:清晰,2:不清晰，可见暗淡回声填充,3:完全闭塞)', '静脉压缩性(1:好,2:差)', '侧枝(1:可见侧枝形成,2:无侧枝形成)', '静脉瓣功能(1:良好,2:关闭不全)'];
     columnTitle_1 = ['髂外静脉', '股总静脉', '股浅静脉', '股深静脉', '腘静脉', '胫后静脉', '胫前静脉', '大隐静脉', '腓静脉', '肌间静脉'];
     secondLevelTitle_1 = ['左', '右', '左', '右', '左', '右', '左', '右', '左', '右', '左', '右', '左', '右', '左', '右', '左', '右', '左', '右'];
     overallId = ['ea7a1', 'ea7a2', 'ea7a3', 'ea7a4'];
@@ -35,18 +33,6 @@ export class Info8Component extends Question implements OnInit {
     rowTitle_3 = ['胸部CT', '肺灌注显像', '肺动脉CTA'];
     columnTitle_3 = ['', '', '', ''];
 
-    initialArray = ['', '', '', '', '', '', '', '', '', '',
-        '', '',
-        '',
-        '', '', '',
-        '', '', '', '',
-        '',
-        '',
-        '',
-        '', '',
-        '', '',
-        '', ''
-    ];
     rowTitle_4 = [''];
     columnTitle_4 = ['主动脉', '升主', '主动脉弓', '降主', '腹主', '肺动脉', '室间隔厚度',
         '室间隔搏幅', '左室后壁厚度', '左室后壁搏幅', '左心房1', '左心房2', '右心房',
@@ -83,24 +69,19 @@ export class Info8Component extends Question implements OnInit {
     rowTitle_10 = [];
 
     constructor(private router: Router,
-                private route: ActivatedRoute) {
+                private route: ActivatedRoute,
+                private modalService: NzModalService
+    ) {
 
         super();
         this.PID = this.route.params['value']['PID'];
-    }
-
-    _console(args) {
-        console.log(args);
+        this.followUp = {
+            PID: this.PID,
+            tabs: []
+        };
     }
 
     ngOnInit() {
-        for (let i = 0; i < 6; i++) {
-            this.tabs.push({
-                name   : `出院/术后 ${i}`,
-                content: `Content of tab ${i}`
-            });
-        }
-
 
         this.data_10.forEach(d => {
             for (let i = 0; i < d.children.length; i++) {
@@ -113,20 +94,14 @@ export class Info8Component extends Question implements OnInit {
                 this.rowTitle_10.push(sets);
             }
             });
-        console.log(this.rowTitle_10);
-        console.log(this.rowTitle_2.slice(0, 8));
+        this.followUp.tabs.push(this.newAnswerSet(1));
+        this.followUp.tabs.push(this.newAnswerSet(3));
+        this.followUp.tabs.push(this.newAnswerSet(6));
+        this.followUp.tabs.push(this.newAnswerSet(12));
+        this.followUp.tabs.push(this.newAnswerSet(24));
+        console.log(this.followUp);
+        this.answerSet = this.followUp.tabs[0];
 
-
-        const answer_table1 = this.initAnswerBox('下肢静脉超声', this.rowTitle_1, this.columnTitle_1, ['左', '右'], [1, 4]);
-        const answer_table2 = this.initAnswerBox( '心电图', this.rowTitle_2.slice(0, 8), this.columnTitle_2, null, [3, 4]);
-        const answer_table3 = this.initAnswerBox('其他检查', this.rowTitle_3, this.columnTitle_3);
-        const answer_table4 = this.initAnswerBox('心脏超声', this.rowTitle_4, this.columnTitle_4);
-        const answer_table5 = this.initAnswerBox('心肌酶谱', this.rowTitle_5, ['是否'].concat(this.columnTitle_5));
-        const answer_table6 = {answerId: '6分钟步行试验', answerValue: ''};
-        const answer_table7 = this.initAnswerBox('血常规', this.rowTitle_6, this.columnTitle_6);
-        const answer_table8 = this.initAnswerBox('凝血项目', this.rowTitle_7, this.columnTitle_7);
-        const answer_table9 = this.initAnswerBox('VTE危险因素', this.rowTitle_8, ['是否'].concat(this.columnTitle_8));
-        const answer_table10 = this.initAnswerBox('C反应蛋白', this.rowTitle_9, ['是否'].concat(this.columnTitle_9));
     }
 
     initAnswerBox(table: string,
@@ -161,7 +136,6 @@ export class Info8Component extends Question implements OnInit {
             }
         }
         if (extraAnswer) {
-            console.log(extraAnswer);
             for (let i = 0; i < extraAnswer[0]; i ++) {
                 answerBox.answer_array.push([]);
                 for (let j = 0; j < extraAnswer[1]; j++) {
@@ -173,7 +147,73 @@ export class Info8Component extends Question implements OnInit {
             }
 
         }
-        console.log(answerBox);
         return answerBox;
+    }
+
+    newAnswerSet(time: number) {
+        const answerSet = {
+            Time: time,
+            answers: []
+        };
+        answerSet.answers.push(this.initAnswerBox('下肢静脉超声', this.rowTitle_1, this.columnTitle_1, ['左', '右'], [1, 4]));
+        answerSet.answers.push(this.initAnswerBox( '心电图', this.rowTitle_2.slice(0, 8), this.columnTitle_2, null, [3, 4]));
+        answerSet.answers.push(this.initAnswerBox('其他检查', this.rowTitle_3, this.columnTitle_3));
+        answerSet.answers.push(this.initAnswerBox('心脏超声', this.rowTitle_4, this.columnTitle_4));
+        answerSet.answers.push(this.initAnswerBox('心肌酶谱', this.rowTitle_5, ['是否'].concat(this.columnTitle_5)));
+        answerSet.answers.push({answerId: '6分钟步行试验', answerValue: ''});
+        answerSet.answers.push(this.initAnswerBox('血常规', this.rowTitle_6, this.columnTitle_6));
+        answerSet.answers.push(this.initAnswerBox('凝血项目', this.rowTitle_7, this.columnTitle_7));
+        answerSet.answers.push(this.initAnswerBox('VTE危险因素', this.rowTitle_8, ['是否'].concat(this.columnTitle_8)));
+        answerSet.answers.push(this.initAnswerBox('C反应蛋白', this.rowTitle_9, ['是否'].concat(this.columnTitle_9)));
+        const Title10 = [];
+        this.rowTitle_10.forEach(d => {
+           Title10.push(d.value);
+        });
+        Title10.splice(33, 1, '其他特殊用药');
+        answerSet.answers.push(this.initAnswerBox('随访用药', Title10, this.columnTitle_10.slice(2)));
+        return answerSet;
+    }
+
+    test() {
+        console.log(this.answerSet.answers);
+    }
+
+    selectTabs(tab: any) {
+        this.followUp.tabs.forEach(d => {
+            if (d.Time === tab) {
+               this.answerSet = d;
+            }
+        });
+    }
+
+    showModalForComponent() {
+        const subscription = this.modalService.open({
+            title          : '对话框标题',
+            content        : NzModalInfo8Component,
+            footer         : false,
+            componentParams: {
+                name: '新建随访记录'
+            }
+        });
+        subscription.subscribe(result => {
+            console.log(result);
+            if (typeof result === 'number') {
+                this.followUp.tabs.push(this.newAnswerSet(result));
+            }
+        });
+    }
+
+    convertToYear(month: number) {
+        if (month >= 12) {
+            let time = '';
+            if (month % 12 === 0) {
+               time =  Math.floor(month / 12) + '年';
+            } else {
+                time =  Math.floor(month / 12) + '年' + month % 12 + '个月';
+            }
+          return time;
+        } else {
+            return month + '个月';
+        }
     }
 }
