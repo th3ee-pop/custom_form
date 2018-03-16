@@ -4,6 +4,7 @@ import { Question } from '../../survey-management/shared/question';
 import {ScheduleList} from '../shared/scheduleList';
 import { NzModalInfo8Component } from './info8.modal.component';
 import { NzModalService } from 'ng-zorro-antd';
+import { HttpService } from '../../../core/services/http.service';
 
 @Component({
     selector: 'app-info8-step',
@@ -70,7 +71,8 @@ export class Info8Component extends Question implements OnInit {
 
     constructor(private router: Router,
                 private route: ActivatedRoute,
-                private modalService: NzModalService
+                private modalService: NzModalService,
+                private httpService: HttpService
     ) {
 
         super();
@@ -82,7 +84,6 @@ export class Info8Component extends Question implements OnInit {
     }
 
     ngOnInit() {
-
         this.data_10.forEach(d => {
             for (let i = 0; i < d.children.length; i++) {
                 const sets = {
@@ -93,14 +94,26 @@ export class Info8Component extends Question implements OnInit {
                 };
                 this.rowTitle_10.push(sets);
             }
-            });
-        this.followUp.tabs.push(this.newAnswerSet(1));
-        this.followUp.tabs.push(this.newAnswerSet(3));
-        this.followUp.tabs.push(this.newAnswerSet(6));
-        this.followUp.tabs.push(this.newAnswerSet(12));
-        this.followUp.tabs.push(this.newAnswerSet(24));
-        console.log(this.followUp);
-        this.answerSet = this.followUp.tabs[0];
+        });
+        this.httpService.getFollowUp(this.PID).subscribe(res => {
+            console.log(res);
+            if (res.Record.tabs.length === 0) {
+                console.log('new patient');
+                this.followUp.tabs.push(this.newAnswerSet(1));
+                this.followUp.tabs.push(this.newAnswerSet(3));
+                this.followUp.tabs.push(this.newAnswerSet(6));
+                this.followUp.tabs.push(this.newAnswerSet(12));
+                this.followUp.tabs.push(this.newAnswerSet(24));
+                console.log(this.followUp);
+                this.answerSet = this.followUp.tabs[0];
+            } else {
+                this.followUp.tabs = res.Record.tabs;
+                console.log(this.followUp.tabs);
+                this.answerSet = this.followUp.tabs[0];
+            }
+        });
+
+
 
     }
 
@@ -215,5 +228,16 @@ export class Info8Component extends Question implements OnInit {
         } else {
             return month + '个月';
         }
+    }
+
+    saveFollowUp() {
+        this.httpService.putFollowUp({
+            'PID': this.PID,
+            'Record': {
+               'tabs': this.followUp.tabs
+            }
+        }).subscribe(res => {
+            console.log(res);
+        });
     }
 }

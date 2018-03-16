@@ -126,6 +126,36 @@ export class HttpService {
             });
     }
 
+    getFollowUp(PID: string): Observable<any> {
+        const params = {'PID': PID};
+        return this.http.get('http://59.110.52.133:9510' + '/vascular/followup/' + '?q=' + JSON.stringify(params),  {
+            headers: new HttpHeaders({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
+        })
+            .map((res) => {
+                console.log(res);
+                return res;
+            })
+            .catch(err => {
+                console.log(err);
+                return Observable.throw(err);
+            });
+    }
+
+    putFollowUp(params: any): Observable<any> {
+        console.log(params);
+        return this.http.put('http://59.110.52.133:9510' + '/vascular/followup/', params, {
+            headers: new HttpHeaders({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
+        })
+            .map((res) => {
+                console.log(res);
+                return res;
+            })
+            .catch(err => {
+                console.log(err);
+                return Observable.throw(err);
+            });
+    }
+
     /**
      * 获取所有问卷及基本信息（上一次填写记录时间暂未增加）
      * @returns {Observable<R|T>}
