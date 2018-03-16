@@ -240,4 +240,13 @@ export class Info8Component extends Question implements OnInit {
             console.log(res);
         });
     }
+
+    pre() {
+        this.saveFollowUp();
+        this.router.navigate( ['system/survey/info7/' + this.PID]);
+    }
+
+    exit () {
+        this.router.navigate( ['system/survey/detail/']);
+    }
 }
