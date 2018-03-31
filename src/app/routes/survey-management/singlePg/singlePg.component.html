@@ -19,19 +19,16 @@
                             </ng-template>
                         </nz-step>
                     </nz-steps>
-                    <div class="steps-content">
-                    <div *ngFor="let question of questionList">
+                    <div *ngFor="let question of qlist">
                         <div [ngSwitch]="question.type">
-                            <app-inputcmp     *ngSwitchCase="'input'"     [question]="question" (onVoted)="onhVoted($event)" ></app-inputcmp>
+                            <app-inputcmp     *ngSwitchCase="'input'"     [question]="question" (onVoted)="onVoted($event)" ></app-inputcmp>
+                            <!--<app-idccmp       *ngSwitchCase="'idc'"       [question]="question" (onVoted)="onVoted($event)" ></app-idccmp>-->
                             <app-radiocmp     *ngSwitchCase="'radio'"     [question]="question" (onVoted)="onVoted($event)" ></app-radiocmp>
+                            <app-checkboxcmp *ngSwitchCase="'checkbox'"     [question]="question" (onVoted)="onVoted($event)"> </app-checkboxcmp>
                         </div>
                     </div>
-                    </div>
                     <div class="steps-action">
-                        <button *ngIf="!buttondisable"  nz-button [nzType]="'default'" (click)="pre()">
-                            <span>上一步</span>
-                        </button>
-                        <button *ngIf="!buttondisable"  nz-button [nzType]="'default'" (click)="jumpTo(3,footer)">
+                        <button *ngIf="!buttondisable"  nz-button [nzType]="'default'" (click)="next()">
                             <span>下一步</span>
                         </button>
                         <ng-template #footer>
@@ -39,7 +36,7 @@
                                 <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="handleCancel()" [nzLoading]="finished">
                                     取消
                                 </button>
-                                <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="handleOk(3)" [nzLoading]="finished">
+                                <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="handleOk(1)" [nzLoading]="finished">
                                     确定
                                 </button>
                             </div>
