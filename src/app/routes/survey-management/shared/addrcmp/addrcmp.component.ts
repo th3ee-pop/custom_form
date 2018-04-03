@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '@core/services/http.service';
-import {Question} from "../question";
+import {Question} from '../question';
 
 @Component({
-  selector: 'app-addrcmp',
-  templateUrl: './addrcmp.component.html',
-  styleUrls: ['./addrcmp.component.less']
+    selector: 'app-addrcmp',
+    templateUrl: './addrcmp.component.html',
+    styleUrls: ['./addrcmp.component.less']
 })
 export class AddrcmpComponent extends Question implements OnInit {
 
@@ -13,26 +13,27 @@ export class AddrcmpComponent extends Question implements OnInit {
     answerChanged = false;
 
     areas;
-    provinces;provincesName;
+    provinces;
+    provincesName;
     cities;
     streets;
 
     initArray = new Array(5);
     nameArray = new Array(5);
 
-  constructor(
-      private service: HttpService
-  ) { super() }
+    constructor(
+        private service: HttpService
+    ) { super(); }
 
-  ngOnInit() {
-      this.getProvince();
-      this.getCity();
-      this.getArea();
-      this.getStreet();
-  }
+    ngOnInit() {
+        this.getProvince();
+        this.getCity();
+        this.getArea();
+        this.getStreet();
+    }
 
-    getProvince(){
-        this.service.getChinaDivision("provinces").subscribe(res => {
+    getProvince() {
+        this.service.getChinaDivision('provinces').subscribe(res => {
             this.provinces = res.json().map(province => ({
                     label: province.name,
                     value: province.code
@@ -40,23 +41,23 @@ export class AddrcmpComponent extends Question implements OnInit {
             ));
         });
     }
-    getCity(){
+    getCity() {
         this.cities = [];
-        this.service.getChinaDivision("cities").subscribe(res => {
+        this.service.getChinaDivision('cities').subscribe(res => {
             const cities = res.json();
-            cities.forEach((city)=>{
-                if( city.parent_code === this.initArray[0]){
+            cities.forEach((city) => {
+                if ( city.parent_code === this.initArray[0]) {
                     this.cities.push({
-                        label:city.name,
-                        value:city.code
-                    })
+                        label: city.name,
+                        value: city.code
+                    });
                 }
             });
         });
-        if( this.provinces) {
+        if ( this.provinces) {
             this.provinces.map(province => {
-                if( province.value == this.initArray[0]){
-                    this.nameArray[0]=province.label;
+                if ( province.value === this.initArray[0]){
+                    this.nameArray[0] = province.label;
                     console.log(this.nameArray);
                 }
             });
@@ -64,52 +65,52 @@ export class AddrcmpComponent extends Question implements OnInit {
     }
     getArea(){
         this.areas = [];
-        this.service.getChinaDivision("areas").subscribe(res => {
+        this.service.getChinaDivision('areas').subscribe(res => {
             const areas = res.json();
-            areas.forEach((area)=>{
-                if( area.parent_code === this.initArray[1]){
+            areas.forEach((area) => {
+                if ( area.parent_code === this.initArray[1]) {
                     this.areas.push({
-                        label:area.name,
-                        value:area.code
-                    })
+                        label: area.name,
+                        value: area.code
+                    });
                 }
             });
         });
-        if( this.cities){
+        if ( this.cities) {
             this.cities.map(city => {
-                if( city.value == this.initArray[1]){
-                    this.nameArray[1]=city.label;
+                if ( city.value === this.initArray[1]){
+                    this.nameArray[1] = city.label;
                 }
             });
         }
     }
     getStreet(){
         this.streets = [];
-        this.service.getChinaDivision("streets").subscribe(res => {
+        this.service.getChinaDivision('streets').subscribe(res => {
             const streets = res.json();
             console.log(this.initArray[2]);
             // console.log(streets);
-            streets.forEach((street)=>{
-                if( street.parent_code === this.initArray[2]){
+            streets.forEach((street) => {
+                if ( street.parent_code === this.initArray[2]){
                     this.streets.push({
-                        label:street.name,
-                        value:street.code
-                    })
+                        label: street.name,
+                        value: street.code
+                    });
                 }
             });
         });
-        if( this.areas){
+        if ( this.areas) {
             this.areas.map(area => {
-                if( area.value == this.initArray[2]){
-                    this.nameArray[2]=area.label;
+                if ( area.value === this.initArray[2]){
+                    this.nameArray[2] = area.label;
                 }
             });
         }
     }
-    answerChange(){
+    answerChange() {
         this.streets.map(street => {
-            if( street.value == this.initArray[3]){
-                this.nameArray[3]=street.label;
+            if ( street.value === this.initArray[3]) {
+                this.nameArray[3] = street.label;
             }
         });
         const res = [];
@@ -127,7 +128,7 @@ export class AddrcmpComponent extends Question implements OnInit {
         res.push(tem);
         res.push(addrCode);
         this.answer = res;
-        if( res ){
+        if ( res ) {
             this.answerChanged = true;
         }
     }

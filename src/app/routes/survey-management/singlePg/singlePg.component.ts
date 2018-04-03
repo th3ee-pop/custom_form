@@ -5,6 +5,9 @@ import {NzModalService} from 'ng-zorro-antd';
 import {InputcmpComponent} from '../shared/inputcmp/inputcmp.component';
 import {RadiocmpComponent} from '../shared/radiocmp/radiocmp.component';
 import {CheckboxcmpComponent} from '../shared/checkboxcmp/checkboxcmp.component';
+import {DatecmpComponent} from '../shared/datecmp/datecmp.component';
+import {AddrcmpComponent} from '../shared/addrcmp/addrcmp.component';
+import {IdccmpComponent} from '../shared/idccmp/idccmp.component';
 import {SaveList} from '../shared/example';
 import {ScheduleList} from '../shared/scheduleList';
 
@@ -17,7 +20,9 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
     @ViewChildren(InputcmpComponent) InputItems: QueryList<InputcmpComponent>;
     @ViewChildren(RadiocmpComponent) RadioItems: QueryList<RadiocmpComponent>;
     @ViewChildren(CheckboxcmpComponent) CheckItem: QueryList<CheckboxcmpComponent>;
-
+    @ViewChildren(DatecmpComponent) DateItem: QueryList<DatecmpComponent>;
+    @ViewChildren(AddrcmpComponent) AddrItem: QueryList<AddrcmpComponent>;
+    @ViewChildren(IdccmpComponent) IdcItem: QueryList<IdccmpComponent>;
     current = 0; // 当前步骤
     exampleList = new SaveList().questions;
     steps = new SaveList().step_key;
@@ -113,38 +118,43 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
      */
     jumpTo(step_index , footer) {
         // const numWords = ['singlePg', 'info1', 'info2', 'info3', 'info4', 'info5', 'info6', 'info7', 'info8'];
-        // if (this.PID && step_index !== this.current) { // 如果有病人编号，则跳跃
-        //         if (this.buttondisable === true) {
-        //             this.router.navigate(['system/survey/' + numWords[step_index] + '/' + this.PID]);  // 拼接跳转链接
-        //         } else {
-        //             if (this.confirm().confirms) {
-        //                 this.save(step_index);
-        //             }else {
-        //                 console.log('test and model show!');
-        //                 let rest = '（本页剩余：' + (this.confirm().confirmP*100).toFixed(3) + '%）';
-        //                 let str = '';
-        //                 for ( let i = 0; i < this.confirm().confirmList.length; i++) {
-        //                     str = str + this.confirm().confirmList[i] + '、';
-        //                 }
-        //                 this.currentModal = this.confirmServ.open({
-        //                     title: '您还有以下必填项没有完成' + rest ,
-        //                     content: str,
-        //                     footer: footer,
-        //                     onOk() {
-        //                         console.log('Click ok');
-        //                     },
-        //                     onCancel() {
-        //                         console.log('Click cancel');
-        //                     }
-        //                 });
-        //             }
-        //         }
-        //     }else {
-        //     this.temporary_deposit();
-        // }
+        if (this.PID && step_index !== this.current) { // 如果有病人编号，则跳跃
+
+                // if (this.buttondisable === true) {
+                //     this.router.navigate(['system/survey/' + numWords[step_index] + '/' + this.PID]);  // 拼接跳转链接
+                // } else {
+                //     if (this.confirm().confirms) {
+                //         this.save(step_index);
+                //     }else {
+                //         console.log('test and model show!');
+                //         let rest = '（本页剩余：' + (this.confirm().confirmP*100).toFixed(3) + '%）';
+                //         let str = '';
+                //         for ( let i = 0; i < this.confirm().confirmList.length; i++) {
+                //             str = str + this.confirm().confirmList[i] + '、';
+                //         }
+                //         this.currentModal = this.confirmServ.open({
+                //             title: '您还有以下必填项没有完成' + rest ,
+                //             content: str,
+                //             footer: footer,
+                //             onOk() {
+                //                 console.log('Click ok');
+                //             },
+                //             onCancel() {
+                //                 console.log('Click cancel');
+                //             }
+                //         });
+                //     }
+                // }
+            }else {
+            this.temporary_deposit();
+        }
     }
     next() {
         this.current = this.current + 1;
+        this.qlist = this.exampleList[this.steps[this.current]]['items'];
+    }
+    pre() {
+        this.current = this.current - 1;
         this.qlist = this.exampleList[this.steps[this.current]]['items'];
     }
     temporary_deposit() {

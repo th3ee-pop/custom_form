@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Question } from '../question';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 @Component({
     selector: 'app-idccmp',
     templateUrl: './idccmp.component.html',
@@ -50,8 +50,7 @@ export class IdccmpComponent extends Question {
             Record_ID: '',
             Record_Value: ''
         }
-        const questionID = this.question.id2 ;
-        tem.Record_ID = questionID;
+        tem.Record_ID = this.question.dbId;
         tem.Record_Value = this.localAnswer;
         res.push(tem);
         this.answer = res;

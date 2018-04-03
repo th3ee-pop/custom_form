@@ -102,6 +102,15 @@ export class SaveList {
                         ['2']
                     ],
                     'hidden': false
+                },
+                {
+                    'webId': '7',
+                    'dbId': 'birthday',
+                    'type': 'date',
+                    'front_title': '出生日期',
+                    'behind_title': '',
+                    'required': true,
+                    'hidden': false
                 }
             ]
         },
@@ -191,20 +200,23 @@ export class SaveList {
                 },
                 {
                     'webId': '6',
-                    'dbId': 'diagnose',
-                    'type': 'checkbox',
-                    'front_title': '是否有过以下疾病',
+                    'dbId': 'sex',
+                    'type': 'addr',
+                    'front_title': '联系人地址',
                     'behind_title': '',
                     'required': true,
                     'content': [
-                        '心脏病', '糖尿病', '癌症', '脑炎'
+                        '男', '母'
                     ],
-                    'hiddenlist': [
-                        ['5'],
-                        ['1'],
-                        ['3'],
-                        ['2']
-                    ],
+                    'hidden': false
+                },
+                {
+                    'webId': '7',
+                    'dbId': 'ID_number',
+                    'type': 'idc',
+                    'front_title': '身份证',
+                    'behind_title': '',
+                    'required': true,
                     'hidden': false
                 }
             ]

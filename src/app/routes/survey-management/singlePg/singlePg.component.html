@@ -7,40 +7,25 @@
                 <ng-template #body>
                     <nz-steps [(nzCurrent)]="current" [nzSize]="'small'" >
                         <nz-step *ngFor="let step of b ,index as i" [nzTitle]="step.status" [nzDescription]="step.descript" (click)="jumpTo(i,footer)">
-                            <ng-template #footer>
-                                <div>
-                                    <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="handleCancel()" [nzLoading]="finished">
-                                        取消
-                                    </button>
-                                    <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="handleOk(i)" [nzLoading]="finished">
-                                        确定
-                                    </button>
-                                </div>
-                            </ng-template>
                         </nz-step>
                     </nz-steps>
                     <div *ngFor="let question of qlist">
                         <div [ngSwitch]="question.type">
                             <app-inputcmp     *ngSwitchCase="'input'"     [question]="question" (onVoted)="onVoted($event)" ></app-inputcmp>
-                            <!--<app-idccmp       *ngSwitchCase="'idc'"       [question]="question" (onVoted)="onVoted($event)" ></app-idccmp>-->
                             <app-radiocmp     *ngSwitchCase="'radio'"     [question]="question" (onVoted)="onVoted($event)" ></app-radiocmp>
                             <app-checkboxcmp *ngSwitchCase="'checkbox'"     [question]="question" (onVoted)="onVoted($event)"> </app-checkboxcmp>
+                            <app-datecmp *ngSwitchCase="'checkbox'"     [question]="question" > </app-datecmp>
+                            <app-addrcmp      *ngSwitchCase="'addr'"      [question]="question" (onVoted)="onVoted($event)" ></app-addrcmp>
+                            <app-idccmp *ngSwitchCase="'idc'"      [question]="question" (onVoted)="onVoted($event)"></app-idccmp>
                         </div>
                     </div>
                     <div class="steps-action">
+                        <button *ngIf="!buttondisable"  nz-button [nzType]="'default'" (click)="pre()">
+                            <span>上一步</span>
+                        </button>
                         <button *ngIf="!buttondisable"  nz-button [nzType]="'default'" (click)="next()">
                             <span>下一步</span>
                         </button>
-                        <ng-template #footer>
-                            <div>
-                                <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="handleCancel()" [nzLoading]="finished">
-                                    取消
-                                </button>
-                                <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="handleOk(1)" [nzLoading]="finished">
-                                    确定
-                                </button>
-                            </div>
-                        </ng-template>
                         <button *ngIf="!buttondisable"  nz-button [nzType]="'default'" (click)="temporary_deposit()" >
                             <span>暂存</span>
                         </button>
