@@ -27,13 +27,6 @@ import { SelectableInputComponent } from './shared/tablecmp/selectable-input/sel
 import { MultiRadioComponent } from './shared/tablecmp/multi-radio/multi-radio.component';
 import { AutoIncInputComponent } from './shared/tablecmp/auto-inc-input/auto-inc-input.component';
 import { AddrcmpComponent } from './shared/addrcmp/addrcmp.component';
-<<<<<<< HEAD
-import { Info8Component } from './info8/info8.component';
-import { NzModalInfo8Component } from './info8/info8.modal.component';
-import { HighTableComponent } from '../useful-table/high-table/high-table.component';
-=======
-
->>>>>>> xianli
 
 const routes: Routes = [
     { path: 'detail', component: SurveyOverviewComponent  },
@@ -74,11 +67,6 @@ const routes: Routes = [
         MultiRadioComponent,
         AutoIncInputComponent,
         AddrcmpComponent,
-<<<<<<< HEAD
-        HighTableComponent,
-        NzModalInfo8Component
-=======
->>>>>>> xianli
     ],
     providers: [
         RecordResolverGuard

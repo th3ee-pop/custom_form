@@ -23,7 +23,7 @@ export class Info0Component implements OnInit, AfterViewInit  {
 
     current = 0; // 当前步骤
     questions = new QuestionList().questions;
-    questionSave = this.questions
+    questionSave = this.questions;
     questionList = [];     // 问题总列表
     b = new ScheduleList().schedule_list; // 步骤条的list
     resultList = [];                                    // 填写结果
