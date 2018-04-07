@@ -7,7 +7,7 @@ import {InputcmpComponent} from '../shared/inputcmp/inputcmp.component';
 import {RadiocmpComponent} from '../shared/radiocmp/radiocmp.component';
 import {IdccmpComponent} from '../shared/idccmp/idccmp.component';
 import {QuestionList} from '../shared/ql';
-import {ScheduleList} from "../shared/scheduleList";
+import {ScheduleList} from '../shared/scheduleList';
 import { HighTableComponent } from '../../useful-table/high-table/high-table.component';
 
 @Component({
@@ -122,7 +122,7 @@ export class Info0Component implements OnInit, AfterViewInit  {
                         this.save(step_index);
                     }else {
                         console.log('test and model show!');
-                        let rest = '（本页剩余：' + (this.confirm().confirmP*100).toFixed(3) + '%）';
+                        const rest = '（本页剩余：' + (this.confirm().confirmP * 100).toFixed(3) + '%）';
                         let str = '';
                         for ( let i = 0; i < this.confirm().confirmList.length; i++) {
                             str = str + this.confirm().confirmList[i] + '、';
@@ -157,7 +157,7 @@ export class Info0Component implements OnInit, AfterViewInit  {
      * @param step_index
      */
     handleOk(step_index) {
-        console.log("step_index");
+        console.log('step_index');
             /* destroy方法可以传入onOk或者onCancel。默认是onCancel */
             this.currentModal.destroy('onOk');
             this.currentModal = null;
@@ -165,7 +165,7 @@ export class Info0Component implements OnInit, AfterViewInit  {
     }
 
     confirm() {
-        const confirmlist = [];// 验证列表
+        const confirmlist = []; // 验证列表
         let confirmnum = 0;
         let confirms = true;
         this.InputItems.forEach(item => {
@@ -186,7 +186,7 @@ export class Info0Component implements OnInit, AfterViewInit  {
         const confirmAll = {
             confirms: confirms,
             confirmList: confirmlist,
-            confirmP: confirmlist.length/confirmnum,
+            confirmP: confirmlist.length / confirmnum,
         } ;
         return confirmAll;
     }
