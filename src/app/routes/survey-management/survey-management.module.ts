@@ -27,6 +27,7 @@ import { SelectableInputComponent } from './shared/tablecmp/selectable-input/sel
 import { MultiRadioComponent } from './shared/tablecmp/multi-radio/multi-radio.component';
 import { AutoIncInputComponent } from './shared/tablecmp/auto-inc-input/auto-inc-input.component';
 import { AddrcmpComponent } from './shared/addrcmp/addrcmp.component';
+import { HighTableComponent } from '../useful-table/high-table/high-table.component';
 
 const routes: Routes = [
     { path: 'detail', component: SurveyOverviewComponent  },
@@ -67,6 +68,7 @@ const routes: Routes = [
         MultiRadioComponent,
         AutoIncInputComponent,
         AddrcmpComponent,
+        HighTableComponent
     ],
     providers: [
         RecordResolverGuard

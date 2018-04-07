@@ -8,6 +8,7 @@ import {CheckboxcmpComponent} from '../shared/checkboxcmp/checkboxcmp.component'
 import {DatecmpComponent} from '../shared/datecmp/datecmp.component';
 import {AddrcmpComponent} from '../shared/addrcmp/addrcmp.component';
 import {IdccmpComponent} from '../shared/idccmp/idccmp.component';
+import {HighTableComponent} from '../../useful-table/high-table/high-table.component';
 import {SaveList} from '../shared/example';
 import {ScheduleList} from '../shared/scheduleList';
 
@@ -23,6 +24,7 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
     @ViewChildren(DatecmpComponent) DateItem: QueryList<DatecmpComponent>;
     @ViewChildren(AddrcmpComponent) AddrItem: QueryList<AddrcmpComponent>;
     @ViewChildren(IdccmpComponent) IdcItem: QueryList<IdccmpComponent>;
+    @ViewChildren(HighTableComponent) HighTableItem: QueryList<HighTableComponent>;
     current = 0; // 当前步骤
     exampleList = new SaveList().questions;
     steps = new SaveList().step_key;

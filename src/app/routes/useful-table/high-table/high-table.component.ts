@@ -17,7 +17,6 @@ export class HighTableComponent extends Question implements OnInit {
     title: string;
     column: number;
     row: number;
-    letterArray = [];
     initialArray = [];
     idArray = [];
     rowTitle: Array<any>;
@@ -48,18 +47,10 @@ export class HighTableComponent extends Question implements OnInit {
         this.table_type = this.question.table_type;
         this.radio_condition = this.question.radio_setting;
         this.overall = this.question.overall;
-        if (this.idStyle === 1) {
-            for (let i = 97; i < 97 + this.column; i++) {
-                this.letterArray.push(String.fromCharCode(i));
-            }
-        } else {
-            for (let i = 97; i < 97 + this.row; i++) {
-                this.letterArray.push(String.fromCharCode(i));
-            }
-        }
-        this.initArray();
+        console.log(this.radio_condition);
+        this.initId();
+        console.log(this.initialArray);
         this.table_style = this.table_Config();
-        this.initId(this.idStyle);
     }
 
     type_setting(): Array<string> {
@@ -96,30 +87,21 @@ export class HighTableComponent extends Question implements OnInit {
         return table_setting;
     }
 
-    initArray() {
+    initId() {
         for (let row = 0; row < this.row; row++) {
             this.initialArray.push([]);
             for (let column = 0; column < this.column; column++) {
-                this.initialArray[row].push('');
-            }
-        }
-    }
-
-    initId(idStyle: number) {
-        if (idStyle === 1) {
-            for (let row = 0; row < this.row; row++) {
-                this.idArray.push([]);
-                this.letterArray.forEach(l => {
-                    this.idArray[row].push(this.startStr + (row + 1) + l);
+                this.initialArray[row].push({
+                    Record_ID: this.id_title + row + column,
+                    Record_Value: '',
                 });
             }
-        } else if (idStyle === 2) {
-            for (let row = 0; row < this.row; row++) {
-                this.idArray.push([]);
-                for (let column = 0; column < this.column; column++) {
-                    this.idArray[row].push(this.startStr + this.letterArray[row] + (column + 1));
-                }
-            }
+        }
+        if (this.overall) {
+            this.initialArray.push({
+                Record_ID: this.id_title + 'overall',
+                Record_Value: '',
+            });
         }
     }
 
@@ -157,6 +139,9 @@ export class HighTableComponent extends Question implements OnInit {
             this.answerChanged = false;
     }
 
+    test() {
+        console.log(this.initialArray);
+    }
     answerCheck() {
         for ( let i = 0; i < this.changedAnswer.length; i++) {
             if (this.changedAnswer[i] && this.changedAnswer[i] !== '' ) {

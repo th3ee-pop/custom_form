@@ -17,6 +17,7 @@
                             <app-datecmp *ngSwitchCase="'checkbox'"     [question]="question" > </app-datecmp>
                             <app-addrcmp      *ngSwitchCase="'addr'"      [question]="question" (onVoted)="onVoted($event)" ></app-addrcmp>
                             <app-idccmp *ngSwitchCase="'idc'"      [question]="question" (onVoted)="onVoted($event)"></app-idccmp>
+                            <app-high-table *ngSwitchCase="'high-table'"      [question]="question" (onVoted)="onVoted($event)"></app-high-table>
                         </div>
                     </div>
                     <div class="steps-action">

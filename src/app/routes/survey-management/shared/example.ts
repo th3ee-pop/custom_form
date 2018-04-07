@@ -111,7 +111,24 @@ export class SaveList {
                     'behind_title': '',
                     'required': true,
                     'hidden': false
-                }
+                },
+                {
+                    'dbId': '',
+                    'webId': '5.5.1',
+                    'title': '血常规',
+                    'hidden': false,
+                    'type': 'high-table',
+                    'rowTitle': ['第一次', '第二次', '第三次', '第四次', '第五次', '第六次', '第七次', '第八次', '第九次', '第十次'],
+                    'columnTitle': ['RBC', 'WBC', 'Hb', 'PLT109/', 'NEUT', 'NEUT%', 'LYMPH', 'LYMPH%', 'MONO', 'MONO%'],
+                    'id_title': 'xcg',
+                    'table_type': 'mix',
+                    'radio_setting': {
+                        'direction': 'column',
+                        'index': [ 1, 2, 4 ],
+                        'options': [{value: '1', display_value: '是'}, {value: '2', display_value: '否'}, {value: '3', display_value: '不明'}]
+                    },
+                    'overall': false
+                },
             ]
         },
         'step_two': {
