@@ -115,19 +115,20 @@ export class SaveList {
                 {
                     'dbId': '',
                     'webId': '5.5.1',
-                    'title': '血常规',
+                    'title': '血常规', // 标题
                     'hidden': false,
                     'type': 'high-table',
-                    'rowTitle': ['第一次', '第二次', '第三次', '第四次', '第五次', '第六次', '第七次', '第八次', '第九次', '第十次'],
-                    'columnTitle': ['RBC', 'WBC', 'Hb', 'PLT109/', 'NEUT', 'NEUT%', 'LYMPH', 'LYMPH%', 'MONO', 'MONO%'],
-                    'id_title': 'xcg',
-                    'table_type': 'mix',
-                    'radio_setting': {
-                        'direction': 'column',
-                        'index': [ 1, 2, 4 ],
+                    'rowTitle': ['第一次', '第二次', '第三次', '第四次', '第五次', '第六次', '第七次', '第八次', '第九次', '第十次'], // 各行标题，也就是最左一列
+                    'columnTitle': ['RBC', 'WBC', 'Hb', 'PLT109/', 'NEUT', 'NEUT%', 'LYMPH', 'LYMPH%', 'MONO', 'MONO%'], // 各列标题，也就是最上面一行
+                    'id_title': 'xcg', // 数据库中存储的前缀
+                    'table_type': 'mix', // 表格类型，表示是混合表格，既有input，又有radio(mix)
+                    'radio_setting': { // radio 的设置
+                        'direction': 'column',  // radio 的分布类型，是以列分布还是以行分布
+                        'index': [ 1, 2, 4 ], // 哪几行（列）是radio
                         'options': [{value: '1', display_value: '是'}, {value: '2', display_value: '否'}, {value: '3', display_value: '不明'}]
+                        // radio的选项都有什么，对应的值是什么
                     },
-                    'overall': false
+                    'overall': true // 表格是否有总体评价的文字框
                 },
             ]
         },
