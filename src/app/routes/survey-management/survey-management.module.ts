@@ -36,6 +36,7 @@ import { AutoIncInputComponent } from './shared/tablecmp/auto-inc-input/auto-inc
 import { AddrcmpComponent } from './shared/addrcmp/addrcmp.component';
 import { Info8Component } from './info8/info8.component';
 import { NzModalInfo8Component } from './info8/info8.modal.component';
+import { HighTableComponent } from '../useful-table/high-table/high-table.component';
 
 const routes: Routes = [
     { path: 'detail', component: SurveyOverviewComponent  },
@@ -92,6 +93,7 @@ const routes: Routes = [
         MultiRadioComponent,
         AutoIncInputComponent,
         AddrcmpComponent,
+        HighTableComponent,
         NzModalInfo8Component
     ],
     providers: [

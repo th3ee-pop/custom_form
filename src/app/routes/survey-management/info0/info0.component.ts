@@ -8,6 +8,7 @@ import {RadiocmpComponent} from '../shared/radiocmp/radiocmp.component';
 import {IdccmpComponent} from '../shared/idccmp/idccmp.component';
 import {QuestionList} from '../shared/ql';
 import {ScheduleList} from "../shared/scheduleList";
+import { HighTableComponent } from '../../useful-table/high-table/high-table.component';
 
 @Component({
     selector: 'app-info0',
@@ -18,6 +19,7 @@ export class Info0Component implements OnInit, AfterViewInit  {
     @ViewChildren(InputcmpComponent) InputItems: QueryList<InputcmpComponent>;
     @ViewChildren(RadiocmpComponent) RadioItems: QueryList<RadiocmpComponent>;
     @ViewChildren(IdccmpComponent) IdcItems: QueryList<IdccmpComponent>;
+    @ViewChildren(HighTableComponent) Tables: QueryList<HighTableComponent>;
 
     current = 0; // 当前步骤
     questions = new QuestionList().questions;

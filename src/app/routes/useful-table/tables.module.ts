@@ -12,6 +12,7 @@ import { Table52Component } from './table52/table52.component';
 import { Table53Component } from './table53/table53.component';
 import { Table54Component } from './table54/table54.component';
 import { Table55Component } from './table55/table55.component';
+import { HighTableComponent } from './high-table/high-table.component';
 const routes: Routes = [
     {path: 'example', component: ExampleComponent},
     {path: 'multi-table', component: MultiTableComponent},
@@ -40,7 +41,7 @@ const routes: Routes = [
     Table53Component,
     Table54Component,
     Table55Component*/
-    ],
+    HighTableComponent],
     providers: [
     ],
     entryComponents: [
