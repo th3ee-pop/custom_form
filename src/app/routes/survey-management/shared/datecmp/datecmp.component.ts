@@ -1,6 +1,5 @@
 import {Component, OnInit, EventEmitter, Output} from '@angular/core';
 import { Question } from '../question';
-
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -17,31 +16,29 @@ export class DatecmpComponent extends Question {
         super();
     }
     answerChange() {
+
+        this.answerChanged = true
         const res = [];
         const tem = {
             Record_ID: '',
             Record_Value: {}
         };
-        const questionID = this.question.id2;
-        tem.Record_ID = questionID;
+        tem.Record_ID = this.question.dbId;
         tem.Record_Value = this.date;
         res.push(tem);
         this.answer = res;
-        if (this.date) {
-            this.answerChanged = true;
-        }else {
-            this.answerChanged = false;
-        };
-        if (this.question.id1 === '1.13') {
-            const votedata = {
-                'in_date': this.date
-            };
-            this.onVoted.emit(votedata);
-        }else if (this.question.id1 === '1.15') {
-            const votedata = {
-                'out_date': this.date
-            };
-            this.onVoted.emit(votedata);
-        }
+
+
+        // if (this.question.id1 === '1.13') {
+        //     const votedata = {
+        //         'in_date': this.date
+        //     };
+        //     this.onVoted.emit(votedata);
+        // }else if (this.question.id1 === '1.15') {
+        //     const votedata = {
+        //         'out_date': this.date
+        //     };
+        //     this.onVoted.emit(votedata);
+        // }
     }
 }

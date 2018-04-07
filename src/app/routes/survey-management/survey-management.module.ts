@@ -21,36 +21,25 @@ import { Table52Component } from '../useful-table/table52/table52.component';
 import { Table53Component } from '../useful-table/table53/table53.component';
 import { Table54Component } from '../useful-table/table54/table54.component';
 import { Table55Component } from '../useful-table/table55/table55.component';
-import { Info1Component } from './info1/info1.cpomponent';
-import { Info0Component } from './info0/info0.component';
-import { Info2Component } from './info2/info2.component';
-import { Info3Component } from './info3/info3.cpomponent';
-import { Info4Component } from './info4/info4.cpomponent';
-import { Info5Component } from './info5/info5.component';
-import { Info6Component } from './info6/info6.component';
-import { Info7Component} from './info7/info7.cpomponent';
+import { SinglePgComponent } from './singlePg/singlePg.component';
 import { Table64Component } from './shared/tablecmp/table64/table64.component';
 import { SelectableInputComponent } from './shared/tablecmp/selectable-input/selectable-input.component';
 import { MultiRadioComponent } from './shared/tablecmp/multi-radio/multi-radio.component';
 import { AutoIncInputComponent } from './shared/tablecmp/auto-inc-input/auto-inc-input.component';
 import { AddrcmpComponent } from './shared/addrcmp/addrcmp.component';
+<<<<<<< HEAD
 import { Info8Component } from './info8/info8.component';
 import { NzModalInfo8Component } from './info8/info8.modal.component';
 import { HighTableComponent } from '../useful-table/high-table/high-table.component';
+=======
+
+>>>>>>> xianli
 
 const routes: Routes = [
     { path: 'detail', component: SurveyOverviewComponent  },
-    { path: 'info0', component: Info0Component  },
-    { path: 'info1/:PID', component: Info1Component },
-    { path: 'info0/:PID', component: Info0Component },
-    { path: 'info2/:PID', component: Info2Component },
-    { path: 'info3/:PID', component: Info3Component },
-    { path: 'info4/:PID', component: Info4Component },
-    { path: 'info5/:PID', component: Info5Component },
-    { path: 'info6/:PID', component: Info6Component },
-    { path: 'info6', component: Info6Component },
-    { path: 'info7/:PID', component: Info7Component },
-    { path: 'info8/:PID', component: Info8Component}
+    { path: 'singlePg', component: SinglePgComponent  },
+    { path: 'singlePg/:PID', component: SinglePgComponent },
+
 ];
 
 @NgModule({
@@ -79,28 +68,22 @@ const routes: Routes = [
         Table54Component,
         Table55Component,
         Table71Component,
-        Info1Component,
-        Info0Component,
-        Info2Component,
-        Info3Component,
-        Info4Component,
-        Info5Component,
-        Info7Component,
-        Info6Component,
-        Info8Component,
+        SinglePgComponent,
         Table64Component,
         SelectableInputComponent,
         MultiRadioComponent,
         AutoIncInputComponent,
         AddrcmpComponent,
+<<<<<<< HEAD
         HighTableComponent,
         NzModalInfo8Component
+=======
+>>>>>>> xianli
     ],
     providers: [
         RecordResolverGuard
     ],
     entryComponents: [
-        NzModalInfo8Component
     ]
 })
 export class SurveyManagementModule { }
