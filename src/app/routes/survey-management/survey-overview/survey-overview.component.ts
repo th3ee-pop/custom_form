@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '@core/services/http.service';
 import { ActivatedRoute, Router, PreloadingStrategy, Params} from '@angular/router';
 import { FileDownloadService } from '@core/services/fileDownload.service';
+import {Initdb} from '../shared/Initdb';
 
 @Component({
     selector: 'app-survey-overview',
@@ -33,7 +34,7 @@ export class SurveyOverviewComponent implements OnInit {
     end_time = null;   // 结束时间
     data = [];
     sortMap = {
-       Name: null,
+        Name: null,
         No: null,
         Updated_time: null
     };
@@ -204,6 +205,11 @@ export class SurveyOverviewComponent implements OnInit {
         const checkedCount = this.data.filter(w => w.checked).length;
         this._allChecked = checkedCount === this.data.length;
         this._indeterminate = this._allChecked ? false : checkedCount > 0;
+    }
+
+    initdb() {
+        const db = new Initdb();
+        db.Initdb();
     }
 
 }

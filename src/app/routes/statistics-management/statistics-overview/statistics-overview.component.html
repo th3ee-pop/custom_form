@@ -1,0 +1,17 @@
+<div style="background: #ECECEC;padding:30px;">
+    <div nz-row [nzGutter]="8">
+
+        <div nz-col [nzSpan]="2"  *ngFor="let menu of menu_list, index as i" (click)="goto(i)">
+            <nz-card>
+                <ng-template #title>
+                    {{menu.title}}
+                </ng-template>
+                <ng-template #body>
+                    <p>{{menu.content}}</p>
+                </ng-template>
+            </nz-card>
+        </div>
+
+    </div>
+
+</div>

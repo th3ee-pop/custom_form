@@ -92,7 +92,7 @@ export class HighTableComponent extends Question implements OnInit {
             this.initialArray.push([]);
             for (let column = 0; column < this.column; column++) {
                 this.initialArray[row].push({
-                    Record_ID: this.id_title + row + column,
+                    Record_ID: this.id_title + '.' + row + '.' + column,
                     Record_Value: '',
                 });
             }

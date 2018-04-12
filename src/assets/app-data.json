@@ -1,22 +1,31 @@
 {
     "app": {
-        "name": "Alain",
-        "description": "西北队列"
+        "name": "医疗数据系统",
+        "description": "医疗数据系统"
     },
     "user": {
         "name": "管理员",
         "avatar": "./assets/img/zorro.svg",
         "email": "drcubic@xjtu.edu.cn"
     },
-    "menu": [{
-        "group": true,
-        "children": [{
-            "text": "Health Survey",
-            "translate": "信息录入",
-            "link": "survey/detail",
-            "icon": "icon-grid"
-        }
-        ]
+    "menu": [
+        {
+            "group": true,
+            "children": [{
+                "text": "Health Survey",
+                "translate": "信息录入",
+                "link": "survey/detail",
+                "icon": "icon-grid"
+            }]
+        },
+        {
+            "group": true,
+            "children": [{
+                "text": "Health Survey",
+                "translate": "信息统计",
+                "link": "statistics/detail",
+                "icon": "icon-chart"
+            }]
         }]
 }
 

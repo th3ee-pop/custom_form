@@ -6,7 +6,7 @@ export class SaveList {
             'items': [
                 {
                     'webId':  '1',
-                    'dbId': 'name',
+                    'dbId': 'number',
                     'type': 'input',
                     'front_title': '这是number类型',
                     'behind_title': '',
@@ -23,7 +23,7 @@ export class SaveList {
                 },
                 {
                     'webId':  '2',
-                    'dbId': 'name',
+                    'dbId': 'len_number',
                     'type': 'input',
                     'front_title': '这是len_number类型',
                     'behind_title': '',
@@ -39,7 +39,7 @@ export class SaveList {
                 },
                 {
                     'webId':  '3',
-                    'dbId': 'name',
+                    'dbId': 'text',
                     'type': 'input',
                     'front_title': '这是text类型',
                     'behind_title': '',
@@ -55,7 +55,7 @@ export class SaveList {
                 },
                 {
                     'webId':  '4',
-                    'dbId': 'name',
+                    'dbId': 'len_text',
                     'type': 'input',
                     'front_title': '这是len_text类型',
                     'behind_title': '',
