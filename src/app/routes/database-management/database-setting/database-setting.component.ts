@@ -26,7 +26,7 @@ export  class DatabaseSettingComponent implements OnInit {
         let initData = {};
         initData = {
             'Department': this.pname,
-            'Step_Item': dbsave
+            'Hospital': dbsave
         }
 
         this.service.initDatabase(initData).subscribe( (res) => {

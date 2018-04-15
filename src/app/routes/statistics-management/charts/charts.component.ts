@@ -2,6 +2,8 @@ import { Component, OnInit} from '@angular/core';
 import { HttpService } from '@core/services/http.service';
 import { ActivatedRoute, Router, PreloadingStrategy, Params} from '@angular/router';
 
+import {AngularEchartsModule} from 'ngx-echarts';
+
 @Component({
     selector: 'app-charts',
     templateUrl: './charts.component.html',

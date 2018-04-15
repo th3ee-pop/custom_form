@@ -5,7 +5,7 @@ import { SharedModule } from '@shared/shared.module';
 import { RecordResolverGuard } from '@core/services/edit.guard.service';
 import { StatisticsOverviewComponent} from './statistics-overview/statistics-overview.component';
 import { ChartsComponent} from './charts/charts.component';
-
+import {AngularEchartsModule} from 'ngx-echarts';
 const routes: Routes = [
      { path: 'detail', component: StatisticsOverviewComponent  },
      { path: 'charts/:CID', component: ChartsComponent }
@@ -18,7 +18,8 @@ const routes: Routes = [
     imports: [
         CommonModule,
         SharedModule,
-        RouterModule.forChild(routes)
+        RouterModule.forChild(routes),
+        AngularEchartsModule
     ],
     exports: [
         RouterModule

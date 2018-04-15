@@ -122,32 +122,32 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
         // const numWords = ['singlePg', 'info1', 'info2', 'info3', 'info4', 'info5', 'info6', 'info7', 'info8'];
         if (this.PID && step_index !== this.current) { // 如果有病人编号，则跳跃
 
-                // if (this.buttondisable === true) {
-                //     this.router.navigate(['system/survey/' + numWords[step_index] + '/' + this.PID]);  // 拼接跳转链接
-                // } else {
-                //     if (this.confirm().confirms) {
-                //         this.save(step_index);
-                //     }else {
-                //         console.log('test and model show!');
-                //         let rest = '（本页剩余：' + (this.confirm().confirmP*100).toFixed(3) + '%）';
-                //         let str = '';
-                //         for ( let i = 0; i < this.confirm().confirmList.length; i++) {
-                //             str = str + this.confirm().confirmList[i] + '、';
-                //         }
-                //         this.currentModal = this.confirmServ.open({
-                //             title: '您还有以下必填项没有完成' + rest ,
-                //             content: str,
-                //             footer: footer,
-                //             onOk() {
-                //                 console.log('Click ok');
-                //             },
-                //             onCancel() {
-                //                 console.log('Click cancel');
-                //             }
-                //         });
-                //     }
-                // }
-            }else {
+            // if (this.buttondisable === true) {
+            //     this.router.navigate(['system/survey/' + numWords[step_index] + '/' + this.PID]);  // 拼接跳转链接
+            // } else {
+            //     if (this.confirm().confirms) {
+            //         this.save(step_index);
+            //     }else {
+            //         console.log('test and model show!');
+            //         let rest = '（本页剩余：' + (this.confirm().confirmP*100).toFixed(3) + '%）';
+            //         let str = '';
+            //         for ( let i = 0; i < this.confirm().confirmList.length; i++) {
+            //             str = str + this.confirm().confirmList[i] + '、';
+            //         }
+            //         this.currentModal = this.confirmServ.open({
+            //             title: '您还有以下必填项没有完成' + rest ,
+            //             content: str,
+            //             footer: footer,
+            //             onOk() {
+            //                 console.log('Click ok');
+            //             },
+            //             onCancel() {
+            //                 console.log('Click cancel');
+            //             }
+            //         });
+            //     }
+            // }
+        }else {
             this.temporary_deposit();
         }
     }
@@ -160,6 +160,7 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
         this.qlist = this.exampleList[this.steps[this.current]]['items'];
     }
     temporary_deposit() {
+        this.collectAllanswer();
         // const allow = true;
         // if (allow) {
         //     this.collectAllanswer();
@@ -229,7 +230,53 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
         // } ;
         // return confirmAll;
     }
+    // @ViewChildren(InputcmpComponent) InputItems: QueryList<InputcmpComponent>;
+    // @ViewChildren(RadiocmpComponent) RadioItems: QueryList<RadiocmpComponent>;
+    // @ViewChildren(CheckboxcmpComponent) CheckItem: QueryList<CheckboxcmpComponent>;
+    // @ViewChildren(DatecmpComponent) DateItem: QueryList<DatecmpComponent>;
+    // @ViewChildren(AddrcmpComponent) AddrItem: QueryList<AddrcmpComponent>;
+    // @ViewChildren(IdccmpComponent) IdcItem: QueryList<IdccmpComponent>;
+    // @ViewChildren(HighTableComponent) HighTableItem: QueryList<HighTableComponent>;
     collectAllanswer() {
+        this.RadioItems.forEach(item => {
+            if (item.valid_confirmed === true ) {
+                for (let i = 0; i < item.answer.length; i++)
+                    this.resultList.push(item.answer[i]);
+            }
+        });
+        this.InputItems.forEach(item => {
+            if (item.valid_confirmed === true) {
+                for (let i = 0; i < item.answer.length; i++)
+                    this.resultList.push(item.answer[i]);
+            }
+        });
+        this.CheckItem.forEach(item => {
+            if (item.valid_confirmed === true) {
+                for (let i = 0; i < item.answer.length; i++)
+                    this.resultList.push(item.answer[i]);
+            }
+        });
+
+        this.DateItem.forEach(item => {
+            if (item.valid_confirmed === true ) {
+                for (let i = 0; i < item.answer.length; i++)
+                    this.resultList.push(item.answer[i]);
+            }
+        });
+
+        this.AddrItem.forEach(item => {
+            if (item.valid_confirmed === true ) {
+                for (let i = 0; i < item.answer.length; i++)
+                    this.resultList.push(item.answer[i]);
+            }
+        });
+        this.IdcItem.forEach(item => {
+            if (item.valid_confirmed === true ) {
+                for (let i = 0; i < item.answer.length; i++)
+                    this.resultList.push(item.answer[i]);
+            }
+        });
+
         // this.RadioItems.forEach(item => {
         //     if (item.answerChanged === true) {
         //         for (let i = 0; i < item.answer.length; i++) {
@@ -261,7 +308,7 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
         //         }
         //     }
         // }
-        // console.log(this.resultList);
+        console.log(this.resultList);
     }
 
     disabledAll() {

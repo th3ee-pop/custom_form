@@ -9,7 +9,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 })
 export class DatecmpComponent extends Question {
     date = new Date();
-    answerChanged = false;
+    valid_confirmed = false;
     editdisabled = false;
     @Output() onVoted = new EventEmitter< any >();
     constructor(private fb: FormBuilder) {
@@ -17,7 +17,7 @@ export class DatecmpComponent extends Question {
     }
     answerChange() {
 
-        this.answerChanged = true
+        this.valid_confirmed = true
         const res = [];
         const tem = {
             Record_ID: '',

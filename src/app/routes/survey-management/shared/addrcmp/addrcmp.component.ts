@@ -10,7 +10,7 @@ import {Question} from '../question';
 export class AddrcmpComponent extends Question implements OnInit {
 
     localAnswer = ''; // 存储数据
-    answerChanged = false;
+    valid_confirmed = false;
 
     areas;
     provinces;
@@ -56,7 +56,7 @@ export class AddrcmpComponent extends Question implements OnInit {
         });
         if ( this.provinces) {
             this.provinces.map(province => {
-                if ( province.value === this.initArray[0]){
+                if ( province.value === this.initArray[0]) {
                     this.nameArray[0] = province.label;
                     console.log(this.nameArray);
                 }
@@ -78,7 +78,7 @@ export class AddrcmpComponent extends Question implements OnInit {
         });
         if ( this.cities) {
             this.cities.map(city => {
-                if ( city.value === this.initArray[1]){
+                if ( city.value === this.initArray[1]) {
                     this.nameArray[1] = city.label;
                 }
             });
@@ -91,7 +91,7 @@ export class AddrcmpComponent extends Question implements OnInit {
             console.log(this.initArray[2]);
             // console.log(streets);
             streets.forEach((street) => {
-                if ( street.parent_code === this.initArray[2]){
+                if ( street.parent_code === this.initArray[2]) {
                     this.streets.push({
                         label: street.name,
                         value: street.code
@@ -101,7 +101,7 @@ export class AddrcmpComponent extends Question implements OnInit {
         });
         if ( this.areas) {
             this.areas.map(area => {
-                if ( area.value === this.initArray[2]){
+                if ( area.value === this.initArray[2]) {
                     this.nameArray[2] = area.label;
                 }
             });
@@ -129,7 +129,7 @@ export class AddrcmpComponent extends Question implements OnInit {
         res.push(addrCode);
         this.answer = res;
         if ( res ) {
-            this.answerChanged = true;
+            this.valid_confirmed = true;
         }
     }
 }

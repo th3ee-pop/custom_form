@@ -23,8 +23,8 @@ export class Record {
 @Injectable()
 export class HttpService {
 
-    baseUrl = 'http://202.117.54.93:8000';
-    baseUrl_v2 = 'http://202.117.54.93:8000'
+    baseUrl = 'http://202.117.54.93:8080';
+    baseUrl_v2 = 'http://202.117.54.93:8080'
     constructor(
         private http: HttpClient,
         private Http: Http,
@@ -61,11 +61,13 @@ export class HttpService {
 
 
     initDatabase(params: any): Observable<any> {
-        return this.http.put( this.baseUrl_v2 + '/polls/create', params
-            // ,
-            // {
-            //     headers: new HttpHeaders({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
-            // }
+        console.log(params);
+        console.log(JSON.stringify(params));
+        return this.http.put( this.baseUrl_v2 + '/dbms/create/', JSON.stringify(params)
+           /* ,
+            {
+                headers: new HttpHeaders({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
+            }*/
             ).map((res) => {
             console.log(res);
             console.log('1111');
@@ -78,7 +80,7 @@ export class HttpService {
     }
 
     putRecords(params: any): Observable<any> {
-        return this.http.put( this.baseUrl_v2 + '/polls/recordop/', params,
+        return this.http.put( this.baseUrl_v2 + '/dbms/recordop/', params,
             {
                 headers: new HttpHeaders({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
             })
@@ -90,7 +92,7 @@ export class HttpService {
     }
     getRecordpart(params: any): Observable<any> {
         return this.http
-            .get( this.baseUrl_v2 + '/polls/recordpart/', {
+            .get( this.baseUrl_v2 + '/dbms/recordpart/', {
                 headers: new HttpHeaders({'X-CSRFToken': this.injector.get(TokenService).data.access_token}),
                 params: this.getParams(params)
             })
@@ -101,7 +103,7 @@ export class HttpService {
     }
     getRecords(params: any): Observable<any> {
         return this.http
-            .get( this.baseUrl_v2 + '/polls/recordop/', {
+            .get( this.baseUrl_v2 + '/dbms/recordop/', {
                 headers: new HttpHeaders({'X-CSRFToken': this.injector.get(TokenService).data.access_token}),
                 params: this.getParams(params)
             })
@@ -111,7 +113,7 @@ export class HttpService {
             });
     }
     deleteRecords(deleteId): Observable<any> {
-        return this.Http.delete(this.baseUrl_v2 + '/polls/recordop/', {
+        return this.Http.delete(this.baseUrl_v2 + '/dbms/recordop/', {
             body: deleteId,
             headers: new Headers({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
         })
@@ -372,7 +374,16 @@ export class HttpService {
     login(user) {
         const api = '/account/login/';
         console.log(user);
-        return this.http.post(this.baseUrl + api, user)
+        const _user = {
+            access_token: 'xxx',
+            user_name: 'wangze',
+            user_group: '1',
+            user_province: '陕西',
+            name: 'wangze'
+        };
+        console.log('setting fake user');
+        localStorage.setItem('_user', JSON.stringify(_user));
+        /*return this.http.post(this.baseUrl + api, user)
             .do((res: any) => {
                 const localuser = new TokenService();
                 localuser.data = <TokenData>{
@@ -390,7 +401,7 @@ export class HttpService {
             })
             .catch((res) => {
                 return res;
-            });
+            });*/
     }
 
     register(body) {

@@ -36,14 +36,15 @@ export class LockComponent {
         this.service.login({
             'username': sessionStorage.getItem('User_name'),
             'password': this.valForm.value.password
-        }).subscribe((resp) => {
+        })/*.subscribe((resp) => {
             console.log(resp);
             if (resp.Return === 0) {
                 this.router.navigate([sessionStorage.getItem('back_url')]);
             } else {
                 this.msg.info('密码错误');
             }
-        });
+        })*/;
+        this.router.navigate([sessionStorage.getItem('back_url')]);
     }
   }
 

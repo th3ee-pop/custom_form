@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SettingsService } from '@core/services/settings.service';
@@ -16,6 +16,7 @@ export class LoginComponent {
               fb: FormBuilder,
               private msg: NzMessageService,
               private router: Router,
+              private route: ActivatedRoute,
               private authService: LoginAuthService,
               private service: HttpService) {
     this.valForm = fb.group({
@@ -39,7 +40,9 @@ export class LoginComponent {
         'username': this.valForm.value.username,
         'password': this.valForm.value.password
     };
-      this.service.login(FormVal).subscribe((resp) => {
+    this.router.navigate(['../system']);
+      this.service.login(FormVal);
+      /*.subscribe((resp) => {
           console.log(resp);
 
           console.log('login success');
@@ -50,7 +53,7 @@ export class LoginComponent {
           } else {
               this.msg.info(resp.Result);
           }
-      });
+      });*/
     /*this.authService.loginObservable(FormVal).subscribe(
           (res) => {
               console.log(this.valForm.value);

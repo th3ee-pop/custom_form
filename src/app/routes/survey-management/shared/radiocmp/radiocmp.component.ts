@@ -40,7 +40,8 @@ export class RadiocmpComponent extends Question {
         const tem = {
             Record_ID: '',
             Record_Value: -1
-        };
+        }
+
         if (this.localAnswer !== -1) {
             this.valid_confirmed =  true;
             const questionID = this.question.dbId;
@@ -49,5 +50,6 @@ export class RadiocmpComponent extends Question {
             res.push(tem);
             this.answer = res;
         }
+
     }
 }

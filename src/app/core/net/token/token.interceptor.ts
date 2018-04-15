@@ -9,7 +9,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
 import { environment } from '../../../../environments/environment';
-import {NzMessageService} from "ng-zorro-antd";
+import {NzMessageService} from 'ng-zorro-antd';
 
 /**
  * TOKEN拦截器，其注册细节见 `app.module.ts`
@@ -37,7 +37,7 @@ export class TokenInterceptor implements HttpInterceptor {
                 return Observable.create(observer => observer.error({ status: 401 }));
             }
             // 正常token值放在请求header当中，具体格式以后端为准
-             header = req.headers.set('X-CSRFToken', authData.access_token);
+            //  header = req.headers.set('X-CSRFToken', authData.access_token);
         }
 
         // 统一加上服务端前缀
@@ -64,7 +64,7 @@ export class TokenInterceptor implements HttpInterceptor {
                     // 检查status 是否为401，为2则跳转到login页面
                     if (event instanceof HttpResponse && event.status === 401) {
                         console.log( event);
-                        this.goLogin();
+                      //  this.goLogin();
                     }
                     if (event instanceof HttpResponse && event.body.Return === 0  ){
                         // console.log(event);
@@ -82,7 +82,7 @@ export class TokenInterceptor implements HttpInterceptor {
                     // 一些通用操作
                     switch (res.status) {
                         case 401: // 未登录状态码
-                            this.goLogin();
+                          //  this.goLogin();
                             break;
                         case 200:
                             // 业务层级错误处理

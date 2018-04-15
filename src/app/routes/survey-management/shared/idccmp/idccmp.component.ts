@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 })
 export class IdccmpComponent extends Question {
     localAnswer; // 存储数据
-    answerChanged = false;
+    valid_confirmed = false;
     validateForm: FormGroup;
     editdisabled = false;
     flag = false;
@@ -24,13 +24,13 @@ export class IdccmpComponent extends Question {
     IDCVaildator = (control: FormControl): { [s: string]: boolean } => {
         const IDC_REGEXP = /((^\d{18}$)|(^\d{17}(\d|X|x)$))/;
         if (!control.value) {
-            this.answerChanged = false;
+            this.valid_confirmed = false;
             return {required: true};
         } else if (control.value.length !== 18 || !IDC_REGEXP.test(control.value)) {
-            this.answerChanged = false;
+            this.valid_confirmed = false;
             return {error: true, idc: true};
         }else {
-            this.answerChanged = true;
+            this.valid_confirmed = true;
         }
     }
     getFormControl(name) {
