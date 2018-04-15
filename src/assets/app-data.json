@@ -21,11 +21,21 @@
         {
             "group": true,
             "children": [{
-                "text": "Health Survey",
+                "text": "statistics",
                 "translate": "信息统计",
                 "link": "statistics/detail",
                 "icon": "icon-chart"
             }]
-        }]
+        },
+        {
+            "group": true,
+            "children": [{
+                "text": "database setting",
+                "translate": "数据库配置",
+                "link": "dbsettings/detail",
+                "icon": "icon-settings"
+            }]
+        }
+    ]
 }
 

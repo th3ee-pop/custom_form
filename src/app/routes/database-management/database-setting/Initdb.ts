@@ -1,4 +1,4 @@
-import {SaveList} from '../shared/example';
+import {SaveList} from '../../survey-management/shared/example';
 
 export class Initdb {
 
@@ -30,6 +30,8 @@ export class Initdb {
             dbsave.push(dbitem);
         }
         console.log(dbsave);
+        return dbsave;
+
     }
 
 }

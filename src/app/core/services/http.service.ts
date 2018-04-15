@@ -23,8 +23,8 @@ export class Record {
 @Injectable()
 export class HttpService {
 
-    baseUrl = 'http://59.110.52.133:9500';
-
+    baseUrl = 'http://202.117.54.93:8000';
+    baseUrl_v2 = 'http://202.117.54.93:8000'
     constructor(
         private http: HttpClient,
         private Http: Http,
@@ -44,6 +44,85 @@ export class HttpService {
         return 'q=' + JSON.stringify(params);
     }
 
+    // putRecord(params: any): Observable<any> {
+    //     console.log(params);
+    //     return this.http.put(this.baseUrl + '/vascular/recordop/', params, {
+    //         headers: new HttpHeaders({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
+    //     })
+    //         .map((res) => {
+    //             console.log(res);
+    //             return res;
+    //         })
+    //         .catch(err => {
+    //             console.log(err);
+    //             return Observable.throw(err);
+    //         });
+    // }
+
+
+    initDatabase(params: any): Observable<any> {
+        return this.http.put( this.baseUrl_v2 + '/polls/create', params
+            // ,
+            // {
+            //     headers: new HttpHeaders({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
+            // }
+            ).map((res) => {
+            console.log(res);
+            console.log('1111');
+            return res;
+        })
+            .catch((res) => {
+                console.log(res);
+                return res;
+            });
+    }
+
+    putRecords(params: any): Observable<any> {
+        return this.http.put( this.baseUrl_v2 + '/polls/recordop/', params,
+            {
+                headers: new HttpHeaders({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
+            })
+            .do(() => {})
+            .catch((res) => {
+                console.log(res);
+                return res;
+            });
+    }
+    getRecordpart(params: any): Observable<any> {
+        return this.http
+            .get( this.baseUrl_v2 + '/polls/recordpart/', {
+                headers: new HttpHeaders({'X-CSRFToken': this.injector.get(TokenService).data.access_token}),
+                params: this.getParams(params)
+            })
+            .do( () => {})
+            .catch( (res) => {
+                return res;
+            });
+    }
+    getRecords(params: any): Observable<any> {
+        return this.http
+            .get( this.baseUrl_v2 + '/polls/recordop/', {
+                headers: new HttpHeaders({'X-CSRFToken': this.injector.get(TokenService).data.access_token}),
+                params: this.getParams(params)
+            })
+            .do( () => {})
+            .catch( (res) => {
+                return res;
+            });
+    }
+    deleteRecords(deleteId): Observable<any> {
+        return this.Http.delete(this.baseUrl_v2 + '/polls/recordop/', {
+            body: deleteId,
+            headers: new Headers({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
+        })
+            .do(() => {
+                console.log('delete!');
+            } )
+            .catch((res) => {
+                console.log(res);
+                return res;
+            });
+    }
 
     getRecordId(params: any): any {
         const recordId = [];
@@ -62,7 +141,7 @@ export class HttpService {
             params: this.getParams({'PID': params})
         })
             .map((res: any) => {
-            return res.Records;
+                return res.Records;
             })
             .do((res) => console.log(res));
     }
@@ -75,6 +154,9 @@ export class HttpService {
             .then((res) => console.log(res))
             .catch(this.handleError);
     }
+
+
+
 
     /**
      * 查询操作，PID 病人编号，RecordID 记录编号
@@ -117,21 +199,6 @@ export class HttpService {
             headers: new HttpHeaders({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
         })
             .map((res) => {
-            console.log(res);
-            return res;
-        })
-            .catch(err => {
-                console.log(err);
-                return Observable.throw(err);
-            });
-    }
-
-    getFollowUp(PID: string): Observable<any> {
-        const params = {'PID': PID};
-        return this.http.get('http://59.110.52.133:9510' + '/vascular/followup/' + '?q=' + JSON.stringify(params),  {
-            headers: new HttpHeaders({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
-        })
-            .map((res) => {
                 console.log(res);
                 return res;
             })
@@ -141,20 +208,35 @@ export class HttpService {
             });
     }
 
-    putFollowUp(params: any): Observable<any> {
-        console.log(params);
-        return this.http.put('http://59.110.52.133:9510' + '/vascular/followup/', params, {
-            headers: new HttpHeaders({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
-        })
-            .map((res) => {
-                console.log(res);
-                return res;
-            })
-            .catch(err => {
-                console.log(err);
-                return Observable.throw(err);
-            });
-    }
+    // getFollowUp(PID: string): Observable<any> {
+    //     const params = {'PID': PID};
+    //     return this.http.get('http://59.110.52.133:9510' + '/vascular/followup/' + '?q=' + JSON.stringify(params),  {
+    //         headers: new HttpHeaders({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
+    //     })
+    //         .map((res) => {
+    //             console.log(res);
+    //             return res;
+    //         })
+    //         .catch(err => {
+    //             console.log(err);
+    //             return Observable.throw(err);
+    //         });
+    // }
+
+    // putFollowUp(params: any): Observable<any> {
+    //     console.log(params);
+    //     return this.http.put('http://59.110.52.133:9510' + '/vascular/followup/', params, {
+    //         headers: new HttpHeaders({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
+    //     })
+    //         .map((res) => {
+    //             console.log(res);
+    //             return res;
+    //         })
+    //         .catch(err => {
+    //             console.log(err);
+    //             return Observable.throw(err);
+    //         });
+    // }
 
     /**
      * 获取所有问卷及基本信息（上一次填写记录时间暂未增加）
@@ -198,7 +280,7 @@ export class HttpService {
             headers: new Headers({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
         })
             .do(() => {
-            console.log('delete!');
+                console.log('delete!');
             } )
             .catch((res) => {
                 console.log(res);
@@ -247,7 +329,7 @@ export class HttpService {
             headers: new Headers({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
         })
             .do((res) => {
-            console.log(res);
+                console.log(res);
             })
             .map(res => res.blob())
             .catch((res) => {
@@ -332,11 +414,11 @@ export class HttpService {
         console.log(conditions);
         return this.http.post(this.baseUrl + api, JSON.stringify(body))
             .do((res: any) => {
-            console.log(res);
+                console.log(res);
             })
             .catch((res) => {
-            return res;
-        });
+                return res;
+            });
     }
 
     /**
@@ -352,7 +434,7 @@ export class HttpService {
             'start': conditions.start,
             'offset': conditions.offset
         };
-         const api = '/vascular/recordlist/';
+        const api = '/vascular/recordlist/';
         console.log(conditions);
         return this.http.post(this.baseUrl + api, JSON.stringify(body))
             .do((res: any) => {
@@ -368,8 +450,8 @@ export class HttpService {
      * @param file 文件名
      * @returns {Observable<Response>}
      */
-    getChinaDivision(file){
-        return this.Http.get("assets/jsonData/"+file +".json")
+    getChinaDivision(file) {
+        return this.Http.get('assets/jsonData/"+file +".jso')
     }
 
 

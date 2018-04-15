@@ -32,6 +32,7 @@ export const routes = [
             { path: 'survey', loadChildren: './survey-management/survey-management.module#SurveyManagementModule',
                 data: { title: 'survey'}},
             { path: 'statistics', loadChildren: './statistics-management/statistics-management.module#StatisticsManagementModule'},
+            { path: 'dbsettings', loadChildren: './database-management/database-management.module#DatabaseManagementModule'},
             { path: 'user', loadChildren: './user-management/user-management.module#UserManagementModule' },
             { path: 'file', loadChildren: './file-management/file-management.module#FileManagementModule' },
             { path: 'useful_tables', loadChildren: './useful-table/tables.module#UsefulTablesModule' }

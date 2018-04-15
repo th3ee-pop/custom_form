@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '@core/services/http.service';
 import { ActivatedRoute, Router, PreloadingStrategy, Params} from '@angular/router';
 import { FileDownloadService } from '@core/services/fileDownload.service';
-import {Initdb} from '../shared/Initdb';
+import {Initdb} from '../../database-management/database-setting/Initdb';
 
 @Component({
     selector: 'app-survey-overview',
@@ -77,21 +77,21 @@ export class SurveyOverviewComponent implements OnInit {
     }
 
     getTableData(pageChange: boolean) {
-        this.setTime();
-        if (pageChange) {
-            this.changePage();
-        }
-        this.loading = true;
-        this._allChecked = false;
-        this._indeterminate = false;
-        // 进行对应的数据的查找
-        this.service.getList(this.conditions).subscribe( (res) => {
-            this.data = res.PID_info;
-            this.data.map(d => d + 1);
-            console.log(this.data);
-            this.total = res.Count_total;
-            this.loading = false;
-        });
+        // this.setTime();
+        // if (pageChange) {
+        //     this.changePage();
+        // }
+        // this.loading = true;
+        // this._allChecked = false;
+        // this._indeterminate = false;
+        // // 进行对应的数据的查找
+        // this.service.getList(this.conditions).subscribe( (res) => {
+        //     this.data = res.PID_info;
+        //     this.data.map(d => d + 1);
+        //     console.log(this.data);
+        //     this.total = res.Count_total;
+        //     this.loading = false;
+        // });
     }
 
 
@@ -171,10 +171,10 @@ export class SurveyOverviewComponent implements OnInit {
     /**
      * 下载选中内容
      */
-    downSelected(){
+    downSelected() {
         const PIDs = [];
         this.data.forEach(item => {
-            if(item.checked){
+            if (item.checked) {
                 PIDs.push(item.PID);
             }
         });
@@ -206,12 +206,6 @@ export class SurveyOverviewComponent implements OnInit {
         this._allChecked = checkedCount === this.data.length;
         this._indeterminate = this._allChecked ? false : checkedCount > 0;
     }
-
-    initdb() {
-        const db = new Initdb();
-        db.Initdb();
-    }
-
 }
 
 

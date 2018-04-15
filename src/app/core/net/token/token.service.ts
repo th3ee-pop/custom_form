@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TokenData } from './token.type';
 
-import {NzMessageService} from "ng-zorro-antd";
+import {NzMessageService} from 'ng-zorro-antd';
 
 /** 存储键 */
 const KEY = '_user';
@@ -10,7 +10,7 @@ const KEY = '_user';
  */
 @Injectable()
 export class TokenService {
-    private msg:NzMessageService;
+    private msg: NzMessageService;
     /**
      * 保存
      */
@@ -34,6 +34,6 @@ export class TokenService {
     //     this.msg
     // }
     get msgData() {
-        return this.msg
+        return this.msg;
     }
 }
