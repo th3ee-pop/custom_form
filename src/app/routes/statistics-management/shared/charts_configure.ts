@@ -14,6 +14,17 @@ export class ChartsOptions {
                     ]
 
                 },
+                {   'name': 'demo2',
+                    'type': 'bar',
+                    'legend': ['a', 'c', 'd'],
+                    'xAxis': ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+                    'series': [
+                        [ 16, 7, 3, 2, 8, 14, 22],
+                        [ 22, 3, 1, 10, 4, 1, 21],
+                        [ 3, 4, 5, 9, 11, 22, 16]
+                    ]
+
+                },
                 {   'name': 'demo3',
                     'type': 'bar',
                     'legend': ['a', 'c', 'd'],
