@@ -27,7 +27,7 @@ export class HighTableComponent extends Question implements OnInit {
     /**
      * 存储问题是否填写的变量,默认false
      */
-    answerChanged = false;
+    valid_confirmed = false;
     editdisabled = false;
 
     constructor() {
@@ -134,9 +134,9 @@ export class HighTableComponent extends Question implements OnInit {
             }
         }
         if ( this.answerCheck() === true)
-            this.answerChanged = true;
+            this.valid_confirmed = true;
         else
-            this.answerChanged = false;
+            this.valid_confirmed = false;
     }
 
     test() {

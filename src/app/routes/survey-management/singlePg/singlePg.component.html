@@ -21,10 +21,10 @@
                         </div>
                     </div>
                     <div class="steps-action">
-                        <button *ngIf="!buttondisable"  nz-button [nzType]="'default'" (click)="pre()">
+                        <button *ngIf="!buttondisable && current > 0"  nz-button [nzType]="'default'" (click)="pre()">
                             <span>上一步</span>
                         </button>
-                        <button *ngIf="!buttondisable"  nz-button [nzType]="'default'" (click)="next()">
+                        <button *ngIf="!buttondisable && current < (steps.length-1)"  nz-button [nzType]="'default'" (click)="next()">
                             <span>下一步</span>
                         </button>
                         <button *ngIf="!buttondisable"  nz-button [nzType]="'default'" (click)="temporary_deposit()" >

@@ -80,10 +80,9 @@ export class HttpService {
     }
 
     putRecords(params: any): Observable<any> {
-        return this.http.put( this.baseUrl_v2 + '/dbms/recordop/', params,
-            {
-                headers: new HttpHeaders({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
-            })
+        console.log('params------------');
+        console.log(JSON.stringify(params));
+        return this.http.put( this.baseUrl_v2 + '/dbms/recordop/', JSON.stringify(params))
             .do(() => {})
             .catch((res) => {
                 console.log(res);
@@ -93,7 +92,7 @@ export class HttpService {
     getRecordpart(params: any): Observable<any> {
         return this.http
             .get( this.baseUrl_v2 + '/dbms/recordpart/', {
-                headers: new HttpHeaders({'X-CSRFToken': this.injector.get(TokenService).data.access_token}),
+                // headers: new HttpHeaders({'X-CSRFToken': this.injector.get(TokenService).data.access_token}),
                 params: this.getParams(params)
             })
             .do( () => {})
@@ -104,7 +103,7 @@ export class HttpService {
     getRecords(params: any): Observable<any> {
         return this.http
             .get( this.baseUrl_v2 + '/dbms/recordop/', {
-                headers: new HttpHeaders({'X-CSRFToken': this.injector.get(TokenService).data.access_token}),
+                // headers: new HttpHeaders({'X-CSRFToken': this.injector.get(TokenService).data.access_token}),
                 params: this.getParams(params)
             })
             .do( () => {})
