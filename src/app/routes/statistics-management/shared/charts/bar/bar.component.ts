@@ -8,5 +8,5 @@ import { Options } from '../options';
 })
 
 export class BarComponent extends Options implements OnInit {
-
+    ngOnInit() {}
 }
