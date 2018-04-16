@@ -1,3 +1,103 @@
-<div>
-    <p>{{content}}</p>
+<div nz-row [nzGutter]="24" class="py-lg">
+    <div nz-col [nzSpan]="24">
+        <nz-card [nzNoHovering]="true">
+            <ng-template #title id='title'>分类统计</ng-template>
+            <ng-template #body>
+                <div nz-row>
+                    <div nz-col [nzSpan] = "18" [nzPush] = "6">
+                        <div id="title">
+                            <nz-card>
+                                <ng-template #body>
+                                    <div style="height: auto; width: 100%; margin-top: 50px" >
+                                        <div echarts [options]="options" class="demo-chart" (chartInit)="onChartEvent($event, 'chartInit')"
+                                             (chartClick)="onChartEvent($event, 'chartClick')"
+                                             (chartDblClick)="onChartEvent($event, 'chartDblClick')"
+                                             (chartMouseDown)="onChartEvent($event, 'chartMouseDown')"
+                                             (chartMouseUp)="onChartEvent($event, 'chartMouseUp')"
+                                             (chartMouseOver)="onChartEvent($event, 'chartMouseOver')"
+                                             (chartMouseOut)="onChartEvent($event, 'chartMouseOut')"
+                                             (chartGlobalOut)="onChartEvent($event, 'chartGlobalOut')"
+                                             (chartContextMenu)="onChartEvent($event, 'chartContextMenu')"
+                                             (chartDataZoom)="onChartEvent($event, 'chartDataZoom')"></div>
+                                    </div>
+                                </ng-template>
+                            </nz-card>
+                        </div>
+                        <div id="title">
+                            <nz-card>
+                                <ng-template #body>
+                                    <div style="height: auto; width: 100%; margin-top: 50px" >
+                                        <div echarts [options]="options" class="demo-chart" (chartInit)="onChartEvent($event, 'chartInit')"
+                                             (chartClick)="onChartEvent($event, 'chartClick')"
+                                             (chartDblClick)="onChartEvent($event, 'chartDblClick')"
+                                             (chartMouseDown)="onChartEvent($event, 'chartMouseDown')"
+                                             (chartMouseUp)="onChartEvent($event, 'chartMouseUp')"
+                                             (chartMouseOver)="onChartEvent($event, 'chartMouseOver')"
+                                             (chartMouseOut)="onChartEvent($event, 'chartMouseOut')"
+                                             (chartGlobalOut)="onChartEvent($event, 'chartGlobalOut')"
+                                             (chartContextMenu)="onChartEvent($event, 'chartContextMenu')"
+                                             (chartDataZoom)="onChartEvent($event, 'chartDataZoom')"></div>
+                                    </div>
+                                </ng-template>
+                            </nz-card>
+                        </div>
+                        <div id="title">
+                            <nz-card>
+                                <ng-template #body>
+                                    <div style="height: auto; width: 100%; margin-top: 50px" >
+                                        <div echarts [options]="options" class="demo-chart" (chartInit)="onChartEvent($event, 'chartInit')"
+                                             (chartClick)="onChartEvent($event, 'chartClick')"
+                                             (chartDblClick)="onChartEvent($event, 'chartDblClick')"
+                                             (chartMouseDown)="onChartEvent($event, 'chartMouseDown')"
+                                             (chartMouseUp)="onChartEvent($event, 'chartMouseUp')"
+                                             (chartMouseOver)="onChartEvent($event, 'chartMouseOver')"
+                                             (chartMouseOut)="onChartEvent($event, 'chartMouseOut')"
+                                             (chartGlobalOut)="onChartEvent($event, 'chartGlobalOut')"
+                                             (chartContextMenu)="onChartEvent($event, 'chartContextMenu')"
+                                             (chartDataZoom)="onChartEvent($event, 'chartDataZoom')"></div>
+                                    </div>
+                                </ng-template>
+                            </nz-card>
+                        </div>
+                    </div>
+                    <div nz-col [nzSpan]="6" [nzPull]="18">
+                        <nz-affix>
+                            <nz-card style="width: 80%">
+
+                                <ng-template #title>
+                                    <span>统计科室: 所有权限科室</span>
+
+
+                                    <!--统计项目: 14 个 (柱状图)-->
+                                    <!--时间范围: 2017年11月 至 2018年04月-->
+
+                                </ng-template>
+
+                                <ng-template #body>
+
+                                    <nz-anchor>
+                                        <nz-link nzHref="#门诊人次" nzTitle="门诊人次"></nz-link>
+                                        <nz-link nzHref="#门诊人次" nzTitle="出院人次"></nz-link>
+                                        <nz-link nzHref="#门诊人次" nzTitle="平均住院日"></nz-link>
+                                        <nz-link nzHref="#门诊人次" nzTitle="出院者住院天数大于30"></nz-link>
+                                        <nz-link nzHref="#门诊人次" nzTitle="出院者死亡率"></nz-link>
+                                        <nz-link nzHref="#门诊人次" nzTitle="全院病床使用率"></nz-link>
+
+                                        <!--<nz-link nzHref="#components-anchor-demo-basic" nzTitle="Basic demo"></nz-link>-->
+                                        <!--<nz-link nzHref="#API" nzTitle="API">-->
+                                            <!--<nz-link nzHref="#API-Anchor" nzTitle="nz-anchor"></nz-link>-->
+                                            <!--<nz-link nzHref="#title" nzTitle="nz-link"></nz-link>-->
+                                        <!--</nz-link>-->
+                                    </nz-anchor>
+
+                                </ng-template>
+
+                            </nz-card>
+                        </nz-affix>
+                    </div>
+                </div>
+            </ng-template>
+        </nz-card>
+    </div>
 </div>
+

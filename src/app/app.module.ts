@@ -16,6 +16,7 @@ import { MenuService } from './core/services/menu.service';
 import { TranslatorService } from './core/translator/translator.service';
 import { SettingsService } from './core/services/settings.service';
 import { TokenInterceptor } from '@core/net/token/token.interceptor';
+import { AngularEchartsModule } from 'ngx-echarts';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -38,6 +39,7 @@ export function StartupServiceFactory(startupService: StartupService): Function 
         CoreModule,
         LayoutModule,
         RoutesModule,
+        AngularEchartsModule,
         // i18n
         TranslateModule.forRoot({
             loader: {
