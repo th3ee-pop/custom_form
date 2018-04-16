@@ -6,12 +6,11 @@ import { RecordResolverGuard } from '@core/services/edit.guard.service';
 import { StatisticsOverviewComponent} from './statistics-overview/statistics-overview.component';
 import { ChartsComponent} from './charts/charts.component';
 import { AngularEchartsModule} from 'ngx-echarts';
+import { BarComponent} from './shared/charts/bar/bar.component';
+
 const routes: Routes = [
      { path: 'detail', component: StatisticsOverviewComponent  },
      { path: 'charts/:CID', component: ChartsComponent }
-    // { path: 'singlePg', component: SinglePgComponent  },
-    // { path: 'singlePg/:PID', component: SinglePgComponent },
-
 ];
 
 @NgModule({
@@ -27,30 +26,9 @@ const routes: Routes = [
     ],
     declarations: [
         StatisticsOverviewComponent,
-        ChartsComponent
-        // InputcmpComponent,
-        // RadiocmpComponent,
-        // PhoneComponent,
-        // IdccmpComponent,
-        // CheckboxcmpComponent,
-        // SurveyOverviewComponent,
-        // DatecmpComponent,
-        // SingletableComponent,
-        // ExampleComponent,
-        // SelectableTableComponent,
-        // Table52Component,
-        // MultiTableComponent,
-        // Table53Component,
-        // Table54Component,
-        // Table55Component,
-        // Table71Component,
-        // SinglePgComponent,
-        // Table64Component,
-        // SelectableInputComponent,
-        // MultiRadioComponent,
-        // AutoIncInputComponent,
-        // AddrcmpComponent,
-        // HighTableComponent
+        ChartsComponent,
+        BarComponent
+
     ],
     providers: [
         RecordResolverGuard

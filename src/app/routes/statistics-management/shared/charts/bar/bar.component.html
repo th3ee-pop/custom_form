@@ -2,7 +2,7 @@
     <nz-card>
         <ng-template #body>
             <div style="height: auto; width: 100%; margin-top: 50px" >
-                <div echarts [options]="options" class="demo-chart" (chartInit)="onChartEvent($event, 'chartInit')"
+                <div echarts [options]="option" class="demo-chart" (chartInit)="onChartEvent($event, 'chartInit')"
                      (chartClick)="onChartEvent($event, 'chartClick')"
                      (chartDblClick)="onChartEvent($event, 'chartDblClick')"
                      (chartMouseDown)="onChartEvent($event, 'chartMouseDown')"
