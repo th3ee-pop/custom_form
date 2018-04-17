@@ -256,12 +256,10 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
             }
         });
         this.HighTableItem.forEach(item => {
-            if (item.valid_confirmed === true) {
                 item.getAnswer();
                 for (let i = 0; i < item.changedAnswer.length; i++) {
                     this.resultList.push(item.changedAnswer[i]);
                 }
-            }
         });
 
         // for (let i = 0; i < this.answerList.length; i++) {

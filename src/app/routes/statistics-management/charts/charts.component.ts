@@ -1,7 +1,6 @@
-import { Component, OnInit, QueryList, ViewChildren} from '@angular/core';
+import { Component, OnInit, QueryList, ViewChildren, AfterViewInit } from '@angular/core';
 import { HttpService } from '@core/services/http.service';
-import { ActivatedRoute, Router, PreloadingStrategy, Params} from '@angular/router';
-
+import { ActivatedRoute, Router, PreloadingStrategy, Params, NavigationStart, NavigationEnd} from '@angular/router';
 import { AngularEchartsModule } from 'ngx-echarts';
 import { ChartsOptions } from '../shared/charts_configure';
 import { BarComponent } from '../shared/charts/bar/bar.component';
@@ -14,7 +13,7 @@ declare var echarts: any;
     styleUrls: ['./charts.component.css']
 })
 
-export class ChartsComponent implements OnInit {
+export class ChartsComponent implements OnInit, AfterViewInit {
     @ViewChildren(BarComponent) BarItems: QueryList<BarComponent>;
 
     CID = '';
@@ -30,16 +29,27 @@ export class ChartsComponent implements OnInit {
         private service: HttpService,
         private charts: AngularEchartsModule
     ) {
-        // this.contents = ['这是第一个menu的内容', '这是第二个menu的内容', '这是第三个menu的内容']
         this.CID = this.route.params['value']['CID'];
         const step = parseInt(this.CID)
         if (this.CID) {
             this.titles = this.options[this.CID].menu_name;
             console.log(this.titles);
             this.option_list = this.options[this.CID].charts;
+            console.log(this.CID);
         }
-
-
-
     }
+
+    ngAfterViewInit() {
+        this.router.events
+            .filter((event) => event instanceof NavigationEnd)
+            .subscribe((event: NavigationEnd) => {
+                console.log('NavigationStart..............');
+                const index = this.route.params['value']['CID'];
+                this.titles = this.options[index].menu_name;
+
+                this.option_list = this.options[index].charts;
+
+            });
+    }
+
 }

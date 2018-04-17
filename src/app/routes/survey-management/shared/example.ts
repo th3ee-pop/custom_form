@@ -6,42 +6,9 @@ export class SaveList {
             'items': [
                 {
                     'webId':  '1',
-                    'dbId': 'number',
+                    'dbId': 'patient_name',
                     'type': 'input',
-                    'front_title': '这是number类型',
-                    'behind_title': '',
-                    'validtype': 'number',
-                    'validcondition': {
-                        'min': 0,
-                        'max': 60
-                    },
-                    'length': '',
-                    'required': true,
-                    'hiddenlist': [],
-                    'hiddencondition': [],
-                    'hidden': false
-                },
-                {
-                    'webId':  '2',
-                    'dbId': 'len_number',
-                    'type': 'input',
-                    'front_title': '这是len_number类型',
-                    'behind_title': '',
-                    'validtype': 'len_number',
-                    'validcondition': {
-                        'length': 12
-                    },
-                    'length': '',
-                    'required': true,
-                    'hiddenlist': [],
-                    'hiddencondition': [],
-                    'hidden': false
-                },
-                {
-                    'webId':  '3',
-                    'dbId': 'text',
-                    'type': 'input',
-                    'front_title': '这是text类型',
+                    'front_title': '姓名',
                     'behind_title': '',
                     'validtype': 'text',
                     'validcondition': {
@@ -54,23 +21,7 @@ export class SaveList {
                     'hidden': false
                 },
                 {
-                    'webId':  '4',
-                    'dbId': 'len_text',
-                    'type': 'input',
-                    'front_title': '这是len_text类型',
-                    'behind_title': '',
-                    'validtype': 'len_text',
-                    'validcondition': {
-                        'length': 12
-                    },
-                    'length': '',
-                    'required': true,
-                    'hiddenlist': [],
-                    'hiddencondition': [],
-                    'hidden': false
-                },
-                {
-                    'webId': '5',
+                    'webId': '2',
                     'dbId': 'sex',
                     'type': 'radio',
                     'front_title': '性别',
@@ -86,25 +37,7 @@ export class SaveList {
                     'hidden': false
                 },
                 {
-                    'webId': '6',
-                    'dbId': 'diagnose',
-                    'type': 'checkbox',
-                    'front_title': '是否有过以下疾病',
-                    'behind_title': '',
-                    'required': true,
-                    'content': [
-                        '心脏病', '糖尿病', '癌症', '脑炎'
-                    ],
-                    'hiddenlist': [
-                        ['5'],
-                        ['1'],
-                        ['3'],
-                        ['2']
-                    ],
-                    'hidden': false
-                },
-                {
-                    'webId': '7',
+                    'webId': '3',
                     'dbId': 'birthday',
                     'type': 'date',
                     'front_title': '出生日期',
@@ -113,8 +46,150 @@ export class SaveList {
                     'hidden': false
                 },
                 {
+                    'webId': '4',
+                    'dbId': 'inday',
+                    'type': 'date',
+                    'front_title': '入院日期',
+                    'behind_title': '',
+                    'required': true,
+                    'hidden': false
+                },
+                {
+                    'webId': '5',
+                    'dbId': 'outday',
+                    'type': 'date',
+                    'front_title': '出院日期',
+                    'behind_title': '',
+                    'required': true,
+                    'hidden': false
+                },
+                {
+                    'webId':  '6',
+                    'dbId': 'text',
+                    'type': 'input',
+                    'front_title': '主治医生',
+                    'behind_title': '',
+                    'validtype': 'text',
+                    'validcondition': {
+
+                    },
+                    'length': '',
+                    'required': true,
+                    'hiddenlist': [],
+                    'hiddencondition': [],
+                    'hidden': false
+                },
+                // {
+                //     'webId':  '1',
+                //     'dbId': 'number',
+                //     'type': 'input',
+                //     'front_title': '姓名',
+                //     'behind_title': '',
+                //     'validtype': 'number',
+                //     'validcondition': {
+                //         'min': 0,
+                //         'max': 60
+                //     },
+                //     'length': '',
+                //     'required': true,
+                //     'hiddenlist': [],
+                //     'hiddencondition': [],
+                //     'hidden': false
+                // },
+                // {
+                //     'webId':  '2',
+                //     'dbId': 'len_number',
+                //     'type': 'input',
+                //     'front_title': '这是len_number类型',
+                //     'behind_title': '',
+                //     'validtype': 'len_number',
+                //     'validcondition': {
+                //         'length': 12
+                //     },
+                //     'length': '',
+                //     'required': true,
+                //     'hiddenlist': [],
+                //     'hiddencondition': [],
+                //     'hidden': false
+                // },
+                // {
+                //     'webId':  '3',
+                //     'dbId': 'text',
+                //     'type': 'input',
+                //     'front_title': '这是text类型',
+                //     'behind_title': '',
+                //     'validtype': 'text',
+                //     'validcondition': {
+                //
+                //     },
+                //     'length': '',
+                //     'required': true,
+                //     'hiddenlist': [],
+                //     'hiddencondition': [],
+                //     'hidden': false
+                // },
+                // {
+                //     'webId':  '4',
+                //     'dbId': 'len_text',
+                //     'type': 'input',
+                //     'front_title': '这是len_text类型',
+                //     'behind_title': '',
+                //     'validtype': 'len_text',
+                //     'validcondition': {
+                //         'length': 12
+                //     },
+                //     'length': '',
+                //     'required': true,
+                //     'hiddenlist': [],
+                //     'hiddencondition': [],
+                //     'hidden': false
+                // },
+                // {
+                //     'webId': '5',
+                //     'dbId': 'sex',
+                //     'type': 'radio',
+                //     'front_title': '性别',
+                //     'behind_title': '',
+                //     'required': true,
+                //     'content': [
+                //         '男', '女'
+                //     ],
+                //     'hiddenlist': [
+                //         ['6'],
+                //         ['3']
+                //     ],
+                //     'hidden': false
+                // },
+                // {
+                //     'webId': '6',
+                //     'dbId': 'diagnose',
+                //     'type': 'checkbox',
+                //     'front_title': '是否有过以下疾病',
+                //     'behind_title': '',
+                //     'required': true,
+                //     'content': [
+                //         '心脏病', '糖尿病', '癌症', '脑炎'
+                //     ],
+                //     'hiddenlist': [
+                //         ['5'],
+                //         ['1'],
+                //         ['3'],
+                //         ['2']
+                //     ],
+                //     'hidden': false
+                // },
+                // {
+                //     'webId': '7',
+                //     'dbId': 'birthday',
+                //     'type': 'date',
+                //     'front_title': '出生日期',
+                //     'behind_title': '',
+                //     'required': true,
+                //     'hidden': false
+                // },
+                {
                     'dbId': '',
-                    'webId': '5.5.1',
+                    'webId': '7',
                     'title': '血常规', // 标题
                     'hidden': false,
                     'type': 'high-table',

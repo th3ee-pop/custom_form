@@ -23,8 +23,25 @@
             "children": [{
                 "text": "statistics",
                 "translate": "信息统计",
-                "link": "statistics/detail",
-                "icon": "icon-chart"
+                "link": "statistics/charts/0",
+                "icon": "icon-chart",
+                "children": [
+                    {
+                        "text": "业务量",
+                        "link": "statistics/charts/0",
+                        "i18n": "dashboard_v1"
+                    },
+                    {
+                        "text": "患者统计",
+                        "link": "statistics/charts/1",
+                        "i18n": "dashboard_v1"
+                    },
+                    {
+                        "text": "随访数据",
+                        "link": "statistics/charts/2",
+                        "i18n": "dashboard_v1"
+                    }
+                ]
             }]
         },
         {

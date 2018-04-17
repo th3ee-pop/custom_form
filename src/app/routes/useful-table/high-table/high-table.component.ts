@@ -27,7 +27,6 @@ export class HighTableComponent extends Question implements OnInit {
     /**
      * 存储问题是否填写的变量,默认false
      */
-    valid_confirmed = false;
     editdisabled = false;
 
     constructor() {
@@ -108,47 +107,19 @@ export class HighTableComponent extends Question implements OnInit {
 
     getAnswer() {
         this.changedAnswer = [];
-        this.setAnswer(this.initialArray, this.idArray, this.row, this.column);
+        this.setAnswer(this.initialArray, this.row, this.column);
     }
 
-    setAnswer(blank: any, idArray: any, row: number, column: number) {
-        if (row > 1) {
+    setAnswer(blank: any, row: number, column: number) {
             for (let i = 0; i < row; i++) {
                 for (let j = 0; j < column; j++) {
-                    if (blank[i][j] !== '') {
-                        this.changedAnswer.push({
-                            Record_ID: idArray[i][j],
-                            Record_Value: blank[i][j]
-                        });
-                    }
+                        this.changedAnswer.push(blank[i][j]);
                 }
             }
-        } else {
-            for (let i = 0; i < column; i++) {
-                if (blank[i] !== '') {
-                    this.changedAnswer.push({
-                        Record_ID: idArray[i],
-                        Record_Value: blank[i]
-                    });
-                }
+            if (this.overall) {
+                this.changedAnswer.push(blank[row]);
             }
-        }
-        if ( this.answerCheck() === true)
-            this.valid_confirmed = true;
-        else
-            this.valid_confirmed = false;
-    }
-
-    test() {
-        console.log(this.initialArray);
-    }
-    answerCheck() {
-        for ( let i = 0; i < this.changedAnswer.length; i++) {
-            if (this.changedAnswer[i] && this.changedAnswer[i] !== '' ) {
-                return true;
-            }
-        }
-        return false;
+        console.log(this.changedAnswer);
     }
 
 }

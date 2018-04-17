@@ -5,9 +5,6 @@
             <nz-card [nzNoHovering]="true">
                 <ng-template #title>{{question.id1}}{{question.title}}</ng-template>
                 <ng-template #body>
-                    <button nz-button [nzType]="'default'" (click)="test()" >
-                        <span>Default</span>
-                    </button>
                     <nz-table [nzDataSource]="rowTitle" [nzIsPagination]="false">
                         <thead nz-thead>
                         <tr nz-tbody-tr>
