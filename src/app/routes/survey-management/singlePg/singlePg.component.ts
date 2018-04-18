@@ -52,6 +52,8 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
             const getRecord = {
                 'PID': this.PID
             };
+            this.qlist = this.exampleList[this.steps[this.current]]['items'];
+            console.log(this.qlist);
             // this.service.getRecordpart(getRecord).subscribe( (res) => {
             //     const list = res.Records;
             //     this.answerList = list;
@@ -111,18 +113,18 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
                 'Records' : this.resultList,
                 'step_key': this.steps[this.current],
                 'Department': this.department,
-                'PID' : ''
+                'PID' : 1
             };
         }
         return putRecord;
     }
     next() {
         if ( (this.current + 1) < this.steps.length) {
-            this.current = this.current + 1;
             this.service.putRecords(this.initputRecord()).subscribe((res) => {
                 console.log(res);
+                this.current++; // 这里注意，一定要在putrecord之后，再加current。
                 this.qlist = this.exampleList[this.steps[this.current]]['items'];
-
+                this.fillingAllanswer(); // 这里我们需要再次调用fillingAllanswer，获取新子页面下的数据。
             }, err => {
                 console.log(err);
             });
@@ -130,10 +132,11 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
     }
     pre() {
         if (this.current > 0) {
-            this.current = this.current - 1;
             this.service.putRecords(this.initputRecord()).subscribe((res) => {
                 console.log(res);
+                this.current--; // 这里注意，一定要在putrecord之后，再减current。
                 this.qlist = this.exampleList[this.steps[this.current]]['items'];
+                this.fillingAllanswer(); // 这里我们需要再次调用fillingAllanswer，获取新子页面下的数据。
             }, err => {
                 console.log(err);
             });
@@ -218,6 +221,7 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
         return confirmAll;
     }
     collectAllanswer() {
+        this.resultList.splice(0, this.resultList.length);
         this.RadioItems.forEach(item => {
             if (item.valid_confirmed === true ) {
                 for (let i = 0; i < item.answer.length; i++)
@@ -288,9 +292,45 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
     }
     fillingAllanswer() {
 
-        // const getRecord = {
-        //     'PID': this.PID
-        // };
+         const getRecord = {
+             'PID': this.PID,
+             'Department': this.department,
+             'step_keys': [this.steps[this.current]]
+         }; // 构造我们需要的查询条件
+
+         // 下面开始获取所有当前子页面的数据
+         this.service.getRecordpart(getRecord).subscribe((res) => {
+
+            const answers_bucket = new Array(...res.Records[this.steps[this.current]]);
+            // answer_bucket是我们获取到的所有当前子页面的回填答案，下面需要将他们依次放回各个组件。
+
+             // 所有hightable类型的数据获取
+            this.HighTableItem.forEach(item => {
+                const newArray = [];
+                const newInital = [];
+                for (const answer of answers_bucket) {
+                    if (answer.Record_ID.substr(0, 3) === item.id_title) {
+                        newArray.push({
+                            Record_ID: answer.Record_ID,
+                            Record_Value: answer.Record_value
+                        });
+                    }
+                }
+                console.log(newArray);
+                for (let row = 0; row < item.row; row++) {
+                    newInital.push([]);
+                    for (let column = row * item.column; column < (row + 1) * item.column; column++ ) {
+                        newInital[row].push(newArray[column]);
+                    }
+                }
+                if (item.overall) {
+                    newInital.push(newArray[newArray.length - 1]);
+                }
+                item.initialArray = newInital;
+            });
+
+            // 在这里，继续补充其他类型部件。
+         });
         // this.service.getRecord(getRecord).subscribe((res) => {
         //
         //     this.fillingList = res.Records;
