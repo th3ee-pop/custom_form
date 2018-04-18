@@ -122,6 +122,7 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
             this.service.putRecords(this.initputRecord()).subscribe((res) => {
                 console.log(res);
                 this.qlist = this.exampleList[this.steps[this.current]]['items'];
+
             }, err => {
                 console.log(err);
             });
