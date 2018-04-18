@@ -38,7 +38,7 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
     finished = false;
     buttondisable = false;
 
-    department = 'test';
+    department = 'test1';
     constructor(
         private router: Router,
         private route: ActivatedRoute,
@@ -113,7 +113,7 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
                 'Records' : this.resultList,
                 'step_key': this.steps[this.current],
                 'Department': this.department,
-                'PID' : 1
+                'PID' : ''
             };
         }
         return putRecord;
@@ -306,10 +306,12 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
 
              // 所有hightable类型的数据获取
             this.HighTableItem.forEach(item => {
+                console.log(answers_bucket);
                 const newArray = [];
                 const newInital = [];
                 for (const answer of answers_bucket) {
                     if (answer.Record_ID.substr(0, 3) === item.id_title) {
+                        console.log(answer.Record_ID.substr(0, 3));
                         newArray.push({
                             Record_ID: answer.Record_ID,
                             Record_Value: answer.Record_value
@@ -329,52 +331,47 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
                 item.initialArray = newInital;
             });
 
+             /*this.RadioItems.forEach(item => {
+                 if (item.valid_confirmed === true ) {
+                     for (let i = 0; i < item.answer.length; i++)
+                         this.resultList.push(item.answer[i]);
+                 }
+             });
+             this.InputItems.forEach(item => {
+                 if (item.valid_confirmed === true) {
+                     for (let i = 0; i < item.answer.length; i++)
+                         this.resultList.push(item.answer[i]);
+                 }
+             });
+             this.CheckItem.forEach(item => {
+                 if (item.valid_confirmed === true) {
+                     for (let i = 0; i < item.answer.length; i++)
+                         this.resultList.push(item.answer[i]);
+                 }
+             });
+
+             this.DateItem.forEach(item => {
+                 if (item.valid_confirmed === true ) {
+                     for (let i = 0; i < item.answer.length; i++)
+                         this.resultList.push(item.answer[i]);
+                 }
+             });
+
+             this.AddrItem.forEach(item => {
+                 if (item.valid_confirmed === true ) {
+                     for (let i = 0; i < item.answer.length; i++)
+                         this.resultList.push(item.answer[i]);
+                 }
+             });
+             this.IdcItem.forEach(item => {
+                 if (item.valid_confirmed === true ) {
+                     for (let i = 0; i < item.answer.length; i++)
+                         this.resultList.push(item.answer[i]);
+                 }
+             });*/
+
             // 在这里，继续补充其他类型部件。
          });
-        // this.service.getRecord(getRecord).subscribe((res) => {
-        //
-        //     this.fillingList = res.Records;
-        //     const pageZero = [];
-        //     this.fillingList.forEach(d => {
-        //         for (const key in d) {
-        //             if (key.substr(0, 1) === 'n'
-        //                 || key === 'Idnumber'
-        //                 || key === 'doctor'
-        //                 || key.substr(0, 4) === 'type'
-        //                 || key.substr(0, 4) === 'diag'
-        //             ) {
-        //                 pageZero.push(d);
-        //             }
-        //         }
-        //     });
-        //     // console.log(pageZero);
-        //     this.InputItems.forEach(item => {
-        //         for (let i = 0; i < pageZero.length; i++) {
-        //             const id = item.question.id2;
-        //             if (pageZero[i][id] && pageZero[i][id] !== '') {
-        //                 item.localAnswer = pageZero[i][id];
-        //             }
-        //             if (pageZero[i][id] === 0) {
-        //                 item.localAnswer = '0';
-        //             }
-        //         }
-        //     });
-        //
-        //     this.IdcItems.forEach( item => { for (let i = 0; i < pageZero.length; i++) {
-        //         if (pageZero[i]['Idnumber'] && pageZero[i]['Idnumber'] !== '') {
-        //             item.localAnswer = pageZero[i]['Idnumber']; }
-        //     }});
-        //     this.RadioItems.forEach(item => {
-        //         for (let i = 0; i < pageZero.length; i++) {
-        //             const id = item.question.id2;
-        //             if (pageZero[i][id] && pageZero[i][id] !== '') {
-        //                 item.localAnswer = pageZero[i][id] - 1;
-        //             }
-        //         }
-        //     });
-        // }, error => {
-        //     console.log(error);
-        // });
     }
 
 }

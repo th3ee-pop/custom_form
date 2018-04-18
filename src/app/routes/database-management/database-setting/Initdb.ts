@@ -22,6 +22,9 @@ export class Initdb {
                             dbitem.item_key.push(subitem.id_title + '.' + row + '.' + col);
                         }
                     }
+                    if (items[j].overall) {
+                        dbitem.item_key.push(subitem.id_title + 'overall');
+                    }
                 } else {
                     dbitem.item_key.push(items[j].dbId);
                 }
