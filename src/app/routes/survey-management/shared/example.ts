@@ -109,7 +109,7 @@ export class SaveList {
                     'hiddencondition': [],
                     'hidden': false
                 },
-<<<<<<< HEAD
+
                 {
                     'webId':  '9',
                     'dbId': 'diagnosis_name',
@@ -133,7 +133,14 @@ export class SaveList {
                     'behind_title': '',
                     'validtype': 'text',
                     'validcondition': {
-=======
+                    },
+                    'length': '',
+                    'required': true,
+                    'hiddenlist': [],
+                    'hiddencondition': [],
+                    'hidden': false
+                }
+
                 // {
                 //     'webId':  '1',
                 //     'dbId': 'number',
@@ -215,43 +222,21 @@ export class SaveList {
                 //     ],
                 //     'hidden': false
                 // },
-                 {
-                     'webId': '6',
-                     'dbId': 'diagnose',
-                     'type': 'checkbox',
-                     'front_title': '是否有以下疾病',
-                     'behind_title': '',
-                     'required': true,
-                     'content': [
-                         '心脏病', '糖尿病', '癌症', '脑炎'
-                     ],
-                     'hiddenlist': [
-                     ],
-                     'hidden': false
-                 },
-                {
-                    'dbId': '',
-                    'webId': '7',
-                    'title': '血常规', // 标题
-                    'hidden': false,
-                    'type': 'high-table',
-                    'rowTitle': ['第一次', '第二次', '第三次', '第四次', '第五次', '第六次', '第七次', '第八次', '第九次', '第十次'], // 各行标题，也就是最左一列
-                    'columnTitle': ['RBC', 'WBC', 'Hb', 'PLT109/', 'NEUT', 'NEUT%', 'LYMPH', 'LYMPH%', 'MONO', 'MONO%'], // 各列标题，也就是最上面一行
-                    'id_title': 'xcg', // 数据库中存储的前缀
-                    'table_type': 'mix', // 表格类型，表示是混合表格，既有input，又有radio(mix)
-                    'radio_setting': { // radio 的设置
-                        'direction': 'column',  // radio 的分布类型，是以列分布还是以行分布
-                        'index': [ 1, 2, 4 ], // 哪几行（列）是radio
-                        'options': [{value: '1', display_value: '是'}, {value: '2', display_value: '否'}, {value: '3', display_value: '不明'}]
-                        // radio的选项都有什么，对应的值是什么
->>>>>>> 2ff3b8051fa58c53f5150a522fdb142d39228c17
-                    },
-                    'length': '',
-                    'required': true,
-                    'hiddenlist': [],
-                    'hiddencondition': [],
-                    'hidden': false
-                },
+                //  {
+                //      'webId': '6',
+                //      'dbId': 'diagnose',
+                //      'type': 'checkbox',
+                //      'front_title': '是否有以下疾病',
+                //      'behind_title': '',
+                //      'required': true,
+                //      'content': [
+                //          '心脏病', '糖尿病', '癌症', '脑炎'
+                //      ],
+                //      'hiddenlist': [
+                //      ],
+                //      'hidden': false
+                //  },
+
             ]
 
         },
@@ -756,3 +741,26 @@ export class SaveList {
 //     'overall': true // 表格是否有总体评价的文字框
 // },
 // ]
+// {
+//     'dbId': '',
+//     'webId': '7',
+//     'title': '血常规', // 标题
+//     'hidden': false,
+//     'type': 'high-table',
+//     'rowTitle': ['第一次', '第二次', '第三次', '第四次', '第五次', '第六次', '第七次', '第八次', '第九次', '第十次'], // 各行标题，也就是最左一列
+//     'columnTitle': ['RBC', 'WBC', 'Hb', 'PLT109/', 'NEUT', 'NEUT%', 'LYMPH', 'LYMPH%', 'MONO', 'MONO%'], // 各列标题，也就是最上面一行
+//     'id_title': 'xcg', // 数据库中存储的前缀
+//     'table_type': 'mix', // 表格类型，表示是混合表格，既有input，又有radio(mix)
+//     'radio_setting': { // radio 的设置
+//     'direction': 'column',  // radio 的分布类型，是以列分布还是以行分布
+//         'index': [ 1, 2, 4 ], // 哪几行（列）是radio
+//         'options': [{value: '1', display_value: '是'}, {value: '2', display_value: '否'}, {value: '3', display_value: '不明'}]
+//     // radio的选项都有什么，对应的值是什么
+//
+// },
+//     'length': '',
+//     'required': true,
+//     'hiddenlist': [],
+//     'hiddencondition': [],
+//     'hidden': false
+// },
