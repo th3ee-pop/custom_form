@@ -444,7 +444,7 @@ export class HttpService {
             'start': conditions.start,
             'offset': conditions.offset
         };
-        const api = '/vascular/recordlist/';
+        const api = '/dbms/recordlist/';
         console.log(conditions);
         return this.http.post(this.baseUrl + api, JSON.stringify(body))
             .do((res: any) => {

@@ -9,7 +9,8 @@
                         <nz-step *ngFor="let step of b ,index as i" [nzTitle]="step.status" [nzDescription]="step.descript" (click)="jumpTo(i,footer)">
                         </nz-step>
                     </nz-steps>
-                    <div *ngFor="let question of qlist">
+                    <!--style="max-width: 1200px; float: left;"-->
+                    <div *ngFor="let question of qlist" >
                         <div [ngSwitch]="question.type">
                             <app-inputcmp       *ngSwitchCase="'input'"         [question]="question" (onVoted)="onVoted($event)" ></app-inputcmp>
                             <app-radiocmp       *ngSwitchCase="'radio'"         [question]="question" (onVoted)="onVoted($event)" ></app-radiocmp>
