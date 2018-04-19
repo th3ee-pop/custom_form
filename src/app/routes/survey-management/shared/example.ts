@@ -606,6 +606,19 @@ export class SaveList {
                     'hidden': false
 
                 },
+                {
+                    'webId':  '33',
+                    'dbId': 'option',
+                    'type': 'option',
+                    'front_title': 'test option',
+                    'behind_title': '',
+
+                    'length': '',
+                    'required': true,
+                    'hiddenlist': [],
+                    'hiddencondition': [],
+                    'hidden': false
+                }
 
 
             ]

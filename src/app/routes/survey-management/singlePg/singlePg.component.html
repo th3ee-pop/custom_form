@@ -19,6 +19,7 @@
                             <app-idccmp         *ngSwitchCase="'idc'"           [question]="question" (onVoted)="onVoted($event)" ></app-idccmp>
                             <app-high-table     *ngSwitchCase="'high-table'"    [question]="question" (onVoted)="onVoted($event)" ></app-high-table>
                             <app-datecmp     *ngSwitchCase="'date'"    [question]="question" (onVoted)="onVoted($event)" ></app-datecmp>
+                            <app-option *ngSwitchCase="'option'" [question]="question" ></app-option>
                         </div>
                     </div>
                     <div class="steps-action">
