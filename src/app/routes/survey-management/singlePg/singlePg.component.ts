@@ -137,6 +137,7 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
                 this.current--; // 这里注意，一定要在putrecord之后，再减current。
                 this.qlist = this.exampleList[this.steps[this.current]]['items'];
                 this.fillingAllanswer(); // 这里我们需要再次调用fillingAllanswer，获取新子页面下的数据。
+
             }, err => {
                 console.log(err);
             });
