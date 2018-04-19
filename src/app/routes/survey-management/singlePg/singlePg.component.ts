@@ -310,6 +310,7 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
 
              if (JSON.stringify(res.Records) !== '{}') {
                  const answers_bucket = new Array(...res.Records[this.steps[this.current]]);
+                 console.log(answers_bucket);
                  // answer_bucket是我们获取到的所有当前子页面的回填答案，下面需要将他们依次放回各个组件。
 
                  // 所有hightable类型的数据获取
