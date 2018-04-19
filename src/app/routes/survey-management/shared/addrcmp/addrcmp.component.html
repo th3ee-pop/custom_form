@@ -9,7 +9,7 @@
                 <ng-template #body>
                     <div nz-row>
                     <nz-select
-                        style="width: 200px;"
+                        style="width: 24%;"
                         nzAllowClear
                         [nzPlaceHolder]="'省份'"
                         [(ngModel)]="initArray[0]"
@@ -24,7 +24,7 @@
                     </nz-select>
                     <!--<span nz-form-text>省</span>-->
                     <nz-select
-                        style="width: 200px;"
+                        style="width:24%;"
                         nzAllowClear
                         [nzPlaceHolder]="'市'"
                         [(ngModel)]="initArray[1]"
@@ -39,7 +39,7 @@
                     </nz-select>
                     <!--<span nz-form-text>市区</span>-->
                     <nz-select
-                        style="width: 200px;"
+                        style="width: 24%;"
                         nzAllowClear
                         [nzPlaceHolder]="'县'"
                         [(ngModel)]="initArray[2]"
@@ -54,7 +54,7 @@
                     </nz-select>
                     <!--<span nz-form-text>街道</span>-->
                     <nz-select
-                        style="width: 200px;"
+                        style="width:24%;"
                         nzAllowClear
                         [nzPlaceHolder]="'街道'"
                         [(ngModel)]="initArray[3]"
@@ -69,8 +69,7 @@
                     </nz-select>
                     </div>
                     <!--<span nz-form-text>街道</span>-->
-                    <br>
-                    <nz-input  nzType="textarea" [(ngModel)]="initArray[4]" (ngModelChange)="answerChange()" [nzPlaceHolder]="'请输入详细地址'"></nz-input>
+                    <nz-input style="margin-top: 5px"  nzType="textarea" [(ngModel)]="initArray[4]" (ngModelChange)="answerChange()" [nzPlaceHolder]="'请输入详细地址'"></nz-input>
                 </ng-template>
             </nz-card>
         </div>
