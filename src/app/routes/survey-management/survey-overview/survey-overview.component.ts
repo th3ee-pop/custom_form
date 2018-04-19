@@ -43,6 +43,7 @@ export class SurveyOverviewComponent implements OnInit {
         'filter_dict': {
             'Updated_time': []
         },
+        'Department': 'test1',
         'sorted_key': 'PID',
         'start': (this.pi - 1) * this.ps,
         'offset': this.ps,
@@ -90,7 +91,7 @@ export class SurveyOverviewComponent implements OnInit {
             this.data = res.PID_info;
             this.data.map(d => d + 1);
             console.log(this.data);
-            this.total = res.Count_total;
+            this.total = res.Count;
             this.loading = false;
         });
     }

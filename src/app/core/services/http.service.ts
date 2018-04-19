@@ -442,7 +442,8 @@ export class HttpService {
             'filter_dict': conditions.filter,
             'sorted_key': conditions.sorted_key,
             'start': conditions.start,
-            'offset': conditions.offset
+            'offset': conditions.offset,
+            'Department': conditions.Department
         };
         const api = '/dbms/recordlist/';
         console.log(conditions);
