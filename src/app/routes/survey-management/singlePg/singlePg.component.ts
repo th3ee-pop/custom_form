@@ -236,10 +236,17 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
             }
         });
         this.CheckItem.forEach(item => {
-            if (item.valid_confirmed === true) {
-                for (let i = 0; i < item.answer.length; i++)
-                    this.resultList.push(item.answer[i]);
+            const answers = [];
+            console.log(item.localAnswer);
+            for (let i = 0; i < item.localAnswer.length; i++) {
+                if (item.localAnswer[i]) {
+                    answers.push(item.question.content[i]);
+                }
             }
+            this.resultList.push({
+                Record_ID: item.question.dbId,
+                Record_Value: answers.join(',')
+            });
         });
 
         this.DateItem.forEach(item => {
@@ -302,35 +309,111 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
          // 下面开始获取所有当前子页面的数据
          this.service.getRecordpart(getRecord).subscribe((res) => {
 
-            const answers_bucket = new Array(...res.Records[this.steps[this.current]]);
-            // answer_bucket是我们获取到的所有当前子页面的回填答案，下面需要将他们依次放回各个组件。
+             if (JSON.stringify(res.Records) !== '{}') {
+                 const answers_bucket = new Array(...res.Records[this.steps[this.current]]);
+                 // answer_bucket是我们获取到的所有当前子页面的回填答案，下面需要将他们依次放回各个组件。
 
-             // 所有hightable类型的数据获取
-            this.HighTableItem.forEach(item => {
-                console.log(answers_bucket);
-                const newArray = [];
-                const newInital = [];
-                for (const answer of answers_bucket) {
-                    if (answer.Record_ID.substr(0, 3) === item.id_title) {
-                        console.log(answer.Record_ID.substr(0, 3));
-                        newArray.push({
-                            Record_ID: answer.Record_ID,
-                            Record_Value: answer.Record_value
-                        });
-                    }
-                }
-                console.log(newArray);
-                for (let row = 0; row < item.row; row++) {
-                    newInital.push([]);
-                    for (let column = row * item.column; column < (row + 1) * item.column; column++ ) {
-                        newInital[row].push(newArray[column]);
-                    }
-                }
-                if (item.overall) {
-                    newInital.push(newArray[newArray.length - 1]);
-                }
-                item.initialArray = newInital;
-            });
+                 // 所有hightable类型的数据获取
+                 this.HighTableItem.forEach(item => {
+                     console.log(answers_bucket);
+                     const newArray = [];
+                     const newInital = [];
+                     for (const answer of answers_bucket) {
+                         if (answer.Record_ID.substr(0, 3) === item.id_title) {
+                             console.log(answer.Record_ID.substr(0, 3));
+                             newArray.push({
+                                 Record_ID: answer.Record_ID,
+                                 Record_Value: answer.Record_value
+                             });
+                         }
+                     }
+                     console.log(newArray);
+                     for (let row = 0; row < item.row; row++) {
+                         newInital.push([]);
+                         for (let column = row * item.column; column < (row + 1) * item.column; column++ ) {
+                             newInital[row].push(newArray[column]);
+                         }
+                     }
+                     if (item.overall) {
+                         newInital.push(newArray[newArray.length - 1]);
+                     }
+                     item.initialArray = newInital;
+                 });
+
+                 this.RadioItems.forEach(item => {
+                     for (const answer of answers_bucket) {
+                         if (answer.Record_ID === item.question.dbId) {
+                             console.log(item.question.dbId);
+                             item.localAnswer = +answer.Record_value;
+                         }
+                     }
+                 });
+
+                 this.InputItems.forEach(item => {
+                     for (const answer of answers_bucket) {
+                         if (answer.Record_ID === item.question.dbId) {
+                             console.log(item.question.dbId);
+                             item.localAnswer = answer.Record_value;
+                         }
+                     }
+                 });
+
+                 this.IdcItem.forEach(item => {
+                     for (const answer of answers_bucket) {
+                         if (answer.Record_ID === item.question.dbId) {
+                             console.log(item.question.dbId);
+                             item.localAnswer = answer.Record_value;
+                         }
+                     }
+                 });
+
+                 this.DateItem.forEach(item => {
+                     for (const answer of answers_bucket) {
+                         if (answer.Record_ID === item.question.dbId) {
+                             console.log(answer.Record_value);
+                             const date = new Date(answer.Record_value);
+                             console.log(date);
+                             item.date = date;
+                         }
+                     }
+                 });
+
+                 this.CheckItem.forEach(item => {
+                     const newLocal = [];
+                     for (const answer of answers_bucket) {
+                         if (answer.Record_ID === item.question.dbId) {
+                             const options = answer.Record_value.split(',');
+                             item.question.content.forEach(option => {
+                                 if (options.indexOf(option) > -1) {
+                                     newLocal.push(true);
+                                 } else {
+                                     newLocal.push(false);
+                                 }
+                             });
+                             item.localAnswer = newLocal;
+                         }
+                     }
+                 });
+
+                 this.AddrItem.forEach(item => {
+                     for (const answer of answers_bucket) {
+                         if (answer.Record_ID === item.question.dbId) {
+                             const answerSet = answer.Record_value.split(' ');
+                             const newInit = [];
+                             answerSet.forEach(section => {
+                                 if (section.split(',').length > 1) {
+                                     newInit.push(section.split(',')[1]);
+                                 } else {
+                                     newInit.push(section);
+                                 }
+                             });
+                             console.log(newInit);
+                             item.initArray = newInit;
+                         }
+                     }
+                 });
+             }
+
 
              /*this.RadioItems.forEach(item => {
                  if (item.valid_confirmed === true ) {

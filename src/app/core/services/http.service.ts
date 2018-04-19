@@ -461,7 +461,9 @@ export class HttpService {
      * @returns {Observable<Response>}
      */
     getChinaDivision(file) {
-        return this.Http.get('assets/jsonData/"+file +".jso')
+        return this.Http.get(`assets/jsonData/${file}.json`).do(res => {
+            console.log(res);
+        });
     }
 
 

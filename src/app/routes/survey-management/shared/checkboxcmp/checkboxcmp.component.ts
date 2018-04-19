@@ -27,7 +27,7 @@ export class CheckboxcmpComponent extends Question implements OnInit {// 继承�
         const showAndhidden = {
             'hiddenlist': hiddenList,
             'hiddenshowlist' : hiddenshowList
-        }
+        };
         this.onVoted.emit(showAndhidden);
     }
     answerChange() {
