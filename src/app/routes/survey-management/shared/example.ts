@@ -160,33 +160,20 @@ export class SaveList {
                 //     ],
                 //     'hidden': false
                 // },
-                // {
-                //     'webId': '6',
-                //     'dbId': 'diagnose',
-                //     'type': 'checkbox',
-                //     'front_title': '是否有过以下疾病',
-                //     'behind_title': '',
-                //     'required': true,
-                //     'content': [
-                //         '心脏病', '糖尿病', '癌症', '脑炎'
-                //     ],
-                //     'hiddenlist': [
-                //         ['5'],
-                //         ['1'],
-                //         ['3'],
-                //         ['2']
-                //     ],
-                //     'hidden': false
-                // },
-                // {
-                //     'webId': '7',
-                //     'dbId': 'birthday',
-                //     'type': 'date',
-                //     'front_title': '出生日期',
-                //     'behind_title': '',
-                //     'required': true,
-                //     'hidden': false
-                // },
+                 {
+                     'webId': '6',
+                     'dbId': 'diagnose',
+                     'type': 'checkbox',
+                     'front_title': '是否有以下疾病',
+                     'behind_title': '',
+                     'required': true,
+                     'content': [
+                         '心脏病', '糖尿病', '癌症', '脑炎'
+                     ],
+                     'hiddenlist': [
+                     ],
+                     'hidden': false
+                 },
                 {
                     'dbId': '',
                     'webId': '7',
@@ -298,9 +285,6 @@ export class SaveList {
                     'front_title': '联系人地址',
                     'behind_title': '',
                     'required': true,
-                    'content': [
-                        '男', '母'
-                    ],
                     'hidden': false
                 },
                 {

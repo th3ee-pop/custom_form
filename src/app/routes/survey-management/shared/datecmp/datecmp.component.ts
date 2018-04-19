@@ -17,7 +17,7 @@ export class DatecmpComponent extends Question {
     }
     answerChange() {
 
-        this.valid_confirmed = true
+        this.valid_confirmed = true;
         const res = [];
         const tem = {
             Record_ID: '',

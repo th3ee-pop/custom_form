@@ -57,13 +57,13 @@ export class AddrcmpComponent extends Question implements OnInit {
         if ( this.provinces) {
             this.provinces.map(province => {
                 if ( province.value === this.initArray[0]) {
-                    this.nameArray[0] = province.label;
+                    this.nameArray[0] = province.label + ',' + province.value;
                     console.log(this.nameArray);
                 }
             });
         }
     }
-    getArea(){
+    getArea() {
         this.areas = [];
         this.service.getChinaDivision('areas').subscribe(res => {
             const areas = res.json();
@@ -79,12 +79,12 @@ export class AddrcmpComponent extends Question implements OnInit {
         if ( this.cities) {
             this.cities.map(city => {
                 if ( city.value === this.initArray[1]) {
-                    this.nameArray[1] = city.label;
+                    this.nameArray[1] = city.label + ',' + city.value;
                 }
             });
         }
     }
-    getStreet(){
+    getStreet() {
         this.streets = [];
         this.service.getChinaDivision('streets').subscribe(res => {
             const streets = res.json();
@@ -102,7 +102,7 @@ export class AddrcmpComponent extends Question implements OnInit {
         if ( this.areas) {
             this.areas.map(area => {
                 if ( area.value === this.initArray[2]) {
-                    this.nameArray[2] = area.label;
+                    this.nameArray[2] = area.label + ',' + area.value;
                 }
             });
         }
@@ -110,7 +110,7 @@ export class AddrcmpComponent extends Question implements OnInit {
     answerChange() {
         this.streets.map(street => {
             if ( street.value === this.initArray[3]) {
-                this.nameArray[3] = street.label;
+                this.nameArray[3] = street.label + ',' + street.value;
             }
         });
         const res = [];
@@ -118,16 +118,16 @@ export class AddrcmpComponent extends Question implements OnInit {
             Record_ID: '',
             Record_Value: ''
         };
-        const questionID = this.question.id2;
-        tem.Record_ID = questionID + 'a';
+        tem.Record_ID = this.question.dbId;
         tem.Record_Value = this.nameArray.join(' ') + this.initArray[4];
-        const addrCode = {
+        /*const addrCode = {
             Record_ID: this.question.id2,
             Record_Value: this.initArray.join(' ')
-        };
+        };*/
         res.push(tem);
-        res.push(addrCode);
+        // res.push(addrCode);
         this.answer = res;
+        console.log(tem);
         if ( res ) {
             this.valid_confirmed = true;
         }
