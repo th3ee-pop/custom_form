@@ -14,7 +14,7 @@ export class BarComponent extends Options implements OnInit {
         this.option =  {
             title : {
                 text: this.options.name,
-                subtext: '纯属虚构'
+                subtext: ''
             },
             tooltip : {
                 trigger: 'axis'

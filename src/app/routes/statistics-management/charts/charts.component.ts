@@ -4,7 +4,7 @@ import { ActivatedRoute, Router, PreloadingStrategy, Params, NavigationStart, Na
 import { AngularEchartsModule } from 'ngx-echarts';
 import { ChartsOptions } from '../shared/charts_configure';
 import { BarComponent } from '../shared/charts/bar/bar.component';
-
+import { PatientData } from  '../shared/data/patient_data';
 declare var echarts: any;
 
 @Component({
@@ -20,6 +20,10 @@ export class ChartsComponent implements OnInit, AfterViewInit {
     titles = 'z';
     options = new ChartsOptions().options;
     option_list = []; // 初始化chart的option
+    option_lists = []
+    patient_sdata = new PatientData().patient_summary_data;
+    patient_data = new PatientData().patient_data;
+
     ngOnInit() {
 
     }
@@ -40,16 +44,19 @@ export class ChartsComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
+
         this.router.events
             .filter((event) => event instanceof NavigationEnd)
             .subscribe((event: NavigationEnd) => {
                 console.log('NavigationStart..............');
                 const index = this.route.params['value']['CID'];
+                this.option_list = this.options[index].charts;
+
                 this.titles = this.options[index].menu_name;
 
-                this.option_list = this.options[index].charts;
 
             });
     }
+
 
 }
