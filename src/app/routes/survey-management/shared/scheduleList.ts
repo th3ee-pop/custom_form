@@ -5,7 +5,11 @@ export class ScheduleList {
             descript: ''
         },
         {
-            status: '其它信息',
+            status: '入院及手术信息',
+            descript: ''
+        },
+        {
+            status: '出院及诊断信息',
             descript: ''
         }
         // {

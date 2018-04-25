@@ -4,7 +4,23 @@
             <ng-template #title >{{titles}}</ng-template>
             <ng-template #body>
                 <div nz-row>
-                    <div nz-col [nzSpan] = "18" [nzPush] = "6">
+                    <div nz-col [nzSpan] = "20" [nzPush] = "4">
+                        <nz-card style="width: 100%">
+                            <ng-template #body>
+                                <div>
+                                    <div echarts [options]="option_s" class="demo-chart" (chartInit)="onChartEvent($event, 'chartInit')"
+                                         (chartClick)="onChartEvent($event, 'chartClick')"
+                                         (chartDblClick)="onChartEvent($event, 'chartDblClick')"
+                                         (chartMouseDown)="onChartEvent($event, 'chartMouseDown')"
+                                         (chartMouseUp)="onChartEvent($event, 'chartMouseUp')"
+                                         (chartMouseOver)="onChartEvent($event, 'chartMouseOver')"
+                                         (chartMouseOut)="onChartEvent($event, 'chartMouseOut')"
+                                         (chartGlobalOut)="onChartEvent($event, 'chartGlobalOut')"
+                                         (chartContextMenu)="onChartEvent($event, 'chartContextMenu')"
+                                         (chartDataZoom)="onChartEvent($event, 'chartDataZoom')"></div>
+                                </div>
+                            </ng-template>
+                        </nz-card>
                         <div *ngFor="let option of option_list">
                             <div [ngSwitch] = "option.type">
                                 <div id="{{option.name}}">
@@ -13,7 +29,8 @@
                             </div>
                         </div>
                     </div>
-                    <div nz-col [nzSpan]="6" [nzPull]="18">
+
+                    <div nz-col [nzSpan]="4" [nzPull]="20">
                         <nz-affix>
                             <nz-card style="width: 80%">
                                 <ng-template #title>
@@ -21,7 +38,11 @@
                                 </ng-template>
 
                                 <ng-template #body>
+
                                     <nz-anchor>
+
+
+
                                         <div *ngFor="let option of option_list">
                                             <nz-link nzHref="#{{option.name}}" nzTitle="{{option.name}}"></nz-link>
                                         </div>
@@ -38,6 +59,7 @@
                                 </ng-template>
 
                             </nz-card>
+
                         </nz-affix>
                     </div>
                 </div>

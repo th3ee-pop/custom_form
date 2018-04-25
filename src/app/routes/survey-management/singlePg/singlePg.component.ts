@@ -120,6 +120,25 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
         }
         return putRecord;
     }
+    jumpTo(step_index , footer) {
+        const numWords = ['info0', 'info1', 'info2', 'info3', 'info4', 'info5', 'info6', 'info7', 'info8'];
+        if (step_index !== this.current) { // 如果有病人编号，则跳跃
+                this.current = step_index;
+                console.log(this.current);
+                console.log(this.exampleList);
+                this.qlist = this.exampleList[this.steps[this.current]]['items'];
+            // this.service.putRecords(this.initputRecord()).subscribe( (res) => {
+           //     console.log(res);
+           //     this.PID = res.PID;
+           //     this.current = step_index;
+           //     this.qlist = this.exampleList[this.steps[this.current]]['items'];
+           //     this.fillingAllanswer(); // 这里我们需要再次调用fillingAllanswer，获取新子页面下的数据。
+           // }, err => {
+           //     console.log(err);
+           // });
+        }
+    }
+
     next() {
         if ( (this.current + 1) < this.steps.length) {
             this.service.putRecords(this.initputRecord()).subscribe((res) => {

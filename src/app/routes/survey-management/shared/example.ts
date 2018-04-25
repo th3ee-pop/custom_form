@@ -1,12 +1,12 @@
 export class SaveList {
-    step_key = ['step_one', 'step_two'];
+    step_key = ['step_one', 'step_two', 'step_three'];
     questions = {
         'step_one': {
             'name': 'step_one',
             'items': [
                 {
                     'webId':  '1',
-                    'dbId': 'record_ID',
+                    'dbId': 'bah',
                     'type': 'input',
                     'front_title': '病案号',
                     'behind_title': '',
@@ -22,7 +22,7 @@ export class SaveList {
                 },
                 {
                     'webId':  '2',
-                    'dbId': 'patient_name',
+                    'dbId': 'xm',
                     'type': 'input',
                     'front_title': '姓名',
                     'behind_title': '',
@@ -36,8 +36,26 @@ export class SaveList {
                     'hidden': false
                 },
                 {
+
+                    'webId': '26',
+                    'dbId': 'xb',
+                    'type': 'radio',
+                    'front_title': '性别',
+                    'behind_title': '',
+                    'required': true,
+
+                    'content': [
+                        '男', '女'
+                    ],
+                    'hiddenlist': [
+
+                    ],
+
+                    'hidden': false
+                },
+                {
                     'webId':  '3',
-                    'dbId': 'age',
+                    'dbId': 'nl',
                     'type': 'input',
                     'front_title': '年龄(岁)',
                     'behind_title': '',
@@ -54,7 +72,7 @@ export class SaveList {
                 },
                 {
                     'webId': '4',
-                    'dbId': 'birthday',
+                    'dbId': 'csrq',
                     'type': 'date',
                     'front_title': '出生日期',
                     'behind_title': '',
@@ -62,271 +80,12 @@ export class SaveList {
                     'hidden': false
                 },
                 {
-                    'webId':  '5',
-                    'dbId': 'department_in',
-                    'type': 'input',
-                    'front_title': '入院科别',
-                    'behind_title': '',
-                    'validtype': 'text',
-                    'validcondition': {
-                    },
-                    'length': '',
-                    'required': true,
-                    'hiddenlist': [],
-                    'hiddencondition': [],
-                    'hidden': false
-                },
-                {
-                    'webId': '6',
-                    'dbId': 'inday',
-                    'type': 'date',
-                    'front_title': '入院日期时间',
+                    'webId': '',
+                    'dbId': 'xzz',
+                    'type': 'addr',
+                    'front': '现住址',
                     'behind_title': '',
                     'required': true,
-                    'hidden': false
-                },
-                {
-                    'webId': '7',
-                    'dbId': 'outday',
-                    'type': 'date',
-                    'front_title': '出院日期时间',
-                    'behind_title': '',
-                    'required': true,
-                    'hidden': false
-                },
-                {
-                    'webId':  '8',
-                    'dbId': 'department_out',
-                    'type': 'input',
-                    'front_title': '出院科别',
-                    'behind_title': '',
-                    'validtype': 'text',
-                    'validcondition': {
-                    },
-                    'length': '',
-                    'required': true,
-                    'hiddenlist': [],
-                    'hiddencondition': [],
-                    'hidden': false
-                },
-
-                {
-                    'webId':  '9',
-                    'dbId': 'diagnosis_name',
-                    'type': 'input',
-                    'front_title': '出院诊断-主要名称',
-                    'behind_title': '',
-                    'validtype': 'text',
-                    'validcondition': {
-                    },
-                    'length': '',
-                    'required': true,
-                    'hiddenlist': [],
-                    'hiddencondition': [],
-                    'hidden': false
-                },
-                {
-                    'webId':  '10',
-                    'dbId': 'diagnosis_code',
-                    'type': 'input',
-                    'front_title': '出院诊断-主要诊断疾病编码',
-                    'behind_title': '',
-                    'validtype': 'text',
-                    'validcondition': {
-                    },
-                    'length': '',
-                    'required': true,
-                    'hiddenlist': [],
-                    'hiddencondition': [],
-                    'hidden': false
-                }
-
-                // {
-                //     'webId':  '1',
-                //     'dbId': 'number',
-                //     'type': 'input',
-                //     'front_title': '姓名',
-                //     'behind_title': '',
-                //     'validtype': 'number',
-                //     'validcondition': {
-                //         'min': 0,
-                //         'max': 60
-                //     },
-                //     'length': '',
-                //     'required': true,
-                //     'hiddenlist': [],
-                //     'hiddencondition': [],
-                //     'hidden': false
-                // },
-                // {
-                //     'webId':  '2',
-                //     'dbId': 'len_number',
-                //     'type': 'input',
-                //     'front_title': '这是len_number类型',
-                //     'behind_title': '',
-                //     'validtype': 'len_number',
-                //     'validcondition': {
-                //         'length': 12
-                //     },
-                //     'length': '',
-                //     'required': true,
-                //     'hiddenlist': [],
-                //     'hiddencondition': [],
-                //     'hidden': false
-                // },
-                // {
-                //     'webId':  '3',
-                //     'dbId': 'text',
-                //     'type': 'input',
-                //     'front_title': '这是text类型',
-                //     'behind_title': '',
-                //     'validtype': 'text',
-                //     'validcondition': {
-                //
-                //     },
-                //     'length': '',
-                //     'required': true,
-                //     'hiddenlist': [],
-                //     'hiddencondition': [],
-                //     'hidden': false
-                // },
-                // {
-                //     'webId':  '4',
-                //     'dbId': 'len_text',
-                //     'type': 'input',
-                //     'front_title': '这是len_text类型',
-                //     'behind_title': '',
-                //     'validtype': 'len_text',
-                //     'validcondition': {
-                //         'length': 12
-                //     },
-                //     'length': '',
-                //     'required': true,
-                //     'hiddenlist': [],
-                //     'hiddencondition': [],
-                //     'hidden': false
-                // },
-                // {
-                //     'webId': '5',
-                //     'dbId': 'sex',
-                //     'type': 'radio',
-                //     'front_title': '性别',
-                //     'behind_title': '',
-                //     'required': true,
-                //     'content': [
-                //         '男', '女'
-                //     ],
-                //     'hiddenlist': [
-                //         ['6'],
-                //         ['3']
-                //     ],
-                //     'hidden': false
-                // },
-                //  {
-                //      'webId': '6',
-                //      'dbId': 'diagnose',
-                //      'type': 'checkbox',
-                //      'front_title': '是否有以下疾病',
-                //      'behind_title': '',
-                //      'required': true,
-                //      'content': [
-                //          '心脏病', '糖尿病', '癌症', '脑炎'
-                //      ],
-                //      'hiddenlist': [
-                //      ],
-                //      'hidden': false
-                //  },
-
-            ]
-
-        },
-        'step_two': {
-            'name': 'step_two',
-            'items': [
-                {
-                    'webId':  '11',
-                    'dbId': 'surgery_code',
-                    'type': 'input',
-                    'front_title': '手术及操作编码',
-                    'behind_title': '',
-                    'validtype': 'text',
-                    'validcondition': {
-                    },
-                    'length': '',
-                    'required': true,
-                    'hiddenlist': [],
-                    'hiddencondition': [],
-                    'hidden': false
-                },
-                {
-                    'webId': '12',
-                    'dbId': 'surgery_code',
-                    'type': 'date',
-                    'front_title': '手术及操作日期',
-                    'behind_title': '',
-                    'required': true,
-                    'hidden': false
-                },
-                {
-                    'webId':  '13',
-                    'dbId': 'surgery_name',
-                    'type': 'input',
-                    'front_title': '手术及操作名称',
-                    'behind_title': '',
-                    'validtype': 'text',
-                    'validcondition': {
-                    },
-                    'length': '',
-                    'required': true,
-                    'hiddenlist': [],
-                    'hiddencondition': [],
-                    'hidden': false
-                },
-                {
-                    'webId':  '14',
-                    'dbId': 'in_out_diagnose_name',
-                    'type': 'input',
-                    'front_title': '出院诊断-主要诊断入院病情名称',
-                    'behind_title': '',
-                    'validtype': 'text',
-                    'validcondition': {
-                    },
-                    'length': '',
-                    'required': true,
-                    'hiddenlist': [],
-                    'hiddencondition': [],
-                    'hidden': false
-                },
-
-                {
-                    'webId':  '15',
-                    'dbId': 'surgical_incision_code',
-                    'type': 'input',
-                    'front_title': '手术切口类别代码',
-                    'behind_title': '',
-                    'validtype': 'text',
-                    'validcondition': {
-                    },
-                    'length': '',
-                    'required': true,
-                    'hiddenlist': [],
-                    'hiddencondition': [],
-                    'hidden': false
-                },
-
-                {
-                    'webId':  '16',
-                    'dbId': 'incision_heal_code',
-                    'type': 'input',
-                    'front_title': '切口愈合等级代码',
-                    'behind_title': '',
-                    'validtype': 'text',
-                    'validcondition': {
-                    },
-                    'length': '',
-                    'required': true,
-                    'hiddenlist': [],
-                    'hiddencondition': [],
                     'hidden': false
                 },
                 {
@@ -388,12 +147,101 @@ export class SaveList {
                     'hiddenlist': [],
                     'hiddencondition': [],
                     'hidden': false
+                }
+            ]
+        },
+        'step_two': {
+            'name': 'step_two',
+            'items': [
+                {
+                    'webId':  '5',
+                    'dbId': 'rykb',
+                    'type': 'input',
+                    'front_title': '入院科别',
+                    'behind_title': '',
+                    'validtype': 'text',
+                    'validcondition': {
+                    },
+                    'length': '',
+                    'required': true,
+                    'hiddenlist': [],
+                    'hiddencondition': [],
+                    'hidden': false
+                },
+                {
+                    'webId': '6',
+                    'dbId': 'rysj',
+                    'type': 'date',
+                    'front_title': '入院日期时间',
+                    'behind_title': '',
+                    'required': true,
+                    'hidden': false
+                },
+                {
+                    'webId':  '9',
+                    'dbId': 'rytj',
+                    'type': 'input',
+                    'front_title': '入院途径',
+                    'behind_title': '',
+                    'validtype': 'text',
+                    'validcondition': {
+                    },
+                    'length': '',
+                    'required': true,
+                    'hiddenlist': [],
+                    'hiddencondition': [],
+                    'hidden': false
+                },
+                {
+                    'webId':  '10',
+                    'dbId': 'rytjdm',
+                    'type': 'input',
+                    'front_title': '入院途径代码',
+                    'behind_title': '',
+                    'validtype': 'text',
+                    'validcondition': {
+                    },
+                    'length': '',
+                    'required': true,
+                    'hiddenlist': [],
+                    'hiddencondition': [],
+                    'hidden': false
+                },
+                {
+                    'webId':  '9',
+                    'dbId': 'mjzzdmc',
+                    'type': 'input',
+                    'front_title': '门（急）诊诊断名称',
+                    'behind_title': '',
+                    'validtype': 'text',
+                    'validcondition': {
+                    },
+                    'length': '',
+                    'required': true,
+                    'hiddenlist': [],
+                    'hiddencondition': [],
+                    'hidden': false
+                },
+                {
+                    'webId':  '9',
+                    'dbId': 'mjzzdjbbm',
+                    'type': 'input',
+                    'front_title': '门（急）诊诊断疾病编码',
+                    'behind_title': '',
+                    'validtype': 'text',
+                    'validcondition': {
+                    },
+                    'length': '',
+                    'required': true,
+                    'hiddenlist': [],
+                    'hiddencondition': [],
+                    'hidden': false
                 },
                 {
                     'webId': '21',
                     'dbId': 'if_serious',
                     'type': 'radio',
-                    'front_title': '是否急危重病人',
+                    'front_title': '是否急危重病例',
                     'behind_title': '',
                     'required': true,
                     'content': [
@@ -454,45 +302,10 @@ export class SaveList {
                     'hidden': false
                 },
                 {
-
-                    'webId': '25',
-                    'dbId': 'pay_way',
-                    'type': 'radio',
-                    'front_title': '医疗付费方式',
-                    'behind_title': '',
-                    'required': true,
-                    'content': [
-                        '新型农村合作医疗', '城镇职工基本医疗保险', '其他社会保险', '商业医疗保险', '其他'
-                    ],
-                    'hiddenlist': [
-
-                    ],
-                    'hidden': false
-                },
-                {
-
-                    'webId': '26',
-                    'dbId': 'sex',
-                    'type': 'radio',
-                    'front_title': '性别',
-                    'behind_title': '',
-                    'required': true,
-
-                    'content': [
-                       '男', '女'
-                    ],
-                    'hiddenlist': [
-
-                    ],
-
-                    'hidden': false
-                },
-                {
-
-                    'webId':  '27',
-                    'dbId': 'in_way',
+                    'webId':  '11',
+                    'dbId': 'sszxm',
                     'type': 'input',
-                    'front_title': '入院途径',
+                    'front_title': '手术者姓名',
                     'behind_title': '',
                     'validtype': 'text',
                     'validcondition': {
@@ -502,14 +315,12 @@ export class SaveList {
                     'hiddenlist': [],
                     'hiddencondition': [],
                     'hidden': false
-
                 },
                 {
-
-                    'webId':  '28',
-                    'dbId': 'out_way',
+                    'webId':  '11',
+                    'dbId': 'ssz',
                     'type': 'input',
-                    'front_title': '离院方式',
+                    'front_title': '手术者代码',
                     'behind_title': '',
                     'validtype': 'text',
                     'validcondition': {
@@ -519,14 +330,12 @@ export class SaveList {
                     'hiddenlist': [],
                     'hiddencondition': [],
                     'hidden': false
-
                 },
                 {
-
-                    'webId':  '29',
-                    'dbId': 'out_way',
+                    'webId':  '11',
+                    'dbId': 'ssjczmc',
                     'type': 'input',
-                    'front_title': '住院总费用',
+                    'front_title': '手术及操作名称',
                     'behind_title': '',
                     'validtype': 'text',
                     'validcondition': {
@@ -536,14 +345,12 @@ export class SaveList {
                     'hiddenlist': [],
                     'hiddencondition': [],
                     'hidden': false
-
                 },
                 {
-
-                    'webId':  '30',
-                    'dbId': 'pays',
+                    'webId':  '11',
+                    'dbId': 'ssjczbm',
                     'type': 'input',
-                    'front_title': '实际住院天数',
+                    'front_title': '手术及操作编码',
                     'behind_title': '',
                     'validtype': 'text',
                     'validcondition': {
@@ -553,14 +360,21 @@ export class SaveList {
                     'hiddenlist': [],
                     'hiddencondition': [],
                     'hidden': false
-
                 },
                 {
-
-                    'webId':  '31',
-                    'dbId': 'intimes',
+                    'webId': '12',
+                    'dbId': 'ssjczrq',
+                    'type': 'date',
+                    'front_title': '手术及操作日期',
+                    'behind_title': '',
+                    'required': true,
+                    'hidden': false
+                },
+                {
+                    'webId':  '11',
+                    'dbId': 'ssjbdm',
                     'type': 'input',
-                    'front_title': '住院次数',
+                    'front_title': '手术级别代码',
                     'behind_title': '',
                     'validtype': 'text',
                     'validcondition': {
@@ -570,12 +384,129 @@ export class SaveList {
                     'hiddenlist': [],
                     'hiddencondition': [],
                     'hidden': false
-
                 },
                 {
-
+                    'webId':  '15',
+                    'dbId': 'ssqklb',
+                    'type': 'input',
+                    'front_title': '手术切口类别',
+                    'behind_title': '',
+                    'validtype': 'text',
+                    'validcondition': {
+                    },
+                    'length': '',
+                    'required': true,
+                    'hiddenlist': [],
+                    'hiddencondition': [],
+                    'hidden': false
+                },
+                {
+                    'webId':  '15',
+                    'dbId': 'ssqklbdm',
+                    'type': 'input',
+                    'front_title': '手术切口类别代码',
+                    'behind_title': '',
+                    'validtype': 'text',
+                    'validcondition': {
+                    },
+                    'length': '',
+                    'required': true,
+                    'hiddenlist': [],
+                    'hiddencondition': [],
+                    'hidden': false
+                },
+                {
+                    'webId':  '16',
+                    'dbId': 'qkyhdj',
+                    'type': 'input',
+                    'front_title': '切口愈合等级',
+                    'behind_title': '',
+                    'validtype': 'text',
+                    'validcondition': {
+                    },
+                    'length': '',
+                    'required': true,
+                    'hiddenlist': [],
+                    'hiddencondition': [],
+                    'hidden': false
+                },
+                {
+                    'webId':  '16',
+                    'dbId': 'qkyhdjdm',
+                    'type': 'input',
+                    'front_title': '切口愈合等级代码',
+                    'behind_title': '',
+                    'validtype': 'text',
+                    'validcondition': {
+                    },
+                    'length': '',
+                    'required': true,
+                    'hiddenlist': [],
+                    'hiddencondition': [],
+                    'hidden': false
+                }
+            ]
+        },
+        'step_three': {
+            'name': 'step_three',
+            'items': [
+                {
+                    'webId': '7',
+                    'dbId': 'cyrqsj',
+                    'type': 'date',
+                    'front_title': '出院日期时间',
+                    'behind_title': '',
+                    'required': true,
+                    'hidden': false
+                },
+                {
+                    'webId':  '8',
+                    'dbId': 'cykb',
+                    'type': 'input',
+                    'front_title': '出院科别',
+                    'behind_title': '',
+                    'validtype': 'text',
+                    'validcondition': {
+                    },
+                    'length': '',
+                    'required': true,
+                    'hiddenlist': [],
+                    'hiddencondition': [],
+                    'hidden': false
+                },
+                {
+                    'webId':  '9',
+                    'dbId': 'cyzdzyzdmc',
+                    'type': 'input',
+                    'front_title': '出院诊断-主要诊断名称',
+                    'behind_title': '',
+                    'validtype': 'text',
+                    'validcondition': {
+                    },
+                    'length': '',
+                    'required': true,
+                    'hiddenlist': [],
+                    'hiddencondition': [],
+                    'hidden': false
+                },
+                {
+                    'webId':  '10',
+                    'dbId': 'cyzdzyzdjbbm',
+                    'type': 'input',
+                    'front_title': '出院诊断-主要诊断疾病编码',
+                    'behind_title': '',
+                    'validtype': 'text',
+                    'validcondition': {
+                    },
+                    'length': '',
+                    'required': true,
+                    'hiddenlist': [],
+                    'hiddencondition': [],
+                    'hidden': false
+                },
+                {
                     'webId':  '32',
-                    'dbId': 'outreseason',
+                    'dbId': 'sszddwbyy',
                     'type': 'input',
                     'front_title': '损伤中毒的外部原因',
                     'behind_title': '',
@@ -592,7 +523,7 @@ export class SaveList {
                 {
 
                     'webId':  '33',
-                    'dbId': 'outreseason_code',
+                    'dbId': 'sszddwbyyjbbm',
                     'type': 'input',
                     'front_title': '损伤中毒的外部原因疾病编码',
                     'behind_title': '',
@@ -607,20 +538,126 @@ export class SaveList {
 
                 },
                 {
-                    'webId':  '33',
-                    'dbId': 'option',
-                    'type': 'option',
-                    'front_title': 'test option',
+                    'webId':  '14',
+                    'dbId': 'cyzdzyzdrybqmc',
+                    'type': 'input',
+                    'front_title': '出院诊断-主要诊断入院病情名称',
                     'behind_title': '',
+                    'validtype': 'text',
+                    'validcondition': {
+                    },
+                    'length': '',
+                    'required': true,
+                    'hiddenlist': [],
+                    'hiddencondition': [],
+                    'hidden': false
+                },
+                {
+                    'webId':  '14',
+                    'dbId': 'cyzdzyzdrybqdm',
+                    'type': 'input',
+                    'front_title': '出院诊断-主要诊断入院病情代码',
+                    'behind_title': '',
+                    'validtype': 'text',
+                    'validcondition': {
+                    },
+                    'length': '',
+                    'required': true,
+                    'hiddenlist': [],
+                    'hiddencondition': [],
+                    'hidden': false
+                },
+                {
+                    'webId':  '28',
+                    'dbId': 'lyfs',
+                    'type': 'input',
+                    'front_title': '离院方式',
+                    'behind_title': '',
+                    'validtype': 'text',
+                    'validcondition': {
+                    },
+                    'length': '',
+                    'required': true,
+                    'hiddenlist': [],
+                    'hiddencondition': [],
+                    'hidden': false
 
+                },
+                {
+                    'webId': '25',
+                    'dbId': 'ylfffs',
+                    'type': 'radio',
+                    'front_title': '医疗付费方式',
+                    'behind_title': '',
+                    'required': true,
+                    'content': [
+                        '新型农村合作医疗', '城镇职工基本医疗保险', '其他社会保险', '商业医疗保险', '其他'
+                    ],
+                    'hiddenlist': [
+
+                    ],
+                    'hidden': false
+                },
+                {
+
+                    'webId':  '29',
+                    'dbId': 'zyzfy',
+                    'type': 'input',
+                    'front_title': '住院总费用',
+                    'behind_title': '',
+                    'validtype': 'text',
+                    'validcondition': {
+                    },
+                    'length': '',
+                    'required': true,
+                    'hiddenlist': [],
+                    'hiddencondition': [],
+                    'hidden': false
+                },
+                {
+
+                    'webId':  '30',
+                    'dbId': 'sjzyts',
+                    'type': 'input',
+                    'front_title': '实际住院天数',
+                    'behind_title': '',
+                    'validtype': 'text',
+                    'validcondition': {
+                    },
+                    'length': '',
+                    'required': true,
+                    'hiddenlist': [],
+                    'hiddencondition': [],
+                    'hidden': false
+                },
+                {
+                    'webId':  '31',
+                    'dbId': 'zycs',
+                    'type': 'input',
+                    'front_title': '住院次数',
+                    'behind_title': '',
+                    'validtype': 'text',
+                    'validcondition': {
+                    },
                     'length': '',
                     'required': true,
                     'hiddenlist': [],
                     'hiddencondition': [],
                     'hidden': false
                 }
-
-
+                // {
+                //     'webId':  '33',
+                //     'dbId': 'option',
+                //     'type': 'option',
+                //     'front_title': 'test option',
+                //     'behind_title': '',
+                //
+                //     'length': '',
+                //     'required': true,
+                //     'hiddenlist': [],
+                //     'hiddencondition': [],
+                //     'hidden': false
+                // }
             ]
         }
     };
@@ -777,3 +814,100 @@ export class SaveList {
 //     'hiddencondition': [],
 //     'hidden': false
 // },
+
+
+// {
+//     'webId':  '1',
+//     'dbId': 'number',
+//     'type': 'input',
+//     'front_title': '姓名',
+//     'behind_title': '',
+//     'validtype': 'number',
+//     'validcondition': {
+//         'min': 0,
+//         'max': 60
+//     },
+//     'length': '',
+//     'required': true,
+//     'hiddenlist': [],
+//     'hiddencondition': [],
+//     'hidden': false
+// },
+// {
+//     'webId':  '2',
+//     'dbId': 'len_number',
+//     'type': 'input',
+//     'front_title': '这是len_number类型',
+//     'behind_title': '',
+//     'validtype': 'len_number',
+//     'validcondition': {
+//         'length': 12
+//     },
+//     'length': '',
+//     'required': true,
+//     'hiddenlist': [],
+//     'hiddencondition': [],
+//     'hidden': false
+// },
+// {
+//     'webId':  '3',
+//     'dbId': 'text',
+//     'type': 'input',
+//     'front_title': '这是text类型',
+//     'behind_title': '',
+//     'validtype': 'text',
+//     'validcondition': {
+//
+//     },
+//     'length': '',
+//     'required': true,
+//     'hiddenlist': [],
+//     'hiddencondition': [],
+//     'hidden': false
+// },
+// {
+//     'webId':  '4',
+//     'dbId': 'len_text',
+//     'type': 'input',
+//     'front_title': '这是len_text类型',
+//     'behind_title': '',
+//     'validtype': 'len_text',
+//     'validcondition': {
+//         'length': 12
+//     },
+//     'length': '',
+//     'required': true,
+//     'hiddenlist': [],
+//     'hiddencondition': [],
+//     'hidden': false
+// },
+// {
+//     'webId': '5',
+//     'dbId': 'sex',
+//     'type': 'radio',
+//     'front_title': '性别',
+//     'behind_title': '',
+//     'required': true,
+//     'content': [
+//         '男', '女'
+//     ],
+//     'hiddenlist': [
+//         ['6'],
+//         ['3']
+//     ],
+//     'hidden': false
+// },
+//  {
+//      'webId': '6',
+//      'dbId': 'diagnose',
+//      'type': 'checkbox',
+//      'front_title': '是否有以下疾病',
+//      'behind_title': '',
+//      'required': true,
+//      'content': [
+//          '心脏病', '糖尿病', '癌症', '脑炎'
+//      ],
+//      'hiddenlist': [
+//      ],
+//      'hidden': false
+//  },

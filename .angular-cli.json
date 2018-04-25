@@ -28,6 +28,9 @@
             "../node_modules/echarts/dist/echarts.js",
             "../node_modules/echarts/dist/echarts.min.js",
             "../node_modules/echarts/dist/extension/bmap.min.js",
+            "../node_modules/echarts/map/js/china.js",
+            "../node_modules/echarts/map/js/province/shanxi1.js",
+
             "../node_modules/echarts/theme/dark.js",
             "assets/js/d3/crossfilter.js",
             "assets/js/d3/d3.v3.min.js",
