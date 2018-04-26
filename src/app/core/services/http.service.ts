@@ -24,7 +24,7 @@ export class Record {
 export class HttpService {
 
     baseUrl = 'http://202.117.54.93:8080';
-    baseUrl_v2 = 'http://202.117.54.93:8080';
+    baseUrl_v2 = 'http://59.110.52.133:8888';
     constructor(
         private http: HttpClient,
         private Http: Http,

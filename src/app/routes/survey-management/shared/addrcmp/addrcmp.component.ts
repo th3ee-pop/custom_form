@@ -120,6 +120,7 @@ export class AddrcmpComponent extends Question implements OnInit {
         };
         tem.Record_ID = this.question.dbId;
         tem.Record_Value = this.nameArray.join(' ') + this.initArray[4];
+
         /*const addrCode = {
             Record_ID: this.question.id2,
             Record_Value: this.initArray.join(' ')
@@ -127,6 +128,7 @@ export class AddrcmpComponent extends Question implements OnInit {
         res.push(tem);
         // res.push(addrCode);
         this.answer = res;
+        console.log(this.initArray);
         console.log(tem);
         if ( res ) {
             this.valid_confirmed = true;

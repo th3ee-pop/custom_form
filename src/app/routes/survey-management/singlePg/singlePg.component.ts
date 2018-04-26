@@ -81,6 +81,7 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
         if ( this.PID ) {
             this.fillingAllanswer();
         }
+        // this.fillingAllanswer();
     }
 
     onVoted (showAndhidden: any) {
@@ -331,13 +332,14 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
         console.log(getRecord);
         // 下面开始获取所有当前子页面的数据
         this.service.getRecordpart(getRecord).subscribe((res) => {
-            console.log('$$$$$$$$$');
-            console.log(res);
-
 
             if (JSON.stringify(res.Records) !== '{}') {
+
+
                 // let answers_bucket = new Array(res.Record[this.steps[this.current]]);
+
                 const  answers_bucket = res.Records[this.steps[this.current]];
+
                 // answer_bucket是我们获取到的所有当前子页面的回填答案，下面需要将他们依次放回各个组件。
                 // console.log(answers_bucket);
                 // // answers_bucket = answers_bucket[0];
@@ -345,6 +347,9 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
                 // console.log(answers_bucket);
 
                 // 所有hightable类型的数据获取
+                // const answers_bucket = [
+                //     {Record_ID: 'xzz', Record_value: '河北省,13 唐山市,1302 路北区,130203 乔屯街道办事处,130203001 阿萨是撒啊阿萨'}
+                //     ];
                 this.HighTableItem.forEach(item => {
                     console.log(answers_bucket);
                     const newArray = [];

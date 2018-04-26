@@ -90,9 +90,9 @@ export class SaveList {
                 },
                 {
                     'webId':  '17',
-                    'dbId': 'depart_adm_name',
+                    'dbId': 'kzrqm',
                     'type': 'input',
-                    'front_title': '科室主任签名',
+                    'front_title': '科主任签名',
                     'behind_title': '',
                     'validtype': 'text',
                     'validcondition': {
@@ -105,7 +105,7 @@ export class SaveList {
                 },
                 {
                     'webId':  '18',
-                    'dbId': 'depart_deadm_name',
+                    'dbId': 'zrysqm',
                     'type': 'input',
                     'front_title': '主任(副主任)医师签名',
                     'behind_title': '',
@@ -120,7 +120,7 @@ export class SaveList {
                 },
                 {
                     'webId':  '19',
-                    'dbId': 'zzdoctor_name',
+                    'dbId': 'zzysqm',
                     'type': 'input',
                     'front_title': '主治医师签名',
                     'behind_title': '',
@@ -135,7 +135,7 @@ export class SaveList {
                 },
                 {
                     'webId':  '20',
-                    'dbId': 'zydoctor_name',
+                    'dbId': 'zyysqm',
                     'type': 'input',
                     'front_title': '住院医师签名',
                     'behind_title': '',
@@ -239,7 +239,7 @@ export class SaveList {
                 },
                 {
                     'webId': '21',
-                    'dbId': 'if_serious',
+                    'dbId': 'sfjwzbl',
                     'type': 'radio',
                     'front_title': '是否急危重病例',
                     'behind_title': '',
@@ -254,7 +254,7 @@ export class SaveList {
                 },
                 {
                     'webId': '22',
-                    'dbId': 'if_difficult',
+                    'dbId': 'sfynbl',
                     'type': 'radio',
                     'front_title': '是否疑难病例',
                     'behind_title': '',
@@ -269,7 +269,7 @@ export class SaveList {
                 },
                 {
                     'webId':  '23',
-                    'dbId': 'rescue_times',
+                    'dbId': 'qjcs',
                     'type': 'input',
                     'front_title': '抢救次数',
                     'behind_title': '',
@@ -286,7 +286,7 @@ export class SaveList {
                 },
                 {
                     'webId':  '24',
-                    'dbId': 'rescue_success_times',
+                    'dbId': 'cgcs',
                     'type': 'input',
                     'front_title': '成功次数',
                     'behind_title': '',
@@ -318,9 +318,24 @@ export class SaveList {
                 },
                 {
                     'webId':  '11',
-                    'dbId': 'ssz',
+                    'dbId': 'sszdm',
                     'type': 'input',
                     'front_title': '手术者代码',
+                    'behind_title': '',
+                    'validtype': 'text',
+                    'validcondition': {
+                    },
+                    'length': '',
+                    'required': true,
+                    'hiddenlist': [],
+                    'hiddencondition': [],
+                    'hidden': false
+                },
+                {
+                    'webId':  '11',
+                    'dbId': 'mzfsdm',
+                    'type': 'input',
+                    'front_title': '麻醉方式代码',
                     'behind_title': '',
                     'validtype': 'text',
                     'validcondition': {
@@ -538,6 +553,142 @@ export class SaveList {
 
                 },
                 {
+
+                    'webId':  '33',
+                    'dbId': 'cyzdqtzdjbbm',
+                    'type': 'input',
+                    'front_title': '出院诊断-其他诊断疾病编码',
+                    'behind_title': '',
+                    'validtype': 'text',
+                    'validcondition': {
+                    },
+                    'length': '',
+                    'required': true,
+                    'hiddenlist': [],
+                    'hiddencondition': [],
+                    'hidden': false
+
+                },
+                {
+
+                    'webId':  '33',
+                    'dbId': 'cyzdqtzdjbbm2',
+                    'type': 'input',
+                    'front_title': '出院诊断-其他诊断疾病编码2',
+                    'behind_title': '',
+                    'validtype': 'text',
+                    'validcondition': {
+                    },
+                    'length': '',
+                    'required': true,
+                    'hiddenlist': [],
+                    'hiddencondition': [],
+                    'hidden': false
+
+                },
+                {
+
+                    'webId':  '33',
+                    'dbId': 'cyzdqtzdjbbm3',
+                    'type': 'input',
+                    'front_title': '出院诊断-其他诊断疾病编码3',
+                    'behind_title': '',
+                    'validtype': 'text',
+                    'validcondition': {
+                    },
+                    'length': '',
+                    'required': true,
+                    'hiddenlist': [],
+                    'hiddencondition': [],
+                    'hidden': false
+
+                },
+                {
+
+                    'webId':  '33',
+                    'dbId': 'cyzdqtzdjbbm4',
+                    'type': 'input',
+                    'front_title': '出院诊断-其他诊断疾病编码4',
+                    'behind_title': '',
+                    'validtype': 'text',
+                    'validcondition': {
+                    },
+                    'length': '',
+                    'required': true,
+                    'hiddenlist': [],
+                    'hiddencondition': [],
+                    'hidden': false
+
+                },
+                {
+
+                    'webId':  '33',
+                    'dbId': 'cyzdqtzdjbbm5',
+                    'type': 'input',
+                    'front_title': '出院诊断-其他诊断疾病编码5',
+                    'behind_title': '',
+                    'validtype': 'text',
+                    'validcondition': {
+                    },
+                    'length': '',
+                    'required': true,
+                    'hiddenlist': [],
+                    'hiddencondition': [],
+                    'hidden': false
+
+                },
+                {
+
+                    'webId':  '33',
+                    'dbId': 'cyzdqtzdjbbm6',
+                    'type': 'input',
+                    'front_title': '出院诊断-其他诊断疾病编码6',
+                    'behind_title': '',
+                    'validtype': 'text',
+                    'validcondition': {
+                    },
+                    'length': '',
+                    'required': true,
+                    'hiddenlist': [],
+                    'hiddencondition': [],
+                    'hidden': false
+
+                },
+                {
+
+                    'webId':  '33',
+                    'dbId': 'cyzdqtzdjbbm7',
+                    'type': 'input',
+                    'front_title': '出院诊断-其他诊断疾病编码7',
+                    'behind_title': '',
+                    'validtype': 'text',
+                    'validcondition': {
+                    },
+                    'length': '',
+                    'required': true,
+                    'hiddenlist': [],
+                    'hiddencondition': [],
+                    'hidden': false
+
+                },
+                {
+
+                    'webId':  '33',
+                    'dbId': 'cyzdqtzdjbbm8',
+                    'type': 'input',
+                    'front_title': '出院诊断-其他诊断疾病编码8',
+                    'behind_title': '',
+                    'validtype': 'text',
+                    'validcondition': {
+                    },
+                    'length': '',
+                    'required': true,
+                    'hiddenlist': [],
+                    'hiddencondition': [],
+                    'hidden': false
+
+                },
+                {
                     'webId':  '14',
                     'dbId': 'cyzdzyzdrybqmc',
                     'type': 'input',
@@ -604,6 +755,22 @@ export class SaveList {
                     'dbId': 'zyzfy',
                     'type': 'input',
                     'front_title': '住院总费用',
+                    'behind_title': '',
+                    'validtype': 'text',
+                    'validcondition': {
+                    },
+                    'length': '',
+                    'required': true,
+                    'hiddenlist': [],
+                    'hiddencondition': [],
+                    'hidden': false
+                },
+                {
+
+                    'webId':  '29',
+                    'dbId': 'zyzfyzfje',
+                    'type': 'input',
+                    'front_title': '住院总费用-自付金额',
                     'behind_title': '',
                     'validtype': 'text',
                     'validcondition': {
