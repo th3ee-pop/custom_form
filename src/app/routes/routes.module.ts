@@ -4,6 +4,7 @@ import { SharedModule } from '@shared/shared.module';
 import { PagesModule } from './pages/pages.module';
 import { SurveyManagementModule} from './survey-management/survey-management.module';
 import { StatisticsManagementModule} from './statistics-management/statistics-management.module';
+import {RetrievalManagementModule} from './retrieval-management/retrieval-management.module';
 import { routes } from './routes';
 import { DashboardV1Component } from './dashboard/v1/v1.component';
 import { LoginAuthService } from '@core/services/login.auth.service';
@@ -17,7 +18,8 @@ import { UserAuthGuard } from '@core/services/user.guard.service';
             { useHash: true }),
         PagesModule,
         SurveyManagementModule,
-        StatisticsManagementModule
+        StatisticsManagementModule,
+        RetrievalManagementModule
     ],
     declarations: [
         DashboardV1Component

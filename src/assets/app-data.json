@@ -20,8 +20,17 @@
         },
         {
             "group": true,
+            "children":[{
+                "text": "Patient information retrieval",
+                "translate": "患者信息检索",
+                "link": "retrieval/detail",
+                "icon": "fa fa-search"
+            }]
+        },
+        {
+            "group": true,
             "children": [{
-                "text": "statistics",
+                "text": "Statistics",
                 "translate": "信息统计",
                 "link": "statistics/charts/0",
                 "icon": "icon-chart",

@@ -23,7 +23,7 @@ export class Record {
 @Injectable()
 export class HttpService {
 
-    baseUrl = 'http://202.117.54.93:8080';
+    baseUrl = 'http://59.110.52.133:8888';
     baseUrl_v2 = 'http://59.110.52.133:8888';
     constructor(
         private http: HttpClient,
