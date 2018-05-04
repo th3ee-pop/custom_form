@@ -55,19 +55,6 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
                 'PID': this.PID
             };
             this.qlist = this.exampleList[this.steps[this.current]]['items'];
-            console.log(this.qlist);
-            // this.service.getRecordpart(getRecord).subscribe( (res) => {
-            //     const list = res.Records;
-            //     this.answerList = list;
-            //     for (let i = 0; i < list.length; i++) {
-            //         if ( list[i]['questionlist'] && list[i]['questionlist'] !== '') {
-            //             this.questionList = list[i]['questionlist'][this.current];
-            //             this.questionSave = list[i]['questionlist'];
-            //             break;
-            //         }
-            //     }
-            //     this.fillingAllanswer();
-            // });
         } else {
             this.qlist = this.exampleList[this.steps[this.current]]['items'];
             console.log(this.qlist);
@@ -81,7 +68,7 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
         if ( this.PID ) {
             this.fillingAllanswer();
         }
-        // this.fillingAllanswer();
+        this.fillingAllanswer();
     }
 
     onVoted (showAndhidden: any) {
@@ -327,15 +314,17 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
         const getRecord = {
             'PID': this.PID,
             'Department': this.department,
-            'step_keys': [this.steps[this.current]]
+            // 'step_keys': [this.steps[this.current]]
+            'step_keys': ['one']
         }; // 构造我们需要的查询条件
         console.log(getRecord);
         // 下面开始获取所有当前子页面的数据
         this.service.getRecordpart(getRecord).subscribe((res) => {
 
-            if (JSON.stringify(res.Records) !== '{}') {
-
-
+            if (JSON.stringify(res.Records) !== ('{}')) {
+                console.log(res);
+                 console.log(res.Records);
+                console.log(JSON.stringify(res.Records));
                 // let answers_bucket = new Array(res.Record[this.steps[this.current]]);
 
                 const  answers_bucket = res.Records[this.steps[this.current]];
