@@ -108,9 +108,14 @@ export class AddrcmpComponent extends Question implements OnInit {
         }
     }
     answerChange() {
+        // this.streets.map(street => {
+        //     if ( street.value === this.initArray[3]) {
+        //         this.nameArray[3] = street.label + ',' + street.value;
+        //     }
+        // });
         this.streets.map(street => {
-            if ( street.value === this.initArray[3]) {
-                this.nameArray[3] = street.label + ',' + street.value;
+            if ( street.value === this.initArray[3]){
+                this.nameArray[3] = street.label;
             }
         });
         const res = [];

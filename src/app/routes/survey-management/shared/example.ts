@@ -35,17 +35,34 @@ export class SaveList {
                     'hiddencondition': [],
                     'hidden': false
                 },
+                // {
+                //
+                //     'webId': '26',
+                //     'dbId': 'xb',
+                //     'type': 'radio',
+                //     'front_title': '性别',
+                //     'behind_title': '',
+                //     'required': true,
+                //
+                //     'content': [
+                //         '男', '女', '未记录'
+                //     ],
+                //     'hiddenlist': [
+                //
+                //     ],
+                //
+                //     'hidden': false
+                // },
                 {
 
                     'webId': '26',
                     'dbId': 'xb',
-                    'type': 'radio',
+                    'type': 'option',
                     'front_title': '性别',
                     'behind_title': '',
                     'required': true,
-
                     'content': [
-                        '男', '女'
+                        '男', '女', '未记录'
                     ],
                     'hiddenlist': [
 
@@ -240,12 +257,12 @@ export class SaveList {
                 {
                     'webId': '21',
                     'dbId': 'sfjwzbl',
-                    'type': 'radio',
+                    'type': 'option',
                     'front_title': '是否急危重病例',
                     'behind_title': '',
                     'required': true,
                     'content': [
-                        '是', '否'
+                        '是', '否', '不详'
                     ],
                     'hiddenlist': [
 
@@ -255,12 +272,12 @@ export class SaveList {
                 {
                     'webId': '22',
                     'dbId': 'sfynbl',
-                    'type': 'radio',
+                    'type': 'option',
                     'front_title': '是否疑难病例',
                     'behind_title': '',
                     'required': true,
                     'content': [
-                        '是', '否'
+                        '是', '否', '不详'
                     ],
                     'hiddenlist': [
 
@@ -737,12 +754,13 @@ export class SaveList {
                 {
                     'webId': '25',
                     'dbId': 'ylfffs',
-                    'type': 'radio',
+                    'type': 'option',
                     'front_title': '医疗付费方式',
                     'behind_title': '',
                     'required': true,
                     'content': [
-                        '新型农村合作医疗', '城镇职工基本医疗保险', '其他社会保险', '商业医疗保险', '其他'
+                        '新型农村合作医疗', '城镇职工基本医疗保险', '城镇居民基本医疗保险', '全自费', '全公费',
+                        '其他社会保险', '商业医疗保险', '其他', '不详'
                     ],
                     'hiddenlist': [
 

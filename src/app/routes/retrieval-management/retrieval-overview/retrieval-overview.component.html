@@ -13,7 +13,7 @@
                                         <span unchecked>not</span>
                                     </nz-switch>
                                 </div>
-                                <nz-select [(ngModel)]="i.condition_type">
+                                <nz-select style="width: 200px" [(ngModel)]="i.condition_type" (nzOpenChange) = "selectChange($event, i)">
                                     <nz-option *ngFor="let c of condition_type" [nzLabel]="c" [nzValue]="c"></nz-option>
                                 </nz-select>
                                 <nz-select

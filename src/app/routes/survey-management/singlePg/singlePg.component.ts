@@ -68,7 +68,6 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
         if ( this.PID ) {
             this.fillingAllanswer();
         }
-        this.fillingAllanswer();
     }
 
     onVoted (showAndhidden: any) {
@@ -111,19 +110,13 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
     jumpTo(step_index , footer) {
         const numWords = ['info0', 'info1', 'info2', 'info3', 'info4', 'info5', 'info6', 'info7', 'info8'];
         if (step_index !== this.current) { // 如果有病人编号，则跳跃
-                this.current = step_index;
-                console.log(this.current);
-                console.log(this.exampleList);
-                this.qlist = this.exampleList[this.steps[this.current]]['items'];
-            // this.service.putRecords(this.initputRecord()).subscribe( (res) => {
-           //     console.log(res);
-           //     this.PID = res.PID;
-           //     this.current = step_index;
-           //     this.qlist = this.exampleList[this.steps[this.current]]['items'];
-           //     this.fillingAllanswer(); // 这里我们需要再次调用fillingAllanswer，获取新子页面下的数据。
-           // }, err => {
-           //     console.log(err);
-           // });
+            this.current = step_index;
+            console.log(this.current);
+            console.log(this.exampleList);
+            this.qlist = this.exampleList[this.steps[this.current]]['items'];
+            if (this.PID) {
+                this.fillingAllanswer();
+            }
         }
     }
 
@@ -285,6 +278,12 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
                 this.resultList.push(item.changedAnswer[i]);
             }
         });
+        this.OptionItem.forEach(item => {
+            if (item.valid_confirmed === true) {
+                for ( let i = 0; i < item.answer.length; i++)
+                    this.resultList.push(item.answer[i]);
+            }
+        });
 
         // for (let i = 0; i < this.answerList.length; i++) {
         //     for (let j = 0; j < this.resultList.length; j++) {
@@ -314,8 +313,8 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
         const getRecord = {
             'PID': this.PID,
             'Department': this.department,
-            // 'step_keys': [this.steps[this.current]]
-            'step_keys': ['one']
+            'step_keys': [this.steps[this.current]]
+            // 'step_keys': ['one']
         }; // 构造我们需要的查询条件
         console.log(getRecord);
         // 下面开始获取所有当前子页面的数据
@@ -323,11 +322,12 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
 
             if (JSON.stringify(res.Records) !== ('{}')) {
                 console.log(res);
-                 console.log(res.Records);
+                console.log(res.Records);
                 console.log(JSON.stringify(res.Records));
                 // let answers_bucket = new Array(res.Record[this.steps[this.current]]);
 
                 const  answers_bucket = res.Records[this.steps[this.current]];
+                // console.log(answers_bucket);
 
                 // answer_bucket是我们获取到的所有当前子页面的回填答案，下面需要将他们依次放回各个组件。
                 // console.log(answers_bucket);
@@ -336,9 +336,7 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
                 // console.log(answers_bucket);
 
                 // 所有hightable类型的数据获取
-                // const answers_bucket = [
-                //     {Record_ID: 'xzz', Record_value: '河北省,13 唐山市,1302 路北区,130203 乔屯街道办事处,130203001 阿萨是撒啊阿萨'}
-                //     ];
+
                 this.HighTableItem.forEach(item => {
                     console.log(answers_bucket);
                     const newArray = [];
@@ -370,6 +368,14 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
                         if (answer.Record_ID === item.question.dbId) {
                             console.log(item.question.dbId);
                             item.localAnswer = +answer.Record_value;
+                        }
+                    }
+                });
+                this.OptionItem.forEach(item => {
+                    for (const answer of answers_bucket) {
+                        if (answer.Record_ID === item.question.dbId) {
+                            console.log(item.question.dbId);
+                            item.localAnswer = answer.Record_value;
                         }
                     }
                 });
@@ -446,79 +452,3 @@ export class SinglePgComponent implements OnInit, AfterViewInit  {
 
 }
 
-/**
- *  页面跳转，弹窗检验是否填完，若选择确定则继续跳转，否则留在当前页面
- */
-// jumpTo(step_index , footer) {
-//     // const numWords = ['singlePg', 'info1', 'info2', 'info3', 'info4', 'info5', 'info6', 'info7', 'info8'];
-//     if (this.PID && step_index !== this.current) { // 如果有病人编号，则跳跃
-//
-//         // if (this.buttondisable === true) {
-//         //     this.router.navigate(['system/survey/' + numWords[step_index] + '/' + this.PID]);  // 拼接跳转链接
-//         // } else {
-//         //     if (this.confirm().confirms) {
-//         //         this.save(step_index);
-//         //     }else {
-//         //         console.log('test and model show!');
-//         //         let rest = '（本页剩余：' + (this.confirm().confirmP*100).toFixed(3) + '%）';
-//         //         let str = '';
-//         //         for ( let i = 0; i < this.confirm().confirmList.length; i++) {
-//         //             str = str + this.confirm().confirmList[i] + '、';
-//         //         }
-//         //         this.currentModal = this.confirmServ.open({
-//         //             title: '您还有以下必填项没有完成' + rest ,
-//         //             content: str,
-//         //             footer: footer,
-//         //             onOk() {
-//         //                 console.log('Click ok');
-//         //             },
-//         //             onCancel() {
-//         //                 console.log('Click cancel');
-//         //             }
-//         //         });
-//         //     }
-//         // }
-//     }else {
-//         this.temporary_deposit();
-//     }
-// }
-
-// /**
-//  * 取消跳转
-//  */
-// handleCancel() {
-//     this.currentModal.destroy('onCancel');
-// }
-
-// /**
-//  * 选择确定，则跳转到指定页面
-//  * @param step_index
-//  */
-// handleOk(step_index) {
-//     console.log("step_index");
-//         /* destroy方法可以传入onOk或者onCancel。默认是onCancel */
-//         this.currentModal.destroy('onOk');
-//         this.currentModal = null;
-//         this.save(step_index);
-// }
-
-
-/**
- * 保存修改并跳转到指定页面
- * @param step_index
- */
-// save(step_index) {
-// const numWords = ['singlePg', 'info1', 'info2', 'info3', 'info4', 'info5', 'info6', 'info7', 'info8'];
-// this.collectAllanswer();
-// let putRecord = {};
-// if (!this.PID) putRecord = {'Records': this.resultList};
-// else putRecord = {'PID': this.PID, 'Records': this.resultList};
-// console.log(putRecord);
-// this.service.putRecord(putRecord).subscribe((res) => {
-//     console.log(res);
-//     this.PID = res.PID;
-//     this.router.navigate(['system/survey/' + numWords[step_index] + '/' + this.PID]);  // 拼接跳转链接
-// }, err => {
-//     console.log(err);
-// });
-// }

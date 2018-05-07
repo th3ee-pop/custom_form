@@ -10,8 +10,9 @@
                     <div nz-form-control nz-col [nzSm]="20">
                         <nz-input-group [nzSize]="'large'" nzCompact style="min-width: 20px">
                             <nz-select  [(ngModel)]="localAnswer" style="min-width: 150px" [nzDisabled]="editdisabled" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"  >
-                                <nz-option [nzLabel]="'Option1-1'" [nzValue]="'Option1-1'"></nz-option>
-                                <nz-option [nzLabel]="'Option1-2'" [nzValue]="'Option1-2'"></nz-option>
+                                <!--<nz-option [nzLabel]="'Option1-1'" [nzValue]="'Option1-1'"></nz-option>-->
+                                <nz-option *ngFor="let c of options" [nzLabel]="c" [nzValue]="c"></nz-option>
+                                <!--<nz-option [nzLabel]="'Option1-2'" [nzValue]="'Option1-2'"></nz-option>-->
                             </nz-select>
                         </nz-input-group>
                     </div>
@@ -22,7 +23,5 @@
             </form>
         </ng-template>
     </nz-card>
-
-
 </div>
 

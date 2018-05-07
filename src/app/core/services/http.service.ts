@@ -44,31 +44,15 @@ export class HttpService {
         return 'q=' + JSON.stringify(params);
     }
 
-    // putRecord(params: any): Observable<any> {
-    //     console.log(params);
-    //     return this.http.put(this.baseUrl + '/vascular/recordop/', params, {
-    //         headers: new HttpHeaders({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
-    //     })
-    //         .map((res) => {
-    //             console.log(res);
-    //             return res;
-    //         })
-    //         .catch(err => {
-    //             console.log(err);
-    //             return Observable.throw(err);
-    //         });
-    // }
-
-
     initDatabase(params: any): Observable<any> {
         console.log(params);
         console.log(JSON.stringify(params));
         return this.http.put( this.baseUrl_v2 + '/dbms/create/', JSON.stringify(params)
-           /* ,
-            {
-                headers: new HttpHeaders({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
-            }*/
-            ).map((res) => {
+            /* ,
+             {
+                 headers: new HttpHeaders({'X-CSRFToken': this.injector.get(TokenService).data.access_token})
+             }*/
+        ).map((res) => {
             console.log(res);
             console.log('1111');
             return res;
@@ -100,6 +84,18 @@ export class HttpService {
                 return res;
             });
     }
+
+    getSelectvalues(params: any): Observable<any> {
+        return this.http
+            .get( this.baseUrl_v2 + '/dbms/selectvalues/', {
+                params: this.getParams(params)
+            })
+            .do(() => {})
+            .catch( (res) => {
+                return res;
+            });
+    }
+
     getRecords(params: any): Observable<any> {
         return this.http
             .get( this.baseUrl_v2 + '/dbms/recordop/', {
