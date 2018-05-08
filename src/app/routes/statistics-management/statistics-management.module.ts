@@ -7,6 +7,7 @@ import { StatisticsOverviewComponent} from './statistics-overview/statistics-ove
 import { ChartsComponent} from './charts/charts.component';
 import { AngularEchartsModule} from 'ngx-echarts';
 import { BarComponent} from './shared/charts/bar/bar.component';
+import { MapdComponent} from './shared/charts/map/mapd.component';
 
 const routes: Routes = [
      { path: 'detail', component: StatisticsOverviewComponent  },
@@ -27,7 +28,9 @@ const routes: Routes = [
     declarations: [
         StatisticsOverviewComponent,
         ChartsComponent,
-        BarComponent
+        BarComponent,
+        MapdComponent
+
 
     ],
     providers: [

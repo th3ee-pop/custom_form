@@ -29,13 +29,12 @@ export class ChartsOptions {
                         [ 674, 106, 63, 40, 39, 24, 15, 6, 5, 3, 3, 1, 1],
 
                     ]
-
                 }
 
             ]
         },
         {
-            'menu_name': '病种统计',
+            'menu_name': '患者统计',
             'charts': [
                 {   'name': '年龄统计',
                     'filter_name': 'diagnosis',
@@ -55,7 +54,26 @@ export class ChartsOptions {
                     'series': [
                         [674, 106, 63, 40, 39, 24, 15, 8, 6, 5, 4, 3, 3, 1, 1]
                     ]
-
+                },
+                {
+                    'name': '乳腺癌城市分布统计',
+                    'type': 'map',
+                    'legend': ['乳腺恶性肿瘤'],
+                    'mapType': ['陕西'],
+                    'series': [[
+                        {name: '西安市', value: 674 },
+                        {name: '咸阳市', value: 106 },
+                        {name: '渭南市', value: 63 },
+                        {name: '延安市', value: 40 },
+                        {name: '铜川市', value: 39 },
+                        {name: '宝鸡市', value: 24 },
+                        {name: '榆林市', value: 15 },
+                        {name: '商洛市', value: 6 },
+                        {name: '安康市', value: 3 },
+                        {name: '华阴市', value: 3 },
+                        {name: '汉中市', value: 1 },
+                        {name: '兴平市', value: 1 }
+                    ]]
                 }
             ]
         },

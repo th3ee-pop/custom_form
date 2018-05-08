@@ -48,6 +48,7 @@ export class BarComponent extends Options implements OnInit {
 
             ]
         };
+
         for ( let i = 0; i < this.options.legend.length; i++) {
             const series_item = {
                 name: this.options.legend[i],

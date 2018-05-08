@@ -5,27 +5,14 @@
             <ng-template #body>
                 <div nz-row>
                     <div nz-col [nzSpan] = "20" [nzPush] = "4">
-                        <nz-card style="width: 100%">
-                            <ng-template #body>
-                                <div>
-                                    <div echarts [options]="option_s" class="demo-chart" (chartInit)="onChartEvent($event, 'chartInit')"
-                                         (chartClick)="onChartEvent($event, 'chartClick')"
-                                         (chartDblClick)="onChartEvent($event, 'chartDblClick')"
-                                         (chartMouseDown)="onChartEvent($event, 'chartMouseDown')"
-                                         (chartMouseUp)="onChartEvent($event, 'chartMouseUp')"
-                                         (chartMouseOver)="onChartEvent($event, 'chartMouseOver')"
-                                         (chartMouseOut)="onChartEvent($event, 'chartMouseOut')"
-                                         (chartGlobalOut)="onChartEvent($event, 'chartGlobalOut')"
-                                         (chartContextMenu)="onChartEvent($event, 'chartContextMenu')"
-                                         (chartDataZoom)="onChartEvent($event, 'chartDataZoom')"></div>
-                                </div>
-                            </ng-template>
-                        </nz-card>
+
                         <div *ngFor="let option of option_list">
                             <div [ngSwitch] = "option.type">
                                 <div id="{{option.name}}">
                                     <app-bar *ngSwitchCase = "'bar'" [options] = "option"></app-bar>
+                                    <app-map *ngSwitchCase = "'map'" [options] = "option"></app-map>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -36,13 +23,8 @@
                                 <ng-template #title>
                                     <span>统计科室: 所有权限科室</span>
                                 </ng-template>
-
                                 <ng-template #body>
-
                                     <nz-anchor>
-
-
-
                                         <div *ngFor="let option of option_list">
                                             <nz-link nzHref="#{{option.name}}" nzTitle="{{option.name}}"></nz-link>
                                         </div>

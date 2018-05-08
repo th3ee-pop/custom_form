@@ -36,7 +36,7 @@
                 "icon": "icon-chart",
                 "children": [
                     {
-                        "text": "业务量",
+                        "text": "业务统计",
                         "link": "statistics/charts/0",
                         "i18n": "dashboard_v1"
                     },
