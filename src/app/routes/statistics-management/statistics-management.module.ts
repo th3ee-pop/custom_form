@@ -8,6 +8,7 @@ import { ChartsComponent} from './charts/charts.component';
 import { AngularEchartsModule} from 'ngx-echarts';
 import { BarComponent} from './shared/charts/bar/bar.component';
 import { MapdComponent} from './shared/charts/map/mapd.component';
+import { PieComponent} from './shared/charts/pie/pie.component';
 
 const routes: Routes = [
      { path: 'detail', component: StatisticsOverviewComponent  },
@@ -29,9 +30,8 @@ const routes: Routes = [
         StatisticsOverviewComponent,
         ChartsComponent,
         BarComponent,
-        MapdComponent
-
-
+        MapdComponent,
+        PieComponent
     ],
     providers: [
         RecordResolverGuard

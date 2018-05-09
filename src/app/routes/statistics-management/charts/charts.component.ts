@@ -5,6 +5,7 @@ import { AngularEchartsModule } from 'ngx-echarts';
 import { ChartsOptions } from '../shared/charts_configure';
 import { BarComponent } from '../shared/charts/bar/bar.component';
 import { MapdComponent} from '../shared/charts/map/mapd.component';
+import { PieComponent} from '../shared/charts/pie/pie.component';
 import {PatientData} from '../shared/data/patient_data';
 
 declare var echarts: any;
@@ -17,8 +18,8 @@ declare var echarts: any;
 
 export class ChartsComponent implements OnInit, AfterViewInit {
     @ViewChildren(BarComponent) BarItems: QueryList<BarComponent>;
-    @ViewChildren(MapdComponent) MapItems: QueryList<MapdComponent>
-
+    @ViewChildren(MapdComponent) MapItems: QueryList<MapdComponent>;
+    @ViewChildren(PieComponent) PieItems: QueryList<PieComponent>;
     CID = '';
     titles = 'z';
     options = new ChartsOptions().options;
@@ -36,9 +37,6 @@ export class ChartsComponent implements OnInit, AfterViewInit {
         private service: HttpService,
         private charts: AngularEchartsModule
     ) {
-
-
-
         this.CID = this.route.params['value']['CID'];
         const step = parseInt(this.CID)
         if (this.CID) {
