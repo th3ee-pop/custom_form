@@ -93,7 +93,7 @@ export class ChartsOptions {
         {
             'menu_name': '患者统计',
             'charts': [
-                {   'name': '年龄统计',
+                {   'name': '入院患者年龄统计',
                     'filter_name': 'diagnosis',
                     'type': 'bar',
                     'legend': ['患病'],
@@ -131,7 +131,66 @@ export class ChartsOptions {
                         {name: '汉中市', value: 1 },
                         {name: '兴平市', value: 1 }
                     ]]
-                }
+                },
+                {
+                    'name': '4898例乳腺癌(按主要诊断代码分)分类统计',
+                    'type': 'pie',
+                    'legend': [
+                        'N63.x00', 'C79.806', 'C73.x00', 'N60.202', 'C50.901',
+                        'C50.900', 'D48.601', 'N64.901', 'C82.700', 'N64.900', 'N64.900', 'D24.x00', 'N64.504'],
+                    'series': [
+                        {
+                            name: '4898例乳腺癌(按主要诊断代码分)分类统计',
+                            type: 'pie',
+                            radius : [30, 110],
+                            center : ['50%', 200],
+                            roseType : 'area',
+                            x: '50%',
+                            max: 2107,
+                            sort : 'ascending',
+                            data: [
+                                {value: 110, name: 'N63.x00'},
+                                {value: 1, name: 'C79.806'},
+                                {value: 33, name: 'C73.x00'},
+                                {value: 23, name: 'N60.202'},
+                                {value: 8, name: 'C50.901'},
+                                {value: 3735, name: 'C50.900'},
+                                {value: 943, name: 'D48.601'},
+                                {value: 1, name: 'N64.901'},
+                                {value: 3, name: 'C82.700'},
+                                {value: 3, name: 'N64.900'},
+                                {value: 1, name: 'N64.900'},
+                                {value: 19, name: 'D24.x00'},
+                                {value: 18, name: 'N64.504'}
+                            ]
+                        }]
+                },
+                {
+                    'name': '乳腺恶性肿瘤年龄分布统计',
+                    'type': 'pie',
+                    'legend': [
+                        '20岁以下', '20~30岁', '30~40岁', '40~50岁', '50~60岁',
+                        '60岁以上'],
+                    'series': [
+                        {
+                            name: '乳腺',
+                            type: 'pie',
+                            radius : [30, 110],
+                            center : ['50%', 200],
+                            roseType : 'area',
+                            x: '50%',
+                            max: 2107,
+                            sort : 'ascending',
+                            data: [
+                                {value: 0, name: '20岁以下'},
+                                {value: 79, name: '20~30岁'},
+                                {value: 453, name: '30~40岁'},
+                                {value: 1169, name: '40~50岁'},
+                                {value: 1236, name: '50~60岁'},
+                                {value: 798, name: '60岁以上'},
+                            ]
+                        }]
+                },
             ]
         },
         {

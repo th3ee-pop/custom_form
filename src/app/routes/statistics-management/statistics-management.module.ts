@@ -9,6 +9,7 @@ import { AngularEchartsModule} from 'ngx-echarts';
 import { BarComponent} from './shared/charts/bar/bar.component';
 import { MapdComponent} from './shared/charts/map/mapd.component';
 import { PieComponent} from './shared/charts/pie/pie.component';
+import { TreemapComponent} from './shared/charts/treemap/treemap.component';
 
 const routes: Routes = [
      { path: 'detail', component: StatisticsOverviewComponent  },
@@ -31,7 +32,8 @@ const routes: Routes = [
         ChartsComponent,
         BarComponent,
         MapdComponent,
-        PieComponent
+        PieComponent,
+        TreemapComponent
     ],
     providers: [
         RecordResolverGuard
