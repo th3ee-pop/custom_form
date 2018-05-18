@@ -1,6 +1,5 @@
 import { Component, OnInit, Output , EventEmitter } from '@angular/core';
 import { Options } from '../options';
-
 @Component({
     selector: 'app-bar',
     templateUrl: './bar.component.html',
@@ -11,7 +10,10 @@ export class BarComponent extends Options implements OnInit {
 
     option: any;
     ngOnInit() {
+
+
         this.option =  {
+            // color: ['#3398D8', '#EE7700', '#00DDAA'],
             title : {
                 text: this.options.name,
                 subtext: ''
@@ -44,10 +46,25 @@ export class BarComponent extends Options implements OnInit {
                     type : 'value'
                 }
             ],
+            label: {
+                normal: {
+                    show: true,
+                    position: 'top',
+                    textStyle: {
+                        color: 'black'
+                    }
+                }
+            },
             series : [
 
             ]
         };
+        if (this.options.color) {
+           this.option.color = this.options.color;
+        }
+        if (this.options.ymin){
+            this.option.yAxis[0].min = this.options.ymin;
+        }
 
         for ( let i = 0; i < this.options.legend.length; i++) {
             const series_item = {

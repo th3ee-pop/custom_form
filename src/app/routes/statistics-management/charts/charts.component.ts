@@ -8,7 +8,7 @@ import { MapdComponent} from '../shared/charts/map/mapd.component';
 import { PieComponent} from '../shared/charts/pie/pie.component';
 import {PatientData} from '../shared/data/patient_data';
 
-declare var echarts: any;
+// declare var echarts: any;
 
 @Component({
     selector: 'app-charts',
@@ -45,6 +45,8 @@ export class ChartsComponent implements OnInit, AfterViewInit {
             this.option_list = this.options[this.CID].charts;
             console.log(this.CID);
         }
+
+
     }
 
     ngAfterViewInit() {

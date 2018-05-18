@@ -12,13 +12,19 @@
                                     <app-bar *ngSwitchCase = "'bar'" [options] = "option"></app-bar>
                                     <app-map *ngSwitchCase = "'map'" [options] = "option"></app-map>
                                     <app-pie *ngSwitchCase = "'pie'" [options] = "option"></app-pie>
+                                    <app-stackbar *ngSwitchCase = "'stackbar'" [options] = "option"></app-stackbar>
+                                    <app-normalpie *ngSwitchCase = "'normalpie'" [options] = "option"></app-normalpie>
                                 </div>
 
                             </div>
                         </div>
                         <div>
+                            <app-singledot></app-singledot>
+                        </div>
+                        <div>
                             <app-treemap></app-treemap>
                         </div>
+
                     </div>
 
                     <div nz-col [nzSpan]="4" [nzPull]="20">
@@ -53,4 +59,3 @@
         </nz-card>
     </div>
 </div>
-

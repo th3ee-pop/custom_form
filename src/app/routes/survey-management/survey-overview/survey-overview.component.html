@@ -1,14 +1,14 @@
 <div nz-row [nzGutter]="24" class="py-lg">
     <div nz-col [nzSpan]="24">
         <nz-card [nzNoHovering]="true">
-            <ng-template #title>健康体检调查表</ng-template>
+            <ng-template #title>患者电子健康病例</ng-template>
             <ng-template #body>
                 <nz-card>
                     <ng-template #body>
                         <form nz-form>
                             <div nz-row nz-form-item [nzGutter]="16">
                                 <div nz-form-label nz-col [nzSm]="2">
-                                    <label>体检编号</label>
+                                    <label>病案号</label>
                                 </div>
                                 <div nz-form-control nz-col [nzSm]="5">
                                     <nz-input [(ngModel)]="conditions.filter_dict.No" name="userId" [nzId]="'userId'" ></nz-input>
@@ -104,7 +104,7 @@
                                             </label>
                                         </th>
                                         <th nz-th><span>PID</span></th>
-                                        <th nz-th><span>体检编号</span><nz-table-sort [(nzValue)]="sortMap['No']" (nzValueChange)="sort('No',$event)"></nz-table-sort></th>
+                                        <th nz-th><span>病案号</span><nz-table-sort [(nzValue)]="sortMap['No']" (nzValueChange)="sort('No',$event)"></nz-table-sort></th>
                                         <th nz-th><span>状态</span></th>
                                         <th nz-th><span>上次修改时间</span><nz-table-sort [(nzValue)]="sortMap['Updated_time']" (nzValueChange)="sort('Updated_time',$event)"></nz-table-sort></th>
                                         <th nz-th><span>所属省份</span></th>

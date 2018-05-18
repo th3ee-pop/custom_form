@@ -1,23 +1,7 @@
-<div id="title">
-    <nz-card>
-        <!--<ng-template #title>-->
-            <!--<div style="height: auto; width: 100%; margin-top: 50px">-->
-                <!--<div nz-form-item>-->
-                    <!--<div nz-form-control nz-col [nzSm]="20">-->
-                        <!--<nz-input-group [nzSize]="'large'" nzCompact style="min-width: 20px">-->
-                            <!--<nz-select  [(ngModel)]="localAnswer" style="min-width: 150px" [nzDisabled]="editdisabled" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"  >-->
-                                <!--<nz-option [nzLabel]="'Option1-1'" [nzValue]="'Option1-1'"></nz-option>-->
-                                <!--<nz-option [nzLabel]="'Option1-2'" [nzValue]="'Option1-2'"></nz-option>-->
-                            <!--</nz-select>-->
-                        <!--</nz-input-group>-->
-                    <!--</div>-->
-                    <!--<div nz-form-control >-->
-                        <!--<label></label>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</ng-template>-->
-        <ng-template #body>
+<div id="title" style="margin-top: 30px">
+    <!--<nz-card>-->
+  <!---->
+        <!--<ng-template #body>-->
             <div>
                 <div echarts [options]="option" class="demo-chart" (chartInit)="onChartEvent($event, 'chartInit')"
                      (chartClick)="onChartEvent($event, 'chartClick')"
@@ -30,6 +14,6 @@
                      (chartContextMenu)="onChartEvent($event, 'chartContextMenu')"
                      (chartDataZoom)="onChartEvent($event, 'chartDataZoom')"></div>
             </div>
-        </ng-template>
-    </nz-card>
+        <!--</ng-template>-->
+    <!--</nz-card>-->
 </div>

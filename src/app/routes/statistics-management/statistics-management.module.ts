@@ -10,6 +10,9 @@ import { BarComponent} from './shared/charts/bar/bar.component';
 import { MapdComponent} from './shared/charts/map/mapd.component';
 import { PieComponent} from './shared/charts/pie/pie.component';
 import { TreemapComponent} from './shared/charts/treemap/treemap.component';
+import { SingledotComponent} from './shared/charts/singledot/singledot.component';
+import { StackbarComponent} from './shared/charts/stackbar/stackbar.component';
+import { NormalpieComponent} from './shared/charts/normalpie/normalpie.component';
 
 const routes: Routes = [
      { path: 'detail', component: StatisticsOverviewComponent  },
@@ -33,7 +36,10 @@ const routes: Routes = [
         BarComponent,
         MapdComponent,
         PieComponent,
-        TreemapComponent
+        TreemapComponent,
+        SingledotComponent,
+        StackbarComponent,
+        NormalpieComponent
     ],
     providers: [
         RecordResolverGuard

@@ -1,7 +1,7 @@
 {
     "app": {
-        "name": "医疗数据系统",
-        "description": "医疗数据系统"
+        "name": "西北乳腺癌数据库",
+        "description": "西北乳腺癌数据库"
     },
     "user": {
         "name": "管理员",
@@ -51,6 +51,15 @@
                         "i18n": "dashboard_v1"
                     }
                 ]
+            }]
+        },
+        {
+            "group": true,
+            "children":[{
+                "text": "Research",
+                "translate": "科研系统",
+                "link": "#",
+                "icon": "fa fa-desktop"
             }]
         },
         {
